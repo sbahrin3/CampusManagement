@@ -1,0 +1,27 @@
+<table width="100%">
+<tr>
+<td style="width:100px">Code</td>
+<td style="width:10px">:</td>
+<td><input name="sponsor_code" id="sponsor_code" style="width:100%"></td>
+</tr>
+
+<tr>
+<td>Name</td>
+<td>:</td>
+<td><input name="sponsor_name" id="sponsor_name" style="width:100%"></td>
+</tr>
+
+<tr>
+<td>Address</td>
+<td>:</td>
+<td><textarea name="sponsor_address" id="sponsor_address" style="width:100%;height:100px"></textarea></td>
+</tr>
+
+</table>
+<br>
+<table width="100%">
+<tr><td align="right">
+<input style="height:40px;width:100px;font-weight:bold" type="button" class="gradient" value="Add Sponsor"
+onclick="$('div_parent_sponsor').style.visibility='hidden';$('div_child_sponsor').style.visibility='hidden';doDivAjaxCall$formname('div_list_sponsors','add_sponsor','')">
+</td></tr></table>
+

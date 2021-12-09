@@ -1,0 +1,16 @@
+
+
+<div class="padding:10px">
+<table>
+	<tr><td style="width:300px">
+		<input class="form-control" name="findSubjectName" id="findSubjectName" placeholder="Find courses...">
+	</td>
+	<td>
+	&nbsp;
+	<button type="button" class="btn btn-success btn-sm" onclick="if ( $('findSubjectName').value != '' ) { doDivAjaxCall$formname('subjectList','findSubjectByName',''); }">Search</button>
+	</td></tr>
+</table>
+
+<div id="subjectList"></div>
+
+</div>

@@ -1,0 +1,3 @@
+<script>
+$('addEquivalentSubjects').style.display='block';
+</script>

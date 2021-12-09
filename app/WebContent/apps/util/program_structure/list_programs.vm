@@ -1,0 +1,39 @@
+<table width="700">
+<tr><td>
+
+<table width="100%">
+<tr>
+<td>Program:</td>
+<td>
+<select name="program_id" onchange="doAjaxCall$formname('list_intakes','')" style="width:400px">
+<option value="">- Select Program -</option>
+#foreach ( $p in $programs )
+<option value="$p.id" #if ( $p.id == $program_id ) selected #end>&nbsp;&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+</td>
+</tr>
+<tr>
+<td>Intakes:</td>
+<td>
+<select name="intake_id" style="width:400px">
+<option value="">- Select Intake -</option>
+#foreach( $in in $intakes )
+<option value="$in.id" #if ( $in.id == $intake_id ) selected #end>&nbsp;&nbsp;&nbsp;$in.code $in.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="right">
+$button.command("get_structure").text("Program Structure")
+</td></tr>
+</table>
+
+
+
+
+
+</td></tr>
+</table>

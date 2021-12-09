@@ -1,0 +1,123 @@
+#set ( $num_pages = $total_count / $page_size )
+#set ( $more = $total_count % $page_size )
+#if ( $more > 0 )
+#set ( $num_pages = $num_pages + 1 )
+#end
+
+<div id="student_info" class="student_info" style="visibility:hidden;"></div>
+
+<div style="text-align:right">
+		<button type="button" class="btn btn-default btn-sm"  onclick="$('results').innerHTML='';$('examEntryParams').style.display='block';"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back</button>
+
+</div>
+
+
+<input type="hidden" id="total_count" value="$total_count">
+<input type="hidden" id="num_pages" value="$num_pages">
+
+<table cellpadding="0" cellspacing="0" width="100%">
+
+<tr><td>
+	<div style="padding:5px;background:#fff;width:600px">
+
+	<table>
+		<tr style="height:30px"><td style="width:120px;">Subject</td><td style="width:10px">:</td><td style="font-weight:bold;font-size:10pt;">$!subject.code $subject.name</td></tr>
+	
+		#if ( !$subject.markingGrade )
+			<tr style="height:30px"><td>Grading Scheme</td><td>:</td><td style="font-weight:bold;font-size:10pt;color:#CC082C">Warning! Grading Scheme undefined!</td></tr>
+		#else
+			<tr style="height:30px"><td>Grading Scheme</td><td>:</td><td style="font-weight:bold;font-size:10pt;">$subject.markingGrade.name</td></tr>
+		#end
+		<tr style="height:30px"><td>Program</td><td>:</td><td style="font-weight:bold;font-size:10pt;">$!program.name</td></tr>
+		<tr style="height:30px"><td>Session</td><td>:</td><td style="font-weight:bold;font-size:10pt;">$!session.name</td></tr>
+		<tr style="height:30px"><td>Learning Centre</td><td>:</td><td style="font-weight:bold;font-size:10pt;">$!centre.name</td></tr>
+		#if ( $teacher_mode )
+			<tr style="height:30px"><td>Teacher Id</td><td>:</td><td style="font-weight:bold;font-size:10pt;">$!teacherId</td></tr>
+		#end
+	</table>
+
+</div>
+
+</td></tr>
+
+
+<tr><td colspan="3" align="right">
+	<input type="hidden" id="marked_results" name="marked_results" value="$!marked_results">
+	<input type="hidden" id="total_results" name="total_results" value="$!total_results">
+Marking Progress: <b><span id="div_marked_results">$!marked_results</span> / $!total_results (<span id="div_percent_progress">$!percent_progress</span>%)</b>
+</td></tr>
+
+<tr><td colspan="3" align="right">
+
+	<table>
+		<tr>
+		<td>Page:</td>
+		#foreach( $p in [1..$total_page])
+		<td class="box" id="td_$p" style="background-color:#fff;cursor:pointer;width:20px;height:20px;" onclick="$('btn_prev').disabled = true;$('btn_next').disabled = true;doDivAjaxCall$formname('div_page','goto_page','page=$p')" align="center">$p</td>
+		#end
+		<td>
+			<button id="btn_prev" class="btn btn-default btn-xs" type="button" onclick="$('btn_prev').disabled = true;$('btn_next').disabled = true;doDivAjaxCall$formname('div_page','prev_page','')"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+			<button id="btn_next" class="btn btn-default btn-xs" type="button" onclick="$('btn_prev').disabled = true;$('btn_next').disabled = true;doDivAjaxCall$formname('div_page','next_page','')"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+		</td>
+		</tr>
+	</table>
+
+</td></tr>
+
+<tr><td>
+	<br/><br/>
+<div id="divMarkings" class="shadow" style="position:absolute;background:#EDEDED;padding:2px;display:none;border:1px solid #BAB8B8"></div>
+
+#if ( $items.size() > 0 )
+	<table style="background:#fff">
+	
+		<tr><td style="font-weight:bold">&nbsp;</td>
+		
+		#foreach( $i in $items )
+			#if ( $i.percentage > 0 )
+				<td style="font-weight:bold">${i.name} (${i.code})</td><td>&nbsp;&nbsp;</td><td style="width:10px">|</td>
+			#end
+		#end
+	
+		
+		<td>
+		<button type="button" class="btn btn-default btn-sm" onclick="$('divMarkings').style.display='block';doDivAjaxCall3$formname('divMarkings','edit_coursework','')">Edit Marking Distribution</button>
+		</td>
+		</tr>
+	</table>
+#else
+	<table>
+		<tr>
+		<td>
+		<input type="button" class="btn btn-default btn-sm" onclick="$('divMarkings').style.display='block';doDivAjaxCall3$formname('divMarkings','edit_coursework','')">Create Marking Distribution</td>
+		&lt; Create marking distribution first.
+		</td>
+		</tr>
+	</table>	
+#end
+
+</td><td align="right">
+<span id="display_page_number" style="font-weight:bold"></span>
+
+<button type="button" class="btn btn-default btn-sm" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.AssessmentResultPDFModule?userId=$!userId&amp;programId=$!program_id&amp;sessionId=$!session_id&amp;subjectId=$!subject_id&amp;centreId=$!centre_id&amp;intakeId=$!intake_id&amp;sectionId=$!section_id&pdfName=examresults';">PDF</button>
+<button type="button" class="btn btn-default btn-sm" onclick="document.location='../servlet/educate.sis.servlets.ExamResultXLServlet?userId=$!userId&program_id=$!program_id&intake_id=$!intake_id&session_id=$!session_id&subject_id=$!subject_id&section_id=$!section_id&centre_id=$!centre_id'">Excel</button>
+	
+	
+</td>
+</tr>
+</table>
+
+
+<input type="hidden"  id="total_page" name="total_page" value="$!total_page">
+<input type="hidden"  id="total_count" name="total_count" value="$!total_count">
+	
+<div id="div_page">
+#parse("apps/util/assessment_result/list_students_page.vm")
+</div>
+
+
+<script>
+$('results').style.display="block";
+$('examEntryParams').style.display="none";
+</script>
+

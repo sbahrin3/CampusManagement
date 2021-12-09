@@ -1,0 +1,16 @@
+
+<table width="100%">
+<tr><td align="center">
+<fieldset style="background:lightgrey; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<input name="name_pattern" onkeydown="dnKeyPress(event, 'find_student', 'find_student', '')">
+<input type="button" value="Find.." onclick="doDivAjaxCall$formName('find_student', 'find_student', '')">
+
+</fieldset>
+<br><br>
+</td></tr>
+
+<tr><td>
+<div id="find_student" name="find_student"></div>
+</td></tr>
+</table>

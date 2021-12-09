@@ -1,0 +1,92 @@
+<table width="100%">
+<tr><td align="right" style="font-weight:bold">
+[<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_program_structure','get_structure_by_centre','')">Reload</a>]
+[<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_program_structure','back','program_id=$!program.id&intake_id=$!intake.id&centre_id=$!centre.id')">Back</a>]
+</td></tr>
+<tr><td>
+
+<table>
+<tr><td style="width:150px">Program</td><td style="width:20px">:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Intake</td><td>:</td><td style="font-weight:bold">$intake.code $intake.name</td></tr>
+<tr><td>Learning Centre</td><td>:</td><td style="font-weight:bold">$centre.code $centre.name</td></tr>
+<tr><td>
+</table>
+
+</td></tr>
+<tr><td>
+
+#if ( $periods.size() > 0 )
+<table cellpadding="1" cellspacing="0">
+
+<tr><td colspan="5"><hr/></td></tr>
+<tr style="width:30px">
+<td style="width:10px">&nbsp;&nbsp;</td>
+<td style="width:100px;font-weight:bold;">Code</td>
+<td style="width:500px;font-weight:bold;">Name</td>
+<td style="width:100px;font-weight:bold;" align="center">Credit<br/>Hours</td>
+<td style="width:100px;font-weight:bold;">Category</td>
+</tr>
+
+
+#foreach($period in $periods)
+<tr>
+<td colspan="4" style="font-weight:bold;border-bottom:1px solid #000;padding-top:30px">
+<a href="javascript:void()" style="text-decoration:none;" onclick="$('wait_$period.id').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','add_subjects','period_id=$period.id')">$period.name #if ( $period.parent ) ($period.parent.name ) #end</a>
+<span id="wait_$period.id"></span>
+</td><td align="right" style="border-bottom:1px solid #000;padding-top:30px">
+<input class="linkbutton" type="button" style="padding:5px" value="..." onclick="$('wait_$period.id').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','add_subjects','period_id=$period.id')">
+</td>
+</td></tr>
+
+#if ( $programUtil.getSubjectRegs($programStructure, $period.id) )
+#set ( $subjectCount = 0 )
+#foreach ( $reg in $programUtil.getSubjectRegs($programStructure, $period.id))
+#set ( $subjectCount = $subjectCount + 1 )
+<tr style="height:25px">
+<td class="row">&nbsp;&nbsp;</td>
+<td class="row">$!reg.subject.code</td>
+<td class="row">$!reg.subject.name</td>
+<td class="row" align="center">$!reg.subject.credithrs</td>
+<td class="row">$!reg.category.name</td>
+</tr>
+#end
+
+#if ( $subjectCount == 0 )
+<tr><td colspan="5">-</td></tr>
+#end
+
+#else
+<tr><td colspan="5">-</td></tr>
+#end
+
+#end
+
+<tr><td colspan="5"></td></tr>
+
+</table>
+
+
+<hr/>
+
+#parse("apps/util/program_structure2/copy_from.vm")
+</td></tr>
+
+
+#else
+
+<tr><td align="center" style="font-weight:bold;color:red">
+<br><br>
+ERROR:
+Periods has not been defined to this Program Of Study.
+</td></tr>
+
+#end
+
+
+
+</table>
+
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="structure_id" value="$!programStructure.id">
+<input type="hidden" name="centre_id" value="$!centre.id">

@@ -1,0 +1,32 @@
+
+<div id="selectCheckInDate" class="shadow" style="display:none;position:absolute;background:#E8E8E8;padding:5px">
+<fieldset>
+<legend style="font-weight:bold;">SELECT DATE</legend>
+<table width="250px">
+<tr>
+<td>
+Date:</td><td>
+
+
+$html.dateField.name("date_in").value("$dateFormat.format($check_in_date)").style("width:100px;text-align:center")
+<input class="linkbutton" style="padding:2px" type="button" value="Select.." onclick="$('div_date_in_wait').innerHTML='<img src=../img/indicator.gif> <b>Please wait...</b>';doDivAjaxCall3$formname('hostel_info','list_rooms','unit_id=$unit.id')">
+
+</td>
+</tr>
+</table>
+
+</fieldset>
+</div>
+
+<table><tr><td>
+
+
+</td>
+<td style="width:50px">
+<input class="linkbutton" type="button" value="Date.." onclick="$('selectCheckInDate').style.display='block';">
+</td>
+<td>
+<div id="div_date_in_wait"></div>
+</td>
+
+</tr></table>

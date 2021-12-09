@@ -1,0 +1,29 @@
+<table width="100%">
+<tr><td align="center" style="font-family:helvetica;font-size:12pt;font-weight:bold">
+Current Status : $applicant.status
+<br><br>
+</td></tr>
+#if ( $applicant.status == "REGISTERED" )
+<tr><td align="center">
+
+<input type="button" style="font-weight:bold;height:30px" value="Change to NEW" onclick="doDivAjaxChainCall${formName}('change_status', 'change_status', 'change_to=NEW','div_$applicant.id','status_changed','before_status=$!applicant.status')">
+<input type="button" style="font-weight:bold;height:30px" value="Change to INCOMPLETE" onclick="doDivAjaxChainCall${formName}('change_status', 'change_status', 'change_to=INCOMPLETE','div_$applicant.id','status_changed','before_status=$!applicant.status')">
+<input type="button" style="font-weight:bold;height:30px" value="Change to REJECTED" onclick="doDivAjaxChainCall${formName}('change_status', 'change_status', 'change_to=REJECTED','div_$applicant.id','status_changed','before_status=$!applicant.status')">
+<input type="button" style="font-weight:bold;height:30px" value="Change to DELETED" onclick="doDivAjaxChainCall${formName}('change_status', 'change_status', 'change_to=DELETED','div_$applicant.id','status_changed','before_status=$!applicant.status')">
+
+</td></tr>
+
+#else
+<tr><td align="center">
+
+<input type="button" style="font-weight:bold;height:30px" value="OFFER" onclick="doDivAjaxCall${formName}('change_status', 'do_offer', 'offer_type=offer')">
+<input type="button" style="font-weight:bold;height:30px" value="CONDITIONAL OFFER" onclick="doDivAjaxCall${formName}('change_status', 'do_offer', 'offer_type=conditional')">
+<hr/>
+<input type="button" style="font-weight:bold;height:30px" value="Change to NEW" onclick="doDivAjaxChainCall${formName}('change_status', 'change_status', 'change_to=NEW','div_$applicant.id','status_changed','before_status=$!applicant.status')">
+<input type="button" style="font-weight:bold;height:30px" value="Change to INCOMPLETE" onclick="doDivAjaxChainCall${formName}('change_status', 'change_status', 'change_to=INCOMPLETE','div_$applicant.id','status_changed','before_status=$!applicant.status')">
+<input type="button" style="font-weight:bold;height:30px" value="Change to REJECTED" onclick="doDivAjaxChainCall${formName}('change_status', 'change_status', 'change_to=REJECTED','div_$applicant.id','status_changed','before_status=$!applicant.status')">
+<input type="button" style="font-weight:bold;height:30px" value="Change to DELETED" onclick="doDivAjaxChainCall${formName}('change_status', 'change_status', 'change_to=DELETED','div_$applicant.id','status_changed','before_status=$!applicant.status')">
+
+</td></tr>
+#end
+</table>

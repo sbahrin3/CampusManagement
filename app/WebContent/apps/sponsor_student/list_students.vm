@@ -1,0 +1,34 @@
+
+<table width="100%" cellpadding="0" cellspacing="0">
+
+<tr height="1px">
+<td  class="gradient" style="width:20px;"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:200px;font-weight:bold"></td>
+<td  class="gradient" style="width:300px;font-weight:bold"></td>
+<td  class="gradient" style=""></td>
+</tr>
+
+#foreach( $s in $sponsor_students )
+
+<tr height="30px">
+<td class="gradient">${velocityCount}.</td>
+<td><input class="text" value="$s.student.matricNo" readonly></td>
+<td><input class="text" value="$s.student.biodata.icno" readonly></td>
+<td><input class="text" value="$s.student.biodata.name" readonly></td>
+<td><input class="text" style="text-align:right" value="$s.student.program.name" readonly></td>
+<td>
+
+<input type="button" class="gradient" style="height:30px;" value="Edit"
+onclick="$('div_find_student').style.visibility='visible';$('div_find_student2').style.visibility='visible';doDivAjaxCall$formname('div_find_student2','edit_student','student_id=$s.student.id&sponsor_id=$s.sponsor.id&sponsorStudentId=$s.id')">
+
+
+<input type="button" class="gradient" style="height:30px;;" value="X"
+onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall$formname('div_list_students','delete_student','student_id=$s.student.id&sponsor_id=$s.sponsor.id')">
+
+</td>
+</tr>
+
+#end
+

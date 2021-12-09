@@ -1,0 +1,38 @@
+<table>
+<tr height="0px">
+<td style="width:50px;"></td>
+<td style="width:200px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:50px;font-weight:bold" align="center"></td>
+<td style="width:50px">
+
+</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $ct in $cluster.classrooms )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#F4F4F4" ) #else #set ( $bgcolor = "#fff" ) #end
+<tr bgcolor="$bgcolor" height="25px">
+<td align="center">$cnt</td>
+<td>$ct.subject.code $ct.subject.name</td>
+<td>$ct.section.name</td>
+<td align="center">$ct.section.classroomType.slotCount</td>
+
+<td align="center">
+
+<input type="checkbox" name="classroomIds_$cluster.id" value="$ct.id">
+
+</td>
+
+</tr>
+#end
+</table>
+<table width="100%"><tr><td align="right">
+<input type="button" value="Remove" onclick="doDivAjaxCall3$formname('divCluster_$cluster.id','removeClassroom','clusterRemoveId=$cluster.id')">
+</td></tr></table>
+
+<script>
+
+unCheckAll('classroomIds');
+
+</script>

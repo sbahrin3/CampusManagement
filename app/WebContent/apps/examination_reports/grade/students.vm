@@ -1,0 +1,51 @@
+<style>
+td { color: #000000; font: normal 11px arial; }
+</style>
+<table width="100%"><tr><td align="center">
+#if ( !$print_mode ) 
+<input type="button" value="Print" onclick="window.open('../y/educate.sis.exam.module.StudentGradeAnalysisModule?command=print_students&intake_id=$intake_id&period_id=$period_id&period_scheme_id=$period_scheme_id&subject_id=$subject_id&grade=$grade','mywin','left=20,top=20,width=500,height=500,toolbar=0,resizable=0');">
+<input type="button" value="Statistic Table" onclick="$('div_students').style.visibility='hidden';$('div_stat').style.visibility='visible'">
+#end
+</td></tr></table>
+
+#if ( $print_mode )
+
+<table width="100%">
+<tr><td>Intake:</td><td style="font-weight:bold">$intake.name</td></tr>
+<tr><td>Semester:</td><td style="font-weight:bold">$period.parent.name $period.name ($session.name)</td></tr>
+<tr><td>Subject:</td><td style="font-weight:bold"><a style="text-decoration:none" href="javascript:void" onclick="$('div_students').style.visibility='hidden';$('div_stat').style.visibility='visible'">$subject.code $subject.name</a></td></tr>
+</table>
+<br><br>
+
+#end
+
+
+<table align="center">
+<tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold;width:50px"></td>
+<td style="font-weight:bold;width:100px">Matric No</td>
+<td style="font-weight:bold;width:300px">Name</td>
+<td style="font-weight:bold;width:100px" align="center">Mark</td>
+<td style="font-weight:bold;width:100px" align="center">Grade</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $r in $results)
+#set ( $cnt = $cnt + 1 )
+<tr height="20px">
+<td>$cnt)</td>
+<td>$r.matricNo</td>
+<td>$r.name</td>
+<td align="center">$r.mark</td>
+<td align="center">$r.grade</td>
+</tr>
+#end
+<tr height="40px"><td colspan="5">
+<b>$cnt</b> students
+</td></tr>
+</table>
+
+#if ( $print_mode )
+<script>
+window.print();
+</script>
+#end

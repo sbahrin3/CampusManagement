@@ -1,0 +1,5 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+
+<div id="divMain">#parse("apps/setup_transcript_endorsed_date/select_params.vm")</div>
+<div id="divEmpty"></div>

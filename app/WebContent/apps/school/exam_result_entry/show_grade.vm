@@ -1,0 +1,6 @@
+<script>
+$('result_${subject_result.id}').value = '$subject_result.mark';
+#if ( $subject_result.grade )
+$('grade_${subject_result.id}').innerHTML = '$subject_result.grade.letter';
+#end
+</script>

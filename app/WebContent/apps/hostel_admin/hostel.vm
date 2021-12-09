@@ -1,0 +1,10 @@
+<table width="100%">
+<tr>
+<td>
+<input type="hidden" name="hostel_id" value="$!hostel.id">
+<input name="hostel_name" id="hostel_name" value="$!hostel.name" 
+onblur="if ( $('hostel_name').value != '$hostel.name' ) { doDivAjaxChainCall$formname('div_hostel','update_hostel','hostel_edit_id=$hostel.id','select_hostels','select_list',''); }" 
+style="width:100%;font-family:arial;font-size:12pt;font-weight:bold;border-top:none;border-bottom:none;border-left:none;border-right:none">
+</td>
+</tr>
+</table>

@@ -1,0 +1,47 @@
+<div style="padding:10px">
+
+<fieldset><legend class="legend">Add New Subject</legend>
+<table width="100%">
+<tr><td style="width:200px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr><td>Code</td><td>:</td><td><input class="texts" name="subjectCode"></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" name="subjectName"></td></tr>
+<tr><td>Short Name</td><td>:</td><td><input class="texts" name="shortName"></td></tr>
+<tr><td>Alt. Name</td><td>:</td><td><input class="texts" name="subjectAltName"></td></tr>
+<tr><td>Credit Unit</td><td>:</td><td>
+<select class="texts" name="subjectCreditHours">
+#foreach( $i in [0..20] )
+<option value="$i">$i</option>
+#end
+</select>
+</td></tr>
+
+
+<tr><td>Calculate in GPA?</td><td>:</td><td>
+<select class="texts" name="subjectExcludeGpa">
+<option value="0" selected>CALCULATE</option>
+<option value="1">NOT CALCULATE</option>
+</select>
+</td></tr>
+
+
+<tr><td>Grade Scheme</td><td>:</td><td>
+<select class="texts" name="markingGrade">
+<option value=""></option>
+#foreach( $m in $markingGrades )
+<option value="$m.id">$m.name</option>
+#end
+</select>
+</td></tr>
+
+
+##<tr><td>Quota</td><td>:</td><td><input class="texts" name="quota"></td></tr>
+
+</table>
+<table width="100%"><tr><td align="right">
+
+<input class="linkbutton" type="button" value="Add Subject" onclick="doDivAjaxCall3$formname('divListSubjects','addSubject','facultyId=$!subjectGroup.faculty.id&subjectGroupId=$!subjectGroup.id');$('entrySubject').style.visibility='hidden';">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('entrySubject').style.visibility='hidden';">
+</td></tr></table>
+</fieldset>
+
+</div>

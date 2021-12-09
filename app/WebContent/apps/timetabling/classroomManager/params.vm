@@ -1,0 +1,60 @@
+<table width="100%">
+
+<tr><td colspan="2">
+
+<fieldset><legend class="legend">Subjects</legend>
+<table>
+<tr><td>Subject:</td><td>#parse("$path/select_subjects.vm")</td></tr>
+</table>
+</fieldset>
+
+
+</td></tr>
+
+<tr>
+
+#**
+
+<td style="width:50%" valign="top">
+
+<fieldset><legend class="legend">Sections</legend>
+<table>
+<tr><td>Student Section:</td><td><div id="selectSections"></div></td></tr>
+</table>
+</fieldset>
+
+</td>
+**#
+
+<td style="" valign="top">
+
+<fieldset><legend class="legend">Classrooms</legend>
+
+<table>
+<tr><td>Classroom Section:</td><td><div id="selectClassrooms"></div></td></tr>
+</table>
+
+</fieldset>
+
+</td></tr></table>
+
+
+<table width="100%">
+<tr>
+#**
+<td style="width:50%" valign="top">
+
+<div id="listStudents"></div>
+
+</td>
+**#
+<td valign="top">
+
+<div id="listStudentsInClassrooms"></div>
+
+</td></tr></table>
+
+
+
+<div id="divGroups" class="shadow"></div>
+<div id="div_empty"></div>

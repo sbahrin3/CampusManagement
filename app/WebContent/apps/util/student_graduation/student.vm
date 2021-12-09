@@ -1,0 +1,108 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+#if ( $student ) 
+#set ( $_student_no = $student.matricNo )
+#end
+
+<table width="800">
+<tr><td align="right">
+
+#if ( !$student_view )
+<input name="student_no" value="$!_student_no">
+<input type="button" value="Get" onclick="doAjaxCall$formName('get_student_by_matric', '')">
+<a href="#" onclick="popwin_$formName();doDivAjaxCall$formName('win$formName','search_student','')">Search...</a>
+#end
+
+</td></tr>
+<tr><td>
+
+#if ( $student )
+
+<table width="100%">
+<tr><td>
+
+$student.biodata.name<br/>
+$student.biodata.icno<br/>
+$student.matricNo<br/>
+$student.program.name<br/>
+
+</td></tr>
+</table>
+
+
+<br/><br/>
+
+#if ( $student_view )
+
+	#if ( $student_graduate )
+	
+	
+		#if ( $student_graduate.clearance )
+			<table width="100%">
+			<tr><td>
+			<div id="apply_graduation" name="apply_graduation" style="font-size:11pt">
+			Congratulations!! You are qualified to graduate.<br><br>
+			
+			#parse("apps/util/student_graduation/button_apply_graduation.vm")
+			
+			</div>
+			</td></tr>
+			</table>
+		#else
+		
+			<table>
+			<tr><td style="font-weight:bold;font-size:10pt;font-size:11pt">
+			Congratulations!! You are now qualified to graduate.<br><br>
+			<font color="red">
+			
+			</font>
+			<br>
+			<font color="red">
+			However, you shall need to settle these clearance first:
+			<ul>
+			#if ( !$student_graduate.clearanceLibrary ) 
+				<li>$!student_graduate.libraryRemark</li>
+			#end
+			#if ( !$student_graduate.clearanceFinance ) 
+				<li>$!student_graduate.financeRemark</li>
+			#end
+			#if ( !$student_graduate.clearanceStudentAffair ) 
+			<li>$!student_graduate.studentAffairRemark</li>
+			#end
+			#if ( !$student_graduate.clearanceFaculty ) 
+				<li>$!student_graduate.facultyRemark</li>
+			#end
+			</ul>
+			</font>
+			</td></tr>
+			
+			</table>
+	
+	
+		#end
+	
+	#end
+
+#end
+
+#end
+<br>
+
+#if ( !$student_graduate.clearance )
+	<span style="font-weight:bold;font-size:11pt">
+	Below are a summary of your course requirement.
+	</span>
+	
+	#parse("apps/util/student_graduation/subjects_requirements_table.vm")
+	
+	<br/><br/>
+	<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+	<div id="subject_list" name="subject_list">
+	#parse("apps/util/student_graduation/subject_list.vm")
+	</div>
+	</fieldset>
+	</td></tr>
+	</table>
+#end
+
+<input type="hidden" name="student_id" value="$!student.id">

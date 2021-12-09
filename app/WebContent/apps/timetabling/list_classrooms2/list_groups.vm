@@ -1,0 +1,21 @@
+
+
+
+<table class="table table-hover">
+
+#foreach ( $g in $groups )
+<tr>
+	<td style="width:50px">
+		<input type="checkbox" name="selectGroupIds" value="$g.id" onclick="$('groupName').value='$g.code';$('findGroup').style.display='none';">
+	</td>
+	<td style="width:200px;cursor:pointer"> ##onclick="$('groupId').value='$g.id';$('groupName').value='$g.code';$('findGroup').style.display='none';"
+		$g.code
+	</td>
+	<td>
+		$!g.department.id -
+		$!g.department.name
+	</td>
+</tr>
+#end
+
+</table>

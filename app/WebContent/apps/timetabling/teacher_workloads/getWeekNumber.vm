@@ -1,0 +1,8 @@
+<script>
+$('weekName').value='$weekName';
+$('week').value = '$weekNumber';
+$('deliveryPeriodId').value= '$!deliveryPeriod.id';
+$('date1').value='$dateFormat.format($date1)';
+$('date2').value='$dateFormat.format($date2)';
+$('getDeliveryPeriod').style.display='none';
+</script>

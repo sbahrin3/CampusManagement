@@ -1,0 +1,154 @@
+<table width="100%" style="background-color:$bgcolor">
+<tr><td style="width:150px" align="right"></td><td></td></tr>
+
+
+#**
+
+#if ( $applicant.applyDate )
+<tr><td align="right">Apply Date :</td><td><input readonly  style="width:100%" name="apply_date" value="$dateFormat.format($applicant.applyDate)"></td></tr>
+<tr><td align="right">Apply Time :</td><td><input readonly  style="width:100%" name="apply_time" value="$timeFormat.format($applicant.applyTime)"></td></tr>
+#elseif ( $applicant.registerDate )
+<tr><td align="right">Apply Date :</td><td><input readonly  style="width:100%" name="apply_time" value="$dateFormat.format($applicant.registerDate)"></td></tr>
+#end
+
+#if ( $applicant.referenceNo )
+<tr><td align="right">Ref No :</td><td><input readonly style="width:100%" name="ref_no" value="$!applicant.referenceNo"></td></tr>
+#end
+**#
+
+<tr><td align="right">Name :</td><td><input class="texts" onkeyup="at(this, event)" name="name" value="$!applicant.biodata.name"></td></tr>
+
+
+##CHECK MYKAD
+<tr><td align="right">Icno :</td><td><input class="texts" onkeyup="at(this, event)"  id="icno" name="icno" value="$!applicant.biodata.icno" 
+onchange="doDivAjaxCall$formname('div_empty','check_mykad','')"></td></tr>
+
+<tr><td align="right">Passport :</td><td><input class="texts" onkeyup="at(this, event)" id="passport" name="passport" value="$!applicant.biodata.passport"
+onchange="doDivAjaxCall$formname('div_empty','check_passport','')"></td></tr>
+
+<tr><td align="right">Gender :</td>
+<td>
+<select class="texts" onkeyup="at(this, event)" style="width:100px" id="gender_id" name="gender_id">
+<option value=""></option>
+<option value="L" #if ( $applicant.biodata.gender.id == "L" ) selected #end>MALE</option>
+<option value="P" #if ( $applicant.biodata.gender.id == "P" ) selected #end>FEMALE</option>
+</select>
+</td></tr>
+
+<tr><td align="right">Date of Birth :</td>
+<td>
+#if ( $applicant.biodata.dob )
+$html.dateField.name("dob").value("$dateFormat.format($applicant.biodata.dob)").style("width:100px").cssClass("texts")
+#else
+$html.dateField.name("dob").value("").style("width:100px").cssClass("texts")
+#end
+</td>
+</tr>
+
+<tr><td align="right">State Born :</td><td><input class="texts" style="width:300px" onkeyup="at(this, event)" id="state_born" name="state_born" value="$!applicant.biodata.stateBorn"></td></tr>
+
+<tr><td align="right">Nationality :</td>
+<td>
+<select id="nationality_id" name="nationality_id" class="texts" onkeyup="at(this, event)" style="width:300px">
+<option value="">- Select nationality-</option>
+#foreach( $n in $nationalities )
+<option value="$n.id" #if ( $applicant.biodata.nationality.id == $n.id ) selected #end>$n.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td align="right">Religion :</td>
+<td>
+<select name="religion_id" class="texts" onkeyup="at(this, event)" style="width:300px">
+<option value="">- Select Religion -</option>
+#foreach ( $r in $religions )
+<option value="$r.id" #if ( $applicant.biodata.religion.id == $r.id ) selected #end>$r.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr><td align="right">Race :</td>
+<td>
+<select name="race_id" class="texts" onkeyup="at(this, event)" style="width:300px">
+<option value="">- Select race -</option>
+#foreach ( $r in $races )
+#if ( $r.id != "L" )
+<option value="$r.id" #if ( $applicant.biodata.race.id == $r.id ) selected #end>$r.name</option>
+#end
+#end
+<option value="L" #if ( $applicant.biodata.race.id == "L" ) selected #end>OTHERS</option>
+</select>
+</td>
+</tr>
+
+<tr height="20px"><td colspan="2"></td></tr>
+
+<tr><td align="right">Mailing Address :</td><td><input class="texts" onkeyup="at(this, event)" name="address1" id="address1" value="$!applicant.address.address1"></td></tr>
+<tr><td align="right"></td><td><input class="texts" onkeyup="at(this, event)" name="address2" id="address2" value="$!applicant.address.address2"></td></tr>
+<tr><td align="right"></td><td><input class="texts" onkeyup="at(this, event)" name="address3" id="address3" value="$!applicant.address.address3"></td></tr>
+<tr><td align="right"></td><td><input class="texts" onkeyup="at(this, event)" name="address4" id="address4" value="$!applicant.address.address4"></td></tr>
+<tr><td align="right">Poscode :</td><td><input class="texts" onkeyup="at(this, event)" name="poscode" id="poscode" value="$!applicant.address.postcode"></td></tr>
+<tr><td align="right">City :</td><td><input class="texts" onkeyup="at(this, event)" name="city" id="city" value="$!applicant.address.city"></td></tr>
+
+##BASED ON NATIONALITY
+<tr><td colspan="2">
+
+#parse( "apps/util/applicant/div_mailing_state.vm" )
+
+</td></tr>
+
+<tr height="20px"><td colspan="2"></td></tr>
+<tr height="20px"><td></td><td><a href="javascript:void()" onclick="copy_address();"><u>Click here to copy from Mailing Address</u></a></td></tr>
+
+<tr><td align="right">Permanent Address :</td><td><input class="texts" onkeyup="at(this, event)" id="paddress1" name="paddress1" value="$!applicant.permanentAddress.address1"></td></tr>
+<tr><td align="right"></td><td><input class="texts" onkeyup="at(this, event)" name="paddress2" id="paddress2" value="$!applicant.permanentAddress.address2"></td></tr>
+<tr><td align="right"></td><td><input class="texts" onkeyup="at(this, event)" name="paddress3" id="paddress3" value="$!applicant.permanentAddress.address3"></td></tr>
+<tr><td align="right"></td><td><input class="texts" onkeyup="at(this, event)" name="paddress4" id="paddress4" value="$!applicant.permanentAddress.address4"></td></tr>
+<tr><td align="right">Poscode :</td><td><input class="texts" onkeyup="at(this, event)" name="pposcode" id="pposcode" value="$!applicant.permanentAddress.postcode"></td></tr>
+<tr><td align="right">City :</td><td><input class="texts" onkeyup="at(this, event)" name="pcity" id="pcity" value="$!applicant.permanentAddress.city"></td></tr>
+##BASED ON NATIONALITY
+<tr><td colspan="2">
+
+#parse( "apps/util/applicant/div_permanent_state.vm" )
+
+</td></tr>
+
+<tr height="20px"><td colspan="2"></td></tr>
+
+<tr><td align="right">Telephone No :</td><td><input class="texts" onkeyup="at(this, event)" name="telephoneNo" value="$!applicant.biodata.telephoneNo"></td></tr>
+<tr><td align="right">Mobile No :</td><td><input class="texts" onkeyup="at(this, event)" name="mobileNo" value="$!applicant.biodata.mobileNo"></td></tr>
+<tr><td align="right">Email :</td><td><input class="texts" onkeyup="at(this, event)" name="email" value="$!applicant.biodata.email"></td></tr>
+
+
+<tr height="20px"><td colspan="2" style="font-weight:bold">PHOTO</td></tr>
+
+<tr><td><td>
+
+
+
+<div class="shadow" name="div_upload_photo" id="div_upload_photo"
+style="visibility:hidden;position:absolute;width:500px;height:250px;border-style:solid;border-color:#B4B4B4;background-color:#ffffff">
+#parse("apps/util/applicant/upload_photo.vm")
+</div>
+
+<div id="div_photo">
+#parse("apps/util/applicant/div_photo.vm")
+</div>
+
+
+</td></tr>
+
+</table>
+<script>
+function copy_address() {
+$('paddress1').value = $('address1').value;
+$('paddress2').value = $('address2').value;
+$('paddress3').value = $('address3').value;
+$('paddress4').value = $('address4').value;
+$('pposcode').value = $('poscode').value;
+$('pcity').value = $('city').value;
+$('pstate_id').value = $('state_id').value;
+$('pcountry_id').value = $('country_id').value;
+}
+</script>

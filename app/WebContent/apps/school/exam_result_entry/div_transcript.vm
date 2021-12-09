@@ -1,0 +1,6 @@
+<table width="100%" bgcolor="#898989">
+<tr height="30px"><td align="right">
+<a href="javascript:void()" style="color:#fff" onclick="$('div_transcript').style.visibility='hidden';$('div_transcript_main').style.visibility='hidden';">Close</a>
+</td></tr></table>
+
+<div id="div_transcript"></div>

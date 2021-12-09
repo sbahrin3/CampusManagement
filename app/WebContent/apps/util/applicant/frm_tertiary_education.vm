@@ -1,0 +1,70 @@
+<table align="center" style="background-color:$bgcolor">
+<tr bgcolor="lightgrey" height="30px">
+<td align="center" style="font-weight:bold;width:100px">Institution</td>
+<td align="center" style="font-weight:bold;width:200px">Specialisation</td>
+<td align="center" style="font-weight:bold;width:100px">Study Level</td>
+<td align="center" style="font-weight:bold;width:100px">Year of<br>Completion</td>
+<td align="center" style="font-weight:bold;width:100px">CGPA</td>
+<td align="center" style="font-weight:bold;width:100px">Class Degree</td>
+<td></td>
+</tr>
+#foreach( $t in $applicant.tertiaries )
+<tr>
+<td align="center">$t.instituition</td>
+<td align="center">$t.specialisation</td>
+<td align="center">$t.level.name</td>
+<td align="center">$t.year</td>
+<td align="center">$t.cgpa</td>
+<td align="center">$t.degreeClass.name</td>
+<td align="right">
+<input type="button" style="font-weight:bold;height:30px" value="Del" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall${formName}('tertiary','delete_tertiary','tertiary_id=$t.id')">
+</td>
+</tr>
+#end
+
+<tr>
+<td colspan="8">
+
+
+<br><br>
+<fieldset>
+
+<table align="center">
+<tr bgcolor="lightgrey" height="30px">
+<td align="center" style="font-weight:bold;width:100px">
+<input name="institution" class="texts" onkeyup="at(this, event)">
+</td>
+<td align="center" style="font-weight:bold;width:200px">
+<input name="specialisation" class="texts" onkeyup="at(this, event)">
+</td>
+<td align="center" style="font-weight:bold;width:200px">
+<select name="level_id" class="texts" onkeyup="at(this, event)">
+#foreach( $level in $study_levels )
+<option value="$level.id">$level.name</option>
+#end
+</select>
+</td>
+<td align="center" style="font-weight:bold;width:80px">
+<input name="tertiary_year" class="texts" onkeyup="at(this, event)">
+</td>
+<td align="center" style="font-weight:bold;width:80px">
+<input name="tertiary_cgpa" class="texts" onkeyup="at(this, event)">
+</td>
+<td align="center" style="font-weight:bold;width:100px">
+<select name="class_id" class="texts" onkeyup="at(this, event)">
+#foreach( $c in $degree_classes )
+<option value="$c.id">$c.name</option>
+#end
+</select>
+</td>
+</tr>
+<tr><td colspan="6" align="right">
+<input type="button" style="font-weight:bold;height:30px"  value="Add" onclick="doDivAjaxCall${formName}('tertiary','add_tertiary','')">
+</td></tr>
+</table>
+
+
+</fieldset>
+
+</td></tr>
+</table>

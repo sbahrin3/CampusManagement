@@ -1,0 +1,41 @@
+<table width="700" align="center">
+<tr><td>
+
+
+<table width="100%">
+
+<tr bgcolor="lightgrey" height="30px">
+<td style="font-weight:bold">Code</td>
+<td style="font-weight:bold">Description</td>
+<td style="font-weight:bold"></td>
+</tr>
+
+#foreach( $f in $fees )
+<tr>
+<td>$f.code</td>
+<td>$f.description</td>
+<td>
+[$href.command("edit").param("fee_id=$f.id").text("Edit")]
+[$href.command("delete").param("fee_id=$f.id").text("Delete")]
+</td>
+</tr>
+#end
+</table>
+
+<br/><br/>
+
+<table width="100%">
+<tr><td>Code:</td><td><input name="code" style="width:100px" value="$!fee.code"></td></tr>
+<tr><td>Description:</td><td><input name="description" style="width:300px" value="$!fee.description"></td></tr>
+<tr><td></td>
+<td>
+#if ( $fee ) 
+$button.command("update").param("fee_id=$fee.id").text("UPDATE") 
+#else
+$button.command("add").text("ADD")
+#end
+</td></tr>
+</table>
+
+
+</td></tr></table>

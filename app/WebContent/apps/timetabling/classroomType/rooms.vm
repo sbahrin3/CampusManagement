@@ -1,0 +1,17 @@
+
+<table style="width:100%">
+#set ( $i = 0 )
+#foreach( $r in $classroomType.rooms )
+#set ( $i = $i + 1 )
+<tr><td style="width:20px">$i)</td><td>$r.name</td></tr>
+#end
+</table>
+
+
+#*
+<select class="text">
+#foreach( $r in $classroomType.rooms )
+<option>$r.name</opiton>
+#end
+</select>
+*#

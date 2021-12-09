@@ -1,0 +1,49 @@
+<script>
+$('billUtility').style.display="block";
+</script>
+
+<table width="100%" style="background:#5141DB"><tr><td style="font-family:Verdana;font-size:10pt;font-weight:bold;color:#fff">Bill Utility</td><td style="width:20px" align="right"><input type="button" value="X" onclick="$('billUtility').style.display='none';"></td></tr></table>
+
+<br/>
+
+<table>
+<tr>
+<td style="width:200px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+
+<tr><td>Hostel Unit</td><td>:</td><td style="height:20px;font-weight:bold">
+$unit.floor.block.code, $unit.floor.code, $unit.code</td></tr>
+
+<td>Utility</td><td>:</td><td>
+<select class="text" name="utilityTypeId">
+<option value=""></option>
+#foreach ( $t in $types )
+<option value="$t.id" #if ( $bill.type.id == $t.id ) selected #end>$t.name</option>
+#end
+</select>
+</td></tr>
+
+<td>Meter Reading Date</td><td>:</td>
+<td>
+<input class="text" style="width:100px" id="dateMeterReading" name="dateMeterReading" #if ( $bill.dateMeterReading ) value="$df.format($bill.dateMeterReading)" #end>
+<script> new JsDatePick({ useMode:2, target:"dateMeterReading", dateFormat:"%d-%m-%Y" }); </script>
+</td></tr>
+
+<tr><td colspan="3" style="height:20px"></td></tr>
+
+<tr><td>Previous Meter Reading</td><td>:</td><td><input class="text" name="previousMeterReading" value="$!bill.previousMeterReading"></td></tr>
+<tr><td>Latest Meter Reading</td><td>:</td><td><input class="text" name="latestMeterReading" value="$!bill.latestMeterReading"></td></tr>
+<tr><td>Reading Unit</td><td>:</td><td><input class="text" name="unitRead" value="$!bill.unitRead"></td></tr>
+
+<tr><td colspan="3" style="height:20px"></td></tr>
+
+<tr><td>Previous Amount Paid</td><td>:</td><td><input class="text" name="outstandingAmount" value="$!bill.outstandingAmount"></td></tr>
+<tr><td>Previous Amount Paid</td><td>:</td><td><input class="text" name="previousAmountPaid" value="$!bill.previousAmountPaid"></td></tr>
+<tr><td>Latest Amount Payable</td><td>:</td><td><input class="text" name="latestAmountPayable" value="$!bill.latestAmountPayable"></td></tr>
+<tr><td>Total Amount</td><td>:</td><td><input class="text" name="totalAmountPayable" value="$!bill.totalAmountPayable"></td></tr>
+
+</table>
+
+<table width="100%"><tr><td align="center">
+<input class="linkbutton" type="button" value="Save" onclick="doDivAjaxCall3$formname('getBillUtilities','saveBillUtility','billId=$!bill.id')">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('billUtility').style.display='none';">
+</td></tr></table>

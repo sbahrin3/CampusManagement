@@ -1,0 +1,6 @@
+<select name="period_id" style="width:300px"  onchange="doDivAjaxCall$formname('div_subjects','list_subjects','')">
+<option value="">- Select Period -</option>
+#foreach( $p in $periods )
+<option value="$p.id">$p.name</option>
+#end
+</select>

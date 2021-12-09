@@ -1,0 +1,60 @@
+<table width="100%" cellspacing="0">
+
+
+<tr><td>
+#parse("apps/lms2/menu.vm")
+</td></tr>
+
+<tr><td>
+<div id="div_posting" name="div_posting"></div>
+</td></tr>
+
+
+<tr><td>
+<div id="div_postings" name="div_postings"></div>
+</td></tr>
+
+<tr><td>
+<div id="div_more_postings" name="div_more_postings" style="visibility:visible">
+<a href="javascript:void()" onclick="olderPosts()">Older Posts</a>
+</div>
+<div id="div_no_more_postings" name="div_no_more_postings" style="visibility:hidden">
+<b>There are no more postings.</b>
+</div>
+</td></tr>
+
+<tr height="30px"><td>
+
+</td></tr>
+
+</table>
+
+<script>
+function olderPosts() {
+  var postings_type = $('postings_type').value;
+  var postings_page = $('postings_page').value;
+  if ( postings_type == "all" ) {
+    doDivAjaxCall$formname('div_postings_' + postings_page,'list_next_postings','');
+  }
+  else if ( postings_type == "status" ) {
+    doDivAjaxCall$formname('div_postings_' + postings_page,'list_next_statuses','');
+  }
+  else if ( postings_type == "discussion" ) {
+  	  doDivAjaxCall$formname('div_postings_' + postings_page,'list_next_discussions','');
+  }
+  else if ( postings_type == "assignment" ) {
+    doDivAjaxCall$formname('div_postings_' + postings_page,'list_next_assignments','');
+  }
+  else if ( postings_type == "question" ) {
+    doDivAjaxCall$formname('div_postings_' + postings_page,'list_next_questions','');  
+  }
+  
+
+}
+
+</script>
+
+
+
+
+

@@ -1,0 +1,7 @@
+
+#parse("apps/sponsor_invoice/print_sponsor_list_invoice.vm")
+<h1>&nbsp;</h1>
+#foreach( $i in $invoice.invoices )
+	#parse("apps/sponsor_invoice/print_sponsor_student_invoice.vm")
+	<h1>&nbsp;</h1>
+#end

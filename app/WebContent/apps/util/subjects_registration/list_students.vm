@@ -1,0 +1,29 @@
+<table width="700" align="center">
+<tr><td align="right">
+$href.command("statistic").text("Back")
+</td></tr></td>
+
+
+<tr><td style="font-weight:bold;font-size:10pt;font-family:arial">
+#if ( $centre )
+$centre.name
+#end
+</td></tr>
+<tr><td style="font-weight:bold;font-size:10pt;font-family:arial">
+$subject.code $subject.name
+</td></tr>
+<tr><td>
+
+<table width="100%">
+#foreach ( $s in $students )
+<tr>
+<td align="right">$velocityCount)</td>
+<td>$s.matricNo</td>
+<td>$s.biodata.name</td>
+</tr>
+#end
+</table>
+<input type="hidden" name="centre_id" value="$!centre.id">
+
+
+</td></tr></table>

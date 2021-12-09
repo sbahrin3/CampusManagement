@@ -1,0 +1,52 @@
+<input type="hidden" id="totalCnt" value="$totalCnt">
+
+<table style="background:#fff" cellspacing="0" cellpadding="1">
+<tr>
+<td colspan="15" align="left">
+#if ( $totalCnt > 0 )
+<input class="linkbutton" type="button" value="RUN IMPORT STUDENT DATA..." onclick="doDivAjaxCall$formname('result_1','saveItem','cnt=1&totalCnt=$totalCnt')">
+#else
+<input class="linkbutton" type="button" value="RUN IMPORT STUDENT DATA..." onclick="doDivAjaxCall$formname('result_1','saveItem','cnt=1&totalCnt=0')">
+#end
+
+</td>
+</tr>
+<tr style="height:30px;background:#DBDBDB">
+<td style="width:50px" align="center">&nbsp;</td>
+<td style="width:100px" align="center">Session</td>
+<td style="width:100px" align="center">Program</td>
+<td style="width:200px" align="center">Matric No</td>
+<td style="width:200px" align="center">Name</td>
+<td style="width:200px" align="center">ICNo</td>
+<td style="width:50px" align="center">Gender</td>
+<td style="width:50px" align="center">Race</td>
+<td style="width:150px" align="center">Birth</td>
+<td style="width:150px" align="center">Phone No</td>
+<td style="width:300px" align="center">Address</td>
+<td style="width:150px" align="center">State</td>
+<td style="width:100px" align="center">Nationality</td>
+<td style="width:50px" align="center"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $i in $items )
+#set ( $cnt = $cnt + 1 )
+<tr style="height:25px;background:#fff">
+<td align="center">$cnt.</td>
+<td align="center"><input class="text" value="$i.sessionCode" readonly></td>
+<td align="center"><input class="text" value="$i.programCode" readonly></td>
+<td align="center"><input class="text" value="$i.matricNo" readonly></td>
+<td align="center"><input class="text" value="$i.name" readonly></td>
+<td align="center"><input class="text" value="$i.icno" readonly></td>
+<td align="center"><input class="text" value="$i.gender" readonly></td>
+<td align="center"><input class="text" value="$i.raceCode" readonly></td>
+<td align="center"><input class="text" value="$i.birthDate" readonly></td>
+<td align="center"><input class="text" value="$i.phoneNo" readonly></td>
+<td align="center"><input class="text" value="$i.address" readonly></td>
+<td align="center"><input class="text" value="$i.stateCode" readonly></td>
+<td align="center"><input class="text" value="$i.nationalityCode" readonly></td>
+<td align="center"><div id="result_$cnt"></div></td>
+</tr>
+#end
+</table>
+#set ( $cnt = $cnt + 1 )
+<div id="result_$cnt"></div>

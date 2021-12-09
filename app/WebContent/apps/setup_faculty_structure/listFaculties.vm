@@ -1,0 +1,23 @@
+<div id="listFaculties" style="">
+
+<fieldset>
+<legend class="legend">List of Faculties</legend>
+
+<table cellspacing="0" cellpadding="2" style="width:100%">
+<tr style="height:30px; background-color:#f4f4f3;">
+<td style="font-weight:bold;font-size:10pt">$institution.name</td>
+<td align="right">
+<button type="button" class="btn btn-warning" onclick="doDivAjaxCall$formname('entryFaculty','entryFaculty','institutionId=$institution.id')">Add Faculty</button>
+</td>
+</tr>
+<tr><td>
+<div class="shadow" id="entryFaculty" style="visibility:hidden;background-color:#fff;position:absolute;border:1px">test</div>
+</td></tr>
+</table>
+
+<div id="divListFaculties">#parse("apps/setup_faculty_structure/divListFaculties.vm")</div>
+</fieldset>
+
+</div>
+
+<div id="listFacultyItems"></div>

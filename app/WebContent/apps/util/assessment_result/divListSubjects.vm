@@ -1,0 +1,8 @@
+<select class="input-text" name="subject_id" style="width:400px">
+<option value=""> - </option>
+#foreach( $s in $subjects )
+	#if ( $s.code )
+	<option value="$s.id">$s.code $s.name</option>
+	#end
+#end
+</select> *

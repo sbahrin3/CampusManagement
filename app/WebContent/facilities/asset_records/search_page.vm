@@ -1,0 +1,27 @@
+<table width="80%" cellpadding="1" cellspacing="2">
+<tr><td  style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td >Category</td><td>:</td><td>
+<select class="texts" name="findCategoryId">
+<option value=""></option>
+#foreach( $c in $categories )
+<option value="$c.id">$c.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Campus</td><td>:</td>
+<td>
+<select class="texts" name="findCampusId">
+<option value=""></option>
+#foreach( $c in $campuses )
+<option value="$c.id">$c.name</option>
+#end
+</select>
+</td>
+</tr>
+<tr><td >Description</td><td>:</td><td><input class="texts" type="text" name="findDescription"></td></tr>
+<tr><td >Tag No</td><td>:</td><td><input class="texts" type="text" name="findTagNo"></td></tr>
+<tr><td >Serial No</td><td>:</td><td><input class="texts" type="text" name="findSerialNo"></td></tr>
+<tr><td >Brand</td><td>:</td><td><input class="texts" type="text" name="findBrandName"></td></tr>
+<tr><td >Model</td><td>:</td><td><input class="texts" type="text" name="findModelName"></td></tr>
+</table>

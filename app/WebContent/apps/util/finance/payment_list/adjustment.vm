@@ -1,0 +1,82 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("get_student").text("Back")]
+</td></tr>
+<tr><td>
+<br/><br/>
+<table width="100%"><tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">STUDENT INFO</td>
+</tr></table>
+#set ( $student = $payment.student )
+
+<table width="100%"><tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">STUDENT RECEIPT INFO</td>
+</tr></table>
+<table width="100%">
+<tr><td style="width:100px">Date/Time:</td><td style="font-weight:bold">
+$dateFormat.format($payment.createDate) ($timeFormat.format($payment.createTime))
+</td></tr>
+<tr><td style="width:100px">Invoice No:</td><td style="font-weight:bold">$payment.paymentNo</td></tr>
+<tr><td style="width:100px">Amount:</td><td style="font-weight:bold">$payment.amount</td></tr>
+</table>
+<table width="100%">
+<tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">Fee</td>
+<td align="right" style="font-weight:bold">Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</td>
+<td align="right" style="font-weight:bold">Adjustment</td>
+</tr>
+#foreach ( $i in $payment.paymentItems )
+<tr>
+<td>$i.invoiceItem.description</td>
+<td align="right">$i.amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+
+#**
+<tr><td colspan="4" align="right"><br/></td></tr>
+<tr>
+<td colspan="4" align="right">
+$button.command("save_adjustment").confirm("Make Adjusment?").style("height:30px;font-weight:bold").text("MAKE ADJUSTMENT")</td>
+</tr>
+**#
+</table>
+<hr/>
+
+#if ( $xpayments.size() > 0 )
+
+<table width="100%">
+<tr height="30px">
+<td style="font-weight:bold">List of payment before adjustment</td>
+</tr>
+</table>
+
+<table width="100%">
+#foreach( $x in $xpayments )
+<tr bgcolor="lightgrey" height="30px">
+<td>${velocityCount}.</td>
+<td align="right">$numFormat.format($x.amount)</td>
+</tr>
+<tr>
+<td>
+
+<table width="100%">
+#foreach ( $i in $x.paymentItems )
+<tr>
+<td>$i.invoiceItem.description</td>
+<td align="right">$i.amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+</table>
+
+</td>
+</tr>
+#end
+</table>
+
+#end
+
+</td></tr></table>
+
+<input type="hidden" name="student_id" value="$!student.id">
+<input type="hidden" name="payment_id" value="$!payment.id">

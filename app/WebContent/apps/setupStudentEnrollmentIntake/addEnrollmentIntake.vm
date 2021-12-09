@@ -1,0 +1,46 @@
+<script>
+$('addEnrollmentIntake').style.display="block";
+#**
+#if ( $session )
+	$('sessionRow_${session.id}').style.backgroundColor="#f7f0af";
+#end
+**#
+</script>
+
+<div style="padding:10px;font-weight:bold;text-align:center">
+	Enrollment Intake
+</div>
+<div style="margin-top:20px">
+	
+	
+
+
+<table style="width:350px" align="center">
+	<tr style="height:40px"><td style="width:100px" align="right">Code :</td><td style="width:200px"><input class="input-text" name="code" value="$!enrollmentIntake.code"></td></tr>
+	##<tr style="height:40px"><td align="right">Name :</td><td><input class="input-text" name="name" value="$!enrollmentIntake.name"></td></tr>
+	<tr style="height:40px"><td align="right">Date :</td>
+		<td>
+			#if ( $enrollmentIntake )
+				<input class="input-text" style="width:100px" id="date" name="date" value="$dateFormat.format($enrollmentIntake.date)">
+			#else
+				<input class="input-text" style="width:100px" id="date" name="date" value="$dateFormat.format($session.startDate)">
+			#end
+			<script> new JsDatePick({ useMode:2, target:"date", dateFormat:"%d-%m-%Y" }); </script>
+		</td>
+	</tr>
+	<tr style="height:50px">
+		<td colspan="3" align="right">
+		
+			<button class="btn btn-default btn-sm" type="button" onclick="$('addEnrollmentIntake').style.display='none';$('sessionRow_${session.id}').style.backgroundColor='#fff';">Cancel</button>
+		
+			<button class="btn btn-success btn-sm" type="button" onclick="doDivAjaxCall$formname('enrollmentIntakes_${session.id}','saveEnrollmentIntake','sessionId=$session.id&enrollmentIntakeId=$!enrollmentIntake.id')"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</button>
+			
+			#if ( $enrollmentIntake )
+				<button class="btn btn-danger btn-sm" type="button" onclick="doDivAjaxCall$formname('enrollmentIntakes_${session.id}','deleteEnrollmentIntake','sessionId=$session.id&enrollmentIntakeId=$!enrollmentIntake.id')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+			#end
+			
+		</td>
+	</tr>
+</table>
+	
+</div>

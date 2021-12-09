@@ -1,0 +1,72 @@
+<table width="100%">
+<tr height="0px"><td style="width:120px"></td><td style="width:10px"></td><td></td><td style="width:200px"></td></tr>
+<tr height="30px"><td>MyKad<br>(YYMMDDBBXXXG)</td><td>:</td><td><input class="text" name="icno" id="icno" onchange="if ($('icno').value == '' ) { $('div_mykad').innerHTML = ''; return; } doDivAjaxCall$formname('div_mykad','check_mykad','')"></td><td><div id="div_mykad" name="div_mykad"></div></td></tr>
+<tr height="30px"><td>Passport</td><td>:</td><td><input class="text" name="passport" id="passport" onchange="if ($('passport').value == '' ) { $('div_passport').innerHTML = ''; return; } doDivAjaxCall$formname('div_passport','check_passport','')"></td><td><div id="div_passport" name="div_passport"></div></td></tr>
+<tr height="30px"><td>Name</td><td>:</td><td><input class="text" name="name" id="name" onchange="if ($('name').value == '' ) { $('div_name').innerHTML = ''; return; } doDivAjaxCall$formname('div_name','check_name','')"></td><td><div id="div_name" name="div_name"></div></td></tr>
+
+<tr height="30px"><td>Program</td><td>:</td><td>
+<select class="text" name="program_id" onchange="doDivAjaxCall$formname('div_select_intakes','list_intakes','')">
+<option value=""> - select program - </option>
+#foreach ( $p in $programs )
+<option value="$p.id">$p.code $p.name</option>
+#end
+</select>
+</td><td><div id="div_program" name="div_program"></div></td></tr>
+
+<tr height="30px"><td>Intake</td><td>:</td><td>
+<div id="div_select_intakes" name="div_select_intakes">
+<select class="text">
+<option value="">Please select program first</option>
+</select>
+</div>
+</td><td><div id="div_intake" name="div_intake"></div></td></tr>
+
+<tr height="30px"><td>Learning Centre</td><td>:</td><td>
+<select class="text" name="centre_id">
+#foreach ( $c in $centres )
+<option value="$c.id">$c.code $c.name</option>
+#end
+</select>
+</td><td><div id="div_centre" name="div_centre"></div></td></tr>
+
+</table>
+
+<br>
+
+<table width="100%">
+<tr><td align="right">
+
+<input class="gradient" style="height:40px;font-weight:bold" type="button" value="REGISTER NEW STUDENT"
+onclick="if ( !checkEntry() ) return; if ( !confirm('Register new student?') ) return;doDivAjaxCall$formname('div_register','register_new_student','')" >
+
+</td></tr></table>
+
+##MATRIC NUMBER PREFIX, SET THIS PREFIX TO EMPTY STRING SO THAT MATRIC NUMBER SHALL BE GENERATED FROM TEMPLATE
+<input type="hidden" name="matric_prefix" value="">
+
+<script>
+
+function checkEntry() {
+if ( $('icno').value == "" && $('passport').value == "" ) {
+alert("MyKad/Passport is required.");
+$('icno').focus();
+return false;
+}
+if ( $('name').value == "" ) {
+alert("Name field is required.");
+$('name').focus();
+return false;
+}
+if ( $('program_id').value == "" ) {
+alert("Please select Program.");
+return false;
+}
+if ( $('centre_id').value == "" ) {
+alert("Please select Learning Centre.");
+return false;
+}
+
+return true;
+}
+
+</script>

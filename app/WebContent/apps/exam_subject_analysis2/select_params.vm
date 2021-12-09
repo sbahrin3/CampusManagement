@@ -1,0 +1,74 @@
+<div style="margin-bottom:50px">
+
+<table><tr><td>
+<table>
+
+<tr>
+<td style="width:150px;height:40px">Learning Centre: </td>
+<td style="width:500px">
+<select class="input-text" name="centreId" style="width:400px">
+<option value=""> - </option>
+#foreach( $s in $centres )
+<option value="$s.id">$s.code $s.name</option>
+#end
+</select>
+</td>
+</tr>
+
+
+<tr>
+<td style="width:150px;height:40px">Program: </td>
+<td style="width:400px">
+<select class="input-text" style="width:400px" id="programId" name="programId" onchange="if ( this.value == '' ) return; doDivAjaxChainCall3$formname('listIntakes','listIntakes','','listSessions','listSessions',''); $('reportButton').style.display='block';">
+<option value=""></option>
+#foreach ( $p in $programs )
+<option value="$p.id">$p.code - $p.name</option>
+#end
+</select>
+##<input type="button" value="..." onclick="doDivAjaxCall3$formname('listSessions','listSessions','')">
+</td>
+</tr>
+
+<tr>
+<td style="height:40px">Intake: </td>
+<td>
+<div id="listIntakes"></div>
+</td>
+</tr>
+
+<tr>
+<td style="height:40px">Session (Optional): </td>
+<td>
+<div id="listSessions"></div>
+</td>
+</tr>
+
+<tr style="height:20px">
+<td></td>
+<td>
+</td>
+</tr>
+
+
+<tr>
+<td>CGPA Range: </td>
+<td>
+<select  class="input-text" style="width:400px" name="cgpaRange">
+	<option value="">All</option>
+	<option value="1"> &lt; 2</option>
+	<option value="2"> 2.01 - 3.00</option>
+	<option value="3"> 3.01 - 3.49</option>
+	<option value="4"> &gt; 3.5</option>
+</select>
+</td>
+</tr>
+
+
+</table>
+</td><td valign="bottom">
+<div id="reportButton" style="display:none">
+<button class="btn btn-success" type="button" onclick="$('listStudents').innerHTML='please wait..';doDivAjaxChainCall3$formname('listStudents','listStudents','','listStudents2','listStudents2','')">Get Report</button>
+</div>
+</td></tr></table>
+
+</div>

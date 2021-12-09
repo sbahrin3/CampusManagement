@@ -1,0 +1,41 @@
+<table width="600" align="center">
+<tr><td style="font-family:arial;font-weight:bold;font-size:12pt">
+Assignment - Academic Facilitator's Batch Upload
+</td></tr>
+<tr><td>
+<hr/>
+</td></tr>
+<tr><td style="font-family:arial;font-weight:bold;font-size:12pt">
+These files have been uploaded as attachements for this assignment.<br/>
+Click NEXT to proceed.
+</td></tr>
+<tr><td height="50px"></td></tr>
+<tr><td>
+
+
+<table width="100%" align="center">
+#if ( $data.filenames.size() > 0 )
+#foreach( $name in $data.filenames)
+<tr>
+<td align="right"style="font-family:arial;font-weight:bold;font-size:10pt">$velocityCount)</td>
+<td style="font-family:arial;font-weight:bold;font-size:10pt">$name</td>
+</tr>
+#end
+</table>
+</td></tr>
+#else
+<tr><td style="font-family:arial;font-weight:bold;font-size:10pt">
+You have not uploaded any files.
+</td></tr>
+#end
+
+<br/><br/>
+<tr><td align="right">
+<input type="button" value="Next: Select Subject(s)" style="font-family:arial;font-weight:bold;font-size:10pt" onclick="doAjaxCall${_formName}('save','')">
+$button.command("create_assignment").style("font-family:arial;font-weight:bold;font-size:10pt").text("Back")
+
+
+</td></tr>
+</table>
+
+

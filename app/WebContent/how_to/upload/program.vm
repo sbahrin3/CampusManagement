@@ -1,0 +1,53 @@
+<table>
+<tr style="background:#F5F9FD">
+<td style="width:20px" valign="top">$row)</td>
+<td style="width:100px" valign="top">$!program.code</td>
+<td style="width:300px" valign="top">$!program.name</td>
+<td style="width:100px" valign="top">
+
+#if ( $program.level == 1 ) FOUNDATION  #end
+#if ( $program.level == 2 ) DIPLOMA #end
+#if ( $program.level == 3 ) BACHELOR #end
+#if ( $program.level == 4 ) MASTER #end
+#if ( $program.level == 5 ) DOCTORATE #end
+
+</td>
+<td style="width:100px" valign="top" align="center">$!program.studyDuration</td>
+
+<td style="width:100px" align="center">
+
+#if ( $program.fullTime == 1 && $program.partTime == 1 )
+FULL & PART TIME
+#elseif  ( $program.fullTime == 1 && $program.partTime == 0 )
+FULL TIME
+#elseif  ( $program.fullTime == 0 && $program.partTime == 1 )
+PART TIME
+#end
+
+</td>
+
+<td style="width:100px" align="center">
+#if ( $program.hasInterview == 1 ) YES #end</td>
+
+<td style="width:100px" align="center">
+#if ( $program.research == 1 ) YES #end</td>
+
+<td style="width:30px" align="center">
+#if ( $program.inActive ) #set ( $checked = "" ) #else #set ( $checked = "checked" ) #end
+<input type="checkbox" name="inactive_$program.id" $checked value="0" onclick="doDivAjaxCall3$formname('empty','updateInactive','programId=$program.id')">
+</td>
+
+<td style="width:100px">
+<input class="linkbutton" type="button" value="Edit" onclick="doDivAjaxCall3$formname('edit_program_$row','editProgram','row=$row&programId=$program.id')">
+&nbsp;
+<input class="linkbutton" type="button" value="x" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall3$formname('main_program','deleteProgram','programId=$program.id')">
+</td>
+
+</tr>
+</table>
+
+<script>
+#if ( $saved )
+$('edit_program_$row').innerHTML = "";
+#end
+</script>

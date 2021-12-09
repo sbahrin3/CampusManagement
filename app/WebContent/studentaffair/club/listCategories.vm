@@ -1,0 +1,7 @@
+<select class="texts" id="categoryId" name="categoryId" onchange="if ( this.value == 'add_category' ) { $('listCategories').style.display='none'; $('newCategory').style.display='block'; }">
+<option value=""></option>
+#foreach( $c in $categories )
+<option value="$c.id">$c.name</option>
+#end
+<option value="add_category">(Add New Category)</option>
+</select>

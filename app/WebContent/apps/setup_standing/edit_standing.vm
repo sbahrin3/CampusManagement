@@ -1,0 +1,33 @@
+<div class="well" style="width:600px">
+
+<table>
+
+	<tr style="height:40px"><td style="width:200px">Code:</td><td style="width:500px">
+	<input class="form-control" name="code_$row" value="$!standing.code">
+	</td></tr>
+	
+	<tr style="height:40px"><td style="width:200px">Name:</td><td>
+	<input class="form-control" name="name_$row" value="$!standing.name">
+	</td></tr>
+	
+	<tr style="height:40px">
+		<td></td>
+		<td>
+		
+			#if ( $row == "0" )
+			<button class="btn btn-warning" type="button" style="width:100px" onclick="doDivAjaxCall$formname('main_standing','addStanding','')">Add</button>
+			#else
+			<button class="btn btn-warning" type="button" style="width:100px" onclick="doDivAjaxCall$formname('standing_$row','saveStanding','row=$row&standingId=$standing.id')">Save</button>
+			#end
+			<button class="btn btn-success" type="button" style="width:100px" onclick="$('edit_standing_$row').innerHTML = '';">Cancel</button>
+					
+		
+		</td>
+	</tr>
+		
+
+
+</table>
+
+</div>
+

@@ -1,0 +1,75 @@
+
+<div id="handleClassroomProperties" style="background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff"><label>Classroom Properties</label></td>
+			<td align="right">
+				<button type="button" class="btn btn-info" onclick="doDivAjaxCall$formname('divClassrooms','saveClassroomProperties','classroomTemplateId=$!classroomTemplate.id');$('classroomProperties').style.display='none';">OK</button>
+			</td>
+		</tr>
+	</table>
+  	
+</div>
+
+<div id="divGroupProperties" style="height:440px;overflow:auto;overflow-x:hidden;">
+
+
+	##classroomSize
+	<input type="hidden" id="classroomSize" name="classroomSize" value="$!classroomTemplate.group.size">
+	
+	<div style="padding:10px;font-weight:bold">
+	$!classroomTemplate.subject.code - $!classroomTemplate.subject.name<br/>
+	$!classroomTemplate.section.name<br/>
+	Class $!classroomTemplate.groupNumber
+	
+	</div>
+	
+	<table class="table">
+	
+		<tbody>
+
+			<tr>
+				<td style="width:80px">
+					<label>Groups:</label><br/>
+					<button type="button" class="btn btn-default btn-sm" onclick="doDivAjaxCall$formname('classroomOptions','selectSubjectGroups','classroomTemplateId=$!classroomTemplate.id')">Select..</button>
+				</td>
+			
+				<td>
+					<div id="listSubjectGroups">#parse("apps/timetabling/classroomTemplate/listSubjectGroups.vm")</div>	
+				</td>
+			</tr>
+			
+
+			
+			<tr>
+				<td><label>Lecturers:</label><br/>
+					<button type="button" class="btn btn-default btn-sm" onclick="doDivAjaxCall$formname('classroomOptions','selectTeachers','classroomTemplateId=$!classroomTemplate.id')">Select..</button>
+				</td>
+			
+				<td>
+					<div id="listTeachers">#parse("apps/timetabling/classroomTemplate/listTeachers.vm")</div>	
+					
+				</td>
+			</tr>
+			
+			<tr>
+				<td><label>Rooms:</label><br/>
+				<button type="button" class="btn btn-default btn-sm" onclick="doDivAjaxCall$formname('classroomOptions','selectRooms','classroomTemplateId=$!classroomTemplate.id')">Select..</button>
+			</td>
+			
+				<td>
+					<div id="listRooms">#parse("apps/timetabling/classroomTemplate/listRooms.vm")</div>	
+					
+				</td>
+			</tr>
+			
+		</tbody>
+	</table>
+
+</div>
+
+
+
+
+<script>new Draggable('classroomProperties', {handle: 'handleClassroomProperties'});</script>

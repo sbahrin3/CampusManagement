@@ -1,0 +1,20 @@
+<input type="hidden" name="totalWeeks" value="$!weeks">
+
+<table width="100%">
+<tr><td>
+
+<div id="div_timetable_weeks" name="div_timetable_weeks">
+
+	#parse( "apps/timetabling/div_timetable_weeks.vm" )
+
+</div>
+
+</td></tr>
+<tr><td>
+<div id="div_timetable_main" name="div_timetable_main">
+#if ( $start_date )
+	#parse( "apps/timetabling/div_timetable_main.vm" )
+#end
+</div>
+</td></tr>
+</table>

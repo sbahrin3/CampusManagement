@@ -1,0 +1,40 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+.fset { background-color:#E2FEE2}
+</style>
+
+<table width="600px" align="center">
+<tr><td>
+<table width="100%" cellspacing="0">
+<tr height="0px"><td style="width:100px"></td><td></td></tr>
+<tr><td>Subject Id:</td><td><input style="width:100%" id="subject_id" name="subject_id"></td></tr>
+<tr><td>Subject Title:</td><td><input style="width:100%" id="subject_title" name="subject_title"></td></tr>
+</table>
+
+<table width="100%">
+<tr><td align="right">
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('div_list_classrooms','add_classroom','');$('subject_id').value='';$('subject_title').value=''">
+</td></tr></table>
+
+</td></tr>
+<tr><td>
+<div id="div_classrooms" name="div_classrooms">
+<table width="100%" cellspacing="0">
+<tr height="30px" class="gradient">
+<td style="width:100px">Subject Id</td>
+<td style="">Subject Title</td>
+</tr>
+</table>
+<div id="div_list_classrooms" name="div_list_classrooms" style="overflow:auto;overflow-x:hidden;height:200px;background-color:#DCDCDC">
+#parse( "apps/lms2/classroom/list_classrooms.vm" )
+</div>
+</div>
+</td></tr>
+<tr><td>
+
+
+</td></tr>
+</table>

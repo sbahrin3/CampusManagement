@@ -1,0 +1,29 @@
+
+<table>
+<tr><td>Specialisation Code:</td><td><input name="code" style="width:100px"></td></tr>
+<tr><td>Specialisation Name:</td><td><input name="name" style="width:300px"></td></tr>
+
+<tr><td></td><td>
+<input type="button" value="Add Specialisation" onclick="doDivAjaxCall$formname('list_specialisations', 'add_specialisation', '')">
+</td></tr>
+</table>
+
+<br><br>
+
+<table width="100%">
+<tr><td style="height:30px;font-weight:bold;background-color:lightgrey">
+$program.name ($program.code)
+</td></tr>
+</table>
+<br>
+<table width="100%">
+#foreach( $s in $specialisations )
+<tr><td>$s.code</td><td>$s.name</td>
+
+<td align="right">
+<input type="button" value="Edit" onclick="doDivAjaxCall$formname('list_specialisations', 'edit_specialisation', 'specialisation_id=$s.id')">
+<input type="button" value="Del" onclick="if ( !confirm('Are you sure?') ) return;  doDivAjaxCall$formname('list_specialisations', 'delete_specialisation', 'specialisation_id=$s.id')">
+</td>
+</tr>
+#end
+</table>

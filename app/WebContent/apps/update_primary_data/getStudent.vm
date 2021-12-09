@@ -1,0 +1,12 @@
+<table>
+	<tr><td style="height:30px;width:150px">Matric No</td><td style="width:20px">:</td><td style="width:500px">$!student.matricNo</td></tr>	
+	<tr><td>Name</td><td>:</td><td><input class="text" name="name" value="$!student.biodata.name"></td></tr>
+	<tr><td>IC No</td><td>:</td><td><input class="text" name="icno" value="$!student.biodata.icno"></td></tr>
+	<tr><td>Passport No</td><td>:</td><td><input class="text" name="passport" value="$!student.biodata.passport"></td></tr>
+		
+	<tr>
+		<td colspan="3" align="right">
+			<input type="button" class="linkbutton" value="Save Changes" onclick="doDivAjaxCall3$formname('getStudent','saveData','studentId=$student.id')">
+		</td>
+	</tr>
+</table>

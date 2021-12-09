@@ -1,0 +1,35 @@
+<table width="100%">
+<tr><td style="width:120px"></td><td style="width:30px"></td><td></td></tr>
+<tr><td style="font-weight:bold">Name</td><td>:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td style="font-weight:bold">ID Number</td><td>:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td style="font-weight:bold">NRIC/Passport No</td><td>:</td><td style="font-weight:bold">
+		
+	$student.biodata.icOrPassport
+
+</td></tr>
+<tr><td style="font-weight:bold">School</td><td>:</td><td style="font-weight:bold">$student.program.course.faculty.name</td></tr>
+<tr><td style="font-weight:bold">Programme</td><td>:</td><td style="font-weight:bold">$student.program.displayName</td></tr>
+<tr><td style="font-weight:bold">Intake</td><td>:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+<tr><td style="font-weight:bold" valign="top">Address</td><td valign="top">:</td><td style="font-weight:bold">
+#if ( $student.address.address1 && $student.address.address1 != "" ) $student.address.address1<br/> #end
+#if ( $student.address.address2 && $student.address.address2 != "" ) $student.address.address2<br/> #end
+#if ( $student.address.address3 && $student.address.address3 != "" ) $student.address.address3<br/> #end
+#if ( $student.address.address4 && $student.address.address4 != "" ) $student.address.address4<br/> #end
+#if ( $student.address.postcode && $student.address.postcode != "") $student.address.postcode #end
+#if ( $student.address.city ) $student.address.city<br/> #end
+#if ( $student.address.state ) $student.address.state.name #end
+</td></tr>
+#if ( $endorsedDateMap.get("$current_session.id") )
+$dateFormat.applyPattern("MMM dd, yyyy")
+<tr><td style="font-weight:bold">Endorsed</td><td>:</td><td style="font-weight:bold">
+$dateFormat.format($endorsedDateMap.get("$current_session.id").endorsedDate)
+</td></tr>
+#end
+
+#if ( $currentStatus )
+<tr><td style="font-weight:bold">Status</td><td>:</td><td style="font-weight:bold">
+$currentStatus.type.name
+</td></tr>	
+#end
+
+</table>

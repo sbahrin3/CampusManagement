@@ -1,0 +1,17 @@
+
+
+<table width="100%" cellspacing="0">
+<td style=""></td>
+</tr>
+#foreach( $c in $my_classrooms )
+#set ( $subjectTitle = $util.capitalized($c.classroom.subjectTitle) )
+<tr onmouseover="this.style.backgroundColor='#FFAA00'" onmouseout="this.style.backgroundColor='#FFFFFF'">
+<td valign="top" style="width:10px;font-family:arial;font-size:8pt;color:#0000FF;text-decoration:none">&raquo;</td>
+<td valign="top"><a style="font-family:arial;font-size:8pt;color:#0000FF;text-decoration:none" href="../gc/educate.lms2.LMSModule?subject_id=$c.classroom.subjectId&subject_title=$subjectTitle&role=$c.role">
+$c.classroom.subjectId
+$util.cropString($subjectTitle, 80)
+</a>
+</td>
+</tr>
+#end
+</table>

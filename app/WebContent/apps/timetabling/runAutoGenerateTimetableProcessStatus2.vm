@@ -1,0 +1,79 @@
+<div style="text-align:center">
+
+#if ( $processStatus == "running" )
+	<span style="font-weight:bold;font-size:18px">
+	Automated class slotting in progress.... Please wait....
+	</span>
+	<br/><br/><br/>
+	<span style="font-weight:bold;font-size:24px">
+	$percentCompleted %
+	</span>
+	<br/>
+	
+	<div style="width:100%;height:30px;background:#b0edfc">
+	<div style="width:${percentCompleted}%;height:30px;background:#287192">
+	</div>
+	
+	</div>
+	<br/><br/>
+	<span style="font-weight:bold;font-size:14px">
+	Processing: $currentClassrooms of $totalClassrooms<br/>
+	</span>
+	
+	<br/>
+	<img src="../img/indicator2.gif">
+	<br/>
+	
+	<script>
+	setTimeout(function(){ 
+		doDivAjaxSilentCall$formname('getProcessStatus','getProcessStatus','');  ##autoCreateId=$!createId
+	}, 3000);
+	</script>
+	
+
+#elseif ( $processStatus == "waiting" )
+	<span style="font-weight:bold;font-size:14px">
+	A process is still running! You need to wait for it to finishes.<br/>
+	</span>
+	<br/>
+	<span style="font-weight:bold;font-size:14px">
+	#foreach ( $pid in $processIds )
+		#set ( $process = $processList.get("$pid") )
+		Process by: $process.userProcessId<br/><br/>
+		Progress: $process.statusPercentCompleted % <br/><br/>
+		
+		<div style="width:100%;height:30px;background:#b0edfc">
+		<div style="width:${process.statusPercentCompleted}%;height:30px;background:#287192">
+		</div>
+		
+	#end
+	</span>
+	<br/>
+	<img src="../img/indicator2.gif">
+	<script>
+	setTimeout(function(){ 
+		doDivAjaxSilentCall$formname('getProcessStatus','getProcessStatus','');  ##autoCreateId=$!createId
+	}, 3000);
+	</script>
+
+#elseif ( $processStatus == "stopped" )
+
+	No process running...
+	
+	<script>
+	doDivAjaxCall$formname('div_timetable_main','get_timetable',''); ##autoCreateId=$!createId
+	$('div_progressWindow').style.display='none';
+	</script>
+	
+#else
+	<br/>
+	<b>PLEASE WAIT...</b>
+	<script>
+	setTimeout(function(){ 
+		doDivAjaxSilentCall$formname('getProcessStatus','getProcessStatus','');  ##autoCreateId=$!createId
+	}, 3000);
+	</script>
+	
+#end
+
+</div>

@@ -1,0 +1,124 @@
+$dateFormat.applyPattern("EEEE d MMM, yyyy")
+<table width="100%" cellspacing="0">
+<tr height="30px"><td align="center">
+<span id="div_postings_wait" name="div_postings_wait"></div>
+</td></tr>
+</table>
+
+#if ( $postings.size() > 0 )
+
+
+#foreach( $post in $postings )
+<div id="div_item_$post.id" name="div_item$post.id">
+<table width="100%" cellspacing="0">
+<tr
+onmouseover="style.backgroundColor='#EBEBEB';$('div_$post.id').style.visibility='visible';"
+onmouseout="style.backgroundColor='#ffffff';$('div_$post.id').style.visibility='hidden';">
+<td valign="top" style="width:50px">
+
+#if ( $post.type == "status" )
+
+#if($post.user.userAvatarName != "")
+<img src="../download?file=$!post.user.userAvatarName" width="50px">
+#else
+<img src="../img/nophoto.gif" border="0" width="50px">
+#end
+
+#elseif ( $post.type == "discussion" )
+<img src="../img/lms/icons/discussion.gif" border="0" width="50px">
+#elseif ( $post.type == "assignment" )
+<img src="../img/lms/icons/assignment1.gif" border="0" width="50px">
+#elseif ( $post.type == "question" )
+<img src="../img/lms/icons/question.gif" border="0" width="50px">
+#else
+<img src="../img/lms/announcement.gif" border="0" width="50px">
+#end
+
+</td>
+<td>
+
+<table width="100%" cellspacing="0">
+<tr><td class="posting_user_name">
+#if ( $post.type == "discussion" )
+<span style="color:#CC0000">Discussion &ndash; posted by </span>
+#elseif ( $post.type == "assignment" )
+<span style="color:#CC0000">Assignment &ndash; posted by </span>
+#elseif ( $post.type == "question" )
+<span style="color:#CC0000">Question &ndash; posted by </span>
+#end
+$!post.user.userName
+</td></tr>
+<tr><td class="posting">
+$util.putLineBreak($post.message)
+</td></tr>
+#if ( $post.attachments.size() > 0 )
+<tr><td class="posting_date">
+<table width="100%" cellspacing="0">
+#foreach( $att in $post.attachments)
+<tr><td style="width:20px" align="center">
+<a href="../download?file=$att.fullFileName"><img src="../img/attachment_icon.gif" border="0"></a>
+</td><td>
+<a href="../download?file=$att.fullFileName" style="font-family:arial;font-size:8pt;text-decoration:none">$att.fileName</a>
+</td></tr>
+#end
+</table>
+</td></tr>
+#end
+<tr><td class="posting_date">
+$dateFormat.format($post.postDate) at $timeFormat.format($post.postTime)
+#if ( $post.type == "assignment" )
+&bull;
+This assignment has <span id="postings_number_$post.id"></span>.
+#if ( $user_role == "student" )
+Only your replies are shown below.
+#end
+#end
+</td>
+<tr><td>
+
+<div id="div_replies_$post.id" name="div_replies_$post.id">
+#parse("apps/lms2/div_replies.vm")
+</div>
+
+
+</td></tr>
+
+</table>
+
+</td>
+<td style="width:10px" valign="top">
+							<div id="div_$post.id" name="div_$post.id" style="visibility:hidden">
+#if ( 							$post.user.userId == $userprofile.userId )
+							
+							<a href="javascript:void()"
+							onclick="if ( !confirm('Delete this post?') ) return;wait_indicator($('div_$post.id'));doDivAjaxCall3$formname('div_item_$post.id','delete_post','post_id=$post.id')">
+							<img src="../img/delete.gif" border="0"></a>
+							
+							#end
+							
+							</div>
+</td></tr></table>
+
+
+</div>
+
+##to place gaps between postings
+<table width="100%"><tr height="20px"><td></td></tr></table>
+#end
+
+#else
+
+<script>
+
+$('div_more_postings').style.visibility='hidden';
+$('div_no_more_postings').style.visibility='visible';
+</script>
+
+#end
+
+
+<input type="hidden" id="postings_array" name="postings_array" value="">
+
+<script>
+$('postings_page').value = '$!postings_page';
+</script>

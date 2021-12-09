@@ -1,0 +1,63 @@
+<table width="100%" cellspacing="0" cellpadding="3">
+
+<tr height="50px" bgcolor="#D6D6D6">
+<td></td>
+<td style="font-weight:bold;width:200px">Student</td>
+<td style="font-weight:bold;width:50px" align="center">CT</td>
+<td style="font-weight:bold;width:50px" align="center">CE</td>
+<td style="font-weight:bold;width:50px" align="center">EX</td>
+
+<td style="font-weight:bold;width:50px" align="center">CCC</td>
+<td style="font-weight:bold;width:50px" align="center">CUT</td>
+##<td style="font-weight:bold;width:50px" align="center">Credit Not Earned</td>
+<td style="font-weight:bold;width:80px" align="center">Final<br>Semester<br>Session</td>
+<td style="font-weight:bold;width:80px" align="center">Final<br>Semester</td>
+<td style="font-weight:bold;width:80px" align="center">Final<br>Semester<br>GPA</td>
+<td style="font-weight:bold;width:80px" align="center">CGPA</td>
+<td style="font-weight:bold;width:80px" align="center"></td>
+<td style="font-weight:bold;width:80px" align="center"></td>
+<td style="font-weight:bold;width:80px" align="center"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach ( $r in $records )
+#set ( $cnt = $cnt + 1 )
+<tr #if ( $cnt % 2 == 0 ) bgcolor="#F9F4F5" #else bgcolor="" #end>
+<td valign="top" align="right">${cnt}.</td>
+<td valign="top">$r.matricNo<br/>$r.name</td>
+
+
+<td valign="middle" align="center">#if ( $r.specialStatusMap.get("CT") > 0 ) $r.specialStatusMap.get("CT") #end</td>
+<td valign="middle" align="center">#if ( $r.specialStatusMap.get("CE") > 0 ) $r.specialStatusMap.get("CE") #end</td>
+<td valign="middle" align="center">#if ( $r.specialStatusMap.get("EX") > 0 ) $r.specialStatusMap.get("EX") #end</td>
+
+<td valign="middle" align="center">$chformat.format($r.creditEarned)</td>
+<td valign="middle" align="center">$chformat.format($r.creditTotalEarned)</td>
+##<td valign="middle" align="center">$chformat.format($r.creditNotEarned)</td>
+
+<td valign="middle" align="center">$r.finalSemester</td>
+<td valign="middle" align="center">$r.finalSemesterName</td>
+<td valign="middle" align="center">$gpaformat.format($r.finalSemesterGPA)</td>
+<td valign="middle" align="center">$gpaformat.format($r.resultCGPA)</td>
+<td valign="middle" align="center">
+<a href="javascript:void(0)" onclick="$('transcript_$r.studentId').style.display='block';doDivAjaxCall3$formname('transcript_$r.studentId','show_transcript','student_id=$r.studentId')">
+Transcript
+</a>
+</td>
+<td align="center">
+##$button.command("approve_graduate").param("student_id=$r.studentId").text("Accept")
+<input type="checkbox" id="approve_$r.studentId" name="approve_$r.studentId" value="yes" onclick="doDivAjaxCall3$formname('divApprove_$r.studentId','approve_graduate2','student_id=$r.studentId')">
+</td>
+<td>
+<div id="divApprove_$r.studentId">
+</div>
+</td>
+</tr>
+
+<tr>
+<td colspan="20">
+<div id="transcript_$r.studentId" style="background:#F7F7F7;display:none;width:800px;position:absolute;-moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888;">
+</div>
+</td>
+</tr>
+#end
+</table>

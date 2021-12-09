@@ -1,0 +1,5 @@
+#if($teacher.photoFileName != "")
+	<img id="photoImg" src="../download?file=$!teacher.photoFileName">
+#else
+	<img id="photoImg" src="../img/nophoto.gif" border="0">
+#end

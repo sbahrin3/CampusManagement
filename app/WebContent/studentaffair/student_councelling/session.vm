@@ -1,0 +1,49 @@
+<table width="100%" style="height:30px;background:#A7ADB2;">
+<tr><td style="font-weight:bold;color:#fff">COUNCELLING SESSION</td></tr>
+<table>
+
+<table>
+<tr><td style="width:300px">Session Date:</td><td>
+#set ( $dateValue = "" )
+#if ( $councellingSession )
+	$dateFormat.applyPattern("dd-MM-yyyy")
+	#if ( $councellingSession.sessionDate ) #set ( $dateValue = $dateFormat.format($councellingSession.sessionDate) ) #end
+#end
+$html.dateField.name("sessionDate").value("$!dateValue").style("width:120px").cssClass("texts")
+</tr>
+<tr><td style="width:200px">Counsellor:</td><td style="width:500px">
+
+<select class="texts" name="councellorId">
+<option value=""></option>
+#foreach( $c in $councellors )
+	#if ( $councellingSession )
+		<option value="$c.id" #if ( $councellingSession.councellor.id == $c.id ) selected #end>$c.name</option>
+	#else
+		<option value="$c.id" #if ( $councelling.councellor.id == $c.id ) selected #end>$c.name</option>
+	#end
+#end
+</select>
+</td></tr>
+
+<tr><td valign="top">Session Summary:</td><td>
+<textarea class="textr" style="height:80px" name="sessionSummary">$!councellingSession.sessionSummary</textarea>
+</td></tr>
+
+<tr><td valign="top">Session Report:</td><td>
+<textarea class="textr" style="height:150px" name="sessionReport">$!councellingSession.sessionReport</textarea>
+</td></tr>
+</table>
+
+<table width="100%">
+<tr><td align="right">
+#if ( $councellingSession )
+	<input class="linkbutton" type="button" value="Save Session" onclick="doDivAjaxCall3$formname('sessions','saveSession','sessionId=$councellingSession.id')">
+	<input class="linkbutton" type="button" value="Delete" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('sessions','deleteSession','sessionId=$councellingSession.id')">
+	<input class="linkbutton" type="button" value="Cancel" onclick="doDivAjaxCall3$formname('sessions','listSessions','councellingId=$councellingSession.studentCouncelling.id')">
+#else
+	<input class="linkbutton" type="button" value="Add Session" onclick="doDivAjaxCall3$formname('sessions','addSession','councellingId=$councelling.id')">
+	<input class="linkbutton" type="button" value="Cancel" onclick="doDivAjaxCall3$formname('sessions','listSessions','councellingId=$councelling.id')">
+#end
+
+</td></tr>
+</table>

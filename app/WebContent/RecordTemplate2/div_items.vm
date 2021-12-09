@@ -1,0 +1,12 @@
+<script>
+$('page_num').value = '$!page_num';
+$('_wait').innerHTML='';
+$('current_page_num').value = '$!page_num';
+#if ( $update_counter )
+$('data_size').innerHTML = '$data_size';
+$('total_page').innterHTML = '$total_page';
+#end
+</script>
+
+#parse("$templateDir/records.vm")
+

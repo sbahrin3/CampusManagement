@@ -1,0 +1,53 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css" media="print">
+
+@page {  	size: 21cm 29.7cm ;
+			margin: 1.0cm; }
+
+td {
+  	font-family: sans-serif;   
+  	font-style: normal;
+	font-size:7pt
+} 
+
+div {
+  	font-family: sans-serif;   
+  	font-style: normal;
+	font-size:7pt
+} 
+
+h1{
+	font-size:6pt;
+	page-break-before: always;
+}
+
+</style>
+
+</head>
+<body>
+	
+
+#if ( $appUrl )
+<div style="margin-top:1cm;">
+<table width="100%">
+	<tr>
+		<td align="right">
+			<img style="width:120px" src="$appUrl/header/logo.png">
+		</td>
+	</tr>
+</table>
+</div>
+#end
+
+
+<div>
+#parse("questionnare/publish/viewReport3.vm")
+</div>
+
+</body>
+</html>

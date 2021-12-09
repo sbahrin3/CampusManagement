@@ -1,0 +1,32 @@
+<div id="div_permanent_1" style="visibility:visible">
+<table width="100%">
+<tr><td style="width:150px" align="right"></td><td></td></tr>
+
+<tr><td align="right">State :</td>
+<td>
+<select name="pstate_id" id="pstate_id" class="texts" onkeyup="at(this, event)" style="width:300px">
+<option value="">-Select State-</option>
+#foreach ( $state in $states )
+<option value="$state.id" #if ( $state.id == $applicant.permanentAddress.state.id ) selected #end>$state.name</option>
+#end
+</select>
+</td>
+</tr>
+</table>
+</div>
+
+<div id="div_permanent_2" style="visibility:hidden">
+<table width="100%">
+<tr><td style="width:150px" align="right"></td><td></td></tr>
+<tr><td align="right">Country :</td>
+<td>
+<select name="pcountry_id" id="pcountry_id" class="texts" onkeyup="at(this, event)" style="width:300px">
+<option value="">-Select Country-</option>
+#foreach ( $country in $countries )
+<option value="$country.id" #if ( $country.id == $applicant.permanentAddress.country.id ) selected #end>$country.name</option>
+#end
+</select>
+</td>
+</tr>
+</table>
+</div>

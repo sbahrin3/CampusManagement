@@ -1,0 +1,35 @@
+<table>
+	#set($i=0)
+	#foreach($app in $appList)
+	#set($i=$i+1)
+	<tr>
+		<td>
+			<b>$i</b>
+		</td>
+		<td>
+			$!app.student.biodata.name
+		</td>
+		<td>
+			$!app.student.matricNo
+		</td>
+		<td>
+			$!app.reqSession.session.name
+		</td>
+		<td>
+			$!app.currSession.name
+		</td>
+		<td>
+			$!formatter.dts($!app.reqDate)
+		</td>
+		<td>
+			$!app.reason
+		</td>
+		<td>
+			$!app.otherR
+		</td>
+		<td>
+			$!app.status
+		</td>
+	</tr>
+	#end
+	</table>

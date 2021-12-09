@@ -1,0 +1,95 @@
+<table width="700" align="center">
+<tr><td>
+<table width="100%"><tr><td style="font-weight:bold;font-size:12pt">Ref. No: $!applicant.referenceNo</td><td align="right">
+<input type="button" value="DONE" style="height:40px;font-weight:bold" onclick="$('div_applicant').innerHTML='';$('div_applicant').style.visibility='hidden';">
+</td></tr></table>
+</td></tr>
+<tr><td>
+#set ( $ro = "readonly" )
+
+#if ( $change_status )
+<fieldset style="background-color:lightgrey;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<div id="change_status" name="change_status">
+#parse("apps/util/applicant/change_status_button.vm")
+</div>
+</fieldset>
+#end
+
+
+<table width="100%">
+<tr><td colspan="2"><br></td></tr>
+<tr><td colspan="2" style="font-weight:bold;height:30px">APPLICANT'S INFORMATION</td></tr>
+<tr><td colspan="2">
+
+
+<div id="app_info" name="app_info">
+#parse("apps/util/applicant/applicant_info.vm")
+</div>
+
+
+</td></tr>
+
+<tr><td colspan="2"><br></td></tr>
+<tr><td colspan="2" style="font-weight:bold;height:30px">CHOICE OF PROGRAMS</td></tr>
+<tr><td colspan="2">
+
+<div id="program_choices" name="program_choices">
+#parse("apps/util/applicant/program_choices.vm")
+</div>
+
+</td></tr>
+
+<tr><td colspan="2"><br></td></tr>
+<tr><td colspan="2" style="font-weight:bold;height:30px">EDUCATION BACKGROUND</td></tr>
+
+<tr><td valign="top"></td><td align="center">
+
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">SPM</legend>
+<div id="spm" name="spm">
+#parse("apps/util/applicant/applicant_spm_result.vm")
+</div>
+</fieldset>
+
+<tr><td valign="top"></td><td align="center">
+
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">STPM</legend>
+<div id="stpm" name="stpm">
+#parse("apps/util/applicant/applicant_stpm_result.vm")
+</div>
+</fieldset>
+
+</td></tr>
+<tr><td colspan="2"><br></td></tr>
+<tr><td colspan="2">
+#if ( $applicant.tertiaries )
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">TERTIARY EDUCATION</legend>
+<div id="tertiary" name="tertiary">
+#parse("apps/util/applicant/tertiary_education.vm")
+</div>
+</fieldset>
+
+#end
+</td></tr>
+
+
+<tr><td></td></td></tr></table>
+
+</td></tr>
+<tr><td align="right">
+##<input type="button" value="DONE" style="height:40px;font-weight:bold" onclick="$('div_applicant').innerHTML='';$('div_applicant').style.visibility='hidden';">
+
+
+</td></tr></table>
+
+<br><br>
+
+<input type="hidden" name="applicant_id" value="$!applicant.id">
+<input type="hidden" name="status" value="$!status">
+<input type="hidden" name="program_id" value="$!program.id">

@@ -1,0 +1,246 @@
+
+
+#set ( $start_count = $page_size*($page_num - 1) )
+
+#set ( $disabled = "" )
+#if ( $teacher_mode && !$allowMarkEntry )
+	#set ( $disabled = "disabled" )
+#end
+<div style="margin-top:20px">
+<table  style="width:100%" class="persist-area" cellpadding="0" cellspacing="0" bgcolor="#fff">
+	
+<thead>
+<tr class="persist-header" height="50px">
+<td style="width:50px;border-bottom:2px solid #ADACAF;background:#E9E8ED">&nbsp;</td>
+
+<td style="width:200px;font-weight:bold;border-bottom:2px solid #ADACAF;background:#E9E8ED">
+	Name
+</td>
+<td style="width:150px;font-weight:bold;border-bottom:2px solid #ADACAF;background:#E9E8ED">
+	Matric No
+</td>
+<td style="width:100px;font-weight:bold;border-bottom:2px solid #ADACAF;background:#E9E8ED">Semester</td>
+
+#foreach( $i in $items )
+	#if ( $i.percentage > 0 )
+		<td style="width:60px;font-weight:bold;border-bottom:2px solid #ADACAF;background:#E9E8ED" align="center">
+		$i.code
+		<br>
+		$i.percentage
+		</td>
+	#end
+#end
+
+<td class="gradient" style="width:20px;border-bottom:2px solid #ADACAF;background:#E9E8ED">&nbsp;</td>
+
+<td style="width:50px;font-weight:bold;border-bottom:2px solid #ADACAF;background:#E9E8ED" align="center">Total #if ( $roundType == 1 ) <br/>(RU) #elseif ( $roundType == 2 ) <br/> (RD) #end</td>
+<td style="width:50px;font-weight:bold;border-bottom:2px solid #ADACAF;background:#E9E8ED" align="">Grade</td>
+<td style="width:100px;font-weight:bold;border-bottom:2px solid #ADACAF;background:#E9E8ED" align="">Status</td>
+<td style="width:50px;border-bottom:2px solid #ADACAF;background:#E9E8ED">&nbsp;</td>
+<td style="width:20px;border-bottom:2px solid #ADACAF;background:#E9E8ED">&nbsp;</td>
+
+<td style="border-bottom:2px solid #ADACAF;background:#E9E8ED">&nbsp;</td>
+</tr>
+</thead>
+
+<tbody>
+<tr height="1px">
+<td style="width:50px"></td>
+<td style="width:150px;font-weight:bold"></td>
+<td style="width:200px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+
+#set ( $numberOfMarking = 0 )
+#foreach( $i in $items )
+	#if ( $i.percentage > 0 )
+		#set ( $numberOfMarking = $numberOfMarking + 1 )
+		<td style="width:60px" align="center"></td>
+	#end
+#end
+<td style="width:20px"></td>
+<td style="width:150px"></td>
+<td style="width:100px"></td>
+<td style="width:50px"></td>
+<td></td>
+</tr>
+
+#set ( $count = $start_count )
+#foreach( $s in $student_list)
+
+	#if ( $s.subjectStatus == "CT" )
+
+	#elseif ( $s.subjectStatus == "EX" )
+	
+	#elseif ( $s.subjectStatus == "CE" )
+	
+	#else
+
+		#set ( $count = $count + 1 )
+		<tr>
+		<td class="line" style="width:50px;height:40px">
+		$count. 
+		</td>
+		
+		<td class="line" style="width:200" 
+		##onclick="$('student_info').style.visibility='visible';doDivAjaxCall$formname('student_info','student_info','student_info_id=$!s.studentStatus.student.id')" 
+		##onmouseover="this.style.background='#C9C5C5'" onmouseout="this.style.background='#FFFFFF'"
+		>
+		$s.studentStatus.student.biodata.name
+		<input type="hidden" id="error_$s.studentStatus.student.id">
+		</td>
+		
+		<td class="line" style="width:150px">$s.studentStatus.student.matricNo</td>
+		
+		
+		<td class="line" style="width:100px">$s.studentStatus.period.name</td>
+	
+		#if ( $results.get("$s.studentStatus.id").size() > 0 )
+		
+				#set ( $rs = $results.get("$s.studentStatus.id") )
+			
+				#set ( $k = 0 )
+				
+				#foreach( $i in $rs )
+					#if ( $i.courseworkItem.percentage > 0 )
+						<td class="line">
+						#set ( $k = $k + 1 )
+						#if ( $k == 1 )
+							<input type="hidden" id="mark_id_$count" value="$i.id">
+						#end
+						<input $disabled class="text-input" id="$i.id" name="$i.id" style="width:55px;font-family:verdana;text-align:center;color:#2D0AAD" value="$!i.marks" 
+						onkeypress="$('button_$s.studentStatus.student.id').style.visibility='visible'"
+						#if ( $k == $numberOfMarking )
+							onkeyup="markKeyIn2(this, event, '$i.id', $i.courseworkItem.percentage, 'error_$s.studentStatus.student.id', $count)"
+						#else
+							onkeyup="markKeyIn(this, event, '$i.id', $i.courseworkItem.percentage, 'error_$s.studentStatus.student.id')"
+						#end
+						onfocus="_jq(this).select();">
+						</td>
+						
+					#end
+				#end
+	
+			#else
+			
+				#foreach( $i in $items )
+					#if ( $i.percentage > 0 )
+						<td><input style="width:60px"></td>
+					#end
+				#end
+			
+			#end
+			
+			<td class="line" >&nbsp;</td>
+	
+			##FINAL RESULT
+			#if ( $final_result.get("$s.studentStatus.id") )
+				#set ( $result = $final_result.get("$s.studentStatus.id") )
+			#else
+				#set ( $result = "" )
+			#end
+	
+		<td class="line"  align="center">
+		<span id="total_mark_$s.studentStatus.student.id" style="padding-left:5px;font-family:Verdana;font-size:10pt;">
+		#if ( $result.totalMark && $result.totalMark > 0 )
+			#if ( $roundType == 0 )
+				$!numFormat.format($result.totalMark)
+			#else
+				$!resultFormat.format($result.totalMark)
+			#end
+		#else
+		
+		#end
+		</span>
+		</td>
+	
+		<td class="line">
+		<span id="grade_$s.studentStatus.student.id" style="font-family:Verdana;font-size:10pt;">
+		$!result.grade
+		</span>
+		</td>
+	
+		##STUDENT'S RESULT STATUS
+		<td class="line" style="padding-left:10px">
+	
+	
+		#set ( $id = $s.studentStatus.student.id )
+		#set ( $period_id = $s.studentStatus.period.id )
+		<div class="shadow" id="div_set_status_$id" name="div_set_status_$id" 
+		style="width:200px;background-color:#F7F7F7;position:absolute;display:none"></div>
+	
+		#if ( $status.get("$s.studentStatus.id") == "" )
+			<a style="text-decoration:none;font-size:10pt;background:#fff;color:#000" href="javascript:void(0)" onclick="$('div_set_status_$id').style.display='block';doDivAjaxCall$formname('div_set_status_$id','get_status_list','student_id=$id&period_id=$period_id&student_status_id=$s.studentStatus.id&counter=$cnt&bgcolor=$!bgcolor')">
+			<span id="result_status_$id">
+			...
+			</span>
+			</a>
+		#else
+			<a style="text-decoration:none;font-size:10pt;background:#fff;color:#000" href="javascript:void(0)" onclick="$('div_set_status_$id').style.display='block';doDivAjaxCall$formname('div_set_status_$id','get_status_list','student_id=$id&period_id=$period_id&student_status_id=$s.studentStatus.id&counter=$cnt&bgcolor=$!bgcolor')">
+			<span id="result_status_$id">
+			$status.get("$s.studentStatus.id")
+			</span>
+			</a>
+		#end
+	
+		</td>
+		
+		<td class="line" align="right">
+		<div id="button_$s.studentStatus.student.id" style="visibility:hidden">
+		
+		##SAVE BUTTON
+		<button type="button" class="btn btn-warning btn-sm" id="buttonSave_$count" 
+		onclick="if ($('error_$s.studentStatus.student.id').value == 'err') {alert('Check your mark entry!');return}; doDivAjaxCall$formname('div_$s.studentStatus.student.id', 'save_entry', 'subject_id=$subject.id&student_status_id=$s.studentStatus.id&student_id=$s.studentStatus.student.id&period_id=$s.studentStatus.period.id');$('button_$s.studentStatus.student.id').style.visibility='hidden';putFocus($count)">
+		Save
+		</button>
+		</div>
+		</td>
+		
+		<td class="line" style="width:20px">
+		<div id="div_$s.studentStatus.student.id"></div>
+		</td>
+		
+		
+		<td class="line">&nbsp;</td>
+		
+		</tr>
+	
+	#end
+
+#end
+
+<tbody>
+</table>
+</div>
+
+<div style="margin:100px"></div>
+
+#set ( $count = $count + 1 )
+<input type="hidden" id="mark_id_$count" value="">
+
+<input type="hidden" name="page_num" value="$!page_num">
+
+<script>
+
+
+$('display_page_number').innerHTML = "Page $!page_num";
+#if ( $start_count == 0 )
+	$('btn_prev').disabled = true;
+#else
+	$('btn_prev').disabled = false;
+#end
+#if ( $page_num == $total_page )
+	$('btn_next').disabled = true;
+#else
+	$('btn_next').disabled = false;
+#end
+#foreach( $p in [1..$total_page])
+	#if ( $page_num == $p )
+		$('td_$p').style.backgroundColor = '#282676';
+		$('td_$p').style.color = '#fff';
+	#else
+		$('td_$p').style.backgroundColor = '#fff';
+		$('td_$p').style.color = '#000';
+	#end
+#end
+
+</script>

@@ -1,0 +1,99 @@
+<div style="padding:5px;border:1px solid #C9C9C9">
+<table><tr><td style="font-size:Verdana, sans-serif; font-size:10pt;">
+Dear <b>$parent.name</b>,<br/><br/>
+#if ( $students.size() > 1 )
+	You have $students.size() students under your care.
+#else
+	You have one student under your care.
+#end		
+</td></tr></table>
+<br/><br/>
+<table cellpadding="1" cellspacing="0" style="width:100%;border:1px solid #C9C9C9" border="0">
+<tr style="height:30px;background:#6D6D6D">
+<td></td>
+<td style="width:150px;font-weight:bold;color:#FFFFFF">Student</td>
+<td style="width:300px;font-weight:bold;color:#FFFFFF">Course</td>
+
+<td style="width:100px;font-weight:bold;color:#FFFFFF" align="center">&nbsp;</td>
+<td style="width:100px;font-weight:bold;color:#FFFFFF" align="center">&nbsp;</td>
+<td style="width:100px;font-weight:bold;color:#FFFFFF" align="center">&nbsp;</td>
+<td style="width:10px"></td>
+<td align="right">
+    <table cellpadding="0" cellspacing="0" style="border-left:1px solid #C1C1C1">
+    <tr style="height:30px"><td colspan="3" align="center" style="font-weight:bold;color:#FFFFFF">Billing Information</td></tr>
+    <tr style="height:30px">
+    <td style="width:120px;font-weight:bold;color:#FFFFFF" align="right">Invoiced</td>
+    <td style="width:120px;font-weight:bold;color:#FFFFFF" align="right">Paid</td>
+    <td style="width:120px;font-weight:bold;color:#FFFFFF" align="right">Balance</td>
+    </tr></table>
+</td>
+</tr>
+#foreach ( $s in $students )
+	#set ( $info = $studentInfo.get("$s.id") )
+    #if ( $velocityCount % 2 == 0 ) #set ( $bgcolor = "#EBEBEB" ) #else #set ( $bgcolor = "#F9F9F9" ) #end
+    <tr style="height:30px;background:$bgcolor">
+    <td style="width:30px" rowspan="2">$velocityCount)</td>
+    
+    <td style="width:150px" rowspan="2">
+		<b>$s.biodata.name</b><br/>
+		$s.matricNo
+	</td>
+    <td rowspan="2" style="width:300px">
+    	$!info.programName<br/>
+    	$!info.semesterName<br/>
+    	$!info.intakeName
+    </td>
+    
+    <td style="" align="center">
+    <a href="javascript:void(0)"  onclick="doDivAjaxCall3$formname('div_attendance','getAttendanceView','matricNo=$!s.matricNo')"><img src="../img/icon_classroom.png" border="0"></a>
+    </td>
+    
+    
+    <td style="" align="center">
+    <a href="javascript:void(0)"  onclick="doDivAjaxCall3$formname('div_student','getExamTranscript','studentId=$!s.id')"><img src="../img/icon_result.png" border="0"></a>
+    </td>
+    
+    <td style="" align="center">
+    <a href="javascript:void(0)"  onclick="$('div_billing$velocityCount').style.display='block';makeOnTop2($velocityCount, $students.size())"><img src="../img/icon_billing.png" border="0"></a>
+    </td>
+    
+    
+    <td style=""></td>
+    <td style="" align="right" rowspan="2">
+    <table cellpadding="0" cellspacing="0" style="height:30px;border-left:1px solid #C1C1C1"><tr>
+    <td style="width:120px;border-right:1px solid #ccc" align="right">$numFormat.format($acctSummary.get("$s.id").totalInvoiced) &nbsp;</td>
+    <td style="width:120px;border-right:1px solid #ccc" align="right">$numFormat.format($acctSummary.get("$s.id").totalPaid) &nbsp;</td>
+    <td style="width:120px;" align="right">$numFormat.format($acctSummary.get("$s.id").totalBalance) &nbsp;</td>
+    </tr></table>
+    </td>
+    </tr>
+    
+    <tr style="background:$bgcolor">
+    	<td align="center">Classroom<br/>Attendance</td>
+    	<td align="center">Examination<br/>Transcript</td>
+    	<td align="center">Account<br/>Statement</td>
+    	<td>&nbsp;</td>
+    </tr>
+#end
+</table>
+#set ( $cnt = 0 )
+#foreach( $results in $studentResults )
+	#set ( $cnt = $cnt + 1 )
+	#set ( $i = $cnt - 1 )
+	<div class="div_result shadow" id="div_result$cnt">
+	#set ( $student = $parent.students.get($i) )
+	#parse("parent_portal/view/studentExamTranscript.vm")
+	</div>
+#end
+
+#set ( $cnt = 0 )
+#foreach( $account_statement in $accts )
+    #set ( $cnt = $cnt + 1 )
+    #set ( $i = $cnt - 1 )
+    <div class="div_result shadow" id="div_billing$cnt">
+    #set ( $student = $parent.students.get($i) )
+    #parse("parent_portal/view/studentAcctStatement.vm")
+    </div>
+#end
+
+</div>

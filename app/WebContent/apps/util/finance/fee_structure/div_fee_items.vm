@@ -1,0 +1,82 @@
+
+
+<input type="hidden" name="fee_structure_id" value="$!fee_structure.id">
+<script>
+#if ( $fee_structure.sessionDate )
+#set ( $session_date = $dateFormat.format($fee_structure.sessionDate) )
+#end
+$('div_session_date').innerHTML = "$session_date";
+</script>
+
+
+<table width="100%">
+<tr><td>
+Beginning from date:
+#if ( $fee_structure.sessionDate )
+#set ( $session_date = $dateFormat.format($fee_structure.sessionDate) )
+#end
+<span style="font-size:11pt;font-weight:bold">$session_date</span>
+<input class="linkbutton" type="button" value="X" 
+onclick="if ( !confirm('Are you sure?') ) return; doAjaxCall$formname('delete_fee_structure','fee_structure_id=$fee_structure.id&fee_session_date=$session_date')">
+</td></tr>
+</table>
+
+
+<table width="100%">
+<tr bgcolor="lightgrey" height="30px">
+<td style="font-weight:bold; width:200px">Period</td>
+<td style="font-weight:bold; width:300px">Fee Items</td>
+<td style="font-weight:bold; width:100px" align="right">Amount&nbsp;&nbsp;</td>
+<td align="center"></td>
+</tr>
+</table>
+
+
+<table width="100%">
+#foreach( $p in $periods )
+
+#if ( $p.parent )
+    <tr><td colspan="4">
+    $p.parent.name, $p.name
+    </td></tr>
+    #else
+    <tr style="height:30px;">
+		<td colspan="4" style="font-weight:bold;border-bottom:1px solid #000">
+			$p.name
+		</td>
+	</tr>
+#end
+
+#if ( $items_byPeriod.get("$p.id") )
+#set ( $items = $items_byPeriod.get("$p.id") )
+
+#foreach ( $i in $items )
+
+<tr>
+<td style="width:200px"></td>
+<td style="width:300px;border-bottom:1px solid #ccc">$i.feeItem.description</td>
+<td style="width:100px;border-bottom:1px solid #ccc" align="right">
+	
+	$numFormat.format($i.amount)
+	
+	&nbsp;&nbsp;
+
+</td>
+<td align="right" style="border-bottom:1px solid #ccc">
+<input class="linkbutton" type="button" value="X" onclick="if ( !window.confirm('Delete this fee item?') ) return; doDivAjaxCall$formname('div_fee_items','remove_fee','item_id=$i.id')"
+</td>
+</tr>
+
+#end
+
+
+#else
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+#end
+
+#end
+
+
+</table>

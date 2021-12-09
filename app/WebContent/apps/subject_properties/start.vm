@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="../apps/style.css" type="text/css" media="screen" />
+
+
+<table>
+	<tr>
+		<td style="width:100px">Subject Code:</td>
+		<td style="width:150px">
+			<input class="texts" name="subjectCode">
+		</td><td>
+			<input class="linkbutton" type="button" value="Get Subject" onclick="doDivAjaxCall3$formname('getSubject','getSubject','')">
+		</td>
+	</tr>
+</tr>
+</table>
+<br/><br/>
+
+<div id="getSubject"></div>

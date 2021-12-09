@@ -1,0 +1,30 @@
+<fieldset style="background-color:#fff; width:100%; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">$subject.code $subject.name</legend>
+
+<table>
+<tr>
+<td style="width:200px">Name</td>
+<td style="width:50px" align="center">%</td>
+<td style="width:50px"></td>
+</tr>
+#foreach( $i in $items )
+<tr>
+<td><input name="item_name_$i.id" style="width:100%" value="$i.name" onchange="doDivAjaxCall$formname('div_empty','update_name','item_id=$i.id&coursework_id=$!coursework.id')"></td>
+<td><input name="item_percentage_$i.id" style="width:100%;text-align:center" value="$i.percentage" onchange="doDivAjaxCall$formname('div_empty','update_percentage','item_id=$i.id&coursework_id=$!coursework.id')"></td>
+<td>
+<input type="button" value="X" onclick="if ( !confirm('Are you sure?') ) return;doDivAjaxCall$formname('div_coursework','delete_item','item_id=$i.id&coursework_id=$!coursework.id')">
+</td>
+</tr>
+#end
+
+<tr>
+<td><input id="item_name" name="item_name" style="width:100%" value=""></td>
+<td><input id="item_percentage" name="item_percentage" style="width:100%;text-align:center" value=""></td>
+<td>
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('div_coursework','add_item','coursework_id=$!coursework.id')">
+</td>
+</tr>
+
+</table>
+
+</fieldset>

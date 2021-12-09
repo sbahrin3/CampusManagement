@@ -1,0 +1,121 @@
+<table width="700" align="center">
+<tr><td align="right">
+$href.command("").text("Select Other Program") |
+$href.command("view").text("Done")
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td>
+
+<table width="100%">
+<tr><td style="font-weight:bold">
+$href.command("view").text("$program.code $program.name")</td></tr>
+<tr><td style="font-weight:bold">$intake.code $intake.name</td></tr>
+<tr><td style="font-weight:bold">
+#**
+#if ( $type == "S" ) SPECIALISE #else GENERAL #end
+**#
+</td></tr>
+</table>
+
+</td>
+<td align="right">
+$button.command("view").style("width:80px;height:50px;font-weight:bold").text("Done")
+##$button.command("").style("width:80px;height:50px;font-weight:bold").text("Back")
+</td></tr>
+<tr><td colspan="2" align="center">
+
+<br>
+<fieldset style="background-color:#fff; width:500px; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="400" align="center">
+<tr><td style="font-weight:bold">
+CGPA Requirement
+</td></tr>
+<tr><td align="center">
+Minimum CGPA:
+<input name="min_cgpa" style="width:50px;text-align:center" value="$!grad.minCGPA">
+<br><br>
+$button.command("save").style("width:80px;height:30px").text("SAVE")
+</td></tr></table>
+</fieldset>
+
+<br/><br/>
+
+<table width="400" align="center">
+<tr><td style="font-weight:bold">
+Credit Unit Requirement
+</td></tr>
+</table>
+
+<fieldset style="width:500px; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="400" align="center">
+<tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold" align="center">Category</td>
+<td style="font-weight:bold" align="center">Credit Unit</td>
+</tr>
+#foreach ( $cat in $categories )
+<tr>
+<td>$cat.name</td>
+<td align="right">
+<select name="count_${cat.id}">
+#foreach( $i in [0..200])
+<option value="$i" #if ( $i == $cats.get("$cat.id") ) selected #end >&nbsp;&nbsp;&nbsp;&nbsp;$i</option>
+#end
+</select>
+</td>
+#end
+<tr>
+<td colspan="2" align="right">
+$button.command("save").style("width:80px;height:30px").text("SAVE")
+</td>
+</tr>
+</table>
+</fieldset>
+
+</td></tr>
+
+
+<tr><td colspan="2" align="center">
+<br><br>
+<fieldset style="width:500px; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="400" align="center">
+<tr><td style="font-weight:bold">
+Subjects Requirement
+</td></tr>
+</table>
+<br>
+
+<table width="400" align="center">
+#foreach ( $subject in $subjects )
+<tr>
+<td>$subject.code</td>
+<td>$subject.name</td>
+<td>
+#set ( $value = "" )
+#if ( $subject_requirements.get("$subject.id") )
+#set ( $value = $subject_requirements.get("$subject.id") )
+#end
+<input name="mark_$subject.id" style="width:50px;text-align:center" value="$!value">
+</td>
+</tr>
+#end
+
+<tr>
+<td colspan="3" align="right">
+$button.command("save").style("width:80px;height:30px").text("SAVE")
+</td>
+</tr>
+
+</table>
+</fieldset>
+
+</td></tr>
+
+
+</table>
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="type" value="$!type">
+<input type="hidden" name="centre_code" value="CYKL">

@@ -1,0 +1,39 @@
+2018-12-23 07:53:15,106 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2018-12-23 07:53:15,108 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2018-12-23 07:53:15,109 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2018-12-23 07:53:15,111 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2018-12-23 07:53:15,113 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2018-12-23 07:53:15,116 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2018-12-23 07:53:15,118 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2018-12-23 07:53:15,185 - Created '20' parsers.
+2018-12-23 07:53:15,199 - Velocimacro : initialization starting.
+2018-12-23 07:53:15,199 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2018-12-23 07:53:15,199 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2018-12-23 07:53:15,199 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2018-12-23 07:53:15,199 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2018-12-23 07:53:15,199 - Velocimacro : Velocimacro : initialization complete.
+2018-12-23 07:53:15,199 - RuntimeInstance successfully initialized.
+2018-12-23 07:53:15,643 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:15,743 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:15,755 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-23 07:53:15,799 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:15,812 - RHS of #set statement is null. Context will not be modified. vtl/main/header.vm[line 22, column 1]
+2018-12-23 07:53:15,813 - RHS of #set statement is null. Context will not be modified. vtl/main/header.vm[line 23, column 1]
+2018-12-23 07:53:15,841 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:15,843 - ResourceManager : found vtl/main/login_input.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:15,846 - ResourceManager : found vtl/main/tab_login.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:15,863 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:15,886 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:31,641 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,241 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,284 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,289 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,323 - ResourceManager : found apps/portal/announcement/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,359 - ResourceManager : found apps/portal/announcement/list.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,400 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,567 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,605 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,606 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,606 - ResourceManager : found apps/portal/announcement/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,609 - ResourceManager : found apps/portal/announcement/list.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:32,679 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader

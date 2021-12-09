@@ -1,0 +1,15 @@
+<table width="80%" cellpadding="1" cellspacing="2">
+<tr><td  style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+
+
+<tr><td >Hostel</td><td>:</td><td>
+<select class="texts" name="hostelId">
+<option value=""></option>
+#foreach( $h in $hostels )
+<option value="$h.id">$h.name</option>
+#end
+</select>
+</td></tr>
+
+
+</table>

@@ -1,0 +1,44 @@
+#if ( $check_in_success )
+
+#if ( $check_in_success == "yes" )
+<table width="100%"><tr><td align="center">
+Sucessfully checked in to $room.name
+</td></tr>
+#elseif ( $check_in_success == "no" )
+<table width="100%"><tr><td align="center">
+FAILED checked in to $room.name
+</td></tr>
+#end
+
+#end
+
+<table width="100%" style="border-top: 2px solid #D2D2D2; border-bottom: 2px solid #D2D2D2; border-right: 2px solid #D2D2D2; border-left: 2px solid #D2D2D2;">
+<tr><td colspan="5" style="height:30px;font-weight:bold">
+Student's Rooms History
+</td>
+<td align="right">
+
+</td>
+</tr>
+<tr><td valign="top">
+
+<table width="899px" cellpadding="0" cellspacing="0">
+<tr height="35px" bgcolor="#E1E1E1">
+<td style="width:40px"></td>
+<td style="width:200px;">Hostel</td>
+<td style="width:80px;">Unit</td>
+<td style="width:80px;">Room</td>
+<td style="width:100px;" align="center">Check<br/>In</td>
+<td style="width:100px;" align="center">Expected<br/>Out</td>
+<td style="width:100px;" align="center">Check<br/>Out</td>
+<td></td>
+</tr>
+</table>
+
+<div id="div_rooms" name="div_rooms" style="overflow:auto;top:0;height:200px; width:920px;overflow-x: hidden">
+
+#parse( "apps/hostel_room_allocation/student_rooms_list.vm" )
+
+</div>
+
+</td></tr></table>

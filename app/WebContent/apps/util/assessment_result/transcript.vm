@@ -1,0 +1,126 @@
+#if ( $student )
+
+
+
+<table width="100%">
+<tr><td align="center" style="font-weight:bold">$student.matricNo $student.biodata.name</td></tr>
+<tr><td align="center" style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+</table>
+<br>
+<br>
+
+#set ( $get_current = "N" )
+<table width="100%">
+#foreach ( $r in $results )
+
+#if ( $student_mode )
+#if ( $r.session.id == $current_session.id )
+#set ( $get_current = "N" )
+#else
+#set ( $get_current = "X" )
+#end
+#end
+
+
+#if ( $get_current == "N" )
+<tr><td>
+<table width="100%">
+<td style="font-weight:bold">$r.session.name $r.period.name #if ( $r.period.parent ) ($r.period.parent.name) #end</td>
+</table>
+
+</td></tr>
+<tr><td>
+
+<table bgcolor="lightgrey" width="100%" cellspacing="0" cellpadding="1">
+<tr height="30px">
+<td style="width:100px;font-weight:bold">Code</td>
+<td style="width:400px;font-weight:bold">Name</td>
+<td style="width:60px;font-weight:bold" align="center">Credit</td>
+<td style="width:60px;font-weight:bold">Point</td>
+<td style="width:60px;font-weight:bold">Grade</td>
+<td></td>
+</tr>
+</table>
+
+</td></tr>
+<tr><td>
+
+
+<table width="100%" cellspacing="0" cellpadding="1">
+
+<tr height="0px">
+<td style="width:100px"></td>
+<td style="width:400px"></td>
+<td style="width:60px"></td>
+<td style="width:60px"></td>
+<td style="width:60px"></td>
+<td></td>
+</tr>
+
+#foreach ( $s in $r.subjects )
+<tr>
+<td>$s.subject.code</td>
+<td>$s.subject.name</td>
+<td align="center">#if ( $s.creditHour > 0 ) $s.creditHour #end</td>
+#if ( $s.resultStatus )
+<td>&nbsp;</td>
+<td style="padding-left:30px">$s.resultStatus.code</td>
+#else
+<td align="right">$numFormat.format($s.point)</td>
+<td style="padding-left:30px">$!s.grade</td>
+#end
+<td></td>
+</tr>
+<tr><td colspan="5"></td></tr>
+
+
+#end
+</table>
+
+
+</td></tr>
+<tr><td>
+
+<table width="100%" cellspacing="0" cellpadding="1">
+<tr><td style="width:520px"></td><td style="font-weight:bold">Credit Unit:</td><td style="font-weight:bold"> $r.currentHours</td></tr>
+<tr><td style="width:520px"></td><td style="font-weight:bold">GPA:</td><td style="font-weight:bold"> $numFormat.format($r.gpa)</td></tr>
+
+<tr><td style="width:520px"></td><td style="font-weight:bold">Cumulative Credit Unit:</td><td style="font-weight:bold"> $r.totalHours</td></tr>
+<tr><td style="width:520px"></td><td style="font-weight:bold">CGPA:</td><td style="font-weight:bold"> $numFormat.format($r.cgpa)</td></tr>
+
+<tr><td style="width:520px"></td><td style="font-weight:bold"></td><td style="font-weight:bold">
+#if ( $r.standing == "PASS" )
+PASS
+#elseif ( $r.standing == "CONDITIONAL_PASS" )
+CONDITIONAL PASS
+#elseif ( $r.standing == "FAIL" )
+FAIL
+#end
+</td></tr>
+
+
+</table>
+<br>
+<br>
+</td></tr>
+
+#end
+
+#if ( $admin_mode )
+#if ( $r.session.id == $current_session.id )
+#set ( $get_current = "Y" )
+#end
+#end
+
+
+#end
+
+
+
+</table>
+
+
+#end
+
+
+

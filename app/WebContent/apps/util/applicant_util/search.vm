@@ -1,0 +1,8 @@
+<table width="500" align="center">
+<tr>
+<td>
+Search Name: <input name="search_name">
+$button.command("search_student").param("search=1").text("Find...")
+</td>
+</tr>
+</table>

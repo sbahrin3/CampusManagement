@@ -1,0 +1,3 @@
+<script>
+parent.document.getElementById('paymentSupportingDocument').innerHTML = "<a href='../download?file=$!payment.documentFileName'>Download</a> (*uploaded)";
+</script>

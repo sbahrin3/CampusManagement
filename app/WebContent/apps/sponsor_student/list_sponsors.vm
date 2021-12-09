@@ -1,0 +1,47 @@
+<fieldset>
+<legend style="background-color:#E1E1E1;font-weight:bold">List of Sponsors</legend>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+
+<tr height="30px">
+<td  class="gradient" style="width:30px;">&nbsp;</td>
+<td  class="gradient" style="width:100px;font-weight:bold">Code</td>
+<td  class="gradient" style="font-weight:bold">Name</td>
+<td  class="gradient" style="width:24px"></td>
+</tr>
+</table>
+<div style="overflow:auto;height:160px;width:100%">
+<table width="100%" cellpadding="0" cellspacing="0">
+
+<tr height="2px">
+<td  class="gradient" style="width:30px;"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="font-weight:bold"></td>
+<td  class="gradient" style="width:24px"></td>
+</tr>
+
+#foreach( $sponsor in $sponsors )
+<tr>
+<td align="center"  class="gradient">${velocityCount}.</td>
+<td style=""><input name="code_$sponsor.id" class="text" value="$sponsor.code" readonly></td>
+<td style=""><input name="name_$sponsor.id" class="text" value="$sponsor.name" readonly></td>
+<td align="center">
+<input style="width:100%;font-weight:bold;height:30px" class="gradient" type="button" value="..."
+onclick="doDivAjaxCall$formname('div_students','get_students','sponsor_id=$sponsor.id')">
+</td>
+</tr>
+#end
+</table>
+</div>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr height="2px">
+<td  class="gradient" style="width:30px;"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:250px;font-weight:bold"></td>
+<td  class="gradient" style=";font-weight:bold"></td>
+<td  class="gradient" style="width:24px"></td>
+</tr>
+</table>
+
+</fieldset>

@@ -1,0 +1,14 @@
+<fieldset class="fset" style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="100%">
+<tr>
+<td align="center">
+<b>
+No Data!
+</b>
+</td></tr>
+<tr><td align="center">
+<input class="gradient" style="height:40px;font-weight:bold" type="button" value="Back"
+onclick="$('div_registration').style.visibility='hidden'" >
+</td></tr>
+</table>
+</fieldset>

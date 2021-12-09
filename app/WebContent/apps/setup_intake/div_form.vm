@@ -1,0 +1,123 @@
+<div id="actionTitle" style="padding:5px;font-weight:bold;border-bottom:1px solid #000;margin-bottom:10px"></div>
+
+<input type="hidden" id="actionButton" name="actionButton" value="">
+
+		<table align="center" width="100%" cellspacing="0" cellpadding="1">
+		<tr>
+			<td align="right">
+			
+				<table cellpadding="0" cellspacing="1">
+				<tr>
+				<td>Code:</td>
+				<td>Name:</td>
+				</tr>				
+				<tr>
+				<td><input name="session_code" size="15"></td>
+				<td><input name="session_name" size="30"></td>
+				</tr>
+				</table>
+				
+			</td>
+		</tr>
+		<tr>
+			<td align="right">
+				Start Date - Year: 
+				<select name="year1">
+				<option value="">- select year - </option>
+				#set ( $selected = "" )
+				#foreach( $yr in $arr_year )
+					#if ( $yr == $year.intValue() )
+						#set ( $selected = "selected" )
+					#else
+						#set ( $selected = "" )
+					#end
+					<option value="$yr" $selected>$yr</option>
+				#end
+				</select>
+				
+				Month:
+				<select name="month1">
+				#set ( $selected = "" )
+				#set ( $x = 0 )
+				#foreach( $m_name in $month_name )
+					#set ( $x = $x + 1 )
+					#if ( $x == $month.intValue() )
+						#set ( $selected = "selected" )
+					#else
+						#set ( $selected = "" )
+					#end
+					<option value="$x" $selected>$m_name</option>
+				#end			
+				</select>
+				Day:			
+				<select name="day1">
+				#set ( $selected = "" )
+				#foreach( $x in [1..31] )
+					#if ( $x == $day.intValue() )
+						#set ( $selected = "selected" )
+					#else
+						#set ( $selected = "" )
+					#end
+					<option value="$x" $selected>$x</option>
+				#end
+				</select>
+				
+			</td>
+		</tr>
+		<tr>
+			<td align="right">
+				End Date - Year: 
+				<select name="year2">
+				<option value="">- select year - </option>
+				#set ( $selected = "" )
+				#foreach( $yr in $arr_year )
+					#if ( $yr == $year.intValue() )
+						#set ( $selected = "selected" )
+					#else
+						#set ( $selected = "" )
+					#end
+					<option value="$yr" $selected>$yr</option>
+				#end
+				</select>
+				
+				Month:
+				<select name="month2">
+				#set ( $selected = "" )
+				#set ( $x = 0 )
+				#foreach( $m_name in $month_name )
+					#set ( $x = $x + 1 )
+					#if ( $x == $month.intValue() )
+						#set ( $selected = "selected" )
+					#else
+						#set ( $selected = "" )
+					#end
+					<option value="$x" $selected>$m_name</option>
+				#end			
+				</select>
+				Day:			
+				<select name="day2">
+				#set ( $selected = "" )
+				#foreach( $x in [1..31] )
+					#if ( $x == $day.intValue() )
+						#set ( $selected = "selected" )
+					#else
+						#set ( $selected = "" )
+					#end
+					<option value="$x" $selected>$x</option>
+				#end
+				</select>
+				
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="right">
+				<br/>
+				<button class="btn btn-warning" type="button"  onclick="add()">Save</button>
+				<button class="btn btn-success" type="button"  onclick="cancelUpdate()">Cancel</button>
+				
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+	

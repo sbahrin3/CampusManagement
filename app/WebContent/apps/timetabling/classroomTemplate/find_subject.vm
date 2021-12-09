@@ -1,0 +1,8 @@
+<table><tr><td style="width:400px">
+	<input class="form-control" name="subjectName" name="subjectName" placeholder="Click button Find Course..." readonly>
+</td><td>
+	&nbsp;
+	<button type="button" class="btn btn-success btn-sm" onclick="$('mainDisplay').style.display='none';$('find_subject').style.display='block';">Find Course ...</button>
+	##<button type="button" class="btn btn-sm btn-primary" onclick="if ( $('subjectId').value != '' ) { doDivAjaxCall$formname('divClassrooms','listClassrooms',''); }">Get Activities</button>
+	
+</td></tr></table>

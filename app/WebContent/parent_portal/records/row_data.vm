@@ -1,0 +1,10 @@
+$dateFormat.applyPattern("dd-MM-yyyy hh:mm a")
+
+<td>$!r.identityNo</td>
+<td>$!r.name</td>
+<td>$!r.gender</td>
+<td>$!r.phoneOffice</td>
+<td>$!r.phoneHome</td>
+<td>$!r.phoneMobile</td>
+
+

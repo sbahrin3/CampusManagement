@@ -1,0 +1,43 @@
+	
+	<table>
+		<tr style="height:30px;background:#AEB1B2">
+			<td style="width:20px"></td>
+			<td style="width:80px" align="center">Date</td>
+			<td style="width:80px" align="right">Due</td>
+			<td style="width:80px" align="right">Paid</td>
+			<td style="width:80px" align="right">Balance</td>
+			<td style="width:80px" align="right">Outstanding</td>
+		</tr>
+		#set ( $cnt = 0 )
+		#foreach ( $i in $scheduleItems )
+			
+			#if ( $i.type == 1 )
+			
+    			#set ( $cnt = $cnt + 1 )
+    			#if ( $cnt % 2 == 0 )
+    				#set ( $bgcolor = "#fff")
+    			#else
+    				#set ( $bgcolor = "#D6E2EE" )
+    			#end
+    			<tr style="height:30px;background:$bgcolor">
+    				<td>$cnt)</td>
+    				<td align="center">
+    					#if ( $i.paymentDate )
+    						$dateFormat.format($i.paymentDate)
+    					#end
+    				</td>
+    				<td align="right">$numFormat.format($i.amountDue)</td>
+    								
+    				<td align="right" style="cursor:pointer" 
+    				>$numFormat.format($i.amountPaid)</td>
+    				<td align="right">$numFormat.format($i.currentBalance)</td>
+    				<td align="right">$numFormat.format($i.outstandingBalance)</td>
+    			</tr>
+			
+			#end
+		#end
+    	
+	</table>
+	<br/>
+	<br/>
+

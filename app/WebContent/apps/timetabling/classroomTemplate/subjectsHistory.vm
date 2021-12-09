@@ -1,0 +1,23 @@
+<table align="right"><tr>
+#set ( $cnt = 0 )
+#foreach ( $subj in $subjectsHistory )
+	#set ( $cnt = $cnt + 1 )
+	#if ( $cnt > $subjectsHistory.size() - 6 )
+	<td>
+	
+	<div style="border:1px solid #CCC;border-radius: 10px;">
+	<table cellpadding="0" cellspacing="1"><tr style="height:25px">
+	<td>
+	<a href="javascript:void(0)" style="text-decoration:none" onclick="$('subjectId').value='$subj.id';doDivAjaxCall3$formname('divClassrooms','listClassrooms','')">$subj.code&nbsp;
+	</td>
+	<td valign="top" align="right">
+		<a href="javascript:void(0)" style="text-decoration:none;font-family:arial;font-size:8pt" onclick="doDivAjaxCall3$formname('subjectsHistory','removeHistory','historyId=$subj.id')">x</a>
+	</td>
+	</tr>
+	</table>
+	</div>
+	
+	</td>
+	#end
+#end
+	</td></tr></table>

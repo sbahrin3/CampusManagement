@@ -1,0 +1,16 @@
+<table>
+<tr><td>
+
+<fieldset><legend>Select</legend>
+<div id="divSelect">#parse("$path/list_programs.vm")</div>
+</fieldset>
+
+</td></tr>
+
+<tr><td>
+
+
+<div id="divGraduation"></div>
+
+</td></tr>
+</table>

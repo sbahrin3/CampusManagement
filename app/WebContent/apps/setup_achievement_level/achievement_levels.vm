@@ -1,0 +1,33 @@
+<table><tr><td>
+<span style="font-family:verdana, sans-serif;font-size:10pt;font-weight:bold">Achievement Levels for programme:</span><br/>
+<span style="font-family:verdana, sans-serif;font-size:12pt;font-weight:bold">$program.code - $program.name</span>
+</td></tr></table>
+<br/>
+<br/>
+
+<table>
+<tr>
+<td style="width:100px;height:30px;font-weight:bold;">GPA</td>
+<td style="width:100px;height:30px;font-weight:bold;">Min. Cr.</td>
+<td style="width:300px;font-weight:bold;">Name</td>
+<td style="width:300px;font-weight:bold;">Code</td>
+<td style="font-weight:bold;">&nbsp;</td>
+</tr>
+#foreach( $a in $achievementLevels )
+<tr>
+<td style=""><input class="form-control" name="gpaValue_$a.id" value="$!a.gpaValue" onchange="doDivAjaxCall$formname('divEmpty','updateGPA','achievementLevelId=$a.id')"></td>
+<td style=""><input class="form-control" name="creditHour_$a.id" value="$!a.creditHour" onchange="doDivAjaxCall$formname('divEmpty','updateCreditHour','achievementLevelId=$a.id')"></td>
+<td style=""><input class="form-control" name="achievementName_$a.id" value="$!a.name" onchange="doDivAjaxCall$formname('divEmpty','updateName','achievementLevelId=$a.id')"></td>
+<td style=""><input class="form-control" name="achievementCode_$a.id" value="$!a.code" onchange="doDivAjaxCall$formname('divEmpty','updateCode','achievementLevelId=$a.id')"></td>
+<td>&nbsp;<button class="btn btn-danger btn-sm" type="button" onclick="doDivAjaxCall$formname('divMain','deleteAchievementLevel','achievementLevelId=$a.id&programId=$program.id')">X</button></td>
+</tr>
+#end
+<tr>
+<td><input class="form-control" name="gpaValue"></td>
+<td><input class="form-control" name="creditHour"></td>
+<td><input class="form-control" name="achievementName"></td>
+<td><input class="form-control" name="achievementCode"></td>
+<td>&nbsp;<button class="btn btn-warning btn-sm" onclick="doDivAjaxCall$formname('divMain','addAchievementLevel','programId=$program.id')">Add</button></td>
+</tr>
+
+</table>

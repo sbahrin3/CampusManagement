@@ -1,0 +1,84 @@
+<table>
+	
+	<tr>
+		<td style="width:150px;height:30px">Subject Code :</td><td style="width:500px">
+			##<input class="texts" name="subjectCode" value="$!subject.code">
+				$!subject.code ($subject.id)
+		</td>
+	</tr>
+	<tr>
+		<td>Subject Name :</td><td><input class="texts" name="subjectName" value="$!subject.name"></td>
+	</tr>
+	<tr>
+		<td>Short Name :</td><td><input class="texts" name="shortName" value="$!subject.shortName"></td>
+	</tr>
+	<tr>
+		<td>Alternate Name :</td><td><input class="texts" name="subjectAltName" value="$!subject.altName"></td>
+	</tr>	
+	
+	
+	<tr>
+		<td>Faculty:</td>
+		<td>
+			<select class="texts" name="facultyId" onchange="doDivAjaxCall3$formname('listSubjectGroups','listSubjectGroups','subjectId=$subject.id')">
+				<option value=""></option>
+				#foreach ( $f in $faculties )
+					<option value="$f.id" #if ( $subject.faculty.id == $f.id ) selected  #end>$f.code - $f.name</option>
+				#end
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>Subject Group:</td>
+		<td>
+			<div id="listSubjectGroups">#parse("apps/subject_properties/listSubjectGroups.vm")</div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>Grade Scheme :</td>
+		<td>
+			<select class="texts" name="markingGradeId">
+				<option value=""></option>
+				#foreach ( $m in $markingGrades )
+					<option value="$m.id" #if ( $subject.markingGrade.id == $m.id ) selected #end>$m.name</option>
+				#end
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>Exclude GPA? :</td>
+		<td>
+			<select class="texts" name="excludeGpa">
+				<option value="0" #if ( $subject.excludeGpa == 0 ) selected #end>No</option>
+				<option value="1" #if ( $subject.excludeGpa == 1 ) selected #end>Yes</option>
+			</select>		
+		</td>
+	</tr>
+	
+	<tr>
+		<td></td> 
+		<td align="right">
+			##<input class="linkbutton" type="button" value="RESET" onclick="if ( !confirm('Reset. Are you sure?') ) return; doDivAjaxCall3$formname('getSubject','getSubjectProperties','subjectId=$subject.id')">
+			<input class="linkbutton" type="button" value="UPDATE" onclick="$('divConfirmUpdate').style.display='block';">
+			<div id="divConfirmUpdate" style="display:none">
+			<input class="linkbutton" type="button" value="YES" onclick="$('divConfirmUpdate').style.display='none';doDivAjaxCall3$formname('getSubject','updateSubjectProperties','subjectId=$subject.id')">
+			<input class="linkbutton" type="button" value="CANCEL" onclick="$('divConfirmUpdate').style.display='none';doDivAjaxCall3$formname('getSubject','getSubjectProperties','subjectId=$subject.id')">	
+			</div>
+		</td>
+	</tr>
+	
+	<tr style="height:40px">
+		<td></td> 
+		<td align="right">
+
+			<input class="linkbutton" type="button" value="PREREQUISITES..." onclick="doDivAjaxCall$formname('editSubject_$subject.id','prerequisiteSubjects','subjectId=$subject.id&subjectGroupId=$!subject.subjectGroup.id&facultyId=$!subject.faculty.id')">
+			<input class="linkbutton" type="button" value="LECTURER(S)..." onclick="doDivAjaxCall$formname('editSubject_$subject.id','assignTeachers','subjectId=$subject.id&subjectGroupId=$!subject.subjectGroup.id&facultyId=$!subject.faculty.id')">
+
+		</td>
+	</tr>
+	
+</table>
+	
+<div id="editSubject_${subject.id}"></div>

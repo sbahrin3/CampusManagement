@@ -1,0 +1,28 @@
+<script>
+doDivAjaxCall3$formname('divSelectCluster','listSelectCluster','');
+unCheckAll('classroomIds');
+</script>
+
+<ul id="clusterList" style="list-style-type:none;padding:0px;">
+#foreach( $cluster in $clusters )
+
+<li>
+<fieldset><legend class="legend">$cluster.name</legend>
+<table width="100%"><tr><td align="right">
+<a href="javascript:void()" onclick="if ( $('divCluster_$cluster.id').style.display=='none' ) { $('divCluster_$cluster.id').style.display='block';  } else { $('divCluster_$cluster.id').style.display='none';  }">+</a>
+</td></tr></table>
+<div id="divCluster_$cluster.id" style="display:none">
+#parse("$path/list_classrooms_cluster.vm")
+</div>
+</fieldset>
+</li>
+
+#end
+
+</ul>
+
+
+
+<script>
+Sortable.create('clusterList');
+</script>

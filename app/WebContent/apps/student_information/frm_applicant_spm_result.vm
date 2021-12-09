@@ -1,0 +1,47 @@
+<table align="center" style="background-color:$bgcolor">
+
+<tr bgcolor="lightgrey"><td style="width:350px;height:20px">Subject</td><td style="width:50px" valign="top" align="center">Grade</td><td></td></tr>
+
+#foreach ( $r in $applicant.spmResults )
+<tr>
+<td style="width:200px;height:20px">
+$r.subject.name
+</td>
+<td style="width:50px" valign="top" align="center">
+<select name="spm_grade_${r.id}" style="text-align:center;width:50px">
+#foreach( $i in [1..9] )
+<option value="$i" #if ( $i == $r.grade ) selected #end>&nbsp;&nbsp;$i</option>
+#end
+</select>
+</td>
+<td>
+<input type="button" style="font-weight:bold"  value="Del" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall${formName}('spm','delete_subject_spm','spm_id=$r.id')">
+</td>
+</tr>
+#end
+
+<tr>
+<td colspan="3">
+<br><br>
+<fieldset style="background-color:lightgrey;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<select name="spm_subject_id" style="width:300px">
+<option value="">Select Subject</option>
+#foreach( $s in $spm_subjects )
+<option value="$s.id">$s.name</option>
+#end
+</select>
+<select name="spm_grade" style="text-align:center;width:50px">
+<option value="">-</option>
+#foreach( $i in [1..9] )
+<option value="$i" #if ( $i == $r.grade ) selected #end>&nbsp;&nbsp;$i</option>
+#end
+</select>
+<input type="button" style="font-weight:bold"  value="Add" onclick="doDivAjaxCall${formName}('spm','add_spm','')">
+</fieldset>
+
+</td>
+</tr>
+
+
+</table>

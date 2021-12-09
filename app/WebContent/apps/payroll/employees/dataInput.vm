@@ -1,0 +1,23 @@
+<div class="col-sm-6">
+  <div class="form-group">
+    <label for="icNo">IC No:</label>
+    <input type="text" class="form-control" id="icNo" name="icNo" value="$!employee.icNo">
+  </div>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" name="name" value="$!employee.name">
+  </div>
+  <div class="form-group">
+    <label for="basicSalary">Basic Salary:</label>
+    <input type="text" class="form-control" id="basicSalary" name="basicSalary" value="$!employee.basicSalary">
+  </div>  
+  <div style="text-align:right">
+  #if ( $employee )
+  	<button type="button" class="btn btn-success" onclick="doDivAjaxCall$formname('listEmployees','saveEmployee','employeeId=$employee.id')">Update</button>
+  #else
+  	<button type="button" class="btn btn-success" onclick="doDivAjaxCall$formname('listEmployees','addEmployee','')">Add</button>
+  #end
+  <button type="button" class="btn btn-default" onclick="$('dataInput').style.display='none';">Cancel</button>
+  
+  </div>
+</div>

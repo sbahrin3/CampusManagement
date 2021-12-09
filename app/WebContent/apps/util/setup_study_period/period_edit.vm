@@ -1,0 +1,24 @@
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:10pt;font-weight:bold">Select a Period Scheme</legend>
+
+<div id="div_select_schemes">
+#parse( "apps/util/setup_study_period/select_schemes.vm" )
+</div>
+
+</fieldset>
+
+<div id="div_new_scheme"></div>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:10pt;font-weight:bold">Periods for <span id="scheme_name"></span></legend>
+
+<table>
+<tr><td style="width:100px"></td><td>
+<div id="div_list_periods" name="div_list_periods"></div>
+</td></tr>
+<tr><td>
+<div id="div_message"></div>
+</td></tr>
+</table>
+
+</fieldset>

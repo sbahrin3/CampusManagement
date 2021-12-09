@@ -1,0 +1,91 @@
+
+<style type="text/css">
+table.report {
+font-family:helvetica;
+font-size:8pt;
+}
+
+table.report td {
+font-family:helvetica;
+font-size:9pt;
+padding: 2px;
+	background-color: white;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+</style>
+
+<table width="100%" align="center">
+
+<tr><td align="right">
+##<a href="../servlet/educate.sis.servlets.CreateXLServlet?filename=test123"><img src="../img/xls.gif" border="0"></a>
+</td></tr>
+<tr><td>
+
+<table class="report">
+
+<tr>
+<td style="width:100px">Between Date:</td>
+<td style="font-weight:bold">$dateFormat.format($date1) - $dateFormat.format($date2)</td>
+</tr>
+
+#if ( $feeItem )
+<tr>
+<td>Filter By Fee:</td>
+<td style="font-weight:bold">$feeItem.description</td>
+</tr>
+#end
+
+#if ( $program )
+<tr>
+<td>Program:</td>
+<td style="font-weight:bold">$program.code $program.name</td>
+</tr>
+#end
+
+</table>
+
+<br/><br/>
+
+
+<table class="report" cellspacing="1" cellpadding="1" style="background:#ADADAD">
+
+<tr height="30px" style="background:#D3D3D3">
+<td style="width:30px;font-weight:bold;background:#D3D3D3">&nbsp;</td>
+<td style="width:300px;font-weight:bold;background:#D3D3D3">Date</td>
+##<td style="width:200px;font-weight:bold;background:#D3D3D3" align="right">Invoice (RM)</td>
+<td style="width:200px;font-weight:bold;background:#D3D3D3" align="right">Payment (RM)</td>
+<td style="width:50px;font-weight:bold;background:#D3D3D3" align="right"></td>
+</tr>
+
+#foreach( $i in $records )
+<tr height="30px" style="background:#F7F4F4">
+<td>${velocityCount}&nbsp;</td>
+<td>
+#if ( $is_print )
+$dateFormat.format($i.date)
+#else
+<a style="text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('div_students','list_records','date_from=$df.format($i.date)&date_transaction=$df.format($i.date)')">$dateFormat.format($i.date)</a>
+#end
+</td>
+##<td align="right">#if ( $i.invoiced == 0 ) - #else $numFormat.format($i.invoiced) #end&nbsp;&nbsp;&nbsp;</td>
+<td align="right">#if ( $i.paid == 0 ) - #else $numFormat.format($i.paid) #end&nbsp;&nbsp;&nbsp;</td>
+<td align="center">
+<a style="text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('div_students','list_records','date_from=$df.format($i.date)&date_transaction=$df.format($i.date)')"><img src="../img/nw.gif" border="0"></a>
+</td>
+</tr>
+#end
+
+<tr style="height:30px;background:#EFEFEF">
+<td align="right" style="background:#D3D3D3;">&nbsp;</td>
+<td style="background:#D3D3D3;">&nbsp;</td>
+##<td align="right" style="background:#D3D3D3;font-weight:bold">#if ( $total_invoiced == 0 ) - #else $numFormat.format($total_invoiced) #end&nbsp;&nbsp;&nbsp;</td>
+<td align="right" style="background:#D3D3D3;font-weight:bold">#if ( $total_paid == 0 ) - #else $numFormat.format($total_paid) #end&nbsp;&nbsp;&nbsp;</td>
+<td style="background:#D3D3D3;">&nbsp;</td>
+</tr>
+
+</table>
+
+
+
+
+</td></tr></table>

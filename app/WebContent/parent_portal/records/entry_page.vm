@@ -1,0 +1,62 @@
+
+#macro ( input $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value" onkeyup="at(this, event)">
+</td></tr>
+#end
+
+
+<fieldset>
+<div style="overflow:auto;height:300px">
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+
+<tr><td>Name</td><td>:</td><td><input class="texts" name="name" id="name" value="$!r.name"></td></tr>
+<tr><td><span id="label_email">Email*</span></td><td>:</td><td><input class="texts" name="email" id="email" value="$!r.email"></td></tr>
+<tr><td>IC No</td><td>:</td><td><input class="texts" name="identityNo" id="identityNo" value="$!r.identityNo"></td></tr>
+<tr><td>Phone (Mobile)</td><td>:</td><td><input class="texts" name="phoneMobile" id="phoneMobile" value="$!r.phoneMobile"></td></tr>
+<tr><td>Phone (Office)</td><td>:</td><td><input class="texts" name="phoneOffice" id="phoneOffice" value="$!r.phoneOffice"></td></tr>
+<tr><td>Phone (Home)</td><td>:</td><td><input class="texts" name="phoneHome" id="phoneHome" value="$!r.phoneHome"></td></tr>
+<tr><td>Gender</td><td>:</td><td>
+<select class="texts" name="gender" id="gender">
+<option value=""></option>
+<option value="M" #if ( $r.gender == "M") selected #end>Male</option>
+<option value="F" #if ( $r.gender == "F") selected #end>Female</option>
+</select>
+</td></tr>
+
+<tr><td>Address</td><td>:</td><td><input class="texts" name="address1" id="address1" value="$!r.address1"></td></tr>
+<tr><td></td><td>:</td><td><input class="texts" name="address2" id="address2" value="$!r.address2"></td></tr>
+<tr><td>City</td><td>:</td><td><input class="texts" name="city" id="city" value="$!r.city"></td></tr>
+
+<tr><td>State</td><td>:</td><td>
+<select class="texts" name="stateId" id="stateId">
+<option value=""></option>
+#foreach ( $s in $states )
+<option value="$s.id" #if ( $r.state.id == $s.id ) selected #end>$s.name</option>
+#end
+</select>
+</td></tr>
+</table>
+<br/>
+
+#if ( $r )
+<fieldset>
+<legend style="font-weight:bold">Student's Details</legend>
+
+<table style="width:100%"><tr><td align="right">
+<table>
+<tr><td></td><td style="width:10px"></td><td></td></tr>
+<tr><td>Matric No</td><td>:</td><td><input class="texts" style="width:150px" name="matricNo" id="matricNo"><input type="button" class="linkbutton" value="Add" onclick="doDivAjaxCall3$formname('divStudents','addStudent','parentId=$r.id')"></td></tr>
+</table>
+</td></tr></table>
+
+#set ( $parentId = $r.id )
+#set ( $students = $r.students )
+<div id="divStudents">#parse("parent_portal/records/divStudents.vm")</div>
+
+</fieldset>
+#end
+</div>
+</fieldset>
+

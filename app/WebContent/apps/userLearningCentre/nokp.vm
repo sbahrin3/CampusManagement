@@ -1,0 +1,20 @@
+
+#if ( $errorKP )
+
+<table align="center" style="background-color: #F06C6C"><tr><td style="background-color: #F6A4A4;font-weight:bold">
+<br>
+Kesalahan No KP: 
+#if ( $errorKP == "error_characthers" )
+Mengandungi bukan nombor.
+#elseif ( $errorKP == "error_date")
+Tarikh Lahir. 
+#elseif ( $errorKP == "error_length")
+Bilangan karakter mestilah 12
+#elseif ( $errorKP == "error_birthplace")
+Kod Tempat Lahir.
+#elseif ( $errorKP == "kp_exists" )
+No KP telah ada.
+#end
+<br><br>
+</td></tr></table>
+#end

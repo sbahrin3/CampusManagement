@@ -1,0 +1,24 @@
+<style>
+td { color: #000000; font: normal 11px arial; }
+</style>
+#if ( !$print_mode )
+<table width="100%"><tr><td align="center">
+<input type="button" value="Print" onclick="window.open('../y/educate.sis.exam.module.CGPABySchoolStatisticModule?command=print_statistic&intake_id=$intake_id&period_id=$period_id&period_scheme_id=$period_scheme_id','mywin','left=20,top=20,width=500,height=500,toolbar=0,resizable=0');">
+</td></tr></table>
+#end
+<table>
+<tr><td>Intake:</td><td style="font-weight:bold">$intake.name</td></tr>
+<tr><td>Semester:</td><td style="font-weight:bold">$period.parent.name $period.name ($session.name)</td></tr>
+</table>
+<br><br>
+<div style="position:absolute;width:800px" id="div_students" name="div_students"></div>
+<div style="position:absolute;width:800px" id="div_stat" name="div_stat">
+#parse("apps/examination_reports/cgpa2/stat.vm")
+</div>
+
+#if ( $print_mode )
+<script>
+window.print();
+</script>
+#end
+

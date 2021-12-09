@@ -1,0 +1,12 @@
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td width="25px">${cnt}.</td>
+<td width="50px">$floor.code</td>
+<td width="280px">$floor.name</td>
+<td align="right">
+<a href="javascript:void()" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall$formname('div_floor','delete_floor','floor_id=$floor.id&block_id=$block.id')"><img src="../img/item/delete.gif" border="0"></a>
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_floor_$floor.id','edit_floor','floor_id=$floor.id&block_id=$block.id&cnt=$cnt')"><img src="../img/item/edit.gif" border="0"></a>
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_room','list_rooms','floor_id=$floor.id&block_id=$block.id');$('selected_floor_name').innerHTML=': $floor.name'"><img src="../img/item/right.gif" border="0"></a>
+</td>
+</tr>
+</table>

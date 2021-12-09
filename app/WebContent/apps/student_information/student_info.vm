@@ -1,0 +1,26 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+</style>
+
+
+
+#if ( $student )
+<input type="hidden" name="student_id" value="$student.id">
+
+<br>
+
+<div id="info_detail" name="invo_detail">
+#parse( "apps/student_information/student_info_detail.vm" )
+</div>
+
+#else
+
+NO STUDENT...
+
+#end
+
+
+

@@ -1,0 +1,45 @@
+
+<table>
+<tr><td style="font-weight:bold">
+
+List of students with status $status.name in Year $year
+
+</td></tr>
+</table>
+
+<br/><br/>
+
+<table>
+<tr><td colspan="9" align="right">
+<input type="button" style="height:30px;" value="XL" onclick="document.location='../servlet/educate.sis.module.StudentStatusReportXLServlet?statusId=$statusId'">
+</td></tr>
+<tr>
+<td class="colTitle" style="width:40px"></td>
+<td class="colTitle" style="width:150px">Matric</td>
+<td class="colTitle" style="width:250px">Name</td>
+<td class="colTitle" style="width:150px">Semester</td>
+<td class="colTitle" style="width:150px">Program</td>
+##<td class="colTitle" style="width:150px">Status</td>
+#if ( $statusId == "quit" )
+<td class="colTitle" style="width:200px">Withdraw Type</td>
+#end
+<td class="colTitle" style="width:250px">Remark</td>
+<td class="colTitle" style="width:100px">Date</td>
+</tr>
+
+#foreach( $s in $students )
+<tr style="height:25px">
+<td class="row">$velocityCount.</td>
+<td class="row">$!s.student.matricNo</td>
+<td class="row">$!s.student.biodata.name</td>
+<td class="row">$!s.period.name</td>
+<td class="row">$!s.student.program.code</td>
+##<td class="row">$!s.type.name</td>
+#if ( $statusId == "quit" )
+<td class="row">$!s.withdrawType.name</td>
+#end
+<td class="row">$!s.remark</td>
+<td class="row">#if ( $s.statusDate ) $dateFormat.format($s.statusDate) #end</td>
+</tr>
+#end
+</table>

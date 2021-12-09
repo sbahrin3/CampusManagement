@@ -1,0 +1,30 @@
+<table>
+<tr style="height:30px;background:#A5A8AA">
+<td style="width:20px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold">Code</td>
+<td style="width:300px;font-weight:bold">Name</td>
+<td style="width:400px;font-weight:bold">Description</td>
+<td style="width:30px;font-weight:bold"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $c in $cases )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td valign="top">$cnt.</td>
+<td valign="top"><input class="textr" name="disciplinaryCode_$c.id" value="$c.code" onchange="doDivAjaxCall3$formname('empty','updateCode','caseId=$c.id')"></td>
+<td valign="top"><input class="textr" name="disciplinaryName_$c.id" value="$c.name" onchange="doDivAjaxCall3$formname('empty','updateName','caseId=$c.id')"></td>
+<td valign="top"><textarea class="textr" style="height:50px" name="disciplinaryDescription_$c.id" onchange="doDivAjaxCall3$formname('empty','updateDescription','caseId=$c.id')">$!c.description</textarea></td>
+<td valign="top"><input class="linkbutton" type="button" style="width:100%" value="x" onclick="doDivAjaxCall3$formname('listCases','deleteDisciplinaryCase','caseId=$c.id')"></td>
+</tr>
+#end
+
+<tr>
+<td></td>
+<td valign="top"><input class="texts" name="disciplinaryCode" value=""></td>
+<td valign="top"><input class="texts" name="disciplinaryName" value=""></td>
+<td valign="top"><textarea class="texts" style="height:100px" name="disciplinaryDescription"></textarea></td>
+<td valign="top"><input class="linkbutton" type="button" value="Add" onclick="doDivAjaxCall3$formname('listCases','addDisciplinaryCase','')"></td>
+</tr>
+
+
+</table>

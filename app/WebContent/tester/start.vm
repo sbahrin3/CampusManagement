@@ -1,0 +1,3 @@
+<input name="tester" value="Test">
+<input type="button" value="OK" onclick="doDivAjaxCall$formname('div_tester','tester','');">
+<div id="div_tester"></div>

@@ -1,0 +1,105 @@
+#parse( "apps/facility_booking/date.vm" )
+
+
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="100%" height="70px">
+<tr><td width="50%">
+
+
+<table width="100%">
+<tr><td>
+<fieldset style="background-color:#AAD4FF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table>
+<tr>
+<td style="font-weight:bold;font-size:12pt;font-family:arial">
+$facility.name
+<br>
+<a style="text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('schedule_data', 'reload_calendar', 'facility_id=$facility.id')">
+$month_name, $year
+</a>
+</td></tr>
+</table>
+</fieldset>
+
+</td></tr>
+<tr><td>
+Select Month/Year:
+<select name="select_month">
+<option value="0" #if ( $month == 0 ) selected #end>JAN</option>
+<option value="1" #if ( $month == 1 ) selected #end>FEB</option>
+<option value="2" #if ( $month == 2 ) selected #end>MAR</option>
+<option value="3" #if ( $month == 3 ) selected #end>APR</option>
+<option value="4" #if ( $month == 4 ) selected #end>MAY</option>
+<option value="5" #if ( $month == 5 ) selected #end>JUN</option>
+<option value="6" #if ( $month == 6 ) selected #end>JUL</option>
+<option value="7" #if ( $month == 7 ) selected #end>AUG</option>
+<option value="8" #if ( $month == 8 ) selected #end>SEP</option>
+<option value="9" #if ( $month == 9 ) selected #end>OCT</option>
+<option value="10" #if ( $month == 10 ) selected #end>NOV</option>
+<option value="11" #if ( $month == 11 ) selected #end>DEC</option>
+</select>
+
+#set ( $list_year = ["2010", "2011", "2012", "2013"] )
+<select name="select_year">
+#foreach ( $y in $list_year )
+<option value="$y" #if ( $y == $year ) selected #end>$y</option>
+#end
+</select>
+<input type="button" value="Select Month/Year" onclick="doDivAjaxCall$formname('schedule_data', 'reload_calendar', 'facility_id=$facility.id')">
+</td>
+</tr>
+
+<tr><td>
+#parse( "apps/facility_booking/select_date_time.vm" )
+</td></tr>
+</table>
+
+
+</td><td width="50%">
+
+
+<table width="100%"><tr><td>
+<div id="show_tip" name="show_tip"></div>
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+</fieldset>
+<br>
+
+#if ( $make_reservation )
+<table width="100%"><tr><td align="center" style="font-weight:bold">
+
+#if ( $success )
+Successfully made a reservation on:
+#else
+<font color="red">Reservation has failed on:</font>
+#end
+$du.toString($time_in, "dd-MM-yyyy") ($du.toString($time_in, "h:mm a") - $du.toString($time_out, "h:mm a"))
+</td></tr></table>
+
+#end
+
+<table width="100%">
+<tr>
+<td>
+#parse( "apps/facility_booking/scheduler.vm" )
+</td>
+</tr>
+
+<tr>
+<td>
+#parse ( "apps/facility_booking/reservation_list.vm" )
+</td>
+</tr>
+
+</table>
+
+<br>
+
+
+
+

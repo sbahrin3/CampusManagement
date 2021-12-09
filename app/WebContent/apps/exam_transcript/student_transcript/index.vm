@@ -1,0 +1,221 @@
+#set ( $student = $transcript.student )
+#if( $quit == 0 )	
+	<table width="90%" align="center">
+		<tr>
+			<td align="left">
+				<img src="../img/logo_aeu.jpg" border="0" width="150px" height="150px">
+			</td>
+		</tr>
+		<tr>
+			<td>
+	
+				<table width="100%">
+					<tr>
+						<td>
+							Matric:&nbsp <b>$student.matricNo</b>
+						</td>
+					</tr>
+	
+	
+					<tr>
+						<td>
+							Name:&nbsp <b>$student.biodata.name</b>
+						</td>
+					</tr>
+	
+					<br><br>
+	
+					<table width="100%" align="center">
+						<tr>
+							<td width="50pt">Code </td>
+							<td width="200pt">Name</td>
+							<td width="50pt">Credit Hour</td>
+							<td width="50pt">Grade</td>
+							<td width="50pt">Point</td>
+							<td width="50pt">Grade Point Value</td>
+						</tr>
+	
+						#foreach( $section in $transcript.sections )
+							<tr>
+								<td colspan="6" style="font-weight:bold">
+									$section.session.name ($section.period.parent.name - $section.period.name)
+								</td>
+							</tr>
+		
+							<tr>
+								<td colspan="6"><hr/></td>
+							</tr>
+							
+							#if( $sessions != [] )
+								#set( $i = 0 )
+								#foreach( $session in $sessions )				
+									#if( $section.session.id.equals($session.id) )
+										#set( $i = $i + 1 )
+									#end
+								#end
+								
+								#if( $i == 0 )
+									#foreach( $subject in $section.subjects)
+										<tr>
+											<td width="50pt">$!subject.code</td>
+											<td width="200pt">$!subject.name</td>
+											#if($subject.status=="DEFERED")
+												<td colspan=4 align=center>$subject.typeStatus</td>
+												##<td>$subject.typeStatus</td>
+												##<td>$subject.typeStatus</td>
+												##<td>$subject.typeStatus</td>
+											#else
+												<td width="50pt">$!subject.creditHours</td>
+												<td width="50pt">$!subject.grade</td>
+												<td width="50pt">$!subject.point</td>
+												<td width="50pt">$!subject.pointGrade</td>
+											#end
+										</tr>
+									#end
+									<tr>
+										<td colspan="6"><hr/></td>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">Credit Unit: $section.creditHours</td>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">Cum Credit Unit: $section.cumCreditHours</td>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">GPA: $section.gpa</td>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">CGPA: $section.cgpa</td>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">Academic Status:
+											#if($section.standing=="GOOD STANDING") 
+												<dd><b>$section.standing &nbsp (GS)</b></dd>
+											#else
+												<dd><b><font color="red">$!section.standing &nbsp (PS)</font></b></dd>
+											#end
+										</td>
+									</tr>
+								#else
+									<tr>
+										<td align=center colspan="6">
+											DEFERED SEMESTER
+										</td>
+									</tr>
+									<tr>
+										<td colspan="6"><hr/></td>
+									</tr>
+								#end
+							#else
+								#foreach( $subject in $section.subjects)
+									<tr>
+										<td width="50pt">$!subject.code</td>
+										<td width="200pt">$!subject.name</td>
+										#if($subject.status=="DEFERED")
+											<td colspan=4 align=center>
+												#if($subject.typeStatus.equals("INCOMPLETE"))
+													I
+												#end
+											</td>
+											##<td>$subject.typeStatus</td>
+											##<td>$subject.typeStatus</td>
+											##<td>$subject.typeStatus</td>
+										#else
+											<td width="50pt">$!subject.creditHours</td>
+											<td width="50pt">$!subject.grade</td>
+											<td width="50pt">$!subject.point</td>
+											<td width="50pt">$!subject.pointGrade</td>
+										#end
+									</tr>
+								#end
+						
+								<tr>
+									<td colspan="6"><hr/></td>
+								</tr>
+								<tr>
+									<td colspan="3"></td>
+									<td colspan="6">Credit Unit: $section.creditHours</td>
+								</tr>
+								<tr>
+									<td colspan="3"></td>
+									<td colspan="6">Cum Credit Unit: $section.cumCreditHours</td>
+								</tr>
+								<tr>
+									<td colspan="3"></td>
+									<td colspan="6">GPA: $section.gpa</td>
+								</tr>
+								<tr>
+									<td colspan="3"></td>
+									<td colspan="6">CGPA: $section.cgpa</td>
+								</tr>
+								<tr>
+									<td colspan="3"></td>
+									<td colspan="6">Academic Status:
+										#if($section.standing=="GOOD STANDING") 
+											<dd><b>$section.standing &nbsp (GS)</b></dd>
+										#else
+											<dd><b><font color="red">$section.standing &nbsp (PS)</font></b></dd>
+										#end
+									</td>
+								</tr>
+							#end
+							<tr>
+								<td colspan="6"><br/></td>
+							</tr>
+							<tr>
+								<td colspan="6"><br/></td>
+							</tr>
+						#end
+					</table>
+		
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">
+				
+			</td>
+		</tr>
+	</table>
+#else
+	<table align=center>
+		<tr>
+			<td align="left">
+				<img src="../img/logo_aeu.jpg" border="0" width="150px" height="150px">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="100%">
+					<tr>
+						<td>Matric:&nbsp <b>$student.matricNo</b></td>
+					</tr>
+					<tr>
+						<td>Name:&nbsp <b>$student.biodata.name</b></td>
+					</tr>
+				</table>
+				<table width="100%">
+					<tr>
+						<td width=95%><hr/></td>
+					</tr>
+					<tr>
+						
+					</tr>
+					<tr>
+						<td align=center>TRANSCRIPT IS NOT AVAILABLE</td>
+					</tr>
+					<tr>
+						<td width=95%><hr/></td>
+					</tr>
+				</table
+			</td>
+		</tr>
+	</table>
+#end

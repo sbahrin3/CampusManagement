@@ -1,0 +1,5 @@
+<select class="text" name="intakeId" onchange="$('listSubjects').innerHTML='';">
+	#foreach ( $i in $intakes )
+		<option value="$i.id">$i.name</option>
+	#end
+</select>

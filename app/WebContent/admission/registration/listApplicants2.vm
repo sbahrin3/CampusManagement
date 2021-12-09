@@ -1,0 +1,51 @@
+
+<table cellspacing="0" cellpadding="1">
+<tr style="height:30px">
+<td style="width:30px;font-weight:bold"></td>
+<td style="width:150px;font-weight:bold">Ref No.</td>
+<td style="width:250px;font-weight:bold">Name</td>
+<td style="width:150px;font-weight:bold">IC/Passport</td>
+<td style="width:100px;font-weight:bold">Centre</td>
+<td style="width:100px;font-weight:bold">Intake</td>
+<td style="width:100px;font-weight:bold">Program</td>
+<td style="width:100px;font-weight:bold">Status</td>
+<td style="width:100px;font-weight:bold" align="right">
+	
+</td>
+</tr>
+</table>
+<div style="width:950px; height:370px; overflow:auto">
+<table cellspacing="0" cellpadding="1">
+<tr style="height:0px">
+<td style="width:30px;font-weight:bold"></td>
+<td style="width:150px;font-weight:bold"></td>
+<td style="width:250px;font-weight:bold"></td>
+<td style="width:150px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:80px;font-weight:bold"></td>
+</tr>
+#set ( $count = 0 )
+#foreach( $r in $applicants )
+#set ( $count = $count + 1 )
+#if ( $count % 2 == 0 ) #set ( $bgcolor = "#F7F7F7" ) #else #set ( $bgcolor = "#E8E1E1" ) #end
+<tr style="background:$bgcolor" style="height:25px">
+<td>$count. </td>
+<td>$!r.id</td>
+<td>$!r.name $!r.defaultStatus</td>
+<td>#if ( $r.icno != "" ) $!r.icno #else $!r.passport #end</td>
+
+<td>$!r.centre.code</td>
+<td>$!r.intake.name</td>
+
+<td>$!r.offeredProgram.code</td>
+<td>$!r.status.code</td>
+<td align="right">
+<input type="button" class="linkbutton" value="Register" onclick="doDivAjaxCall3$formname('divRegisterData','getRegisterData','applicantId=$r.id')">
+</td>
+
+</tr>
+#end
+</table>

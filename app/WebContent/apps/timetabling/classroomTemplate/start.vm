@@ -1,0 +1,194 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+#parse("common/css/css.vm")
+<style>
+
+
+#changeTagNumber {
+	width:400px; 
+	height:300px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 50%; 
+	left: 50%; 
+	margin-left: -200px;
+	margin-top: -100px; 
+	border:1px dotted #000;
+    display:none;
+}
+
+#selectColors {
+	width:200px; 
+	height:400px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 50%; 
+	left: 20%; 
+	margin-left: -100px;
+	margin-top: -100px; 
+	border:1px dotted #000;
+    display:none;
+}
+
+#createStudentSubjectGroup {
+	width:600px; 
+	height:500px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 30%; 
+	left: 50%; 
+	margin-left: -300px;
+	margin-top: -100px; 
+	border:1px dotted #000;
+    display:none;
+}
+
+
+#addClassroom {
+	width:600px; 
+	height:400px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 50%; 
+	left: 50%; 
+	margin-left: -300px;
+	margin-top: -100px; 
+	border:1px dotted #000;
+    display:none;
+}
+
+#addEquivalentSubjects {
+	width:600px; 
+	height:500px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 30%; 
+	left: 50%; 
+	margin-left: -300px;
+	margin-top: -100px; 
+	border:1px dotted #000;
+    display:none;
+}
+
+
+#classroomProperties {
+
+	width:500px; 
+	height:500px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 30%; 
+	left: 50%; 
+	margin-left: -300px;
+	margin-top: -100px; 
+	border:1px dotted #000;
+    display:none;
+  
+}
+
+#classroomOptions {
+	width:600px; 
+	height:500px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 30%; 
+	left: 50%; 
+	margin-left: -300px;
+	margin-top: -100px; 
+	border:1px dotted #000;
+    display:none;
+}
+
+.exactCenter { 
+	width:600px; 
+	height:400px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 50%; 
+	left: 50%; 
+	margin-left: -300px;
+	margin-top: -200px; 
+	 
+} 
+.line {
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+
+#divSessionGroup { 
+	width:700px; 
+	height:400px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 50%; 
+	left: 50%; 
+	margin-top: -200px; 
+	margin-left: -350px; 
+	display:none;
+} 
+
+</style>
+
+<script>
+function checkAll(bx, name) {
+  var cbs = document.getElementsByTagName('input');
+  for(var i=0; i < cbs.length; i++) {
+    if(cbs[i].type == 'checkbox') {
+      if ( cbs[i].name == name ) cbs[i].checked = bx.checked;
+    }
+  }
+}
+
+
+function checkWeightageValue(eid) {
+	var value = document.getElementById('weightage_' + eid).value;
+	var checked = document.getElementById('teacherIds_' + eid).checked;
+
+	if ( checked ) {
+		if ( value > 1 ) {
+			alert('Weightage range must be between 0 to 1');
+			document.getElementById('weightage_' + eid).value = '1';
+		}
+	}
+}
+
+</script>
+
+
+<div style="padding:10px">
+
+<div class="well" style="padding:5px">STATE: $campus.state.name / CAMPUS: $campus.name</div>
+
+
+
+<div style="padding:5px;font-family:Verdana, sans-serif;font-size:14pt;font-weight:bold">
+##Class Activities Setup
+</div>
+
+<div style="padding:5px">
+	
+<table style="width:100%"><tr><td>
+
+<div id="listClassrooms">
+	#parse("$path/list_classrooms.vm")
+</div>
+
+<div id="divEmpty"></div>
+
+</td></tr></table>
+
+<div id="changeTagNumber" class="shadow"></div>
+<div id="selectColors" class="shadow"></div>
+<div id="createStudentSubjectGroup" class="shadow"></div>
+<div id="classroomProperties" class="shadow"></div>
+<div id="classroomOptions" class="shadow"></div>
+
+<div id="addClassroom" class="shadow">#parse("$path/addClassroom.vm")</div>
+<div id="addEquivalentSubjects" class="shadow"></div>
+
+
+<div id="divSessionGroup"></div>
+<div id="empty"></div>
+	
+</div>
+
+</div> ##container

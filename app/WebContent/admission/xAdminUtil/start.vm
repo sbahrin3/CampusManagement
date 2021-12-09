@@ -1,0 +1,20 @@
+Admin Util - Use By Admin Only
+
+<br/>
+<br/>
+STUDENT REGISTRATION DATA<br/>
+Auto Update Student Gender based on MyKad.. 
+<a href="javascript:void(0)" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('divAdminUtil','studentGender','')">Run..</a>
+<br/><br/>
+TIMETABLING<br/>
+#**
+Clean Up ALL Timetable
+<a href="javascript:void(0)" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('divAdminUtil','cleanUpTimetable','')">Run..</a>
+<br/>
+**#
+Clean Up Timetable Classroom Templates 
+<a href="javascript:void(0)" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('divAdminUtil','cleanUpClassroomTemplate','')">Run..</a>
+<br/>
+
+<br/>
+<div id="divAdminUtil"></div>

@@ -1,0 +1,6 @@
+<select name="sectionId" style="width:100%">
+<option value=""></option>
+#foreach( $s in $sectionList )
+<option value="$s.id">$s.name</option>
+#end
+</select>

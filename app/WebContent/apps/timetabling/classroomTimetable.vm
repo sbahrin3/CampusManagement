@@ -1,0 +1,202 @@
+<style>
+#popupConflictMessage { 
+	background:#fff;
+	width:500px; 
+	height:300px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 50%; 
+	left: 50%; 
+	margin-top: -150px; 
+	margin-left: -250px; 
+	border:1px dotted #ccc;
+	display:none;
+	z-Index: 9999;
+}
+</style>
+
+#set ( $totalSlots = $slotTimeList.size() )
+$dateFormat.applyPattern("dd, MMM yyyy")
+<div style="padding:2px;font-family:Verdana, sans-serif;font-size:12pt;font-weight:bold;">
+Timetable Date: 
+#if ( $start_date ) $dateFormat.format($start_date) #end
+#if ( $end_date ) - $dateFormat.format($end_date) #end
+</div>
+<br/>
+
+
+
+<div style="overflow:auto;background:#F9F8CC;border:1px dotted #000;margin-bottom:100px">
+
+<table id="timetable" style="background:#fff;cursor:pointer" border="0" cellpadding="1" cellspacing="1">
+<tr>
+	<td style="height:50px;width:50px" bgcolor="#fff">&nbsp;</td>
+	#foreach( $slotTime in $slotTimeList )
+	    <td nowrap style="background:#ccc;font-family:arial;font-size:10px;height:30px;width:50px;border-right:1px dotted #000" align="center" >
+		    
+		    $timeFormat.format($slotTime.startTime)
+		   
+		    <br/>
+		     
+		    $timeFormat.format($slotTime.endTime)
+	    	
+	    </td>
+	#end
+</tr>
+
+<tr style="height:1px">
+	<td></td>
+	<td colspan="$totalSlots"></td>
+</tr>
+	
+#foreach( $dayNum in [1..7])	
+	#set ( $rowOfClassrooms = $timetable.get($dayNum) )
+	
+	#if ( $rowOfClassrooms.size() > 0 ) 
+
+		#set ( $rowCnt = 0 )
+		#foreach ( $classrooms in $rowOfClassrooms )
+			#set ( $rowCnt = $rowCnt + 1 )
+			<tr>
+				
+			#if ( $rowCnt == 1 )
+				<td style="border-top:1px dotted #ccc;border-right:1px dotted #ccc" rowspan="$rowOfClassrooms.size()" valign="top">
+				#if ( $dayNum == 1 ) Mon
+				#elseif ( $dayNum == 2 ) Tue
+				#elseif ( $dayNum == 3 ) Wed
+				#elseif ( $dayNum == 4 ) Thu
+				#elseif ( $dayNum == 5 ) Fri
+				#elseif ( $dayNum == 6 ) Sat
+				#elseif ( $dayNum == 7 ) Sun
+				#end
+				</td>
+			#end
+			
+			#set ( $lastSlot = 0 )
+			
+			#foreach ( $d in $classrooms )
+				#set ( $space = $d.beginSlot - $lastSlot - 1 )
+				#if ( $space > 0 )
+					#foreach ( $i in [1..$space] )
+						<td style="background:#fff;border-right:1px dotted #ccc;#if ( $rowCnt == 1 ) border-top:1px dotted #ccc #end">&nbsp;</td>
+					#end
+				#end
+				
+				#if ( $d.classroom.subject )
+					#set ( $bgcolor = $d.classroom.bgcolor )
+				#else
+					#set ( $bgcolor = "#fff" )
+				#end
+				
+				<td colspan="$d.totalSlot" align="center" style="border-radius:10px;background:$bgcolor;font-face:helvetica;font-size:9pt;color:#FFFFFF;text-shadow:#000 1px 1px 1px;padding:5px;#if ( $rowCnt == 1 ) border-top:1px dotted #ccc #end">
+				
+    				
+    				$!d.classroom.subject.code<br/>
+    				$!d.classroom.classroomSection.classroomType.learningActivityType.name<br/>
+    				 
+    				#if ( $d.classroom.grouped )
+    					#foreach( $room in $d.classroom.room.combinedRooms )
+    					$room.code&nbsp;
+    					#end
+    				#else
+    					$!d.classroom.room.code
+    				#end
+    				
+    				
+    				#foreach ( $t in $d.classroom.classTeachers )
+    					<br/>
+    					#if ( $t.teacher )
+    						$util.subString($t.teacher.name, 8)
+    					#end
+    				#end
+    				
+    				<br/>
+
+    				#foreach( $g in $d.classroom.studentSubjectGroups )
+    					#if ( $g.facultyGroup )
+    						$!g.facultyGroup.code<br/>
+    					#end
+    				#end
+    				##class info
+    				<a class="icon_shadow" href="javascript:void(0)" onclick="$('div_students2').innerHTML='';$('div_students').style.display='block';doDivAjaxCall$formname('div_students2','classInfo2','class_session_id=${d.classroom.id}')"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+    		
+				#if ( $d.classroom.published )
+				<br/>P
+				#end
+				</td>
+				
+				#set ( $lastSlot = $d.endSlot )
+			#end
+			
+			#if ( $lastSlot < $totalSlots )
+			#set ( $n = $totalSlots - 1 )
+			#foreach( $i in [$lastSlot..$n])
+				<td style="background:#fff;border-right:1px dotted #ccc;#if ( $rowCnt == 1 ) border-top:1px dotted #ccc #end">&nbsp;</td>
+			#end
+			#end
+			
+			</tr>
+		#end
+		
+	#else ##no classrooms in this day
+	
+    	<tr style="height:30px">
+        	<td style="border-top:1px dotted #ccc;border-right:1px dotted #ccc;#if ( $rowCnt == 1 ) border-top:1px dotted #ccc #end" valign="top">
+        	#if ( $dayNum == 1 ) Mon
+        	#elseif ( $dayNum == 2 ) Tue
+        	#elseif ( $dayNum == 3 ) Wed
+        	#elseif ( $dayNum == 4 ) Thu
+        	#elseif ( $dayNum == 5 ) Fri
+        	#elseif ( $dayNum == 6 ) Sat
+        	#elseif ( $dayNum == 7 ) Sun
+        	#end
+        	</td>
+			#foreach( $i in [1..$totalSlots] )
+				<td style="background:#fff;border-right:1px dotted #ccc;#if ( $rowCnt == 1 ) border-top:1px dotted #ccc #end">&nbsp;</td>
+			#end
+		</tr>
+    	
+    #end
+	<tr style="height:1px">
+	<td></td><td colspan="$totalSlots"></td>
+	</tr>
+#end	
+</table>
+
+</div>
+
+
+<div name="popupConflictMessage" id="popupConflictMessage" class="shadow">
+	<table  id="h_popupConflictMessage" width="100%" cellpadding="0" cellspacing="0">
+		<tr height="40px" style="background:#287192">
+		<td style="color:#fff;font-weight:bold">
+		Classroom Conflict
+		</td>
+		<td align="right">
+			
+			<button type="button" class="btn btn-default btn-sm" onclick="$('popupConflictMessage').style.display='none';">x</button>
+		
+		</td></tr>
+		<tr><td style="height:150px" valign="middle" align="center">
+		<span id="popupConflictMessage_Inner" style="font-weight:bold;">
+		
+		#parse("apps/timetabling/display_conflict_message2.vm")
+		
+		</span>
+		</td></tr>
+	</table>
+</div>
+<script>new Draggable('popupConflictMessage', {handle: 'h_popupConflictMessage'});</script>
+
+<script>
+
+#if ( $message )
+
+	##$('divMessage').style.display='block';
+	##$('divMessageInner').innerHTML = '$conflictCode - $message';
+	
+	$('popupConflictMessage').style.display='block';
+
+#end
+
+</script>

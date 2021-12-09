@@ -1,0 +1,22 @@
+
+<table>
+<tr style="height:30px;background:#D8D6D6">
+<td style="width:150px;font-weight:bold">Staff No</td>
+<td style="width:250px;font-weight:bold">Name</td>
+<td style="width:50px;"></td>
+<td style="width:50px;"><input type="button" value="Add" onclick="doDivAjaxCall3$formname('driverDetail','newDriver','')"></td>
+</tr>
+
+#foreach( $d in $drivers )
+<tr>
+<td>$d.staffNo</td>
+<td>$d.name</td>
+<td>
+<input type="button" value="..." onclick="doDivAjaxCall3$formname('driverDetail','getDriver','driverId=$d.id')">
+</td>
+<td>
+<input type="button" value="X" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall3$formname('listDrivers','deleteDriver','driverId=$d.id')">
+</td>
+</tr>
+#end
+</table>

@@ -1,0 +1,8 @@
+<table>
+<tr><td style="width:300px">
+<input id="originalValue" name="originalValue" style="width:100%">
+</td><td>
+<input type="button" value="Encrypt" onclick="doDivAjaxCall3$formname('divEncrypt','encrypt','')">
+</td><td style="width:300px">
+<span id="divEncrypt"></span>
+</td></tr></table>

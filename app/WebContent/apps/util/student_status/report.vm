@@ -1,0 +1,58 @@
+
+<table width="800" align="center">
+<tr><td>
+
+
+<div name="div_students" id="div_students"
+style="visibility:hidden;position:absolute;width:700px;height:300px;border-style:solid;border-color:#B4B4B4;background-color:#FFFFAA">
+
+<table width="100%"><tr height="30px" bgcolor="lightgrey"><td align="right" style="font-weight:bold">
+[<a href="javascript:void()" onclick="$('div_students').style.visibility='hidden';$('div_students2').style.visibility='hidden'">Close</a>]
+</td></tr>
+<tr><td>
+<div name="div_students2" id="div_students2" style="overflow:auto;height:260px;width:100%"></div>
+</td></tr></table>
+
+</div>
+
+
+</td></tr>
+<tr><td align="center" style="font-weight:bold;font-family:arial;font-size:12pt;">
+$current_session
+</td></tr>
+<tr><td>
+
+#set ( $i = $types_length + 2 )
+
+
+#foreach( $course in $courses)
+<table width="100%">
+<tr><td bgcolor="lightgrey" style="height:40px;font-weight:bold;font-family:arial;font-size:10pt">
+SCHOOL OF $course.name
+</td></tr>
+</table>
+
+
+#foreach($program in $programTable.get("$course.id"))
+
+<table width="100%">
+<tr height="30px"><td></td></tr>
+<tr><td style="font-weight:bold">
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_stat_$program.id','by_program','program_id=$program.id')">
+$program.name
+</a>
+</td></tr>
+</table>
+
+<div id="div_stat_$program.id" name="div_stat_$program.id">
+#parse("apps/util/student_status/status_stat.vm")
+</div>
+
+
+#end
+
+
+#end
+
+</td></tr>
+</table>

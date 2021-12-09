@@ -1,0 +1,27 @@
+<table width="100%">
+<tr><td width="50%" valign="top">
+
+<fieldset><legend class="legend">Students</legend>
+#parse("$path/listStudents.vm")
+</fieldset>
+
+</td><td valign="top">
+
+<fieldset><legend class="legend">Move Students</legend>
+
+<table><tr>
+<td>
+Move selected students to:
+<select name="moveSectionId" style="width:200px">
+#foreach( $s in $sections )
+<option value="$s.id">$s.name</option>
+#end
+</select>
+<input type="button" value="Move" onclick="doDivAjaxCall$formname('divStudents','moveStudents','')">
+</td>
+</tr></table>
+
+
+</fieldset>
+
+</td></tr></table>

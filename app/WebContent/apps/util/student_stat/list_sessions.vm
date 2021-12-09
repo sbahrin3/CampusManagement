@@ -1,0 +1,6 @@
+<select name="intake_id" class="texts" style="width:250px;">
+<option value="">(ALL INTAKES)</option>
+#foreach( $session in $sessions )
+<option value="$session.id">&nbsp;&nbsp;&nbsp;&nbsp;$session.name</option>
+#end
+</select>

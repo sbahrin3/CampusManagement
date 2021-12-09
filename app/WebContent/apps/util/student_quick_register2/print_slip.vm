@@ -1,0 +1,108 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {font-family:verdana;font-size:10pt;font-weight:bold;}
+td {font-family:arial;font-size:10pt;}
+</style>
+
+<table width="600" align="center">
+<tr><td height="100px">
+
+#parse("apps/logo/header.vm")
+
+</td></tr>
+
+<tr height="20px"><td>
+</td></tr>
+
+<tr><td>
+
+##Selamat mendaftar di Cybernetics International College of Technology.  Berikut adalah maklumat
+Selamat mendaftar di Unitar .  Berikut adalah maklumat
+ringkas pendaftaran anda:
+
+</td></tr>
+
+<tr><td height="20px">
+
+</td></tr>
+
+<tr><td>
+<table width="100%">
+<tr><td style="width:150px">NO. MATRIK</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>NAMA:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>NO K/P:</td><td style="font-weight:bold">#if ( $student.biodata.icno != "" ) $student.biodata.icno #else $student.biodata.passport #end</td></tr>
+<tr><td>PROGRAM:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+</table>
+</td></tr>
+
+<tr><td height="10px">
+
+</td></tr>
+
+<tr><td>
+<p>
+Sila hafal nombor matrik anda.  Pastikan slip matrik sementara ini dibawa bersama ketika berada di kolej untuk membuat 
+sebarang urusan.
+</p>
+<p>
+<b>Kad Matrik rasmi</b> akan dikeluarkan oleh <b>Department of Academic Affairs (DAA)</b> pada suatu tarikh
+yang akan ditetapkan kelak.  Sila semak papan kenyataan untuk tarikh, masa dan tempat mengambil kad matrik anda.
+</p>
+</td></tr>
+<tr style="height:40px"><td></td></tr>
+<tr><td align="center" style="font-weight:bold">DOKUMEN TAMBAHAN</td></tr>
+
+<tr><td>
+<p>
+Dimaklumkan bahawa anda <b>BELUM / SUDAH</b> menyerahkan kesemua dokuman diperlukan bagi
+melengkapkan fail perbibadi pelajar.
+</p>
+<p>
+Sila kemukan dokumen bertanda (/) berikut ke kaunter DAA dengan kadar segera.
+</p>
+</td></tr>
+
+<tr><td>
+<ul>
+<li> 1 SALINAN KAD PENGENALAN (MyKad)
+<li> 1 SALINAN SIJIL KELAHIRAN
+<li> _____ KEPING GAMBAR BERUKURAN PASPORT
+<li> 1 SALINAN KEPUTUSAN SPM
+<li> 1 SALINAN KEPUTUSAN STPM/DIPLOMA
+<li> 1 SALINAN KEPUTUSAN MUET
+<li> 1 SALINAN SIJIL BERHENTI SEKOLAH
+<li> BORANG BK03/KP1-1
+<li> SURAT PERJANJIAN PERAKUAN (SALINAN PEJABAT)
+<li> RM 10 DUTI SETEM
+<li> LAIN-LAIN _________________________________________
+</ul>
+</td></tr>
+
+<tr><td>
+<br><br><br>
+<p>
+Sekian, harap maklum.
+<br><br>
+<b>"Selamat Maju Jaya"</b>
+<br><br>
+<b>Pendaftar</b>
+</p>
+
+</td></tr>
+
+<tr><td height="20px">
+
+</td></tr>
+
+<tr><td align="right">
+<img src="../barcode?data=$!student.matricNo" border="0">
+</td></tr>
+
+</table>
+
+
+<script>
+##window.print();
+</script>

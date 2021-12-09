@@ -1,0 +1,36 @@
+<table width="700" align="center">
+<tr><td>
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table align="center" width="100%" cellpadding="0" cellspacing="0">
+<tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">Status : $status</td>
+<td align="center" style="font-weight:bold">Total</td>
+<td style="font-weight:bold"></td>
+</tr>
+#foreach( $result in $resultList )
+<tr height="25px">
+<td>$result.program_name</td>
+<td align="center">$result.total</td>
+<td align="right">
+##$button.command("list_by_program").param("program_id=$result.program_id").text("List..")
+<input type="button" value="List Applicants" onclick="doAjaxCall$formname('list_by_program','program_id=$result.program_id&status=$status')">
+</td>
+</tr>
+#end
+</table>
+
+</fieldset>
+
+<table width="100%">
+<tr><td align="right">
+
+##$button.command("list_by_program").text("List Applicants")
+
+</td></tr>
+</table>
+
+
+
+
+</td></tr></table>

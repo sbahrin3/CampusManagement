@@ -1,0 +1,16 @@
+<script>
+$('vehicleMovementLog').style.display="block";
+</script>
+
+<table width="100%" cellpadding="0" cellspacing="0" height="30px"><tr style="background:#AFAEAE">
+<td style="color:#fff;font-weight:bold;font-size:10pt">Vehicle Movement Log</td>
+<td style="" align="right">
+
+<input class="button" type="button" value="Add" onclick="doDivAjaxCall3$formname('divRemark','addVehicleLog','vehicleId=$vehicleId')">
+<input class="button" type="button" value="Close" onclick="$('vehicleMovementLog').style.display='none'">
+</td></tr>
+</table>
+<br/>
+<div id="movementLogRecords">#parse("facilities/vehicle_records/vehicleMovementList.vm")</div>
+<div>
+

@@ -1,0 +1,29 @@
+<div id="div_reply_$post.id" name="div_reply_$post.id" style="background-color:#E2E2FE;display:none">
+
+<table width="100%" cellspacing="0" cellpadding="0"><tr><td>
+
+
+<textarea rows="1"  id="post_reply_$post.id" name="post_reply_$post.id" style="width:100%;" onkeyup="resizeTextArea(this)"></textarea>
+#if ( $post.type == "assignment" )
+#set ( $uploader_id="reply_$post.id" )
+#parse("apps/lms2/upload/uploader.vm")
+#end
+
+</td>
+<td style="width:30px" valign="top">
+
+<input class="gradient" style="width:100%;font-weight:bold" type="button" value="ok" 
+onclick="doDivAjaxCall3$formname('div_replies_$post.id','reply_post','post_id=$post.id&uploader_id=$!uploader_id');$('post_reply_$post.id').value='';wait_indicator('div_reply_wait_indicator_$post.id')">
+
+<input class="gradient" style="width:100%;font-weight:bold" type="button" value="x" 
+onclick="$('div_reply_$post.id').style.display='none';$('file_uploaded_$uploader_id').innerHTML=''">
+
+</td></tr>
+</table>
+
+
+
+<script>
+new TextAreaResize('post_reply_$post.id');
+</script>
+</div>

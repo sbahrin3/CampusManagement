@@ -1,0 +1,127 @@
+
+<ul id="categoryList" style="list-style-type:none; padding: 0px;">
+#set ( $n = $classroomTypes.size() )
+#set ( $cnt = 0 )
+
+
+<table>
+    <tr height="50px" style="background:#ebebeb">
+    <td style="font-weight:bold;width:50px;border-bottom:2px solid ">&nbsp;</td>
+    <td style="font-weight:bold;width:110px;border-bottom:2px solid ">Code</td>
+    <td style="font-weight:bold;width:200px;border-bottom:2px solid ">Name</td>
+    
+    <td style="font-weight:bold;width:100px;border-bottom:2px solid " align="center">Exam<br/>Type</td>
+    <td style="font-weight:bold;width:70px;border-bottom:2px solid ">Slots</td>
+    
+    <td style="font-weight:bold;width:80px;border-bottom:2px solid ">Priority*</td>
+    
+    <td style="font-weight:bold;width:150px;border-bottom:2px solid ">Activity Category</td>
+
+    <td style="font-weight:bold;width:200px;border-bottom:2px solid " align="right">
+		<input class="linkbutton" type="button" value="Add New" onclick="$('addClassroomType').style.display='block';">
+	</td>
+    </tr>
+</table>
+
+#foreach( $classroomType in $classroomTypes )
+    #set ( $cnt = $cnt + 1 )
+    
+    <li id="categoryList_$cnt" style="padding:0px">
+    <input type="hidden" name="ids" value="$classroomType.id">
+		
+    <table cellpadding="1" cellspacing="1">
+    <tr height="0px">
+    <td style="width:50px;"></td>
+    <td style="width:100px;"></td>
+    <td style="width:200px;"></td>
+    
+    <td style="width:100px;"></td>
+    <td style="width:80px;"></td>
+    
+    <td style="width:80px;"></td>
+    <td style="width:100px;"></td>
+    <td style="width:150px;"></td>
+    </tr>
+	
+    <tr style="height:40px">
+    <td style="cursor:pointer;border-bottom:1px dotted #000" align="center">$cnt.</td>
+    <td style="border-bottom:1px dotted #000"><input class="texts" id="code_$classroomType.id" name="code_$classroomType.id" value="$!classroomType.code" style="width:100px;height:25px" onchange="doDivAjaxCall$formname('classroomTypeUpdate','updateCode','classroomTypeId=$classroomType.id')"></td>
+    <td style="border-bottom:1px dotted #000"><input class="texts" id="name_$classroomType.id" name="name_$classroomType.id" value="$!classroomType.name" style="width:200px;height:25px" onchange="doDivAjaxCall$formname('classroomTypeUpdate','updateName','classroomTypeId=$classroomType.id')"></td>
+    
+    <td style="border-bottom:1px dotted #000" align="center">
+    	<input type="checkbox" id="examType_$classroomType.id" name="examType_$classroomType.id" #if ( $classroomType.examType ) checked value="1" #else value="0" #end onchange="if ( this.value == '1' ) { this.value = '0' } else { this.value = '1' }; doDivAjaxCall$formname('classroomTypeUpdate','updateExamType','classroomTypeId=$classroomType.id')">
+    </td>
+    
+    <td style="border-bottom:1px dotted #000">
+    <select class="texts" style="width:50px" id="slotCount_$classroomType.id" name="slotCount_$classroomType.id" style="width:100%;height:25px" onchange="doDivAjaxCall$formname('classroomTypeUpdate','updateSlotCount','classroomTypeId=$classroomType.id')">
+    #foreach( $i in [1..10])
+    <option value="$i" #if ( $classroomType.slotCount == $i ) selected #end>$i</option>
+    #end
+    </select>
+    </td>
+    
+    <td style="border-bottom:1px dotted #000">
+	    <select class="texts" style="width:50px" id="priority_$classroomType.id" name="priority_$classroomType.id"
+	    onchange="doDivAjaxCall$formname('classroomTypeUpdate','updatePriority','classroomTypeId=$classroomType.id')">
+		    <option value="0" #if ( $classroomType.priority == 0 ) selected #end></option>
+		    #foreach( $i in [1..$n] )
+		    <option value="$i" #if ( $classroomType.priority == $i ) selected #end>$i</option>
+		    #end
+	    </select>
+    </td>
+    
+    #** 
+	<td style="border-bottom:1px dotted #000">
+	
+		<select class="texts" style="width:150px" id="academicActivityTypeId_$classroomType.id" name="academicActivityTypeId_$classroomType.id"
+	    onchange="doDivAjaxCall$formname('classroomTypeUpdate','updateAcademicActivityType','classroomTypeId=$classroomType.id')">
+		    <option></option>
+		    #foreach( $a in $academicActivityTypes )
+		    <option value="$a.id" #if ( $classroomType.activityType.id == $a.id ) selected #end>$a.name</option>
+		    #end
+	    </select>
+	
+	</td>
+   **#
+	
+	<td style="border-bottom:1px dotted #000">
+	
+		<select class="texts" style="width:150px" id="learningActivityTypeId_$classroomType.id" name="learningActivityTypeId_$classroomType.id"
+	    onchange="doDivAjaxCall$formname('classroomTypeUpdate','updateLearningActivityType','classroomTypeId=$classroomType.id')">
+		    <option></option>
+		    #foreach( $a in $learningActivityTypes )
+		    <option value="$a.id" #if ( $classroomType.learningActivityType.id == $a.id ) selected #end>$a.name</option>
+		    #end
+	    </select>
+	
+	</td>
+    
+    <td style="border-bottom:1px dotted #000" nowrap align="right">
+    	<input class="linkbutton" type="button" value="x" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall3$formname('classroomTypeList','deleteClassroom','classroomTypeId=$classroomType.id')">
+    </td>
+    </tr>
+    </table>
+	
+    </li>
+	
+	##<div id="rooms_$classroomType.id" style="display:none"></div>
+#end
+</ul>
+<br/>
+<div id="divRemark" style="font-family:Verdana, sans-serif;font-weight:bold">
+*Priority:<br/>
+
+This number represent the order of classroom types to be put into timetabling slots. <br/>
+Classroom type with priority number 1 must precede other classroom of priority number 2, 3, 4 and so on.<br/>
+You can put several classrooms with the same priority number so that those classrooms
+are independent of each other.
+
+</div>
+
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('categoryList', { onUpdate:updateSequence});
+function updateSequence() {
+	doDivAjaxCall3$formname('classroomTypeList','updateSequence','')	
+}
+</script>

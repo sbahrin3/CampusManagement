@@ -1,0 +1,9 @@
+
+
+<td>$!r.userId</td>
+<td>$!r.fullName</td>
+<td>$!r.icno</td>
+<td>$!r.status</td>
+
+
+

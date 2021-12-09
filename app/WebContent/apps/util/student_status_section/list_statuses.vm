@@ -1,0 +1,97 @@
+
+<table width="90%">
+<tr><td>
+
+<table width="100%"><tr><td>
+No. Matric: <input name="student_no" value="$!student_no" style="width:150px">
+$button.command("get_student_by_matric").text("Get Student")
+</td></tr></table>
+
+#if ( $student )
+
+<table width="100%">
+<tr><td style="width:150px">Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+</table>
+<br/>
+<table width="100%">
+#if ( $student_status )
+<tr><td>Current Session:</td><td style="font-weight:bold">$student_status.session.name</td></tr>
+<tr><td>Current Period:</td><td style="font-weight:bold">$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end</td></tr>
+#end
+</table>
+
+<table>
+
+<tr bgcolor="lightgrey">
+<td style="font-weight:bold;height:20px;width:10px">&nbsp;</td>
+<td style="font-weight:bold;width:150px">Session</td>
+<td style="font-weight:bold;width:250px">Start - End</td>
+<td style="font-weight:bold;width:200px">Period</td>
+<td style="font-weight:bold;width:100px">Status</td>
+<td style="font-weight:bold;width:100px">Section</td>
+</tr>
+
+#set ( $create_button = false )
+#foreach( $session in $sessions )
+
+#set ( $status = ""  )
+
+#if ( $status_map.get("$session.id") )
+
+#set ( $status = $status_map.get("$session.id")  )
+
+#set ( $style = "color:black" )
+#if ( $status.type.defer )
+#set ( $style = "color:red" ) 
+#end
+<tr height="30px">
+<td bgcolor="lightgrey" style="border-bottom:1px solid #BCBCBC">$velocityCount)</td>
+<td style="border-bottom:1px solid #BCBCBC;$style">$session.name</td>
+<td style="border-bottom:1px solid #BCBCBC;$style">$dateFormat.format($session.startDate) - $dateFormat.format($session.endDate)</td>
+<td style="border-bottom:1px solid #BCBCBC;$style">$status.period.name #if ( $status.period.parent ) ($status.period.parent.name) #end</td>
+<td style="border-bottom:1px solid #BCBCBC;$style">#if ( $status.type ) $status.type.name #end</td>
+
+
+##STUDENT DEFAULT SUBJECT'S SECTION
+<td style="border-bottom:1px solid #BCBCBC;$style">
+<select name="section_id_$status.id" onchange="doDivAjaxCall$formname('div_empty','update_section','status_id=$status.id')">
+<option value="">- Select -</option>
+#foreach( $section in $sections )
+<option value="$section.id" #if ( $status.section.id == $section.id ) selected #end>$section.name</option>
+#end
+</select>
+</td>
+
+#else
+
+<tr height="30px">
+
+<td>$velocityCount)</td>
+<td>$session.name</td>
+<td>$dateFormat.format($session.startDate) - $dateFormat.format($session.endDate)</td>
+
+<td>UNDEFINED</td>
+<td colspan="3" align="center">
+</td>
+
+
+#end
+
+
+
+</tr>
+#end
+</table>
+
+
+
+#end
+
+
+
+</td></tr></table>
+<div id="div_empty"></div>
+<input type="hidden" name="student_id" value="$!student.id">

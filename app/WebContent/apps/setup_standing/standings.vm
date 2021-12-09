@@ -1,0 +1,33 @@
+<table class="table">
+<tr style="">
+<td style="width:20px">&nbsp;</td>
+<td style="width:150px;font-weight:bold">Code</td>
+<td style="width:400px;font-weight:bold">Name</td>
+<td style="">&nbsp;</td>
+<td></td>
+</tr>
+</table>
+
+
+#set ( $row = 0 )
+#foreach( $standing in $standings )
+	#set ( $row = $row + 1 )
+	<div id="standing_$row">
+		#parse("apps/setup_standing/standing.vm")
+	</div>
+	<div id="edit_standing_$row"></div>
+#end
+
+<table>
+
+<tr>
+<td style="width:20px"></td>
+<td style="width:150px"></td>
+<td style="width:400px"></td>
+<td style="">
+<button class="btn btn-warning" type="button" onclick="doDivAjaxCall$formname('edit_standing_0','editStanding','row=0')">Add New</button>
+</td>
+<td></td>
+</tr>
+</table>
+<div id="edit_standing_0"></div>

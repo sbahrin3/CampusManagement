@@ -1,0 +1,39 @@
+<style>
+.legend {
+	background-color:#DCDCDC;
+	padding: 0.2em 0.2em;
+	font-family:arial;
+	font-size:10pt;
+	font-weight:bold;
+}
+.title { font-weight:bold;}
+.field { border-top: solid 1px; border-bottom: none; border-left: none; border-right: none;}
+
+#teacherDetail {
+    position:fixed;
+    top: 30%;
+    left: 15%;
+    width:900px;
+    margin-top: -100px;
+    border: 3px solid #848484;
+    padding:3px;
+    background:#fff;
+    display:none;
+}
+
+</style>
+<script>
+function uploadPhoto(teacherId) {	
+	document.${formName}.enctype = "multipart/form-data";
+	document.${formName}.encoding = "multipart/form-data";
+	document.${formName}.target = "upload_photo";
+	document.${formName}.action = "?command=uploadPhoto&teacherId=" + teacherId;
+	document.${formName}.submit();
+}
+function updatePhoto(imgName) {
+	document.getElementById('photoImg').src = "../download?file=" + imgName;
+}
+</script>
+<div id="teacher_main">#parse("$path/list_teachers.vm")</div>
+
+<div id="teacherDetail"></div>

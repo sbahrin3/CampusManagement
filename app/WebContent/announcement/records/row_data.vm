@@ -1,0 +1,9 @@
+
+
+<td>$!r.title</td>
+<td>$!r.message</td>
+<td>$dateFormat.format($r.createDate)</td>
+
+
+
+

@@ -1,0 +1,41 @@
+
+
+<table cellpadding="1" cellspacing="0">
+<tr style="height:30px" bgcolor="#B4B4B4">
+<td style="width:50px;"></td>
+<td style="width:100px;font-weight:bold">Matric No</td>
+<td style="width:350px;font-weight:bold">Name</td>
+<td style="width:100px;font-weight:bold">&nbsp;</td>
+<td style="width:50px;"><input type="checkbox" onclick="checkAll(this, 'studentClassroomIds')"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $studentList )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#F4F4F4" ) #else #set ( $bgcolor = "#fff" ) #end
+<tr bgcolor="$bgcolor">
+<td align="right">$cnt.&nbsp;</td>
+<td>$s.studentStatus.student.matricNo</td>
+<td>$s.studentStatus.student.biodata.name</td>
+<td>&nbsp;</td>
+<td>
+<input type="checkbox" name="studentClassroomIds" value="$s.id">
+</td>
+</tr>
+#end
+<tr>
+<td colspan="7" align="right">
+
+<fieldset><legend class="legend">Remove from Classroom</legend>
+
+Remove from Classroom:
+<input type="button" value="Remove Student" onclick="doDivAjaxCall$formname('listStudentsInClassrooms','removeStudents','studentClassroomId=$classroomSection.id')">
+
+</fieldset>
+
+
+
+</td>
+</tr>
+</table>
+
+

@@ -1,0 +1,21 @@
+<table width="900px">
+<tr><td>
+
+<table width="100%">
+<tr><td align="right">
+<a href="javascript:void()" onclick="if ($('div_status').style.display == 'block' ) $('div_status').style.display='none'; else $('div_status').style.display='block';">X</a>
+</td></tr>
+</table>
+
+<div id="report_status">
+#parse("mohe_report/report_status.vm")
+</div>
+
+
+
+
+
+
+
+</td></tr>
+</table>

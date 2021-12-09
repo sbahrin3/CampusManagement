@@ -1,0 +1,39 @@
+<style>
+.bClose {cursor:pointer;font-family:helvetica;font-weight:bold;position:absolute;right:15px;text-decoration:none;top:10px;}
+</style>
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr class="gradient" height="25px">
+<td>
+&raquo;$!user_role
+&raquo;<a href="../x/educate.lms2.LMSLauncher" style="text-decoration:none">Logout</a>
+</td>
+<td align="right">
+<a id="about_me" href="javascript:void()"  style="color:#6666FF;text-decoration:none">About</a>&nbsp;
+<a onclick="$j.jGrowl('Powered by LeBAH Framework, 2011');" href="javascript:void(0);" style="color:#6666FF;text-decoration:none">&copy;Lebah Framework</a>
+</td>
+</tr>
+</table>
+
+
+<div id="div_about_me" style="background: url(../img/lms/bg.png) no-repeat; display:none;height:252px;padding:15px;width:454px;">
+<p style="text-align:right"><a class="bClose">X</a></p>
+<p style="font-family:helvetica;font-weight:bold;font-size:18pt;text-align:center">
+eduCATE~Learn 4.0
+</p>
+<p style="font-family:helvetica;font-weight:bold;font-size:14pt;text-align:center">
+Online Learning Collaboration Tools
+</p>
+<p><br><br><br></p>
+<p style="font-family:helvetica;font-weight:bold;font-size:12pt;text-align:center">
+Powered by: LeBAH FRAMEWORK 2011
+</p>
+</div>
+
+<script>
+$j(document).ready(function(){
+   $j("#about_me").bind('click', function(){
+      $j("#div_about_me").bPopup({fadeSpeed:1, followSpeed:1, opacity:0.8, modalClose:false});
+      return false
+   });
+});
+</script>

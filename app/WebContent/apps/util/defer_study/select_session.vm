@@ -1,0 +1,19 @@
+<table width="500" align="center">
+#foreach( $path in $paths)
+#if ( $path.sessions.size() > 0 )
+<tr><td colspan="2" style="font-weight:bold">$path.sessionPath.name</td></tr>
+
+
+#foreach( $session in $path.sessions )
+<tr>
+<td>&nbsp;&nbsp;&nbsp;</td>
+<td>$session.code $session.name</td>
+<td>
+[$href.command("list_defer_studies").param("session_id=$session.id").text("Defer Studies")]
+[$href.command("list_study_withdrawals").param("session_id=$session.id").text("Study Withdrawals")]
+</td>
+#end
+
+#end
+#end
+</table>

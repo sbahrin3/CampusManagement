@@ -1,0 +1,40 @@
+<div style="font-family:Verdana;font-size:11pt;font-weight:bold">
+$position.name
+</div>
+<table>
+<tr>
+<td colspan="4" align="right">
+<input type="button" style="height:30px;" value="PDF" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.studentaffair.module.VotingResultPDFModule?positionId=$!position.id';">
+</td>
+</tr>
+<tr style="height:0px">
+<td style="width:40px;font-weight:bold"></td>
+<td style="width:500px;font-weight:bold"></td>
+<td></td>
+<td style="width:50px;font-weight:bold"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $c in $candidates )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td style="border-bottom:1px solid #BEC1C3">$cnt.</td>
+<td style="border-bottom:1px solid #BEC1C3">
+$c.student.biodata.name<br/>
+$c.student.matricNo<br/>
+$c.student.program.name<br/>
+</td>
+<td>
+#if($c.student.photoFileName != "")
+<img src="$appUrl/download?file=$!c.student.photoFileName">
+#else
+<img src="$appUrl/img/nophoto.gif" border="0">
+#end
+</td>
+<td style="font-size:24pt;font-weight:bold" align="center">
+
+$resultMap.get("$c.id")
+
+</td>
+</tr>
+#end
+</table>

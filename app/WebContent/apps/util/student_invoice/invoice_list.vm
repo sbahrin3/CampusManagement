@@ -1,0 +1,40 @@
+<table width="100%"><tr><td>
+##<fieldset>
+
+<table width="100%">
+<tr height="30px">
+<td class="gradient" style="font-weight:bold">List of Invoices by Semester</td>
+</tr>
+</table>
+
+#foreach ( $i in $invoice_items )
+<div name="div_invoice_$i.studentStatus.id" id="div_invoice_$i.studentStatus.id">
+#parse("apps/util/student_invoice/invoice_list_item.vm")
+</div>
+#end
+
+#if ( $extra_invoices.size() > 0 )
+<div name="div_invoice_x" id="div_invoice_x">
+#parse("apps/util/student_invoice/xtra_invoice_list_item.vm")
+</div>
+#end
+
+##</fieldset>
+</td></tr>
+
+<tr><td>
+<div name="div_invoice_detail" id="div_invoice_detail" style="visibility:hidden">
+</div>
+
+</td></tr>
+
+<tr><td>
+<br><br>
+
+
+</td></tr>
+
+</table>
+
+<br><br>
+

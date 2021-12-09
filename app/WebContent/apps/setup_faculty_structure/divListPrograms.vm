@@ -1,0 +1,36 @@
+<table class="table table-striped">
+<tr style="">
+<td style="width:100px;font-weight:bold">Code</td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">Transcript Display Name</td>
+<td style="width:150px;font-weight:bold">Level</td>
+<td style="width:100px;font-weight:bold">Period</td>
+<td style="width:100px;font-weight:bold">Path</td>
+##<td style="width:100px;font-weight:bold">Free Session?</td>
+<td style=""></td>
+</tr>
+#foreach( $program in $programs )
+
+<tr style="">
+<td >
+
+$!program.code
+
+<span id="messageProgram_$program.id"></span>
+<div class="shadow" id="editProgram_$program.id" style="display:none;background:#fff;position:absolute;border:1px dotted #000;padding:5px"></div>
+
+
+</td>
+<td >$!program.name</td>
+<td >$!program.displayName</td>
+<td >$!program.programLevelType.toUpperCase()</td>
+<td >$!program.periodScheme.code</td>
+<td >$!program.level.name</td>
+##<td >#if ( $program.isNoneSessionType ) Yes #else No #end</td>
+<td  style="" align="">
+<button type="button" class="btn btn-warning btn-sm" onclick="doDivAjaxCall$formname('editProgram_$program.id','editProgram','programId=$program.id&courseId=$course.id')">Edit</button>
+<button type="button" class="btn btn-danger btn-sm" onclick="$('messageProgram_$program.id').innerHTML='<b>Deleting Program... Please Wait..</b>';doDivAjaxCall3$formname('divListPrograms','deleteProgram','programId=$program.id&courseId=$course.id')">X</button></td>
+</tr>
+
+#end
+</table>

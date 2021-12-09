@@ -1,0 +1,13 @@
+<table width="100%">
+<tr>
+<td style="width:100px">Code: </td><td><input name="facility_code" style="width:300px" value="$facility.code"></td>
+</tr>
+<tr>
+<td style="width:100px">Name: </td><td><input name="facility_name" style="width:300px" value="$facility.name"></td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<input type="button" value="Update" onclick="doDivAjaxCall$formname('facility_data', 'update_facility', 'facility_id=$facility.id')">
+</td>
+</tr>
+</table>

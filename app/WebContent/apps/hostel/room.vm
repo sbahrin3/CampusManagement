@@ -1,0 +1,3 @@
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('room_info_${room.id}', 'room_info', 'room_id=$room.id')">
+$room.code $room.name
+</a>

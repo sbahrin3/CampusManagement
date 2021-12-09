@@ -1,0 +1,16 @@
+<table align="right">
+	<tr>
+		<td>Program:</td>
+		<td style="width:600px">
+			<select class="texts" id="programId" name="programId" onchange="doDivAjaxCall$formname('ps_codes','list_codes','type=ps_codes')">
+				<option value=""></option>
+				#foreach ( $p in $programs )
+					<option value="$p.id">$p.code $p.name</option>
+				#end
+			</select>
+		</td>
+	</tr>
+</table>
+<br/>
+<br/>
+<div id="ps_codes"></div>

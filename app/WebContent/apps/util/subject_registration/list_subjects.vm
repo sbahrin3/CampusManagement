@@ -1,0 +1,33 @@
+
+
+#if ( $student )
+
+#if ( $error_message )
+	<div style="font-weight:bold;background:#F7F6C8;color:#F20202;padding:10px">Warning: $error_message</div>
+#end
+
+ <div style="padding:20px">
+	#parse("apps/util/student_info/student_info.vm")
+ </div>
+
+<div id="div_list_subjects" name="div_list_subjects" style="padding-left:10px;padding-right:10px">
+	#parse( "apps/util/subject_registration/div_list_subjects.vm" )
+</div>
+
+
+
+
+#else
+
+
+<table width="100%">
+<tr><td align="center" style="font-weight:bold">
+
+
+
+</td></tr></table>
+
+#end
+
+
+

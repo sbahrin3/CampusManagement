@@ -1,0 +1,31 @@
+
+
+#if ( $message )
+
+<tr><td align="center" valign="top">
+<div id="div_alert_$slot.id" name="div_alert_$slot.id">
+<fieldset style="background-color:#FFFFAA;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="100%"><tr><td align="center">
+$subject.code ($section.code)<br>
+$room.code
+<hr/>
+#if ( $students_conflict )
+<a href="javascript:void()" onclick="$('div_conflicts').style.top=cursorY;$('div_conflicts').style.visibility='visible';doDivAjaxCall$formname('div_conflicts2','list_conflict_teachers','slot_id=$slot.id&subject_id=$subject.id&section_id=$section.id&room_id=$room.id')">
+There are 
+<a href="javascript:void()" onclick="$('div_conflicts').style.top=cursorY;$('div_conflicts').style.visibility='visible';doDivAjaxCall$formname('div_conflicts2','list_conflict_students','slot_id=$slot.id&subject_id=$subject.id&section_id=$section.id&room_id=$room.id')">
+$number_conflict_students conflict students</a> in this Slot.
+#else
+$!message
+#end
+</td></tr>
+<br><br>
+
+[<a href="javascript:void()" onclick="$('div_alert_$slot.id').style.visibility='hidden'"><b>Close</b></a>]
+</td></tr></table>
+</fieldset>
+</div>
+</td></tr>
+#end
+
+
+

@@ -1,0 +1,14 @@
+<table width="100%" align="center">
+<tr><td align="right">
+		<input name="matric_no">
+		<input type="button" value="Get Student" onclick="doDivAjaxCall$formname('student_info', 'student_info', '')">
+		<a href="#" onclick="popwin_$formName();doDivAjaxCall$formName('win$formName','list_students','')">Search...</a>
+</td></tr>
+<tr><td>
+<div id="student_info" name="student_info"></div>
+</td></tr>
+<tr><td>
+
+
+
+</td></tr></table>

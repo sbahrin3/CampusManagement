@@ -1,0 +1,7 @@
+<table width="80%" cellpadding="1" cellspacing="2">
+<tr><td  style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+
+<tr><td >Owner Id</td><td>:</td><td><input class="texts" type="text" name="findOwnerId"></td></tr>
+<tr><td >Owner Name</td><td>:</td><td><input class="texts" type="text" name="findOwnerName"></td></tr>
+<tr><td >Plate No</td><td>:</td><td><input class="texts" type="text" name="findPlateNo"></td></tr>
+</table>

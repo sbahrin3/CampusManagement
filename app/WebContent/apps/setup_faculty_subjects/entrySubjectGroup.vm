@@ -1,0 +1,27 @@
+<fieldset><legend class="legend">Add New Program Group</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr><td>Code</td><td>:</td><td><input class="texts" name="subjectGroupCode"></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" name="subjectGroupName"></td></tr>
+<tr><td>Create Avg. Grade?</td><td>:</td><td>
+<select class="textr" name="createAverage">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+</td></tr>
+
+<tr><td>Grade Scheme</td><td>:</td><td>
+<select class="texts" name="markingGrade">
+<option value=""></option>
+#foreach( $m in $markingGrades )
+<option value="$m.id">$m.name</option>
+#end
+</select>
+</td></tr>
+
+</table>
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Add Subject Group" onclick="$('messageSubjectGroup').innerHTML='<b>Adding Program Group... Please Wait..</b>';doDivAjaxCall3$formname('divListSubjectGroups','addSubjectGroup','');$('entrySubjectGroup').style.visibility='hidden';">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('entrySubjectGroup').style.visibility='hidden';">
+</td></tr></table>
+</fieldset>

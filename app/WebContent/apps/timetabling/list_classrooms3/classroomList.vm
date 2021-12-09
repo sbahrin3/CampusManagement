@@ -1,0 +1,91 @@
+<script>
+$('selectSession').style.display='none';
+$('findGroup').style.display='none';
+</script>
+
+
+#parse("apps/timetabling/time.vm")
+#parse("apps/useLocal.vm")
+
+
+<script>
+$('calendars').style.display='none';
+</script>
+
+
+#set ( $pdfName = "Timetable_$!{semesterName}_" )
+	
+	
+#set ( $groupIds = "" )
+#set ( $teacherId = "" )
+#set ( $subjectId = "" )
+#set ( $programId = "" )
+#set ( $roomId = "" )
+
+#if ( $filterBy == "all" )
+
+
+#elseif ( $filterBy == "teacher" )
+	#set ( $teacherId = $teacher.id )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Teacher : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$teacher.name ($!teacher.id)
+	</span>
+	#set ( $pdfName = $pdfName + "_" + $teacher.id )
+#elseif ( $filterBy == "group" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Group(s) : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	#foreach( $group in $groups )
+		$group.code,
+		#set ( $groupIds = $groupIds + "&amp;groupIds=$group.id" )
+	#end
+	</span>
+	#set ( $pdfName = $pdfName + "_multipleGroups" )
+#elseif ( $filterBy == "program" )
+	#set ( $programId = $program.id )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Program : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$program.code - $program.name
+	</span>
+	#set ( $pdfName = $pdfName + "_" + $program.code )
+#elseif ( $filterBy == "room" )
+	#set ( $roomId = $room.id )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Room : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$!room.name -
+	$!room.floor.name - $!room.floor.block.name -
+	$!room.floor.block.building.name - $!room.floor.block.building.campus.name
+	</span>
+	#set ( $pdfName = $pdfName + "_" + $room.id)
+
+#elseif ( $filterBy == "subject" )
+	#set ( $subjectId = $subject.id )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Subject : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$subject.code - $subject.name
+	</span>
+	#set ( $pdfName = $pdfName + "_" + $subject.code )
+#end
+
+#if ( $department )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Faculty : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$department.id - $department.name
+	</span>
+#end
+
+<button type="button" class="btn btn-default btn-sm" onclick="document.location='$pre/servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.timetabling.module.ClassroomTimetablePDFModule?campusId=$!campus.id&amp;deliveryPeriodId=$!deliveryPeriod.id&amp;departmentId=$!department.id&amp;sessionId=$!session.id&amp;week=$!week&amp;teacherId=$!teacherId&amp;roomId=$!roomId&amp;programId=$!programId&amp;subjectId=$!{subjectId}${groupIds}&amp;filterBy=$!filterBy&pdfName=$pdfName';">
+	Download PDF
+</button>
+<button type="button" class="btn btn-default btn-sm" onclick="$('selectSession').style.display='block';">
+	Select Other
+</button>
+
+<input type="hidden" name="reportUrl" value="v/educate.timetabling.module.ClassroomTimetablePDFModule?campusId=$!campus.id&amp;deliveryPeriodId=$!deliveryPeriod.id&amp;departmentId=$!department.id&amp;sessionId=$!session.id&amp;week=$!week&amp;teacherId=$!teacherId&amp;roomId=$!roomId&amp;programId=$!programId&amp;subjectId=$!{subjectId}${groupIds}">
+
+<div id="div_timetable" style="padding:2px">
+#parse("apps/timetabling/list_classrooms3/classroomTimetable.vm")
+</div>
+
+
+<div id="divAttendance" class="shadow"></div>

@@ -1,0 +1,76 @@
+
+
+<table style="background:#fff;width:700px;border:1px solid #000" align="center">
+	<tr><td style="height:30px;background:#0886D7;font-weight:bold;color:#FFFFFF">$partQuestion.refNo</td></tr>
+	
+	<tr><td style="padding:10px">
+			$!partQuestion.question.questionText 
+	</td></tr>
+	
+    #if ( $partQuestion.question.questionText2 != "" )
+		<tr><td style="padding:10px">
+    	$util.putLineBreak($partQuestion.question.questionText2)
+		</td></tr>
+    #end
+   
+	
+	<tr><td style="padding:10px">
+    #set ( $choiceCount = 0 ) 
+    #if ( $partQuestion.question.type == "likert" )
+    	#set ( $likert = $partQuestion.question.likert )
+        	<table>
+        	<tr><td style="width:10px"><input type="radio" name="likert" value="1" #if ( $answerLog.likertValue == 1 ) checked #end></td><td>$likert.label1</td></tr>
+        	<tr><td><input type="radio" name="likert_$partQuestion.id" value="2" #if ( $answerLog.likertValue == 2 ) checked #end></td><td>$likert.label2</td></tr>
+        	<tr><td><input type="radio" name="likert_$partQuestion.id" value="3" #if ( $answerLog.likertValue == 3 ) checked #end></td><td>$likert.label3</td></tr>
+        	<tr><td><input type="radio" name="likert_$partQuestion.id" value="4" #if ( $answerLog.likertValue == 4 ) checked #end></td><td>$likert.label4</td></tr>
+        	<tr><td><input type="radio" name="likert_$partQuestion.id" value="5" #if ( $answerLog.likertValue == 5 ) checked #end></td><td>$likert.label5</td></tr>
+        	</table>
+    #elseif ( $partQuestion.question.type == "single" )
+        	<table>
+        	#if ( $partQuestion.question.choice1 != "" ) <tr><td style="width:10px"><input type="radio" name="single_choice_$partQuestion.id" value="1"  #if ( $answerLog.singleChoice == 1 ) checked #end></td><td>$partQuestion.question.choice1</td></tr> #end
+        	#if ( $partQuestion.question.choice2 != "" ) <tr><td style="width:10px"><input type="radio" name="single_choice_$partQuestion.id" value="2"  #if ( $answerLog.singleChoice == 2 ) checked #end></td><td>$partQuestion.question.choice2</td></tr> #end
+        	#if ( $partQuestion.question.choice3 != "" ) <tr><td style="width:10px"><input type="radio" name="single_choice_$partQuestion.id" value="3"  #if ( $answerLog.singleChoice == 3 ) checked #end></td><td>$partQuestion.question.choice3</td></tr> #end
+        	#if ( $partQuestion.question.choice4 != "" ) <tr><td style="width:10px"><input type="radio" name="single_choice_$partQuestion.id" value="4"  #if ( $answerLog.singleChoice == 4 ) checked #end></td><td>$partQuestion.question.choice4</td></tr> #end
+        	#if ( $partQuestion.question.choice5 != "" ) <tr><td style="width:10px"><input type="radio" name="single_choice_$partQuestion.id" value="5"  #if ( $answerLog.singleChoice == 5 ) checked #end></td><td>$partQuestion.question.choice5</td></tr> #end
+        	</table>
+    #elseif ( $partQuestion.question.type == "multiple" )
+        	<table>
+        	#if ( $partQuestion.question.choice1 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr><td style="width:10px"><input type="checkbox" name="choice1_$partQuestion.id" value="1" #if ( $answerLog.choice1 == 1 ) checked #end></td><td>$partQuestion.question.choice1</td></tr> #end
+        	#if ( $partQuestion.question.choice2 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr><td style="width:10px"><input type="checkbox" name="choice2_$partQuestion.id" value="1" #if ( $answerLog.choice2 == 1 ) checked #end></td><td>$partQuestion.question.choice2</td></tr> #end
+        	#if ( $partQuestion.question.choice3 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr><td style="width:10px"><input type="checkbox" name="choice3_$partQuestion.id" value="1" #if ( $answerLog.choice3 == 1 ) checked #end></td><td>$partQuestion.question.choice3</td></tr> #end
+        	#if ( $partQuestion.question.choice4 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr><td style="width:10px"><input type="checkbox" name="choice4_$partQuestion.id" value="1" #if ( $answerLog.choice4 == 1 ) checked #end></td><td>$partQuestion.question.choice4</td></tr> #end
+        	#if ( $partQuestion.question.choice5 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr><td style="width:10px"><input type="checkbox" name="choice5_$partQuestion.id" value="1" #if ( $answerLog.choice5 == 1 ) checked #end></td><td>$partQuestion.question.choice5</td></tr> #end
+        	</table>
+    #elseif ( $partQuestion.question.type == "text" )
+    	<table style="width:100%"><tr><td>
+    	<textarea class="text" name="textAnswer_$partQuestion.id" style="height:100px"
+    		onKeyDown="limitText(event, this.form.textAnswer,this.form.charsCount_$partQuestion.id,255);" 
+    		onKeyUp="limitText(event, this.form.textAnswer,this.form.charsCount_$partQuestion.id,255);">$!answerLog.textAnswer</textarea>
+    <br/>
+    <input style="border: none; width:25px; text-align:right;" name="charsCount_$partQuestion.id" value="255" readonly> characters left.
+    	</td></tr></table>
+    #elseif ( $partQuestion.question.type == "essay" )
+    	<table style="width:100%"><tr><td>
+    	<textarea class="text" name="essayAnswer_$partQuestion.id" style="height:100px">$!answerLog.essayAnswer</textarea>
+    	</td></tr></table>
+    #elseif ( $partQuestion.question.type == "upload" )
+    	<table style="width:100%"><tr><td>
+    	
+    	</td></tr></table>
+    #elseif ( $partQuestion.question.type == "date" )
+    	
+    	<table style="width:100%"><tr><td style="width:100px">Select A Date</td><td style="width:10px">:</td><td>
+    	<input class="text" style="width:100px" id="dateInput_$partQuestion.id" name="dateInput_$partQuestion.id" #if ( $answerLog.dateInput ) value="$dateFormat.format($answerLog.dateInput)" #end readonly>
+    	<script> new JsDatePick({ useMode:2, target:"dateInput", dateFormat:"%d-%m-%Y" }); </script>
+    	</td></tr></table>
+    
+    #elseif ( $partQuestion.question.type == "none" )
+    	<table><tr><td>
+    	Click Next to continue.
+    	</td></tr></table>			
+    #end
+</td></tr>
+</table>
+
+
+

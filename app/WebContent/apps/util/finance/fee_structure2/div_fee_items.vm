@@ -1,0 +1,95 @@
+ 
+
+<input type="hidden" name="fee_structure_id" value="$!fee_structure.id">
+<script>
+#if ( $fee_structure.sessionDate )
+#set ( $session_date = $dateFormat.format($fee_structure.sessionDate) )
+#end
+$('div_session_date').innerHTML = "$session_date";
+</script>
+
+
+<table>
+<tr><td>
+Beginning from date:
+#if ( $fee_structure.sessionDate )
+#set ( $session_date = $dateFormat.format($fee_structure.sessionDate) )
+#end
+<span style="font-size:11pt;font-weight:bold">$session_date</span>
+<input class="linkbutton" type="button" value="X" 
+onclick="if ( !confirm('Are you sure?') ) return; doAjaxCall$formname('delete_fee_structure','fee_structure_id=$fee_structure.id&fee_session_date=$session_date')">
+</td>
+<td>
+	<input class="linkbutton" type="button" value="Add New Fee Item..." onclick="$('feeEntry').style.display='block';">
+</td>
+</tr>
+</table>
+<br/><br/>
+
+<table cellspacing="0">
+<tr bgcolor="#F4EFEF" height="30px">
+<td style="font-weight:bold; width:10px"></td>
+<td style="font-weight:bold; width:415px;border-right:1px solid #ccc;" align="center">Fee Items</td>
+<td style="font-weight:bold; width:10px"></td>
+<td style="font-weight:bold; width:80px;border-right:1px solid #ccc;" align="right">Full Time<br/>Local<br/>(RM)</td>
+<td style="font-weight:bold; width:80px;border-right:1px solid #ccc;" align="right">Full Time<br/>Int.<br/>(USD)</td>
+<td style="font-weight:bold; width:80px;border-right:1px solid #ccc;" align="right">Part Time<br/>Local<br/>(RM)</td>
+<td style="font-weight:bold; width:80px;border-right:1px solid #ccc;" align="right">Part Time<br/>Int.<br/>(USD)</td>
+<td align="center"></td>
+</tr>
+</table>
+
+
+<table>
+#foreach( $p in $periods )
+
+#if ( $p.parent )
+    <tr><td colspan="8">
+    $p.parent.name, $p.name
+    </td></tr>
+    #else
+    <tr style="height:30px;">
+		<td colspan="8" style="font-weight:bold;border-bottom:1px solid #000">
+			$p.name
+		</td>
+	</tr>
+#end
+
+#if ( $items_byPeriod.get("$p.id") )
+#set ( $items = $items_byPeriod.get("$p.id") )
+
+#foreach ( $i in $items )
+
+<tr>
+<td style="width:20px"></td>
+<td style="width:50px;border-bottom:1px solid #ccc">$i.feeItem.code</td>
+<td style="width:250px;border-bottom:1px solid #ccc">$i.feeItem.description</td>
+<td style="width:100px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;">
+	#if ( $i.feeItem.payingMode == 0 )
+	#elseif ( $i.feeItem.payingMode == 1 )
+	#elseif ( $i.feeItem.payingMode == 2 ) Flexi
+	#elseif ( $i.feeItem.payingMode == 3 ) Monthly
+	#end
+</td>
+<td style="width:80px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;" align="right">#if ( $i.amount != 0 ) $numFormat.format($i.amount) #end</td>
+<td style="width:80px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;" align="right">#if ( $i.amountInternational != 0 ) $numFormat.format($i.amountInternational) #end</td>
+<td style="width:80px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;" align="right">#if ( $i.amount2 != 0 ) $numFormat.format($i.amount2) #end</td>
+<td style="width:80px;border-bottom:1px solid #ccc;border-right:1px solid #ccc;" align="right">#if ( $i.amountInternational2 != 0 ) $numFormat.format($i.amountInternational2) #end</td>
+<td align="right" style="border-bottom:1px solid #ccc;border-right:1px solid #ccc;">
+<input class="linkbutton" type="button" value="X" onclick="if ( !window.confirm('Delete this fee item?') ) return; doDivAjaxCall$formname('div_fee_items','remove_fee','item_id=$i.id')"
+</td>
+</tr>
+
+#end
+
+
+#else
+<tr>
+<td colspan="4">&nbsp;</td>
+</tr>
+#end
+
+#end
+
+
+</table>

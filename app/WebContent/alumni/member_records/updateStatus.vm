@@ -1,0 +1,5 @@
+<table>
+<tr><td style="font-weight:bold">
+Membership status is <em>$!member.status</em>
+</td></tr>
+</table>

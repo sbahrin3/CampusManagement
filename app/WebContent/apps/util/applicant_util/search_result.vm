@@ -1,0 +1,13 @@
+Search Result...
+<table width="90%" align="center">
+#foreach( $student in $students )
+<tr>
+<td align="right">$velocityCount)</td>
+<td>
+$href.command("get_student").param("student_id=$student.id").text("$student.biodata.name")</td>
+<td>#if ($student.program) $student.program.code #else -ND- #end</td>
+<td>$student.intake.name ($student.intake.code) [$student.intake.pathNo]</td>
+<td></td>
+</tr>
+#end
+</table>

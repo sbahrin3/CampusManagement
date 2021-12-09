@@ -1,0 +1,95 @@
+
+
+<table width="100%">
+<tr><td style="font-weight:bold;font-size:10pt">$subject.code - $subject.name</td></tr>
+<tr>
+<td>
+<span>
+Classroom events for one week schedule.
+</span>
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="Create Classroom" onclick="$('addClassroom').style.display='block';">
+</td></tr>
+</table>
+
+
+<table width="100%" style="background:#B4B7BA">
+<tr class="tableTitle" height="30px">
+<td style="width:40px;"></td>
+<td style="width:200px;font-weight:bold">Classroom Name</td>
+<td style="width:50px;font-weight:bold" align="center">Slots</td>
+<td style="width:50px;font-weight:bold" align="center">Total</td>
+<td style="width:250px;font-weight:bold">Teacher(s)</td>
+<td style="width:250px;">
+<span style="font-weight:bold">Slot Constraint</span><br/>
+<span>(*for auto-timetabling generation)</span>
+</td>
+<td></td>
+</tr>
+
+#set ( $name = "" )
+#set ( $cnt = 0 )
+#foreach( $c in $classrooms )
+	#if ( $c.section.name != $name )
+		#set ( $start = "yes" )
+		#set ( $name = $c.section.name )
+		#set ( $cnt = $cnt + 1 )
+	#end
+	
+	#if ( $start == "yes" )
+		#if ( $cnt > 1 ) <tr><td colspan="5" style="height:1px;border-bottom:1px solid #BDC0C1"></td></tr> #end
+		<tr style="background:#DCEEF4">
+		<td valign="top" rowspan="$c.frequency">$cnt.</td>
+	#else
+		<tr style="background:#DCEEF4">
+	#end
+	<td valign="top">
+	$c.section.name<br/>
+	$!c.tagName
+	</td>
+	<td  valign="top" align="center">$c.section.classroomType.slotCount</td>
+	#if ( $start == "yes" )
+		#set ( $totalSlot = $c.frequency * $c.section.classroomType.slotCount )
+		<td align="center" rowspan="$c.frequency">$totalSlot</td>
+	#end
+	<td valign="top">
+	<div id="co_teachers_$c.id">
+	<table style="width:100%">
+	#foreach( $t in $subjectTeachers.get("$c.subject.id") )
+		#set ( $checked = "" )
+		#foreach( $t2 in $c.coTeachers )
+			#if ( $t.id == $t2.id ) #set ( $checked = "checked" ) #end
+		#end
+		<tr><td style="width:5px"><input type="checkbox" $checked name="teacherIds_$c.id" value="$t.id" onclick="doDivAjaxCall3$formname('divEmpty','updateTeachers','classroomTemplateId=$c.id')"></td>
+		<td>$util.capitalized($t.name)</td></tr>
+	#end
+	</table>
+	</div>
+	</td>
+	<td>
+	<select class="texts" style="width:100px" name="firstSlot_$c.id" onchange="doDivAjaxCall3$formname('divEmpty','setFirstSlot','classroomTemplateId=$c.id')">
+	<option value="0"></option>
+	#foreach($slot in $slots)
+	<option value="$slot.posX" #if ( $c.firstPosX == $slot.posX ) selected #end>$timeFormat.format($slot.startTime)</option>
+	#end
+	</select>
+	&nbsp;-&nbsp;
+	<select class="texts" style="width:100px" name="lastSlot_$c.id" onchange="doDivAjaxCall3$formname('divEmpty','setLastSlot','classroomTemplateId=$c.id')">
+	<option value="0"></option>
+	#foreach($slot in $slots)
+	<option value="$slot.posX" #if ( $c.lastPosX == $slot.posX ) selected #end>$timeFormat.format($slot.startTime)</option>
+	#end
+	</select>
+	
+	</td>
+	<td align="center" style="width:50px"><input class="linkbutton" type="button" style="padding:1px" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('divClassrooms','deleteClassroom','classroomTemplateId=$c.id')"></td>
+	
+	#if ( $start == "yes" )
+		#set ( $start = "" )
+	#end
+	</tr>
+#end
+</table>
+
+

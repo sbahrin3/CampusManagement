@@ -1,0 +1,29 @@
+
+<br/><br/>
+<span style="font-weight:bold;">STUDENTS NOT IN GROUP</span>
+<table cellpadding="1" cellspacing="0">
+<tr style="height:0px" bgcolor="#B4B4B4">
+<td style="width:50px;"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:350px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:50px;"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $studentList )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#F4F4F4" ) #else #set ( $bgcolor = "#fff" ) #end
+<tr bgcolor="$bgcolor">
+<td align="right">$cnt.&nbsp;</td>
+<td>$s.matricNo</td>
+<td>$s.biodata.name</td>
+<td>&nbsp;</td>
+<td>
+<input type="checkbox" name="allStudentIds" value="$s.id">
+</td>
+</tr>
+#end
+</table>
+
+
+

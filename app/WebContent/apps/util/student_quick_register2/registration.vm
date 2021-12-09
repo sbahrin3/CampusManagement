@@ -1,0 +1,92 @@
+#if ( $fee_structure_error )
+<table width="100%">
+<tr><td style="color:#C12C0A;font-weight:bold;">
+CAN'T CREATE INVOICE, FEE STRUCTURE NOT DEFINED FOR PROGRAM $student.program.code $student.program.name
+</td></tr>
+</table>
+#end
+
+
+<table width="100%">
+<tr height="0px"><td style="width:120px"></td><td style="width:10px"></td><td></td><td style="width:150px"></td></tr>
+
+
+<tr height="30px"><td style="width:120px">Matric No</td><td style="width:10px">:</td><td><input class="text" readonly value="$student.matricNo"></td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Name</td><td style="width:10px">:</td><td><input class="text" readonly value="$student.biodata.name"></td><td style="width:150px"></td></tr>
+<tr height="30px"><td style="width:120px">MyKad</td><td style="width:10px">:</td><td><input class="text" readonly value="$student.biodata.icno"></td><td style="width:150px"></td></tr>
+<tr height="30px"><td style="width:120px">Passport</td><td style="width:10px">:</td><td><input class="text" readonly value="$student.biodata.passport"></td><td style="width:150px"></td></tr>
+
+#if ( $student.biodata.dob )
+$dateFormat.applyPattern("d MMM, yyyy")
+<tr height="30px"><td style="width:120px">Date Of Birth</td><td style="width:10px">:</td><td><input class="text" readonly value="$dateFormat.format($student.biodata.dob)"></td><td style="width:150px"></td></tr>
+#end
+
+#if ( $student.biodata.gender )
+<tr height="30px"><td style="width:120px">Gender</td><td style="width:10px">:</td><td><input class="text" readonly value="$student.biodata.gender.name"></td><td style="width:150px"></td></tr>
+#else
+<tr height="30px"><td style="width:120px">Gender</td><td style="width:10px">:</td><td><input class="text" readonly value="GENDER NOT DEFINED"></td><td style="width:150px"></td></tr>
+#end
+
+<tr height="30px"><td style="width:120px">Program</td><td style="width:10px">:</td><td><input class="text" readonly value="$student.program.code $student.program.name"></td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Intake</td><td style="width:10px">:</td><td><input class="text" readonly value="$student.intake.code $student.intake.name"></td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Learning Centre</td><td style="width:10px">:</td><td><input class="text" readonly value="$student.learningCenter.code $student.learningCenter.name"></td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Register Date</td><td style="width:10px">:</td>
+<td><input class="text" readonly value="#if ($student.registerDate) $dateFormat.format($student.registerDate) #end"></td><td style="width:150px"></td></tr>
+
+
+<tr height="30px"><td style="width:120px">Accomodation</td><td style="width:10px">:</td><td><input id="accomodation_name" class="text" readonly value="$!accomodation.name"></td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px"></td>
+<td style="width:10px"></td>
+<td>
+
+#parse("apps/util/student_quick_register2/accommodation2.vm")
+
+<hr/>
+
+</td>
+
+<td style="width:150px"></td></tr>
+
+
+
+<tr height="30px"><td style="width:120px" valign="top">Documents</td><td style="width:10px" valign="top">:</td>
+<td>
+
+<input type="checkbox" name="submitPhotos" value="1" #if ( $student.applicant.submitPhotos ) checked #end>2 Keping Gambar <br>
+<input type="checkbox" name="submitIC" value="1" #if ( $student.applicant.submitIC ) checked #end>Salinan Kad Pengenalan<br>
+<input type="checkbox" name="submitBirthCert" value="1" #if ( $student.applicant.submitBirthCert ) checked #end>Salinan Sijil Kelahiran<br>
+<input type="checkbox" name="submitSPM" value="1" #if ( $student.applicant.submitSPM ) checked #end>Salinan Sijil SPM<br>
+<input type="checkbox" name="submitSTPM" value="1" #if ( $student.applicant.submitSTPM ) checked #end>Salinan Sijil STPM<br>
+<input type="checkbox" name="submitMUET" value="1" #if ( $student.applicant.submitMUET ) checked #end>Salinan Sijil MUET<br>
+<input type="checkbox" name="submitDiploma" value="1" #if ( $student.applicant.submitDiploma ) checked #end>Salinan Sijil Diploma<br>
+<input type="checkbox" name="submitSijilBerhenti" value="1" #if ( $student.applicant.submitSijilBerhenti ) checked #end>Salinan Sijil Berhenti<br>
+<input type="checkbox" name="submitMoney" value="1" #if ( $student.applicant.submitMoney ) checked #end>RM 10<br>
+
+</td>
+<td style="width:150px"></td></tr>
+
+
+</table>
+
+#**
+<div id="div_accomodation" 
+style="background-color:#fff;visibility:hidden;position:absolute;overflow:auto;overflow-x:hidden;height:400px; width:800px;">
+#parse("apps/util/student_quick_register2/accomodation.vm")
+</div>
+<br><br>
+**#
+
+<table width="100%">
+<tr>
+<td align="center">
+
+<input class="gradient" style="height:40px;font-weight:bold" type="button" value="Print Registration Documents"
+onclick="if ( $('accomodation_name').value == '' ) { alert('Please Select Accomodation first!'); return; } else { doDivAjaxCall$formname('div_empty','save_documents','student_id=$student.id'); location.href='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.print.RegistrationSlipPrint?matric_no=$student.matricNo&pdfName=slip_$student.matricNo'; }">
+
+
+</td></tr></table>

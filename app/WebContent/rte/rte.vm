@@ -1,0 +1,5 @@
+	<script language="JavaScript" type="text/javascript" src="/$appname/rte/html2xhtml.js"></script>
+	<script language="JavaScript" type="text/javascript" src="/$appname/rte/richtext.js"></script>
+<script>
+initRTE("../rte/images/", "", "", true);
+</script>

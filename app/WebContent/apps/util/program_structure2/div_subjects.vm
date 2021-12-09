@@ -1,0 +1,64 @@
+
+<table cellpadding="2" cellspacing="0" border="0">
+#set ( $subject_count = 0 )
+#foreach ( $reg in $programUtil.getSubjectRegsOrderedByCode($programStructure, $period.id))
+
+#if ( $reg.subject )
+#set ( $subject_count = $subject_count + 1 )
+<tr style="height:30px">
+<td class="row" style="width:20px">&nbsp;&nbsp;</td>
+<td class="row" style="width:100px">$reg.subject.code</td>
+<td class="row" style="width:600px">$reg.subject.name</td>
+<td class="row" style="width:80px" align="center">$reg.subject.credithrs</td>
+<td class="row" style="width:200px" align="center">
+
+<select class="text" name="$reg.id" style="width:100px" onchange="doDivAjaxCall3$formname('divEmpty','changeSubjectCategory','subjectRegId=$reg.id')">
+<option value=""> - </option>
+#foreach ( $cat in $categories )
+	#if ( $cat.name != "" )
+	<option value="$cat.id" #if ( $reg.category.id == $cat.id ) selected #end>$cat.name</option>
+	#end
+#end
+</select>
+</td>
+<td class="row" style="width:50px" align="center">
+<input type="checkbox" id="remove_ids" name="remove_ids" value="$reg.id">
+</td>
+</tr>
+#end
+#end
+</table>
+
+<br/>
+#if ( $subject_count > 0 )
+<table align="right" width="400px" cellpadding="2" cellspacing="0" border="0">
+<tr>
+		<td class="shadow" style="height:30px;font-weight:bold;cursor:pointer;border-bottom:1px solid #CCC;background:#CCC" onclick="if ( $('editSubjectsAction').style.display=='none' ) { $('editSubjectsAction').style.display='block'; } else {  $('editSubjectsAction').style.display='none'; }">&nbsp; Semester's Subjects Actions&nbsp;&gt;</td>
+</tr>
+	
+<tr>
+<td>
+<span id="wait_subjects"></span>
+<div id="editSubjectsAction" class="shadow" style="display:none">
+<table style="background:#FFF;border:1px solid #CCC;width:100%">
+<tr><td style="height:25px;font-weight:bold;background:#CCC;cursor:pointer" onmouseover="this.style.backgroundColor='#FFF'" onmouseout="this.style.backgroundColor='#CCC'" onclick="$('wait_subjects').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','remove_subjects','')">REMOVE (FROM STRUCTRE ONLY)</td></tr>
+#if ( $isAdmin )
+<tr><td style="height:25px;font-weight:bold;background:#CCC;cursor:pointer" onmouseover="this.style.backgroundColor='#FFF'" onmouseout="this.style.backgroundColor='#CCC'" onclick="if ( !confirm('Are you sure?' ) ) { return; } else { $('wait_subjects').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','assign_subjects_students',''); }">ADD SUBJECT(S) TO STUDENTS</td></tr>
+#end
+
+##THESE BELOW TWO LINES WAS DISABLED
+#if ( $isAdmin )
+<tr><td style="height:25px;font-weight:bold;background:#CCC;cursor:pointer" onmouseover="this.style.backgroundColor='#FFF'" onmouseout="this.style.backgroundColor='#CCC'" onclick="if ( !confirm('Are you sure?' ) ) { return; } else { $('wait_subjects').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','remove_subjects_students',''); }">REMOVE FROM STRUCTURE & STUDENTS</td></tr>
+<tr><td style="height:25px;font-weight:bold;background:#CCC;cursor:pointer" onmouseover="this.style.backgroundColor='#FFF'" onmouseout="this.style.backgroundColor='#CCC'" onclick="if ( !confirm('Are you sure?' ) ) { return; } else { $('wait_subjects').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','reassign_subjects_students',''); }">RE-ASSIGN SUBJECT(S) TO STUDENTS <span style="color:#F71707">(WARNING!)</span></td></tr>
+#end
+##
+
+</table>
+</div>
+
+</td>
+</tr>
+</table>
+#else
+<table width="100%"><tr><td>Empty</td></tr></table>
+#end

@@ -1,0 +1,15 @@
+
+
+<table class="table table-hover">
+
+#foreach ( $t in $teachers )
+<tr>
+	
+	<td style="cursor:pointer" onclick="$('divMain').style.display='block';$('findTeacher').style.display='none';$('teacherId').value='$t.id';$('teacherName').value='$util.replace($t.name, "'", "\\'")';$('findTeacher').style.display='none';">
+		$t.name
+	</td>
+	
+</tr>
+#end
+
+</table>

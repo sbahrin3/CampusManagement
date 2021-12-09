@@ -1,0 +1,8 @@
+210=Arts
+211=Fine Arts
+212=Music and Performing Arts
+213=Audio-Visual techniques and media production
+214=Design
+215=Craft skills
+220=Humanities
+221=Religion

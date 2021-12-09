@@ -1,0 +1,40 @@
+
+
+<table width="800">
+<tr><td>
+
+<div style="padding:10px">
+#parse("apps/util/student_info/student_info.vm")
+</div>
+
+<div style="padding:10px">
+	
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">List of Payments</legend>
+<table width="100%" cellspacing="0">
+
+<tr height="30px">
+<td style="width:40px;border-bottom:1px solid #ccc">&nbsp;</td>
+<td style="width:200px;font-weight:bold;border-bottom:1px solid #ccc">Receipt No</td>
+<td style="width:200px;font-weight:bold;border-bottom:1px solid #ccc">Date</td>
+<td style="width:100px;font-weight:bold;border-bottom:1px solid #ccc" align="right">Amount&nbsp;&nbsp;&nbsp;</td>
+<td style="border-bottom:1px solid #ccc"></td>
+</tr>
+</table>
+
+<div id="div_payments" name="div_payments">
+#parse("apps/util/finance/payment_adjustment/list_payments2.vm")
+</div>
+
+
+</fieldset>
+
+</div>
+
+<input type="hidden" name="student_id" value="$!student.id">
+
+<br/><br/>
+<div id="div_adjustment" name="div_adjustment" style="padding:10px"></div>
+
+
+</td></tr></table>

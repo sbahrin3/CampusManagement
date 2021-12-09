@@ -1,0 +1,26 @@
+<script>
+$('divGroups').style.display="block";
+$('studentGroupsWait').style.display='none';
+</script>
+
+<table width="100%" style="background:#5234D8"><tr><td style="font-weight:bold;font-size:12pt;color:#fff">
+Class Type: $classroomSection.name
+</td><td style="width:10px" align="right"><input class="linkbutton" style="padding:2px" type="button" value="x" onclick="$('divGroups').style.display='none';"></td></tr></table>
+
+<table>
+<tr><td>
+<div id="allStudents" style="overflow:auto;height:400px">#parse("apps/timetabling/classroomManager/all_students.vm")</div>
+<table width="100%"><tr><td align="center">
+<input type="button" value="Add to group:" onclick="addStudentsToGroup('$classroomSection.id')">
+<select id="groupNumber">
+#foreach( $i in [1..20])
+<option value="$i">$i</option>
+#end
+</select>
+</td></tr></table>
+</td>
+<td>
+<div id="groupStudents" style="overflow:auto;height:400px">#parse("apps/timetabling/classroomManager/all_students_groups.vm")</div>
+
+</td>
+</tr></table>

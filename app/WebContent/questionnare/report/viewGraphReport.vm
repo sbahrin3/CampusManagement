@@ -1,0 +1,32 @@
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Back" onclick="doDivAjaxCall3$formname('div_main','listGroups','')">
+</td></tr></table>
+
+<br/>
+<br/>
+
+<table align="center" cellspacing="0" cellpadding="1">
+#foreach( $refNo in $refNos )
+#set ( $stat = $graphs.get("$refNo") )
+<tr style="height:30px">
+<td>$refNo</td>
+#foreach( $bar in [1..5])
+#if ( $bar <= $stat.mean ) #set ( $bgcolor = "#22A014" ) #else #set ( $bgcolor = "#FFF" ) #end 
+<td bgcolor="$bgcolor" style="width:80px">&nbsp;</td>
+#end
+</tr>
+<tr><td colspan="8"></td></tr>
+#end
+<tr>
+<td></td>
+#foreach( $bar in [1..5])
+<td align="right" style="border-top:1px dotted #000;border-right:1px dotted #000;">&nbsp;</td>
+#end
+</tr>
+<tr>
+<td></td>
+#foreach( $bar in [1..5])
+<td align="right">$bar</td>
+#end
+
+</table>

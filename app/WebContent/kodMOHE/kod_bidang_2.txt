@@ -1,0 +1,4 @@
+201=Sains Tulen
+202=Sains Gunaan
+203=Farmasi
+204=Perubatan

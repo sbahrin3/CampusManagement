@@ -1,0 +1,97 @@
+
+<div id="handleListClassroomTemplates" style="cursor:pointer;background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff">Unslotted Classes</td>
+			<td align="right">
+				
+				##<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('slot_$!selectedSlot.id','addDivider','slot_id=$!selectedSlot.id');">[]</button>
+				<button type="button" class="btn btn-primary" onclick="$('listClassroomTemplates').style.display='none';">x</button>
+				
+			</td>
+		</tr>
+	</table>
+  	
+</div>
+
+<div>
+	
+	<select class="form-control" name="unslottedDepartmentId" onchange="$('listClassroomTemplates').style.zIndex=1000;doDivAjaxCall$formname('listClassroomTemplates','listClassroomTemplates','week_number=$week_number')">
+		<option value="">(not filtered)</option>
+		#foreach( $d in $userDepartments )
+			<option value="$d.id" #if ( $d.id == $unslottedDepartmentId ) selected #end>$d.id - $d.name</option>
+		#end
+	</select>
+
+
+</div>
+
+<div style="height:360px;overflow:auto;overflow-x:hidden;">
+
+	#if ( $classroomTemplates.size() > 0 )
+	<table class="table" style="width:100%">
+	#set ( $cnt = 0 )
+	#foreach ( $ct in $classroomTemplates )
+	#set ( $cnt = $cnt + 1 )
+	#set ( $bgcolor = $ct.bgcolor )
+	<tr style="border:2px solid #fff">
+		<td style="width:10px">
+		$cnt.
+		</td>
+		<td style="width:130px;background:$bgcolor;color:#FFFFFF;text-shadow:#000 1px 1px 1px;">
+			$ct.subject.code<br/>
+			$ct.section.name
+		</td>
+		<td style="background:$bgcolor;color:#FFFFFF;text-shadow:#000 1px 1px 1px;">
+			#if ( $ct.group.classTeachers )
+				#if ( $ct.group.classTeachers.size() > 0 )
+					#foreach( $t in $ct.group.classTeachers )
+						$util.subString($t.teacher.name, 20)
+						#if ( $i < $ct.group.classTeachers.size() ) </br> #end
+					#end
+				#end
+			#end
+		
+		</td>
+		<td style="background:$bgcolor;color:#FFFFFF;text-shadow:#000 1px 1px 1px;">
+		#if ( $ct.group.studentSubjectGroups.size() > 0 )
+			#if ( $ct.group.studentSubjectGroups.size() == 1 )
+			
+				#foreach ( $g in $ct.group.studentSubjectGroups )
+					$g.code
+				#end
+			
+			#else
+			
+				#set ( $i = 0 )
+				#foreach ( $g in $ct.group.studentSubjectGroups )
+					#set ( $i = $i + 1 )
+					$g.code
+					#if ( $i < $ct.group.studentSubjectGroups.size() )
+						<br/>
+					#end
+				#end
+			
+			#end
+		
+		#end
+		</td>
+		</td><td style="width:50px;background:$bgcolor" align="center">
+			<a class="icon_shadow" href="javascript:void(0)" onclick="$('div_move').style.zIndex=2000;doDivAjaxCall3$formname('div_move','putFailedTemplate','templateId=$ct.id&slotId=$!selectedSlot.id');"><img src="../img/move.png" border="0"></a>
+			<a class="icon_shadow" href="javascript:void(0)" onclick="$('tt_conflictMessage').style.display='block';$('tt_conflictMessage').style.zIndex='9999';doDivAjaxCall$formname('display_failed_logs','listFailedLogs','classroomTemplateId=$!ct.id&subjectId=$ct.subject.id')"">
+				<i class="fa fa-bars" aria-hidden="true"></i>
+			</a>
+		</td>
+	</tr>
+	#end
+	</table>
+	#else
+		No activities for the selected options.
+	#end
+
+</div>
+
+<script>
+new Draggable('listClassroomTemplates', {handle: 'handleListClassroomTemplates'});
+</script>

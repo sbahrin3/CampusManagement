@@ -1,0 +1,13 @@
+#if ( $_month == "01" ) #set ( $month_name = "January") 
+#elseif ( $_month == "02" ) #set ( $month_name = "February") 
+#elseif ( $_month == "03" ) #set ( $month_name = "March") 
+#elseif ( $_month == "04" ) #set ( $month_name = "April") 
+#elseif ( $_month == "05" ) #set ( $month_name = "May") 
+#elseif ( $_month == "06" ) #set ( $month_name = "June") 
+#elseif ( $_month == "07" ) #set ( $month_name = "July") 
+#elseif ( $_month == "08" ) #set ( $month_name = "August") 
+#elseif ( $_month == "09" ) #set ( $month_name = "September") 
+#elseif ( $_month == "10" ) #set ( $month_name = "October") 
+#elseif ( $_month == "11" ) #set ( $month_name = "November") 
+#elseif ( $_month == "12" ) #set ( $month_name = "December") 
+#end

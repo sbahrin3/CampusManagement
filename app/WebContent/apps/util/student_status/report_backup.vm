@@ -1,0 +1,64 @@
+
+<table width="800" align="center">
+<tr><td>
+
+
+<div name="div_students" id="div_students"
+style="visibility:hidden;position:absolute;width:700px;height:300px;border-style:solid;border-color:#B4B4B4;background-color:#FFFFAA">
+
+<table width="100%"><tr height="30px" bgcolor="lightgrey"><td align="right" style="font-weight:bold">
+[<a href="javascript:void()" onclick="$('div_students').style.visibility='hidden';$('div_students2').style.visibility='hidden'">Close</a>]
+</td></tr>
+<tr><td>
+<div name="div_students2" id="div_students2" style="overflow:auto;height:260px;width:100%"></div>
+</td></tr></table>
+
+</div>
+
+
+</td></tr>
+
+
+
+#set ( $i = $types_length + 2 )
+
+#foreach( $course in $courses)
+<tr><td bgcolor="lightgrey" colspan="$i" style="height:40px;font-weight:bold;font-family:arial;font-size:10pt">SCHOOL OF $course.name</td></tr>
+
+##<tr><td colspan="$i" ><hr/></td></tr>
+
+#foreach($program in $programTable.get("$course.id"))
+<tr><td colspan="$i" style="font-weight:bold">$program.name</td></tr>
+<tr>
+<td></td>
+
+
+#foreach( $status in $status_types)
+<td bgcolor="lightgrey" align="center" style="width:80px">$statusNameTable.get("$status")</td>
+#end
+</tr>
+#foreach($intake in $intakeTable.get("$program.id"))
+<tr>
+<td>Intake: $intake.name</td>
+
+
+#foreach( $status in $status_types)
+#set ( $result = $resultTable.get("$!{program.id}_$!{intake.id}_$!{status}"))
+<td align="center">#if ( $resultTable.get("$!{program.id}_$!{intake.id}_$!{status}") ) 
+<a href="javascript:void()" onclick="$('div_students').style.top=cursorY;$('div_students').style.visibility='visible';$('div_students2').style.visibility='visible';doDivAjaxCall$formname('div_students2','list_students','program_id=$!{program.id}&intake_id=$!{intake.id}&status=$!{status}')">$result.counter</a>
+#else 
+- 
+#end</td>
+#end
+</tr>
+
+#end
+
+
+<tr><td colspan="$i" ><br/></td></tr>
+#end
+
+
+
+#end
+</table>

@@ -1,0 +1,83 @@
+
+
+#set ( $dayName = ["Sun","Mo", "Tue", "Wed", "Thu", "Fri", "Sat"] )
+
+
+<div id="divAttendance" style="overflow-x:hidden;width:820px;background:#F4F4F4;">
+
+<table cellspacing="0" cellpadding="1"  width="800px">
+<tr style="height:30px;">
+<td style="width:30px;border-bottom:1px solid #C3C3C3;border-right:1px solid #C3C3C3;">&nbsp;</td>
+<td style="width:100px;font-weight:bold;border-bottom:1px solid #C3C3C3;border-right:1px solid #C3C3C3;">Matric No</td>
+<td style="width:250px;font-weight:bold;border-bottom:1px solid #C3C3C3;border-right:1px solid #C3C3C3;">Name</td>
+$dateFormat.applyPattern("dd/MM")
+#set ( $i = 0 )
+#foreach ( $d in $dates )
+<td style="width:50px;font-weight:bold;border-bottom:1px solid #C3C3C3;border-right:1px solid #C3C3C3;" align="center">
+$dayName.get($i)<br>
+$dateFormat.format($d)
+<br/>
+<input id="enableEdit_$i" type="checkbox">
+</td>
+
+#set ( $i = $i + 1 )
+#end
+</tr>
+</table>
+</div>
+
+<div id="divAttendance" style="height:400px;width:820px;overflow:auto;overflow-x:hidden;">
+<table cellspacing="0" cellpadding="1" width="800px">
+
+<tr>
+<td style="width:30px"></td>
+<td style="width:100px"></td>
+<td style="width:245px"></td>
+#foreach ( $d in $dates )
+<td style="width:50px"></td>
+#end
+</tr>
+
+#set ( $cnt = 0 )
+#foreach( $s in $students )
+#set ( $cnt = $cnt + 1 )
+<tr style="height:30px">
+<td bgcolor="#F4F4F4" style="border-bottom:1px solid #C3C3C3;border-right:1px solid #C3C3C3;" align="center">$cnt</td>
+<td style="border-bottom:1px solid #C3C3C3;border-right:1px solid #C3C3C3;">$s.student.matricNo</td>
+<td style="border-bottom:1px solid #C3C3C3;border-right:1px solid #C3C3C3;">$s.student.biodata.name</td>
+$dateFormat.applyPattern("dd-MM-yyyy")
+#set ( $i = 0 )
+#foreach ( $d in $dates )
+#if ( $i == 0 ) #set ( $bgcolor = "#F4F4F4" ) #else #set ( $bgcolor = "#FFFFFF" ) #end
+<td bgcolor="$bgcolor" onclick="setAttendance('td_${s.id}_$i', '$s.id', '$dateFormat.format($d)', '$i')" align="center" style="border-bottom:1px solid #C3C3C3;border-right:1px solid #C3C3C3;cursor:pointer">
+<span id="td_${s.id}_$i">
+#if ( $attendanceMapper.get("$dateFormat.format($d)") ) 
+	#if ( ${attendanceMapper.get("$dateFormat.format($d)").get("$s.id")} == "0" )
+		&nbsp;
+	#elseif ( ${attendanceMapper.get("$dateFormat.format($d)").get("$s.id")} == "1" )
+		<img src="../img/check_present.png">
+	#elseif ( ${attendanceMapper.get("$dateFormat.format($d)").get("$s.id")} == "2" )
+		<img src="../img/check_absent.png">
+	#else
+		&nbsp;
+	#end
+#else
+	&nbsp;
+#end
+</span>
+</td>
+#set ( $i = $i + 1 )
+#end
+<tr>
+#end
+</table>
+
+</div>
+
+
+
+<script>
+$('programName').innerHTML = "$program.code $program.name";
+$('periodName').innerHTML = "$period.name";
+$('sectionName').innerHTML = "$section.name";
+</script>

@@ -1,0 +1,38 @@
+
+<table>
+	<tr>
+	<td style="width:30px"></td>
+	<td style="width:300px"></td>
+	<td style="width:300px"></td>
+	<td></td>
+	</tr>
+#set ( $cnt = 0 )
+#foreach( $club in $clubs )
+	#set ( $cnt = $cnt + 1 )	
+	<tr>
+	<td style="">$cnt.</td>
+	<td style="">
+	<div class="shadow" id="edit_$club.id" style="background:#fff;display:none;position:absolute;width:700px;border:1px solid #D6CDCD"></div>	
+	$club.name
+	</td>
+	<td style="">$club.category.name</td>
+	<td>
+	<input class="linkbutton" type="button" value="Edit" onclick="doDivAjaxCall3$formname('edit_$club.id','editClub','clubId=$club.id')">
+	</td>
+	</tr>
+#end
+
+<tr>
+<td></td>
+<td><input class="texts" name="clubName"></td>
+<td>
+<div id="newCategory" style="display:none">#parse("studentaffair/club/newCategory.vm")</div>
+<div id="listCategories">#parse("studentaffair/club/listCategories.vm")</div>
+</td>
+<td>
+<input class="linkbutton" type="button" value="Add" onclick="if ( $('categoryId').value == '' ) {alert('Please select category'); return; } else { doDivAjaxCall3$formname('listClubs','addClub',''); }">
+</td>
+</tr>
+	
+	
+</table>

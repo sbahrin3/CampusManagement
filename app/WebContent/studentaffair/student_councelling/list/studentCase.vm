@@ -1,0 +1,50 @@
+<div>
+<table>
+<tr style="height:25px;background:#D0D6DB">
+<td style="width:30px;">&nbsp;</td>
+<td style="width:150px;" align="center">Matric NO</td>
+<td style="width:200px;" align="center">Name</td>
+<td style="width:200px;" align="center">Issue</td>
+<td style="width:100px;" align="center">Referred Date</td>
+<td style="width:150px;" align="center">Referral Name</td>
+<td style="width:150px;" align="center">Counsellor Name</td>
+<td style="width:100px;" align="center">Councelling Sessions</td>
+<td style="width:40px"></td>
+</tr>
+</table>
+</div>
+<div style="overflow:auto;height:500px">
+<table>
+<tr style="height:0px">
+<td style="width:30px;"></td>
+<td style="width:150px;" align="center"></td>
+<td style="width:200px;" align="center"></td>
+<td style="width:200px;" align="center"></td>
+<td style="width:100px;" align="center"></td>
+<td style="width:150px;" align="center"></td>
+<td style="width:150px;" align="center"></td>
+<td style="width:100px;" align="center"></td>
+<td style="width:40px"></td>
+</tr>
+$dateFormat.applyPattern("MMM, dd yyyy")
+#set ( $cnt = 0 )
+#foreach ( $sc in $studentCases )
+	#set ( $cnt = $cnt + 1 )
+	#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E6EAED" ) #else #set ( $bgcolor = "#fff" ) #end
+	<tr style="height:30px;background:$bgcolor">
+	<td>$cnt.</td>
+	<td>$sc.student.matricNo</td>
+	<td>$sc.student.biodata.name</td>
+	<td>$!sc.issue.name</td>
+	<td>#if ( $sc.referredDate ) $dateFormat.format($sc.referredDate)#end</td>
+	<td>$!sc.referralName</td>	
+	<td>$!sc.councellor.name</td>
+	<td align="center" style="cursor:pointer;"><span id="counter_$sc.id">$sc.sessions.size()</span></td>
+	<td>
+	<input class="linkbutton" type="button" value="..." onclick="$('divList').style.display='none';$('divOpen').style.display='block';$('divStudent').style.display='block';doDivAjaxCall3$formname('divStudent','getStudent','matricNo=$sc.student.matricNo')">
+	</td>
+	</tr>
+#end
+</table>
+</div>
+

@@ -1,0 +1,103 @@
+<table cellpadding="2" cellspacing="0">
+<tr><td colspan="8" align="right">
+<input type="button" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.hostel.module.StudentReportXL3'">
+</td></tr>
+<tr style="height:30px;background:#C1BFBF">
+<td style="width:30px"></td>
+<td style="width:100px">Room</td>
+<td style="width:320px">Name</td>
+<td style="width:150px">Matric</td>
+<td style="width:50px" align="center">Gender</td>
+<td style="width:100px" align="center">Check In</td>
+<td style="width:100px" align="center">Check Out</td>
+</tr>
+#set ( $cnt = 0 )
+
+#set ( $room = "" )
+#set ( $unit = "" )
+#set ( $floor = "" )
+
+#foreach( $r in $rooms )
+#set ( $cnt = $cnt + 1 )
+
+#if ( $floor != $r.unit.floor.id )
+	<tr><td colspan="10" style="background:#565555;color:#fff;">&nbsp;</td></tr>
+	<tr style="height:30px">
+	<td colspan="10" style="font-weight:bold;font-size:10pt;background:#565555;color:#fff;" align="center">
+	$r.unit.floor.block.building.name - $r.unit.floor.block.name - $r.unit.floor.name
+	</td>
+	</tr>
+	<tr><td colspan="10" style="background:#565555;color:#fff;">&nbsp;</td></tr>
+	#set ( $floor = $r.unit.floor.id )
+#end
+
+
+#if ( $unit != $r.unit.id )
+	<tr style="height:30px">
+	<td colspan="10" style="font-weight:bold;font-size:10pt;background:#565555;color:#fff;" align="center">
+	$r.unit.name
+	</td>
+	</tr>
+	#set ( $unit = $r.unit.id )
+#end
+
+<tr style="height:25px;background:#EAE8E8">
+
+#if ( $room != $r.id )
+	#set ( $border = "border-top:2px solid #565555" )
+	<td style="border-bottom:1px solid #AFAFAF">&nbsp;</td>
+	<td style="border-bottom:1px solid #AFAFAF">$r.name</td>
+	#set ( $room = $r.id )
+#else
+	#set ( $border = "border-top:1px solid #A09B9B" )
+	<td style="border-bottom:1px solid #AFAFAF">&nbsp;</td>
+	<td style="border-bottom:1px solid #AFAFAF">&nbsp;</td>
+#end
+
+
+#if ( $roomAlloc.get("$r.id") )
+
+
+	<td colspan="5" style="border-bottom:1px solid #AFAFAF">
+	#foreach( $a in $roomAlloc.get("$r.id") )
+	<table cellpadding="2" cellspacing="0">
+	<tr>
+	<td style="width:320px;">$a.student.biodata.name</td>
+	<td style="width:150px">$a.student.matricNo</td>
+	<td style="width:50px" align="center">$!a.student.biodata.gender.code</td>
+	<td style="width:100px" align="center">#if ( $a.checkInDate ) $dateFormat.format($a.checkInDate) #end</td>
+	<td style="width:100px" align="center">#if ( $a.expectedDateOut ) $dateFormat.format($a.expectedDateOut) #end</td>
+	</tr>
+	</table>
+	#end
+	#set ( $vacant = $r.capacity - $roomAlloc.get("$r.id").size())
+	#if ( $vacant > 0 )
+	#foreach ( $i in [1..$vacant] )
+	<table width="100%" cellpadding="2" cellspacing="0">
+	<tr style="background:#3FEF39">
+	<td style="color:#000">VACANT</td>
+	</tr>
+	</table>		
+	#end
+	#end
+	</td>
+#else
+	<td colspan="5" style="border-bottom:1px solid #AFAFAF">
+	
+		#set ( $vacant = $r.capacity)
+		#if ( $vacant > 0 )
+		#foreach ( $i in [1..$vacant] )
+		<table width="100%" cellpadding="2" cellspacing="0">
+		<tr style="background:#3FEF39">
+		<td style="color:#000">VACANT</td>
+		</tr>
+		</table>		
+		#end
+		#end
+	
+	</td>	
+#end
+</tr>
+
+#end
+</table>

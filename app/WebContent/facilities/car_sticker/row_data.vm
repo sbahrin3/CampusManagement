@@ -1,0 +1,10 @@
+
+
+<td>$!r.ownerId</td>
+<td>$!r.ownerName</td>
+<td>$!r.ownerType</td>
+<td>$!r.carDetail</td>
+<td>$!r.plateNo</td>
+
+
+

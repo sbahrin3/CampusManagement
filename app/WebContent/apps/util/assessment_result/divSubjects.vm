@@ -1,0 +1,16 @@
+<select class="input-text" name="subject_id" style="width:400px">
+<option value=""> - </option>
+#foreach( $s in $subjects )
+	#if ( !$teacher_mode )
+		#if ( $s.code )
+		<option value="$s.id">$s.code $s.name</option>
+		#end
+	#else
+		#if ( $s.subject.code )
+		<option value="$s.id">$s.subject.code $s.subject.name ($s.section.name)</option>
+		#end
+	#end
+#end
+</select>
+<input style="font-weight:bold" type="button" 
+value="List Students" onclick="$('results').style.display='block';$('results').innerHTML='Please Wait...';doDivAjaxCall$formname('results', 'list_students', '');">

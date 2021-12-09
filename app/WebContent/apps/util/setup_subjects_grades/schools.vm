@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+
+<div style="padding:10px">
+
+<table>
+<tr><td>
+
+
+<table>
+<tr><td style="width:100px">Faculty:</td>
+<td style="width:400px">
+<select class="form-control" name="faculty_id" onchange="doDivAjaxCall$formName('list_subjects','list_subjects','')">
+<option value=""></option>
+#foreach ( $f in $faculties )
+<option value="$f.id">&nbsp;&nbsp;&nbsp;$f.code $f.name</option>
+#end
+</select>
+</td>
+</tr></table>
+
+</td></tr></table>
+
+<div id="list_subjects"></div>
+
+
+</div>

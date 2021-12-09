@@ -1,0 +1,63 @@
+<table class="table">
+<thead>
+	<tr>
+		<th style="width:10px"></th>
+		<th style="width:10px"></th>
+		<th>Module</th>
+		<th>Module Class</th>
+	</tr>
+</thead>
+<tbody>
+#set ( $group = "" )
+#foreach ( $module in $modules )
+    #if ( $group != $module.getGroup() )
+        #set ( $group = $module.getGroup() )
+		
+    	<tr height="100px">
+        	<td  colspan="3" style="vertical-align: bottom;">
+        		<b>$group</b>
+        	</td>
+        	
+        	<td  style="text-align:right;vertical-align: bottom;">
+        	<b>[Role: $!role.description]</b>&nbsp;
+        	<button type="button" class="btn btn-sm btn-info" onclick="doDivAjaxCall$formname('listRoles','updateModules','roleId=$!role.name')">Update Modules</button>
+        	<button type="button" class="btn btn-sm btn-success" onclick="doDivAjaxCall$formname('listRoles','listRoles','')">&gt;</button>
+			</td>
+			
+    	</tr>
+    	
+    #end
+    
+    
+    #if ( $module.isSelected() )
+        #set( $checked = "checked" )
+        #set( $row = "background-color:#ebebeb" )
+    #else
+        #set( $checked = "" )
+        #set( $row = "background-color:#fff" )
+    #end
+    
+    <tr>
+        <td style="$row" >$velocityCount.</td>
+        
+        <td style="$row" >
+            <input type="checkbox" name="modules" value="$module.getId()" $checked>
+        </td>
+        
+        <td style="$row;width:100px" >
+	        #if ( $module.title == "" )
+	        	[<i>$module.id</i>]
+	        #else
+	        	$module.title
+	        #end
+        </td>
+
+        
+        <td style="$row" >
+        	$module.className
+        </td>
+    </tr>
+    
+#end
+</tbody>
+</table>

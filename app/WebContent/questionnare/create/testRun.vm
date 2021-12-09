@@ -1,0 +1,13 @@
+<script>
+$('divTestRun').style.display="block";
+</script>
+<table id="testRunHandle" width="100%" style="background:#F9B94A">
+<tr><td style="font-weight:bold;color:#000;font-size:10pt">$set.name</td>
+<td align="right"><input class="linkbutton" type="button" value="x" onclick="$('divTestRun').style.display='none';"></td>
+</tr></table>
+<div id="divLoading" style="background:#FFFFFF;font-family:Verdana,sans-serif;font-weight:bold;text-align:center">Loading... Please Wait!</div>
+<div style="height:450px;padding:2px;background:#F4F4F3"><iframe id="frameTestRun" frameborder="0" style="width:100%;height:450px" 
+	src="../gc/educate.questionnare.RunQuestionnareModule?runSetId=$!set.id"></iframe></div>
+
+
+<script>new Draggable('divTestRun', {handle: 'testRunHandle'});</script>

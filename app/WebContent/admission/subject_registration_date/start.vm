@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" type="text/css" media="all" href="../js/jsDatePick_ltr.min.css" />
+<script type="text/javascript" src="../js/jsDatePick.min.1.3.js"></script>
+
+##<script>calndr.showNavigationDropdowns();</script>
+
+<div id="listPrograms">#parse("admission/subject_registration_date/listPrograms.vm")</div>
+<div id="divEmpty"></div>

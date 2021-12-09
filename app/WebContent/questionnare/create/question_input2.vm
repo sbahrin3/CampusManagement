@@ -1,0 +1,160 @@
+#if ( !$partQuestion.part )
+<div style="text-align:right">
+	<button type="button" class="btn btn-success btn-sm" onclick="$('divQuestionsBank').style.display='block';$('divEditQuestion').style.display='none';$('divEditQuestionSave').style.display='none';">Select from Question Bank</button>
+</div>
+
+<br/>
+#end
+
+<table class="table" style="background:#fff">
+	
+	<tr><td style="width:150px">Question Text:</td><td style="width:5px">:</td>
+	<td>
+		<textarea class="form-control" name="questionText" style="height:50px"
+		onKeyDown="limitText(event, this.form.questionText,this.form.charsCount,255);" 
+		onKeyUp="limitText(event, this.form.questionText,this.form.charsCount,255);">$!partQuestion.question.questionText</textarea>
+		
+	<br/>
+	<input style="border: none; width:40px; text-align:right;" name="charsCount" value="255" readonly> characters left.
+	</td></tr>
+	
+	<tr><td style="width:150px">Long Text:</td><td style="width:5px">:</td>
+	<td>
+		<textarea class="form-control" name="questionText2" style="height:80px">$!partQuestion.question.questionText2</textarea>
+	
+	</td></tr>
+	
+	<tr><td>Question Type:</td><td>:</td>
+	<td>
+	
+	<select class="form-control" name="type" onchange="displayType(this.value)">
+	
+	#if ( $set.typeQuestionnare )
+		<option value="likert" #if ( $partQuestion.question.type == "likert" ) selected #end>Likert Table</option>
+	#end
+	<option value="single" #if ( $partQuestion.question.type == "single" ) selected #end>Single Answer</option>
+	<option value="multiple" #if ( $partQuestion.question.type == "multiple" ) selected #end>Multiple Answers</option>
+	
+	#if ( $set.typeQuestionnare )
+		<option value="text" #if ( $partQuestion.question.type == "text" ) selected #end>Text</option>
+		<option value="essay" #if ( $partQuestion.question.type == "essay" ) selected #end>Essay</option>
+		<option value="date" #if ( $partQuestion.question.type == "date" ) selected #end>Date</option>
+		<option value="upload" #if ( $partQuestion.question.type == "upload" ) selected #end>File Upload</option>
+		
+		<option value="none" #if ( $partQuestion.question.type == "none" ) selected #end>None</option>
+		<option value="stop" #if ( $partQuestion.question.type == "stop" ) selected #end>Stop</option>
+	#end
+	
+	</select>
+	</td></tr>
+	
+	<tr id="row_likert"><td>Likert Type</td><td>:</td><td>
+	<select class="form-control" name="likertId">
+	#foreach( $likert in $likerts )
+		<option value="$likert.id" #if ( $partQuestion.question.likert.id == $likert.id ) selected #end>$likert.label1 | $likert.label2 | $likert.label3 | $likert.label4 | $likert.label5</option>
+	#end
+	</select>
+	</td></tr>
+	
+	<tr id="row_choices">
+	<td valign="top">Choices</td><td valign="top">:</td>
+	<td>
+	
+		<table style="width:100%">
+		<tr>
+			<td style="width:5px"></td>
+			<td>Possible Choices</td>
+			<td style="align:center">&nbsp;&nbsp;&#10004;</td>
+			#if ( $set.typeQuestionnare )
+				<td style="width:80px" align="center">
+					<span id="nq0">Jump To*</span>
+				</td>
+			#end
+		</tr>
+		#foreach ( $i in [1..5] )
+			<tr><td>$i)</td>
+			<td>
+				#if ( $i == 1 ) #set ( $value = $partQuestion.question.choice1 ) #end
+				#if ( $i == 2 ) #set ( $value = $partQuestion.question.choice2 ) #end
+				#if ( $i == 3 ) #set ( $value = $partQuestion.question.choice3 ) #end
+				#if ( $i == 4 ) #set ( $value = $partQuestion.question.choice4 ) #end
+				#if ( $i == 5 ) #set ( $value = $partQuestion.question.choice5 ) #end
+				
+				<input class="form-control" name="choice$i" value="$!value">
+			</td>
+			<td style="width:40px;align:center"> 
+				#if ( $i == 1 ) #set ( $correct = $partQuestion.question.correct1 ) #end
+				#if ( $i == 2 ) #set ( $correct = $partQuestion.question.correct2 ) #end
+				#if ( $i == 3 ) #set ( $correct = $partQuestion.question.correct3 ) #end
+				#if ( $i == 4 ) #set ( $correct = $partQuestion.question.correct4 ) #end
+				#if ( $i == 5 ) #set ( $correct = $partQuestion.question.correct5 ) #end
+				&nbsp;&nbsp;
+				<input type="checkbox" name="correct$i" #if ( $correct ) checked #end value="1">
+			</td>
+			<td>
+				##JUMP TO
+				#if ( $set.typeQuestionnare )
+					#set ( $select = "" )
+					#if ( $i == 1 ) #set ( $select = $partQuestion.nextQuestion1.id ) #end
+					#if ( $i == 2 ) #set ( $select = $partQuestion.nextQuestion2.id ) #end
+					#if ( $i == 3 ) #set ( $select = $partQuestion.nextQuestion3.id ) #end
+					#if ( $i == 4 ) #set ( $select = $partQuestion.nextQuestion4.id ) #end
+					#if ( $i == 5 ) #set ( $select = $partQuestion.nextQuestion5.id ) #end
+					
+					
+					<select class="form-control" name="nextQuestionId$i" id="nq$i">
+					<option value=""></option>
+					#set ( $display = "yes" )
+					#foreach( $q in $partQuestions)
+					
+						#if ( $display == "yes" )
+						<option value="$q.id" #if ( $q.id == $select ) selected #end>$q.refNo</optioin>
+						#end
+						
+						#if ( $display == "no" )
+							#if ( $q.id == $partQuestion.id )
+								#set ( $display = "yes" )
+							#end
+						#end
+						
+					#end
+					</select>
+				#end
+			</td>
+			</tr>
+		#end
+		</table>
+		
+	</td></tr>
+	
+	<tr>
+	<td>Required?</td><td>:</td>
+	<td>
+	
+	<select class="form-control" name="required" class="texts" style="width:100px">
+	<option value="1" #if ( $partQuestion.required ) selected #end>Yes</option>
+	<option value="0" #if ( !$partQuestion.required ) selected #end>No</option>
+	</select>
+	#if ( $set.typeQuestionnare )
+		Minimum chars:<input name="minimumChars" class="texts" style="width:100px" value="$!partQuestion.minimumChars">
+	#end
+	</td>
+	</tr>
+	
+	
+	</table>
+	#if ( $partQuestion )
+		<script>
+		displayType("$!partQuestion.question.type");
+		</script>
+	#else
+		#if ( $set.typeQuestionnare )
+			<script>
+			displayType('likert');
+			</script>
+		#else
+			<script>
+			displayType('single');
+			</script>
+		#end
+	#end

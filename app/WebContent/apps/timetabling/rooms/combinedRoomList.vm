@@ -1,0 +1,17 @@
+<script>
+$('combinedRoomList').style.display="block";
+</script>
+<table width="100%" cellpadding="0" cellspacing="0"><tr style="height:30px;background:#CCCCCC">
+<td align="right">
+<input class="linkbutton" style="padding:2px" type="button" value="OK" onclick="doDivAjaxCall3$formname('roomList','addCombinedRoom','')">
+<input class="linkbutton" style="padding:2px" type="button" value="Cancel" onclick="$('combinedRoomList').style.display='none';">
+</td>
+</tr></table>
+
+<div style="height:200px;overflow:auto">
+<table>
+#foreach( $r in $roomList )
+<tr><td style="width:80px">$r.code</td><td style="width:200px">$r.name</td><td style="width:20px"><input type="checkbox" name="roomIds" value="$r.id"></td></tr>
+#end
+</table>
+</div>

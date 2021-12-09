@@ -1,0 +1,45 @@
+<script>
+
+#if ( $slotTime.blockedMonday )
+	$('blockedMonday_$slotTime.id').style.backgroundColor="#f7be62";
+#else
+	$('blockedMonday_$slotTime.id').style.backgroundColor="#fff";
+#end
+
+#if ( $slotTime.blockedTuesday )
+	$('blockedTuesday_$slotTime.id').style.backgroundColor="#f7be62";
+#else
+	$('blockedTuesday_$slotTime.id').style.backgroundColor="#fff";
+#end
+
+#if ( $slotTime.blockedWednesday )
+	$('blockedWednesday_$slotTime.id').style.backgroundColor="#f7be62";
+#else
+	$('blockedWednesday_$slotTime.id').style.backgroundColor="#fff";
+#end
+
+#if ( $slotTime.blockedThursday )
+	$('blockedThursday_$slotTime.id').style.backgroundColor="#f7be62";
+#else
+	$('blockedThursday_$slotTime.id').style.backgroundColor="#fff";
+#end
+
+#if ( $slotTime.blockedFriday )
+	$('blockedFriday_$slotTime.id').style.backgroundColor="#f7be62";
+#else
+	$('blockedFriday_$slotTime.id').style.backgroundColor="#fff";
+#end
+
+#if ( $slotTime.blockedSaturday )
+	$('blockedSaturday_$slotTime.id').style.backgroundColor="#f7be62";
+#else
+	$('blockedSaturday_$slotTime.id').style.backgroundColor="#fff";
+#end
+
+#if ( $slotTime.blockedSunday )
+	$('blockedSunday_$slotTime.id').style.backgroundColor="#f7be62";
+#else
+	$('blockedSunday_$slotTime.id').style.backgroundColor="#fff";
+#end
+
+</script>

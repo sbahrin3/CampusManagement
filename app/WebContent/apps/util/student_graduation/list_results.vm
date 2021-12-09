@@ -1,0 +1,100 @@
+<table>
+<tr><td align="right">
+<b>[$href.command("select_intakes").text("Back")]</b>
+<br/><br/>
+</td></tr><tr><td>
+
+
+<table width="100%">
+#if ( $program ) <tr><td style="font-weight:bold">$program.code $program.name</td></tr> #end
+
+#if ( $study_type ) <tr><td style="font-weight:bold">
+#if ( $study_type == "S" ) SPECIALIZATION #end
+</td></tr> #end
+
+#if ( $intake ) <tr><td style="font-weight:bold">$intake.code $intake.name</td></tr> #end
+#if ( $centre ) <tr><td style="font-weight:bold">$centre.code $centre.name</td></tr> #end
+
+<tr>
+<tr><td>
+
+#if ( $type == "students" )
+
+<table width="100%">
+<tr>
+<td align="center" valign="top">
+
+#if ( $credit_hours != "" )
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<b>Credit Unit:
+$credit_hours
+</b>
+</fieldset>
+#end
+
+
+</td>
+<td align="center" valign="top">
+
+#if ( $cgpa != "" )
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<b>
+CGPA: $cgpa
+</b>
+</fieldset>
+#end
+
+</td>
+<td valign="top">
+
+#if ( $required_subjects )
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<b>List Of Required Subjects:</b>
+<br>
+<ul>
+#foreach( $subject in $required_subjects )
+<li>$subject.subject.code $subject.subject.name : <b>$subject.mark</b>
+#end
+</ul>
+</fieldset>
+#end
+
+
+</td>
+</tr>
+</table>
+#end
+
+
+
+
+
+
+
+</td></tr>
+</table>
+
+#if ( $type == "students" )
+<br/><br/>
+#if ( $student_list )
+#parse("apps/util/student_graduation/list_students.vm")
+#end
+
+#end
+
+#if ( $type == "graduates" )
+<br/><br/>
+#parse("apps/util/student_graduation/list_graduates.vm")
+#end
+
+</td></tr>
+</table>
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="centre_id" value="$!centre.id">
+
+<input type="hidden" name="credit_hours" value="$!credit_hours">
+<input type="hidden" name="cgpa" value="$!cgpa">
+<input type="hidden" name="type" value="$!type">
+<input type="hidden" name="study_type" value="$!study_type">

@@ -1,0 +1,30 @@
+<script>calndr.showNavigationDropdowns();</script>
+<table width="800px" align="center">
+<tr><td>
+
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="100%">
+<td align="right" style="font-weight:bold">
+Enter partial name of student to search for :
+<input style="width:200px" name="filter_name">
+		<input type="button" style="font-weight:bold" value="FIND.." onclick="$('div_students').style.visibility='visible';$('div_students2').style.visibility='visible';doDivAjaxCall$formName('div_students2','find_students','')">
+</td>
+</tr>
+</table>
+</fieldset>
+
+
+<div name="div_students" id="div_students"
+style="visibility:hidden;position:absolute;left:400px;width:500px;height:300px;border-style:solid;border-color:#B4B4B4;background-color:#FFFFAA">
+
+<table width="100%"><tr height="30px" bgcolor="lightgrey"><td align="right" style="font-weight:bold">
+[<a href="javascript:void()" onclick="$('div_students').style.visibility='hidden';$('div_students2').style.visibility='hidden'">Close</a>]
+</td></tr>
+<tr><td>
+<div name="div_students2" id="div_students2" style="overflow:auto;height:260px;width:100%"></div>
+</td></tr></table>
+
+</div>
+</td></tr>
+</table>

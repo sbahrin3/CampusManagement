@@ -1,0 +1,19 @@
+
+<td class="record_header" style="width:200px;font-weight:bold">Type</td>
+<td class="record_header" style="width:200px;font-weight:bold">Unit</td>
+<td class="record_header" style="width:100px;font-weight:bold">Date</td>
+<td class="record_header" style="width:150px;font-weight:bold">Amount (RM)</td>
+<td class="record_header" style="width:150px;font-weight:bold">Meter Reading</td>
+<td class="record_header" style="width:150px;font-weight:bold">&nbsp;</td>
+
+
+
+<td>$!r.type.name</td>
+<td>$!r.unit.code - $r.unit.name</td>
+<td>$dateFormat.format($!r.billedDate)</td>
+<td>$!r.serialNo</td>
+<td>$!r.brandName</td>
+<td>$!r.modelName</td>
+
+
+

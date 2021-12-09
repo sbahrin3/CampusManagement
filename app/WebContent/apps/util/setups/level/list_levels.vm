@@ -1,0 +1,51 @@
+<ul id="tablist" style="list-style-type:none; padding: 0px;">
+#set ( $c = 0 )
+#foreach ( $l in $levels )
+#set ( $c = $c + 1 )
+#if ( $c % 2 == 0 ) #set ( $bgcolor = "" ) #else #set ( $bgcolor = "" ) #end
+<li id="tablist_$c">
+<table bgcolor="$bgcolor" cellspacing="0">
+<tr>
+<td style="width:10px"><input type="hidden" name="level_ids" value="$l.id"></td>
+<td style="width:50px">
+<input class="text" name="code_$l.id" value="$l.code" onchange="doDivAjaxCall$formname('div_level_$l.id','update_code','level_id=$l.id')">
+</td>
+<td style="width:400px">
+<input class="text" name="name_$l.id" value="$l.name" onchange="doDivAjaxCall$formname('div_level_$l.id','update_name','level_id=$l.id')">
+</td>
+<td style="width:50px">
+<input class="text" style="text-align:center" name="path_$l.id" value="$l.pathNo" onchange="doDivAjaxCall$formname('div_level_$l.id','update_path','level_id=$l.id')">
+</td>
+<td style="width:20px">
+##<input class="gradient" type="button" value="x" onclick="doDivAjaxCall3$formname('div_levels','delete','level_id=$l.id')">
+<a href="javascript:void()" onclick="if ( !confirm('Are you sure?') ) return;doDivAjaxCall3$formname('div_levels','delete','level_id=$l.id')"><img src="../img/delete.gif"></a>
+</td>
+<td style="width:10px"><img src="../img/up_down.gif"><div id="div_level_$l.id"></div></td>
+</tr>
+</table>
+</li>
+#end
+</ul>
+<table width="100%">
+<tr><td>
+<input class="gradient" style="height:30px" type="button" value="Save Order" onclick="doDivAjaxCall3$formname('div_levels','sort','')">
+</td></tr>
+</table>
+<div id="div_waiting" name="div_waiting"></div>
+
+
+<table cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:10px"></td>
+<td style="width:50px;font-weight:bold"><input class="text" style="width:100%" id="code" name="code"></td>
+<td style="width:400px;font-weight:bold"><input class="text" style="width:100%" id="name" name="name"></td>
+<td style="width:50px;font-weight:bold"><input class="text" style="width:100%" id="path_no" name="path_no"></td>
+<td style="width:50px"><input class="gradient" style="width:100%;height:30px" type="button" value="ADD" onclick="doDivAjaxCall3$formname('div_levels','add','')"></td>
+<td style="width:30px"></td>
+</tr>
+</table>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('tablist');
+</script>
+

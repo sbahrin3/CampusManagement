@@ -1,0 +1,33 @@
+#**
+<script>  
+  var el = document.getElementById('itemId');
+  var i;
+  for (i = el.length - 1; i>=0; i--) {
+    if ( el.options[i].value == '$asset.id' ) {
+    	el.remove(i);
+    	break;
+    }
+  }
+</script>  
+**#
+
+<table>
+<tr style="height:30px">
+<td style="border-bottom:1px solid #ADADAD;width:30px">&nbsp;</td>
+<td style="border-bottom:1px solid #ADADAD;width:400px;font-weight:bold">Item/Equipment</td>
+<td style="border-bottom:1px solid #ADADAD;width:200px;font-weight:bold">Serial No</td>
+<td style="border-bottom:1px solid #ADADAD;">&nbsp;</td>
+</tr>
+#foreach ( $i in $itemList )
+<tr style="height:30px;">
+<td style="border-bottom:1px solid #EDEAEA">$velocityCount.</td>
+<td style="border-bottom:1px solid #EDEAEA">$i.description</td>
+<td style="border-bottom:1px solid #EDEAEA">$i.serialNo</td>
+<td style="border-bottom:1px solid #EDEAEA">
+<input class="linkbutton" style="padding:2px" type="button" value="x" onclick="doDivAjaxCall3$formname('itemList','removeItem','removeItemId=$i.id')">
+</td>
+</tr>
+#end
+</table>
+
+<br/>

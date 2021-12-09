@@ -1,0 +1,3 @@
+401=Sains Komputer
+402=Applikasi Komputer/Pembangunan Perisian
+403=Rangkaian dan Perkakasan

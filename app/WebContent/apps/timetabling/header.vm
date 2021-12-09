@@ -1,0 +1,17 @@
+<table style="width:100%">
+<tr>
+	<td style="width:50px">
+		<img style="height:80px" src="$appUrl/apps/timetabling/logo/logo_uitm.png">
+	</td>
+	<td valign="top">
+		<div style="text-align:center">
+		<span style="font-family:sans-serif;font-size:20pt;font-weight:bold">Universiti Teknologi MARA</span><br/>
+		<span style="font-family:sans-serif;font-size:14pt;font-weight:bold">Jadual Waktu Kuliah $!deliveryPeriod.name</span><br/>
+		#if ( $department )
+		<span style="font-family:sans-serif;font-size:14pt;font-weight:bold">($department.name)</span><br/>
+		#end
+		</div>
+	</td>
+	<td></td>
+</tr>
+</table>

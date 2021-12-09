@@ -1,0 +1,7 @@
+<table>
+<tr><td>
+						#if($userprofile.userAvatarName != "")
+							<img id="image_avatar" src="../download?file=$!userprofile.userAvatarName">
+#end
+</td></tr>
+</table>

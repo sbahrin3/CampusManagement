@@ -1,0 +1,31 @@
+
+
+#if ( $student )
+
+	<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+	<table width="100%">
+	<tr><td style="width:150px">Student:</td><td style="font-weight:bold">$student.matricNo $student.biodata.name</td></tr>
+	<tr><td>Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+	<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+	</table>
+	</fieldset>
+	
+	<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+	<div id="student_subjects" name="student_subjects">
+	#parse("apps/util/mark_entry/student/student_subjects.vm")
+	</div>
+	</fieldset>
+
+#else
+
+
+<table width="100%">
+<tr><td align="center" style="font-weight:bold">
+
+
+
+</td></tr></table>
+
+#end
+
+

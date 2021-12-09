@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+<script>
+	function uploadDocument(documentId, e) {
+		document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+		document.${formName}.enctype='multipart/form-data';
+		document.${formName}.encoding ='multipart/form-data';
+		document.${formName}.target='upload_document';
+		document.${formName}.action='?command=uploadDocument&documentId=' + documentId + '&divUploadStatusName=' + e;
+		document.${formName}.submit();
+	
+	}
+</script>
+
+<table><tr><td style="width:100px">Select Club:</td>
+<td style="width:400px">
+<select class="texts" name="clubId" onchange="doDivAjaxCall3$formname('divMain','getClub','')">
+<option value=""></option>
+#foreach( $c in $clubs )
+<option value="$c.id">$c.name</option>
+#end
+</select>
+</td>
+<td><input class="linkbutton" type="button" value="Get" onclick="doDivAjaxCall3$formname('divMain','getClub','')"></td>
+</tr></table>
+
+<div id="divMain"></div>
+<iframe id="upload_document" name="upload_document" width="0px" height="0px" style="visibility:hidden"></iframe>

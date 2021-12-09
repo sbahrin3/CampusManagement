@@ -1,0 +1,21 @@
+<div style="margin-bottom:10px;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold;">
+List of Utilities
+</div>
+
+<div>
+<table cellpadding="1" cellspacing="0">
+<tr style="background:#D6D4D4">
+<td style="width:20px"></td>
+<td style="width:350px;font-weight:bold">Name</td>
+<td style="width:50px"></td>
+<td style="width:50px"></td>
+</tr>
+</table>
+</div>
+<div id="listUtilities">
+	#parse("facilities/utility_type/listUtilities.vm")
+</div>
+
+<script>
+
+</script>

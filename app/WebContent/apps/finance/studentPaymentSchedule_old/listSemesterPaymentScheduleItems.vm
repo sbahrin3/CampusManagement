@@ -1,0 +1,53 @@
+	<table style="width:100%">
+		<tr style="height:30px;background:#AEB1B2">
+			<td style="width:20px"></td>
+			<td style="width:80px" align="center">Due Date</td>
+			<td style="width:80px" align="right">Amt. Due</td>
+			<td style="width:80px" align="right">Pmt. Date</td>
+			<td style="width:80px" align="right">Paid</td>
+			<td style="width:80px" align="right"></td>
+		</tr>
+		#set ( $cnt = 0 )
+		#foreach ( $i in $scheduleItems )
+			
+			#if ( $i.type == 3 )
+			
+    			#set ( $cnt = $cnt + 1 )
+    			#if ( $cnt % 2 == 0 )
+    				#set ( $bgcolor = "#fff")
+    			#else
+    				#set ( $bgcolor = "#D6E2EE" )
+    			#end
+    			<tr style="height:30px;background:$bgcolor">
+    				<td>$cnt)</td>
+    				<td align="center">
+    					#if ( $i.paymentDate )
+    						$dateFormat.format($i.paymentDate)
+    					#end
+    				</td>
+					<td align="right">$numFormat.format($i.amountDue)</td>
+					<td align="right">
+					#if ( $i.paidDate )
+						$dateFormat.format($i.paidDate)
+					#end
+					</td>
+    				
+    								
+    				<td align="right">$numFormat.format($i.amountPaid)</td>
+					<td align="center">
+						#if ( $i.amountPaid < $i.amountDue )
+							<input type="button" class="linkbutton" value="Pay Now"  onclick="doDivAjaxCall$formname('divMakePayment','makeFlexiPayment','scheduleItemId=$!i.id&paymentType=SemesterFee')">
+						#else
+							<a href="javascript:void(0)"  onclick="doDivAjaxCall$formname('divMakePayment','makeFlexiPayment','scheduleItemId=$!i.id&paymentType=ResourceFee')">Detail</a>
+						#end
+
+					</td>
+    			</tr>
+			
+			#end
+		#end
+    	
+	</table>
+	<br/>
+	<br/>
+

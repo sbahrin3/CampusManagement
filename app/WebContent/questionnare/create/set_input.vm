@@ -1,0 +1,51 @@
+<script>
+$('div_input').style.display = "block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+<tr>
+<td style="height:35px;font-weight:bold;color:#fff">
+#if ( $set )
+	Edit Set
+#else
+	Add New Set
+#end
+</td>
+<td align="right" style="padding:5px">
+<button type="button" class="btn btn-default btn-sm" onclick="$('div_input').style.display='none';"><i class="fa fa-times" aria-hidden="true"></i></button>
+</td></tr>
+</table>
+<br/>
+<table>
+
+<table style="width:100%">
+<tr><td style="width:120px">Set Name</td><td style="width:5px">:</td><td><input class="form-control" name="setName" value="$!set.name"></td></tr>
+<tr><td>Description</td><td>:</td><td><textarea class="form-control" style="height:100px" name="setDescription">$!set.description</textarea></td></tr>
+
+<tr><td style="width:150px">Is Questionnare?</td><td style="width:5px">:</td>
+<td>
+	<select class="form-control" name="typeQuestionnare">
+		<option value="0" >No</option>
+		<option value="1" #if ( $set.typeQuestionnare ) selected #end>Yes</option>
+	</select>
+</td></tr>
+
+<tr><td style="width:150px">Is Question Bank?</td><td style="width:5px">:</td>
+<td>
+	<select class="form-control" name="typeQuestionBank">
+		<option value="0" >No</option>
+		<option value="1" #if ( $set.typeQuestionBank ) selected #end>Yes</option>
+	</select>
+</td></tr>
+
+
+<tr><td colspan="3" align="right">
+<br/>
+<button type="button" class="btn btn-primary" onclick="$('div_input').style.display='none'; doDivAjaxCall3$formname('div_main','saveSet','setId=$!set.id')">Save</button>
+</td></tr>
+</table>
+
+
+
+
+<script>new Draggable('div_input', {handle: 'dragHandle'});</script>

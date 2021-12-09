@@ -1,0 +1,39 @@
+<table width="80%" cellpadding="1" cellspacing="2">
+<tr><td  style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+
+#**
+<tr><td >Issue</td><td>:</td><td>
+<select class="texts" name="findWorkOrderIssueId">
+<option value=""></option>
+#foreach( $c in $issues )
+<option value="$c.id">$c.name</option>
+#end
+</select>
+</td></tr>
+**#
+
+<tr><td >Category</td><td>:</td><td>
+<select class="texts" name="findWorkCategoryId">
+<option value=""></option>
+#foreach( $c in $categories )
+<option value="$c.id">$c.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td >Issue</td><td>:</td><td><input class="texts" type="text" name="findIssueDescription"></td></tr>
+
+<tr><td >Officer Name</td><td>:</td><td><input class="texts" type="text" name="findOfficerName"></td></tr>
+
+<tr><td>Status</td><td>:</td>
+<td>
+<select class="texts" name="findStatus">
+<option value=""></option>
+<option value="open">Open</option>
+<option value="close">Close</option>
+<option value="overdue">Overdue</option>
+</select>
+</td>
+</tr>
+
+</table>

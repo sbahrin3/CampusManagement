@@ -1,0 +1,36 @@
+<table width="800" align="center">
+<tr>
+<td style="font-family:arial;font-weight:bold;font-size:12pt">
+List Of Defer Applications
+</td></tr>
+<tr><td>
+<table width="100%">
+	<tr height="50px" bgcolor="lightgrey">
+			<td width="30px">			No		</td>		
+	<td>			Student Name		</td>
+			<td>			Student Id		</td>		
+			<td>			Session Applied To Defer		</td>		
+			<td>			Session During Apply		</td>		
+			<td>			Applied Date		</td>
+					<td>			Reason		</td>
+							<td>			Other Reason		</td>		
+							<td>			Status Of Application		</td>
+			</tr>
+#foreach( $app in $apps )
+<tr>		
+<td>$velocityCount)		</td>
+		<td>			$!app.student.biodata.name		</td>
+		<td>			$!app.student.matricNo		</td>
+		<td>			$!app.reqSession.session.name		</td>
+		<td>			$!app.currSession.name		</td>
+		<td>			#if ($app.reqDate) $dateFormat.format($app.reqDate) #end		</td>
+		<td>			$!app.reason		</td>
+		<td>			$!app.otherR		</td>
+		<td>			$!app.status		</td>
+	</tr>
+	<tr><td colspan="9">&nbsp;<hr/></td></tr>
+#end
+</table>
+
+
+</td></tr></table>

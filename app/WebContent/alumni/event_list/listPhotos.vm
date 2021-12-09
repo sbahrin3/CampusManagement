@@ -1,0 +1,10 @@
+#set ( $x = 0 )
+<table>
+<tr>
+#foreach( $photo in $e.photos )
+#set ( $x = $x + 1 )
+<td><img src="../download?file=$!photo.avatarFileName"></td>
+#if ( $x == 5 ) </tr><tr> #set ( $x = 0 ) #end
+#end
+</tr>
+</table>

@@ -1,0 +1,25 @@
+<table width="100%">
+#set ( $cnt = 0 )
+#foreach( $facility in $facilities )
+
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "lightgrey" ) #else #set ( $bgcolor = "#FFFFFF" ) #end
+
+<tr height="25px" bgcolor="$bgcolor">
+<td style="width:20px" align="right">$velocityCount)</td>
+<td style="width:50px">
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('facility_data', 'show_calendar', 'facility_id=$facility.id')">
+$facility.code
+</a>
+</td>
+<td>
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('facility_data', 'show_calendar', 'facility_id=$facility.id')">
+$facility.name
+</a>
+</td>
+
+</tr>
+#end
+
+
+</table>

@@ -1,0 +1,103 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {font-family:verdana;font-size:10pt;font-weight:bold;}
+td {font-family:verdana;font-size:10pt;}
+</style>
+
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%"><tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">ENROLLMENT INFORMATION</td>
+</tr></table>
+
+<table width="100%">
+<tr><td style="width:150px">IC/Passport:</td>
+<td style="font-weight:bold">
+#if ( $applicant.biodata.icno && $applicant.biodata.icno != "") 
+$applicant.biodata.icno
+#else
+$applicant.biodata.passport
+#end
+</td>
+<tr><td>Name:</td><td style="font-weight:bold">$applicant.biodata.name</td></tr>
+<tr><td>Program:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$intake.code $intake.name</td></tr>
+<tr><td>Learning Centre:</td><td style="font-weight:bold">$centre.code $centre.name</td></tr>
+
+</table>
+
+
+<table width="100%"><tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">SUBJECTS INFORMATION</td>
+</tr></table>
+
+<table width="90%" align="center" cellspacing="0">
+<tr height="30px">
+<td style="font-weight:bold">Code</td>
+<td style="font-weight:bold">Title</td>
+<td align="center" style="font-weight:bold">Credit Unit</td>
+</tr>
+#foreach( $s in $subject_regs)
+<tr>
+<td>$s.subject.code</td>
+<td>$s.subject.name</td>
+<td align="center">$s.subject.credithrs</td>
+</tr>
+#end
+<tr><td colspan="3"><br/></td></tr>
+<tr>
+<td colspan="2" align="right" style="font-weight:bold"></td>
+<td align="center" style="font-weight:bold">$!total_credit</td>
+</tr>
+</table>
+
+
+
+<table width="100%"><tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">FEES INFORMATION</td>
+</tr></table>
+
+<table width="90%" align="center">
+<tr height="30px">
+##<td style="font-weight:bold">Code</td>
+<td style="font-weight:bold">Description</td>
+<td align="right" style="font-weight:bold">Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#set ( $total_amount = 0 )
+#foreach ( $invoice in $invoice_items )
+#set ( $total_amount = $total_amount + $invoice.amount)
+<tr>
+##<td>$invoice.feeItem.code</td>
+<td>$invoice.description</td>
+<td align="right">$numFormat.format($invoice.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+
+<tr><td colspan="3"><br/></td></tr>
+
+<tr>
+<td style="font-weight:bold" align="right">&nbsp;</td>
+<td align="right" style="font-weight:bold">$numFormat.format($total_amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</table>
+
+<hr/>
+<table width="100%">
+<tr><td align="right">
+$button.command("confirm_registration").style("height:50px;font-weight:bold").confirm("Confirm for registration?").text("CONFIRM REGISTRATION")
+$button.command("get_applicant").style("height:50px;font-weight:bold").text("CANCEL")
+</td></tr></table>
+
+
+</td></tr></table>
+
+<input type="hidden" name="applicant_id" value="$!applicant.id">
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="centre_id" value="$!centre.id">
+<input type="hidden" name="matric_prefix" value="Y">

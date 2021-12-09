@@ -1,0 +1,11 @@
+
+<script>
+function checkAll(bx, name) {
+  var cbs = document.getElementsByTagName('input');
+  for(var i=0; i < cbs.length; i++) {
+    if(cbs[i].type == 'checkbox') {
+      if ( cbs[i].name == name ) cbs[i].checked = bx.checked;
+    }
+  }
+}
+</script>

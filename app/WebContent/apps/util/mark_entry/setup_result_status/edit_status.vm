@@ -1,0 +1,39 @@
+<div style="padding:10px;font-weight:bold">EDIT</div>
+<table class="table" >
+<tr><td style="width:300px">Code</td><td><input class="text" id="code" name="code" style="width:100%" value="$status.code"></td></tr>
+<tr><td style="">Name</td><td><input class="text" id="name" name="name" style="width:100%" value="$status.name"></td></tr>
+
+<tr>
+<td style="">Calculate or Not Calculated for CGPA?</td><td>
+<select class="text" id="exclude_cgpa" name="exclude_cgpa">
+<option value="yes" #if ( $status.excludeGPA ) selected #end>Not Calculated for GPA</option>
+<option value="no" #if ( !$status.excludeGPA ) selected #end>Calculated for GPA</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td style="">Keep or Reset Marking?</td><td>
+<select class="text" id="reset_mark" name="reset_mark">
+<option value="yes" #if ( $status.resetMark ) selected #end>Reset Mark to 0</option>
+<option value="no"  #if ( !$status.resetMark ) selected #end>Keep Mark</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td>
+#if ( $status )
+<button type="button" class="btn btn-warning" onclick="doDivAjaxCall$formname('div_statuses','update_status','id=$status.id')">Save</button>
+#end
+<button type="button" class="btn btn-success" onclick="doDivAjaxCall$formname('div_entry','cancel_edit','');$('div_entry').style.display='none';">Cancel</button>
+</td>
+</tr>
+</table>
+
+
+<script>
+
+$('div_entry').style.display='block';
+
+</script>

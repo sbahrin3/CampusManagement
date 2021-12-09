@@ -1,0 +1,30 @@
+<table style="width:100%">
+	<tr>
+		<td align="right">
+			<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('addEquivalentSubjects','listFaculties','')">Back</a>
+		</td>
+	</tr>
+</table>
+
+<table class="table">
+<thead>
+	<tr>
+		<th style="width:10px"></th>
+		<th>Course</th>
+		<th style="width:40px"></th>
+	</tr>
+</thead>
+<tbody>
+#foreach( $s in $subjects )
+	#if ( $s.id != $subject.id )
+		<tr>
+			<td style="text-align:center">
+				<input type="checkbox" name="facultySubjects" value="$s.id" onchange="doDivAjaxCall$formname('empty','addEquivalentSubject','subjectId=$s.id')">
+			</td>
+			<td>$s.code - $s.name</td>
+			<td></td>
+		</tr>
+	#end
+#end
+</tbody>
+</table>

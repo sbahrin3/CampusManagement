@@ -1,0 +1,13 @@
+
+<table width="100%">
+<tr><td align="center">
+<input name="filter_name" style="width:200px" 
+##onkeyup="dnKeyPress(event, 'filter_students', 'filter_students', '')"
+>
+<input type="button" value="Find.."  onclick="doDivAjaxCall$formname('filter_students', 'filter_students', '')">
+</td></tr>
+<tr><td>
+<div id="filter_students" name="filter_students"></div>
+</td></tr>
+<tr><td>
+</td></tr></table>

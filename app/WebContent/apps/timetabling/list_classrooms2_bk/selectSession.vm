@@ -1,0 +1,35 @@
+<fieldset style="background-color:#D4FFFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table>
+<tr><td style="width:120px">Session:</td>
+<td>
+<select id="sessionId" name="sessionId" id="sessionId" style="width:300px" onchange="doDivAjaxCall$formname('weekList','getWeeks','')">
+<option value="">- Select Session -</option>
+#foreach( $session in $sessions )
+	<option value="$session.id" #if ( $session.id == $current_session.id ) selected #end>
+	#if ( $session.id == $current_session.id ) &gt; #end
+		$session.code $session.name
+	</option>
+#end
+</select>
+<input type="button" value="Get Weeks" onclick="doDivAjaxCall$formname('weekList','getWeeks','')">
+</td></tr>
+<tr><td>Week:</td>
+<td>
+<div id="weekList"><select id="week" name="week" style="width:100px"><option value=""></option></select></div>
+</td></tr>
+<tr><td>Teacher:</td>
+<td>
+<select id="teacherId" name="teacherId" style="width:300px">
+<option value=""></option>
+#foreach( $t in $teachers )
+	<option value="$t.id">$t.name</option>
+#end
+</select>
+<input type="button" value="Filter By Teacher" onclick="if ( $('sessionId').value == '' || $('week').value == '' ) { alert('Please select week');return; } else { doDivAjaxCall3$formname('classroomList','filterByTeacher',''); }">
+</td></tr>
+<tr><td>Matric No:</td>
+<td><input id="matricNo" name="matricNo" style="width:150px">
+<input type="button" value="Filter By Student" onclick="if ( $('sessionId').value == '' || $('week').value == '' ) { alert('Please select week');return; } else { doDivAjaxCall3$formname('classroomList','filterByStudent',''); }">
+</td></tr>
+</table>
+</fieldset>

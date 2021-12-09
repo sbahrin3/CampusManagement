@@ -1,0 +1,93 @@
+<table width="700" align="center">
+
+
+#if ( !$list_mode )
+
+<tr><td align="right">
+
+#if ( $_institutionType == "school" )
+<input class="gradient" style="height:30px;font-weight:bold"  type="button" value="NEXT .." onclick="doDivAjaxCall$formname('div_main','review','from=biodata')">
+#else
+<input class="gradient" style="height:30px;font-weight:bold"  type="button" value="NEXT .." onclick="doDivAjaxCall$formname('div_main','education_background','from=biodata')">
+#end
+</td></tr>
+
+#else
+
+##<tr><td align="right">
+##<input class="gradient" style="height:30px;font-weight:bold"  type="button" value="SAVE" onclick="doDivAjaxCall$formname('div_main','save_all','')">
+##</td></tr>
+
+#end
+
+#if ( $admin_mode )
+<tr><td style="font-weight:bold">
+<fieldset style="background-color:lightgrey; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="100%" cellspacing="0">
+<tr><td style="font-family:verdana;font-size:10pt;font-weight:bold">Application Status: $!applicant.status</td></tr>
+#if ( $applicant.status == "OFFERED" )
+<tr><td style="font-family:verdana;font-size:10pt;font-weight:bold">Offered Program: $!applicant.programOffered.name</td></tr>
+<tr><td style="font-family:verdana;font-size:10pt;font-weight:bold">Intake Session: $!applicant.intake.name</td></tr>
+#end
+</table>
+</fieldset>
+</td></tr>
+#end
+
+
+
+
+<tr><td>
+
+#set ( $bgcolor = "#fff" )
+#parse("apps/util/applicant/frm_program_choices.vm")
+
+</td></tr>
+
+
+
+
+
+
+<tr><td>
+
+<fieldset>
+<legend style="font-weight:bold">PERSONAL PARTICULARS</legend>
+#set ( $bgcolor = "#fff" )
+#parse("apps/util/applicant/frm_applicant_info.vm")
+</fieldset>
+
+</td></tr>
+<tr><td>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">PARENT/GUARDIAN INFORMATION</legend>
+#set ( $bgcolor = "#fff" )
+#parse("apps/util/applicant/frm_guardian_info.vm")
+</fieldset>
+
+</td></tr>
+
+#**
+<tr><td>
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">WORKING EXPERIENCE</legend>
+#parse("apps/util/applicant/working_experience.vm")
+</fieldset>
+</td></tr>
+**#
+
+#if ( !$list_mode )
+<tr><td align="right">
+#if ( $_institutionType == "school" )
+<input class="gradient" style="height:30px;font-weight:bold"  type="button" value="NEXT .." onclick="doDivAjaxCall$formname('div_main','review','from=biodata')">
+#else
+<input class="gradient" style="height:30px;font-weight:bold"  type="button" value="NEXT .." onclick="doDivAjaxCall$formname('div_main','education_background','from=biodata')">
+#end
+</td></tr>
+#else
+
+
+#end
+
+</table>

@@ -1,0 +1,27 @@
+<table width="600" align="center">
+<tr><td style="font-weight:bold">
+$caches.size()
+</td></tr>
+<tr><td>
+
+$button.command("").text("RELOAD")
+
+$button.command("clear_me").text("CLEAR ME")
+<input name="cache_id">
+$button.command("clear").text("CLEAR")
+
+<table width="100%">
+#foreach( $key in $caches.keys() )
+<tr>
+<td>$velocityCount)</td>
+<td>
+$key<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;($caches.get("$key"))
+</td>
+</tr>
+#end
+</table>
+
+
+</td></tr>
+</table>

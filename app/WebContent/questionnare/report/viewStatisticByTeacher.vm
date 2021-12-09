@@ -1,0 +1,49 @@
+<span>
+$teacher.name
+</span>
+	
+<table cellpadding="2" cellspacing="0"> 
+	<tr>
+		<td class="head" style="width:50px" align="center">#</td>
+		<td class="head" style="width:300px" align="center">Item</td>
+		#foreach($subject in $subjects)
+			<td class="head" style="width:180px" align="center">
+    				<table style="width:100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<td colspan="3" align="center">
+								$subject.code
+							</td>
+						</tr>
+    					<tr>
+							<td style="width:60px" align="center">Mean</td>
+							<td style="width:60px" align="center">Median</td>
+							<td style="width:60px" align="center">SD</td>
+							<td style="width:60px" align="center">n</td>
+						</tr>
+    				</table>
+			</td>
+		#end
+		#set ( $cnt = 0 )
+    	#foreach($refNo in $refNos)
+			#set ( $cnt = $cnt + 1 )
+			#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E2E2E2" ) #else #set ( $bgcolor = "#FFFFFF" ) #end
+    		#set ( $question = $questionMap.get("$refNo") )
+    		<tr style="background:$bgcolor;height:50px">
+    			<td class="cell">$refNo</td>
+    			<td class="cell">$question.questionText</td>
+    		#foreach($subject in $subjects)
+    			#set ( $stat = $statMap.get("${teacher.id}${subject.id}${refNo}") )
+    			<td class="cell" align="center">
+    				<table style="width:100%" cellpadding="0" cellspacing="0">
+    					<tr>
+							<td style="width:80px" align="center">$stat.mean_</td>
+							<td style="width:80px" align="center">$stat.median_</td>
+							<td style="width:80px" align="center">$stat.sd_</td>
+							<td style="width:80px" align="center">$stat.size</td>
+						</tr>
+    				</table>
+    			</td>
+    		#end
+    		</tr>
+    	#end
+</table>

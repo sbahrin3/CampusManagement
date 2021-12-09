@@ -1,0 +1,22 @@
+<ul class="nav nav-tabs">
+  <li><a href="javascript:void(0)" onclick="doDivAjaxCall$formname('info_detail', 'enrollment_biodata', '')">Enrollment & Biodata</a></li>
+  <li class="active"><a href="javascript:void(0)" onclick="doDivAjaxCall$formname('info_detail', 'finance_records', '')">Payment Records</a></li>
+</ul>
+<br/>
+
+<div style="pading:10px">
+<table class="table">
+<tr><td style="font-weight:bold">$student.matricNo $student.biodata.name</td></tr>
+<tr><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+</table>
+</div>
+
+#if ( $student.intake.startDateYear > 2014 )
+
+#parse("apps/student_information/studentPaymentScheduleView/getPaymentSchedule.vm")
+
+#else
+
+#parse("apps/util/student_info/account_statement.vm")
+
+#end

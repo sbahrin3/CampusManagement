@@ -1,0 +1,65 @@
+$dateFormat.applyPattern("EEEE d MMM, yyyy")
+<table width="100%" cellspacing="0" border="0">
+#foreach( $feedback in $reply.replies )
+<tr bgcolor="#E2E2FE"><td style="width:40px" valign="top">
+
+#if($feedback.user.userAvatarName != "")
+<img src="../download?file=$!feedback.user.userAvatarName" width="40px">
+#else
+<img src="../img/nophoto.gif" border="0" width="40px">
+#end
+
+
+</td><td valign="top">
+
+<table width="100%">
+<tr><td><span class="posting_user_name">$!feedback.user.userName</span>
+$util.putLineBreak($feedback.message)
+</td></tr>
+
+#if ( $feedback.attachments.size() > 0 )
+<tr><td class="posting_date">
+<table width="100%" cellspacing="0">
+#foreach( $att in $feedback.attachments)
+<tr><td style="width:20px" align="center">
+<a href="../download?file=$att.fullFileName"><img src="../img/attachment_icon.gif" border="0"></a>
+</td><td>
+<a href="../download?file=$att.fullFileName" style="font-family:arial;font-size:8pt;text-decoration:none">$att.fileName</a>
+</td></tr>
+#end
+</table>
+</td></tr>
+#end
+
+<tr><td class="posting_date">
+$dateFormat.format($feedback.postDate) at $timeFormat.format($feedback.postTime)
+</td></tr>
+</table>
+
+</td></tr>
+#end
+
+
+##POST FEEDBACK BUTTON
+
+<tr><td colspan="2">
+&bull;
+<a href="javascript:void()" style="font-weight:bold;color:#0000FF" onclick="$('div_feedback_$reply.id').style.display='block';">Post Feedback</a></td></tr>
+
+<tr><td colspan="2">
+<div id="div_feedback_wait_indicator_$reply.id" name="div_feedback_wait_indicator_$reply.id" style="visibility='hidden'"></div>
+</td></tr>
+</table>
+
+
+<script>
+#if ( $reply.replies.size() == 0 )
+$('feedback_number_$reply.id').innerHTML="There are no feedback.  Click here to post a feedback --&gt;";
+#elseif ( $reply.replies.size() == 1 )
+$('feedback_number_$reply.id').innerHTML="One feedback posted.";
+#elseif ( $reply.replies.size() > 1 )
+$('feedback_number_$reply.id').innerHTML="$reply.replies.size() feedbacks";
+#end
+
+</script>
+

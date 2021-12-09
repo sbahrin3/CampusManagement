@@ -1,0 +1,44 @@
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr height="30px" bgcolor="lightgrey" >
+<td style="font-weight:bold">Date</td>
+<td style="font-weight:bold">From</td>
+<td style="font-weight:bold">To</td>
+<td  style="font-weight:bold" colspan="3">Person</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach ( $r in $reservation_list )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "lightgrey" ) #else #set ( $bgcolor = "#FFFFFF" ) #end
+<tr height="25px" bgcolor="$bgcolor">
+<td>$du.toString($r.checkInDate, "dd-MM-yyyy")</td>
+<td>$du.toString($r.checkInTime, "h:mm a")</td>
+<td>$du.toString($r.checkOutTime, "h:mm a")</td>
+
+<td>
+#if ( $r.isStudent )
+$r.student.biodata.name ($r.student.matricNo)
+#else
+$r.user.userName ($r.user.userId)
+#end
+</td>
+
+<td>
+
+<div id="approval_button_${r.id}" name="approval_button_${r.id}">
+
+#parse( "apps/facility_booking/list_button.vm")
+
+</div>
+
+</td>
+</tr>
+#end
+<td colspan="6" style="font-weight:bold">
+<br>
+</td>
+<tr>
+<td colspan="6" style="font-weight:bold">
+Total: $cnt
+</td>
+</tr>
+</table>

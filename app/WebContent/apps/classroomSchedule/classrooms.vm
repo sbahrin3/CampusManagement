@@ -1,0 +1,12 @@
+
+#if ( !$studentMode )
+<div style="border:2px solid #ccc;padding:5px;font-family:arial, helvetica,sans-serif;font-size:12pt;font-weight:bold;margin-top:10px;margin-bottom:10px;background:#F4F2F2">
+CLASSROOMS SCHEDULE
+</div>
+<br/>
+#end
+#parse("apps/classroomSchedule/classroomItems.vm")
+
+<table style="width:100%"><tr><td>
+<input class="linkbutton" type="button" value="Download PDF" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.timetabling.module.ClassroomSchedulePDFModule?matricNo=$student.matricNo&pdfName=classroomSchedule';">
+</td></tr></table>

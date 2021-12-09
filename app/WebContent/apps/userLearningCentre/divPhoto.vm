@@ -1,0 +1,15 @@
+<table width="100%">
+<tr><td>
+#if ( $!profilePhotoFileName )
+<img src="../download?file=$!profilePhotoFileName" border="0">
+#else
+<img src="../img/nophoto.gif" border="0">
+#end
+<input type="hidden" name="profilePhotoName" value="$!profilePhotoName">
+<input type="hidden" name="avatarPhotoName" value="$!avatarPhotoName">
+</td></tr>
+<tr><td>
+<input type="file" id="profilePhoto" name="profilePhoto">
+
+</td></tr>
+</table>

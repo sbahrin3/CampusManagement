@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<div style="padding:10px">
+
+<table>
+<tr><td>
+
+</td></tr>
+
+<tr><td align="center">
+<div id="marking" name="marking">
+#parse("apps/util/grade_setup/select_marking.vm")
+</div>
+
+</td></tr>
+<tr><td align="center">
+<br><br>
+<div id="grade" name="grade"></div>
+</td></tr>
+
+
+</table>
+
+<div id="empty"></div>
+
+</div>

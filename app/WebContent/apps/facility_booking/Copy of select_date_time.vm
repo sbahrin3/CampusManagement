@@ -1,0 +1,97 @@
+<table width="100%">
+<tr>
+<td>
+On Date:</td>
+<td>$html.dateField.name("date_in").value("").style("width:100px;text-align:center")</td>
+</tr>
+<tr>
+<td>Start Time:</td><td>
+<select name="time_in">
+
+#foreach( $i in [6..9])
+<option value="${i}.00:AM">&nbsp;${i}.00 AM</option>
+<option value="${i}.15:AM">&nbsp;${i}.15 AM</option>
+<option value="${i}.30:AM">&nbsp;${i}.30 AM</option>
+<option value="${i}.45:AM">&nbsp;${i}.45 AM</option>
+#end
+#foreach( $i in [10..11])
+<option value="${i}.00:AM">${i}.00 AM</option>
+<option value="${i}.15:AM">${i}.15 AM</option>
+<option value="${i}.30:AM">${i}.30 AM</option>
+<option value="${i}.45:AM">${i}.45 AM</option>
+#end
+
+#foreach( $i in [12..12])
+<option value="${i}.00:PM">${i}.00 PM</option>
+<option value="${i}.15:PM">${i}.15 PM</option>
+<option value="${i}.30:PM">${i}.30 PM</option>
+<option value="${i}.45:PM">${i}.45 PM</option>
+#end
+
+#foreach( $i in [1..9])
+<option value="${i}.00:PM">&nbsp;${i}.00 PM</option>
+<option value="${i}.15:PM">&nbsp;${i}.15 PM</option>
+<option value="${i}.30:PM">&nbsp;${i}.30 PM</option>
+<option value="${i}.45:PM">&nbsp;${i}.45 PM</option>
+#end
+
+#foreach( $i in [10..11])
+<option value="${i}.00:PM">${i}.00 PM</option>
+<option value="${i}.15:PM">${i}.15 PM</option>
+<option value="${i}.30:PM">${i}.30 PM</option>
+<option value="${i}.45:PM">${i}.45 PM</option>
+#end
+</select>
+
+
+</td>
+</tr>
+
+<tr>
+<td>End Time:</td><td>
+
+<select name="time_out">
+
+#foreach( $i in [6..9])
+<option value="${i}.00:AM">&nbsp;${i}.00 AM</option>
+<option value="${i}.15:AM">&nbsp;${i}.15 AM</option>
+<option value="${i}.30:AM">&nbsp;${i}.30 AM</option>
+<option value="${i}.45:AM">&nbsp;${i}.45 AM</option>
+#end
+#foreach( $i in [10..11])
+<option value="${i}.00:AM">${i}.00 AM</option>
+<option value="${i}.15:AM">${i}.15 AM</option>
+<option value="${i}.30:AM">${i}.30 AM</option>
+<option value="${i}.45:AM">${i}.45 AM</option>
+#end
+
+#foreach( $i in [12..12])
+<option value="${i}.00:PM">${i}.00 PM</option>
+<option value="${i}.15:PM">${i}.15 PM</option>
+<option value="${i}.30:PM">${i}.30 PM</option>
+<option value="${i}.45:PM">${i}.45 PM</option>
+#end
+
+#foreach( $i in [1..9])
+<option value="${i}.00:PM">&nbsp;${i}.00 PM</option>
+<option value="${i}.15:PM">&nbsp;${i}.15 PM</option>
+<option value="${i}.30:PM">&nbsp;${i}.30 PM</option>
+<option value="${i}.45:PM">&nbsp;${i}.45 PM</option>
+#end
+
+#foreach( $i in [10..11])
+<option value="${i}.00:PM">${i}.00 PM</option>
+<option value="${i}.15:PM">${i}.15 PM</option>
+<option value="${i}.30:PM">${i}.30 PM</option>
+<option value="${i}.45:PM">${i}.45 PM</option>
+#end
+</select>
+
+<input type="button" value="Make Reservation" onclick="doDivAjaxCall$formname('schedule_data', 'facility_booking', 'student_id=$student.id')">
+<input type="button" value="Reset" onclick="document.getElementById('date_in').value=''">
+
+
+</td>
+</tr>
+
+</table>

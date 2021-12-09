@@ -1,0 +1,56 @@
+<script>
+$('divMakePayment').style.display="block";
+</script>
+
+<div style="float:right">
+	<a href="javascript:void(0)" onclick="$('divMakePayment').style.display='none';">X</a>
+</div>
+<div style="font-weight:bold;padding:10px;text-align:center;border-bottom:1px dotted #000">
+	Create Hostel Payment Schedule
+</div>
+<div id="divPaymentDetail" style="padding:10px;width:600px;height:450px;">
+	
+	<div style="margin-top:100px">
+	<table align="center">
+		<tr style="height:30px">
+			<td style="width:200px">Amount Due (Every month) :</td><td style="width:200px"><input class="texts" name="hostelAmountDue"></td>
+			
+		</tr>
+		<tr style="height:30px">
+			<td>First Month Payment Due Date :</td>
+			<td>
+				<input class="texts" id="startPaymentDate" name="startPaymentDate">
+    			<script> new JsDatePick({ useMode:2, target:"startPaymentDate", dateFormat:"%d-%m-%Y" }); </script>
+			</td>
+		</tr>
+		<tr style="height:30px">
+			<td>Number Payment Months :</td>
+			<td>
+				<select class="texts" name="totalMonths">
+					#foreach( $i in [1..24] )
+						<option value="$i">$i</option>
+					#end
+				</select>
+			</td>
+		</tr>
+		<tr style="height:30px">
+			<td>Monthly Interval:</td>
+			<td>
+				<select class="texts" name="monthlySpan">
+					#foreach( $i in [1..12] )
+						<option value="$i">$i</option>
+					#end
+				</select>
+			</td>
+		</tr>
+		<tr style="height:100px">
+			<td colspan="2" align="center">
+				
+				<input class="linkbutton" type="button" value="Save Hostel Payment Schedule" onclick="doDivAjaxChainCall$formname('divMakePayment','saveHostelPaymentSchedule','','getPaymentSchedule','getPaymentSchedule','studentId=$student.id');$('divMakePayment').style.display='none';">
+					
+			</td>
+		</tr>
+	</table>
+	</div>
+	
+</div>

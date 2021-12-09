@@ -1,0 +1,156 @@
+#macro ( q $number $questionText)
+<tr class="tr1" onmouseover="this.className='tr2'" onmouseout="this.className='tr1'">
+<td>$number)</td>
+<td>
+$questionText
+</td>
+<td align="center"><input type="radio" name="q$number" value="5"></td>
+<td align="center"><input type="radio" name="q$number" value="4"></td>
+<td align="center"><input type="radio" name="q$number" value="3"></td>
+<td align="center"><input type="radio" name="q$number" value="2"></td>
+<td align="center"><input type="radio" name="q$number" value="1"></td>
+</tr>
+#end
+
+<table style="width:900px">
+<tr><td colspan="2" style="height:30px;background:#6B6767;color:#FFF;font-family:Verdana;font-size:12pt;font-weight:bold" align="center">STUDENT EVALUATION ON TEACHING</td></tr>
+<tr><td style="width:150px;font-weight:bold">FACULTY</td><td><input class="text comment" name="facultyName"></td><tr>
+<tr><td style="width:150px;font-weight:bold">COURSE</td><td><input class="text comment" name="courseName"></td><tr>
+<tr><td style="width:150px;font-weight:bold">CODE</td><td><input class="text comment" name="codeName"></td><tr>
+<tr><td style="width:150px;font-weight:bold">SEMESTER & YEAR</td><td><input class="text comment" name="semesterYear"></td><tr>
+</table>
+<br/><br/>
+<table style="width:900px">
+<tr><td>
+<b>PART I</b><br/><br/>
+The following items in Part 1 are designed to give faculty useful feedback regarding ways to
+enhance student learning in a course. Please tick (/) the item that best describes your response.  Answer all the items as best as you can.
+All responses are confidential.<br/><br/>
+<b>Key:</b><br/>
+5 - Strongly Agree<br/>
+4 - Agree<br/>
+3 - Neutral<br/>
+2 - Disagree<br/>
+1 - Strongly Disagree<br/>
+</td></tr>
+</table>
+
+<table style="width:900px;background:#6B6767;" cellspacing="1" cellpadding="4">
+<tr class="tr1"><td style="width:40px"></td>
+<td></td>
+<td style="width:40px" align="center">5</td>
+<td style="width:40px" align="center">4</td>
+<td style="width:40px" align="center">3</td>
+<td style="width:40px" align="center">2</td>
+<td style="width:40px" align="center">1</td>
+</tr>
+
+##q("", "")
+#q("1", "The lecturer has made the course objectives clear")
+#q("2", "The resources for the course were helpful (whiteboard, handouts, references, power points)")
+#q("3", "The lecturer uses many teaching strategies that enhance my learning")
+#q("4", "The lecturer is able to explain facts and concepts clearly")
+#q("5", "The lecturer shos in-depth knowledge of the course")
+#q("6", "The lecturer is approachable outside of the course itself (anwering emails, personal conversation")
+#q("7", "The lecturer has encouraged students to participate actively in class")
+#q("8", "The lecturer tries to model what he/she expects of students")
+#q("9", "The lecturer gives exercises (quizzes, case study.. to assess my level of understanding")
+#q("10", "The lecturer gives good feedback on assignments and projects so that I can improve")
+#q("11", "The lecturer provides activities that make subject matter meaningful")
+#q("12", "The lecturer shows concern in the quality of his/her teaching")
+#q("13", "The lecturer is consistent and fair in discipline")
+#q("14", "The lecturer stresses on punctuality")
+#q("15", "I would recommend this lecturer to others")
+</table>
+<br/>
+<table style="width:900px">
+<tr class="tr1"><td>
+<span style="font-weight:bold">Comments:</span>
+<div style="padding:10px">
+A) What are the positive of this lecturer?
+(<input class="counting" name="comment1Count" value="255" readonly> characters left)
+<br/>
+<textarea class="text comment" style="height:100px" name="comment1"
+onKeyDown="limitText(this.form.comment1,this.form.comment1Count,255);" 
+onKeyUp="limitText(this.form.comment1,this.form.coment1Count,255);"></textarea>
+</div>
+<div style="padding:10px">
+B) What qualities of this lecturer that you would like to improve?
+(<input class="counting" name="comment2Count" value="255" readonly> characters left)
+<br/>
+<textarea class="text comment" style="height:100px" name="comment2"
+onKeyDown="limitText(this.form.comment2,this.form.comment2Count,255);" 
+onKeyUp="limitText(this.form.comment2,this.form.coment2Count,255);"></textarea>
+</div>
+</td></tr>
+</table>
+</br>
+<table style="width:900px;background:#6B6767;" cellspacing="1" cellpadding="4">
+<tr class="tr1"><td colspan="5">What overall rating would you give this course?</td>
+<tr class="tr1">
+<td style="width:130"><input type="radio" name="overallRating" value="5">Excellent</td>
+<td style="width:130"><input type="radio" name="overallRating" value="4">Very Good</td>
+<td style="width:130"><input type="radio" name="overallRating" value="3">Good</td>
+<td style="width:130"><input type="radio" name="overallRating" value="2">Average</td>
+<td style="width:130"><input type="radio" name="overallRating" value="1">Poor</td>
+</tr>
+</table>
+
+<br/>
+<table style="width:900px">
+<tr class="tr1"><td>
+<b>PART II</b><br/><br/>
+The following items in Part II are designed to give the university authorities useful feedback to
+improve and upgrade facilities to enhance the learning environment.
+<br/><br/>
+<b>Key:</b><br/>
+5 - Strongly Agree<br/>
+4 - Agree<br/>
+3 - Neutral/Not Applicable<br/>
+2 - Disagree<br/>
+1 - Strongly Disagree<br/>
+</td></tr>
+</table>
+<table style="width:900px;background:#6B6767;" cellspacing="1" cellpadding="4">
+<tr class="tr1"><td style="width:40px"></td>
+<td ></td>
+<td style="width:40px" align="center">5</td>
+<td style="width:40px" align="center">4</td>
+<td style="width:40px" align="center">3</td>
+<td style="width:40px" align="center">2</td>
+<td style="width:40px" align="center">1</td>
+</tr>
+
+#q("16", "The class venue is conducive for learning")
+#q("17", "Facilities in the class are adequate (air-condition, lighting, chairs etc)")
+#q("18", "Labs are well-equipped")
+#q("19", "Labs are functioning")
+#q("20", "Computer labs and IT facilities are up to expectations")
+#q("21", "Computer labs and IT facilities are functioning")
+#q("22", "Equipment or mannequins for clinical teaching are adequate")
+#q("23", "Library and reference materials meet my needs")
+#q("24", "Accomodation provided is adequate")
+</table>
+
+<br/>
+<table style="width:900px">
+<tr class="tr1"><td>
+<span style="font-weight:bold">Comments:</span>
+<div style="padding:10px">
+C) What university facilities need to be improved? 
+(<input class="counting" name="comment3Count" value="255" readonly> characters left)
+<br/>
+<textarea class="text comment" style="height:100px" name="comment3"
+onKeyDown="limitText(this.form.comment3,this.form.comment3Count,255);" 
+onKeyUp="limitText(this.form.comment3,this.form.coment3Count,255);"></textarea>
+
+</div>
+</td></tr>
+</table>
+
+<table style="width:900px">
+<tr><td colspan="2" style="height:40px;background:#6B6767;color:#FFF" align="center">
+<input class="linkbutton" style=";font-family:Verdana;font-size:10pt;font-weight:bold" type="button" value="SUBMIT MY EVALUATION"
+onclick="if ( validateAll() ) { doDivAjaxCall3$formname('questionnare','save',''); }">
+</td></tr>
+</table>

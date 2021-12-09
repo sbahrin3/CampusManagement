@@ -1,0 +1,19 @@
+<span id="messageFaculty"></span>
+<table class="table table-striped">
+<tr style="height:30px;background:#BABBBC">
+<td style="width:100px;font-weight:bold">Code</td>
+<td style="font-weight:bold">Name</td>
+<td style=""></td>
+</tr>
+#foreach( $faculty in $faculties )
+
+<tr style="height:25px" onmouseover="this.style.backgroundColor='#FFFF99'" onmouseout="this.style.backgroundColor='#FFF'">
+<td class="row">$faculty.code</td>
+<td class="row">$faculty.name</td>
+<td class="row" align="center">
+<button type="button" class="btn btn-primary btn-sm" onclick="clickFaculty();doDivAjaxCall$formname('listFacultyItems','getSubjectGroups','getFacultyId=$faculty.id')">Subject Groups..</button>
+</td>
+
+</tr>
+#end
+</table>

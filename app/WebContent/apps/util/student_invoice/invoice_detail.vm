@@ -1,0 +1,61 @@
+
+$dateFormat.applyPattern("d MMM, yyyy")
+
+#if ( $invoice.invoiceType == 1 ) #set ( $bgcolor = "#FFCCCC") #else #set ( $bgcolor = "#FFFFFF") #end
+<fieldset>
+<legend style="font-weight:bold">Invoice Detail</legend>
+<table width="100%">
+<tr><td style="width:150px"></td><td>#if ( $invoice.refund ) <b>Please note, this is a Refund</b> #end</td></tr>
+#if ( $invoice.sponsorInvoice )
+<tr><td>Invoiced to Sponsor:</td><td  style="font-weight:bold">$invoice.sponsorInvoice.sponsor.name</td></tr>
+#end
+<tr><td>Invoice No:</td><td  style="font-weight:bold">
+$invoice.invoiceNo
+</td></tr>
+<tr><td>Date:</td><td  style="font-weight:bold">$dateFormat.format($invoice.createDate)</td></tr>
+</table>
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:20px"></td>
+<td style="font-weight:bold">Item</td>
+<td style="font-weight:bold" align="right">Amount (RM)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#foreach ( $i in $invoice.invoiceItems )
+<tr height="30px">
+<td class="gradient" align="center">${velocityCount}.</td>
+<td style="border-bottom:1px solid #BCBCBC">$i.description</td>
+<td style="border-bottom:1px solid #BCBCBC" align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+
+#**
+<tr height="30px">
+<td class="gradient" align="center"></td>
+<td style="border-bottom:1px solid #BCBCBC" align="right"></td>
+<td style="border-bottom:1px solid #BCBCBC;background:#BCBCBC" align="right">Discount: <input class="text" style="width:100px" name="discountAmount"><input class="linkbutton" type="button" value="OK" onclick="doDivAjaxCall$formname('div_invoice_detail', 'give_discount', 'invoice_id=$invoice.id&student_status_id=$student_status_id')"></td>
+</tr>
+**#
+<tr height="30px">
+<td colspan="2" style="font-weight:bold">TOTAL:</td>
+<td align="right" style="font-weight:bold">$numFormat.format($invoice.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</table>
+<br><br>
+<table width="100%">
+#if ( !$invoice.sponsorInvoice )
+	<tr><td align="center">
+	<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_invoice_detail','attempt_delete_invoice','invoice_id=$invoice.id&student_status_id=$student_status_id')">
+	#if ( !$invoice.refund )
+	<u><em>DELETE THIS INVOICE</em><u>
+	#else
+	<u><em>CANCEL THIS REFUND</em><u>
+	#end
+	</a>
+	</td></tr>
+	#else
+	<tr><td>	
+	<b>Invoice To Sponsor: $invoice.sponsorInvoice.sponsor.name</b>
+	</td></tr>
+	#end
+</table>
+
+</fieldset>

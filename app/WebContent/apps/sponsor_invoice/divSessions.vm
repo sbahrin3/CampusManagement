@@ -1,0 +1,6 @@
+<select name="invoice_session" class="texts">
+<option value=""></option>
+#foreach( $s in $sessions )
+<option value="$s.id" #if ( $currentSession.id == $s.id ) selected #end> #if ( $currentSession.id == $s.id ) &gt; #end$s.name</option>
+#end
+</select>

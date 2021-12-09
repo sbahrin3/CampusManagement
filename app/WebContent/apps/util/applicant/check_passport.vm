@@ -1,0 +1,25 @@
+<script>
+
+
+#if ( $applicant.nationalityType == "2" )
+$('div_mailing_1').style.visibility = 'hidden';
+$('div_mailing_2').style.visibility = 'visible';
+$('div_permanent_1').style.visibility = 'hidden';
+$('div_permanent_2').style.visibility = 'visible';
+
+$('div_mailing_1').style.display = 'none';
+$('div_mailing_2').style.display = 'block';
+$('div_permanent_1').style.display = 'none';
+$('div_permanent_2').style.display = 'block';
+#else
+$('div_mailing_1').style.visibility = 'visible';
+$('div_mailing_2').style.visibility = 'hidden';
+$('div_permanent_1').style.visibility = 'visible';
+$('div_permanent_2').style.visibility = 'hidden';
+
+$('div_mailing_1').style.display = 'block';
+$('div_mailing_2').style.display = 'none';
+$('div_permanent_1').style.display = 'block';
+$('div_permanent_2').style.display = 'none';
+#end
+</script>

@@ -1,0 +1,37 @@
+<input type="hidden" id="totalCnt" value="$totalCnt">
+
+<table style="background:#BFBFBF">
+<tr>
+<td colspan="6" align="right">
+
+#if ( $totalCnt > 0 )
+<input class="linkbutton" type="button" value="RUN IMPORT MARKS..." onclick="doDivAjaxCall$formname('result_1','saveMark','cnt=1&totalCnt=$totalCnt')">
+#else
+<input class="linkbutton" type="button" value="RUN IMPORT MARKS..." onclick="doDivAjaxCall$formname('result_1','saveMark','cnt=1&totalCnt=0')">
+#end
+
+</td>
+</tr>
+<tr style="height:30px;background:#DBDBDB">
+<td style="width:50px" align="center">&nbsp;</td>
+<td style="width:150px" align="center">Matric No</td>
+<td style="width:150px" align="center">Session Code</td>
+<td style="width:150px" align="center">Subject Code</td>
+<td style="width:150px" align="center">Mark</td>
+<td style="width:150px" align="center"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $r in $results )
+#set ( $cnt = $cnt + 1 )
+<tr style="height:25px;background:#fff">
+<td align="center">$cnt.</td>
+<td align="center">$r.matricNo</td>
+<td align="center">$r.sessionCode</td>
+<td align="center">$r.subjectCode</td>
+<td align="center">$r.mark</td>
+<td align="center"><div id="result_$cnt"></div></td>
+</tr>
+#end
+</table>
+#set ( $cnt = $cnt + 1 )
+<div id="result_$cnt"></div>

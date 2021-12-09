@@ -1,0 +1,41 @@
+
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+
+.texts {	text-transform: uppercase;
+		color#000;
+		background-color:#fff;
+		font-weight:normal;
+		font-family:verdana;
+		font-size:9pt; 
+		border-bottom:1px solid #66CCCC; 
+		border-top:1px solid #66CCCC; 
+		border-left:1px solid #66CCCC; 
+		border-right:1px solid #66CCCC; 
+		height:26px; 
+		width:100%;
+		}
+.texts:focus {	text-transform: uppercase;
+				color:#000;
+				background-color:#FFFF99;
+				font-weight:normal;
+				font-family: verdana;
+				font-size:9pt; 
+				}
+
+</style>
+
+
+
+<table width="700" style="background-color:#fff">
+
+<tr><td>
+<div id="div_main">
+#parse("apps/util/applicant/page1_applicant.vm")
+</div>
+</td></tr>
+<tr><td>
+<div id="div_empty"></div>
+</td></tr>
+</table>

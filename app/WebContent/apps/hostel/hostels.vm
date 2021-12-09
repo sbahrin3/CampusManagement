@@ -1,0 +1,37 @@
+<table width="600px">
+<tr><td>
+
+
+<table width="100%">
+<tr>
+<td>Hostel Code:<input name="code" style="width:100%"></td>
+<td>Hostel Name:<input name="name" style="width:400px"></td>
+<td>
+<input type="button" value="Add" onclick="doAjaxCall$formname('add_hostel','')">
+</td>
+</tr>
+</table>
+
+<table width="100%">
+#foreach( $hostel in $hostels )
+<tr>
+<td>
+$hostel.code
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_$hostel.id', 'list_buildings', 'hostel_id=$hostel.id')">
+$hostel.name
+</a>
+</td>
+<td align="right">
+<a href="javascript:void()" onclick="if ( !confirm('Are you sure?') ) return; doAjaxCall$formname('delete_hostel', 'hostel_id=$hostel.id')">x</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<div id="hostel_$hostel.id" name="hostel_$hostel.id"></div>
+</td>
+</tr>
+#end
+</table>
+
+
+</td></tr></table>

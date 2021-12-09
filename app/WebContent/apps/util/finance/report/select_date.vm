@@ -1,0 +1,93 @@
+<script>calndr.showNavigationDropdowns();</script>
+<table width="900" style="background:#EFEDED">
+<tr><td>
+
+<table width="100%">
+<tr>
+<td>Between Date:</td>
+<td>
+$html.dateField.name("date_from").value("$!date_from").style("width:100px")
+$html.dateField.name("date_to").value("$!date_to").style("width:100px")</td>
+</tr>
+
+#**
+<tr>
+<td>Select Fee Item:</td>
+<td>
+<select name="fee_item_id">
+<option value="">(ALL)</option>
+#foreach( $i in $fee_items )
+<option value="$i.id" #if ( $fee_item_id == $i.id ) selected #end >$i.description</option>
+#end
+</select>
+</td>
+</tr>
+**#
+
+<tr>
+<td>Select Program:</td>
+<td>
+<select name="program_id">
+<option value="">(ALL)</option>
+#foreach( $i in $programs )
+<option value="$i.id" #if ( $program_id == $i.id ) selected #end >$i.code $i.name</option>
+#end
+</select>
+</td>
+</tr>
+
+
+<tr>
+<td></td>
+<td>
+
+<input type="checkbox" name="cb_normal" value="yes" />Payment ##Invoice/Payment
+
+<input type="checkbox" name="cb_creditnote" value="yes" />Credit Note
+<input type="checkbox" name="cb_debitnote" value="yes" />Debit Note
+<input type="checkbox" name="cb_refund" value="yes" />Refund
+<br/>
+Payment Mode:
+<select name="paymentMode">
+	<option value="">ALL</option>
+	<option value="CASH">CASH</option>
+	<option value="CHEQUE">CHEQUE</option>
+	<option value="BANK-IN">BANK-IN</option>
+	<option value="BANK TRANSFER">BANK TRANSFER</option>
+	<option value="BANK DRAFT">BANK DRAFT</option>
+	<option value="CREDIT CARD">CREDIT CARD</option>
+	<option value="DIRECT DEBIT">DIRECT DEBIT</option>
+	<option value="TELEGRAPH TRANSFER">TELEGRAPH TRANSFER</option>
+</select>
+
+<input class="linkbutton" type="button" value="VIEW REPORT" style="font-weight:bold;height:30px" onclick="if ( $('date_to').value == '' ) $('date_to').value = $('date_from').value ; doDivAjaxCall$formname('div_report','list_transactions','');">
+
+</td>
+</tr>
+
+#**
+<tr>
+<td>Student Status:</td>
+<td>
+<select name="status_id">
+<option value="">(ALL)</option>
+#foreach( $i in $status_types )
+<option value="$i.id">$i.name</option>
+#end
+</select>
+</td>
+</tr>
+**#
+
+<tr><td colspan="3"><br/></td></tr>
+
+<tr>
+<td></td>
+<td>
+
+</td></tr>
+
+</table>
+
+
+</td></tr></table>

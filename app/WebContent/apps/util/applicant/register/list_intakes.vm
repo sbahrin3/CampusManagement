@@ -1,0 +1,6 @@
+<select class="text" id="intake_id" name="intake_id">
+<option value=""> - select intake - </option>
+#foreach( $i in $intakes )
+<option value="$i.id" #if ( $current_session.id == $i.id ) selected #end>#if ( $current_session.id == $i.id ) &gt; #end$i.code $i.name</option>
+#end
+</select>

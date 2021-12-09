@@ -1,0 +1,19 @@
+<table style="width:100%">
+<tr>
+<td style="width:150px">Select Course:</td>
+<td style="width:400px">
+
+<select class="texts" style="height:30px" id="selectSubjectId" name="selectSubjectId" onchange="$('subjectId').value=this.value;doDivAjaxCall$formname('divClassrooms','listClassrooms','')">
+<option value=""></option>
+	#foreach( $subject in $subjects )
+		<option value="$subject.id">$subject.code - $subject.name #if ($subject.version && $subject.version != "" ) (Version $subject.version) #end</option>
+	#end
+</select>
+
+</td>
+<td>
+<button type="button" class="btn btn-primary" onclick="$('subjectId').value=$('selectSubjectId').value;doDivAjaxCall$formname('divClassrooms','listClassrooms','')">Get...</button>
+
+</td>
+</tr>
+</table>

@@ -1,0 +1,37 @@
+<ul id="hostelList" style="list-style-type:none; padding: 0px;">
+	
+	#set ( $cnt = 0 )
+	#foreach( $h in $hostels )
+	#set ( $cnt = $cnt + 1 )
+	<li id="hostelList_$cnt" style="padding:0px">
+		<input type="hidden" name="hostelIds" value="$h.id">
+		<table cellpadding="1" cellspacing="0">
+		<tr>
+		<td style="width:20px;cursor:pointer" valign="top">$cnt.</td>
+		<td style="width:100px" valign="top"><input class="text" name="hostelCode_$h.id" value="$h.code" onchange="doDivAjaxCall3$formname('empty','changeHostelCode','hostelId=$h.id')"></td>
+		<td style="width:350px" valign="top"><input class="text" name="hostelName_$h.id" value="$h.name" onchange="doDivAjaxCall3$formname('empty','changeHostelName','hostelId=$h.id')"></td>
+		<td style="width:400px" valign="top"><textarea class="text" style="height:70px" name="hostelAddress_$h.id" onchange="doDivAjaxCall3$formname('empty','changeHostelAddress','hostelId=$h.id')">$!h.address</textarea></td>
+		<td style="width:50px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listHostels','deleteHostel','hostelId=$h.id')"></td>
+		<td style="width:80px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="Buildings" onclick="doDivAjaxCall3$formname('divHostel','listBuildings','hostelId=$h.id')"></td>
+		<td>
+		</tr>
+		</table>
+	</li>
+	#end
+</ul>
+<table cellpadding="1" cellspacing="0">
+<tr>
+<td style="width:20px"></td>
+<td style="width:100px"><input class="text" name="hostelCode" value=""></td>
+<td style="width:350px"><input class="text" name="hostelName" value=""></td>
+<td style="width:400px"><textarea class="text" style="height:70px" name="hostelAddress"></textarea></td>
+<td style="width:100px"><input class="linkbutton" type="button" style="width:100%" value="Add" onclick="doDivAjaxCall3$formname('listHostels','addHostel','')"></td>
+</tr>
+</table>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('hostelList', { onUpdate:updateHostelSequence});
+function updateHostelSequence() {
+	doDivAjaxCall3$formname('listHostels','updateHostelSequence','')	
+}
+</script>

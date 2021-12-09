@@ -1,0 +1,44 @@
+<div style="padding:10px">
+	
+	<table>
+		<tr style="height:30px;background:#AEB1B2">
+			<td style="width:30px"></td>
+			<td style="width:100px">Date</td>
+			<td style="width:130px" align="right">Monthly Due</td>
+			<td style="width:130px" align="right">Monthly Paid</td>
+			<td style="width:130px" align="right">Monthly Balance</td>
+			<td style="width:130px" align="right">Total Balance</td>
+		</tr>
+		#set ( $cnt = 0 )
+		#foreach ( $i in $items )
+			#set ( $cnt = $cnt + 1 )
+			#if ( $cnt % 2 == 0 )
+				#set ( $bgcolor = "#fff")
+			#else
+				#set ( $bgcolor = "#D6E2EE" )
+			#end
+			<tr style="height:30px;background:$bgcolor">
+				<td>$cnt.</td>
+				<td>$dateFormat.format($i.paymentDate)</td>
+				<td align="right">$numFormat.format($i.amountDue)</td>
+				<td align="right" style="cursor:pointer" onclick="">$numFormat.format($i.amountPaid)</td>
+				<td align="right">$numFormat.format($i.currentBalance)</td>
+				<td align="right">$numFormat.format($i.outstandingBalance)</td>
+			</tr>
+		#end
+    	<tr style="height:50px">
+    		<td colspan="6" align="right">
+				<input class="linkbutton" type="button" value="Cancel" onclick="$('createPaymentSchedule').style.display='none';$('inputPaymentSchedule').style.display='block';$('createPayment_Wait').style.display='none';$('createPaymentButton').style.display='block';">
+    			<input class="linkbutton" type="button" value="Save Payment Schedule" onclick="if ( !confirm('Please confirm to save this payment schedule.') ) return; doDivAjaxCall$formname('divPaymentSchedule','savePaymentSchedule','studentId=$student.id')">
+    		</td>
+    	</tr>
+	</table>
+	
+</div>
+	
+<script>
+
+$('createPaymentSchedule').style.display="block";
+$('inputPaymentSchedule').style.display="none";
+
+</script>

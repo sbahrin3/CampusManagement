@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+
+<div style="padding:10px">
+	
+	<table>
+		<tr>
+			<td style="width:100px">
+				Student ID:
+			</td>
+			<td style="width:200px">
+				<input class="texts" name="matricNo">
+			</td>
+			<td>
+				<input type="button" class="linkbutton" value="Get..." onclick="doDivAjaxCall$formname('getStudent','getStudent','')">
+			</td>
+		</tr>
+	</table>
+	
+	<div id="getStudent" style="margin-top:20px"></td>
+	
+</div>

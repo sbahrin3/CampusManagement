@@ -1,0 +1,7 @@
+#set ( $ct = 0 )
+#foreach( $t in $teachers_list )
+	#set ( $ct = $ct + 1 )
+	<input type="checkbox" name="teacherIds" value="$t.id" onclick="doSelectTeacher()">$t.name<br/>
+#end
+
+##if ( $ct == 1 ) checked #end

@@ -1,0 +1,35 @@
+<table style="background-color:#fff" cellpadding="1" cellspacing="0">
+<tr class="gradient" style="height:30px">
+<td style="width:30px;font-weight:bold">&nbsp;</td>
+
+#parse("$row_title_page")
+
+<td style="width:30px"></td>
+<td style="width:30px"></td>
+</tr>
+
+
+#set ( $count = $row_start )
+#set ( $bgcolor = "#fff" )
+#foreach ( $r in $records )
+#set ( $count = $count + 1 )
+#if ( $count % 2 == 0 ) #set ( $bgcolor = "#fff" ) #else #set ( $bgcolor = "#e1e1e1" ) #end
+<tr id="row_$r.id" height="30px" style="background-color:$bgcolor;" onmouseout="$('row_$r.id').style.backgroundColor='$bgcolor'" onmouseover="$('row_$r.id').style.backgroundColor='silver'">
+<td>$count.</td>
+
+#parse("$row_data_page")
+
+<td align="center">
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_main','edit','record_id=$r.id&data_size=$data_size&total_page=$total_page')"><img src="../img/edit.gif" border="0"></a>
+</td>
+<td align="center">
+#if ( $r.deleted )
+<a href="javascript:void()" onclick="if ( !confirm('Delete this Record??') ) return; $('_wait').innerHTML='Please wait...';doDivAjaxCall3$formname('div_items','delete','record_id=$r.id&data_size=$data_size&total_page=$total_page')"><img src="../img/delete.gif" border="0"></a>
+#end
+</td>
+
+
+</tr>
+
+#end
+</table>

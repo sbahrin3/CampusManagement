@@ -1,0 +1,22 @@
+<table width="100%">
+<tr><td>
+When trying to add a classroom:<br><br>
+Subject:&nbsp;<b>$subject.code $subject.name</b><br>
+Section:&nbsp;<b>$section.name</b><br>
+Room:&nbsp;<b>$room.code</b>
+<br><br>
+Below teachers has conflict with other classrooms:
+<hr/>
+</td></tr>
+</table>
+
+<table width="100%">
+#foreach( $t in $conflict_teachers )
+<tr>
+<td>$velocityCount)</td>
+<td>$t.teacher.name</td>
+<td>$t.subject.code ($t.section.code)</td>
+<td></td>
+</tr>
+#end
+</table>

@@ -1,0 +1,29 @@
+<table><tr><td style="font-weight:bold">
+Period Structures Overview
+</td></tr>
+<tr><td>[
+<a href="javascript:void()" onclick="$('period_overview').style.display='none';$('period_edit').style.display='block';">Edit</a>
+]</td></tr>
+</table>
+
+
+<br/>
+#set ( $c = 0 )
+<table >
+<tr>
+#foreach( $ps in $period_schemes )
+
+#set ( $c = $c + 1 )
+
+<td valign="top" style="width:300px">
+<span style="font-weight:bold">$ps.code</span>
+#set ( $periods = $ps.getPeriodList())
+#parse("apps/util/setup_study_period/periods_list.vm")
+</td>
+
+#if ( $c == 4 ) #set ( $c = 0 ) </tr><tr> #end
+
+
+#end
+#if ( $c < 4 ) </tr> #end
+</table>

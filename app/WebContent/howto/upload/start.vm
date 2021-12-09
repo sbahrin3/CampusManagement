@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<script>
+function uploadFile(documentId, e) {
+	document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+	document.${formName}.enctype='multipart/form-data';
+	document.${formName}.encoding ='multipart/form-data';
+	document.${formName}.target='upload_document';
+	document.${formName}.action='?command=uploadFile&divUploadStatusName=' + e + '&documentId=' + documentId;
+	document.${formName}.submit();
+}
+</script>
+
+
+<iframe id="upload_document" name="upload_document" width="0px" height="0px" style="visibility:hidden"></iframe>
+
+<input type="file" id="fileName" name="fileName" style="width:200px">
+<input type="button" value="Upload" onclick="uploadFile('fileName', 'divUploadStatus')">
+
+<div id="divUploadStatus"></div>

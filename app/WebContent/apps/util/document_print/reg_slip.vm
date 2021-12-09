@@ -1,0 +1,103 @@
+<table width="100%" align="center">
+
+<tr><td align="right">
+<table align="right" style="width:80px"><tr><td class="box" align="center">KP 6-2</td></tr></table>
+</td></tr>
+
+<tr><td>
+
+#parse("apps/util/document_print/header.vm")
+
+</td></tr>
+
+<tr height="40px"><td><br/><br/></td></tr>
+
+<tr><td>
+
+Selamat mendaftar di 
+##<b>Cybernetics International College of Technology</b>.
+<b>UNITAR International University</b>  
+Berikut adalah maklumat
+ringkas pendaftaran anda:
+
+</td></tr>
+
+<tr><td height="20px">
+
+</td></tr>
+
+<tr><td>
+<table width="100%">
+<tr><td style="width:150px">NO. MATRIK</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>NAMA:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>NO K/P:</td><td style="font-weight:bold">#if ( $student.biodata.icno != "" ) $student.biodata.icno #else $student.biodata.passport #end</td></tr>
+<tr><td>PROGRAM:</td><td style="font-weight:bold">$student.program.name</td></tr>
+</table>
+</td></tr>
+
+<tr><td height="10px">
+
+</td></tr>
+
+<tr><td>
+<p>
+Sila hafal nombor matrik anda.  Pastikan slip matrik sementara ini dibawa bersama ketika berada di kolej untuk membuat 
+sebarang urusan.
+</p>
+<p>
+<b>Kad Matrik rasmi</b> akan dikeluarkan oleh <b>Department of Academic Affairs (DAA)</b> pada suatu tarikh
+yang akan ditetapkan kelak.  Sila semak papan kenyataan untuk tarikh, masa dan tempat mengambil kad matrik anda.
+</p>
+</td></tr>
+<tr style="height:40px"><td></td></tr>
+<tr><td align="center" style="font-weight:bold">DOKUMEN TAMBAHAN</td></tr>
+
+<tr><td>
+<p>
+Dimaklumkan bahawa anda <b>BELUM / SUDAH</b> menyerahkan kesemua dokuman diperlukan bagi
+melengkapkan fail perbibadi pelajar.
+</p>
+<p>
+Sila kemukakan dokumen bertanda (/) berikut ke kaunter DAA dengan kadar segera.
+</p>
+</td></tr>
+
+<tr><td>
+
+<table>
+<tr><td class="box" style="width:10px;height:10px"></td><td>1 SALINAN KAD PENGENALAN (MyKad)</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>1 SALINAN SIJIL KELAHIRAN</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>_____ KEPING GAMBAR BERUKURAN PASPORT</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>1 SALINAN KEPUTUSAN SPM</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>1 SALINAN KEPUTUSAN STPM/DIPLOMA</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>1 SALINAN KEPUTUSAN MUET</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>1 SALINAN SIJIL BERHENTI SEKOLAH</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>BORANG BK03/KP1-1</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>SURAT PERJANJIAN PERAKUAN (SALINAN PEJABAT)</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>RM 10 DUTI SETEM</td></tr>
+<tr><td class="box" style="width:10px;height:10px"></td><td>LAIN-LAIN _________________________________________</td></tr>
+</table>
+
+</td></tr>
+
+<tr><td>
+<br/><br/>
+<p>
+Sekian, harap maklum.
+<br/><br/>
+<b>"Selamat Maju Jaya"</b>
+<br/><br/>
+<b>Pendaftar</b>
+</p>
+
+</td></tr>
+
+<tr><td height="20px">
+
+</td></tr>
+
+<tr><td align="right">
+<img src="../barcode?data=$!student.matricNo" border="0"/>
+</td></tr>
+
+</table>

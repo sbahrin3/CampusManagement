@@ -1,0 +1,40 @@
+<table width="100%">
+<tr height="30px">
+<td class="gradient" style="width:30px">&nbsp;</td>
+<td class="gradient"  style="width:100px">Code</td>
+<td class="gradient" >Name</td>
+<td class="gradient" align="center"  style="width:100px">Female Quota</td>
+<td class="gradient" align="centre" style="width:100px">Male Quota</td>
+<td class="gradient" align="centre" style="width:100px">Monthly Fee</td>
+<td class="gradient" align="centre" style="width:100px">No. Of Months</td>
+<td>
+
+</td>
+</tr>
+#foreach( $a in $accomodations )
+<tr>
+<td class="gradient">$velocityCount.</td>
+<td><input class="text" id="code_$a.id" name="code_$a.id" value="$a.code" onchange="doDivAjaxCall$formname('div_empty','update_code','accomodation_id=$a.id')"></td>
+<td><input class="text" id="name_$a.id" name="name_$a.id" value="$a.name" onchange="doDivAjaxCall$formname('div_empty','update_name','accomodation_id=$a.id')"></td>
+<td><input class="text" id="quota_female_$a.id" name="quota_female_$a.id" style="text-align:center" value="$!a.quotaFemale" onchange="doDivAjaxCall$formname('div_empty','update_quota_female','accomodation_id=$a.id')"></td>
+<td><input class="text" id="quota_male_$a.id" name="quota_male_$a.id" style="text-align:center" value="$!a.quotaMale" onchange="doDivAjaxCall$formname('div_empty','update_quota_male','accomodation_id=$a.id')"></td>
+<td><input class="text" id="fee_$a.id" name="fee_$a.id" style="text-align:center" value="$!a.monthlyFee" onchange="doDivAjaxCall$formname('div_empty','update_fee','accomodation_id=$a.id')"></td>
+<td><input class="text" id="months_$a.id" name="months_$a.id" style="text-align:center" value="$!a.months" onchange="doDivAjaxCall$formname('div_empty','update_months','accomodation_id=$a.id')"></td>
+<td>
+<input class="gradient" type="button" style="height:30px" value="X" onclick="if ( !confirm('Delete?') ) return;doDivAjaxCall$formname('div_accomodations','delete','accomodation_id=$a.id')">
+</td>
+</tr>
+#end
+<tr>
+<td class="gradient">&nbsp;</td>
+<td><input class="text" id="code" name="code"></td>
+<td><input class="text" id="name" name="name"></td>
+<td><input class="text" id="quota_female" name="quota_female"></td>
+<td><input class="text" id="quota_male" name="quota_male"></td>
+<td><input class="text" id="fee" name="fee"></td>
+<td><input class="text" id="months" name="months"></td>
+<td>
+<input class="gradient" type="button" style="height:30px" value="Add" onclick="doDivAjaxCall$formname('div_accomodations','add','')">
+</td>
+</tr>
+</table>

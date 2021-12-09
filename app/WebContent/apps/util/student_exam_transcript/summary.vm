@@ -1,0 +1,91 @@
+<fieldset style="border:1px solid;padding:4px">
+<div style="font-family:verdana, sans-serif;font-size:10pt;font-weight:bold;text-align:center">SUMMARY</div>
+</fieldset>
+<table><tr><td style="">
+
+	#set ( $summary_ct = $specialStatusMap.get("CT") )
+	#set ( $summary_ce = $specialStatusMap.get("CE") )
+	#set ( $summary_ex = $specialStatusMap.get("EX") )
+
+	
+	<table>
+	<tr>
+	<td valign="top" style="width:200px;font-weight:bold" align="left">CUMULATIVE CREDIT TRANSFER (CT)</td><td valign="top" style="width:80px;font-weight:bold" align="left">: #if ( $summary_ct > 0 ) $summary_ct #else - #end</td>
+	<td valign="top" style="width:200px;font-weight:bold" align="left">CREDIT UNIT TAKEN (CUT)</td><td valign="top" style="width:80px;font-weight:bold" align="left">: $summary_credit_taken</td>
+	<td valign="top" style="width:200px;font-weight:bold" align="left">CUMULATIVE GRADE POINT (CGP)</td><td valign="top" style="width:80px;font-weight:bold" align="left">: $numFormat.format($summary_cumulative_points)</td>
+	</tr>
+	
+	<tr>
+	<td valign="top" style="width:200px;font-weight:bold" align="left">CUMULATIVE CREDIT EXEMPTION (EX)</td><td style="font-weight:bold" align="left">: #if ( $summary_ex > 0 ) $summary_ex #else - #end</td>
+	<td valign="top" style="width:200px;font-weight:bold" align="left">CALCULATED CREDIT UNIT (CCU)</td><td valign="top" style="font-weight:bold" align="left">: #if ( $summary_cumulative_credit_hours > 0 ) $summary_cumulative_credit_hours #end</td>
+	<td valign="top" style="width:200px;font-weight:bold" align="left">CUMULATIVE GRADE POINT AVERAGE (CGPA)</td><td valign="top" style="font-weight:bold" align="left">: #if ( $summary_cgpa > 0 ) $numFormat.format($summary_cgpa) #end</td>
+	</tr>
+	
+	
+	<tr>
+	#set ( $summary_cumulative_credit_earned = $summary_cumulative_credit_hours + $summary_ct + $summary_ex )
+	<td valign="top" style="width:200px;font-weight:bold" align="left">CUMULATIVE CREDIT EARNED (CE)</td><td valign="top" style="font-weight:bold" align="left">: $summary_cumulative_credit_earned</td>
+	
+	<td valign="top" style="width:200px;font-weight:bold" align="left">CUMULATIVE CALCULATED CREDIT UNIT (CCC)</td><td style="font-weight:bold" align="left">: $summary_cumulative_credit_hours</td>
+	<td valign="top" colspan="2" style="font-weight:bold" align="left"></td>
+	</tr>
+	
+	<tr><td colspan="6" style="height:40px;font-weight:bold">CONFERRED $student.program.displayName.toUpperCase()</td></tr>
+	
+	</table>
+
+</td></tr>
+</table>
+
+#if ( $groupResults.size() > 0 )
+	<br/>
+	<br/>
+<fieldset style="border:1px solid;padding:4px">
+<div style="font-family:verdana, sans-serif;font-size:10pt;font-weight:bold;text-align:center">AVERAGE GRADE FOR EACH CORE COURSE (SCIENCE COURSES)</div>
+</fieldset>
+	<br/>
+	<table border="0">
+	<tr>
+	<td style="font-weight:bold;border-bottom:1px solid">Group Name</td>
+	<td style="font-weight:bold;border-bottom:1px solid" align="center">Total Point</td>
+	<td style="font-weight:bold;border-bottom:1px solid" align="center">Total Credit Unit</td>
+	<td style="font-weight:bold;border-bottom:1px solid" align="center">Average Point</td>
+	<td style="font-weight:bold;border-bottom:1px solid" align="center">Grade</td>
+	</tr>
+	#foreach( $gr in $groupResults )
+	<tr>
+	<td style="width:300px">$gr.groupName</td>
+	<td style="width:100px" align="center">$gr.totalPoint</td>
+	<td style="width:100px" align="center">$gr.creditHours</td>
+	<td style="width:100px" align="center">$numFormat.format($gr.averagePoint)</td>
+	<td style="width:100px" align="center">$gr.grade</td>
+	</tr>
+	#end
+	
+	<tr><td colspan="5" style="height:30px"></td></tr>
+	
+	<tr>
+	<td colspan="2" align="right">3 Best Science Courses</td>
+	<td align="center">CGPA</td>
+	<td align="center">$numFormat.format($bestThreeCGPA)</td>
+	<td align="center"></td>
+	</tr>
+
+	</table>
+	
+	<br/><br/><br/><br/><br/><br/><br/>
+	
+	
+
+
+#end
+
+
+<table width="100%">
+	<tr><td colspan="2" align="left">
+	
+			Registrar/Head of Examination Unit
+	
+	
+	</td></tr>
+</table>

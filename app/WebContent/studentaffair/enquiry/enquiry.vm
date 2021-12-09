@@ -1,0 +1,11 @@
+<table>
+<tr><td style="width:700px;font-weight:bold">Type your complaint here:</td></tr>
+<tr><td>
+<textarea class="texts" style="padding:20px;height:300px" name="enquiryText"></textarea>
+</td></tr>
+<tr><td colspan="2" align="right">
+<input class="linkbutton" type="button" value="Submit Complaint" onclick="doDivAjaxCall3$formname('enquiry','submitEnquiry','studentId=$student.id')">
+<br/><br/>
+<input class="linkbutton" type="button" value="List My Complaints" onclick="doDivAjaxCall3$formname('enquiry','listEnquiries','')">
+</td></tr>
+</table>

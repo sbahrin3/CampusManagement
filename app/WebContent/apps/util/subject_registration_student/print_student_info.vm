@@ -1,0 +1,27 @@
+
+
+
+<table width="100%">
+<tr><td style="border-top:1px solid; border-bottom:1px solid; border-left:1px solid; border-right:1px solid">
+
+<table width="100%">
+
+<tr><td>Name:</td><td style="height:20px;">$student.biodata.name</td></tr>
+<tr><td style="width:120px">Student ID:</td><td style="height:25px;">$student.matricNo</td></tr>
+<tr><td>Program:</td><td style="height:20px;">$student.program.code $student.program.name</td></tr>
+<tr><td>Intake:</td><td style="height:20px;">$student.intake.name</td></tr>
+##<tr><td>Centre:</td><td style="height:20px;">$student.learningCenter.name</td></tr>
+#if ( $student_status )
+<tr><td>Semester:</td><td style="height:20px;">
+$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end
+($student_status.session.name)
+</td></tr>
+<tr><td>Status:</td><td style="height:20px;">
+$!student_status.type.name
+</td></tr>
+#end
+</table>
+
+</td>
+</table>
+

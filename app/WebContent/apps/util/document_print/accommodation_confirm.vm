@@ -1,0 +1,79 @@
+<table style="width:100%" align="center">
+
+<tr><td height="100px">
+
+#parse("apps/util/document_print/header.vm")
+
+
+</td></tr>
+<tr height="40px"><td><br/><br/><br/><br/></td></tr>
+
+<tr><td style="font-weight:bold">SURAT PENGESAHAN PENGINAPAN</td></tr>
+<tr height="30px"><td></td></tr>
+<tr>
+<td>
+Dengan ini disahkan bahawa pelajar bernama
+<b>$student.biodata.name</b>
+(NO K/P:<b>
+#if ( $student.biodata.icno != "" )
+$student.biodata.icno
+#else
+$student.biodata.passport
+#end
+</b>)
+beralamat di
+<b>
+$student.address.address1, 
+#if ( $student.address.adress2 != "" ) $student.address.address2, #end
+#if ( $student.address.adress3 != "" ) $student.address.address3, #end
+#if ( $student.address.adress4 != "" ) $student.address.address4, #end
+#if ( $student.address.postcode != "" ) $student.address.postcode, #end
+#if ( $student.address.city != "" ) $student.address.city, #end
+#if ( $student.address.state ) $student.address.state.name #end
+</b>
+telah ditempatkan di penginapan
+<b>$accomodation.name</b>.
+</td>
+</tr>
+
+<tr height="30px"><td></td></tr>
+
+<tr><td>
+
+<table width="100%">
+<tr>
+<td style="width:40%;font-weight:bold" align="center">KELULUSAN DSA</td>
+<td style="width:20%"></td>
+<td style="width:40%;font-weight:bold" align="center">PIHAK PENGURUSAN PENGINAPAN</td>
+</tr>
+<tr>
+<td colspan="3" style="height:30px"></td>
+</tr>
+<tr>
+<td>Nama:</td>
+<td></td>
+<td>Nama:</td>
+</tr>
+
+<tr>
+<td colspan="3" style="height:30px"></td>
+</tr>
+<tr>
+<td>Cop dan T/Tangan:<br/>Tarikh:</td>
+<td></td>
+<td>Cop dan T/Tangan:<br/>Tarikh:</td>
+</tr>
+</table>
+</td></tr>
+<tr style="height:40px"><td>
+</td></tr>
+<tr><td>
+*PELAJAR PERLU MENYERAHKAN BORANG INI KEPADA PIHAK PENGURUSAN PENGINAPAN SEMASA TIBA DI
+PENGINAPAN YANG TERTERA DI ATAS.
+</td></tr>
+<tr><td>
+**BORANG IN PERLU DISERTAKAN OLEH PIHAK PENGURUSAN PENGINAPAN
+KEPADA PIHAK KOLEJ SEMASA MEMBUAT TUNTUTAN.
+</td></tr>
+
+</table>

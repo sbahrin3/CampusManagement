@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<table>
+	<tr><td>
+        <textarea class="text" name="description" id="description"></textarea>
+        <input class="text" type="file" id="document" name="document" style="width:200px">&nbsp;
+        <input class="button" type="button" value="Upload" onclick="uploadFile('document', 'divUploadFile', $('description').value)">
+        <input type="hidden" id="documentName" name="documentName" value="">
+        <div id="divUploadFile"></div>
+	</td></tr>
+</table>
+	
+
+
+<script>
+	function uploadFile(documentId, e, description) {
+		document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+		document.${formName}.enctype='multipart/form-data';
+		document.${formName}.encoding ='multipart/form-data';
+		document.${formName}.target='upload_document';
+		document.${formName}.action='?command=uploadFile&documentId=' + documentId + '&divUploadStatusName=' + e + '&description=' + description;
+		document.${formName}.submit();
+	
+	}
+</script>
+<iframe id="upload_document" name="upload_document" width="0px" height="0px" style="visibility:hidden"></iframe>

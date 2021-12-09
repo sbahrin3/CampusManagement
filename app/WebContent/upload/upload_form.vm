@@ -1,0 +1,11 @@
+<h1>Files Uploads Demo</h1>
+<table cellspacing="0" cellpadding="0">
+<tr><td>
+Select files to be uploaded:<br />
+When finished click the DONE button<br /><br />
+</td></tr>
+<tr><td>$html.uploadFilesField.count(4)</td></tr>
+<tr><td>
+$button.command("doneUploadFiles").text("DONE")
+</td></tr>
+</table>

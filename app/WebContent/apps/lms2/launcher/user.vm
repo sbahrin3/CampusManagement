@@ -1,0 +1,27 @@
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+##<legend style="font-family:arial;font-size:12pt;font-weight:bold">Profile</legend>
+
+<table width="100%" cellspacing="0">
+<tr>
+<td style="width:50px">
+						#if($user.userPhotoName != "")
+							<img src="../download?file=$!user.userPhotoName" border="0" width="50px">
+						#else
+<img src="../img/nophoto.gif" border="0" width="50px">
+#end
+</td>
+<td>
+$user.userName ($user.userId)
+</td>
+</tr>
+</table>
+
+</fieldset>
+
+<input type="hidden" name="user_id" value="$user.id">
+
+<script>
+$('div_enrolled').style.display='block';
+$('div_classrooms').style.display='block';
+doDivAjaxChainCall$formname('div_enrolled','list_enrolled','user_id=$user.id','div_classrooms','list_classrooms','');
+</script>

@@ -1,0 +1,5 @@
+1=Sastera & Sains Sosial
+2=Sains
+3=Teknikal
+4=Teknologi Maklumat & Komunikasi
+5=Pendidikan

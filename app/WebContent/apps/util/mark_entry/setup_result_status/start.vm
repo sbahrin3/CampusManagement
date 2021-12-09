@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<div style="padding:10px">
+
+<div id="div_entry" name="div_entry" style="padding:5px;width:600px;display:none;border:1px dotted #000;position:absolute;background:#fff">
+#parse( "apps/util/mark_entry/setup_result_status/add_status.vm" )
+</div>
+
+
+<div id="div_statuses" name="div_statuses" style="padding:20px">
+#parse( "apps/util/mark_entry/setup_result_status/statuses.vm" )
+</div>
+
+
+</div>
+
+
+
+
+

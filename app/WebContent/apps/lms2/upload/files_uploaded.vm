@@ -1,0 +1,10 @@
+<script>
+parent.document.getElementById("fileupload").value = "";
+var txt = parent.parent.document.getElementById("file_uploaded_$uploader_id").innerHTML;
+
+#foreach ( $file in $uploaded_files )
+txt += '$util.getFileName($file)<input type="hidden" name="files_$uploader_id" value="$file"><br>';
+#end
+parent.parent.document.getElementById("file_uploaded_$uploader_id").innerHTML=txt;
+parent.parent.document.getElementById("div_wait_indicator_$uploader_id").innerHTML="";
+</script>

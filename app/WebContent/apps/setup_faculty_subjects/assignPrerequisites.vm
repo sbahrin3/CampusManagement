@@ -1,0 +1,49 @@
+	
+<table style="width:900px"><tr><td>
+
+
+<fieldset><legend class="legend">Prerequisites: $subject.name</legend>
+
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Update Pre-requisite" onclick="doDivAjaxCall3$formname('editSubject_$subjectId','updatePrerequisiteSubjects','subjectId=$subjectId')">
+<input class="linkbutton" type="button" value="Close" onclick="$('editSubject_$subjectId').style.visibility='hidden';">
+</td></tr></table>
+
+<table style="width:100%">
+	<tr>
+		<td style="width:50%">
+			
+			<fieldset><legend style="font-weight:bold">Pre-requisites subjects (select to remove):</legend>
+            <div style="height:150px;overflow-y:scroll">
+            <table>
+            <tr><td style="width:10px"></td><td style="width:100px"></td><td style=""></td></tr>
+            #foreach( $s in $subject.prerequisites )
+            <tr><td><input type="checkbox" name="removePrerequisiteIds" value="$s.id"></td><td>$s.code</td><td>$s.name</td></tr>
+            #end
+            </table>
+            </div>
+            </fieldset>
+			
+		</td>
+		<td>
+			
+			<fieldset><legend style="font-weight:bold">Subjects (select to add):</legend>
+            <div style="height:150px;overflow-y:scroll">
+            <table>
+            <tr><td style="width:10px"></td><td style="width:100px"></td><td style=""></td></tr>
+            #foreach( $s in $subjects )
+            <tr><td><input type="checkbox" name="prerequisiteIds" value="$s.id"></td><td>$s.code</td><td>$s.name</td></tr>
+            #end
+            </table>
+            </div>
+            </fieldset>
+			
+		</td>
+	</tr>
+</table>
+
+
+</fieldset>
+
+
+</td></tr></table>

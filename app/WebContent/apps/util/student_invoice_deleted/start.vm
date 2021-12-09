@@ -1,0 +1,40 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+</style>
+
+
+<table width="900px" align="center"><tr><td>
+
+<fieldset style="background-color:#FFFFAA;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%">
+<tr>
+<td style="width:200px">Filter By Student:</td>
+<td>
+Matric No: <input name="matric_no" style="width:100px">
+<input class="gradient" type="button" value="Go.." 
+onclick="doDivAjaxCall$formname('div_result','by_student','')">
+</td>
+</tr>
+<tr>
+<td>Filter By Date:</td>
+<td>
+$html.dateField.name("date_from").value("").style("width:100px")
+$html.dateField.name("date_to").value("").style("width:100px")
+
+<input class="gradient" type="button" value="Go.." 
+onclick="doDivAjaxCall$formname('div_result','by_date','')">
+</td>
+</tr>
+</table>
+
+</fieldset>
+
+<div id="div_view" name="div_view" style="background-color:#ffffff;visibility:hidden;position:absolute;width:900px"></div>
+<div id="div_result" name="div_result"></div>
+
+
+</td></tr></table>

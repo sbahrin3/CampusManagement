@@ -1,0 +1,8 @@
+<table width="100%"><tr><td align="right">
+						#if($student.photoFileName != "")
+							<img src="../download?file=$!student.photoFileName">
+						#else
+<img src="../img/nophoto.gif" border="0">
+#end
+</td></tr>
+</table>

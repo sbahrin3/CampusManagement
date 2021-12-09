@@ -1,0 +1,12 @@
+<script>
+#foreach( $id in $student_ids )
+#set ( $amount = $amounts.get("$id") )
+#set ( $invoice = $invoices.get("$id") )
+$('balance_amount_$id').value='$numFormat.format($amount)';
+$('amount_$id').value='$numFormat.format($amount)';
+$('div_$id').innerHTML = "Refund No: $invoice.invoiceNo<br>Amount (RM): $numFormat.format($invoice.amount)";
+
+for ( i=1; i < $cnts; i++ ) { $('cb_' + i).checked=false; } 
+
+#end
+</script>

@@ -1,0 +1,41 @@
+<table width="100%">
+<tr><td width="50%">
+##<img src="$appUrl/header/cybermed.png">
+</td><td>
+
+<table width="100%">
+<tr>
+<td style="width:100px;font-size:8pt" valign="top">Address:</td>
+<td valign="top" style="font-size:8pt">
+
+#set ( $centre = $student.learningCenter )
+#if ( $centre )
+	$centre.address1<br/>
+	$centre.address2<br/>
+	$centre.address3<br/>
+	$centre.address4<br/>
+
+#else
+	Address 1<br/>
+	Address 2<br/>
+ 	Address 3<br/>
+ 	Address 4<br/>
+#end
+
+</td>
+</tr>
+#if ( $centre )
+<tr><td style="font-size:8pt">Tel:</td><td style="font-size:8pt">$centre.telephone</td></tr>
+<tr><td style="font-size:8pt">Fax:</td><td style="font-size:8pt">$centre.fax</td></tr>
+<tr><td style="font-size:8pt">Website:</td><td style="font-size:8pt">$centre.website</td></tr>
+
+#else
+
+<tr><td style="font-size:8pt">Tel:</td><td style="font-size:8pt">000 0000 0000</td></tr>
+<tr><td style="font-size:8pt">Fax:</td><td style="font-size:8pt">000 0000 0000</td></tr>
+<tr><td style="font-size:8pt">Website:</td><td style="font-size:8pt">http://www.college.edu.my</td></tr>
+#end
+
+</table>
+
+</td></tr></table>

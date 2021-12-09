@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<style>
+#detail {
+    position:fixed;
+    top: 30%;
+    left: 15%;
+    width:800px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:1px;
+    background:#E8ECEF;
+    display:none;
+}
+</style>
+
+
+<table style="background:#CCCCCC" cellpadding="1" >
+<tr style="height:30px;background:#CCCCCC">
+<td align="center" style="font-weight:bold;width:150px">Program</td>
+<td align="center" style="font-weight:bold;width:150px">Robe</td>
+<td align="center" style="font-weight:bold;width:150px">Scroll</td>
+<td align="center" style="font-weight:bold;width:150px">Transcript</td>
+<td align="center" style="font-weight:bold;width:150px">Photo</td>
+<td align="center" style="font-weight:bold;width:150px">Alumni Card</td>
+<td align="center" style="font-weight:bold;width:150px">Tracer Study</td>
+</tr>
+#foreach( $p in $programs )
+<tr style="height:25px">
+<td style="background:#fff">$p.code</td>
+<td align="center" style="background:#fff">$!robeStatusStat.get("$p.code")</td>
+<td align="center" style="background:#fff">$!scrollStatusStat.get("$p.code")</td>
+<td align="center" style="background:#fff">$!transcriptStatusStat.get("$p.code")</td>
+<td align="center" style="background:#fff">$!photoStatusStat.get("$p.code")</td>
+<td align="center" style="background:#fff">$!alumniCardStatusStat.get("$p.code")</td>
+<td align="center" style="background:#fff">$!tracerStudyStatusStat.get("$p.code")</td>
+</tr>
+#end
+</table>
+

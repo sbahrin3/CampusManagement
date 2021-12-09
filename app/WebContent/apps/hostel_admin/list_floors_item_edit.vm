@@ -1,0 +1,10 @@
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td width="25px">${cnt}.</td>
+<td width="50px"><input name="floor_code" id="floor_code" value="$floor.code" style="width:100%;height:20px;border-top:none;border-bottom:none;border-left:none;border-right:none"></td>
+<td width="280px"><input name="floor_name" id="floor_name" value="$floor.name" style="width:100%;height:20px;border-top:none;border-bottom:none;border-left:none;border-right:none"></td>
+<td align="right">
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_floor_$floor.id','update_floor','floor_id=$floor.id&block_id=$block.id&cnt=$cnt')"><img src="../img/item/righta.png" border="0"></a>
+</td>
+</tr>
+</table>

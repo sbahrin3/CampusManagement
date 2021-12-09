@@ -1,0 +1,3 @@
+<input type="button" value="Run Script..." onclick="doDivAjaxCall$formname('update','update','')">
+	
+<div id="update"></div>

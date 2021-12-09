@@ -1,0 +1,98 @@
+<div class="well">
+<span style="font-family:verdana, sans-serif;font-size:10pt;font-weight:bold">Grading scheme for programme:</span><br/>
+<span style="font-family:verdana, sans-serif;font-size:12pt;font-weight:bold">$program.code - $program.name ( $program.id )</span>
+</div>
+<br/><br/>
+
+<table class="table table-striped">
+<tr style="">
+<td style="width:40px;font-weight:bold;border-bottom:1px solid">&nbsp;</td>
+<td style="width:350px;font-weight:bold;border-bottom:1px solid">Subject</td>
+<td style="width:40px;font-weight:bold;border-bottom:1px solid" align="center">Cr.</td>
+<td style="width:200px;font-weight:bold;border-bottom:1px solid" align="center">Scheme</td>
+<td style="width:20px"></td>
+</tr>
+#set ( $cnt = 0 )
+
+#foreach ( $s in $subjects )
+#set ( $cnt = $cnt + 1 )
+
+#set ( $gradeSchemeId = "" )
+#if ( $gradeMap.get("$s.id") )
+	#set ( $gradeSchemeId = $gradeMap.get("$s.id").id )
+#else
+	#set ( $gradeSchemeId = $s.markingGrade.id )
+#end
+
+<tr>
+<td style="">$cnt.</td>
+<td style="">$s.code - $s.name</td>
+<td style="" align="center">$s.credithrs</td>
+<td style="">
+<input type="hidden" name="subjectIds" value="$s.id">
+<select class="textr" name="grade_$s.id" onchange="doDivAjaxCall$formname('divEmpty','updateGrade','subjectId=$s.id&programId=$program.id')">
+<option value="">-Use Default Scheme-</option>
+#foreach( $g in $markingGrades )
+<option value="$g.id" #if ( $g.id == $gradeSchemeId ) selected #end>$g.name</option>
+#end
+</select>
+</td>
+<td></td>
+</tr>
+#end
+
+#if ( $removedSubjects.size() > 0 )
+<tr><td colspan="4">
+<hr/>
+Below are subjecs that may has been defined in Program Structure before, but were later deleted.
+You may consider to remove it here.
+</td></tr>
+
+#foreach ( $s in $removedSubjects )
+#set ( $cnt = $cnt + 1 )
+
+#set ( $gradeSchemeId = "" )
+#if ( $gradeMap.get("$s.id") )
+	#set ( $gradeSchemeId = $gradeMap.get("$s.id").id )
+#else
+	#set ( $gradeSchemeId = $s.markingGrade.id )
+#end
+
+<tr>
+<td style="">$cnt.</td>
+<td style="">$s.code - $s.name</td>
+<td style="">
+<input type="hidden" name="subjectIds" value="$s.id">
+<select class="textr" name="grade_$s.id" onchange="doDivAjaxCall3$formname('divEmpty','updateGrade','subjectId=$s.id&programId=$program.id')">
+<option value="">-Use Default Scheme-</option>
+#foreach( $g in $markingGrades )
+<option value="$g.id" #if ( $g.id == $gradeSchemeId ) selected #end>$g.name</option>
+#end
+</select>
+</td>
+<td>
+<input type="button" value="x" onclick="if ( !confirm('Remove?') ) return; doDivAjaxCall3$formname('divMain','removeSubject','subjectId=$s.id')">
+</td>
+</tr>
+#end
+
+#end
+
+</table>
+
+<table>
+<tr><td>
+Assign this grade to all: 
+</td><td>
+<select class="form-control" style="width:400px" id="marking_all" name="marking_all">
+<option value="">-select-</option>
+#foreach( $m in $markingGrades )
+<option value="$m.id">$m.name</option>
+#end
+</select>
+</td>
+<td>&nbsp;</td>
+<td>
+<button type="button" class="btn btn-warning" onclick="if ( $('marking_all').value == '' ) return; doDivAjaxCall$formname('divMain', 'assignAll', '')">Assign to all subject</button>
+</td></tr>
+</table>

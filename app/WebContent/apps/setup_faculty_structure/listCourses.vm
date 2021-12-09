@@ -1,0 +1,27 @@
+
+<div id="listProgramGroups">
+
+<fieldset>
+<legend class="legend">List of Program Groups</legend>
+
+<input type="hidden" name="facultyId" value="$faculty.id">
+<table cellspacing="0" cellpadding="2" style="width:100%">
+<tr style="height:30px; background-color:#f4f4f3;">
+<td style="font-weight:bold;font-size:10pt">$faculty.code $faculty.name</td>
+<td align="right">
+<button type="button" class="btn btn-warning" onclick="doDivAjaxCall$formname('entryCourse','entryCourse','')">Add Program Group</button>
+<button type="button" class="btn btn-success" onclick="$('listFacultyItems').style.display='none';$('listFaculties').style.display='block'">Back</button>
+</td>
+</tr>
+<tr><td>
+<div class="shadow" id="entryCourse" style="visibility:hidden;background-color:#fff;position:absolute;border:1px">test</div>
+</td></tr>
+</table>
+
+<div id="divListCourses">#parse("apps/setup_faculty_structure/divListCourses.vm")</div>
+</fieldset>
+
+</div>
+
+
+<div id="listCourseItems"></div>

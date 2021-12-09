@@ -1,0 +1,64 @@
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Add Classroom Group" onclick="$('addClassroom').style.display='block';">
+</td></tr></table>
+
+<table cellpadding="1" cellspacing="1">
+<tr height="30px" style="background:#ebebeb">
+<td style="width:40px;font-weight:bold;border-bottom:1px solid #000"></td>
+<td style="width:120px;font-weight:bold;border-bottom:1px solid #000">Code</td>
+<td style="width:300px;font-weight:bold;border-bottom:1px solid #000">Name</td>
+<td style="width:300px;font-weight:bold;border-bottom:1px solid #000">Classroom Type</td>
+<td style="width:40px;;border-bottom:1px solid #000"></td>
+</tr>
+</table>
+
+<ul id="categoryList" style="list-style-type:none; padding: 0px;">
+#set ( $cnt = 0 )
+#foreach( $classroomSection in $classroomSections )
+#set ( $cnt = $cnt + 1 )
+
+<li id="categoryList_$cnt" style="padding:0px">
+<input type="hidden" name="ids" value="$classroomSection.id">
+
+<table cellpadding="1" cellspacing="1">
+<tr height="0px">
+<td style="width:40px;"></td>
+<td style="width:100px;"></td>
+<td style="width:300px;"></td>
+<td style="width:300px;"></td>
+<td style="width:40px;"></td>
+</tr>
+<tr style="height:30px">
+<td align="center" style="border-bottom:1px dotted #000">$cnt.</td>
+<td style="border-bottom:1px dotted #000"><input class="text" id="code_$classroomSection.id" name="code_$classroomSection.id" value="$!classroomSection.code" style="width:100%;height:30px" onchange="doDivAjaxCall$formname('classroomSectionUpdate','updateCode','classroomSectionId=$classroomSection.id')"></td>
+<td style="border-bottom:1px dotted #000"><input class="text" id="name_$classroomSection.id" name="name_$classroomSection.id" value="$!classroomSection.name" style="width:100%;height:30px" onchange="doDivAjaxCall$formname('classroomSectionUpdate','updateName','classroomSectionId=$classroomSection.id')"></td>
+<td style="border-bottom:1px dotted #000">
+<select class="text" name="classroomTypeId_$classroomSection.id" style="width:300px;height:30px"
+#if ( $classroomSection.autoCreate ) disabled #end
+onchange="doDivAjaxCall$formname('classroomSectionUpdate','updateClassroomType','classroomSectionId=$classroomSection.id')">
+#foreach( $c in $classroomTypes )
+<option value="$c.id" #if ( $classroomSection.classroomType.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</select>
+</td>
+<td style="border-bottom:1px dotted #000" align="center">
+#if ( !$classroomSection.autoCreate )
+<input class="linkbutton" style="padding:2px" type="button" value="X"
+onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('classroomSectionList','delete','classroomSectionId=$classroomSection.id')">
+#end
+</td>
+</tr>
+</table>
+</li>
+#end
+</ul>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('categoryList', { onUpdate:updateSequence});
+function updateSequence() {
+	doDivAjaxCall3$formname('classroomSectionList','updateSequence','');
+}
+</script>
+
+

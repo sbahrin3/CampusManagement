@@ -1,0 +1,68 @@
+<table width="700" align="center">
+<tr><td>
+
+
+<table width="100%">
+<tr><td align="right"><i>Select School:</i>
+<select name="faculty_id" onchange="doAjaxCall${_formName}('list_subjects','')">
+<option value="">(SELECT SCHOOL)</option>
+#foreach ( $f in $faculties )
+<option value="$f.id" #if ( $faculty.id == $f.id ) selected #end>&nbsp;&nbsp;&nbsp;$f.code $f.name</option>
+#end
+</select>
+</td>
+</tr></table>
+
+#if ( $faculty )
+<hr/>
+
+<table width="100%">
+<tr><td style="font-weight:bold">$faculty.code $faculty.name</td></tr>
+<tr><td align="right" style="font-weight:bold">
+[$href.command("add_new").text("Add New Subject")]
+</td></tr>
+</table>
+
+<table width="100%">
+<tr height="40px" bgcolor="lightgrey">
+<td style="font-weight:bold">Code</td>
+<td style="font-weight:bold">Title</td>
+<td  style="font-weight:bold" align="center">Credit<br>Hours</td>
+<td  style="font-weight:bold" align="center">GPA?</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $subjects )
+#set ( $cnt = $cnt + 1 )
+<tr height="20px">
+<td>
+$href.command("edit_subject").param("subject_id=$s.id").text("$s.code")
+</td>
+<td>$s.name</td>
+<td align="center">$s.credithrs</td>
+<td align="center">#if ( $s.excludeGpa == 0 ) YES #else NO #end</td>
+</tr>
+#end
+
+<tr><td colspan="5" align="right">
+<hr/>
+<b>$cnt subjects</b>
+</td></tr>
+</table>
+
+
+#else
+<br/><br/><br/>
+<table width="100%"><tr><td align="center" style="font-weight:bold">
+
+PLEASE SELECT A SCHOOL
+
+</td></tr></table>
+
+#end
+
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="faculty_id" value="$!faculty.id">

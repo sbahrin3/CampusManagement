@@ -1,0 +1,15 @@
+<div>
+<table class="table">
+	<tr>
+		<td style="width:90%">
+			<input class="form-control" type="text"  autocomplete="off" name="findByName" placeholder="Key in name to find.." onkeydown="if (event.keyCode === 13) { event.preventDefault(); doDivAjaxCall3$formname('find','find',''); } ">
+			<input type="text" style="display:none">
+		</td>
+		<td>
+			<button class="btn btn-link" type="button" onclick="$('find').innerHTML='<center>Please wait... <img src=../img/indicator.gif></center>'; doDivAjaxCall3$formname('find','find','')">Find..</button>
+		</td>
+	</tr>
+</table>
+</div>
+
+<div id="find"></div>

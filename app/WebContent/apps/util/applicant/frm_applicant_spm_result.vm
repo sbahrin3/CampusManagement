@@ -1,0 +1,63 @@
+<table align="center" style="background-color:$bgcolor" cellspacing="0">
+
+<tr bgcolor="lightgrey">
+<td style="width:350px;height:30px;font-weight:bold">Subject</td>
+<td style="width:50px;font-weight:bold" align="center">Grade</td><td></td></tr>
+
+#foreach ( $r in $applicant.spmResults )
+<tr>
+<td style="width:200px;height:30px">
+#if ( $r.subject )
+$r.subject.name
+#else
+<input class="texts" style="width:100%" name="other_name_$r.id" value="$!r.otherName" onchange="doDivAjaxCall$formname('div_empty','save_spm_other','result_id=$r.id')">
+#end
+</td>
+<td style="width:50px" align="center">
+<select id="spm_grade_${r.id}" name="spm_grade_${r.id}" class="texts" onkeyup="at(this, event)" style="text-align:center;width:50px" onchange="doDivAjaxCall$formname('div_empty','update_spm_result','result_id=$r.id')">
+#foreach( $g in $grades )
+<option value="$g.id" #if ( $g.id == $r.generalExamGrade.id ) selected #end>$g.name</option>
+#end
+</select>
+</td>
+<td>
+<input type="button" style="height:26px" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall${formName}('spm','delete_subject_spm','spm_id=$r.id')">
+</td>
+</tr>
+#end
+
+
+<tr>
+<td>
+
+<select name="spm_subject_id" class="texts" onkeyup="at(this, event)" style="width:100%">
+<option value="">-- Select Subject --</option>
+#foreach( $s in $spm_subjects )
+#set ( $got = "no" )
+#foreach ( $r in $applicant.spmResults2 )
+#if ( $r.subject.id == $s.id )
+#set ( $got = "yes" )
+#end
+#end
+#if ( $got == "no" ) <option value="$s.id">$s.name</option> #end
+#end
+<option value="other">-- Other Subject ---</option>
+</select>
+
+</td><td>
+<select id="spm_grade" name="spm_grade" class="texts" onkeyup="at(this, event)" style="text-align:center;width:50px">
+<option value="">-</option>
+#foreach( $g in $grades )
+<option value="$g.id">$g.name</option>
+#end
+</select>
+
+</td><td>
+<input type="button" style="height:26px;font-weight:bold"  value="+" onclick="doDivAjaxCall${formName}('spm','add_spm','')">
+
+
+</td>
+</tr>
+
+
+</table>

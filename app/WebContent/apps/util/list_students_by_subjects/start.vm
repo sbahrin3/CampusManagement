@@ -1,0 +1,51 @@
+<table width="700px" align="center">
+<tr><td>
+
+<table width="100%">
+<tr>
+<td>Subject:</td>
+<td>
+<select name="subject_id" style="width:300px">
+<option value="">- Select Subject -</option>
+#foreach( $subject in $subjects )
+<option value="$subject.id">$subject.code $subject.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Section:</td>
+<td>
+<select name="section_id" style="width:300px">
+<option value="">- Select Section -</option>
+#foreach( $section in $sections )
+<option value="$section.id">$section.code $section.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Session:</td>
+<td>
+<select name="session_id" style="width:300px">
+<option value="">- Select Session -</option>
+#foreach( $session in $sessions )
+<option value="$session.id" #if ( $session.id == $current_session.id ) selected #end>$session.code $session.name</option>
+#end
+</select>
+
+<input type="button" value="List.." onclick="doDivAjaxCall$formname('div_result','list_result','')">
+</td>
+</tr>
+
+
+</table>
+
+<hr/>
+
+<div id="div_result" name="div_result"></div>
+
+</td></tr>
+</table>

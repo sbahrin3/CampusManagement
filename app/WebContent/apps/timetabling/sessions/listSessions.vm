@@ -1,0 +1,45 @@
+<table class="table">
+<thead>
+<tr>
+<th  style="font-weight:bold;width:100px">Code</th>
+<th  style="font-weight:bold;width:200px">Name</th>
+<th  style="font-weight:bold;width:100px">Start Date</th>
+<th  style="font-weight:bold;width:100px">End Date</th>
+<th  style="font-weight:bold;width:100px"></th>
+</tr>
+</thead>
+<tbody>
+#foreach( $s in $sessions )
+<tr>
+<td class="row">$s.code</td>
+<td class="row">$s.name</td>
+<td class="row">$dateFormat.format($s.startDate)</td>
+<td class="row">$dateFormat.format($s.endDate)</td>
+<td class="row">
+	
+	<button type="button" class="btn btn-default btn-sm" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listSessions','deleteSession','sessionId=$s.id')">x</button>
+	<button type="button" class="btn btn-default btn-sm" onclick="doDivAjaxCall$formname('editData','editSession','sessionId=$s.id')">..</button>
+
+</td>
+</tr>
+#end
+<tr>
+<td class="row"><input class="form-control" name="code"></td>
+<td class="row"><input class="form-control" name="name"></td>
+<td class="row">
+<input class="form-control" style="width:100px" id="startDate" name="startDate" value="">
+<script> new JsDatePick({ useMode:2, target:"startDate", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+<td class="row">
+<input class="form-control" style="width:100px" id="endDate" name="endDate" value="">
+<script> new JsDatePick({ useMode:2, target:"endDate", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+<td class="row">
+	
+
+	<button type="button" class="btn btn-default btn-sm" onclick="doDivAjaxCall3$formname('listSessions','addSession','')">Add</button>
+	
+</td>
+</tr>
+</tbody>
+</table>

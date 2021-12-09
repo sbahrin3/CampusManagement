@@ -1,0 +1,63 @@
+##<script>calndr.showNavigationDropdowns();</script>
+<link rel="stylesheet" type="text/css" media="all" href="../js/jsDatePick_ltr.min.css" />
+<script type="text/javascript" src="../js/jsDatePick.min.1.3.js"></script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+</style>
+
+<style>
+#createInvoice {
+    position:fixed;
+    top: 50%;
+    left: 30%;
+    width:500px;
+    height:200px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#divFindStudent {
+    position:fixed;
+    top: 30%;
+    left: 25%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+</style>
+
+<div id="divFindStudent" class="shadow">
+<table width="100%" style="background:#357FF4"><tr style="height:30px"><td style="font-weight:bold;color:#FFF">Find</td>
+<td align="right"><input type="button" class="linkbutton" value="Find" onclick="$('iframeFindStudent').src='../gc/educate.sis.module.FindStudentByNameModule?elementId=student_no'"><input class="linkbutton" type="button" value="Close" onclick="$('divFindStudent').style.display='none'"></td></tr></table>
+<div id=""><iframe id="iframeFindStudent" src="../gc/educate.sis.module.FindStudentByNameModule?elementId=student_no" frameborder="0" style="width:100%;height:250px"></iframe></div>
+</div>
+	
+
+
+
+
+
+<table width="900px"><tr><td>
+Matric No:<input name="student_no" id="student_no">
+<input type="button" value="Get Student" onclick="doDivAjaxCall$formname('div_student','get_student','')">
+	
+<input type="button" value="Find.." onclick="$('divFindStudent').style.display='block';">
+
+</td></tr>
+<tr><td>
+<div name="div_student" id="div_student"></div>
+</td></tr>
+<tr><td>
+
+</td></tr></table>
+
+<div id="createInvoice"></div>
+

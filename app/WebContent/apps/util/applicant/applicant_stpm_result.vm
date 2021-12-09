@@ -1,0 +1,14 @@
+<table>
+#if ( $applicant.stpmResults )
+<tr bgcolor="lightgrey"><td style="width:350px;height:20px">Subject</td><td style="width:50px" valign="top" align="center">Grade</td></tr>
+
+#foreach ( $r in $applicant.stpmResults )
+<tr><td style="width:200px;height:20px">$r.subject.name</td><td valign="top" align="center">$!r.generalExamGrade.name</td></tr>
+#end
+#end
+</table>
+#**
+<table width="100%"><tr><td align="right">
+<input type="button" style="font-weight:bold;height:30px" value="EDIT..." onclick="doDivAjaxCall${formName}('stpm','edit_stpm','')">
+</td></tr></table>
+**#

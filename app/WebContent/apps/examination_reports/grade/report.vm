@@ -1,0 +1,21 @@
+<style>
+td { color: #000000; font: normal 11px arial; }
+</style>
+
+<table width="100%">
+<tr><td>Intake:</td><td style="font-weight:bold">$intake.name</td></tr>
+<tr><td>Semester:</td><td style="font-weight:bold">$period.parent.name $period.name ($session.name)</td></tr>
+<tr><td>Subject:</td><td style="font-weight:bold"><a style="text-decoration:none" href="javascript:void" onclick="$('div_students').style.visibility='hidden';$('div_stat').style.visibility='visible'">$subject.code $subject.name</a></td></tr>
+</table>
+<br><br>
+
+<div style="position:absolute;width:800px" id="div_students" name="div_students"></div>
+<div style="position:absolute;width:800px" id="div_stat" name="div_stat">
+#parse("apps/examination_reports/grade/stat.vm")
+</div>
+
+#if ( $print_mode )
+<script>
+window.print();
+</script>
+#end

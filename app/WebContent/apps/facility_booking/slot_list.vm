@@ -1,0 +1,45 @@
+<table cellspacing="1" cellpadding="0">
+<tr height="30px">
+<td width="39px"></td>
+#foreach( $ts in $topSlots )
+#set ( $d = $ts.day + 1 )
+#if ( $ts.reserved == 0 )
+<td style="width:24px;cursor:pointer;font-family:arial" align="center" bgcolor="silver"> </td>
+#else
+<td style="width:24px;cursor:pointer;font-family:arial" align="center" bgcolor="#7FAAFF"> </td>
+#end
+#end
+<td></td>
+</tr>
+#foreach( $ht in $slotList )
+<tr height="15px">
+<td align="right"></td>
+#foreach( $slot in $ht.slots)
+#if ( $slot.reserved == 1 )
+
+#set( $txt = "$ht.reservation.student.biodata.name<br>" )
+#if ( $ht.reservation.checkInDate ) #set ( $txt = $txt + " " + $du.toString($ht.reservation.checkInDate, "dd-MMM-yyyy") ) #end
+#if ( $ht.reservation.checkInTime ) #set ( $txt = $txt + " (" + $du.toString($ht.reservation.checkInTime, "h:mm a") ) #end
+#set ( $txt = $txt + " - " )
+#if ( $ht.reservation.checkOutTime ) #set ( $txt = $txt + " " + $du.toString($ht.reservation.checkOutTime, "h:mm a") + ")" ) #end
+#set ( $txt = $txt + "<br>" )
+##set ( $txt = $txt + "<a onclick=delayhidetip()>[Close]</a>" )
+
+
+##onclick="doDivAjaxCall$formname('student_info', 'student_info', 'matric_no2=$ht.reservation.student.matricNo')"
+<td style="" align="center" bgcolor="red"
+onMouseOver='fixedtooltip("$txt", this, event, "300px")' onMouseout="delayhidetip()"></td>
+#else
+<td style="" align="center"></td>
+#end
+#end
+<td>
+<a href="javascript:void()" onclick="if ( !confirm('Delete?') ) return ;doDivAjaxCall$formname('schedule_data', 'delete_booking', 'booking_id=$ht.reservation.id&facility_id=$facility.id')">
+x
+</a>
+</td>
+</tr>
+
+
+#end
+</table>

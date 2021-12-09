@@ -1,0 +1,87 @@
+
+#if ( $students.size() > 0 )
+
+<div style="text-align:right">
+	<button type="button" class="btn btn-default" onclick="document.location='../servlet/educate.admission.module.SubjectRegistrationXLServlet'">XL</button>
+</div>
+
+<div style="font-size:12pt;font-weight:bold;margin-top:80px;">
+	SUBJECTS ENROLLMENT BY STUDENTS
+</div>
+<div style="font-weight:bold;margin-bottom:20px">
+
+	#if ( $program ) Program: $program.code - $program.name #end
+	<br/>
+	Date: $dateFormat.format($!reportDate)
+</div>
+
+
+
+
+
+<table style="border:1px solid #000"><tr><td valign="top">
+
+<table cellpadding="0" cellspacing="0"> ##style="table-layout:fixed;width:40px">
+<tr style="height:150px">
+	<th style="min-width:30px;border-right:1px dotted #000;border-bottom:1px solid #000"></th>
+	<th style="min-width:250px;padding-top:50px;border-right:1px dotted #000;border-bottom:1px solid #000">Student</th>
+	<th style="min-width:200px;border-right:1px solid #000;padding-top:50px;border-bottom:1px solid #000">Semester</th>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $students )
+	#set ( $cnt = $cnt + 1 )
+	
+	<tr style="height:50px">
+		<td style="min-width:30px;border-bottom:1px dotted #000;border-right:1px dotted #000">$cnt</td>
+		<td nowrap style="width:200px;min-width:200px;border-bottom:1px dotted #000;border-right:1px dotted #000">
+			$s.student.matricNo
+			<br/>$s.student.biodata.name
+		</td>
+		<td nowrap style="max-width:200px;border-bottom:1px dotted #000;border-right:1px solid #000">
+			$s.period.name #if ( $s.period.parent ) ($s.period.parent.name) #end
+			<br/>$s.session.name
+		</td>	
+	</tr>
+#end
+</table>
+
+
+
+</td><td valign="top">
+
+
+<table cellpadding="0" cellspacing="0"> ##style="table-layout:fixed;width:40px">
+<tr style="height:150px">
+	
+	#foreach( $subject in $subjects )
+		
+		<th class="rotate" style="width:20px;border-right:1px dotted #000;border-bottom:1px solid #000">
+			<div style="margin-left:-20px;margin-top:40px">
+				$subject.code
+			</div>
+		</th>
+		
+	#end
+	<th></th>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $students )
+	#set ( $cnt = $cnt + 1 )
+	
+	<tr style="height:50px">
+		
+		#foreach( $subject in $subjects )
+			<td style="border-bottom:1px dotted #000;border-right:1px dotted #000;font-size:14pt" align="center">
+			#if ( $subjectMap.get("${subject.id}_${s.student.id}") )
+			<i class="fa fa-check" aria-hidden="true"></i>
+			#end
+			</td>
+		#end
+		<td></d>
+	</tr>
+#end
+</table>
+
+</td></tr></table>
+
+#end

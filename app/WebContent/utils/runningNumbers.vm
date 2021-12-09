@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<table style="background:#969696">
+<tr style="height:30px;background:#D8D6D6">
+<td style="width:100px;background:#D8D6D6">Program</td>
+<td style="width:300px;background:#D8D6D6">Conditional Ref</td>
+<td style="width:100px;background:#D8D6D6">Counter</td>
+<td style="width:100px;background:#D8D6D6"></td>
+<td style="width:300px;background:#D8D6D6">Offer Ref</td>
+<td style="width:100px;background:#D8D6D6">Counter</td>
+</tr>
+#foreach( $r in $refList )
+<tr style="height:25px">
+<td style="background:#FFF">$r.programCode</td>
+<td style="background:#FFF">$r.conditionalOfferRef</td>
+<td style="background:#FFF">#if ($r.conditionalOfferRef != "" ) $r.countConditionalOfferRef #end</td>
+<td style="background:#FFF"></td>
+<td style="background:#FFF">$r.offerRef</td>
+<td style="background:#FFF">#if ($r.offerRef != "" ) $r.countOfferRef #end</td>
+</tr>
+#end
+</table>

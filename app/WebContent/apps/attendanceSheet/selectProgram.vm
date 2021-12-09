@@ -1,0 +1,6 @@
+<select name="programId" style="width:100%" onchange="clearStudentData();doDivAjaxCall$formname('selectPeriod','selectPeriod','')">
+<option value=""></option>
+#foreach( $p in $programs )
+	<option value="$p.id">$p.code $p.name</option>
+#end
+</select>

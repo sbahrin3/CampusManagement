@@ -1,0 +1,7 @@
+#if ( $applicant.certificates )
+<table width="100%">
+#foreach ( $c in $applicant.certificates )
+<tr><td>$c.qualification.name</td><td>$c.year</td></tr>
+#end
+</table>
+#end

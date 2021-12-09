@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="../../style/style.css" type="text/css" media="screen" />
+
+
+<script type="text/javascript">
+calndr.showNavigationDropdowns();
+
+function openView(id) {
+	##$('div_' + id).style.display = "none";
+	$('view_' + id).style.display = "block";
+}
+
+function closeView(id) {
+	##$('div_' + id).style.display = "block";
+	$('view_' + id).style.display = "none";
+}
+
+</script>
+
+#if ( $is_announcement_admin )
+<table>
+<tr>
+<td>
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_${_moduleId}','create_announcement','')">New Announcement</a>
+</td>
+<td style="width:10px"></td>
+<td>
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_${_moduleId}','delete_announcements','')">Delete Announcements</a>
+</td>
+
+<tr>
+</table>
+#end
+<table width="100%">
+<tr>
+<td>
+
+<div id="div_${_moduleId}"  style="overflow:auto;overflow-x:hidden;display:block">
+#parse("apps/portal/announcement/list.vm")
+</div>
+
+</td>
+</tr>
+</table>
+<script>
+	function uploadFile(announcementId, documentId, e) {
+		document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+		document.${formname}.enctype='multipart/form-data';
+		document.${formname}.encoding ='multipart/form-data';
+		document.${formname}.target='upload_document';
+		document.${formname}.action='?command=uploadFile&announcementId=' + announcementId + '&documentId=' + documentId + '&divUploadStatusName=' + e;
+		document.${formname}.submit();
+	
+	}
+</script>
+<iframe id="upload_document" name="upload_document" width="0px" height="0px" style="visibility:hidden"></iframe>

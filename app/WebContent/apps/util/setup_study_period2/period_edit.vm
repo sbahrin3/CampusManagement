@@ -1,0 +1,32 @@
+<div class="well">
+
+
+<div id="div_select_schemes">
+#parse( "apps/util/setup_study_period2/select_schemes.vm" )
+</div>
+
+</fieldset>
+
+<div id="div_new_scheme"></div>
+
+<div style="padding:10px">
+<span id="scheme_name"></span>
+
+<table>
+<tr><td style="width:100px"></td><td>
+<div id="div_list_periods" name="div_list_periods"></div>
+</td></tr>
+<tr><td>
+<div id="div_message"></div>
+</td></tr>
+</table>
+</div>
+
+
+</div>
+
+<div class="well">
+	##<button type="button" class="btn btn-success" onclick="$('period_overview').style.display='block';$('period_edit').style.display='none';">Done</button>
+	<button type="button" class="btn btn-warning" onclick="$('period_edit').style.display='none';doDivAjaxCall$formname('period_overview','reload','')">Back to Periods Overview</button>
+
+</div>

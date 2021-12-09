@@ -1,0 +1,40 @@
+<div style="margin-bottom:20px;font-family:Verdana, Helvetica, Arial, sans-serif;font-size:12pt;font-weight:bold">
+	List of Barred Students
+</div>
+
+<table>
+	<tr style="height:30px;background:#BCB5B5">
+		<td style="width:40px">&nbsp;</td>
+		<td style="width:150px;font-weight:bold">Student ID</td>
+		<td style="width:300px;font-weight:bold">Name</td>
+		<td style="width:400px;font-weight:bold">Program</td>
+		<td style="width:150px;font-weight:bold">Intake</td>
+		<td style="width:40px">
+			
+		</td>
+	</tr>
+	#set ( $cnt = 0 )
+	#foreach( $student in $students )
+		#set ( $cnt = $cnt + 1 )
+		<tr style="height:25px">
+			<td style="border-bottom:1px solid #BCB5B5">$cnt.</td>
+			<td style="border-bottom:1px solid #BCB5B5">$student.matricNo</td>
+			<td style="border-bottom:1px solid #BCB5B5">$student.biodata.name</td>
+			<td style="border-bottom:1px solid #BCB5B5">$student.program.code $student.program.name</td>
+			<td style="border-bottom:1px solid #BCB5B5">$student.intake.name</td>
+			<td style="border-bottom:1px solid #BCB5B5" align="center">
+				<input type="checkbox" name="studentIds" value="$!student.id">
+			</td>
+		</tr>
+	#end
+		<tr style="height:25px">
+			<td style="border-bottom:1px solid #BCB5B5"></td>
+			<td style="border-bottom:1px solid #BCB5B5"></td>
+			<td style="border-bottom:1px solid #BCB5B5"></td>
+			<td style="border-bottom:1px solid #BCB5B5"></td>
+			<td style="border-bottom:1px solid #BCB5B5"></td>
+			<td style="border-bottom:1px solid #BCB5B5" align="center">
+				<input class="linkbutton" type="button" value="Release" onclick="doDivAjaxCall3$formname('listBarredStudents','unbarStudents','')">
+			</td>
+		</tr>
+</table>

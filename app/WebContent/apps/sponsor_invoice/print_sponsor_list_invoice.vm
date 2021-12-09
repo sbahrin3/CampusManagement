@@ -1,0 +1,44 @@
+<table width="100%"><tr><td style="font-size:14pt;font-weight:bold">INVOICE</td></tr></table>
+<br/>
+<table width="100%">
+<tr>
+<td style="font-weight:bold">$invoice.sponsor.name</td>
+<td align="right"><b>Date:
+$df.format($invoice.invoiceDate)
+</b>
+</td>
+</tr>
+</table>
+
+<br/>
+
+<table width="100%">
+<tr><td colspan="5"><hr/></td></tr>
+
+<tr>
+<td></td>
+<td style="font-weight:bold">Matric No</td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">Invoice No</td>
+<td style="font-weight:bold">Amount<br/>(RM)</td>
+</tr>
+
+<tr><td colspan="5"><hr/></td></tr>
+#foreach( $i in $invoice.invoices )
+<tr>
+<td>${velocityCount}.</td>
+<td>$i.student.matricNo</td>
+<td>$i.student.biodata.name</td>
+<td>$i.invoiceNo</td>
+<td>$numFormat.format($i.amount)</td>
+</tr>
+#end
+<tr height="10px"><td colspan="5"></td></tr>
+<tr><td colspan="5"><hr/></td></tr>
+<tr>
+<td colspan="3"></td>
+<td  style="font-weight:bold">TOTAL:</td>
+<td style="font-weight:bold">$numFormat.format($invoice.amount)</td>
+</tr>
+<tr><td colspan="5"><hr/></td></tr>
+</table>

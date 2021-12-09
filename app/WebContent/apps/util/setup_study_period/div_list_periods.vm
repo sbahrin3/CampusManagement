@@ -1,0 +1,82 @@
+
+<table cellspacing="0" cellpadding="0"><tr><td>
+<input name="period_scheme_code" class="texts" style="height:16px;width:100%" value="$!period_scheme.code" onkeydown="if ( event.keyCode == 13 ) { doDivAjaxCall3$formname('div_message','update_scheme_code','scheme_id=$period_scheme.id')  }">
+</td></tr></table>
+<table cellspacing="0" cellpadding="0">
+#foreach( $p in $periods)
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/line.gif)"></td>
+<td></td>
+</tr>
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/join.gif)"></td>
+<td><input class="noborder" name="period_name_$p.id" style="height:16px;width:100%" value="$p.name" onchange="doDivAjaxCall3$formname('div_message','save_period_name','period_id=$p.id')"></td>
+<td style="width:10px">#if ( $p.getChilds().size() == 0 ) <a href="javascript:void()" onclick="doDivAjaxCall3$formname('div_list_periods','delete_period','period_id=$p.id&periodSchemeId=$!periodSchemeId')">x</a> #end</td>
+</tr>
+
+#if ( $p.hasChild() )
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/line.gif)"></td>
+<td>
+
+<table cellspacing="0" cellpadding="0">
+#set ( $cnt = 0 )
+#foreach( $child in $p.getChildList())
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td style="width:10px"></td>
+<td style="width:18px;height:16px;background:url(../images/menu/win/join.gif)"></td>
+<td style="width:200px"><input class="noborder" name="period_name_$child.id" style="height:16px;width:100%" value="$child.name" onchange="doDivAjaxCall3$formname('div_message','save_period_name','period_id=$child.id')"></td>
+<td style="width:10px">#if ( $cnt == $p.getChilds().size() ) <a href="javascript:void()" onclick="doDivAjaxCall3$formname('div_list_periods','delete_period','period_id=$child.id')">x</a> #end</td>
+</tr>
+#end
+</table>
+
+</td>
+</tr>
+#end
+
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/line.gif);background-repeat:no-repeat"></td>
+<td>
+
+<table cellspacing="0" cellpadding="0">
+<tr>
+<td style="width:10px"></td>
+<td style="width:18px;height:16px;background:url(../images/menu/win/joinbottom.gif)"></td>
+<td style="width:200px"><input id="child_$p.id" name="child_$p.id" class="texts" style="height:16px;width:100%" onkeydown="if ( event.keyCode == 13 ) { doDivAjaxCall3$formname('div_list_periods','add_child','period_id=$p.id')  }"></td>
+<td style="width:10px"></td>
+</tr>
+</table>
+
+</td></tr>
+#end
+
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/line.gif)"></td>
+<td></td>
+</tr>
+
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/joinbottom.gif)"></td>
+<td>
+<input id="period_name" name="period_name" class="texts" style="height:16px;width:100%" onkeydown="if ( event.keyCode == 13 ) { doDivAjaxCall3$formname('div_list_periods','add_period','period_scheme_id=$period_scheme.id')  }">
+</td></tr>
+
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/blank.gif)"></td>
+<td></td>
+</tr>
+
+</table>
+
+<script>
+$('div_new_scheme').style.display='none';
+$('div_waiting').innerHTML='';
+$('scheme_name').innerHTML="$!period_scheme.code";
+#if ( $period_added )
+	$('period_name').focus();
+#elseif ( $child_added ) 
+	$('child_$period.id').focus();
+#end
+</script>

@@ -1,0 +1,101 @@
+<script>
+$('div_input').style.display = "block";
+</script>
+
+#set ( $edit_mode = "no" )
+#if ( $q )
+#set ( $edit_mode = "yes" )
+#end
+
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+Quiz
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="x" 
+#if ( $q )
+onclick="$('row_$q.id').className='row_normal'; $('div_input').style.display='none';"
+#else
+onclick="$('div_input').style.display='none';"
+#end
+>
+</td></tr>
+</table>
+<br/>
+
+
+<input type="hidden" name="audienceType" value="student">
+<table style="width:100%">
+
+#if ( $edit_mode == "no" )
+
+	#**  
+	<tr><td>
+		Target Audience
+	</td><td>:</td>
+	<td>
+		
+		<select class="text" name="audienceType" #if ( $edit_mode == "yes" ) disabled style="background:#ccc" #end>
+			<option #if ( $q.audienceType == "student" ) selected #end value="student">Students</option>
+			<option #if ( $q.audienceType == "lecturer" ) selected #end value="lecturer">Lecturers</option>
+		</select>
+		
+		
+	</td></tr>
+	**#
+	
+	<tr><td style="width:200px">Select Quiz Set</td><td style="width:5px">:</td>
+		<td>
+		<select class="text" name="setId" #if ( $edit_mode == "yes" ) disabled  style="background:#ccc" #end>
+		<option value=""></option>
+		#foreach( $s in $sets )
+		<option #if ( $q.set.id == $s.id ) selected #end value="$s.id">$s.name</option>
+		#end
+		</select>
+		</td>
+	</tr>
+	#** 
+	<tr><td>Select Program</td><td>:</td>
+	<td>
+	<select class="text" name="programId" #if ( $edit_mode == "yes" ) disabled  style="background:#ccc" #end onchange="doDivAjaxChainCall$formname('listIntakes','listIntakes','','listSubjects','listSubjects','')">
+	<option value=""></option>
+	#foreach( $p in $programs )
+	<option #if ( $q.program.id == $p.id ) selected #end value="$p.id">$p.code $p.name</option>
+	#end
+	</select>
+	</td></tr>
+	<tr><td>Select Intake</td><td>:</td>
+	<td>
+	<div id="listIntakes">#parse("questionnare/publish/listIntakes.vm")</div>
+	</td></tr>
+	<tr><td>Select Subject</td><td>:</td>
+	<td>
+	<div id="listSubjects">#parse("questionnare/publish/listSubjects.vm")</div>
+	</td></tr>
+	**#
+#end
+
+
+
+<tr><td>Open Date</td><td>:</td>
+<td>
+<input class="text" name="startDate" id="startDate" #if ( $q.startDate ) value="$dateFormat.format($q.startDate)" #end>
+<script> new JsDatePick({ useMode:2, target:"startDate", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+
+<tr><td>Close Date</td><td>:</td>
+<td>
+<input class="text" name="endDate" id="endDate" #if ( $q.endDate ) value="$dateFormat.format($q.endDate)" #end>
+<script> new JsDatePick({ useMode:2, target:"endDate", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+
+<tr><td colspan="3" align="right">
+<input class="linkbutton" type="button"  #if ( $edit_mode == "yes" ) value="Update" #else value="Add New" #end  onclick="$('div_input').style.display = 'none';doDivAjaxCall3$formname('div_main','saveQuestionnare','questionnareId=$!q.id')">
+</td></tr>
+</table>
+
+
+
+<script>new Draggable('div_input', {handle: 'dragHandle'});</script>

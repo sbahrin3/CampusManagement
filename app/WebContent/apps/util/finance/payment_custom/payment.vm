@@ -1,0 +1,237 @@
+
+#if ( $is_credit_note ) #set ( $bgcolor = "#D6D4D4" ) #else #set ( $bgcolor = "#F7F7F7" ) #end
+<fieldset  style="background-color:$bgcolor;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-size:12pt;font-weight:bold">
+#if ( $is_credit_note ) Make Credit Note #else Make Payment #end
+</legend>
+
+
+<table width="100%">
+<tr>
+<td style="width:500px;font-weight:bold">Description of #if ( $is_credit_note ) Credit Note #else Payment #end</td>
+<td style="width:100px;font-weight:bold">Amount</td>
+#if ( !$is_credit_note )
+
+#if ( $paymentSchedule )
+<td style="width:80px;font-weight:bold" align="center">
+	Flexi?
+</td>
+<td style="width:80px;font-weight:bold" align="center">
+	PTPTN?
+</td>
+<td style="width:80px;font-weight:bold" align="center">
+	Resource Fee?
+</td>
+#end
+
+#end
+<td style="width:50px"></td>
+</tr>
+<tr>
+<td><input class="texts" name="description" value="#if ( $is_credit_note ) CREDIT NOTE #else PAYMENT #end" ></td>
+<td><input class="texts" name="amount" ></td>
+
+#if ( $is_credit_note )
+
+<td align="center">
+<input class="linkbutton"  type="button" value="+" onclick="doDivAjaxCall$formname('div_payment','add_credit_note_item','')">
+</td>
+#else
+
+#if ( $paymentSchedule )
+<td align="center">
+	<input type="checkbox" id="flexi" name="flexi" value="1" onclick="if ( this.checked ) { $('ptptn').checked = false; $('resourceFee').checked = false; }"> 
+</td>
+<td align="center">
+	<input type="checkbox" id="ptptn" name="ptptn" value="1" onclick="if ( this.checked ) { $('flexi').checked = false; $('resourceFee').checked = false; }"> 
+</td>
+<td align="center">
+	<input type="checkbox" id="resourceFee" name="resourceFee" value="1" onclick="if ( this.checked ) { $('flexi').checked = false; $('ptptn').checked = false;}"> 
+</td>
+#end
+
+<td align="center">
+<input class="linkbutton" type="button" value="+" onclick="doDivAjaxCall$formname('div_payment','add_payment_item','')">
+</td>
+#end
+
+</tr>
+</table>
+
+
+<br>
+#if ( $payment_items.size() > 0 )
+<fieldset style="padding:10px;background-color:#EBEBEB;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%" align="center">
+<tr height="30px">
+	<td style="width:10px"></td>
+    <td  style="width:500px;font-weight:bold">Payment Item(s)</td>
+    <td  style="width:100px;font-weight:bold" align="center">Amount</td>
+	<td style="width:50px;font-weight:bold" align="center"></td>
+    <td style="width:50px"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach ( $item in $payment_items )
+	#set ( $cnt = $cnt + 1 )
+    <tr height="30px">
+	<td bgcolor="#FFFFFF" style="width:20px;border-bottom:1px solid #EBEBEB">$cnt)</td>
+    <td bgcolor="#FFFFFF" style="width:500px;border-bottom:1px solid #EBEBEB">
+    		$!item.description
+    </td>
+    <td bgcolor="#FFFFFF" style="border-bottom:1px solid #EBEBEB" align="center">
+    		$!item.amount
+    </td>
+	<td bgcolor="#FFFFFF" style="border-bottom:1px solid #EBEBEB" align="center">
+		#if ( $item.flexi )
+			FLEXI
+		#elseif ( $item.ptptn )
+			PTPTN
+		#elseif ( $item.resourceFee )
+			RESOURCE FEE
+		#else
+			&nbsp;
+		#end
+	</td>
+	
+	
+    <td align="center">
+    	<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('div_payment','delete_payment_item','payment_id=$!item.id')">X</a>
+    </td>
+    </tr>
+#end
+<tr height="30px">
+	<td></td>
+	<td style="font-weight:bold">Total Payment</td>
+	<td style="font-weight:bold" align="center">$numFormat.format($!totalPayment)</td>
+	<td></td>
+</tr>
+	
+</table>
+
+<table style="width:100%">
+	<tr>
+		<td align="right">
+			When done with payment items, click Next...
+		</td>
+		<td style="width:100px" align="right">
+			<input class="linkbutton" type="button" value="Next.." onclick="$('divPaymentDetail').style.display='block';">
+		</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div id="divPaymentDetail" style="display:none">
+    <table width="100%">
+    #if ( $is_credit_note )
+    <tr>
+    <td align="right">
+    
+    <table><tr><td>
+    Date: 
+    <input class="textr" id="creditNoteDate" name="creditNoteDate" style="width:100px">
+    <script> new JsDatePick({ useMode:2, target:"creditNoteDate", dateFormat:"%d-%m-%Y" }); </script>
+    </td><td>
+    <input class="gradient" type="button" style="height:30px;font-weight:bold" value="CONFIRM CREDIT NOTE" onclick="if ( !confirm('Confirm CREDIT NOTE?') ) return; doAjaxCall$formname('confirm_credit_note','')">
+    </td></tr></table>
+    
+    </td></tr>
+    #else
+    <tr>
+    <td>
+    <table>
+    <tr><td>Date:</td>
+    <td>
+    <input class="texts" id="paymentDate" name="paymentDate" style="width:150px" value="$dateFormat.format($now)">
+    <script> new JsDatePick({ useMode:2, target:"paymentDate", dateFormat:"%d-%m-%Y" }); </script>
+    </td></tr>
+    
+    <tr><td>Mode Of Payment:</td>
+    <td>
+    <select class="texts" style="width:200px" id="payment_mode" name="payment_mode">
+    <option value="">-Select-</option>
+    <option value="Cash">Cash</option>
+    <option value="Check">Cheque</option>
+    ##<option value="Online">Online</option>
+    <option value="Credit Card">Credit Card</option>
+    <option value="Bank-In">Bank-In</option>
+    ##<option value="Direct Debit">Direct Debit</option>
+    ##<option value="Telegraph Transfer">Telegraph Transfer</option>
+    ##<option value="Bank Draft">Bank Draft</option>
+    </select>
+    </td></tr>
+    
+    <tr><td>Cheque No:</td>
+    <td>
+    <input class="texts" name="checkNo" style="width:200px">
+    </td></tr>
+    
+    <td valign="top">Remark:</td><td>
+    <textarea class="texts" name="remark" class="text" style="width:470px;height:80px"></textarea>
+    </td></tr>
+    
+	
+	#** 
+    <tr><td valign="top"><br/><br/></td>
+    <td valign="top">
+	<br/>
+    <b>Fee Items' Knock-out (enter knock-out amount):</b>
+	<br/><br/>
+    <table>
+	#set ( $cnt = 0 )
+    #foreach( $it in $invoiceItems )
+    	#if ( !$it.invoice.debitNote && !$it.invoice.refund )
+			#set ( $cnt = $cnt + 1 )
+    		<tr>
+				<td style="width:20px">$cnt)</td>
+				<td style="width:400px">$it.invoice.invoiceNo - $it.description</td>
+				<td>
+					<input class="texts" style="width:60px" name="itemAmount_$it.id">
+    			</td>
+			</tr>
+    	#end
+    #end
+    </table>
+    </td></tr>
+	**#
+    
+    #set ( $uploadDocument = "no" )
+    
+    #if ( $uploadDocument == "yes" )
+        <tr><td>Supporting Document:</td>
+        <td>
+        
+        <input type="file" id="supportingDocument" name="supportingDocument" style="width:200px">&nbsp;
+        <input class="linkbutton" type="button" value="Upload" onclick="uploadFile('supportingDocument', 'divUploadFile')">
+        <input type="hidden" name="documentFileName" id="documentFileName">
+        <div id="divUploadFile"></div>
+        
+        
+        </td></tr>
+    #end
+    
+    </table>
+
+
+</td>
+
+<td align="right">
+<input class="linkbutton" type="button"  value="Confirm Payment" onclick="if ( $('payment_mode').value == '' ) { alert('Please select payment mode'); return;  } else { doDivAjaxCall$formname('divMain','confirm_payment','');}">
+</td></tr>
+#end
+</table>
+
+
+</div>
+<br/>
+
+</fieldset>
+#end
+<br/>
+
+
+
+</fieldset>

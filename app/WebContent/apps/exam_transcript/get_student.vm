@@ -1,0 +1,57 @@
+
+<br>
+<table align="center">
+<tr>
+<td>
+Matric No<td>:</td></td>
+<td><input type="text" name="matric_no">
+$button.command("get_student_by_matrik").text("Get...")</td>
+</tr>
+
+#**
+<tr>
+<td>Name<td>:</td></td>
+<td><input type="text" name="find_name">
+$button.command("get_student_by_name").text("Get...")
+</td>
+**#
+
+</tr>
+
+</table>
+<p>
+
+
+#**
+<table align ="center">
+<tr bgcolor="#FF9933"><td colspan=2></td></tr>
+<tr><td><h3>Sort from Intake and Faculty</h3></td></tr>
+<tr>
+<td>
+<select name="intake">
+				<option value=0>----- Intake -----</option>
+				#foreach($Session in $intakeList)
+					
+					<option value=$Session.id>$Session.name</option>
+				#end
+			 </select>
+			 
+			 <select name="School">
+				<option value=0>----- School -----</option>
+				#foreach($school in $schoolList)
+					#if( $school.name != "GENERAL" )
+					<option value=$school.id>$school.name</option>
+				#end
+				#end	
+				</select>			
+				
+</td>
+</tr>
+<tr>
+<td>
+	$button.command("submit").text("Find Student Here")</td>
+
+</tr>
+</table>
+
+**#

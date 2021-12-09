@@ -1,0 +1,92 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+
+.texts {	text-transform: uppercase;
+		color#000;
+		background-color:#fff;
+		font-weight:normal;
+		font-family:verdana;
+		font-size:9pt; 
+		border-bottom:1px solid #66CCCC; 
+		border-top:1px solid #66CCCC; 
+		border-left:1px solid #66CCCC; 
+		border-right:1px solid #66CCCC; 
+		height:26px; 
+		width:100%;
+		}
+.texts:focus {	text-transform: uppercase;
+				color:#000;
+				background-color:#FFFF99;
+				font-weight:normal;
+				font-family: verdana;
+				font-size:9pt; 
+				}
+
+</style>
+
+<script>
+var isNN = (navigator.appName.indexOf("Netscape")!=-1);
+function at(input, e) {
+  var keyCode = (isNN) ? e.which : e.keyCode; 
+  if ( keyCode == 13 ) {
+    input.form[(getIndex(input)+1) % input.form.length].focus();
+  }
+}
+function getIndex(input) {
+    var index = -1, i = 0, found = false;
+    while (i < input.form.length && index == -1) {
+    	if (input.form[i] == input)index = i;
+    	else i++;
+    }
+    return index;
+}
+## <INPUT id="txtChar" onkeypress="return isNumber(event)" type="text" name="txtChar">
+## number only
+function isNumber(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+function isDecimal(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if ( charCode == 46 ) return true;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+## alpha only
+function isAlpha(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if ( charCode == 32 ) return true;
+    if (charCode > 31 && (charCode < 97 || charCode > 122) ) return false;
+    return true;
+}
+</script>
+<table align="center" width="700" style="background-color:#fff">
+
+#if ( $admin_mode )
+<tr><td align="right">
+IC No/Passport No:
+<input name="find_no" style="width:100px">
+<input type="button" style="font-weight:bold;" value="GET.." onclick="doDivAjaxCall$formname('div_main','get_applicant','')">
+</td></tr>
+#else
+
+
+<tr><td align="center" style="font-weight:bold">
+
+#end
+
+
+<tr><td>
+<div id="div_main">
+#parse("apps/util/applicant/page1.vm")
+</div>
+</td></tr>
+<tr><td>
+<div id="div_empty"></div>
+</td></tr>
+</table>

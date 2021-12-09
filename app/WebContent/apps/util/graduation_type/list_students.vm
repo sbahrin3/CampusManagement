@@ -1,0 +1,18 @@
+<table width="100%">
+#foreach ( $s in $students )
+<tr>
+<td width="50px" align="right">$velocityCount)</td>
+<td>$s.matricNo</td>
+<td>$s.biodata.name</td>
+<td>
+<div id="study_type_$s.id" name="study_type_$s.id">
+<select name="study_type_$s.id" onchange="doDivAjaxCall$formName('study_type_$s.id', 'study_type', 'student_id=$s.id')">
+<option value="">-</option>
+<option value="G" #if ( $s.studyType == 'G' ) selected #end>GENERAL</option>
+<option value="S" #if ( $s.studyType == 'S' ) selected #end>SPECIALISE</option>
+</select>
+</div>
+</td>
+</tr>
+#end
+</table>

@@ -1,0 +1,32 @@
+<ul id="roomTypesList" style="list-style-type:none; padding: 0px;">
+	
+	#set ( $cnt = 0 )
+	#foreach( $c in $roomTypes )
+	#set ( $cnt = $cnt + 1 )
+	<li id="roomTypeList_$cnt" style="padding:0px">
+		<input type="hidden" name="roomIds" value="$c.id">
+		<table cellpadding="1" cellspacing="0">
+		<tr>
+		<td style="width:20px;cursor:pointer" valign="top">$cnt.</td>
+		<td style="width:350px" valign="top"><input class="textr" name="name_$c.id" value="$c.name" onchange="doDivAjaxCall3$formname('empty','changeName','roomId=$c.id')"></td>
+		<td style="width:50px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listHostel','deleteRoom','roomId=$c.id')"></td>
+		<td>
+		</tr>
+		</table>
+	</li>
+	#end
+</ul>
+<table cellpadding="1" cellspacing="0">
+<tr>
+<td style="width:20px"></td>
+<td style="width:350px"><input class="textr" name="name" value=""></td>
+<td style="width:100px"><input class="linkbutton" type="button" style="width:100%" value="Add" onclick="doDivAjaxCall3$formname('listHostel','addRoom','')"></td>
+</tr>
+</table>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('roomTypeList', { onUpdate:updateSequence});
+function updateSequence() {
+	doDivAjaxCall3$formname('listHostel','updateSequence','')	
+}
+</script>

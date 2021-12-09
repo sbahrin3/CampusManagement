@@ -1,0 +1,25 @@
+<table width="90%" align="center"><tr><td>
+
+<table width="100%">
+<tr><td>Matric:</td><td>$student.matricNo</td></tr>
+<tr><td>Name:</td><td>$student.biodata.name</td></tr>
+
+</table>
+<hr/>
+<table width="100%">
+<tr><td>
+<b>Select which academic session to key in results</b>
+</td></tr>
+#foreach ( $student_status in $student_status_list )
+<tr>
+<td>
+$href.command("select_student_status").param("student_status_id=$student_status.id").text("$student_status.period.parent.name $student_status.period.name - $student_status.session.name")
+</td>
+<td>
+
+</td>
+</tr>
+#end
+</table>
+
+</td></tr></table>

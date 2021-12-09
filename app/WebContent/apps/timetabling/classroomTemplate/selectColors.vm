@@ -1,0 +1,34 @@
+<div style="background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff"><label>Select Color</label></td>
+			<td align="right">
+				<button type="button" class="btn btn-primary" onclick="$('selectColors').style.display='none';">x</button>
+			</td>
+		</tr>
+	</table>
+  	
+</div>
+
+<div id="divColors" style="height:350px;overflow:auto;overflow-x:hidden;">
+
+<table align="center" style="width:200px">
+	#foreach ( $i in [1..100] )
+		#set ( $color = $SlotColor.getHexColor($i) )
+		<tr style="height:30px">
+			<td style="background:$color;cursor:pointer" onclick="doDivAjaxCall$formname('divClassrooms','saveColor','classroomTemplateId=$!classroomTemplate.id&bgcolor=$color')">&nbsp;</td>
+		</tr>
+	#end
+</table>
+
+<table align="center" style="width:200px">
+	#foreach ( $c in $colors )
+		<tr style="height:30px">
+			<td style="background:$c;cursor:pointer" onclick="doDivAjaxCall$formname('divClassrooms','saveColor','classroomTemplateId=$!classroomTemplate.id&bgcolor=$c')">&nbsp;</td>
+		</tr>
+	#end
+</table>
+
+
+</div>

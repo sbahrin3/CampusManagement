@@ -1,0 +1,14 @@
+<table width="100%">
+<tr><td>
+<input name="topic_link" id="topic_link" style="width:100%">
+</td></tr>
+<tr><td align="right">
+
+<input class="button1" type="button" value="Ok"
+onclick="$('div_add_link').style.visibility='hidden';$('div_add_link2').style.visibility='hidden';doDivAjaxCall$formName('div_topic_list','save_link','')">
+
+<input class="button1" type="button" value="Cancel"
+onclick="$('div_add_link').style.visibility='hidden';$('div_add_link2').style.visibility='hidden';">
+
+</td></tr>
+</table>

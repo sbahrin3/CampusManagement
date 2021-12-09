@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<table>
+<tr><td>Matric No:</td><td><input class="text" name="matricNo"></td>
+<td><input class="linkbutton" type="button" value="Submit" onclick="doDivAjaxCall3$formname('calculate','calculate','')">
+</td></tr></table>
+
+<div id="calculate"></div>

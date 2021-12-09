@@ -1,0 +1,14 @@
+<fieldset class="post_discussion" style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:10pt;font-weight:bold">Create New Discussion</legend>
+
+<textarea  id="post_message" name="post_message" style="width:100%;" onkeyup="resizeTextArea(this)"></textarea>
+
+<table width="100%" cellspacing="0"><tr><td align="right">
+<input class="post_button" type="button" value="OK"  onclick="doDivAjaxCall$formname('div_posting','save_discussion','')">
+</td></tr></table>
+
+</fieldset>
+
+<script>
+new TextAreaResize('post_message');
+</script>

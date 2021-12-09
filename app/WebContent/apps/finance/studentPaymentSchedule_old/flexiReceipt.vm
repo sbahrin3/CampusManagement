@@ -1,0 +1,39 @@
+<script>
+$('divReceipt').style.display="block";
+</script>
+
+
+<div style="float:right">
+	<a href="javascript:void(0)" onclick="$('divReceipt').style.display='none';">X</a>
+</div>
+<br/>
+<div id="divReceiptDetail" style="padding:10px;width:100%;background:#fff">
+<br/>
+
+<table>
+	<tr style="height:30px"><td style="width:120px">Name</td><td style="width:20px">:</td><td>$!student.biodata.name</td></tr>
+	<tr style="height:30px"><td>Student ID</td><td>:</td><td>$!student.matricNo</td></tr>
+	<tr style="height:30px"><td>ICNo/Passport</td><td>:</td><td>#if ( $student.biodata.icno != "" ) $student.biodata.icno #else $!student.biodata.passport #end </td></tr>
+	<tr style="height:30px"><td>Date</td><td>:</td><td>$dateFormat.format($payment.date)</td></tr>
+	
+</table>
+<br/><br/>
+<table style="width:100%" align="center">
+	<tr style="height:40px;border-top:1px solid #000;border-bottom:1px solid #000">
+		<td style="width:20px"></td>
+		<td style="font-weight:bold">Payment No</td>
+		<td style="with:100px;font-weight:bold" align="center">Amount<br/>(RM)</td>
+	</tr>
+	<tr style="height:30px;border-bottom:1px dotted #000">
+		<td></td>
+		<td>$!payment.paymentNo</td>
+		<td align="center">$numFormat.format($payment.amountPaid)</td>
+	</tr>
+</table>
+
+<div style="padding:20px;text-align:center">
+<input type="button" class="linkbutton" value="Print Receipt"
+onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintStudentReceiptModule2?paymentNo=$!payment.paymentNo&pdfName=$!payment.paymentNo';">
+</div>
+
+</div>

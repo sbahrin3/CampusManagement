@@ -1,0 +1,6 @@
+Refund No: $invoice.invoiceNo<br>
+Amount (RM): $numFormat.format($invoice.amount)
+<script>
+$('balance_amount_${student_id}').value='$numFormat.format($balance_amount)';
+$('amount_${student_id}').value='$numFormat.format($balance_amount)';
+</script>

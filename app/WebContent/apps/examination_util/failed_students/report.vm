@@ -1,0 +1,7 @@
+
+<div style="position:absolute;width:800px" id="div_students" name="div_students"></div>
+<div style="position:absolute;width:800px" id="div_stat" name="div_stat">
+#parse("apps/examination_util/failed_students/stat.vm")
+</div>
+
+

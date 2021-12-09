@@ -1,0 +1,73 @@
+#parse("apps/exam_subject_analysis2/result_header.vm")
+
+##BEGIN
+
+
+<div class="outer">
+<div class="inner">
+<table class="examResults" style="background:#C4C4C4" cellpadding="0" cellspacing="0">
+<tr>
+
+<th class="th" style="font-size:8pt;border-top:2px solid #000;width:300px;height:60px">&nbsp;</th>
+#set ( $colCnt = 0 )
+#foreach( $subject in $subjects )
+	#set ( $colCnt = $colCnt + 1 )
+	#if ( $colCnt % 2 == 0 ) #set ( $colColor="#BCB7B7" ) #else #set ( $colColor="#E0DEDE" ) #end
+    <td class="td" style="background:$colColor;font-size:8pt;cursor:pointer;border-bottom:2px solid #000;border-top:2px solid #000;height:50px" align="center" colspan="3"
+		onclick="doDivAjaxChainCall$formname('resultStat','resultStat','subjectId=$subject.id&displayType=1','gradeFreq','resultStat','subjectId=$subject.id&displayType=2')"
+		##onclick="doDivAjaxCall$formname('gradeFreq','resultStat','subjectId=$subject.id&displayType=2')"
+		>
+    <b>$subject.code</b><br/><br/>
+    <div>
+    $subject.name
+    </div>
+    </td>
+#end
+</tr>
+
+
+
+
+
+#set ( $cnt = 0 )
+#foreach( $student in $students )
+#set ( $cnt = $cnt + 1 )
+<tr>
+
+<td class="th" style="background:#fff;">
+	$cnt)<input class="text" style="width:270px" value="$student.matricNo&nbsp;&nbsp;$student.biodata.name" readonly>
+</th>
+#set ( $colCnt = 0 )
+#foreach( $subject in $subjects )
+	#set ( $colCnt = $colCnt + 1 )
+	#if ( $colCnt % 2 == 0 ) #set ( $colColor="#FFF" ) #else #set ( $colColor="#E0DEDE" ) #end
+    <td class="td">
+		<input class="text" style="background:$colColor;width:60px;text-align:center" value='$!subjectMap.get("${subject.id}_${student.id}").totalMark' readonly>
+    </td>
+    <td class="td">
+		<input class="text" style="background:$colColor;width:60px;text-align:center" value='$!subjectMap.get("${subject.id}_${student.id}").grade' readonly>
+    </td>
+    <td class="td">
+		<input class="text" style="background:$colColor;width:60px;text-align:center" value='$!subjectMap.get("${subject.id}_${student.id}").point' readonly>
+    </td>
+#end
+</tr>
+#end
+</table>
+</div>
+</div>
+<table>
+	<tr>
+		<td>
+			##$cnt students.
+		</td>
+	</tr>
+</table>
+
+
+<script>
+
+$('divSelectParam').style.display="none";
+
+</script>
+

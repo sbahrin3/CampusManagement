@@ -1,0 +1,19 @@
+<table class="table table-striped table-hover">
+
+#foreach( $s in $subjects )
+	<tr>
+		<td style="cursor:pointer" 
+			##onclick="$('subjectName').value='$s.code - $s.name';$('subjectId').value='$s.id';$('find_subject').style.display='none';$('mainDisplay').style.display='block';"
+		>
+			$s.code - $s.name
+			#if ( $s.version != "" ) (Version $s.version) #end
+		</td>
+		<td>$s.department.name</td>
+		<td>
+			<button type="button" class="btn btn-sm btn-primary" onclick="$('subjectName').value='$s.code - $s.name';$('subjectId').value='$s.id';doDivAjaxCall$formname('divClassrooms','listClassrooms','');$('find_subject').style.display='none';$('mainDisplay').style.display='block';">Get Activities</button>
+		
+		</td>
+	</tr>
+#end
+
+</table>

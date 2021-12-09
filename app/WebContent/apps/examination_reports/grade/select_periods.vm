@@ -1,0 +1,6 @@
+<select name="period_id" style="width:300px">
+<option value=""> - </option>
+#foreach ( $period in $periods )
+<option value="$period.id">$period.name #if ( $period.parent ) ($period.parent.name) #end</option>
+#end
+</select>

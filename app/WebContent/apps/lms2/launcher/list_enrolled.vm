@@ -1,0 +1,32 @@
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Classrooms Enrolled</legend>
+
+
+<table width="100%" cellspacing="0">
+<tr height="0px">
+<td style="width:20px"></td>
+<td style="width:100px"></td>
+<td style=""></td>
+<td style="width:100px"></td>
+</tr>
+#foreach( $c in $my_classrooms )
+#set ( $subjectTitle = $util.capitalized($c.classroom.subjectTitle) )
+<tr>
+<td></td>
+<td><a style="text-decoration:none" target="_new" href="../gc/educate.lms2.LMSModule?subject_id=$c.classroom.subjectId&subject_title=$subjectTitle&role=$c.role">
+$c.classroom.subjectId
+</a>
+</td>
+<td>
+<a style="text-decoration:none" target="_new" href="../gc/educate.lms2.LMSModule?subject_id=$c.classroom.subjectId&subject_title=$subjectTitle&role=$c.role">
+$subjectTitle
+</a>
+</td>
+<td>$c.role</td>
+</tr>
+#end
+</table>
+
+
+</fieldset>

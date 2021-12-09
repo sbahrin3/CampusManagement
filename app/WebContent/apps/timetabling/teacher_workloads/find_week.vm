@@ -1,0 +1,19 @@
+<table>
+
+	<tr><td style="width:400px">
+		
+	<input class="form-control" style="width:400px" id="weekName" readonly>
+	
+	<input type="hidden" name="week" id="week">
+	<input type="hidden" name="deliveryPeriodId" id="deliveryPeriodId">
+	
+	<input type="hidden" id="date1" name="date1">
+	<input type="hidden" id="date2" name="date2"
+
+
+	</td><td>
+		&nbsp;&nbsp;<button type="button" class="btn btn-default btn-sm" onclick="$('getReport').style.display='none';doDivAjaxCall$formname('getDeliveryPeriod','getActivitySessions','')">Select...</button>
+	</td></tr>
+
+</table>
+

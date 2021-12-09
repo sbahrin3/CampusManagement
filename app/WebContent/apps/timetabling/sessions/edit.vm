@@ -1,0 +1,44 @@
+<script>
+
+$('editData').style.display="block";
+
+</script>
+
+
+<table class="table">
+	<tr>
+		<td style="width:150px">Code:</td>
+		<td style="">
+			<input class="form-control" style="width:100px" name="sessionCode" value="$!session.code">
+		</td>
+	</tr>
+	<tr>
+		<td>Name:</td>
+		<td>
+			<input class="form-control"  name="sessionName" value="$!session.name">
+		</td>
+	</tr>
+	<tr>
+		<td>Start Date:</td>
+		<td>
+			<input class="form-control" style="width:200px" name="sessionStartDate" id="sessionStartDate" value="$dateFormat.format($session.startDate)">
+			<script> new JsDatePick({ useMode:2, target:"sessionStartDate", dateFormat:"%d-%m-%Y" }); </script>
+		</td>
+	</tr>
+	<tr>
+		<td>End Date:</td>
+		<td>
+			<input class="form-control" style="width:200px" name="sessionEndDate" id="sessionEndDate" value="$dateFormat.format($session.endDate)">
+			<script> new JsDatePick({ useMode:2, target:"sessionEndDate", dateFormat:"%d-%m-%Y" }); </script>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+		
+		<button type="button" class="btn btn-primary" onclick="doDivAjaxCall3$formname('listSessions','saveSession','sessionId=$!session.id');$('editData').style.display='none';">Save</button>
+		<button type="button" class="btn btn-default" onclick="$('editData').style.display='none';">Cancel</button>
+	
+		</td>
+	</tr>		
+</table>

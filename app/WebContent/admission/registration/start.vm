@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<style>
+
+#confirmBeforeRegister {
+    position:fixed;
+    top: 50%;
+    left: 18%;
+    width:700px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#listApplicants {
+    position:fixed;
+    top: 30%;
+    left: 18%;
+    width:950px;
+    height:460px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#getMatricCard {
+    position:fixed;
+    top: 30%;
+    left: 20%;
+    width:500px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#updateRegistration {
+    position:fixed;
+    top: 40%;
+    left: 18%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#divFindStudent {
+    position:fixed;
+    top: 30%;
+    left: 25%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+</style>
+
+##<script>calndr.showNavigationDropdowns();</script>
+<script>
+function studentRegisterData(icno, passport) {
+	$('icno').value = icno;
+	$('passport').value = passport;
+}
+
+function uploadFile(id, documentId, e) {
+	document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+	document.${formName}.enctype='multipart/form-data';
+	document.${formName}.encoding ='multipart/form-data';
+	document.${formName}.target='upload_photo';
+	document.${formName}.action='../y/${moduleId}?command=uploadDocument&studentId=' + id + '&documentId=' + documentId + '&divUploadStatusName=' + e;
+	document.${formName}.submit();
+
+}
+
+function popupMatricCard(url) {
+	p=window.open(url,'popupMatricCard','height=500,width=800,scrollbars=yes');
+	if (window.focus) {p.focus()}
+	return false;
+}
+
+</script>
+
+
+
+<iframe name="upload_photo" style="display:none"></iframe>
+
+
+#set ( $field_name = "matricNo")
+##parse("divFindStudent.vm")
+
+
+<table width="90%"><tr><td>
+
+<div id="divStudentRegistration" style="padding:5px;">
+
+<div id="divGetStudent" style="margin-bottom:50px;text-align:right">
+
+	<input class="input-find" id="matricNo" name="matricNo" value="" placeholder="Get Registered Student Data...">
+	<button type="button" class="btn btn-primary" onclick="doDivAjaxCall3$formname('divRegister','getRegisteredStudent','')">Get</button>	
+	<button type="button" class="btn btn-success" onclick="$('divFindStudent').style.display='block';">Find...</button>
+		
+	
+	
+<table width="100%">
+#**
+	<tr><td align="right">
+	<span id="beginRemark">
+	Click on <i>List Applicants</i> button to list all <b>Accepted</b> applicants.-&gt;
+	</span>
+	<input type="button" class="linkbutton" value="List Applicants" onclick="$('beginRemark').innerHTML='<b>Please Wait ... </b><img src=../img/indicator.gif>'; doDivAjaxCall3$formname('listApplicants','listApplicants','')">
+	</td></tr>
+	<tr><td>
+	</td></tr>
+**#
+</table>
+</div>
+
+
+<table width="100%">
+<tr><td>
+<div id="divRegister">
+#parse("admission/registration/entry.vm")
+</div>
+<div id="divRegisterData"></div>
+</td></tr>
+<tr><td>
+<div id="div_empty"></div>
+</td></tr></table>
+
+</div>
+
+
+</td></tr></table>
+
+<div id="listApplicants" class="shadow"></div>
+<div id="getRegistrationSlip"></div>
+<div id="getMatricCard" class="shadow"></div>
+<div id="updateRegistration" class="shadow"></div>

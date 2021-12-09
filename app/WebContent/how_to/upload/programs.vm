@@ -1,0 +1,43 @@
+<table>
+<tr style="height:25px;background:#CCCCCC">
+<td style="width:20px">&nbsp;</td>
+<td style="width:100px">Code</td>
+<td style="width:300px">Name</td>
+<td style="width:100px">Level</td>
+<td style="width:100px" align="center">Duration</td>
+<td style="width:100px" align="center">Study Mode</td>
+<td style="width:100px" align="center">Need Interview?</td>
+<td style="width:100px" align="center">Research?</td>
+<td style="width:30px">&nbsp;</td>
+<td style="width:100px">&nbsp;</td>
+</tr>
+</table>
+
+
+#set ( $row = 0 )
+#foreach( $program in $programs )
+#set ( $row = $row + 1 )
+<div id="program_$row">
+#parse("$path/program.vm")
+</div>
+<div id="edit_program_$row"></div>
+#end
+
+<table>
+
+<tr>
+<td style="width:20px"></td>
+<td style="width:100px"></td>
+<td style="width:300px"></td>
+<td style="width:100px"></td>
+<td style="width:100px"></td>
+<td style="width:100px"></td>
+<td style="width:100px"></td>
+<td style="width:100px"></td>
+<td style="width:50px"></td>
+<td style="width:100px">
+<input class="linkbutton" type="button" value="Add New" onclick="doDivAjaxCall3$formname('edit_program_0','editProgram','row=0')">
+</td>
+</tr>
+</table>
+<div id="edit_program_0"></div>

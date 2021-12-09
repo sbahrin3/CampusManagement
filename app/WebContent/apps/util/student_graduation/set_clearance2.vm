@@ -1,0 +1,59 @@
+
+<table width="100%" align="center" style="background:#7C8084">
+<tr>
+<td style="height:30px;color:#fff;font-weight:bold">$student.biodata.name</td>
+<td style="width:20px;color:#fff;cursor:pointer;" align="center" onclick="$('clearance_$graduate.id').style.display='none';">
+<div style="border:1px solid #fff;width:15px;height:15px;">X</div>
+</td>
+</tr>
+</table>
+
+<table width="100%">
+<tr><td style="width:150px;"></td><td></td></tr>
+
+##if ( !$graduate.clearanceFinance )
+<tr>
+<td valign="top">Finance:</td>
+<td>
+<textarea class="textr" id="finance_remark" name="finance_remark" style="width:100%;height:60px">$!graduate.financeRemark</textarea>
+</td>
+</tr>
+##end
+
+##if ( !$graduate.clearanceLibrary )
+<tr>
+<td valign="top">Library:</td>
+<td>
+<textarea class="textr" id="library_remark" name="library_remark" style="width:100%;height:60px">$!graduate.libraryRemark</textarea>
+</td>
+</tr>
+##end
+
+##if ( !$graduate.clearanceStudentAffair )
+<tr>
+<td valign="top">Student Affairs:</td>
+<td>
+<textarea class="textr" id="student_affair_remark" name="student_affair_remark" style="width:100%;height:60px">$!graduate.studentAffairRemark</textarea>
+</td>
+</tr>
+##end
+
+##if ( !$graduate.clearanceFaculty )
+<tr>
+<td valign="top">Faculty:</td>
+<td>
+<textarea class="textr" id="faculty_remark" name="faculty_remark" style="width:100%;height:60px">$!graduate.facultyRemark</textarea>
+</td>
+</tr>
+##end
+
+<tr><td></td>
+<td colspan="2" align="right">
+<input class="linkbutton" type="button" value="SAVE" onclick="doDivAjaxCall3$formname('save_clearance_$graduate.id','save_clearance2','graduate_id=$graduate.id')">
+</td>
+</tr>
+
+
+</table>
+
+

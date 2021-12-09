@@ -1,0 +1,23 @@
+<table width="100%">
+#set ( $show = "yes" )
+#foreach( $st in $status_list )
+
+#if ( $show == "yes" )
+
+<tr height="25px"><td style="font-weight:bold">$st.period.name ($st.period.parent.name)</td></tr>
+<tr><td>
+#set ( $subjects = $st.studentSubjects )
+<table width="100%">
+#foreach ( $s in $subjects )
+<tr><td width="100px">$s.subject.code</td><td>$s.subject.name</td></tr>
+#end
+</table>
+</td></tr>
+
+#if ( $student_status.id == $st.id ) #set ($show = "no" ) #end
+
+#end
+#end
+
+</table>
+

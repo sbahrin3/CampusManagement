@@ -1,0 +1,59 @@
+
+
+<fieldset><legend class="legend">Create and Add Selected Students to Classroom:</legend>
+Add to Classroom Section:
+<select name="selectClassroomSectionId">
+<option value=""></option>
+#foreach( $s in $classroomSectionList )
+<option value="$s.id">$s.name</option>
+#end
+</select>
+<input type="button" value="Add to Classroom.." onclick="$('listStudentsInClassrooms').innerHTML='';doDivAjaxChainCall$formname('div_empty','addToClassroom','','selectClassrooms','listClassrooms','')">
+</fieldset>
+
+<br/>
+
+<fieldset><legend class="legend">List of Students in Section: #if ( $section ) $section.name #else Undefined #end</legend>
+
+
+<table cellpadding="1" cellspacing="0">
+<tr style="height:30px" bgcolor="#B4B4B4">
+<td style="width:50px;"></td>
+<td style="width:150px;font-weight:bold">Matric No</td>
+<td style="width:350px;font-weight:bold">Name</td>
+<td style="width:100px;font-weight:bold">Section</td>
+<td style="width:50px;"><input type="checkbox" onclick="checkAll(this, 'studentSubjectIds')"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $studentList )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#F4F4F4" ) #else #set ( $bgcolor = "#fff" ) #end
+<tr bgcolor="$bgcolor">
+<td align="right">$cnt.&nbsp;</td>
+<td>$s.studentStatus.student.matricNo</td>
+<td>$s.studentStatus.student.biodata.name</td>
+<td>$!s.section.name</td>
+<td>
+<input type="checkbox" name="studentSubjectIds" value="$s.id">
+</td>
+</tr>
+#end
+<tr>
+<td colspan="7" align="right">
+
+<fieldset><legend class="legend">Move Selected Students to Section:</legend>
+Move selected to Section:
+<select id="selectSectionId" name="selectSectionId">
+<option value=""></option>
+#foreach( $s in $allSectionList )
+<option value="$s.id">$s.name</option>
+#end
+</select>
+<input type="button" value="Move.." onclick="doDivAjaxChainCall$formname('listStudents','moveSection','sectionId=$section.id','selectSections','listSections','')">
+</fieldset>
+
+</td>
+</tr>
+</table>
+</fieldset>
+

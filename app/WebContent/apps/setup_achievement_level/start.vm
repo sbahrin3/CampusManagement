@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+<div style="padding:10px">
+
+#parse("apps/setup_achievement_level/select_params.vm")
+<br/>
+<div id="divMain"></div>
+<div id="divEmpty"></div>
+
+</div>

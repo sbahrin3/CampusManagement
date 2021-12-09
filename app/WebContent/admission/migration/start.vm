@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+<table>
+<tr>
+<td style="width:100px">Matric No:</td>
+<td style="width:150px"><input class="textr" name="matricNo"></td>
+<td><input class="linkbutton"  type="button" value="Get" onclick="doDivAjaxCall3$formname('listStudentStatus','listStudentStatus','')">
+</tr>
+</table>
+
+<div id="listStudentStatus"></div>

@@ -1,0 +1,69 @@
+
+
+#if ( $student_status )
+
+<br/>
+<table width="100%">
+<tr><td  colspan="4">
+
+<table width="100%" cellspacing="0" cellpadding="2">
+
+
+<tr><td style="width:150px">Session:</td><td style="font-weight:bold">$student_status.session.name</td></tr>
+<tr><td>Semester:</td><td style="font-weight:bold">$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end</td></tr>
+<tr><td>Status:</td>
+<td style="font-weight:bold">
+#if ( $student_status.type.defer )
+<font style="color:red">
+#else
+<font style="color:blue">
+#end
+#if ( $student_status.type )
+<i>$!student_status.type.name</i>
+#else
+<i>status undefined</i>
+#end
+</font>
+</td>
+</tr>
+<tr><td>Classroom:</td><td>$!classroom.name</td></tr>
+<tr>
+<td colspan="2" align="right">
+#if ( !$bof ) $button.command("prev_semester").text("&lt;&nbsp;Prev") #else <input type="button" value="&lt;&nbsp;Prev" disabled>#end
+#if ( !$eof ) $button.command("next_semester").text("Next&nbsp;&gt;") #else <input type="button" value="Next&nbsp;&gt;" disabled>#end
+</td></tr></table>
+</td></tr>
+#if ( $student_status.studentSubjects )
+
+#foreach ( $s in $student_status.studentSubjects )
+<tr>
+<td style="width:10px"><input type="checkbox" name="delete_subjects" value="$s.id"></td>
+<td style="width:50px">$s.subject.code</td>
+<td>$s.subject.name</td>
+<td align="right">
+
+
+</td>
+</tr>
+#end
+
+<tr>
+
+<td colspan="2">
+
+</td>
+
+<td colspan="2" align="right">
+
+
+</td>
+
+</tr>
+
+#end
+</table>
+
+
+#end
+
+

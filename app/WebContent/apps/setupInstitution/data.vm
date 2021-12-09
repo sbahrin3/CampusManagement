@@ -1,0 +1,71 @@
+<div style="padding:10px">
+	
+	<div class="row">
+		<div class="col-sm-12" style="margin-bottom:10px">
+		<span style="font-style: italic; font-weight:bold">Institution</span>
+		</div>
+	</div>
+			
+	<div class="row">
+  		<div class="col-sm-2">
+  			<span style="font-style: italic;">Abbrev:</span><br/>
+  			<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('institution','edit_institution','')"><i class="fa fa-edit"></i></a>
+  			$institution.abbrev
+  		</div>
+  		<div class="col-sm-10">
+  			<span style="font-style: italic;">Name:</span><br/>
+  			$institution.name
+  		</div>
+	</div>
+	
+	<div class="row" style="height:50px"></div>
+	
+	<div class="row" style="margin-bottom:10px">
+		<div class="col-sm-12">
+		<span style="font-style: italic; font-weight:bold">List of Learning Centres</span>
+		</div>
+	</div>
+	<div class="row" style="margin-bottom:10px;background:#ebebeb">
+  		<div class="col-sm-2">
+  			<span style="font-style: italic;">Centre Code</span><br/>
+  		</div>
+  		<div class="col-sm-3">
+  			<span style="font-style: italic;">Centre Name</span><br/>
+  		</div>
+    		<div class="col-sm-6">
+  			<span style="font-style: italic;">Address</span><br/>
+  			<span style="font-style: italic;">Tel., Fax, Website</span><br/>
+  		</div>	
+  		<div class="col-sm-1">
+  		</div>	
+	</div>
+	#foreach ( $centre in $centres )		
+	<div class="row" style="margin-bottom:10px">
+  		<div class="col-sm-2">
+  			<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('institution','edit_centre','centre_id=$centre.id')"><i class="fa fa-edit"></i></a>
+  			$velocityCount. $centre.code
+  		</div>
+  		<div class="col-sm-3">
+  			$centre.name
+  		</div>
+  		<div class="col-sm-6">
+  			
+  			$!centre.address1, $!centre.address2, $!centre.address3, $!center.address4<br/>
+  			$!centre.telephone, $!centre.fax, $!centre.website
+  		</div>
+  		<div class="col-sm-1" style="text-align:right">
+  			#if ( $centre.mainCampus )
+  				<i class="fa fa-star" style="color:#f89419"></i>
+  			#end
+  		</div>
+	</div>
+
+  	#end
+  	
+  	<div class="row" style="margin-bottom:10px">
+  		<div class="col-sm-12" style="text-align:right">
+  			<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('institution','add_centre','')"><i class="fa fa-plus"></i> Add Learning Centre</a>
+  		</div>
+  	</div>
+  	
+</div>

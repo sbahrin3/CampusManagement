@@ -1,0 +1,5 @@
+<table width="80%" cellpadding="1" cellspacing="2">
+<tr><td  style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td >ICNo</td><td>:</td><td><input class="texts" type="text" name="find_icno" value="$!find_icno"></td></tr>
+<tr><td >Name</td><td>:</td><td><input class="texts" type="text" name="find_name" value="$!find_name"></td></tr>
+</table>

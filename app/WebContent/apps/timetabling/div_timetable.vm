@@ -1,0 +1,113 @@
+
+#set ( $displayId = $!{activitySession.academicCalendar.ProgrammeDeliveryTypes.id} + "_" + $!{activitySession.academicCalendar.DeliveryPeriod.id} )
+
+
+
+<input type="hidden" name="totalWeeks" value="$!weeks">
+<input type="hidden" name="activitySessionId" value="$!activitySession.id">
+<input type="hidden" name="displayId" value="$!displayId">
+
+
+#if ( $activitySessions.size() == 0 )
+	<div style="padding:10px;background:#ebebeb">
+		WARNING! Activity session is not defined!
+	</div>
+#end
+
+<div id="selectActivitySession" class="shadow" style="position:absolute;margin-left:20px;padding:10px;background:#fff;border:1px dotted #000;display:none">
+
+	<table style="width:100%">
+		<tr style="height:40px">
+			<td style="font-size:10pt;font-weight:bold">Select Activity Calendar</td>
+			<td align="right">
+				<button type="button" class="btn btn-default btn-sm" onclick="$('selectActivitySession').style.display='none';">X</button>
+			</td>
+		</tr>
+	</table>
+	
+	
+	<table class="table table-hover">
+	#foreach( $a in $activitySessions )
+		#set ( $bk = "#fff" )
+		#if ( $a.id == $activitySession.id )
+			#set ( $bk = "#b0edfc" )
+		#end
+		
+		#if ( $a.dates.size() > 0 )
+			<tr style="background:$bk">
+				<td style="width:400px">
+					$!a.academicCalendar.DeliveryPeriod.DELIVERYPERIODDESC -
+					$!a.academicCalendar.ProgrammeDeliveryTypes.programmeDeliveryTypeDesc
+				</td>
+				<td style="border-bottom:1px dotted #ccc">
+					
+					<table><tr>		
+					#foreach( $date in $a.dateList )
+						
+						<td style="width:80px;text-align:center;cursor:pointer;padding:4px;border:1px dotted #000;background:#F5F5F5" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#F5F5F5'"  onclick="$('activitySessionDateId').value='$!date.id';doDivAjaxCall$formname('div_timetable','show_timetable','')">
+							$df.format($date.startDate) &#8212; $df.format($date.endDate)
+						</td>
+						
+					#end
+					</tr></table>	
+						
+				</td>
+			</tr>
+		#end
+	#end
+	</table>
+</div>
+
+
+<div id="activitySession" style="margin-bottom:5px">
+
+<table>
+	<tr style="height:30px">
+		<td style="width:5px"></td>
+		<td style="width:100px">
+			Semester:
+		</td>
+		<td style="width:10px"></td>
+		<td style="font-size:10pt;font-weight:bold">
+			$!activitySession.name<br/>
+			($!activitySession.academicCalendar.DeliveryPeriod.DELIVERYPERIODDESC /
+			$!activitySession.academicCalendar.ProgrammeDeliveryTypes.programmeDeliveryTypeDesc)
+		</td>
+	</tr>
+	<tr>
+		<td style="width:5px"></td>
+		<td style="width:100px">
+		</td>
+		<td style="width:10px"></td>
+		<td>
+		
+		#foreach( $date in $activitySession.dateList )
+			#set ( $bgcolor = "btn-default" )
+			#if ( $activitySessionDate.id == $date.id )
+				#set ( $bgcolor = "btn-info" )
+			#end
+			<button type="button" class="btn btn-sm $bgcolor"  onclick="$('activitySessionDateId').value='$!date.id';doDivAjaxCall$formname('div_timetable','show_timetable','')">$df.format($date.startDate) &#8212; $df.format($date.endDate)</button>
+		
+		#end
+			
+		</td>
+	</tr>
+</table>
+
+##Delivery Period Id = $!activitySession.academicCalendar.DeliveryPeriod.DELIVERYPERIODCODE
+<input type="hidden" id="activitySessionDateId" name="activitySessionDateId" value="$!activitySessionDate.id">
+</div>
+
+<div id="div_timetable_weeks" name="div_timetable_weeks" style="margin-bottom:10px">
+
+	#parse( "apps/timetabling/div_timetable_weeks.vm" )
+
+</div>
+
+
+<div id="div_timetable_main" name="div_timetable_main">
+	#if ( $start_date )
+		#parse( "apps/timetabling/div_timetable_main.vm" )
+	#end
+</div>
+

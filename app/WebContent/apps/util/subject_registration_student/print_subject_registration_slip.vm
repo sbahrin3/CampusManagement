@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css" media="print">
+
+@Page{
+	margin-bottom: 0.5cm; 
+	margin-left: 2.5cm; 
+	margin-right: 2.5cm; 
+	margin-top: 0.5cm; 
+	size: a4 portrait; 
+}
+td {
+  	font-family: Helvetica, sans-serif;   
+  	font-style: normal;
+	font-size:9pt
+	} 
+	
+h1{
+  	font-family: Helvetica, sans-serif;   
+  	font-style: normal;
+	font-size:6pt;
+	color: #fff;
+	page-break-before: always;
+}
+
+.title {
+  	font-family: Helvetica, sans-serif;   
+  	font-style: normal;
+	font-size:12pt	
+	}
+
+.box {
+	border-bottom:1px solid #000; border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000;
+}
+
+</style>
+</head>
+<body>
+
+<table width="600" align="center">
+<tr><td height="100px">
+
+#if ( $appUrl )
+	<div style="margin-top:1cm;padding:10px">
+	<table width="100%">
+		<tr>
+			<td>
+				<img style="" src="$appUrl/header/logo.png">
+			</td>
+		</tr>
+	</table>
+	</div>
+#end
+
+</td></tr>
+<tr><td style="font-family:arial, helvetica, sans-serif;font-weight:bold;font-size:12pt;margin-bottom:10px">
+	SUBJECTS REGISTRATION SLIP
+</td></tr>
+<tr><td>
+
+#parse("apps/util/subject_registration_student/print_student_info.vm")
+
+</td></tr>
+
+<tr><td>
+
+
+<table width="100%">
+<tr><td style="border-top:1px solid; border-bottom:1px solid; border-left:1px solid; border-right:1px solid">
+
+<table>
+<tr>
+<td style="height:30px;font-weight:bold;border-bottom:1px solid">&nbsp;</td>
+<td colspan="2" style="font-weight:bold;border-bottom:1px solid">Subject</td>
+<td align="center" style="font-weight:bold;border-bottom:1px solid">Credit Unit</td>
+<td style="font-weight:bold;border-bottom:1px solid">Type</td>
+</tr>
+#set ( $totalCreditHours = 0 )
+#set ( $cnt = 0 )
+#foreach( $s in $registeredSubjects )
+	#set ( $cnt = $cnt + 1 )
+	#set ( $totalCreditHours = $totalCreditHours + $s.subject.credithrs )
+
+    <tr>
+    <td style="height:25px;width:50px">$cnt.</td>
+    <td style="width:80px">$s.subject.code.toUpperCase()</td>
+    <td style="width:400px">$s.subject.name</td>
+    <td style="width:100px" align="center">$s.subject.credithrs</td>
+    <td style="width:100px">$!s.category.name</td>
+    </tr>
+#end
+
+	<tr height="30px">
+    <td style="width:50px;border-top:1px solid #000">&nbsp;</td>
+    <td style="width:80px;border-top:1px solid #000">&nbsp;</td>
+    <td style="width:400px;border-top:1px solid #000" align="right">Total Credit Hours:</td>
+    <td style="width:100px;border-top:1px solid #000" align="center">$totalCreditHours</td>
+    <td style="width:100px;border-top:1px solid #000">&nbsp;</td>
+    </tr>
+</table>
+
+</td></tr></table>
+
+
+
+
+</td></tr>
+
+</table>
+
+
+</body>
+</html>

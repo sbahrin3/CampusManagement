@@ -1,0 +1,71 @@
+#macro( create_table $results $caption $cmd)
+<table width="100%" cellpadding="2" cellspacing="1" style="border-style:solid;border-color:#55D4FF">
+<tr height="30px" bgcolor="lightgrey"><td colspan="2" style="font-weight:bold">$caption</td></tr>
+#set ( $c = 0 )
+#foreach( $result in $results )
+#set ( $c = $c + 1 )
+#if ( $c % 2 == 0 ) #set ( $bgcolor = "#D4FFFF" ) #else #set ( $bgcolor="#FFFFFF" ) #end
+<tr bgcolor="$bgcolor"><td>$result.label</td>
+<td align="center" style="width:50px">
+<a href="javascript:void()" onclick="$('div_list_students').style.top=cursorY;$('div_list_students').style.visibility='visible';doDivAjaxCall$formname('div_list_students_2', '$cmd', 'id=$result.key')" style="text-decoration:none">$result.counter</a></td>
+</tr>
+#end
+</table>
+#end
+
+#parse("apps/util/student_stat/menu.vm")
+
+<table width="600px" align="center"><tr><td>
+
+<div name="div_list_students" id="div_list_students"
+style="visibility:hidden;position:absolute;width:700px;height:355px;border-style:solid;border-color:#005AF5;background-color:#ffffff">
+
+<table width="100%" cellspacing="0"><tr height="30px" bgcolor="#005AF5"><td align="right" style="font-weight:bold">
+<a href="javascript:void()" onclick="$('div_list_students').style.visibility='hidden';$('div_list_students_2').style.visibility='hidden'"><img src="../img/button_close.jpg" border="0"></a>
+</td></tr>
+<tr><td>
+<div name="div_list_students_2" id="div_list_students_2" style="overflow:auto;height:318px;width:100%"></div>
+</td></tr></table>
+
+</div>
+
+<div name="div_student_info" id="div_student_info"
+style="visibility:hidden;position:absolute;width:700px;height:240px;border-style:solid;border-color:#005AF5;background-color:#ffffff">
+
+<table width="100%" cellspacing="0"><tr height="30px" bgcolor="#005AF5"><td align="right" style="font-weight:bold">
+<a href="javascript:void()" onclick="$('div_student_info').style.visibility='hidden';$('div_student_info_2').style.visibility='hidden'"><img src="../img/button_close.jpg" border="0"></a>
+</td></tr>
+<tr><td>
+<div name="div_student_info_2" id="div_student_info_2" style="overflow:auto;height:200px;width:100%"></div>
+</td></tr></table>
+
+</div>
+
+</td></tr></table>
+
+
+
+<table width="700" align="center" cellpadding="0" cellspacing="0">
+<tr><td width="48%" valign="top">
+
+
+#create_table($program_results "PROGRAM OF STUDY" "byProgram")<br/>
+#create_table($race_results "RACE" "byRace")<br/>
+#create_table($dis_results "DISABILITY" "byDisability")<br/>
+#create_table($age_results "AGE GROUPS" "byAgeGroup")<br/>
+
+</td>
+<td></td>
+<td width="48%" valign="top">
+
+#create_table($intake_results "INTAKE" "byIntake")<br/>
+#create_table($sex_results "GENDER" "byGender")<br/>
+#create_table($centre_results "CENTRE" "byCentre")<br/>
+#create_table($partner_results "PARTNER" "byPartner")<br/>
+#create_table($edu_results "HIGHEST QUALIFICATION" "byEducation")<br/>
+#create_table($sponsor_results "SPONSOR" "bySponsor")<br/>
+
+</td></tr>
+</table>
+
+

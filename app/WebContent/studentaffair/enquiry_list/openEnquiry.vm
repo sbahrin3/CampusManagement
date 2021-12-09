@@ -1,0 +1,28 @@
+<script>
+$('enquiryInfo').style.display='block';
+</script>
+
+<table width="100%">
+<tr><td style="height:30px;background:#B5BBBF;color:#fff;font-weight:bold">Complaint</td></tr>
+</table>
+
+<table>
+<tr><td style="width:200px">Student:</td><td style="width:600px">$enquiry.student.biodata.name</td></tr>
+<tr><td valign="top">Complaint:</td><td><textarea class="textr" style="height:200px" disabled>$!enquiry.enquiryText</textarea></td></tr>
+<tr><td valign="top">Action:</td><td><textarea class="textr" style="height:100px" name="actionText">$!enquiry.actionText</textarea></td></tr>
+<tr><td>Status:</td><td>
+<select class="textr" name="enquiryStatus">
+<option value="pending" #if ( $enquiry.status == "pending" ) selected #end>Pending</option>
+<option value="open" #if ( $enquiry.status == "open" ) selected #end>Open</option>
+<option value="in-progress" #if ( $enquiry.status == "in-progress" ) selected #end>In Progress</option>
+<option value="close" #if ( $enquiry.status == "close" ) selected #end>Close</option>
+</select>
+</td></tr>
+</table>
+
+
+<table width="100%">
+<tr><td align="right">
+<input class="linkbutton" type="button" value="Submit Action" onclick="$('enquiryInfo').style.display='none';doDivAjaxCall3$formname('enquiries','saveStatus','enquiryId=$enquiry.id')">
+<input class="linkbutton" type="button" value="Close" onclick="$('enquiryInfo').style.display='none';">
+</td></tr></table>

@@ -1,0 +1,11 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("get_student").text("Back")]
+</td></tr>
+<tr><td>
+
+
+</td></tr></table>
+
+<input type="hidden" name="student_id" value="$!invoice.student.id">
+<input type="hidden" name="invoice_id" value="$!invoice.id">

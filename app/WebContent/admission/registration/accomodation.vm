@@ -1,0 +1,28 @@
+<table width="100%">
+<tr>
+<td>
+
+<table>
+<tr height="25px">
+<td class="gradient" style="width:300px;font-weight:bold">Accomodation Name</td>
+<td class="gradient" style="width:100px;font-weight:bold" align="center">Current Quota</td>
+<td class="gradient" style="width:100px;font-weight:bold" align="center">Monthly Fee</td>
+<td class="gradient"></td>
+</tr>
+#foreach ( $a in $accomodations )
+<tr>
+<td>$a.accomodation.name</td>
+<td align="center">$a.numberOfPlace</td>
+<td align="center">$numFormat.format($a.accomodation.monthlyFee)</td>
+<td>
+<input class="gradient" type="button" value="Select.." onclick="doDivAjaxCall$formname('div_empty','select_accomodation','student_id=$student.id&accomodation_id=$a.accomodation.id');$('div_accomodation').style.visibility='hidden';">
+</td>
+</tr>
+#end
+</table>
+
+</td>
+<td align="right" valign="top">
+<input type="button" class="gradient" style="width:20px;height:25px" value="X" onclick="$('div_accomodation').style.visibility='hidden'">
+</td></tr></table>
+

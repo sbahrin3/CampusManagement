@@ -1,0 +1,55 @@
+<table width="100%" style="background:#4068ED"><tr><td style="font-weight:bold;color:#fff">
+List of Moved Items
+</td><td align="right" style="width:30px;">
+<input class="linkbutton" type="button" style="font-weight:bold" value="Close"  onclick="$('movedItems').style.display='none';">
+</td></tr></table>
+
+<div style="height:240px;margin-top:2px;overflow:auto">
+#set ( $cnt = 0 )
+#foreach( $i in $movedItems )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E6E6ED" ) #else #set ( $bgcolor = "#F4F6F7" ) #end
+<div id="item_$i.id" style="display:block;padding:0px">
+<table>
+<tr style="background:$bgcolor">
+<td style="width:30px">$cnt.</td>
+<td style="height:30px;width:180px" id="rowType_$i.id">$i.type.name</td>
+<td style="width:200px" id="rowDescription_$i.id">$!i.description</td>
+<td style="width:150px" id="rowTag_$i.id">$!i.tag</td>
+<td style="width:50px" align="right" id="rowValue_$i.id">$!i.item.value</td>
+<td style="width:150px" id="rowItemCondition_$i.id">$!i.item.itemCondition.name</td>
+<td style="width:100px" align="right">
+<input type="checkbox" name="moveItemIds" value="$i.id">
+##<input class="linkbutton" type="button" value="Edit" onclick="$('item_$i.id').style.display='none';$('item_edit_$i.id').style.display='block';">
+</td>
+
+</tr>
+</table>
+</div>
+<div id="item_edit_$i.id" style="display:none;padding:0px">
+<table>
+<td style="width:30px">$cnt.</td>
+<td style="width:180px">
+<select class="textr" name="itemTypeId_$i.id"  onchange="">
+<option value=""></option>
+#foreach ( $type in $itemTypes )
+<option value="$type.id" #if ( $i.type.id == $type.id ) selected #end>$type.name</option>
+#end
+</select>
+</td>
+<td style="width:330px"><input class="textr" name="itemDescription_$i.id" value="$!i.description" onchange=""></td>
+<td style="width:150px"><input class="textr" name="itemTag_$i.id" value="$!i.tag"  onchange=""></td>
+<td style="width:50px"><input class="textr" name="itemValue_$i.id" value="$!i.item.value"  onchange=""></td>
+<td style="width:100px">
+<input class="linkbutton" type="button" style="width:100%" value="OK" onclick="doDivAjaxCall3$formname('saveItem_$i.id','saveRoomItem','roomItemId=$i.id')">
+</td>
+</tr>
+</table>
+</div>
+<div id="saveItem_$i.id" style="display:none"></div>
+#end
+</table>
+</div>
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Add Selected Item(s)" onclick="doDivAjaxCall3$formname('listRoomItems_$room.id','addMovedItems','roomId=$room.id');$('movedItems').style.display='none';">
+</td></tr></table>

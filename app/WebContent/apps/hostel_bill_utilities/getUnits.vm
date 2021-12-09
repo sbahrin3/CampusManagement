@@ -1,0 +1,7 @@
+<select class="text" style="width:400px" name="unitId">
+<option value=""></option>
+#foreach( $u in $units )
+<option value="$u.id">$u.floor.block.code, $u.floor.code, $u.code</option>
+#end
+</select>
+<input type="button" value="..." onclick="doDivAjaxCall3$formname('getBillUtilities','getBillUtilities','')">

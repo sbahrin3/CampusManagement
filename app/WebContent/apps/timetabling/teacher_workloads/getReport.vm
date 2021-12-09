@@ -1,0 +1,81 @@
+<script>
+
+$('getWorkloadDetail').style.display='none';
+
+</script>
+
+
+
+#parse("apps/useLocal.vm")
+
+$dateFormat.applyPattern("dd MMM yyyy")
+<table><tr>
+<td style="font-weight:bold;font-size:12pt">
+	#if ( $department )
+		$!department.id - $!department.name
+	#end
+	<button type="button" class="btn btn-default btn-sm" onclick="document.location='$pre/servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.timetabling.module.TeachersWorkloadReportPDFModule?uid=$!uid&amp;campusId=$!campus.id&amp;departmentId=$!department.id&amp;date1=$!sdate1&amp;date2=$!sdate2&amp;deliveryPeriodId=$!deliveryPeriod.id&pdfName=workload_report';">
+		Download PDF
+	</button>	
+
+</td>
+</tr></table>
+<table><tr>
+<td style="font-weight:bold;font-size:10pt">$dateFormat.format($date1) - $dateFormat.format($date2)</td>
+</tr></table>
+<br/>
+<table class="table">
+
+
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th style="text-align:center">Limit Teaching Hours/Day</th>
+			<th style="text-align:center">Limit Teaching Hours/Week</th>
+			<th style="text-align:center">Total Teaching Hours</th>
+			
+			#**
+			#foreach( $t in $activityTypes )
+				<th>
+				$t.name
+				</th>
+			#end
+			**#
+			
+		</tr>
+	</thead>
+	
+	<tbody>
+	
+	#foreach ( $tws in $teacherWorkloadSummaryList )
+		<tr>
+			<td style="cursor:pointer" onclick="$('getWorkloadDetail').innerHTML='Please Wait...';doDivAjaxCall$formname('getWorkloadDetail','getWorkloadDetail','teacherId2=$tws.teacher.id')">$tws.teacher.name ($!tws.teacher.id)</td>
+			<td style="text-align:center">#if ( $tws.teacher.limitTeachingHours > 0 ) $tws.teacher.limitTeachingHours hrs/day #end</td>
+			<td style="text-align:center">#if ( $tws.teacher.limitTeachingHoursWeek > 0 )$tws.teacher.limitTeachingHoursWeek hrs/week #end</td>
+			<td style="text-align:center">$tws.duration</td>
+			#** 
+			#set ( $summary = $tws.data )
+			#foreach( $t in $activityTypes )
+				<td>
+				#set ( $total = $summary.get("$t.id") )
+				#if ( $total > 0 )
+					#set ( $hours = $total / 60 )
+					#set ( $minutes = $total % 60 )
+					#if ( $hours > 0 )
+						$hours h
+					#end
+					#if ( $minutes > 0 )
+						$minutes m</td>
+					#end
+				#else
+					-
+				#end
+				</td>
+			#end
+			**#
+		</tr>
+	#end
+	
+	</tbody>
+
+</table>

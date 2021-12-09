@@ -1,0 +1,33 @@
+
+<script src="../js/canvasjs.min.js"></script>
+
+<div style="padding:10px">
+
+	<div id="reportArea" class="well"></div>
+	
+	<div class="well">
+	<table>
+		<tr>
+			<td>
+				Year:
+			</td>
+			<td style="width:200px">
+				<select class="form-control" id="reportYear" name="reportYear">
+					#foreach( $y in [$firstYear..$reportYear] )
+						<option #if ( $y == $reportYear) selected #end value="$y">$y</option>
+					#end
+				</select>
+			</td>
+			<td>
+				<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('reportArea','getPaymentMonthlyChart','')">Get Report</button>
+			</td>
+		</tr>
+	</table>
+	</div>
+</div>
+
+<script>
+_jq( document ).ready(function() {
+    doDivAjaxCall$formname('reportArea','getPaymentMonthlyChart','');
+});
+</script>

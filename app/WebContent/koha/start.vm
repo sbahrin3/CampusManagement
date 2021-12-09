@@ -1,0 +1,15 @@
+<table width="700"><tr><td>
+
+</td></tr>
+#if ( !$student )
+<tr><td>
+Matric No: <input name="matric_no"><input type="button" value="Get.." onclick="doDivAjaxCall$formname('div_result','get_student','')">
+</td></tr>
+#end
+<tr><td>
+<div id="div_result">
+#parse( "koha/get_student.vm")
+</div>
+
+
+</td></tr></table>

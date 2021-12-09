@@ -1,0 +1,19 @@
+<table width="100%">
+#foreach( $s in $students )
+<tr>
+<td>$s.matricNo</td>
+<td>#if ( $s.biodata.icno != "" ) $s.biodata.icno #else $s.biodata.passport #end</td>
+<td>$s.biodata.name</td>
+<td>
+#if ( $s.biodata.gender ) 
+#if ( $s.biodata.gender.id == "L" ) M #else F #end
+#else
+NA
+#end
+</td>
+<td>
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('div_students','add_student','student_id=$s.id&accomodation_id=$accomodation.id')">
+</td>
+</tr>
+#end
+</table>

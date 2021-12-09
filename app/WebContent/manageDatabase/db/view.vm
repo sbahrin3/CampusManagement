@@ -1,0 +1,18 @@
+<table border="0" cellpadding="0" cellspacing="0">
+	<tr style="height:30px;background:#eee">
+		<td style="width:30px;border-right:1px dotted #000"></td>
+    	#foreach( $c in $columns )
+    		<td style="width:200px;border-right:1px dotted #000">$c.name</td>
+    	#end
+	</tr>
+	#set ( $cnt = 0 )
+	#foreach( $record in $records )
+		#set ( $cnt = $cnt + 1 )
+		<tr style="height:25px;">
+			<td style="background:#eee;border-bottom:1px dotted #000">$cnt</td>
+			#foreach ( $d in $record )
+			<td style="width:200px"><input class="text" style="width:200px" type="text" value="$!d" readonly></td>
+			#end
+		</tr>
+	#end
+</table>

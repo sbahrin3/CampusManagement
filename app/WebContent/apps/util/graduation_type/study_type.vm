@@ -1,0 +1,5 @@
+<select name="study_type" onchange="doDivAjaxCall$formName('study_type_$s.id', 'study_type', 'student_id=$s.id')">
+<option value="">-</option>
+<option value="G" #if ( $s.studyType == 'G' ) selected #end>GENERAL</option>
+<option value="S" #if ( $s.studyType == 'S' ) selected #end>SPECIALISE</option>
+</select>

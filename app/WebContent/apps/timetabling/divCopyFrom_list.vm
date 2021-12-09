@@ -1,0 +1,29 @@
+<table class="table table-hover">
+	#foreach( $a in $activitySessions )
+		#set ( $bk = "#fff" )
+		#if ( $a.id == $activitySession.id )
+			#set ( $bk = "#b0edfc" )
+		#end
+		
+		#if ( $a.dates.size() > 0 )
+			<tr style="background:$bk">
+				<td style="width:400px">
+					$a.name
+				</td>
+				<td style="border-bottom:1px dotted #ccc">
+					
+					<table><tr>		
+					#foreach( $date in $a.dateList )
+						
+						<td style="width:80px;text-align:center;cursor:pointer;padding:4px;border:1px dotted #000;background:#F5F5F5" onmouseover="this.style.background='#fff'" onmouseout="this.style.background='#F5F5F5'"  onclick="doDivAjaxCall$formname('divCopyFrom_list','listWeeksToCopyFrom','dateId=$!date.id')">
+							$df.format($date.startDate) &#8212; $df.format($date.endDate)
+						</td>
+						
+					#end
+					</tr></table>	
+						
+				</td>
+			</tr>
+		#end
+	#end
+	</table>

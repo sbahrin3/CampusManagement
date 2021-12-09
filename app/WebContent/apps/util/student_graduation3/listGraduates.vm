@@ -1,0 +1,45 @@
+<table>
+
+<tr><td colspan="6" align="right">
+<input type="button" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.sis.module.StudentGraduationListReportXL'">
+</td></tr>
+
+<tr style="background:#ccc;height:30px">
+<td colspan="4"></td>
+<td colspan="2" align="center">Attendance</td>
+</tr>
+<tr style="background:#ccc;height:30px">
+<td style="width:40px"></td>
+<td style="width:150px">Matric</td>
+<td style="width:350px">Name</td>
+<td style="width:150px">IC No</td>
+<td style="width:100px" align="center">Rehearsal</td>
+<td style="width:100px" align="center">Ceremony</td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach ( $g in $graduates )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#EDEAEA" ) #else #set ( $bgcolor = "#FFF" ) #end
+<tr style="background:$bgcolor;height:25px">
+<td>$cnt.</td>
+<td>$g.student.matricNo</td>
+<td>$g.student.biodata.name</td>
+<td>$g.student.biodata.icno</td>
+<td align="center">#if ( $g.attendRehearsal ) Y #end</td>
+<td align="center">#if ( $g.attendCeremony ) Y #end</td>
+</tr>
+#end
+<tr style="background:#ccc;height:30px">
+<td colspan="3" align="right"></td>
+<td align="center">Attend</td>
+<td align="center">$attendRehearsal</td>
+<td align="center">$attendCeremony</td>
+</tr>
+<tr style="background:#ccc;height:30px">
+<td colspan="3" align="right"></td>
+<td align="center">Not Attend</td>
+<td align="center">$notAttendRehearsal</td>
+<td align="center">$notAttendCeremony</td>
+</tr>
+</table>

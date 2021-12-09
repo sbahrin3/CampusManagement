@@ -1,0 +1,56 @@
+<script>calndr.showNavigationDropdowns();</script>
+<script>
+
+var isNN = (navigator.appName.indexOf("Netscape")!=-1);
+
+function at(input, e) {
+  var keyCode = (isNN) ? e.which : e.keyCode; 
+  if ( keyCode == 13 ) {
+    input.form[(getIndex(input)+1) % input.form.length].focus();
+  }
+}
+
+function getIndex(input) {
+    var index = -1, i = 0, found = false;
+    while (i < input.form.length && index == -1) {
+    	if (input.form[i] == input)index = i;
+    	else i++;
+    }
+    return index;
+}
+## <INPUT id="txtChar" onkeypress="return isNumber(event)" type="text" name="txtChar">
+## number only
+function isNumber(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+function isDecimal(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if ( charCode == 46 ) return true;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+## alpha only
+function isAlpha(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if ( charCode == 32 ) return true;
+    if (charCode > 31 && (charCode < 97 || charCode > 122) ) return false;
+    return true;
+}
+</script>
+
+<table style="background-color:#fff">
+
+
+<tr><td>
+<div id="div_main">
+#parse("apps/util/applicant/reg_applicants.vm")
+</div>
+</td></tr>
+<tr><td>
+<div id="div_empty"></div>
+</td></tr>
+</table>

@@ -1,0 +1,55 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("").text("Back")]
+</td></tr>
+<tr><td>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">STUDENT'S INFORMATION</legend>
+<br>
+
+<table width="100%">
+<tr><td style="width:100px">Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td style="width:100px">Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td style="width:100px">ICNO:</td><td style="font-weight:bold">$student.biodata.icno</td></tr>
+<tr><td style="width:100px">Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td style="width:100px">Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+<tr><td style="width:100px">Learning Centre:</td><td style="font-weight:bold">$student.learningCenter.name</td></tr>
+</table>
+
+</fieldset>
+
+<br/><br/>
+
+<table width="100%">
+<tr>
+<td align="right" style="font-weight:bold">Total Amount Invoiced: (RM)
+$numFormat.format($total_amount)&nbsp;&nbsp;&nbsp;</td>
+</tr>
+</table>
+<table width="100%">
+<tr height="30px" bgcolor="lightgrey">
+<td></td>
+<td style="font-weight:bold">Invoice No</td>
+<td style="font-weight:bold">Date</td>
+<td style="font-weight:bold">Time</td>
+<td style="font-weight:bold" align="right">Amount&nbsp;&nbsp;&nbsp;</td>
+<td style="font-weight:bold" align="right">Balance Due&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+#foreach( $i in $invoices )
+<tr>
+<td align="right">${velocityCount}.</td>
+<td>
+$href.command("invoice_info").param("invoice_id=$i.id").text("$i.invoiceNo")
+</td>
+<td>$dateFormat.format($i.createDate)</td>
+<td>$timeFormat.format($i.createTime)</td>
+<td align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;</td>
+<td align="right">$numFormat.format($i.balance)&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+</table>
+
+
+</td></tr></table>

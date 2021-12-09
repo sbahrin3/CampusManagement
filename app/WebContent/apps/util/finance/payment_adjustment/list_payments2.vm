@@ -1,0 +1,25 @@
+
+
+<table width="100%" cellspacing="0">
+
+<tr height="0px">
+<td style="width:40px"></td>
+<td style="width:200px"></td>
+<td style="width:200px"></td>
+<td style="width:100px"></td>
+<td style="width:100px" align="right"></td>
+<td></td>
+
+#foreach( $i in $payments )
+<tr height="30px">
+<td style="border-bottom:1px solid #C3C3C3">${velocityCount}.</td>
+<td style="border-bottom:1px solid #C3C3C3">$i.paymentNo</td>
+<td style="border-bottom:1px solid #C3C3C3">#if ( $i.createDate ) $dateFormat.format($i.createDate) #end</td>
+<td style="border-bottom:1px solid #C3C3C3" align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;</td>
+<td style="border-bottom:1px solid #C3C3C3">
+<input class="linkbutton" style="padding:3px" type="button" value="..."
+onclick="doDivAjaxCall$formname('div_adjustment','payment_info','payment_id=$i.id')">
+</td>
+</tr>
+#end
+</table>

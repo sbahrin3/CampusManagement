@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<table>
+	<tr>
+		
+		<td style="width:400px;padding-top:20px" valign="top">
+			#foreach ( $z in [1..10] )
+				#set ( $zone = $z )
+				<table style="width:100%;border:1px solid #ccc">
+					<tr>
+						<td style="cursor:pointer;font-weight:bold;width:220px" onclick="if ( $('zone_$z').style.display == 'none' ) $('zone_$z').style.display='block'; else $('zone_$z').style.display='none';">
+							Zone $z
+						</td>
+						<td style="" onclick="if ( $('zone_$z').style.display == 'none' ) $('zone_$z').style.display='block'; else $('zone_$z').style.display='none';">
+						<span id="roomCount_$z" style="cursor:pointer"></span>
+						</td>
+						<td style="width:100px" align="right">
+							
+							<input class="linkbutton" style="font-size:8pt" type="button" value=".." onclick="if ( $('zone_$z').style.display == 'none' ) $('zone_$z').style.display='block'; else $('zone_$z').style.display='none';">
+							
+							<input class="linkbutton" style="font-size:8pt" type="button" value="+" onclick="doDivAjaxChainCall$formname('zone_$z','addRoomsToZone','zoneNumber=$z', 'listRooms','listRooms','')">
+							<input class="linkbutton" style="font-size:8pt" type="button" value="&#8211;" onclick="doDivAjaxChainCall$formname('zone_$z','removeRoomsFromZone','zoneNumber=$z', 'listRooms','listRooms','')">
+						</td>
+
+					</tr>
+					
+					<tr>
+						<td colspan="3">
+            				<div id="zone_$z" style="display:none">
+            				#parse("apps/timetabling/roomZone/listRooms.vm")
+            				</div>
+						</td>
+					</tr>
+				</table>
+			#end
+		</td>
+		
+		<td style="width:100px" valign="top">
+			
+		</td>
+		
+		<td style="width:400px" valign="top">
+			<div style="font-weight:bold;padding:10px">
+				Rooms not in Zone
+			</div>
+			<div id="listRooms">
+			#set ( $zone = 0 )
+			#parse("apps/timetabling/roomZone/listRooms.vm")
+			</div>
+		</td>
+	</tr>
+</table>

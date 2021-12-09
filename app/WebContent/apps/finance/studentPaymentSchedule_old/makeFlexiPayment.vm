@@ -1,0 +1,106 @@
+<script>
+$('divMakePayment').style.display="block";
+</script>
+
+<div style="float:right">
+	<a href="javascript:void(0)" onclick="$('divMakePayment').style.display='none';">X</a>
+</div>
+<div id="divFlexiPaymentDetail" style="padding:10px;width:600px;height:450px;overflow:auto;">
+<br/>
+<table style="width:100%">
+	
+	<tr style="height:40px">
+		<td colspan="4" align="center" style="font-weight:bold">
+			Payments Summary:
+		</td>
+	</tr>
+	
+	<tr style="height:30px;background:#ebebeb;border-top:1px solid #000;border-bottom:1px solid #000">
+    	<td style="width:100px" align="center">Due Date</td>
+    	<td style="width:100px" align="right">Amount Due</td>
+    					
+    	<td style="width:100px" align="right">Payment Date</td>
+    	<td style="width:100px" align="right">Amount Paid</td>
+		<td style="width:50px" align="center"></td>
+    </tr>
+    <tr style="height:30px;background:#fff;border-bottom:1px solid #000">
+    	<td align="center">
+    		#if ( $item.paymentDate )
+    			$dateFormat.format($item.paymentDate)
+    		#end
+    	</td>
+    	<td align="right">$numFormat.format($item.amountDue)</td>
+    					
+    	<td align="center">
+    	#if ( $item.paidDate )
+    		$dateFormat.format($item.paidDate)
+    	#end
+    	</td>
+    	<td align="right">
+			$numFormat.format($item.amountPaid)
+		</td>
+		<td align="center">
+			<a href="javascript:void(0)" onclick="if ( !confirm('Are you sure to CLEAR ALL payment?') ) return; doDivAjaxChainCall$formname('divMakePayment','clearFlexiPayment','itemId=$!item.id','getPaymentSchedule','listPaymentSchedules','studentId=$student.id')">X</a>
+		</td>
+    </tr>
+</table>
+
+
+<br/>
+
+<table style="width:70%" align="center">
+	
+	<tr style="height:40px">
+		<td colspan="2" align="center" style="font-weight:bold">
+			Payments Detail:
+		</td>
+	</tr>
+	
+	<tr style="height:30px;background:#ebebeb;border-top:1px solid #000;border-bottom:1px solid #000">
+		<td style="width:200px" align="center">
+			Date
+    	</td>
+		<td style="width:200px" align="center">
+			Paid
+		</td>
+		<td style="width:40px" align="center">
+			
+		</td>
+		<td style="width:40px" align="center">
+			
+		</td>
+	</tr>
+	
+	#foreach ( $i in $item.items )
+		<tr style="height:30px;border-bottom:1px solid #000">
+			<td align="center">
+        	#if ( $i.date )
+        		$dateFormat.format($i.date)
+        	#end
+        	</td>
+			<td align="center">$numFormat.format($i.amountPaid)</td>
+			<td align="center">
+				##<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('divReceipt','getFlexiReceipt','itemId=$!i.id')"><u>Receipt</u></a>
+
+				<a href="javascript:void(0)" onclick="if ( !confirm('Print receipt for this payment?') ) return; document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintStudentReceiptModule2?paymentNo=$!i.paymentNo&pdfName=$!i.paymentNo';"><u>Receipt</u></a>
+
+				
+			</td>
+			<td align="center">
+				<a href="javascript:void(0)" onclick="if ( !confirm('Are you sure to DELETE this payment?') ) return; doDivAjaxChainCall$formname('divMakePayment','deleteFlexiPayment','itemId=$!i.id','getPaymentSchedule','listPaymentSchedules','studentId=$student.id')">X</a>
+			</td>
+		</tr>
+	#end
+	<tr style="height:50px">
+		<td colspan="3" align="right">
+			#if ( $item.amountPaid < $item.amountDue )
+			<input class="linkbutton" type="button" value="New Payment" onclick="doDivAjaxCall$formname('divMakePayment','makePayment','scheduleItemId=$!item.id&paymentType=Flexi')">
+			#end
+		</td>
+	</tr>
+	
+</table>
+
+<br/>
+	
+</div>

@@ -1,0 +1,16 @@
+<table width="80%" cellpadding="1" cellspacing="2">
+<tr><td  style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td >Utility Type</td><td>:</td><td>
+<select class="texts" name="findUtilityTypeId">
+<option value=""></option>
+#foreach( $c in $utilityTypes )
+<option value="$c.id">$c.name</option>
+#end
+</select>
+</td></tr>
+
+
+<tr><td >Account No</td><td>:</td><td><input class="texts" type="text" name="findAccountNo"></td></tr>
+<tr><td >Month</td><td>:</td><td><input class="texts" type="text" name="findMonth"></td></tr>
+<tr><td >Year</td><td>:</td><td><input class="texts" type="text" name="findYear"></td></tr>
+</table>

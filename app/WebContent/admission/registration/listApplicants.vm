@@ -1,0 +1,35 @@
+<script>
+$('listApplicants').style.display='block';
+$('beginRemark').innerHTML=''; 
+</script>
+
+<table style="width:100%">
+	<tr>
+		<td>
+			<select id="applicantStatus" name="applicantStatus" class="texts" style="width:300px" onchange="doDivAjaxCall$formname('listApplicants2','listApplicants2','')">
+				<option value="A">Accepted</option>
+				<option value="Q">Qualified</option>
+				<option value="OE">Open Entry</option>
+				<option value="I">Interview</option>
+				<option value="IP">In-Progress</option>
+			</select>
+			<input class="linkbutton" type="button" value="List.." onclick="doDivAjaxCall$formname('listApplicants2','listApplicants2','')">
+		</td>
+		<td>
+			
+		</td>
+		<td align="right">
+			Name: <input class="texts" style="width:200px" id="applicantName" name="applicantName" value="$!applicantName">
+		</td>
+		<td style="width:50px">
+			<input class="linkbutton" type="button" value="Search.." onclick="doDivAjaxCall$formname('listApplicants2','searchApplicants','')">
+		</td>
+		<td style="width:50px" align="right">
+			<input class="linkbutton" type="button" value="Close" onclick="$('listApplicants').style.display='none';">
+		</td>
+	</tr>
+</table>
+<div id="listApplicants2">
+	#parse("admission/registration/listApplicants2.vm")
+</div>
+</div>

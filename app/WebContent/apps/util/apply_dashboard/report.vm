@@ -1,0 +1,40 @@
+#macro( chart $chart $type $caption $width $height)
+$chart.setFusionChartPath("/fusionchart")
+<table width="400"><tr><td>
+#if ( $type == "bar" )
+$chart.setFusionChartName("Bar2D.swf")
+#elseif ( $type == "pie" )
+$chart.setFusionChartName("Pie3D.swf")
+#end
+$chart.setCaption("$caption")
+$chart.setHeight($height)
+$chart.setWidth($width)
+<div align="center">
+$chart.fusionChartObject
+</div>
+</td></tr></table>
+#end
+
+<table width="700" align="center">
+<tr><td>
+
+
+
+<table align="center" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+#chart($apply_chart "bar" "STUDENTS APPLYING FOR" 500 0)
+</td></tr>
+</table>
+
+</td></tr>
+
+<tr><td><br></td></tr>
+<tr><td align="center">
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<div id="div_data" name="div_data">
+<b>
+Click on the bar to view students list.
+</b>
+</div>
+</fieldset>
+</td></tr></table>

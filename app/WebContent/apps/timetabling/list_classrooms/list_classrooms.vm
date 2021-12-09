@@ -1,0 +1,29 @@
+#parse("apps/timetabling/time.vm")
+
+<table width="906px" border="0" cellpadding="0" style="border-top:1px solid;border-bottom:1px solid;border-left:1px solid;border-right:1px solid">
+
+<tr><td align="center">
+
+
+</td></tr>
+<tr><td>
+
+<table width="900px">
+
+<tr height="30px" bgcolor="lightgrey">
+<td style="width:100px;font-weight:bold;border-bottom:1px solid">Date</td>
+<td style="width:90px;font-weight:bold;border-bottom:1px solid" align="center">Time</td>
+<td style="width:350px;font-weight:bold;border-bottom:1px solid">Subject</td>
+<td style="width:80px;font-weight:bold;border-bottom:1px solid">Type</td>
+<td style="width:80px;font-weight:bold;border-bottom:1px solid">Room</td>
+<td style=";font-weight:bold;border-bottom:1px solid">Teacher</td>
+</tr>
+</table>
+
+<div id="div_classrooms" style="overflow:auto;top:0;height:400px; width:900px;">
+
+#parse("apps/timetabling/list_classrooms/div_classrooms.vm")
+
+</div>
+
+</td></tr></table>

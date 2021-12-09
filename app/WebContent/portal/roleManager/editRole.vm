@@ -1,0 +1,14 @@
+<script>
+$('listRoles').style.display="none";
+</script>
+
+<div>
+<label>Role ID</label>
+<input class="form-control" id="roleName" name="roleName" style="width:300px"  value="$!role.name" readonly>
+<label>Description</label>
+<input class="form-control" id="roleDescription" name="roleDescription" style="width:300px" value="$!role.description">
+<br/>
+<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('listRoles','saveRole','oldRoleName=$!role.name')">Save</button>
+<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('listRoles','listRoles','')">Cancel</button>
+</div>
+

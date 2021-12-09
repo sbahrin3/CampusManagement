@@ -1,0 +1,66 @@
+
+<table width="800" align="center" cellpadding="2">
+<tr><td>Assigning subjects to <b>
+$href.command("teacher_info").param("teacher_id=$!teacher.id").text("$!teacher.name")</b>
+</td></tr>
+</table>
+<br/>
+
+<table width="800" align="center">
+<tr><td valign="top"  width="46%">
+
+<table width="100%">
+<tr><td style="font-weight:bold">Check on subject to add:</td></tr>
+</table>
+
+		<div id="div_subjects1" name="div_subjects1" style="overflow:auto;top:0;height:300px; width:100%; background-color:lightgrey">
+#parse("apps/util/teacher_util/div_subjects1.vm")
+</div>
+
+
+<table width="100%">
+<tr><td><b>Select subjects in the faculty of:</b></td></tr>
+<tr><td>
+<ul>
+<li><a href="javascript:void()" onclick="doDivAjaxCall$formname('div_subjects1','select_subjects_faculty','teacher_id=$!teacher.id&faculty_id=')">ALL</a>
+#foreach ( $f in $faculties )
+#if ( $f.id == $faculty.id )
+<li><font style="font-weight:bold; color:blue">$f.name</font>
+#else
+<li><a href="javascript:void()" onclick="doDivAjaxCall$formname('div_subjects1','select_subjects_faculty','teacher_id=$!teacher.id&faculty_id=$!f.id')">$f.name</a>
+#end
+#end
+</ul>
+</td></tr>
+</table>
+
+</td><td align="center" width="8%" valign="top">
+<br/><br/>
+##$button.command("list_subjects_faculty").param("teacher_id=$!teacher.id, faculty_id=$!faculty.id").style("width:40px;height:50px;font-weight:bold;font-family:helvetica").text("&lt;&nbsp;&gt;")
+
+<input type="button" value="&lt;&nbsp;&gt;" style="width:40px;height:50px;font-weight:bold;font-family:helvetica"
+onclick="doDivAjaxCall$formname('div_subjects2','select_subjects_faculty2','teacher_id=$!teacher.id&faculty_id=$!faculty.id')">
+
+</td><td valign="top" width="46%">
+
+
+
+
+<table width="100%">
+<tr><td colspan="5" style="font-weight:bold">Check on subject to remove:</td></tr>
+</table>
+
+
+		<div id="div_subjects2" name="div_subjects2" style="overflow:auto;top:0;height:300px; width:100%; background-color:lightgrey" >
+#parse("apps/util/teacher_util/div_subjects2.vm")
+</div>
+<br/><br/>
+<table width="100%"><tr><td align="center">
+
+$button.command("select_subjects").param("teacher_id=$!teacher.id, faculty_id=$!faculty.id").text("PROCEED NEXT &gt; TO SELECT GROUPS")
+</td></tr></table>
+
+</td></tr>
+
+</table>
+

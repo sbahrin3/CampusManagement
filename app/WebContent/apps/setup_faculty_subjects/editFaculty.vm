@@ -1,0 +1,11 @@
+<fieldset><legend class="legend">Edit Faculty</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr><td>Code</td><td>:</td><td><input class="texts" name="facultyCode"></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" name="facultyName"></td></tr>
+</table>
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Save" onclick="$('editFaculty_$facultyId').style.visibility='hidden';">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('editFaculty_$facultyId').style.visibility='hidden';">
+</td></tr></table>
+</fieldset>

@@ -1,0 +1,10 @@
+<table width="100%" align="center">
+<tr>
+<td align="right">
+$button.command("statistic").text("Statistic All")
+$button.command("statistic_malaysian").text("Statistic Malaysian")
+$button.command("statistic_international").text("Statistic International")
+</td>
+</tr>
+</table>
+<hr/>

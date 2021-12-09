@@ -1,0 +1,806 @@
+2018-12-06 16:16:01,105 - ResourceManager : found apps/portal/announcement/list.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:16:01,176 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:30,876 - SimpleLog4JLogSystem initialized using logfile '/Users/Admin/Documents/workspace1/educate4/WebContent/velocity.log'
+2018-12-06 16:26:30,890 - Initializing Velocity, Calling init()...
+2018-12-06 16:26:30,890 - *******************************************************************
+2018-12-06 16:26:30,890 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2018-12-06 16:26:30,890 - RuntimeInstance initializing.
+2018-12-06 16:26:30,890 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2018-12-06 16:26:30,890 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogSystem
+2018-12-06 16:26:30,890 - Couldn't find class org.apache.velocity.runtime.log.AvalonLogSystem or necessary supporting classes in classpath.
+2018-12-06 16:26:30,892 - java.lang.NoClassDefFoundError: org/apache/log/format/Formatter
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.apache.velocity.util.ClassUtils.getClass(ClassUtils.java:73)
+	at org.apache.velocity.util.ClassUtils.getNewInstance(ClassUtils.java:105)
+	at org.apache.velocity.runtime.log.LogManager.createLogChute(LogManager.java:154)
+	at org.apache.velocity.runtime.log.LogManager.updateLog(LogManager.java:269)
+	at org.apache.velocity.runtime.RuntimeInstance.initializeLog(RuntimeInstance.java:871)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:262)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:646)
+	at org.apache.velocity.app.VelocityEngine.init(VelocityEngine.java:116)
+	at lebah.portal.velocity.VelocityEngineHolder.<init>(VelocityEngineHolder.java:24)
+	at lebah.portal.velocity.VelocityEngineHolder.getInstance(VelocityEngineHolder.java:28)
+	at lebah.portal.velocity.VServlet.initVelocity(VServlet.java:59)
+	at lebah.portal.DesktopController.doBody(DesktopController.java:86)
+	at lebah.portal.DesktopController.doPost(DesktopController.java:54)
+	at lebah.portal.DesktopController.doGet(DesktopController.java:48)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:459)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at lebah.portal.handler.DesktopHandler.process(DesktopHandler.java:39)
+	at lebah.portal.InterceptorServlet.service(InterceptorServlet.java:67)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:668)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:791)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1417)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ClassNotFoundException: org.apache.log.format.Formatter
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1328)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1157)
+	... 52 more
+
+2018-12-06 16:26:30,892 - Trying to use logger class org.apache.velocity.runtime.log.SimpleLog4JLogSystem
+2018-12-06 16:26:30,892 - LogSystem has been deprecated. Please use a LogChute implementation.
+2018-12-06 16:26:30,895 - Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+2018-12-06 16:26:30,901 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:30,903 - FileResourceLoader : initialization starting.
+2018-12-06 16:26:30,903 - Do unicode file recognition:  false
+2018-12-06 16:26:30,903 - FileResourceLoader : adding path '/Users/Admin/Documents/workspace1/educate4/WebContent'
+2018-12-06 16:26:30,903 - FileResourceLoader : initialization complete.
+2018-12-06 16:26:30,946 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2018-12-06 16:26:30,946 - Default ResourceManager initialization complete.
+2018-12-06 16:26:30,948 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2018-12-06 16:26:30,951 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2018-12-06 16:26:30,952 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2018-12-06 16:26:30,954 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2018-12-06 16:26:30,955 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2018-12-06 16:26:30,958 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2018-12-06 16:26:30,963 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2018-12-06 16:26:30,966 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2018-12-06 16:26:30,969 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2018-12-06 16:26:31,035 - Created '20' parsers.
+2018-12-06 16:26:31,053 - Velocimacro : initialization starting.
+2018-12-06 16:26:31,053 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2018-12-06 16:26:31,053 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2018-12-06 16:26:31,053 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2018-12-06 16:26:31,053 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2018-12-06 16:26:31,053 - Velocimacro : Velocimacro : initialization complete.
+2018-12-06 16:26:31,053 - RuntimeInstance successfully initialized.
+2018-12-06 16:26:31,571 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:31,666 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:31,680 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:26:31,725 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:31,756 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:31,758 - ResourceManager : found vtl/main/login_input.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:31,761 - ResourceManager : found vtl/main/tab_login.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:31,813 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:31,825 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:32,113 - ResourceManager : found vtl/main/moduler.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:32,125 - ResourceManager : found vtl/main/moduler2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:32,133 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:39,759 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:39,777 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:39,777 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:26:39,786 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:39,788 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:39,802 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:39,832 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:39,855 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:26:39,857 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:29,261 - ResourceManager : found vtl/main/moduler.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:29,294 - ResourceManager : found vtl/main/moduler2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:29,329 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:29,329 - Left side ($moduleClassName) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. vtl/main/module_title.vm[line 8, column 50]
+2018-12-06 16:27:29,572 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:29,581 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:29,584 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:29,612 - ResourceManager : found apps/matric_number/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:29,627 - ResourceManager : found apps/matric_number/template.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:29,627 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:29,627 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:29,627 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:29,627 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:29,629 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:29,629 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:29,629 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:29,629 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:29,629 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:29,646 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,299 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,301 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,301 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:27:36,309 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,310 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,329 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,333 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,336 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,337 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,395 - ResourceManager : found vtl/main/top_moduler.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,413 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,421 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,422 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,435 - ResourceManager : found RecordTemplate/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,449 - ResourceManager : found parent_portal/records/label_titles.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,451 - ResourceManager : found parent_portal/records/script.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,451 - ResourceManager : found parent_portal/records/top.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,481 - ResourceManager : found RecordTemplate/entry.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,481 - Left side ($showFilterBar) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. RecordTemplate/entry.vm[line 10, column 24]
+2018-12-06 16:27:36,507 - ResourceManager : found parent_portal/records/search_page.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,531 - ResourceManager : found RecordTemplate/list.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,532 - ResourceManager : found parent_portal/records/label_titles.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:36,540 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,065 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,068 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,069 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:27:39,083 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,084 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,085 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,088 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,092 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,095 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,104 - ResourceManager : found vtl/main/top_moduler.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,118 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,122 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,123 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,127 - ResourceManager : found RecordTemplate/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,128 - ResourceManager : found parent_portal/records/label_titles.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,129 - ResourceManager : found parent_portal/records/script.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,130 - ResourceManager : found parent_portal/records/top.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,131 - ResourceManager : found RecordTemplate/entry.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,131 - Left side ($showFilterBar) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. RecordTemplate/entry.vm[line 10, column 24]
+2018-12-06 16:27:39,132 - ResourceManager : found parent_portal/records/search_page.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,134 - ResourceManager : found RecordTemplate/list.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,135 - ResourceManager : found parent_portal/records/label_titles.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:39,139 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:44,914 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:44,916 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:44,916 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:27:44,933 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:44,934 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:44,936 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:44,939 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:44,947 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:44,948 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:44,998 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,003 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,006 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,007 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,009 - ResourceManager : found RecordTemplate/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,018 - ResourceManager : found admission/studentRecord/label_titles.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,034 - ResourceManager : found admission/studentRecord/script.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,034 - ResourceManager : found admission/studentRecord/top.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,035 - ResourceManager : found RecordTemplate/entry.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,035 - Left side ($showFilterBar) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. RecordTemplate/entry.vm[line 10, column 24]
+2018-12-06 16:27:45,054 - ResourceManager : found admission/studentRecord/search_page.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,055 - ResourceManager : found RecordTemplate/list.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,056 - ResourceManager : found admission/studentRecord/label_titles.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:45,058 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,083 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,085 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,086 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:27:48,091 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,092 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,093 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,095 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,100 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,101 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,121 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,127 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,130 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,130 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,161 - ResourceManager : found admission/subject_registration_list/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,183 - ResourceManager : found admission/subject_registration_list/select_params.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,231 - ResourceManager : found admission/subject_registration_list/listSubjects.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,260 - ResourceManager : found admission/subject_registration_list/listIntakes.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,272 - ResourceManager : found admission/subject_registration_list/listStatuses.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:48,276 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,494 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,495 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,495 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:27:50,499 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,499 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,500 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,503 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,507 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,508 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,513 - ResourceManager : found vtl/main/moduler.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,515 - ResourceManager : found vtl/main/moduler2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,519 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,531 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,552 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,553 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,559 - ResourceManager : found apps/matric_number/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,561 - ResourceManager : found apps/matric_number/template.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:50,561 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:50,561 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:50,561 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:50,562 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:50,562 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:50,562 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:50,562 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:50,562 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:50,562 - Left side ($template.digit) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. apps/matric_number/template.vm[line 11, column 76]
+2018-12-06 16:27:50,564 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,475 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,476 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,477 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:27:53,481 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,483 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,484 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,486 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,488 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,488 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,541 - ResourceManager : found vtl/main/moduler.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,542 - ResourceManager : found vtl/main/moduler2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,544 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,560 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,565 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,568 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,589 - ResourceManager : found apps/student_information/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,591 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,727 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,729 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,729 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:27:53,754 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,756 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,757 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:53,769 - ResourceManager : found /apps/find_student/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:58,959 - ResourceManager : found vtl/ajax/div_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:58,960 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:58,961 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:58,976 - ResourceManager : found /apps/find_student/find.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:27:58,976 - Null reference [template '/apps/find_student/find.vm', line 4, column 23] : $students.size() cannot be resolved.
+2018-12-06 16:28:07,857 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:07,859 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:07,860 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:07,862 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:07,865 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:07,866 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:07,867 - ResourceManager : found /apps/find_student/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:11,217 - ResourceManager : found vtl/ajax/div_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:11,220 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:11,220 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:11,222 - ResourceManager : found /apps/find_student/find.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:11,222 - Null reference [template '/apps/find_student/find.vm', line 4, column 23] : $students.size() cannot be resolved.
+2018-12-06 16:28:14,994 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:14,996 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:14,996 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:15,000 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,014 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,015 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,017 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,025 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,026 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,075 - ResourceManager : found vtl/main/moduler.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,076 - ResourceManager : found vtl/main/moduler2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,079 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,093 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,095 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,096 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,120 - ResourceManager : found apps/util/subject_registration_student/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,124 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,286 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,288 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,288 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:15,290 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,293 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,294 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:15,294 - ResourceManager : found /apps/find_student/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,483 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,484 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,484 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:17,487 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,488 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,488 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,489 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,492 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,493 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,496 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,501 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,503 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,503 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,504 - ResourceManager : found RecordTemplate/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,505 - ResourceManager : found admission/studentRecord/label_titles.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,505 - ResourceManager : found admission/studentRecord/script.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,505 - ResourceManager : found admission/studentRecord/top.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,506 - ResourceManager : found RecordTemplate/entry.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,506 - Left side ($showFilterBar) of '==' operation has null value. If it is a reference, it may not be in the context or its toString() returned null. RecordTemplate/entry.vm[line 10, column 24]
+2018-12-06 16:28:17,507 - ResourceManager : found admission/studentRecord/search_page.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,508 - ResourceManager : found RecordTemplate/list.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,510 - ResourceManager : found admission/studentRecord/label_titles.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:17,515 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,629 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,630 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,630 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:18,634 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,636 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,637 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,638 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,643 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,644 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,693 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,694 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,694 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,711 - ResourceManager : found apps/util/student_stat/byProgramIntake/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:18,712 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,740 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,741 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,741 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:19,744 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,744 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,745 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,746 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,748 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,748 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,763 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,770 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,778 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:19,789 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,331 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,332 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,332 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:21,335 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,336 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,336 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,337 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,340 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,340 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,344 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,374 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,376 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,377 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,424 - Velocimacro : added VM select_field: source=apps/util/student_stat/filter_students.vm
+2018-12-06 16:28:21,425 - ResourceManager : found apps/util/student_stat/filter_students.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:21,458 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,808 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,810 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,810 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:22,812 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,813 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,814 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,815 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,818 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,819 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,822 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,829 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,833 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:22,837 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,205 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,207 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,207 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:25,211 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,212 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,212 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,214 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,216 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,217 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,220 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,236 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,239 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,239 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,240 - Velocimacro : VM addition rejected : select_field : inline not allowed to replace existing VM
+2018-12-06 16:28:25,240 - ResourceManager : found apps/util/student_stat/filter_students.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:25,244 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,704 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,706 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,706 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:28:28,711 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,712 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,714 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,716 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,724 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,725 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,730 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,737 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,739 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,739 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,740 - ResourceManager : found admission/subject_registration_list/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,740 - ResourceManager : found admission/subject_registration_list/select_params.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,741 - ResourceManager : found admission/subject_registration_list/listSubjects.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,741 - ResourceManager : found admission/subject_registration_list/listIntakes.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,742 - ResourceManager : found admission/subject_registration_list/listStatuses.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:28:28,743 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,726 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,727 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,727 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:29:20,730 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,731 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,732 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,735 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,740 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,740 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,743 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,750 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,755 - ResourceManager : found vtl/main/module_title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:20,759 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,739 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,740 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,740 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:29:21,742 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,743 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,744 - ResourceManager : found vtl/main/user_role_tabs_menu.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,744 - ResourceManager : found vtl/main/greeting.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,746 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,747 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,751 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,754 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,754 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,755 - ResourceManager : found apps/util/student_stat/byProgramIntake/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:21,757 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,772 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,773 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,773 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:29:23,776 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,778 - RHS of #set statement is null. Context will not be modified. vtl/main/header.vm[line 22, column 1]
+2018-12-06 16:29:23,779 - RHS of #set statement is null. Context will not be modified. vtl/main/header.vm[line 23, column 1]
+2018-12-06 16:29:23,780 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,797 - ResourceManager : found vtl/main/login_input.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,803 - ResourceManager : found vtl/main/tab_login.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,805 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,805 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,807 - ResourceManager : found vtl/main/moduler.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,808 - ResourceManager : found vtl/main/moduler2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:29:23,809 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:30:18,469 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:30:18,470 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:30:18,489 - ResourceManager : found vtl/main/popwin.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:30:18,526 - ResourceManager : found vtl/admin/errormessage.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:30:23,371 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:30:23,371 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:30:23,371 - ResourceManager : found vtl/main/popwin.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:30:23,390 - ResourceManager : found vtl/admin/errormessage.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,864 - ResourceManager : found vtl/main/title.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,865 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,865 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:36:20,869 - ResourceManager : found vtl/main/header.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,870 - ResourceManager : found vtl/main/header_normal.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,870 - ResourceManager : found vtl/main/login_input.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,871 - ResourceManager : found vtl/main/tab_login.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,874 - ResourceManager : found vtl/main/tabber-main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,875 - ResourceManager : found vtl/main/tabber2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,881 - ResourceManager : found vtl/main/moduler.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,882 - ResourceManager : found vtl/main/moduler2.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:20,883 - ResourceManager : found vtl/main/footer.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:29,471 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:29,472 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:36:29,472 - ResourceManager : found vtl/main/popwin.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:29,504 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:29,506 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:29,507 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:29,575 - ResourceManager : found apps/hostel_setup/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:29,589 - ResourceManager : found apps/hostel_setup/divHostel.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:29,617 - ResourceManager : found apps/hostel_setup/listHostels.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:36:29,635 - ResourceManager : found apps/hostel_setup/viewFloorPlan.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:10,351 - SimpleLog4JLogSystem initialized using logfile '/Users/Admin/Documents/workspace1/educate4/WebContent/velocity.log'
+2018-12-06 16:44:10,358 - Initializing Velocity, Calling init()...
+2018-12-06 16:44:10,358 - *******************************************************************
+2018-12-06 16:44:10,358 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2018-12-06 16:44:10,358 - RuntimeInstance initializing.
+2018-12-06 16:44:10,358 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2018-12-06 16:44:10,358 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogSystem
+2018-12-06 16:44:10,358 - Couldn't find class org.apache.velocity.runtime.log.AvalonLogSystem or necessary supporting classes in classpath.
+2018-12-06 16:44:10,360 - java.lang.NoClassDefFoundError: org/apache/log/format/Formatter
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.apache.velocity.util.ClassUtils.getClass(ClassUtils.java:73)
+	at org.apache.velocity.util.ClassUtils.getNewInstance(ClassUtils.java:105)
+	at org.apache.velocity.runtime.log.LogManager.createLogChute(LogManager.java:154)
+	at org.apache.velocity.runtime.log.LogManager.updateLog(LogManager.java:269)
+	at org.apache.velocity.runtime.RuntimeInstance.initializeLog(RuntimeInstance.java:871)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:262)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:646)
+	at org.apache.velocity.app.VelocityEngine.init(VelocityEngine.java:116)
+	at lebah.portal.velocity.VelocityEngineHolder.<init>(VelocityEngineHolder.java:24)
+	at lebah.portal.velocity.VelocityEngineHolder.getInstance(VelocityEngineHolder.java:28)
+	at lebah.portal.velocity.VServlet.initVelocity(VServlet.java:59)
+	at lebah.portal.ControllerServlet2.doPost(ControllerServlet2.java:62)
+	at lebah.portal.ControllerServlet2.doGet(ControllerServlet2.java:46)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:668)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:791)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1417)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ClassNotFoundException: org.apache.log.format.Formatter
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1328)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1157)
+	... 39 more
+
+2018-12-06 16:44:10,360 - Trying to use logger class org.apache.velocity.runtime.log.SimpleLog4JLogSystem
+2018-12-06 16:44:10,360 - LogSystem has been deprecated. Please use a LogChute implementation.
+2018-12-06 16:44:10,364 - Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+2018-12-06 16:44:10,384 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:10,387 - FileResourceLoader : initialization starting.
+2018-12-06 16:44:10,387 - Do unicode file recognition:  false
+2018-12-06 16:44:10,387 - FileResourceLoader : adding path '/Users/Admin/Documents/workspace1/educate4/WebContent'
+2018-12-06 16:44:10,387 - FileResourceLoader : initialization complete.
+2018-12-06 16:44:10,453 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2018-12-06 16:44:10,453 - Default ResourceManager initialization complete.
+2018-12-06 16:44:10,456 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2018-12-06 16:44:10,478 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2018-12-06 16:44:10,480 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2018-12-06 16:44:10,482 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2018-12-06 16:44:10,483 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2018-12-06 16:44:10,486 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2018-12-06 16:44:10,490 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2018-12-06 16:44:10,495 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2018-12-06 16:44:10,498 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2018-12-06 16:44:10,601 - Created '20' parsers.
+2018-12-06 16:44:10,627 - Velocimacro : initialization starting.
+2018-12-06 16:44:10,627 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2018-12-06 16:44:10,627 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2018-12-06 16:44:10,627 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2018-12-06 16:44:10,627 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2018-12-06 16:44:10,627 - Velocimacro : Velocimacro : initialization complete.
+2018-12-06 16:44:10,627 - RuntimeInstance successfully initialized.
+2018-12-06 16:44:10,755 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:10,759 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:44:10,759 - Null reference [template 'vtl/main/js_css.vm', line 49, column 64] : ${user_css} cannot be resolved.
+2018-12-06 16:44:10,759 - Null reference [template 'vtl/main/js_css.vm', line 203, column 16] : ${serverUrl} cannot be resolved.
+2018-12-06 16:44:10,759 - Null reference [template 'vtl/main/js_css.vm', line 228, column 16] : ${serverUrl} cannot be resolved.
+2018-12-06 16:44:10,759 - Null reference [template 'vtl/main/js_css.vm', line 238, column 68] : ${serverUrl} cannot be resolved.
+2018-12-06 16:44:10,764 - ResourceManager : found vtl/main/popwin.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:33,161 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:33,221 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:33,223 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:33,236 - ResourceManager : found apps/hostel_setup/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:33,251 - ResourceManager : found apps/hostel_setup/divHostel.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:33,254 - ResourceManager : found apps/hostel_setup/listHostels.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:33,296 - ResourceManager : found apps/hostel_setup/viewFloorPlan.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:39,017 - ResourceManager : found vtl/ajax/div_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:39,032 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:39,033 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:39,051 - ResourceManager : found apps/hostel_setup/divBuilding.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:39,064 - ResourceManager : found apps/hostel_setup/divHeader.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:39,066 - ResourceManager : found apps/hostel_setup/listBuildings.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:50,766 - ResourceManager : found vtl/ajax/div_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:50,770 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:50,771 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:50,773 - ResourceManager : found apps/hostel_setup/divBuilding.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:50,774 - ResourceManager : found apps/hostel_setup/divHeader.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:50,776 - ResourceManager : found apps/hostel_setup/listBuildings.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:53,463 - ResourceManager : found vtl/ajax/div_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:53,467 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:53,468 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:53,468 - ResourceManager : found apps/hostel_setup/divHostel.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:44:53,469 - ResourceManager : found apps/hostel_setup/listHostels.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:06,579 - ResourceManager : found vtl/ajax/div_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:06,583 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:06,584 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:06,584 - ResourceManager : found apps/hostel_setup/divBuilding.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:06,585 - ResourceManager : found apps/hostel_setup/divHeader.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:06,587 - ResourceManager : found apps/hostel_setup/listBuildings.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:08,553 - ResourceManager : found vtl/ajax/div_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:08,559 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:08,560 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:08,560 - ResourceManager : found apps/hostel_setup/divHostel.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:08,561 - ResourceManager : found apps/hostel_setup/listHostels.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:55,378 - ResourceManager : found vtl/ajax/div_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:55,381 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:55,382 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:55,383 - ResourceManager : found apps/hostel_setup/divBuilding.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:55,386 - ResourceManager : found apps/hostel_setup/divHeader.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:45:55,387 - ResourceManager : found apps/hostel_setup/listBuildings.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:50:57,203 - SimpleLog4JLogSystem initialized using logfile '/Users/Admin/Documents/workspace1/educate4/WebContent/velocity.log'
+2018-12-06 16:50:57,221 - Initializing Velocity, Calling init()...
+2018-12-06 16:50:57,221 - *******************************************************************
+2018-12-06 16:50:57,221 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2018-12-06 16:50:57,221 - RuntimeInstance initializing.
+2018-12-06 16:50:57,221 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2018-12-06 16:50:57,221 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogSystem
+2018-12-06 16:50:57,221 - Couldn't find class org.apache.velocity.runtime.log.AvalonLogSystem or necessary supporting classes in classpath.
+2018-12-06 16:50:57,223 - java.lang.NoClassDefFoundError: org/apache/log/format/Formatter
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.apache.velocity.util.ClassUtils.getClass(ClassUtils.java:73)
+	at org.apache.velocity.util.ClassUtils.getNewInstance(ClassUtils.java:105)
+	at org.apache.velocity.runtime.log.LogManager.createLogChute(LogManager.java:154)
+	at org.apache.velocity.runtime.log.LogManager.updateLog(LogManager.java:269)
+	at org.apache.velocity.runtime.RuntimeInstance.initializeLog(RuntimeInstance.java:871)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:262)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:646)
+	at org.apache.velocity.app.VelocityEngine.init(VelocityEngine.java:116)
+	at lebah.portal.velocity.VelocityEngineHolder.<init>(VelocityEngineHolder.java:24)
+	at lebah.portal.velocity.VelocityEngineHolder.getInstance(VelocityEngineHolder.java:28)
+	at lebah.portal.velocity.VServlet.initVelocity(VServlet.java:59)
+	at lebah.portal.ControllerServlet2.doPost(ControllerServlet2.java:62)
+	at lebah.portal.ControllerServlet2.doGet(ControllerServlet2.java:46)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:668)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:791)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1417)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ClassNotFoundException: org.apache.log.format.Formatter
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1328)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1157)
+	... 39 more
+
+2018-12-06 16:50:57,223 - Trying to use logger class org.apache.velocity.runtime.log.SimpleLog4JLogSystem
+2018-12-06 16:50:57,223 - LogSystem has been deprecated. Please use a LogChute implementation.
+2018-12-06 16:50:57,226 - Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+2018-12-06 16:50:57,252 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:50:57,254 - FileResourceLoader : initialization starting.
+2018-12-06 16:50:57,255 - Do unicode file recognition:  false
+2018-12-06 16:50:57,255 - FileResourceLoader : adding path '/Users/Admin/Documents/workspace1/educate4/WebContent'
+2018-12-06 16:50:57,255 - FileResourceLoader : initialization complete.
+2018-12-06 16:50:57,270 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2018-12-06 16:50:57,270 - Default ResourceManager initialization complete.
+2018-12-06 16:50:57,274 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2018-12-06 16:50:57,276 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2018-12-06 16:50:57,277 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2018-12-06 16:50:57,279 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2018-12-06 16:50:57,281 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2018-12-06 16:50:57,283 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2018-12-06 16:50:57,286 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2018-12-06 16:50:57,288 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2018-12-06 16:50:57,290 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2018-12-06 16:50:57,347 - Created '20' parsers.
+2018-12-06 16:50:57,367 - Velocimacro : initialization starting.
+2018-12-06 16:50:57,367 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2018-12-06 16:50:57,367 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2018-12-06 16:50:57,367 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2018-12-06 16:50:57,368 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2018-12-06 16:50:57,368 - Velocimacro : Velocimacro : initialization complete.
+2018-12-06 16:50:57,368 - RuntimeInstance successfully initialized.
+2018-12-06 16:50:57,488 - ResourceManager : found vtl/main/js_css.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:50:57,493 - Null reference [template 'vtl/main/js_css.vm', line 38, column 5] : $j cannot be resolved.
+2018-12-06 16:50:57,493 - Null reference [template 'vtl/main/js_css.vm', line 49, column 64] : ${user_css} cannot be resolved.
+2018-12-06 16:50:57,493 - Null reference [template 'vtl/main/js_css.vm', line 203, column 16] : ${serverUrl} cannot be resolved.
+2018-12-06 16:50:57,494 - Null reference [template 'vtl/main/js_css.vm', line 228, column 16] : ${serverUrl} cannot be resolved.
+2018-12-06 16:50:57,494 - Null reference [template 'vtl/main/js_css.vm', line 238, column 68] : ${serverUrl} cannot be resolved.
+2018-12-06 16:50:57,498 - ResourceManager : found vtl/main/popwin.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:12,981 - ResourceManager : found vtl/ajax/ajax_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:13,008 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:13,010 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:13,025 - ResourceManager : found apps/hostel_setup/start.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:13,026 - ResourceManager : found apps/hostel_setup/divHostel.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:13,028 - ResourceManager : found apps/hostel_setup/listHostels.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:13,062 - ResourceManager : found apps/hostel_setup/viewFloorPlan.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:15,886 - ResourceManager : found vtl/ajax/div_main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:15,896 - ResourceManager : found vtl/action/ajax/main.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:15,898 - ResourceManager : found vtl/action/ajax/messages.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:15,898 - ResourceManager : found apps/hostel_setup/divBuilding.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:15,906 - ResourceManager : found apps/hostel_setup/divHeader.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-06 16:51:15,909 - ResourceManager : found apps/hostel_setup/listBuildings.vm with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:14,980 - SimpleLog4JLogSystem initialized using logfile '/Users/Admin/Documents/workspace1/educate4/WebContent/velocity.log'
+2018-12-23 07:53:14,990 - Initializing Velocity, Calling init()...
+2018-12-23 07:53:14,990 - *******************************************************************
+2018-12-23 07:53:14,990 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2018-12-23 07:53:14,990 - RuntimeInstance initializing.
+2018-12-23 07:53:14,990 - Default Properties File: org/apache/velocity/runtime/defaults/velocity.properties
+2018-12-23 07:53:14,990 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogSystem
+2018-12-23 07:53:14,990 - Couldn't find class org.apache.velocity.runtime.log.AvalonLogSystem or necessary supporting classes in classpath.
+2018-12-23 07:53:14,991 - java.lang.NoClassDefFoundError: org/apache/log/format/Formatter
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:348)
+	at org.apache.velocity.util.ClassUtils.getClass(ClassUtils.java:73)
+	at org.apache.velocity.util.ClassUtils.getNewInstance(ClassUtils.java:105)
+	at org.apache.velocity.runtime.log.LogManager.createLogChute(LogManager.java:154)
+	at org.apache.velocity.runtime.log.LogManager.updateLog(LogManager.java:269)
+	at org.apache.velocity.runtime.RuntimeInstance.initializeLog(RuntimeInstance.java:871)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:262)
+	at org.apache.velocity.runtime.RuntimeInstance.init(RuntimeInstance.java:646)
+	at org.apache.velocity.app.VelocityEngine.init(VelocityEngine.java:116)
+	at lebah.portal.velocity.VelocityEngineHolder.<init>(VelocityEngineHolder.java:24)
+	at lebah.portal.velocity.VelocityEngineHolder.getInstance(VelocityEngineHolder.java:28)
+	at lebah.portal.velocity.VServlet.initVelocity(VServlet.java:59)
+	at lebah.portal.DesktopController.doBody(DesktopController.java:86)
+	at lebah.portal.DesktopController.doPost(DesktopController.java:54)
+	at lebah.portal.DesktopController.doGet(DesktopController.java:48)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:712)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:459)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:384)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:312)
+	at lebah.portal.handler.DesktopHandler.process(DesktopHandler.java:39)
+	at lebah.portal.InterceptorServlet.service(InterceptorServlet.java:67)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:668)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:791)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1417)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ClassNotFoundException: org.apache.log.format.Formatter
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1328)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1157)
+	... 52 more
+
+2018-12-23 07:53:14,991 - Trying to use logger class org.apache.velocity.runtime.log.SimpleLog4JLogSystem
+2018-12-23 07:53:14,991 - LogSystem has been deprecated. Please use a LogChute implementation.
+2018-12-23 07:53:14,995 - Default ResourceManager initializing. (class org.apache.velocity.runtime.resource.ResourceManagerImpl)
+2018-12-23 07:53:15,002 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2018-12-23 07:53:15,004 - FileResourceLoader : initialization starting.
+2018-12-23 07:53:15,004 - Do unicode file recognition:  false
+2018-12-23 07:53:15,005 - FileResourceLoader : adding path '/Users/Admin/Documents/workspace1/educate4/WebContent'
+2018-12-23 07:53:15,005 - FileResourceLoader : initialization complete.
+2018-12-23 07:53:15,051 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2018-12-23 07:53:15,051 - Default ResourceManager initialization complete.
+2018-12-23 07:53:15,053 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2018-12-23 07:53:15,056 - Loaded System Directive: org.apache.velocity.runtime.directive.Define

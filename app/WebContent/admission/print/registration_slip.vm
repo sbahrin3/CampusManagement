@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css" media="print">
+td {
+  	font-family: Helvetica, sans-serif;   
+  	font-style: normal;
+	font-size:9pt
+	} 
+	
+h1{
+	page-break-before: always;
+}
+</style>
+</head>
+<body>
+
+<table width="700" align="center">
+<tr><td>
+
+##parse("apps/logo/header.vm")
+
+</td></tr>
+
+<tr height="40px"><td><br/><br/></td></tr>
+
+<tr><td>
+
+Selamat mendaftar di 
+<b>UNITAR International University</b>
+Berikut adalah maklumat
+ringkas pendaftaran anda:
+
+</td></tr>
+
+<tr><td height="20px">
+
+</td></tr>
+
+<tr><td>
+<table width="100%">
+<tr><td style="width:150px">NO. MATRIK</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>NAMA:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>NO K/P:</td><td style="font-weight:bold">#if ( $student.biodata.icno != "" ) $student.biodata.icno #else $student.biodata.passport #end</td></tr>
+<tr><td>PROGRAM:</td><td style="font-weight:bold">$student.program.name</td></tr>
+</table>
+</td></tr>
+
+<tr><td height="10px">
+
+</td></tr>
+
+<tr><td>
+<p>
+Sila hafal nombor matrik anda.  Pastikan slip matrik sementara ini dibawa bersama ketika berada di kolej untuk membuat 
+sebarang urusan.
+</p>
+<p>
+<b>Kad Matrik rasmi</b> akan dikeluarkan oleh <b>Department of Academic Affairs (DAA)</b> pada suatu tarikh
+yang akan ditetapkan kelak.  Sila semak papan kenyataan untuk tarikh, masa dan tempat mengambil kad matrik anda.
+</p>
+</td></tr>
+<tr style="height:40px"><td></td></tr>
+<tr><td align="center" style="font-weight:bold">DOKUMEN TAMBAHAN</td></tr>
+
+<tr><td>
+<p>
+Dimaklumkan bahawa anda <b>BELUM / SUDAH</b> menyerahkan kesemua dokuman diperlukan bagi
+melengkapkan fail perbibadi pelajar.
+</p>
+<p>
+Sila kemukan dokumen bertanda (/) berikut ke kaunter DAA dengan kadar segera.
+</p>
+</td></tr>
+
+<tr><td>
+
+
+ 1 SALINAN KAD PENGENALAN (MyKad) <br/>
+ 1 SALINAN SIJIL KELAHIRAN <br/>
+ _____ KEPING GAMBAR BERUKURAN PASPORT <br/>
+ 1 SALINAN KEPUTUSAN SPM <br/>
+ 1 SALINAN KEPUTUSAN STPM/DIPLOMA <br/>
+ 1 SALINAN KEPUTUSAN MUET <br/>
+ 1 SALINAN SIJIL BERHENTI SEKOLAH <br/>
+ BORANG BK03/KP1-1 <br/>
+ SURAT PERJANJIAN PERAKUAN (SALINAN PEJABAT) <br/>
+ RM 10 DUTI SETEM <br/>
+ LAIN-LAIN _________________________________________ <br/>
+
+
+</td></tr>
+
+<tr><td>
+<br/><br/>
+<p>
+Sekian, harap maklum.
+<br/><br/>
+<b>"Selamat Maju Jaya"</b>
+<br/><br/>
+<b>Pendaftar</b>
+</p>
+
+</td></tr>
+
+<tr><td height="20px">
+
+</td></tr>
+
+<tr><td align="right">
+<img src="../barcode?data=$!student.matricNo" border="0"/>
+</td></tr>
+
+</table>
+
+
+</body>
+</html>

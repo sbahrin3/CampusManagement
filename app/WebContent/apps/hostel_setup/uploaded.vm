@@ -1,0 +1,3 @@
+<script>
+parent.document.getElementById('${divUploadStatusName}').innerHTML = '<a href="javascript:void()" onclick="$(\'divViewFloorPlan\').style.display=\'block\';document.getElementById(\'imgFloorPlan\').src=\'../servlet/educate.sis.module.FloorPlanImgServlet?id=$!h.id&floorPlanImageId=$!h.floorPlanImageId\';">View</a>';
+</script>

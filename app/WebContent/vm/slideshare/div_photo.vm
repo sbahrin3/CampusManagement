@@ -1,0 +1,14 @@
+
+<table width="100%"><tr><td align="right">
+						#if($userprofile.userPhotoName != "")
+							<img src="../download?file=$!userprofile.userPhotoName">
+						#else
+<img src="../img/nophoto.gif" border="0">
+#end
+</td></tr>
+<tr><td align="right">
+<input class="button1" type="button" value="Change Photo..." 
+onclick="$('div_upload_photo').style.visibility='visible';doDivAjaxCall$formname('div_upload_photo','upload_photo','user_profile_id=$!userprofile.id')">
+</td></tr>
+
+</table>

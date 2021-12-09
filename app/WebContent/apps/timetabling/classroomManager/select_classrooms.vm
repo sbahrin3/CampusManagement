@@ -1,0 +1,7 @@
+#foreach( $s in $sectionList )
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('listStudentsInClassrooms','listStudentsInClassrooms','studentClassroomId=$!s.id')">
+$s.name
+</a>
+&nbsp;
+#end
+

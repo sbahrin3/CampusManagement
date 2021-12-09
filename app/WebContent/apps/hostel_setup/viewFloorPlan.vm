@@ -1,0 +1,20 @@
+<table width="600px">
+	<tr>
+		<td id="handleViewFloorPlan" style="width:580px;cursor:pointer;font-weight:bold" align="center">
+            FLOOR PLAN :&nbsp;<span id="titleViewFloorPlan" style="font-weight:bold"></span>
+		</td>
+		<td align="right">
+			<input class="linkbutton" type="button" value="X" onclick="$('divViewFloorPlan').style.display='none';">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<div style="overflow:auto;width:580px;height:400px">
+				<table><tr><td>
+							<img id="imgFloorPlan">
+				</td></tr></table>
+			</div>
+		</td>
+	</tr>
+</table>
+	

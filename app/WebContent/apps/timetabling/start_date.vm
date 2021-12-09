@@ -1,0 +1,13 @@
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table>
+
+<tr><td>Start Date for Monday is:</td>
+<td>
+										$html.dateField.name("start_date").value("$dateFormat.format($start_date)")
+										&nbsp;&nbsp;
+										<input type="button" value="Save Date" onclick="doDivAjaxCall$formname('div_timetable_main','update_start_date','')">
+										</td>
+</tr>
+
+</table>
+</fieldset>

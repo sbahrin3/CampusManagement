@@ -1,0 +1,9 @@
+<div style="padding:10px;font-weight:bold;border:1px solid #000">
+	Resource Fee Payment Schedule
+</div>
+	
+<input type="hidden" name="resourceFeePaymentScheduleId" value="$resourceFeePaymentSchedule.id">
+	
+<div id="resourceFeeItems" style="padding:10px;">
+	#parse("apps/finance/studentPaymentSchedule/resourceFeeItems.vm")
+</div>

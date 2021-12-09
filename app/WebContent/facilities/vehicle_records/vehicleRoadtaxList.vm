@@ -1,0 +1,38 @@
+$dateFormat.applyPattern("dd-MM-yyyy")
+<table width="">
+<tr style="background:#D3CFCF;height:25px">
+<td style="font-weight:bold;width:20px"></td>
+<td style="font-weight:bold;width:150px">Renewal Date</td>
+<td style="font-weight:bold;width:150px">Expiry Date</td>
+<td style="font-weight:bold;width:150px">Insured Value</td>
+<td style="width:50px"></td>
+<td style="width:50px"></td>
+</tr>
+</table>
+
+<div style="height:300px;overflow:auto"">
+<table width="">
+<tr style="background:#fff;height:0px">
+<td style="font-weight:bold;width:20px"></td>
+<td style="font-weight:bold;width:150px"></td>
+<td style="font-weight:bold;width:150px"></td>
+<td style="font-weight:bold;width:150px"></td>
+<td style="width:50px"></td>
+<td style="width:50px"></td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach( $m in $roadtaxLogs )
+#set ( $cnt = $cnt + 1 )
+
+<tr style="background:#E3EEF7;height:25px">
+<td>$cnt.</td>
+<td>#if ( $m.renewalDate ) $dateFormat.format($m.renewalDate) #end</td>
+<td>#if ( $m.expiryDate) $dateFormat.format($m.expiryDate) #end</td>
+<td>$!m.insuredValue</td>
+<td><input class="button" type="button" value="..." onclick="doDivAjaxCall3$formname('divRemark','getRoadtaxLog','roadtaxLogId=$m.id')"></td>
+<td><input class="button" type="button" value="X" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('roadtaxLogRecords','deleteRoadtaxLog','roadtaxLogId=$m.id')"></td>
+</tr>
+#end
+</table>
+</table>

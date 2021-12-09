@@ -1,0 +1,11 @@
+<table>
+	#set ( $cnt = 0 )
+	#foreach( $s in $students )
+		#set ( $cnt = $cnt + 1 )
+		<tr>
+			<td style="width:50px">$cnt)</td>
+			<td style="width:200px">$s.matricNo</td>
+			<td style="width:400px">$s.biodata.name</td>
+		</tr>
+	#end
+</table>

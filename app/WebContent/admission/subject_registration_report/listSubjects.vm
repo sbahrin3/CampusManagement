@@ -1,0 +1,6 @@
+<select class="textr" id="subjectId" name="subjectId" >
+<option value="">- Select All -</option>
+#foreach ( $s in $subjects )
+<option value="$s.id">$s.code $s.name</option>
+#end
+</select>

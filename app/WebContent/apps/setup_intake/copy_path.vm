@@ -1,0 +1,41 @@
+<table>
+	<tr>
+		<td>
+			Copy:
+		</td>
+		<td>
+			<select class="texts" style="width:200px" name="pathFrom" onchange="get()">
+            #foreach ( $num in [0..100])
+            #if ( $path_no == $num )
+            		#set ( $selected = "selected" )
+            #else
+            	#set ( $selected = "" )
+            #end
+            
+            #if ( $pathNames.get($num) ) #set ( $pathName = $pathNames.get($num) ) #else #set ( $pathName = $num ) #end
+            
+            <option value="$num" $selected>$pathName</option>
+        	#end
+			</select>
+		</td>
+		<td>
+			<select class="texts" style="width:200px" name="pathTo" onchange="get()">
+            #foreach ( $num in [0..100])
+            #if ( $path_no == $num )
+            		#set ( $selected = "selected" )
+            #else
+            	#set ( $selected = "" )
+            #end
+            
+            #if ( $pathNames.get($num) ) #set ( $pathName = $pathNames.get($num) ) #else #set ( $pathName = $num ) #end
+            
+            <option value="$num" $selected>$pathName</option>
+        	#end
+			</select>
+		</td>
+		<td>
+			<input class="linkbutton" type="button" value="Copy Sessions" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall$formname('divResult','copyPath','')">
+		</td>
+	</tr>
+</table>
+	

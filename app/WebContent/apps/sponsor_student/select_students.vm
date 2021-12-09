@@ -1,0 +1,15 @@
+<table width="100%">
+#foreach( $s in $search_list )
+<tr height="25px">
+<td style="width:40px">${velocityCount}.</td>
+<td style="width:100px">$s.matricNo</td>
+<td style="width:100px">$s.biodata.icno</td>
+<td>
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_find_student2','student_detail','student_id=$s.id')">
+$s.biodata.name
+</a>
+
+</td>
+</tr>
+#end
+</table>

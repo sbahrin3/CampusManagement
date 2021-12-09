@@ -1,0 +1,32 @@
+<table>
+<tr>
+<td colspan="8" style="font-weight:bold">
+List of disciplines records between dates: $dateFormat.format($date1) and $dateFormat.format($date2)
+</td>
+</tr>
+<tr>
+<td colspan="8" align="right">
+<input type="button" class="linkbutton" value="XLS" onclick="document.location='../servlet/educate.studentaffair.module.StudentDisciplineReportXLServlet'">
+</td>
+</tr>
+<tr style="height:30px;background:#D6D6D6">
+<td style="width:40px"></td>
+<td style="width:300px">Student</td>
+<td style="width:200px">Matric</td>
+<td style="width:120px">Date</td>
+<td style="width:350px">Case</td>
+<td style="width:150px">status</td>
+</tr>
+
+#foreach ( $r in $records )
+#if ( $velocityCount % 2 == 0 ) #set ( $bgcolor = "#EFEDED" ) #else #set ( $bgcolor = "#FFFFFF" ) #end
+<tr style="height:25px;background:$bgcolor">
+<td>$velocityCount.</td>
+<td>$!r.student.biodata.name</td>
+<td>$!r.student.matricNo</td>
+<td>$dateFormat.format($r.reportedDate)</td>
+<td>$!r.disciplinaryCase.name</td>
+<td>$!r.status</td>
+</tr>
+#end
+</table>

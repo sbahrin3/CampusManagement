@@ -1,0 +1,14 @@
+
+
+<div style="margin:20px">
+<h1>Employee Register</h1>
+
+<div id="dataInput" class="row" style="padding:10px;display:none">
+	#parse("apps/payroll/employees/dataInput.vm")
+</div>
+
+<div id="listEmployees" class="row" style="padding:10px;margin-top:10px;display:block">
+	#parse("apps/payroll/employees/listEmployees.vm")
+</div>
+
+</div>

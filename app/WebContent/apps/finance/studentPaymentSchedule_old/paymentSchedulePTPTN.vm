@@ -1,0 +1,67 @@
+<div style="padding:10px;font-weight:bold;border:1px solid #000">
+
+	<table cellpadding="1" cellspacing="1" style="width:100%">
+		<tr style="height:25px">
+			<td style="font-weight:bold">PTPTN Payment Schedule</td>
+			<td style="width:100px;font-weight:bold" align="right">
+			#if ( $ptptnPaymentSchedule.ptptnAmount )	
+				##$numFormat.format($ptptnPaymentSchedule.ptptnAmount)
+			#end
+		</td></tr>
+	</table>
+</div>
+
+
+	
+<input type="hidden" name="ptptnScheduleId" value="$ptptnPaymentSchedule.id">
+	
+
+	
+<div id="listPTPTN">
+#parse("apps/finance/studentPaymentSchedule/listPtptnPaymentScheduleItems.vm")
+</div>
+
+<div style="margin-bottom:40px">
+	<table style="width:100%"><tr><td align="right">
+				
+    <table>
+    	<tr style="height:30px;background:#AEB1B2">
+    		<td style="width:20px"></td>
+    		<td style="width:100px">Date Due</td>
+    		<td style="width:100px" align="center">Amount Due</td>
+    		<td style="width:50px"></td>
+    	</tr>
+    	#set ( $cnt = 0 )
+    	#foreach ( $i in $ptptnItems )
+    		#set ( $cnt = $cnt + 1 )
+    		<tr style="height:30px">
+    			<td>$cnt)</td>
+    			<td>$dateFormat.format($i.dateDue)</td>
+    			<td align="center">$numFormat.format($i.amountDue)</td>
+    			<td align="center">
+					<input class="linkbutton" type="button" value="x"  onclick="doDivAjaxChainCall$formname('paymentSchedulePTPTN','deletePaymentItemPtptn','itemId=$i.id', 'getPaymentSchedule','listPaymentSchedules','studentId=$ptptnPaymentSchedule.student.id');">
+				</td>
+    		</tr>
+    	#end
+    	<tr style="height:30px">
+    		<td></td>
+    		
+    		<td>
+    			<input class="texts" name="ptptnDateDue" id="ptptnDateDue">
+    			<script> new JsDatePick({ useMode:2, target:"ptptnDateDue", dateFormat:"%d-%m-%Y" }); </script>
+    		</td>
+    		
+    		<td><input class="texts" name="ptptnAmountDue"></td>
+    			
+    		<td align="center">
+				##<input class="linkbutton" type="button" value="+" onclick="doDivAjaxCall$formname('paymentSchedulePTPTN','addPaymentItemPtptn','')">
+				<input class="linkbutton" type="button" value="+" onclick="doDivAjaxChainCall$formname('paymentSchedulePTPTN','addPaymentItemPtptn','', 'getPaymentSchedule','listPaymentSchedules','studentId=$ptptnPaymentSchedule.student.id')">
+			</td>
+		   
+					
+					
+    </tr>
+    </table>
+	
+	</td></tr></table>
+</div>

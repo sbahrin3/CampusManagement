@@ -1,0 +1,96 @@
+<script>
+$('divMakePayment').style.display="block";
+</script>
+
+<div style="background:#fff">
+	
+	<table style="width:100%">
+		<tr style="height:30px;background:#ccc">
+			<td style="font-weight:bold">First Payment</td>
+			<td align="right" style="cursor:pointer;width:30px" onclick="$('divMakePayment').style.display='none';">Close</td>
+		</tr>
+	</table>
+	<br/>
+	<table style="width:100%">
+		
+		
+		<tr style="height:30px">
+			<td style="width:150px">Payment Date</td><td style="width:20px">:</td>
+			<td>
+				#set ( $paidDate = $dateFormat.format($today) )
+				<input readonly class="texts" id="paidDate" name="paidDate" value="$paidDate">
+				<script> new JsDatePick({ useMode:2, target:"paidDate", dateFormat:"%d-%m-%Y" }); </script>
+			</td>
+		</tr>
+		
+		<tr style="height:30px">
+			<td>Application Fee</td><td>:</td>
+			<td>
+				<input class="texts" style="width:150px" name="applicationFee" value="">
+			</td>
+		</tr>
+		
+		<tr style="height:30px">
+			<td>Registration Fee</td><td>:</td>
+			<td>
+				<input class="texts" style="width:150px" name="registrationFee" value="">
+			</td>
+		</tr>
+		
+		<tr style="height:30px">
+			<td>Resource Fee</td><td>:</td>
+			<td>
+				<input class="texts" style="width:150px" name="resourceFee" value="">
+			</td>
+		</tr>
+		
+		<tr style="height:30px">
+			<td>First Payment</td><td>:</td>
+			<td>
+				<input class="texts" style="width:150px" name="firstPayment" value="">
+			</td>
+		</tr>
+		
+		<tr><td>Mode Of Payment</td><td>:</td>
+            <td>
+            <select class="texts" style="width:200px" id="payment_mode" name="payment_mode">
+            <option value="">-Select-</option>
+            <option value="Cash">Cash</option>
+            <option value="Check">Cheque</option>
+            <option value="Online">Online</option>
+            <option value="Credit Card">Credit Card</option>
+            <option value="Bank-In">Bank-In</option>
+            ##<option value="Direct Debit">Direct Debit</option>
+            ##<option value="Telegraph Transfer">Telegraph Transfer</option>
+            ##<option value="Bank Draft">Bank Draft</option>
+            </select>
+            </td>
+		</tr>
+            
+        <tr><td>Cheque No</td><td>:</td>
+            <td>
+            <input class="texts" name="checkNo" style="width:200px">
+            </td>
+		</tr>
+            
+			
+        <tr>
+			<td valign="top">Remark</td><td>:</td>
+            <td>
+			<textarea class="texts" name="remark" class="text" style="width:470px;height:80px"></textarea>
+            </td>
+		</tr>
+		
+	</table>
+	<br/><br/>
+	<table style="width:100%">
+		<tr>
+			<td align="right">
+				<input class="linkbutton" type="button" value="Save Payment" onclick="doDivAjaxChainCall$formname('firstPayment','saveFirstPayment','','getPaymentSchedule','listPaymentSchedules','studentId=$paymentSchedule.student.id');$('divMakePayment').style.display='none';">
+			</td>
+		</tr>
+	</table>
+	
+	<br/>
+	<br/>
+</div>

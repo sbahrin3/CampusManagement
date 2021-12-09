@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<style>
+.title { font-weight:bold;}
+.field { border-top: solid 1px; border-bottom: none; border-left: none; border-right: none;}
+.box {border-bottom:1px solid #000; border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000;}
+</style>
+
+<script>
+function checkAll(bx, name) {
+  var cbs = document.getElementsByTagName('input');
+  for(var i=0; i < cbs.length; i++) {
+    if(cbs[i].type == 'checkbox') {
+      if ( cbs[i].name == name ) cbs[i].checked = bx.checked;
+    }
+  }
+}
+
+function unCheckAll(name) {
+  var cbs = document.getElementsByTagName('input');
+  for(var i=0; i < cbs.length; i++) {
+    if(cbs[i].type == 'checkbox') {
+      if ( cbs[i].name == name ) cbs[i].checked = false;
+    }
+  }
+}
+
+function addToCluster() {
+	var clusterId = $('clusterId').value;
+	if ( clusterId == "addNew" ) {
+		if ( confirm("Create New Cluster?") ) 
+			doDivAjaxCall3$formname('divListCluster','addToCluster','')
+	}
+	else {
+		doDivAjaxCall3$formname('divCluster_' + clusterId,'updateToCluster','')
+	}
+
+}
+</script>
+
+<table style="width:1000px"><tr><td>
+
+<div id="listClassrooms">#parse("$path/list_classrooms.vm")</div>
+<div id="divEmpty"></div>
+
+
+</td></tr></table>

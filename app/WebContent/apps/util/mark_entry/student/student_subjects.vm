@@ -1,0 +1,145 @@
+
+
+#if ( $student_status )
+
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+
+<tr><td style="width:150px">Session:</td><td style="font-weight:bold">$student_status.session.name</td></tr>
+<tr><td>Semester:</td><td style="font-weight:bold">$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end</td></tr>
+<tr><td>Status:</td>
+<td style="font-weight:bold">
+#if ( $student_status.type.defer )
+<font style="color:red">
+#else
+<font style="color:blue">
+#end
+#if ( $student_status.type )
+<i>$!student_status.type.name</i>
+#else
+<i>status undefined</i>
+#end
+</font>
+</td>
+</tr>
+<tr>
+<td colspan="4" align="right">
+#if ( !$bof ) 
+<input class="gradient" type="button" value="Prev" onclick="doDivAjaxCall$formName('student_subjects', 'prev_semester', 'student_status_id=$student_status.id')">
+#else 
+<input class="gradient" type="button" value="&lt;&nbsp;Prev" disabled>
+#end
+#if ( !$eof ) 
+<input class="gradient" type="button" value="Next" onclick="doDivAjaxCall$formName('student_subjects', 'next_semester', 'student_status_id=$student_status.id')">
+#else 
+<input class="gradient" type="button" value="Next&nbsp;&gt;" disabled>
+#end
+</td></tr>
+</table>
+
+
+#if ( $subject_results.size() > 0 )
+<table width="100%" cellspacing="0">
+<tr height="30px" bgcolor="lightgrey">
+<td></td>
+<td colspan="2" style="font-weight:bold">Subject</td>
+<td style="font-weight:bold" align="center">Credit<br>Hours</td>
+
+<td style="font-weight:bold" align="center">Calculate<br/>GPA?</td>
+
+<td style="font-weight:bold">Marks</td>
+<td style="width:100px"></td>
+<td></td>
+<td></td>
+</tr>
+#foreach ( $s in $subject_results )
+<tr>
+<td style="width:10px"></td>
+<td style="width:150px;border-bottom:1px dotted #CCC">$!s.subject.code</td>
+<td style="width:300px;border-bottom:1px dotted #CCC">$!s.subject.name</td>
+<td align="center" style="border-bottom:1px dotted #CCC">$!s.subject.credithrs</td>
+<td align="center" style="border-bottom:1px dotted #CCC">
+	#if ( $s.subject.excludeGpa == 0 ) Y #elseif ( $s.subject.excludeGpa == 1 ) N #end</td>
+
+
+<td style="width:200px;border-bottom:1px dotted #CCC">
+
+
+#if ( $s.resultStatus )
+    #if ( $s.resultStatus.excludeGPA )
+    	<span id="div_mark_$s.id" name="div_mark_$s.id" style="visibility:hidden">
+        <input class="text" id="mark_${s.id}" name="mark_${s.id}" value="$!s.totalMarkDisplay" style="width:50px;text-align:center" >
+		</span>
+    #else
+    	<span id="div_mark_$s.id" name="div_mark_$s.id" style="visibility:visible">
+		<input class="text" id="mark_${s.id}" name="mark_${s.id}" value="$!s.totalMarkDisplay" style="width:50px;text-align:center" >
+		&nbsp;&nbsp;$!s.grade
+		</span>
+    #end
+#else
+	<span id="div_mark_$s.id" name="div_mark_$s.id" style="visibility:visible">
+	<input class="text" id="mark_${s.id}" name="mark_${s.id}" value="$!s.totalMarkDisplay" style="width:50px;text-align:center" >
+	&nbsp;&nbsp;$!s.grade
+</span>
+#end
+
+
+
+</td>
+
+<td style="border-bottom:1px dotted #CCC">
+#if ( $s.resultStatus.excludeGPA )
+    <span id="status_name_$s.id" name="status_name_$s.id" style="width:90px">$!s.resultStatus.name<br/>EXCLUDE GPA </span>
+    <input type="hidden" name="status_id_$s.id" id="status_id_$s.id" value="$!s.resultStatus.id">	
+#else
+    <span id="status_name_$s.id" name="status_name_$s.id" style="width:90px">$!s.resultStatus.name</span>
+    <input type="hidden" name="status_id_$s.id" id="status_id_$s.id" value="$!s.resultStatus.id">
+#end
+</td>
+
+<td style="border-bottom:1px dotted #CCC">
+
+#if ( $s.status == "DELETED" )
+<input type="button" value="Del" onclick="doDivAjaxCall$formName('student_subjects', 'delete_result', 'student_status_id=$student_status.id&result_id=$s.id')">
+#end
+#if ( !$s.subject )
+<input type="button" value="Del" onclick="doDivAjaxCall$formName('student_subjects', 'delete_result', 'student_status_id=$student_status.id&result_id=$s.id')">
+#end
+
+
+<div class="shadow" id="div_set_status_$s.id" name="div_set_status_$s.id" style="width:150px;background-color:#fff;position:absolute;visibility:hidden">
+#parse("apps/util/mark_entry/student/list_statuses.vm")
+</div>
+
+</td>
+<td style="border-bottom:1px dotted #CCC">
+##<a style="color:#666666;text-decoration:none" href="javascript:void()" onclick="$('div_set_status_$s.id').style.visibility='visible';">x</a>
+</td>
+</tr>
+#end
+</table>
+
+
+<table width="100%"><tr>
+<td align="right">
+<input class="gradient" type="button" value="RECALCULATE GPA" style="height:30px;font-weight:bold" onclick="doDivAjaxCall$formName('student_subjects', 'save_result', 'student_status_id=$student_status.id')">
+</td></tr>
+</table>
+
+#end
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="300" align="right">
+<tr><td style="font-weight:bold">Credit Unit:</td><td style="font-weight:bold" align="center">$!final_result.currentHours</td></tr>
+<tr><td style="font-weight:bold">GPA:</td><td style="font-weight:bold" align="center">#if ( $final_result.gpa ) $numFormat.format($final_result.gpa) #end</td></tr>
+<tr><td colspan="2">&nbsp;</td></tr>
+<tr><td style="font-weight:bold">C. Credit Unit:</td><td style="font-weight:bold" align="center">$!final_result.totalHours</td></tr>
+<tr><td style="font-weight:bold">CGPA:</td><td style="font-weight:bold" align="center">#if ( $final_result.cgpa ) $numFormat.format($final_result.cgpa) #end</td></tr>
+
+<tr><td colspan="2">&nbsp;</td></tr>
+##<tr><td style="font-weight:bold">Standing:</td><td style="font-weight:bold" align="center">$!final_result.standing</td></tr>
+</table>
+</fieldset>
+#end
+
+
+
+

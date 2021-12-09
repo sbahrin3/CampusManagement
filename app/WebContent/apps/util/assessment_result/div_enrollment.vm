@@ -1,0 +1,47 @@
+<table width="100%" cellspacing="3" cellpadding="4">
+<tr>
+<td valign="top" style="width:100px"></td>
+<td valign="top" style="font-weight:bold"></td>
+</tr>
+
+<tr>
+<td valign="top">Faculty:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.program.course.faculty.name</td>
+</tr>
+
+<tr>
+<td valign="top">Program:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$student.program.name</td>
+</tr>
+
+<tr>
+<td valign="top">Center:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$student.learningCenter.name</td>
+</tr>
+
+<tr>
+<td valign="top">Intake:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$student.intake.name</td>
+</tr>
+
+#if ( $student_status )
+
+<tr>
+<td valign="top">Semester:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student_status.period.name #if ( $student_status.period.parent )  ($student_status.period.parent.name) #end - $student_status.session.name</td>
+</tr>
+
+<tr>
+<td valign="top">Status:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$student_status.type.name</td>
+</tr>
+
+
+#else
+<tr>
+<td valign="top">Semester:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB"> Semester Status Not-Defined </td>
+</tr>
+#end
+
+</table>

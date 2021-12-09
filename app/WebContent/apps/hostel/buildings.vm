@@ -1,0 +1,34 @@
+<table width="100%" bgcolor="#FFD455"><tr><td>
+<table width="100%">
+<tr><td>BUILDINGS</td><td align="right"><a href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_$hostel.id', 'close', '')">close</a></td></tr></table>
+<table width="100%">
+<tr>
+<td><input name="code_$hostel.id" style="width:100%"</td>
+<td width="400px"><input name="name_$hostel.id" style="width:100%"></td>
+<td>
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('hostel_$hostel.id','add_building','hostel_id=$hostel.id')">
+</td>
+</tr>
+</table>
+
+<table width="100%">
+#foreach ( $building in $hostel.buildings )
+<tr>
+<td>
+$building.code
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('building_$building.id','list_blocks','building_id=$building.id')">
+$building.name
+</a>
+</td>
+<td align="right">
+<a href="javascript:void()" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall$formname('hostel_$building.hostel.id','delete_building','building_id=$building.id')">x</a>
+</td>
+</tr>
+
+<tr><td colspan="2">
+<div id="building_$building.id" name="building_$building.id"></div>
+</td></tr>
+#end
+</table>
+
+</td></tr></table>

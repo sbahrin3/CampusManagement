@@ -1,0 +1,3 @@
+<script>
+document.location.href='../servlet/educate.sis.servlets.CreatePDFServlet2?pathUrl=v/educate.admission.module.RegistrationSlipPrint?matric_no=$util.replaceSp($student.matricNo)&pdfName=slip_registration';
+</script>

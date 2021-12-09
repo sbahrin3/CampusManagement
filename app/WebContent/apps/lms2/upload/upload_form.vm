@@ -1,0 +1,14 @@
+<style>
+input {font-family:arial;font-size:8pt}
+</style>
+<form id="file_upload_form_$uploadname" name="file_upload_form_$uploadname" method="post" enctype="multipart/form-data" action="?command=uploadFile&uploader_id=$!uploader_id" onsubmit="this.target='upload_target_$uploadname';wait_indicator_$uploader_id()">
+<input id="fileupload" name="fileupload" type="file" size="30"/>
+<input type="submit" name="action" value="Upload" />
+<iframe id="upload_target_$uploadname" name="upload_target_$uploadname" src="" style="width:0;height:0;border:0px solid #fff;"></iframe>
+</form>
+
+<script>
+function wait_indicator_$uploader_id() {
+parent.parent.document.getElementById("div_wait_indicator_$uploader_id").innerHTML="<img src='../img/upload_wait.gif' border=0>";
+}
+</script>

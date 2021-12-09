@@ -1,0 +1,28 @@
+
+<style>
+td { color: #000000; font: normal 11px arial; }
+</style>
+<table width="100%"><tr><td align="center">
+<input type="button" value="Statistic Table" onclick="$('div_students').style.visibility='hidden';$('div_stat').style.visibility='visible'">
+</td></tr></table>
+<table align="center">
+<tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold;width:50px"></td>
+<td style="font-weight:bold;width:100px">Matric No</td>
+<td style="font-weight:bold;width:300px">Name</td>
+<td style="font-weight:bold;width:100px" align="center">CGPA</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $r in $results)
+#set ( $cnt = $cnt + 1 )
+<tr height="20px">
+<td>$cnt)</td>
+<td>$r.matricNo</td>
+<td>$r.name</td>
+<td align="center">$nf.format($r.cgpa)</td>
+</tr>
+#end
+<tr height="40px"><td colspan="5">
+<b>$cnt</b> students
+</td></tr>
+</table>

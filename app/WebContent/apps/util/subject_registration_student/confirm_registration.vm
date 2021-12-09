@@ -1,0 +1,109 @@
+
+
+<table width="100%"><tr><td>
+<fieldset style="background-color:#D4FFFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%">
+
+<tr><td style="width:150px">Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+<tr><td>Centre:</td><td style="font-weight:bold">$student.learningCenter.name</td></tr>
+
+<tr><td>Current Session:</td><td style="font-weight:bold">$student_status.session.name</td></tr>
+<tr><td>Current Period:</td><td style="font-weight:bold">$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end</td></tr>
+
+</table>
+
+</fieldset></td></tr></table>
+
+<table width="100%"><tr><td>
+
+
+<fieldset style="background-color:#D4FFFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">Original Subjects</legend>
+<table width="100%" cellspacing="0">
+<tr height="30px">
+<td class="gradient" style="width:200px;font-weight:bold">Code</td>
+<td class="gradient" style="font-weight:bold">Subject Name</td>
+<td class="gradient" style="width:100px;font-weight:bold" align="center">Credit Unit</td>
+</tr>
+#foreach ( $s in $original_subjects )
+<tr>
+<td style="width:200px">$s.code</td>
+<td>$s.name</td>
+<td align="center">$s.credithrs</td>
+</tr>
+#end
+</table>
+</fieldset>
+
+
+##ADDED SUBJECTS LIST
+<fieldset style="background-color:#D4FFFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">Added Subjects</legend>
+<table width="100%" cellspacing="0">
+<tr height="30px">
+<td class="gradient" style="width:200px;font-weight:bold">Code</td>
+<td class="gradient" style="font-weight:bold">Subject Name</td>
+<td class="gradient" style="width:100px;font-weight:bold" align="center">Credit Unit</td>
+</tr>
+#foreach ( $s in $added_subjects )
+<tr>
+<td style="width:200px">$s.code</td>
+<td>$s.name</td>
+<td align="center">$s.credithrs</td>
+</tr>
+#end
+</table>
+</fieldset>
+
+
+##DROPPED SUBJECTS LIST
+<fieldset style="background-color:#D4FFFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">Dropped Subjects</legend>
+<table width="100%" cellspacing="0">
+<tr height="30px">
+<td class="gradient" style="width:200px;font-weight:bold">Code</td>
+<td class="gradient" style="font-weight:bold">Subject Name</td>
+<td class="gradient" style="width:100px;font-weight:bold" align="center">Credit Unit</td>
+</tr>
+#foreach ( $s in $dropped_subjects )
+<tr>
+<td style="width:200px">$s.code</td>
+<td>$s.name</td>
+<td align="center">$s.credithrs</td>
+</tr>
+#end
+</table>
+</fieldset>
+
+##CURRENT SUBJECTS
+<fieldset style="background-color:#D4FFFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">Current Subjects</legend>
+<table width="100%" cellspacing="0">
+<tr height="30px">
+<td class="gradient" style="width:200px;font-weight:bold">Code</td>
+<td class="gradient" style="font-weight:bold">Subject Name</td>
+<td class="gradient" style="width:100px;font-weight:bold" align="center">Credit Unit</td>
+##<td class="gradient" style="width:100px;font-weight:bold" align="center">Section</td>
+</tr>
+#foreach ( $s in $student_subjects )
+<tr>
+<td style="width:200px">$s.subject.code</td>
+<td>$s.subject.name</td>
+<td align="center">$s.subject.credithrs</td>
+##<td align="center">$!s.section.name</td>
+</tr>
+#end
+</table>
+</fieldset>
+
+</td></tr>
+<tr><td align="right">
+<input type="button" value="Print Subject Registration Slip" 
+onclick="location.href='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.print.SubjectRegistrationSlipPrint?slip_student_status_id=$!student_status.id&pdfName=subject_registration_slip_$student.matricNo';">
+</td></tr>
+
+</table>

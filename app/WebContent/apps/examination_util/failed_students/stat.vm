@@ -1,0 +1,67 @@
+<style>
+td { color: #000000; font: normal 11px arial; }
+</style>
+#if ( !$print_mode )
+<table width="100%"><tr><td align="center">
+<input type="button" value="Print" onclick="window.open('../y/educate.sis.exam.module.FailedStudentListModule?command=print_statistic&intake_id=$intake_id','mywin','left=20,top=20,width=500,height=500,toolbar=0,resizable=0');">
+
+<input type="button" value="List Students" onclick="$('div_stat').style.visibility='hidden';$('div_students').style.visibility='visible';doDivAjaxCall$formname('div_students','list_students','')">
+</td></tr></table>
+#end
+
+#if ( $print_mode )
+<table width="100%"><tr><td style="font-weight:bold" align="center">
+STATISTIK PELAJAR GAGAL BERHENTI MENGIKUT SEKOLAH
+<br>
+$intake.name
+</td></tr></table>
+#end
+
+<table align="center">
+<tr height="30px" bgcolor="lightgrey">
+<td style="width:400px;font-weight:bold">School</td>
+<td style="width:100px;font-weight:bold"align="center" >Program</td>
+<td style="width:100px;font-weight:bold"align="center" >Number of<br>Failed Students</td>
+</tr>
+#foreach( $report in $reports )
+
+#set ( $faculty = $report.faculty )
+#set ( $data = $report.data )
+#if ( $data.size() > 0 )
+
+<tr height="30px">
+<td colspan="3">$faculty.name</td>
+</tr>
+
+#set ( $total = 0 )
+#foreach ( $failedCount in $data )
+#set ( $total = $total + $failedCount.count )
+<tr>
+<td></td>
+<td align="center" >$failedCount.programCode</td>
+#if ( $failedCount.count > 0 ) <td align="center" style="font-weight:bold">$failedCount.count</td>
+#else <td align="center" >0</td>
+#end
+</tr>
+#end
+
+<tr height="30px" bgcolor="#EBEBEB">
+<td></td>
+<td style="font-weight:bold" align="center">TOTAL</td>
+<td style="font-weight:bold" align="center">$total</td>
+</tr>
+
+
+
+
+#end
+
+
+#end
+</table>
+
+#if ( $print_mode )
+<script>
+window.print();
+</script>
+#end

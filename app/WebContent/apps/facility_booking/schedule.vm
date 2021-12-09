@@ -1,0 +1,27 @@
+
+<table width="700" align="center">
+
+<tr><td>
+
+#if ( $isAdminModule )
+Matric No: 
+		<input name="matric_no">
+		<input type="button" value="Get Student" onclick="doDivAjaxCall$formname('student_info', 'student_info', '');document.getElementById('matric_no').value=''">
+		<a href="#" onclick="popwin_$formName();doDivAjaxCall$formName('win$formName','search_students','')">Search...</a>
+#end
+##facility id
+		<input type="hidden" name="facility_id" value="$facility.id">
+		
+</td></tr>
+
+<tr><td>
+<div id="student_info" name="student_info"></div>
+</td></tr>
+<tr><td>
+
+<div id="schedule_data" name="schedule_data">
+#parse( "apps/facility_booking/schedule_data.vm" )
+</div>
+
+</td></tr>
+</table>

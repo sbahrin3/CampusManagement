@@ -1,0 +1,5 @@
+<table width="700" align="center"><tr><td align="right" style="font-family:arial;font-weight:bold;font-size:10pt">
+$href.command("statistic_chart").text("Dashboard") |
+$href.command("statistic_table").text("Statistic Table") |
+$href.command("filter_students").text("Filter Students")
+</td></tr></table>

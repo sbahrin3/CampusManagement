@@ -1,0 +1,596 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+  <persistence-unit name="persistence">
+
+   <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+   
+   
+   <class>educate.payroll.entity.Employee</class>
+   <class>educate.payroll.entity.Payroll</class>
+   <class>educate.payroll.entity.PayrollGroup</class>
+   
+   
+   <class>educate.dashboard.entity.ActiveStudents</class>
+   
+   <class>educate.timetabling.entity.Invigilator</class>
+   <class>educate.timetabling.entity.FailedTemplateLog</class>
+   <class>educate.timetabling.entity.TimetableSlottingLog</class>
+  
+   <class>educate.timetabling.entity.AcademicGroup</class>
+   <class>educate.timetabling.entity.AcademicSession</class>
+   <class>educate.timetabling.entity.AcademicActivityType</class>
+   <class>educate.timetabling.entity.AcademicCalendar</class>   
+   
+   <class>educate.timetabling.entity.RoomAllocation</class>
+   <class>educate.timetabling.entity.StudentClassroomGroup</class>
+   <class>educate.timetabling.entity.TeacherClassroomGroup</class>
+   <class>educate.timetabling.entity.FailedClassroomTemplate</class>
+   
+    <class>educate.timetabling.entity.TeacherAttendance</class>
+    <class>educate.timetabling.entity.StudentAttendance</class>
+    
+    
+    <!-- 
+    start TIMETABLE
+     -->
+     
+     <class>educate.timetabling.entity.ExamSubjectStudent</class>
+     
+     <class>educate.timetabling.entity.AcademicActivityAction</class>
+     
+     <class>educate.timetabling.entity.DeliveryPeriodGroups</class>
+     <class>educate.timetabling.entity.ProgrammeDeliveryTypes</class>
+     
+     <class>educate.timetabling.entity.AIMCampus</class>
+     <class>educate.timetabling.entity.AIMState</class>
+     <class>educate.timetabling.entity.AIMDepartment</class>
+     
+     
+     
+     <class>educate.timetabling.entity.SQLLog</class>
+     
+     <class>educate.timetabling.entity.AuditTrailLog</class>
+     
+     <class>educate.timetabling.entity.SubCategoryTypeDetail</class>
+      <class>educate.timetabling.entity.TimetableUser</class>
+      
+     <class>educate.timetabling.entity.AcademicCategory</class>
+     
+       <class>educate.timetabling.entity.UserCampusAssign</class>
+     
+        <class>educate.timetabling.entity.ActivitySession</class>
+        <class>educate.timetabling.entity.ActivitySessionDate</class>
+        
+        <class>educate.timetabling.entity.DeliveryPeriod</class>
+        <class>educate.timetabling.entity.Holiday</class>
+        <class>educate.timetabling.entity.Holiday_State</class>
+        <class>educate.timetabling.entity.Locations</class>
+        <class>educate.timetabling.entity.Holiday_Locations</class>
+        <class>educate.timetabling.entity.Level_Group</class>
+        <class>educate.timetabling.entity.ModuleLevels</class>
+        <class>educate.timetabling.entity.AcademicActivity</class>
+        <class>educate.timetabling.entity.Status</class>
+        
+        
+        
+        
+      <class>educate.timetabling.entity.SlotTimeBlocked</class>
+     <class>educate.timetabling.entity.UserCampus</class>   
+     <class>educate.timetabling.entity.TeacherGroup</class>
+     <class>educate.timetabling.entity.PreDefineActivity</class>
+     <class>educate.timetabling.entity.TagDescription</class>
+     <class>educate.timetabling.entity.StudentSubjectGroup</class>
+     <class>educate.timetabling.entity.StudentFacultyGroup</class>
+     <class>educate.timetabling.entity.StudentSubjectClass</class>
+     <class>educate.timetabling.entity.ClassTeacher</class>
+     <class>educate.timetabling.entity.ClassroomTemplateGroup</class>
+    <class>educate.timetabling.entity.ClassroomGroupProgram</class>
+    <class>educate.timetabling.entity.ClassroomGroupFaculty</class>
+	<class>educate.timetabling.entity.EquivalentSubjectGroup</class>
+    <class>educate.timetabling.entity.LearningActivityType</class>
+    <class>educate.timetabling.entity.Department</class>
+    <class>educate.timetabling.entity.Division</class>
+    <class>educate.timetabling.entity.Category</class>
+    <class>educate.timetabling.entity.SubCategory</class>
+    <class>educate.timetabling.entity.SubCategoryType</class>
+    <class>educate.timetabling.entity.State</class>
+    <class>educate.timetabling.entity.Campus</class>
+	<class>educate.timetabling.entity.Building</class>
+	<class>educate.timetabling.entity.Block</class>
+	<class>educate.timetabling.entity.Floor</class>
+	<class>educate.timetabling.entity.Room</class>
+	<class>educate.timetabling.entity.Zone</class>
+	<class>educate.timetabling.entity.Slot</class>
+	<class>educate.timetabling.entity.Classroom</class>
+	<class>educate.timetabling.entity.SlotWeek</class>
+	<class>educate.timetabling.entity.SlotTime</class>
+	<class>educate.timetabling.entity.TimetableSession</class>
+    <class>educate.timetabling.entity.Slot</class>
+    <class>educate.timetabling.entity.Classroom</class>
+    <class>educate.timetabling.entity.SlotWeek</class>
+    <class>educate.timetabling.entity.SlotTime</class>
+    <class>educate.timetabling.entity.TimetableSession</class>
+    <class>educate.timetabling.entity.ClassroomsHolder</class>
+    <class>educate.timetabling.entity.ClassroomType</class>
+    <class>educate.timetabling.entity.ClassroomSection</class>
+    <class>educate.timetabling.entity.ClassroomTemplate</class>
+    <class>educate.timetabling.entity.ClassroomCluster</class>
+    <class>educate.timetabling.entity.AutoGeneratorFlag</class>
+    <class>educate.timetabling.entity.SlotClassroom</class>
+    <!-- end  -->
+ 
+ 
+ 
+ 
+ 
+   <class>educate.sis.finance.entity.DebitNoteSchedule</class>
+   <class>educate.sis.finance.entity.DebitNoteScheduleItem</class>  
+	
+   <class>educate.sis.finance.entity.HostelPaymentSchedule</class>
+   <class>educate.sis.finance.entity.HostelPaymentScheduleItem</class>   
+   
+   <class>educate.sis.finance.entity.SemesterPaymentSchedule</class>
+   <class>educate.sis.finance.entity.SemesterPaymentScheduleItem</class>
+   
+   <class>educate.sis.finance.entity.ResourceFeePaymentSchedule</class>
+   <class>educate.sis.finance.entity.ResourceFeePaymentScheduleItem</class>
+   
+   <class>educate.sis.finance.entity.PaymentSchedule</class>
+   <class>educate.sis.finance.entity.PaymentScheduleItem</class>
+   <class>educate.sis.finance.entity.PaymentScheduleItem2</class>
+   
+   <class>educate.sis.finance.entity.PtptnPaymentSchedule</class>
+   <class>educate.sis.finance.entity.PtptnPaymentScheduleItem</class>
+   
+   <class>educate.sis.struct.entity.ProgramSessionMatricCode</class>
+   <class>educate.sis.struct.entity.StudyMode</class>
+   
+   <class>onapp.agent.entity.OnappAgent</class>
+   <class>onapp.agent.entity.OnappContact</class>
+   
+   <class>educate.enrollment.entity.StudentSubjectTemp</class>
+   <!--  <class>upload.entity.Document</class> -->
+   
+   <class>educate.enrollment.entity.UpdatePrimaryDataLog</class>
+   <class>educate.enrollment.entity.WithdrawType</class>
+   
+   <class>educate.parent.entity.Parent</class>
+   <class>fwd.entity.PortalAnnouncement</class>
+   
+   <class>educate.questionnare.entity.TEResult</class>
+   <class>educate.questionnare.entity.TEReportGenerate</class>
+   
+   <class>educate.questionnare.entity.TEQuestionnare</class>
+   <class>educate.questionnare.entity.TEUserPath</class>
+   <class>educate.questionnare.entity.TEUserLog</class>
+   <class>educate.questionnare.entity.TEUserAnswerLog</class>
+   <class>educate.questionnare.entity.TECategory</class>
+   <class>educate.questionnare.entity.TEPart</class>
+   <class>educate.questionnare.entity.TEPartQuestion</class>
+   <class>educate.questionnare.entity.TEQuestion</class>
+   <class>educate.questionnare.entity.TESet</class>
+   <class>educate.questionnare.entity.TEUserAnswer</class>
+   <class>educate.questionnare.entity.TELikert</class>
+   
+   
+   <class>educate.questionnare.entity.TeachingEvaluation</class>
+   
+   <class>educate.enrollment.entity.StudentMonthCount</class>
+   
+   <class>educate.studentaffair.entity.VotingSession</class>
+   <class>educate.studentaffair.entity.VotingPosition</class>
+   <class>educate.facilities.entity.CarSticker</class>
+   <class>educate.facilities.entity.OffenceHistory</class>
+   <class>educate.facilities.entity.VehicleRoadtaxLog</class>
+   <class>educate.facilities.entity.Driver</class>
+   <class>educate.hostel.entity.BillUtility</class>
+   <class>educate.sis.struct.entity.GraduationForm</class>
+   <class>educate.sis.struct.entity.GraduanItemCheck</class>
+   <class>educate.hostel.entity.RoomType</class>
+   
+
+   
+   <class>educate.facilities.entity.Reservation</class>
+   <class>educate.facilities.entity.LoanEquipment</class>
+   
+   <class>educate.hostel.entity.RoomTransferLog</class>
+   
+   <class>educate.admission.entity.UserActivityLog</class>
+   <class>educate.admission.entity.UndoRegistrationLog</class>
+   <class>educate.sis.struct.entity.StudentCounter</class>
+   
+   <class>educate.admission.entity.StudentMoheData</class> 
+   
+   <class>educate.alumni.entity.AlumniMember</class>
+   <class>educate.alumni.entity.AlumniSecretariat</class>
+   <class>educate.alumni.entity.SecretariatPosition</class>
+   <class>educate.alumni.entity.AlumniActivityEvent</class>
+   <class>educate.alumni.entity.EventPhoto</class>
+   <class>educate.alumni.entity.EventFeedback</class>
+   
+   <class>educate.facilities.entity.AssetCategory</class>
+   <class>educate.facilities.entity.Asset</class>
+   <class>educate.facilities.entity.VehicleType</class>
+   <class>educate.facilities.entity.Vehicle</class>
+   <class>educate.facilities.entity.VehicleMovementLog</class>
+   <class>educate.facilities.entity.UtilityType</class>
+   <class>educate.facilities.entity.Utility</class>   
+   <class>educate.facilities.entity.WorkOrderIssue</class>
+   <class>educate.facilities.entity.WorkCategory</class>
+   <class>educate.facilities.entity.WorkOrder</class>
+   
+    <class>educate.studentaffair.entity.VotingCandidate</class>
+    <class>educate.studentaffair.entity.VotingResult</class>
+    <class>educate.studentaffair.entity.Enquiry</class>
+   
+  	<class>educate.hostel.entity.Block</class>
+    <class>educate.hostel.entity.Building</class>
+    <class>educate.hostel.entity.Floor</class>
+    <class>educate.hostel.entity.Unit</class>
+    <class>educate.hostel.entity.Hostel</class>
+    <class>educate.hostel.entity.Room</class>
+    <class>educate.hostel.entity.RoomAllocation</class>
+    <class>educate.hostel.entity.ItemType</class>
+    <class>educate.hostel.entity.Item</class>
+    <class>educate.hostel.entity.HostelItem</class>
+    <class>educate.hostel.entity.RoomItem</class>
+    <class>educate.hostel.entity.UnitItem</class>
+    <class>educate.hostel.entity.Mover</class>
+    <class>educate.hostel.entity.ItemCondition</class>
+    <class>educate.hostel.entity.CheckOutExtension</class>
+   
+   
+   <class>educate.studentaffair.entity.ClubActivity</class>
+   <class>educate.studentaffair.entity.ClubCategory</class>
+   <class>educate.studentaffair.entity.Club</class>
+   <class>educate.studentaffair.entity.StudentClub</class>
+   <class>educate.studentaffair.entity.StudentClubPosition</class>
+   <class>educate.studentaffair.entity.DisciplinaryCase</class>
+   <class>educate.studentaffair.entity.StudentDiscipline</class>
+   
+   <class>educate.studentaffair.entity.CouncellingIssue</class>
+   <class>educate.studentaffair.entity.StudentCouncelling</class>
+   <class>educate.studentaffair.entity.StudentCouncellingSession</class>
+   <class>educate.studentaffair.entity.Councellor</class>
+   
+    <!-- 
+    	ONLINE APPS START
+    -->
+    <class>educate.admission.entity.OnappProgramMapper</class>
+    <class>educate.admission.entity.OnappIntakeMapper</class>
+    <class>educate.admission.entity.OnappCentreMapper</class>  
+    <class>educate.admission.entity.RegistrationSlipItem</class>
+   
+   
+    <class>onapp.entity.ProgramSessionOffering</class>
+    
+    <class>onapp.entity.FamilyMember</class>
+    <class>onapp.entity.CocurriculumActivity</class>
+    
+    <class>onapp.entity.InterviewVenue</class>
+    <class>onapp.entity.InterviewSession</class>
+    <class>onapp.entity.ApplicantInterview</class>
+
+    
+    <class>onapp.entity.OnappExam</class>
+    <class>onapp.entity.OnappExamResult</class>
+    <class>onapp.entity.OnappExamResultCriteria</class>
+    <class>onapp.entity.OnappExamResultGradeCriteria</class>
+    <class>onapp.entity.OnappExamSubject</class>
+    <class>onapp.entity.OnappProgram</class>
+    <class>onapp.entity.OnappCriteriaType1</class>
+    <class>onapp.entity.OnappCriteriaType2</class>
+    <class>onapp.entity.OnappCriteriaType3</class>
+    <class>onapp.entity.OnappCriteriaType4</class>
+    <class>onapp.entity.OnappExamSubjectResult</class>
+    <class>onapp.entity.OnappExamCGPA</class>
+    <class>onapp.entity.OnappLearningCentre</class>
+    <class>onapp.entity.OnappIntakeSession</class>
+    <class>onapp.entity.ProgramOffering</class>
+    <class>onapp.entity.OnappInstitution</class>
+
+    <class>onapp.entity.ApplicantOnline</class>
+    <class>onapp.entity.ApplicantStatus</class>
+    <class>onapp.entity.ApplicantStatusLog</class>
+    <class>onapp.entity.OnappNationality</class>
+    <class>onapp.entity.OnappCountry</class>
+    <class>onapp.entity.OnappState</class>
+    <class>onapp.entity.OnappCity</class>
+    <class>onapp.entity.OnappReligion</class>
+    <class>onapp.entity.OnappRace</class>
+    <class>onapp.entity.OnappSchool</class>
+    <class>onapp.entity.OnappAward</class>
+    <class>onapp.entity.OnappEmployment</class>
+    <class>onapp.entity.OnappCommunity</class>
+    <class>onapp.entity.OnappActivity</class>
+    <class>onapp.entity.OnappMatricNumPrefix</class>
+    
+    <!-- 
+    	ONLINE APPS END
+     -->   
+   
+   
+   		<class>educate.admission.entity.SubjectRegistrationDate</class>
+   		<class>educate.sis.exam.entity.SubjectGrade</class>
+   		<class>educate.sis.exam.entity.AchievementLevel</class>
+   		<class>educate.sis.exam.entity.TranscriptEndorsedDate</class>
+   		<class>educate.sis.exam.entity.CourseGroup</class>
+   
+	
+	   <class>educate.sis.general.entity.AcademicCalendarEventB</class>
+	   <class>educate.sis.general.entity.ApplicationParameter</class>
+	   <class>educate.sis.general.entity.Country</class>
+	   <class>educate.sis.general.entity.DegreeClass</class>
+	   <class>educate.sis.general.entity.Designation</class>
+	   <class>educate.sis.general.entity.Disability</class>
+	   <class>educate.sis.general.entity.EducationLevel</class>
+	   <class>educate.sis.general.entity.EmploymentStatus</class>
+	   <class>educate.sis.general.entity.Gender</class>
+	   <class>educate.sis.general.entity.GeneralExamGrade</class>
+	   <class>educate.sis.general.entity.GradsLevel</class>
+	   <class>educate.sis.general.entity.MaritialStatus</class>
+	   <class>educate.sis.general.entity.ModeOfStudy</class>
+	   <class>educate.sis.general.entity.Nationality</class>
+	   
+	   <class>educate.sis.general.entity.Partner</class>
+	   <class>educate.sis.general.entity.PaymentMethod</class>
+	   <class>educate.sis.general.entity.Position</class>
+	   <class>educate.sis.general.entity.ProfesionalQualification</class>
+	   <class>educate.sis.general.entity.Race</class>
+       <class>educate.sis.general.entity.Religion</class>
+	   <class>educate.sis.general.entity.RegVanue</class>
+	   <class>educate.sis.general.entity.ResearchArea</class>
+	   <class>educate.sis.general.entity.SchoolSubject</class>
+	   <class>educate.sis.general.entity.Sector</class>
+	   <class>educate.sis.general.entity.Sponsor</class>
+	   
+	   <class>educate.sis.general.entity.State</class>
+	   <class>educate.sis.general.entity.StudentType</class>
+	   <class>educate.sis.general.entity.StudyLevel</class>
+	   <class>educate.sis.general.entity.Survey</class>
+	   <class>educate.sis.general.entity.YearList</class>
+	   
+	   <class>educate.sis.struct.entity.ClassroomSlot</class>
+	   <class>educate.sis.struct.entity.Course</class>
+	   <class>educate.sis.struct.entity.ExamSlot</class>
+	   <class>educate.sis.struct.entity.Faculty</class>
+	   <class>educate.sis.struct.entity.Institution</class>
+	   <class>educate.sis.struct.entity.LearningCentre</class>
+	   <class>educate.sis.struct.entity.MatricNum</class>
+	   <class>educate.sis.struct.entity.MatricNumPrefix</class>
+	   <class>educate.sis.struct.entity.Period</class>
+	   
+	   
+	   <class>educate.sis.struct.entity.PeriodScheme</class>
+       <class>educate.sis.struct.entity.Prerequisite</class>
+       <class>educate.sis.struct.entity.Program</class>
+	   <class>educate.sis.struct.entity.ProgramFee</class>
+	   <class>educate.sis.struct.entity.ProgramsSubject</class>
+	   <class>educate.sis.struct.entity.ProgramStructure</class>
+	   
+	   
+	   <class>educate.sis.struct.entity.StudentEnrollmentIntake</class>
+	   
+	   <class>educate.sis.struct.entity.Room</class>
+	   <class>educate.sis.struct.entity.Session</class>
+	   <class>educate.sis.struct.entity.SessionPath</class>
+	   <class>educate.sis.struct.entity.Subject</class>
+	   <class>educate.sis.struct.entity.SubjectCategory</class>
+	   <class>educate.sis.struct.entity.SubjectGroup</class>
+	   <class>educate.sis.struct.entity.SubjectPeriod</class>
+	   <class>educate.sis.struct.entity.SubjectSection</class>
+	   <class>educate.sis.struct.entity.Teacher</class>
+	   <class>educate.sis.struct.entity.TeacherSubject</class>
+	   <class>educate.sis.struct.entity.TeachSubject</class>
+	   <class>educate.sis.struct.entity.ClassSchedule</class>
+	   <class>educate.sis.struct.entity.ExamSchedule</class>
+	   <class>educate.sis.struct.entity.ExamSlot</class>
+	   
+	   <class>educate.sis.struct.entity.Graduate</class>
+	   
+	   <class>educate.sis.struct.entity.GraduationRequirement</class>
+	   <class>educate.sis.struct.entity.GraduationSubjectRequirement</class>
+	   <class>educate.sis.struct.entity.CategoryCount</class>
+	   
+	   <class>educate.sis.struct.entity.SubjectReg</class>
+	   <class>educate.sis.struct.entity.SubjectSectionGroup</class>
+	   	   
+   	   <class>educate.admission.entity.Address</class>
+   	   <class>educate.admission.entity.AlevelResult</class>
+   	   <class>educate.admission.entity.Applicant</class>
+	   <class>educate.admission.entity.TempApplicant</class>
+	   <class>educate.admission.entity.Biodata</class>
+	   <class>educate.admission.entity.Certificate</class>
+	   <class>educate.admission.entity.CocurriculumDetail</class>
+	   <class>educate.admission.entity.CurrentEmployment</class>
+	   <class>educate.admission.entity.EducationDetail</class>
+	   <class>educate.admission.entity.Employment</class>
+	   <class>educate.admission.entity.EnglishProfiency</class>
+	   <class>educate.admission.entity.OlevelResult</class>
+	   <class>educate.admission.entity.PaymentInfo</class>
+	   <class>educate.admission.entity.RefNo</class>
+	   <class>educate.admission.entity.SecondaryEducation</class>
+	   <class>educate.admission.entity.SpmResult</class>
+	   <class>educate.admission.entity.StpmResult</class>
+	   <class>educate.admission.entity.TertiaryEducation</class>
+	   <class>educate.admission.entity.PermanentAddress</class>
+	   
+	    <class>educate.enrollment.entity.ChCentreApp</class>
+	    <class>educate.enrollment.entity.ChProgrammeApp</class>
+	    <class>educate.enrollment.entity.DeferExam</class>
+	    <class>educate.enrollment.entity.DeferStudy</class>
+	    <class>educate.enrollment.entity.MatricNo</class>
+	    <class>educate.enrollment.entity.StatusType</class>
+	    <class>educate.enrollment.entity.StdWithdrawApp</class>
+	    <class>educate.enrollment.entity.Student</class>
+	    <class>educate.enrollment.entity.StudentStatus</class>
+	    <class>educate.enrollment.entity.StudentSubject</class>
+	    <class>educate.enrollment.entity.SubjectAddDrop</class>
+	    <class>educate.enrollment.entity.SubjectStudent</class>
+	    <class>educate.enrollment.entity.SubjectTransfer</class>
+	    <class>educate.enrollment.entity.SubjectWithdraw</class>
+	    <class>educate.enrollment.entity.PreRegisterSubject</class>
+	    
+	    <class>educate.enrollment.entity.StatusTypeConfig</class>
+	    
+	    <class>educate.enrollment.entity.StudentYearCount</class>
+            
+	   
+	    <class>educate.sis.exam.entity.Standing</class>
+	    <class>educate.sis.exam.entity.StandingRule</class>
+	    <class>educate.sis.exam.entity.AssessmentResult</class>
+	    <class>educate.sis.exam.entity.Coursework</class>
+	    <class>educate.sis.exam.entity.CourseworkItem</class>
+	    <class>educate.sis.exam.entity.ExamResult</class>
+	    <class>educate.sis.exam.entity.Grade</class>
+        <class>educate.sis.exam.entity.MarkingGrade</class>
+	    <class>educate.sis.exam.entity.MarkPart</class>
+   	    <class>educate.sis.exam.entity.ResultMarkPart</class>
+        <class>educate.sis.exam.entity.SessionResult</class>
+	    <class>educate.sis.exam.entity.StudentResultMarkPart</class>
+	    <class>educate.sis.exam.entity.SubjectResult</class>
+		<class>educate.sis.exam.entity.FinalResult</class>	    
+		<class>educate.sis.exam.entity.FinalSubjectResult</class>
+		<class>educate.sis.exam.entity.SubjectResultStatus</class>
+	   
+	   
+	    <class>educate.sis.billing.entity.AccountDetail</class>
+	    <class>educate.sis.billing.entity.ApplicantPayment</class>
+	    <class>educate.sis.billing.entity.BillingUser</class>
+	    <class>educate.sis.billing.entity.FinanceParameter</class>
+	    <class>educate.sis.billing.entity.InvoiceDetail</class>
+	    <class>educate.sis.billing.entity.InvoiceNo</class>
+	    <class>educate.sis.billing.entity.PaymentDetail</class>
+	    <class>educate.sis.billing.entity.ReceiptNo</class>
+	    <class>educate.sis.billing.entity.StudentInvoice</class>
+	    <class>educate.sis.billing.entity.StudentPayment</class>
+ 	    <class>educate.sis.billing.entity.PaymentItem</class>
+	    <class>educate.sis.billing.entity.PaymentVsInvoice</class>
+	    <class>educate.sis.billing.statement.entity.AccountStatement</class>
+	    <class>educate.sis.billing.entity.Discount</class>
+
+	    <class>educate.sis.log.entity.BillingLog</class>
+	    <class>educate.sis.log.entity.InternetTransactionLog</class>
+	    <class>educate.sis.log.entity.RegistrationLog</class>
+	    
+		<class>educate.lms.message.entity.Message</class>
+		<class>educate.lms.entity.Assignment</class>
+		<class>educate.lms.entity.Attachment</class>
+		<class>educate.lms.entity.ChatMessage</class>
+		
+		<class>educate.sis.struct.entity.ScheduleEntry</class>
+   		<class>educate.sis.struct.entity.AbstractCalendarSchedule</class>
+   		<class>educate.sis.struct.entity.ClassCalendarSchedule</class>
+   		<class>educate.sis.struct.entity.ExamCalendarSchedule</class>
+   		
+   		<class>educate.sis.finance.entity.FeeStructure</class>
+		<class>educate.sis.finance.entity.FeeStructureItem</class>
+		<class>educate.sis.finance.entity.FeeItem</class>
+		<class>educate.sis.finance.entity.Invoice</class>
+		<class>educate.sis.finance.entity.InvoiceItem</class>
+		<class>educate.sis.finance.entity.Payment</class>
+		<class>educate.sis.finance.entity.PaymentItem</class>	
+		<class>educate.sis.finance.entity.XPayment</class>	
+		<class>educate.sis.finance.entity.XInvoice</class>
+		<class>educate.sis.finance.entity.RefundLog</class>
+		<class>educate.sis.finance.entity.PaidItem</class>
+		
+	   
+
+	    
+  
+	    <class>educate.sis.finance.entity.Sponsor</class>
+	    <class>educate.sis.finance.entity.SponsorInvoice</class>
+	    <class>educate.sis.finance.entity.SponsorStudent</class>
+	    <class>educate.sis.finance.entity.SponsorPayment</class>
+	    <class>educate.enrollment.entity.QuickRegisterLog</class>
+	    
+	   	<class>educate.lms2.entity.Posting</class>
+	    <class>educate.lms2.entity.Reply</class>
+	    <class>educate.lms2.entity.Discussion</class>
+	    <class>educate.lms2.entity.Assignment</class>
+	    <class>educate.lms2.entity.Question</class>
+	    <class>educate.lms2.entity.UserProfile</class>
+	    <class>educate.lms2.entity.Attachment</class>
+	    
+   	    <class>educate.lms2.entity.Classroom</class>
+   	    <class>educate.lms2.entity.ClassroomEnrolled</class>
+   	    
+   	    <class>educate.lms2.entity.Group</class>
+   	    
+		<class>educate.sb.roles.entity.RoleCentre</class>
+		<class>educate.koha.entity.KohaAccount</class>
+   	    
+   	    <class>educate.enrollment.entity.MoheRecord</class>
+		<class>educate.enrollment.entity.MoheRecordStatus</class>
+		
+		<class>educate.sis.struct.entity.SubjectAddDropLog</class>
+		
+		<class>educate.sis.struct.entity.StudentAccomodation</class>
+		<class>educate.sis.struct.entity.StudentAccomodationStatus</class>
+		
+		<class>educate.sis.struct.entity.LetterTemplate</class>
+		<class>educate.sis.struct.entity.RegistrationFeeTable</class>
+		
+		<class>educate.sis.struct.entity.BillingNumPrefix</class>
+		<class>educate.sis.exam.entity.CourseworkScheme</class>
+		
+		<class>educate.sis.general.entity.ExamGradeScheme</class>
+		<class>educate.admission.entity.OfferLetterAttribute</class>
+		
+		<class>portal.entity.News</class>
+		<class>portal.module.entity.Announcement</class>
+		<class>portal.module.entity.AnnouncementAdmin</class>
+		<class>portal.module.entity.AdminRole</class>
+		
+	
+		<class>educate.sis.exam.entity.MarkEntryPeriod</class>
+		
+		<class>educate.attendance.entity.AttendanceSheet</class>
+		
+		<class>educate.sis.struct.entity.UserLearningCentre</class>
+		
+		<class>org.slidemeeting.entity.Topic</class>
+		<class>org.slidemeeting.entity.Slide</class>
+		
+	
+   
+   <properties>
+    <!-- 
+    cybernetics3
+    sekolah2
+    cmsdata
+    cmsschooldata
+    cucmsx
+     -->
+	
+ 	 
+
+	<property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3307/erican_data?zeroDateTimeBehavior=convertToNull"/>
+    <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver"/>
+    <property name="openjpa.ConnectionUserName" value="root"/>
+    <property name="openjpa.ConnectionPassword" value=""/>
+	
+	 
+	<!-- 
+	<property name="openjpa.ConnectionURL" value="jdbc:hsqldb:file:data/db_educate"/>
+    <property name="openjpa.ConnectionDriverName" value="org.hsqldb.jdbcDriver"/>
+    <property name="openjpa.ConnectionUserName" value="sa"/>
+    <property name="openjpa.ConnectionPassword" value=""/>
+	-->
+	
+    <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema" />
+    <property name="openjpa.Log" value="DefaultLevel=WARN, Tool=INFO"/>
+
+    <property name="openjpa.Multithreaded" value="true"/>
+	<property name="openjpa.jdbc.DBDictionary" value="SupportsSubselect=true"/>
+	<property name="jboss.as.jpa.managed" value="false" />
+	
+<!-- 
+    <property name="openjpa.DataCache" value="true(CacheSize=5000, SoftReferenceSize=0)"/>
+	<property name="openjpa.RemoteCommitProvider" value="sjvm"/>
+-->
+
+    
+  </properties>
+ </persistence-unit>
+</persistence>

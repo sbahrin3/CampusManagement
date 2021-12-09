@@ -1,0 +1,52 @@
+<fieldset class="shadow" style="background-color:#FFFFAA;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Deleted Invoice</legend>
+
+<table width="100%"><tr><td align="right">
+<a href="javascript:void()" onclick="$('div_view').style.visibility='hidden';">Close</a>
+</td></tr></table>
+<br>
+
+$dateFormat.applyPattern("d MMM, yyyy")
+#if ( $invoice.invoiceType == 1 ) #set ( $bgcolor = "#E1E1E1") #else #set ( $bgcolor = "#FFFFFF") #end
+<fieldset style="background-color:$bgcolor;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">Invoice Detail</legend>
+<table width="100%">
+<tr><td style="width:150px"></td><td></td></tr>
+#if ( $invoice.sponsorInvoice )
+<tr><td>Invoiced to Sponsor:</td><td  style="font-weight:bold">$invoice.sponsorInvoice.sponsor.name</td></tr>
+#end
+<tr><td>Invoice No:</td><td  style="font-weight:bold">
+$invoice.invoiceNo
+</td></tr>
+<tr><td>Date:</td><td  style="font-weight:bold">#if ( $invoice.createDate )$dateFormat.format($invoice.createDate) #end</td></tr>
+</table>
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:20px"></td>
+<td style="font-weight:bold">Item</td>
+<td style="font-weight:bold" align="right">Amount (RM)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#foreach ( $i in $invoice.invoiceItems )
+<tr height="30px">
+<td class="gradient" align="center">${velocityCount}.</td>
+<td style="border-bottom:1px solid #BCBCBC">$i.description</td>
+<td style="border-bottom:1px solid #BCBCBC" align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+<tr height="30px">
+<td colspan="2" style="font-weight:bold">TOTAL:</td>
+<td align="right" style="font-weight:bold">$numFormat.format($invoice.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</table>
+<br><br>
+<table width="100%">
+<tr><td>
+<textarea readonly style="width:100%;height:50px">$invoice.deleteReason</textarea>
+</td></tr>
+<tr><td>
+Deleted by: <u>$!invoice.userId</u> on <u>$dateFormat.format($invoice.deleteDate)</u>
+</td></tr>
+</table>
+
+
+</fieldset>
+

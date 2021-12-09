@@ -1,0 +1,25 @@
+<table width="720px">
+
+<tr><td align="right">
+<input type="button" class="button1" value="Quit Slide Meeting" onclick="if ( !window.confirm('Exit this session?') ) return; setInRoom(false);setRoomId('main');unRegisterUser('$slide.id');clearChatBox();doDivAjaxCallX$formname('div_slide','exit_room','slide_id=$slide.id')">
+</td></tr>
+
+#if ( $userprofile.id == $slide.owner.id )
+<tr><td align="center">
+<input type="button" class="button1" value="&nbsp;&lt;&nbsp;" onclick="doDivAjaxCallX$formname('div_slide','goto_slide','slide_no=$prev_no&room=' + $slide.id);">
+<input type="button" class="button1" value="&nbsp;&gt;&nbsp;" onclick="doDivAjaxCallX$formname('div_slide','goto_slide','slide_no=$next_no&room=' + $slide.id);">
+</td></tr>
+#end
+
+<tr><td align="center">
+		<img src="../download?file=$slide_dir/slide-${slide_no}.png">
+</td></tr>
+
+#if ( $userprofile.id == $slide.owner.id )
+<tr><td align="center">
+<input type="button" class="button1" value="&nbsp;&lt;&nbsp;" onclick="doDivAjaxCallX$formname('div_slide','goto_slide','slide_no=$prev_no&room=' + $slide.id);">
+<input type="button" class="button1" value="&nbsp;&gt;&nbsp;" onclick="doDivAjaxCallX$formname('div_slide','goto_slide','slide_no=$next_no&room=' + $slide.id);">
+</td></tr>
+#end
+
+</table>

@@ -1,0 +1,27 @@
+
+
+<table width="100%">
+<tr><td style="font-weight:bold">
+List of students matches with graduation requirements.
+</td></td>
+</table>
+
+<table width="100%">
+<tr><td align="right" style="font-weight:bold">
+Sorted By:
+<select name="sort"  style="font-weight:bold" onchange="doDivAjaxCall3$formname('list_students','list_students2','')">
+<option value="name">&nbsp;&nbsp;Name</option>
+<option value="matricNo">&nbsp;&nbsp;Matric No</option>
+<option value="cgpa">&nbsp;&nbsp;CGPA</option>
+<option value="credit_earned">&nbsp;&nbsp;Total Credit Earned</option>
+<option value="final_semester">&nbsp;&nbsp;Final Semester</option>
+</select>
+</td></tr>
+</table>
+
+
+<div id="list_students">
+
+#parse("apps/util/student_graduation/list_students2.vm")
+
+</div>

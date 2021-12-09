@@ -1,0 +1,192 @@
+#**
+
+Robe
+Scroll
+Transcript
+Convocation Photos
+Alumni Card
+Submission of Tracer Study Form
+
+**#
+
+
+
+<table>
+<tr><td style="font-family:Verdana;font-weight:bold;font-size:10pt">$student.matricNo</td></tr>
+<tr><td style="font-family:Verdana;font-weight:bold;font-size:10pt">$student.biodata.name</td></tr>
+<tr><td style="font-family:Verdana;font-weight:bold;font-size:10pt">$student.biodata.icno</td></tr>
+</table>
+
+<table>
+#if ( $graduate )
+<tr><td colspan="4">
+<table width="100%">
+<tr><td style="width:150px"></td><td></td></tr>
+<tr><td>Finance:</td><td>$graduate.financeRemark</td></tr>
+<tr><td>Library:</td><td>$graduate.libraryRemark</td></tr>
+<tr><td>Student Affair:</td><td>$graduate.studentAffairRemark</td></tr>
+<tr><td>Faculty:</td><td>$graduate.facultyRemark</td></tr>
+</table>
+</td>
+</tr>
+#end
+
+<tr style="background:#CECECE;height:30px">
+<td style="width:20px;font-weight:bold">&nbsp;</td>
+<td style="width:200px;font-weight:bold">Item Check</td>
+<td style="width:200px;font-weight:bold">Status</td>
+<td style="width:500px;font-weight:bold">Remark</td>
+</tr>
+
+
+<tr style="background:#CECECE;height:30px">
+<td colspan="4" style="height:30px;padding-left:10px;font-weight:bold;font-size:10pt;background:#CECECE;">Robe</td>
+</tr>
+
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-family:Verdana;font-weight:bold;background:url('../img/graduation/robe.png') no-repeat right top;">&nbsp;</td>
+<td valign="top">
+<select name="robeStatus" class="texts" onchange="doDivAjaxCall3$formname('empty','changeStatus','item=robe&itemCheckId=$!itemCheck.id&studentId=$!student.id')">
+<option value="0" #if ( $itemCheck.robeStatus == 0 ) selected #end>NO</option>
+<option value="1" #if ( $itemCheck.robeStatus == 1 ) selected #end>YES</option>
+</select>
+<br/><br/>
+Date:
+<input class="texts" style="width:150px" id="robeDate" name="robeDate" #if ( $itemCheck.robeDate ) value="$df.format($!itemCheck.robeDate)" #end>
+<script>
+d1 = new JsDatePick({ useMode:2, target:"robeDate", dateFormat:"%d-%m-%Y" }); 
+d1.setOnSelectedDelegate(function(){ $('robeDate').value=d1.getSelectedDay().day + '-' + d1.getSelectedDay().month + '-' + d1.getSelectedDay().year; doDivAjaxCall3$formname('empty','changeDate','item=robe&itemCheckId=$!itemCheck.id&studentId=$!student.id') });
+</script>    
+</td>
+<td valign="top">
+<textarea name="robeRemark" class="texts" style="height:100px" onchange="doDivAjaxCall3$formname('empty','changeRemark','item=robe&itemCheckId=$!itemCheck.id&studentId=$!student.id')">$!itemCheck.robeRemark</textarea>
+</td>
+<tr>
+
+
+
+<tr style="background:#CECECE;height:30px">
+<td colspan="4" style="height:30px;padding-left:10px;font-weight:bold;font-size:10pt;background:#CECECE;">Scroll</td>
+</tr>
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-family:Verdana;font-weight:bold;background:url('../img/graduation/scroll.png') no-repeat right top;">&nbsp;</td>
+<td valign="top">
+<select name="scrollStatus"  class="texts" onchange="doDivAjaxCall3$formname('empty','changeStatus','item=scroll&itemCheckId=$!itemCheck.id&studentId=$!student.id')">
+<option value="0" #if ( $itemCheck.scrollStatus == 0 ) selected #end>NO</option>
+<option value="1" #if ( $itemCheck.scrollStatus == 1 ) selected #end>YES</option>
+</select>
+<br/><br/>
+Date:
+<input class="texts" style="width:150px" id="scrollDate" name="scrollDate" #if ( $itemCheck.scrollDate ) value="$df.format($!itemCheck.scrollDate)" #end>
+<script>
+d2 = new JsDatePick({ useMode:2, target:"scrollDate", dateFormat:"%d-%m-%Y" }); 
+d2.setOnSelectedDelegate(function(){ $('scrollDate').value=d2.getSelectedDay().day + '-' + d2.getSelectedDay().month + '-' + d2.getSelectedDay().year; doDivAjaxCall3$formname('empty','changeDate','item=scroll&itemCheckId=$!itemCheck.id&studentId=$!student.id') });
+</script>
+</td>
+<td valign="top">
+<textarea name="scrollRemark"  class="texts" style="width:100%;height:100px" onchange="doDivAjaxCall3$formname('empty','changeRemark','item=scroll&itemCheckId=$!itemCheck.id&studentId=$!student.id')">$!itemCheck.scrollRemark</textarea>
+</td>
+<tr>
+
+
+<tr style="background:#CECECE;height:30px">
+<td colspan="4" style="height:30px;padding-left:10px;font-weight:bold;font-size:10pt;background:#CECECE;">Transcript</td>
+</tr>
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-family:Verdana;font-weight:bold;background:url('../img/graduation/transcript.png') no-repeat right top;">&nbsp;</td>
+<td valign="top">
+<select name="transcriptStatus"  class="texts" onchange="doDivAjaxCall3$formname('empty','changeStatus','item=transcript&itemCheckId=$!itemCheck.id&studentId=$!student.id')">
+<option value="0" #if ( $itemCheck.transcriptStatus == 0 ) selected #end>NO</option>
+<option value="1" #if ( $itemCheck.transcriptStatus == 1 ) selected #end>YES</option>
+</select>
+<br/><br/>
+Date:
+<input class="texts" style="width:150px" id="transcriptDate" name="transcriptDate" #if ( $itemCheck.transcriptDate ) value="$df.format($!itemCheck.transcriptDate)" #end>
+<script>
+d3 = new JsDatePick({ useMode:2, target:"transcriptDate", dateFormat:"%d-%m-%Y" }); 
+d3.setOnSelectedDelegate(function(){ $('transcriptDate').value=d3.getSelectedDay().day + '-' + d3.getSelectedDay().month + '-' + d3.getSelectedDay().year; doDivAjaxCall3$formname('empty','changeDate','item=transcript&itemCheckId=$!itemCheck.id&studentId=$!student.id') });
+</script>
+</td>
+<td valign="top">
+<textarea name="transcriptRemark"  class="texts" style="width:100%;height:100px" onchange="doDivAjaxCall3$formname('empty','changeRemark','item=transcript&itemCheckId=$!itemCheck.id&studentId=$!student.id')">$!itemCheck.transcriptRemark</textarea>
+</td>
+<tr>
+
+
+<tr style="background:#CECECE;height:30px">
+<td colspan="4" style="height:30px;padding-left:10px;font-weight:bold;font-size:10pt;background:#CECECE;">Graduation Photo</td>
+</tr>
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-family:Verdana;font-weight:bold;background:url('../img/graduation/photo.png') no-repeat right top;">&nbsp;</td>
+<td valign="top">
+<select name="photoStatus"  class="texts" onchange="doDivAjaxCall3$formname('empty','changeStatus','item=photo&itemCheckId=$!itemCheck.id&studentId=$!student.id')">
+<option value="0" #if ( $itemCheck.photoStatus == 0 ) selected #end>NO</option>
+<option value="1" #if ( $itemCheck.photoStatus == 1 ) selected #end>YES</option>
+</select>
+<br/><br/>
+Date:
+<input class="texts" style="width:150px" id="photoDate" name="photoDate" #if ( $itemCheck.photoDate ) value="$df.format($!itemCheck.photoDate)" #end>
+<script>
+d4 = new JsDatePick({ useMode:2, target:"photoDate", dateFormat:"%d-%m-%Y" }); 
+d4.setOnSelectedDelegate(function(){ $('photoDate').value=d4.getSelectedDay().day + '-' + d4.getSelectedDay().month + '-' + d4.getSelectedDay().year; doDivAjaxCall3$formname('empty','changeDate','item=photo&itemCheckId=$!itemCheck.id&studentId=$!student.id') });
+</script></td>
+<td valign="top">
+<textarea name="photoRemark"  class="texts" style="width:100%;height:100px" onchange="doDivAjaxCall3$formname('empty','changeRemark','item=photo&itemCheckId=$!itemCheck.id&studentId=$!student.id')">$!itemCheck.photoRemark</textarea>
+</td>
+<tr>
+
+
+
+<tr style="background:#CECECE;height:30px">
+<td colspan="4" style="height:30px;padding-left:10px;font-weight:bold;font-size:10pt;background:#CECECE;">Alumni Card</td>
+</tr>
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-family:Verdana;font-weight:bold;background:url('../img/graduation/alumniCard.png') no-repeat right top;">&nbsp;</td>
+<td valign="top">
+<select name="alumniCardStatus"  class="texts" onchange="doDivAjaxCall3$formname('empty','changeStatus','item=alumniCard&itemCheckId=$!itemCheck.id&studentId=$!student.id')">
+<option value="0" #if ( $itemCheck.alumniCardStatus == 0 ) selected #end>NO</option>
+<option value="1" #if ( $itemCheck.alumniCardStatus == 1 ) selected #end>YES</option>
+</select>
+<br/><br/>
+Date:
+<input class="texts" style="width:150px" id="alumniCardDate" name="alumniCardDate" #if ( $itemCheck.alumniCardDate ) value="$df.format($!itemCheck.alumniCardDate)" #end>
+<script>
+d5 = new JsDatePick({ useMode:2, target:"alumniCardDate", dateFormat:"%d-%m-%Y" }); 
+d5.setOnSelectedDelegate(function(){ $('alumniCardDate').value=d5.getSelectedDay().day + '-' + d5.getSelectedDay().month + '-' + d5.getSelectedDay().year; doDivAjaxCall3$formname('empty','changeDate','item=alumniCard&itemCheckId=$!itemCheck.id&studentId=$!student.id') });
+</script>
+</td>
+<td valign="top">
+<textarea name="alumniCardRemark"  class="texts" style="width:100%;height:100px" onchange="doDivAjaxCall3$formname('empty','changeRemark','item=alumniCard&itemCheckId=$!itemCheck.id&studentId=$!student.id')">$!itemCheck.alumniCardRemark</textarea>
+</td>
+<tr>
+
+
+<tr style="background:#CECECE;height:30px">
+<td colspan="4" style="height:30px;padding-left:10px;font-weight:bold;font-size:10pt;background:#CECECE;">Tracer Study</td>
+</tr>
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-family:Verdana;font-weight:bold;background:url('../img/graduation/tracerStudy.png') no-repeat right top;">&nbsp;</td>
+<td valign="top">
+<select name="tracerStudyStatus"  class="texts" onchange="doDivAjaxCall3$formname('empty','changeStatus','item=tracerStudy&itemCheckId=$!itemCheck.id&studentId=$!student.id')">
+<option value="0" #if ( $itemCheck.tracerStudyStatus == 0 ) selected #end>NO</option>
+<option value="1" #if ( $itemCheck.tracerStudyStatus == 1 ) selected #end>YES</option>
+</select>
+<br/><br/>
+Date:
+<input class="texts" style="width:150px" id="tracerStudyDate" name="tracerStudyDate" #if ( $itemCheck.tracerStudyDate ) value="$df.format($!itemCheck.tracerStudyDate)" #end>
+<script>
+d6 = new JsDatePick({ useMode:2, target:"tracerStudyDate", dateFormat:"%d-%m-%Y" }); 
+d6.setOnSelectedDelegate(function(){ $('tracerStudyDate').value=d6.getSelectedDay().day + '-' + d6.getSelectedDay().month + '-' + d6.getSelectedDay().year; doDivAjaxCall3$formname('empty','changeDate','item=tracerStudy&itemCheckId=$!itemCheck.id&studentId=$!student.id') });
+</script>
+
+</td>
+<td valign="top">
+<textarea name="tracerStudyRemark"  class="texts" style="width:100%;height:100px" onchange="doDivAjaxCall3$formname('empty','changeRemark','item=tracerStudy&itemCheckId=$!itemCheck.id&studentId=$!student.id')">$!itemCheck.tracerStudyRemark</textarea>
+</td>
+<tr>

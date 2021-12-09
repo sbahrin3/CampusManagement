@@ -1,0 +1,10 @@
+<table width="100%"><tr><td align="right">$enrolled_students.size() students</td></tr></table>
+<table width="100%">
+#foreach( $s in $enrolled_students )
+<tr>
+<td><input type="checkbox" name="students1" value="$s.id"></td>
+<td>$s.studentStatus.student.matricNo</td>
+<td>$s.studentStatus.student.biodata.name</td>
+</tr>
+#end
+</table>

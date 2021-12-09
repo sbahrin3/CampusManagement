@@ -1,0 +1,62 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%">
+
+<tr><td>Date From:</td><td style="font-weight:bold">$date_from</td></tr>
+<tr><td>Date To:</td><td style="font-weight:bold">$date_to</td></tr>
+
+#if ( $program )
+<tr>
+<td>Program:</td>
+<td style="font-weight:bold">$program.code $program.name</td>
+</tr>
+#end
+</table>
+<br/><br/><br/>
+<table width="100%">
+<tr>
+<td colspan="6" align="right" style="font-weight:bold">Total Amount Invoiced: RM </td>
+<td align="right" style="font-weight:bold">$numFormat.format($total_amount)&nbsp;&nbsp;&nbsp;</td>
+</tr>
+<tr><td colspan="7"><br/></td></tr>
+
+<tr height="30px" bgcolor="lightgrey">
+<td></td>
+<td style="font-weight:bold">Matric</td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">Invoice No</td>
+<td style="font-weight:bold">Date</td>
+<td style="font-weight:bold">Time</td>
+<td style="font-weight:bold" align="right">Amount (RM)&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+
+#foreach( $i in $invoices )
+<tr height="25px">
+<td align="right">${velocityCount}.</td>
+<td>
+$href.command("invoice_info").param("invoice_id=$i.id").text("$i.student.matricNo")
+</td>
+<td>$i.student.biodata.name</td>
+<td>$i.invoiceNo</td>
+<td>$dateFormat.format($i.createDate)</td>
+<td>$timeFormat.format($i.createTime)</td>
+<td align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;</td>
+
+</tr>
+#end
+</table>
+
+
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="date_from" value="$!date_from">
+<input type="hidden" name="date_to" value="$!date_to">
+<input type="hidden" name="program_id" value="$!program.id">

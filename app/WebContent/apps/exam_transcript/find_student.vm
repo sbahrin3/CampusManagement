@@ -1,0 +1,15 @@
+
+<table width="90%" align="center">
+<tr><td colspan=2>$students.size() Students</td></tr>
+<tr bgcolor="#FF9933"><td colspan=2></td></tr>
+#foreach( $student in $students )
+<tr>
+<td>
+$href.command("get_student").param("student_id=$student.id").text("$student.matricNo - $student.biodata.name")
+</td>
+<td>
+
+</td>
+</tr>
+#end
+</table>

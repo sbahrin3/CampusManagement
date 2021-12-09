@@ -1,0 +1,14 @@
+<script>
+$('getVotingPosition').style.display="block";
+</script>
+
+<table width="100%" style="background:#A09F9F;height:30px">
+<tr><td style="font-weight:bold;color:#fff">Position</td>
+<td style="width:40px" align="right"><input class="linkbutton" style="padding:2px" type="button" value="X" onclick="$('getVotingPosition').style.display='none';"></td></tr></table>
+
+<table style="width:100%">
+<tr><td>Name:</td><td><input class="texts" name="name" value="$!position.name"></td></tr>
+<tr><td></td><td align="right">
+<input class="linkbutton" type="button" value="Save" onclick="doDivAjaxCall3$formname('votingPositions','saveVotingPosition','positionId=$!position.id');$('getVotingPosition').style.display='none';">
+</td></tr>
+</table> 

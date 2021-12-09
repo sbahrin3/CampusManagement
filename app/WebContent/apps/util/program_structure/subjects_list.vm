@@ -1,0 +1,30 @@
+
+<table width="100%">
+
+<tr>
+<td></td>
+<td style="font-weight:bold">
+$href.command("order_by").param("order_by=code").text("Code")
+</td>
+<td style="font-weight:bold">
+$href.command("order_by").param("order_by=name").text("Name")
+</td>
+<td style="font-weight:bold">
+School
+</td>
+</tr>
+
+<tr><td colspan="4"><hr/></td></tr>
+
+#foreach ( $s in $subjects )
+<tr>
+<td>
+<input type="checkbox" id="subject_ids" name="subject_ids" value="$!s.id">
+</td>
+<td>$!s.code</td>
+<td>$!s.name</td>
+<td>$!s.faculty.name</td>
+<td></td>
+</tr>
+#end
+</table>

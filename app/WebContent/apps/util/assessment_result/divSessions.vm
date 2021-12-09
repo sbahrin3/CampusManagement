@@ -1,0 +1,19 @@
+
+
+<select class="input-text" name="session_id" style="width:400px" onchange="doDivAjaxCall3$formname('listSubjects','list_subjects','')">
+<option value=""> - </option>
+#foreach( $s in $sessions )
+<option value="$s.id" #if ( $s.id == $current_session.id ) selected #end>
+ #if ( $s.id == $current_session.id ) &gt; #end
+ $s.code $s.name</option>
+#end
+</select>
+
+<script>
+
+_jq( document ).ready(function() {
+	doDivAjaxCall3$formname('listSubjects','list_subjects','');
+});
+
+
+</script>

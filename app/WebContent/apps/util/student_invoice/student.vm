@@ -1,0 +1,13 @@
+#if ( $student )
+<table width="100%"><tr><td>
+<fieldset>
+
+#parse("apps/util/student_info/student_info.vm")
+
+<br>
+
+#parse("apps/util/student_invoice/invoice_list.vm")
+
+</fieldset></td></tr></table>
+
+#end

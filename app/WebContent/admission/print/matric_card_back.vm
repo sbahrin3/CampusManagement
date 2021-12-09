@@ -1,0 +1,55 @@
+<h1>.</h1>
+<div style="position:fixed;z-index:100;background:#FFF;height:${height}cm;width:${width}cm;padding:2px;">
+<table style="width:100%">
+<tr><td colspan="3" align="center" style="font-weight:bold">$student.program.course.faculty.name.toUpperCase()</td></tr>
+<tr><td style="width:60px" valign="top">NAME</td><td style="width:5px" valign="top">:</td><td valign="top">$student.biodata.name.toUpperCase()</td></tr>
+<tr><td valign="top">NRIC NO.</td><td valign="top">:</td><td valign="top">$student.biodata.icno</td></tr>
+<tr><td valign="top">PROGRAMME</td><td valign="top">:</td><td valign="top">$student.program.displayName.toUpperCase()</td></tr>
+
+$dateFormat.applyPattern("MMM yyyy")
+<tr><td valign="top">VALIDITY</td><td valign="top">:</td><td valign="top">$dateFormat.format($startDate) - $dateFormat.format($endDate)<td></tr>
+</table>
+<div style="margin-top:0.5cm">
+<table style="width:100%">
+<tr><td style="width:20px" valign="top">1.</td>
+<td valign="top">Please display this card clearly on your shirt/uniform
+whenever you are within the campus area.
+</td></tr>
+<tr><td valign="top">2.</td>
+<td valign="top">
+This card is not transferable to another student.
+</td></tr>
+<tr><td valign="top">3.</td>
+<td valign="top">
+This card will be invalid if the information is altered.
+</td></tr>
+<tr><td valign="top">4.</td>
+<td valign="top">
+This card is the property of CUCMS, if found please return to:
+</td></tr>
+</table>
+<table style="width:100%">
+<td valign="top" align="center">
+
+CYBERJAYA UNIVERSITY COLLEGE<br/>
+of MEDICAL SCIENCES	<br/>	
+Main Campus<br/>		
+No. 3410 Jalan Teknokrat 3,	<br/>	
+Cyber 4, 63000 Cyberjaya,<br/>		
+Selangor Darul Ehsan	<br/>	
+Contact No. : 03-8313 7000	<br/>	
+Fax No. : 03-8313 7001<br/>
+</td></tr>
+</table>
+<table style="width:100%">
+<tr><td style="font-weight:bold" align="center">
+$student.matricNo
+</td></tr>
+<tr><td align="center">
+<img src="${applicationURL}/barcode?data=$!student.matricNo" style="width:5.2cm;height:1cm" border="0"/>
+</td></tr>
+
+</table>
+</div>
+
+</div>

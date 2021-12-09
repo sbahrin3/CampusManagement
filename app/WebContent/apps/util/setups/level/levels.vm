@@ -1,0 +1,62 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("").text("Back")]
+</td></tr>
+<tr><td>
+
+<br/>
+
+<table width="100%">
+#foreach ( $l in $levels )
+<tr>
+<td>
+$href.command("edit").param("level_id=$l.id").text("$l.name")
+</td>
+<td>
+[$href.command("delete").param("level_id=$l.id").text("Delete")]
+</td>
+</tr>
+#end
+</table>
+
+<br/><br/>
+
+<table width="100%" align="center">
+<tr><td align="right" style="width:100px">Code:</td><td><input name="code" style="width:100px" value="$!level.code"></td></tr>
+<tr><td align="right" >Name:</td><td><input name="name" style="width:400px" value="$!level.name"></td></tr>
+<tr><td align="right" >Path No:</td>
+<td>
+
+<select name="path_no">
+#foreach( $i in [0..10])
+<option value="$i" #if ( $level.pathNo == $i ) selected #end>&nbsp;&nbsp;$i</option>
+#end
+</select>
+</td></tr>
+<tr><td align="right" >Order:</td>
+<td>
+
+<select name="order">
+#foreach( $i in [0..$levels.size()])
+<option value="$i" #if ( $level.levelOrder == $i ) selected #end>&nbsp;&nbsp;$i</option>
+#end
+</select>
+</td></tr>
+
+<tr><td></td><td>
+#if ( $level )
+$button.command("update").param("level_id=$level.id").style("height:30px;font-weight:bold").text("UPDATE LEVEL")
+#else
+$button.command("add").style("height:30px;font-weight:bold").text("ADD LEVEL")
+#end
+</td></tr>
+</table>
+
+</td></tr>
+#if ( $error )
+<tr><td align="center" style="font-weight:bold">
+$error
+</td></tr>
+#end
+
+</table>

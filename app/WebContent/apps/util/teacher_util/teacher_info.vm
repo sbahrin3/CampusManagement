@@ -1,0 +1,71 @@
+
+<table width="500" align="center"><tr><td align="right">
+<b>Search Name: </b><input name="name_pattern" style="width:200px" value="$!name_pattern">
+$button.command("list_teachers").text("LIST TEACHERS")
+</td></tr></table>
+
+
+<hr/>
+<table width="500" align="center">
+
+<tr><td>Code:</td><input name="code" style="width:100%" value="$!teacher.code"></tr>
+<tr><td>Name:</td><input name="name" style="width:100%" value="$!teacher.name"></tr>
+<tr><td>Email:</td><td><input name="email" style="width:100%" value="$!teacher.email"></td></tr>
+<tr><td>User Name:</td><td><input name="username" style="width:100%" readonly value="$!teacher.userId"></td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+
+<tr><td>Allow Assessment Marking:</td><td>
+<select name="assesment">
+<option value="NO" #if ( $teacher.assesment == "NO" ) selected #end>NO</option>
+<option value="YES" #if ( $teacher.assesment == "YES" ) selected #end>YES</option>
+
+</select>
+</td></tr>
+<tr><td>Allow Final Exam Marking:</td><td>
+<select name="final_exam">
+<option value="NO" #if ( $teacher.finalExam == "NO" ) selected #end>NO</option>
+<option value="YES" #if ( $teacher.finalExam == "YES" ) selected #end>YES</option>
+
+</select>
+</td></tr>
+
+<tr><td colspan="2"><hr/></td></tr>
+
+<tr><td colspan="2" align="right">
+
+$button.command("teacher_info").param("teacher_id=$!teacher.id").text("RELOAD")
+$button.command("update").param("teacher_id=$!teacher.id").text("SAVE INFO")
+$button.command("delete").confirm("Delete this teacher?").param("teacher_id=$!teacher.id").text("DELETE")
+</td></tr>
+
+</table>
+
+<br/>
+
+<table width="500" align="center">
+<tr><td>
+$!teacher.name is teaching subjects as below:
+<hr/>
+</td></tr>
+</table>
+
+<table width="500" align="center">
+##foreach ( $ts in $teacher.teacherSubjects )
+#foreach ( $ts in $teacher.subjectTeachingOrderByCode )
+<tr>
+<td>
+<input type="checkbox" name="subject_teachings" value="$ts.id">
+</td>
+<td>$!ts.subject.code</td>
+<td>$!ts.subject.name</td>
+<td>$!ts.section.name - $!ts.section.code</td>
+
+</tr>
+#end
+<tr><td colspan="4" align="right">
+<hr/>
+$button.command("list_subjects").param("teacher_id=$!teacher.id").text("SELECT OTHER SUBJECTS")
+$button.command("remove_subjects").confirm("Remove Selected Subjects?").param("teacher_id=$!teacher.id").text("REMOVE SELECTED")
+</td></tr>
+</table>

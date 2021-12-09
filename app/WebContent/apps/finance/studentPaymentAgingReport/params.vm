@@ -1,0 +1,32 @@
+<table>
+	<tr style="height:40px">
+		<td style="width:100px">Program:</td>
+		<td style="width:400px">
+			<select class="texts" name="programId" onchange="doDivAjaxCall$formname('listIntakes','listIntakes','')">
+				<option value="">(ALL)</option>
+				#foreach( $p in $programs )
+					<option value="$p.id">$p.code - $p.name</option>
+				#end
+			</select>
+		</td>
+	</tr>
+</table>
+
+<div id="listIntakes"></div>
+
+
+
+<table>
+	<tr style="height:40px">
+		<td style="width:100px"></td>
+		<td>
+		Report Date:
+		<input class="texts" style="height:30px;width:100px" id="reportDate" name="reportDate" value="$dateFormat.format($date)">
+		<script> new JsDatePick({ useMode:2, target:"reportDate", dateFormat:"%d-%m-%Y" }); </script>
+		</td>
+		<td>&nbsp;</td>
+		<td style="width:400px">
+			<button class="btn btn-primary" type="button" onclick="$('getAgingReport').innerHTML='Please Wait...';doDivAjaxCall$formname('getAgingReport','getAgingReport2','')">Get Report...</button>
+		</td>
+	</tr>
+</table>

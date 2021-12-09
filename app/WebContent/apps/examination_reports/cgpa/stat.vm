@@ -1,0 +1,25 @@
+<style>
+td { color: #000000; font: normal 11px arial; }
+</style>
+<table width="100%"><tr><td align="center">
+<input type="button" value="List Students" onclick="$('div_stat').style.visibility='hidden';$('div_students').style.visibility='visible';doDivAjaxCall$formname('div_students','students','group=')">
+</td></tr></table>
+<table align="center" border="0" cellspacing="1" bgcolor="#000000">
+<tr height="30px" bgcolor="lightgrey">
+<td style="width:100px;font-weight:bold" align="center">CGPA</td>
+<td style="width:100px;font-weight:bold" align="center">COUNT</td>
+<td style="width:100px;font-weight:bold" align="center">PERCENT</td>
+</tr>
+#foreach( $gr in $grade_results )
+<tr height="30px" bgcolor="#ffffff">
+<td style="" align="center">$gr.GPARange</td>
+<td style="" align="center">#if ( $gr.count > 0 ) <a style="text-decoration:none" href="javascript:void" onclick="$('div_stat').style.visibility='hidden';$('div_students').style.visibility='visible';doDivAjaxCall$formname('div_students','students','group=$gr.cgpaGroup')">$gr.count</a> #else 0 #end</td>
+<td style="" align="center">$gr.percent</td>
+</tr>
+#end
+<tr height="30px" bgcolor="#CCCCCC">
+<td style="font-weight:bold" align="center"></td>
+<td style="font-weight:bold" align="center"><a style="text-decoration:none" href="javascript:void" onclick="$('div_stat').style.visibility='hidden';$('div_students').style.visibility='visible';doDivAjaxCall$formname('div_students','students','group=')">$total</a></td>
+<td style="font-weight:bold" align="center">100</td>
+</tr>
+</table>

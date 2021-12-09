@@ -1,0 +1,50 @@
+<table width="700" align="center">
+<tr><td>
+[$href.command("").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td style="width:100px">Program:</td><td>$program.code $program.name</td></tr>
+<tr><td>Session:</td><td>$session.code $session.name</td></tr>
+<tr><td>Semester:</td><td>$period.name #if ( $period.parent ) ($period.parent.name) #end</td></tr>
+</table>
+<br><br>
+
+<table width="100%">
+<tr><td valign="top">
+
+
+show classrooms here
+
+
+
+
+
+
+</td><td valign="top">
+
+<table width="100%">
+<tr>
+<td colspan="3" style="font-weight:bold">
+Total of $students.size() students
+</td></tr>
+#foreach( $s in $students )
+<tr>
+<td><input type="checkbox" name="selected_students" value="$s.id"></td>
+<td>$s.matricNo</td>
+<td>$s.biodata.name</td>
+</tr>
+#end
+</table>
+
+</td></tr></table>
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="session_id" value="$!session.id">
+<input type="hidden" name="period_id" value="$!period.id">
+<input type="hidden" name="total_students" value="$students.size()">

@@ -1,0 +1,51 @@
+<table width="100%"><tr style="height:30px"><td style="background:#C0C0C0;font-weight:bold" align="center">
+#if ( $checkInMode == "transfer_room" )
+ROOM TRANSFER
+#else
+ROOM CHECK IN
+#end
+</td></tr></table>
+<br/>
+<table>
+<tr><td style="width:100px;font-weight:bold">Room:</td><td style="font-weight:bold">$room.code - $room.name</td></tr>
+
+<tr><td>Time:</td><td>
+<select name="hour_$room.id">
+#foreach ( $h in [1..12] )
+<option value="$h">#if ( $h < 10 ) 0$h #else $h #end</option>
+#end
+</select>h
+<select name="min_$room.id">
+#foreach ( $m in [0..60] )
+<option value="$m">#if ( $m < 10 ) 0$m #else $m #end</option>
+#end
+</select>m
+<select name="ap_$room.id">
+<option value="AM">AM</option>
+<option value="PM">PM</option>
+</select>
+</td>
+</tr>
+
+#if ( $checkInMode == "transfer_room" )
+
+#else
+<tr><td style="font-weight:bold">Expected Check-Out Date:</td><td>
+$html.dateField.name("expected_checkout_date_$room.id").value("").style("width:100px;text-align:center")
+</td></tr>
+#end
+
+</table>
+<br/>
+<table width="100%"><tr><td align="right">
+#if ( $checkInMode == "transfer_room" )
+<input class="linkbutton" style="padding:2px" type="button" value="OK" onclick="$('checkInMode').value='check_in';doDivAjaxChainCall$formname('div_rooms', 'transfer_room', 'room_id=$room.id', 'hostel_info','list_rooms','unit_id=$room.unit.id');">
+<input class="linkbutton" style="padding:2px" type="button" value="Cancel" onclick="$('checkIn_$room.id').style.display='none';$('checkInMode').value='transfer_room';">
+#else
+##<input class="linkbutton" style="padding:2px" type="button" value="OK" onclick="if ( $('expected_checkout_date_$room.id').value == '' ) { alert('Please specify Expected Check Out Date.'); return } else { doDivAjaxChainCall$formname('div_rooms', 'room_in', 'room_id=$room.id', 'div_vacancy_$room.id', 'check_vacancy', 'room_id=$room.id'); $('checkInMode').value='check_in'; }">
+<input class="linkbutton" style="padding:2px" type="button" value="OK" onclick="if ( $('expected_checkout_date_$room.id').value == '' ) { alert('Please specify Expected Check Out Date.'); return } else { doDivAjaxChainCall$formname('div_rooms', 'room_in', 'room_id=$room.id', 'hostel_info','list_rooms','unit_id=$room.unit.id'); $('checkInMode').value='check_in'; }">
+<input class="linkbutton" style="padding:2px" type="button" value="Cancel" onclick="$('checkIn_$room.id').style.display='none';$('checkInMode').value='check_in';">
+#end
+
+##onclick="doDivAjaxCall3$formname('hostel_info','list_rooms','unit_id=$unit.id')"
+</td></tr></table>

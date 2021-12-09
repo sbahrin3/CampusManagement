@@ -1,0 +1,50 @@
+
+<div>
+<table  cellspacing="0" align="center">
+    <tr style="height:35px;background:#E5E3E3">
+        <td style="width:200px;font-weight:bold">Login</td>
+        <td style="width:400px;font-weight:bold">Name</td>
+        <td style="width:200px;font-weight:bold">Role</td>
+        <td style="width:50px;font-weight:bold"></td>
+    </tr>
+</table>
+</div>
+<div style="height:350px;overflow:auto">
+<table class="order-table table" cellspacing="0" align="center">
+	<tbody>
+	#set ( $cnt = 0 )
+	#foreach ( $u in $users )
+		#set ( $cnt = $cnt + 1 )
+		#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#F0F4F8" ) #else #set ( $bgcolor="#FFF" ) #end
+        <tr style="height:30px;background:$bgcolor">
+            <td style="width:200px;border-bottom:1px solid #C9C5C5">$u.login</td>
+            <td style="width:400px;border-bottom:1px solid #C9C5C5">$u.name</td>
+            <td style="width:200px;border-bottom:1px solid #C9C5C5">$u.role</td>
+            <td style="width:50px;border-bottom:1px solid #C9C5C5">
+				#if ( $u.role != "root" )
+					<input type="checkbox" name="logins" value="$u.login">
+				#end
+			</td>
+        </tr>
+	#end
+    </tbody>
+</table>
+</div>
+<table align="center">
+	<tr>
+		<td>
+			<a href="javascript:void(0)" onclick="doDivAjaxCall3$formname('listUsers','listUsers','')">Reload</a> | 
+			<a href="javascript:void(0)" onclick="$('deleteConfirm').style.display='block';">Delete Users</a> |
+			<div id="deleteConfirm" style="display:none;position:absolute;border:1px solid #CCC;background:#FFF">
+			Delete selected users. ARE YOU SURE? (<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('listUsers','deleteUsers','')">YES</a>/<a href="javascript:void(0)" onclick="$('deleteConfirm').style.display='none';">NO</a>)
+			</div>
+			
+		</td>
+	</tr>
+</table>
+
+	
+<script>
+$('data_filter').value="";
+</script>
+

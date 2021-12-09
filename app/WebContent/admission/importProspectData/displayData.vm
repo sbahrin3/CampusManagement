@@ -1,0 +1,42 @@
+<input type="hidden" id="totalCnt" value="$totalCnt">
+
+<table style="background:#fff" cellspacing="0" cellpadding="1">
+
+	##/Name	IC	Address	Address	postcode	city	state	Phone no.	house no.	Course	Email
+<tr style="height:30px;background:#DBDBDB">
+<td style="width:50px" align="center">&nbsp;</td>
+<td style="width:100px" align="center">Name</td>
+<td style="width:100px" align="center">ICNo</td>
+<td style="width:100px" align="center">Address1</td>
+<td style="width:100px" align="center">Address2</td>
+<td style="width:100px" align="center">Postcode</td>
+<td style="width:100px" align="center">City</td>
+<td style="width:100px" align="center">State</td>
+<td style="width:100px" align="center">Phone No</td>
+<td style="width:100px" align="center">House No</td>
+<td style="width:100px" align="center">Course</td>
+<td style="width:100px" align="center">Email</td>
+</tr>
+
+
+#set ( $cnt = 0 )
+#foreach( $i in $items )
+#set ( $cnt = $cnt + 1 )
+<tr style="height:25px;background:#fff">
+<td align="center">$cnt.</td>
+<td align="center"><input class="text" value="$i.name" readonly></td>
+<td align="center"><input class="text" value="$i.icno" readonly></td>
+<td align="center"><input class="text" value="$i.address1" readonly></td>
+<td align="center"><input class="text" value="$i.address2" readonly></td>
+<td align="center"><input class="text" value="$i.postcode" readonly></td>
+<td align="center"><input class="text" value="$i.city" readonly></td>
+<td align="center"><input class="text" value="$i.state" readonly></td>
+<td align="center"><input class="text" value="$i.phone" readonly></td>
+<td align="center"><input class="text" value="$i.houseNo" readonly></td>
+<td align="center"><input class="text" value="$i.course" readonly></td>		
+<td align="center"><input class="text" value="$i.email" readonly></td>
+</tr>
+#end
+</table>
+#set ( $cnt = $cnt + 1 )
+<div id="result_$cnt"></div>

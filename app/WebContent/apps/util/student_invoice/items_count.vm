@@ -1,0 +1,12 @@
+<table width="100%" align="center">
+<tr height="1px">
+<td></td>
+<td style="width:100px"></td>
+</tr>
+#foreach ( $i in [1..$items_cnt] )
+<tr>
+<td><input name="item_description" style="height:30px;width:100%"></td>
+<td><input name="item_amount" style="height:30px;width:100%;text-align:center"></td>
+</tr>
+#end
+</table>

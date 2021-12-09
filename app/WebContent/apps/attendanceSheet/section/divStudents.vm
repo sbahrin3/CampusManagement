@@ -1,0 +1,19 @@
+<table width="100%">
+<tr>
+<td style="width:50px"></td>
+<td style="width:100px"></td>
+<td style="width:300px"></td>
+<td style="width:100px"></td>
+</tr>
+
+#foreach( $s in $students )
+<tr>
+<td></td>
+<td>$s.student.matricNo</td>
+<td>$s.student.biodata.name</td>
+<td>
+<input type="checkbox" name="moveStudentIds" value="$s.id">
+</td>
+<tr>
+#end
+</table>

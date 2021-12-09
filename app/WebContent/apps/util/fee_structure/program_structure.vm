@@ -1,0 +1,153 @@
+<table width="700" align="center">
+<tr><td align="right" style="font-weight:bold">
+[$href.command("get_structure").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%" align="center">
+<tr><td>Program:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$intake.code $intake.name</td></tr>
+<tr><td>Learning Centre:</td><td style="font-weight:bold">$centre.code $centre.name</td></tr>
+<tr><td>
+</table>
+
+</td></tr>
+<tr><td>
+
+#if ( $periods )
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+<tr bgcolor="lightgrey">
+<td colspan="2"></td><td colspan="$fees.size()"></td>
+<td></td>
+</tr>
+
+
+#foreach($period in $periods)
+
+##subject_period object
+#set ( $subject_period = $programUtil.getSubjectPeriod($programStructure, $period.id ) )
+<tr bgcolor="lightgrey">
+<td colspan="3" style="font-weight:bold;height:40px;">
+$href.command("add_subjects").param("period_id=$period.id").text("$period.name #if ( $period.parent ) ($period.parent.name ) #end")
+</td>
+<td colspan="$fees.size()" style="font-weight:bold;height:40px;" align="right">
+$button.command("add_subjects").param("period_id=$period.id").text("EDIT")
+</td>
+</tr>
+
+#if ( $programUtil.getSubjectRegs($programStructure, $period.id) )
+
+<tr>
+<td colspan="2"></td>
+#foreach( $f in $fees)
+<td align="center" style="width:50px;font-weight:bold">$f.code</td>
+#end
+<td align="center" style="width:50px;font-weight:bold"></td>
+</tr>
+
+#set ( $subjectCount = 0 )
+##start subjects loop for each period
+#foreach ( $reg in $programUtil.getSubjectRegs($programStructure, $period.id))
+#set ( $subjectCount = $subjectCount + 1 )
+
+<tr>
+<td>$!reg.subject.code</td>
+<td>$!reg.subject.name</td>
+
+##start fees loop
+#foreach( $f in $fees)
+<td align="center">
+
+
+#if ( $reg.getFeeItem("$f.id") )
+#set ( $fee = $reg.getFeeItem("$f.id") )
+
+#if ( $fee.amount != 0 ) 
+$numFormat.format($fee.amount) 
+#else
+ - 
+#end
+
+#end
+
+</td>
+#end
+##end fees loop
+
+<td align="center" style="font-weight:bold">
+#if ( $reg.feeTotal != 0 )
+$numFormat.format($reg.feeTotal)
+#else
+-
+#end
+
+</td>
+
+</tr>
+#end
+##end subjects loop for each period
+
+<tr>
+<td>&nbsp;</td>
+<td></td>
+<td colspan="$fees.size()"></td>
+<td></td>
+</tr>
+
+##display total
+<tr>
+<td colspan="2"></td>
+#foreach( $f in $fees)
+<td align="center" style="font-weight:bold">
+#if ( $subject_period.getFeeTotal($f.id) != 0 )
+$numFormat.format($subject_period.getFeeTotal($f.id))
+#else
+-
+#end
+</td>
+#end
+<td align="center" style="font-weight:bold">
+#if ( $subject_period.getFeeTotal() != 0 )
+$numFormat.format($subject_period.getFeeTotal())
+#else
+-
+#end
+</td>
+</tr>
+##end display total
+
+<tr>
+<td>&nbsp;</td>
+<td></td>
+<td colspan="$fees.size()"></td>
+<td></td>
+</tr>
+
+#if ( $subjectCount == 0 )
+<tr bgcolor="lightgrey">
+<td colspan="2"></td><td colspan="$fees.size()"></td>
+</tr>
+#end
+
+#else
+<tr bgcolor="lightgrey">
+<td colspan="2"></td><td colspan="$fees.size()"></td>
+</tr>
+#end
+
+#end
+
+<tr bgcolor="lightgrey">
+<td colspan="2"></td><td colspan="$fees.size()"></td>
+</tr>
+#end
+</table>
+
+
+</td></tr></table>
+
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="structure_id" value="$!programStructure.id">
+<input type="hidden" name="centre_id" value="$!centre.id">

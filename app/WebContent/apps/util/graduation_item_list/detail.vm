@@ -1,0 +1,42 @@
+<script>
+$('detail').style.display="block";
+</script>
+
+<table width="100%" style="height:30px;background:#4954AA"><tr><td style="font-weight:bold;color:#fff">$g.student.matricNo: $g.student.biodata.name</td><td style="width:20px;font-weight:bold;color:#fff;cursor:pointer" align="center" onclick="$('detail').style.display='none';"><span style="border:1px solid #fff;padding:2px">X</span></td></tr>
+
+<div>
+<table>
+<tr style="height:30px;background:#B5B6BC">
+<td style="width:150px;font-weight:bold">Item</td>
+<td style="font-weight:bold;width:100px" align="center">Status</td>
+<td style="font-weight:bold;width:100px" align="center">Date</td>
+<td style="font-weight:bold;width:400px" align="center">Remark</td>
+</tr>
+<tr style="background:#F9F9F9">
+<td>Robe</td><td align="center">#if ( $g.robeStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.robeDate ) $df.format($!g.robeDate) #end</td>
+<td>$!g.robeRemark</td>
+</tr>
+<tr style="background:#F9F9F9"><td>Scroll</td><td align="center">#if ( $g.scrollStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.scrollDate ) $df.format($!g.scrollDate) #end</td>
+<td>$!g.scrollRemark</td>
+</tr>
+<tr style="background:#F9F9F9"><td>Transcript</td><td align="center">#if ( $g.transcriptStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.transcriptDate ) $df.format($!g.transcriptDate) #end</td>
+<td>$!transcript.remark</td>
+</tr>
+<tr style="background:#F9F9F9"><td>Photos</td><td align="center">#if ( $g.photoStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.photoDate ) $df.format($!g.photoDate) #end</td>
+<td>$!g.photoRemark</td>
+</tr>
+<tr style="background:#F9F9F9"><td>Alumni Card</td><td align="center">#if ( $g.alumniCardStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.alumniCardDate ) $df.format($!g.alumniCardDate) #end</td>
+<td>$!g.alumniCardRemark</td>
+</tr>
+<tr style="background:#F9F9F9"><td>Tracer Study</td><td align="center">#if ( $g.tracerStudyStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.tracerStudyDate ) $df.format($!g.tracerStudyDate) #end</td>
+<td>$!g.tracerStudyRemark</td>
+</tr>
+
+</table>
+</div>

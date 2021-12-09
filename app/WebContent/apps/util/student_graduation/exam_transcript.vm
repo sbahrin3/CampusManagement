@@ -1,0 +1,82 @@
+
+#if ( $results )
+
+#foreach ( $r in $results )
+
+<br/><br/>
+<table width="100%">
+<td style="font-weight:bold">$r.session.name</td>
+<td style="font-weight:bold" align="right">$r.period.name #if ( $r.period.parent ) ($r.period.parent.name) #end</td>
+</table>
+
+
+
+<table bgcolor="lightgrey" width="100%" cellspacing="0" cellpadding="1">
+<tr>
+<td style="width:60px">Code</td>
+<td style="width:400px">Name</td>
+<td style="width:60px">CHrs</td>
+<td style="width:60px">Point</td>
+<td style="width:60px">Grade</td>
+<td></td>
+</tr>
+</table>
+
+
+#set ( $subjects = $r.subjects )
+
+<table width="100%" cellspacing="0" cellpadding="1">
+#foreach ( $s in $subjects )
+<tr>
+<td style="width:60px">$s.subject.code</td>
+<td style="width:400px">$s.subject.name</td>
+<td style="width:60px">$s.creditHour</td>
+<td style="width:60px">$numFormat.format($s.point)</td>
+<td style="width:60px">$!s.grade</td>
+<td></td>
+</tr>
+<tr><td colspan="5"></td></tr>
+#end
+</table>
+
+<br/><br/>
+
+<table width="100%" cellspacing="0" cellpadding="1">
+<tr><td style="width:520px"></td><td>CHours: $r.totalHours</td></tr>
+<tr><td style="width:520px"></td><td>GPA: $numFormat.format($r.gpa)</td></tr>
+<tr><td style="width:520px"></td><td>CGPA: $numFormat.format($r.cgpa)</td></tr>
+<tr><td style="width:520px"></td><td>$!r.standing</td></tr>
+</table>
+
+#end
+
+#end
+#if ( $subject_transfers.size() > 0 )
+
+<br/><br/>
+<table width="100%">
+<td style="font-weight:bold">
+List of Credit Transfer Subjects
+</td>
+</table>
+
+<table width="100%">
+<tr bgcolor="lightgrey">
+<td style="width:60px">Code</td>
+<td style="width:400px">Name</td>
+<td style="width:60px">CHrs</td>
+<td style="width:60px"></td>
+<td style="width:60px"></td>
+<td></td>
+</tr>
+#foreach ( $st in $subject_transfers )
+<tr>
+<td style="width:60px">$st.subject.code</td>
+<td style="width:400px">$st.subject.name</td>
+<td style="width:60px">$st.subject.credithrs</td>
+<td style="width:60px"></td>
+<td style="width:60px"></td>
+</tr>
+#end
+</table>
+#end

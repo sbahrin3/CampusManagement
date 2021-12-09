@@ -1,0 +1,84 @@
+
+<table width="100%">
+#if ( $student_status.studentSubjects.size() > 0 )
+	
+	<tr style="">
+    <td colspan="5">
+		<div class="well">
+			#if ( $student_status.studentSubjects.size() == 1 )
+				Only one subject registered in this semester.
+			#else
+				${student_status.studentSubjects.size()} subjects registered in this semester.
+			#end
+		</div>
+    </td>
+    </tr>
+	
+    #foreach ( $s in $student_status.studentSubjects )
+        <tr style="height:40px; background:#fff">
+        <td style="width:40px;border-bottom:1px dotted #000" align="center"><input type="checkbox" name="delete_subjects" value="$s.id"></td>
+        <td style="width:100px;border-bottom:1px dotted #000">$s.subject.code</td>
+        <td style="border-bottom:1px dotted #000">$s.subject.name</td>
+        <td style="width:100px;border-bottom:1px dotted #000" align="center">$s.subject.credithrs</td>
+        <td style="width:150px;border-bottom:1px dotted #000" align="right">
+        
+        #**
+        	RG - Register
+        	RP - Repeat
+        	RS - Resit
+        	CT - Credit Transfer
+        	EX - Exempted
+        	CE - Credit Earned
+        **#	
+        
+        <select class="textr" name="subjectStatus_$s.id" onchange="doDivAjaxCall3$formname('divSubjectStatus_$s.id','updateSubjectStatus','subjectRegisterId=$s.id')">
+        <option value=""></option>
+        <option value="RG" #if ( $s.subjectStatus == "RG" ) selected #end>Register</option>
+        <option value="RP" #if ( $s.subjectStatus == "RP" ) selected #end>Repeat</option>
+        <option value="RS" #if ( $s.subjectStatus == "RS" ) selected #end>Resit</option>
+        
+        #foreach ( $specialStatus in $specialSubjectStatusList )
+        	<option value="$specialStatus.code" #if ( $s.subjectStatus == "$specialStatus.code" ) selected #end>$specialStatus.description</option>
+        #end
+        
+        </select>
+        
+        </td>
+        <td>
+        <div id="divSubjectStatus_$s.id"></div>
+        </td>
+        </tr>
+    #end
+
+#else
+
+    <tr style="">
+    <td colspan="3">
+		<div class="well">
+			No subject registered in this semester.
+		</div>
+    </td>
+    </tr>
+    
+    #end
+</table>
+#if ( $deletedSubjectResults )
+	#if ( $deletedSubjectResults.size() > 0 )
+    <div class="well">
+		<b>ALERT:</b>
+    	#if ( $deletedSubjectResults.size() == 1 )
+			You had deleted
+			subject ${deletedSubjectResults.get(0).subject.code} - ${deletedSubjectResults.get(0).subject.name} 
+			which has data in the RESULT TRANSCRIPT.
+		#else
+			You had deleted these subjects:<br/>
+			<ul>
+			#foreach ( $s in $deletedSubjectResults )
+			 <li>${s.subject.code} - ${s.subject.name}</li>
+			#end
+			which has data in the RESULT TRANSCRIPT.
+		#end
+		
+    </div>
+	#end
+#end

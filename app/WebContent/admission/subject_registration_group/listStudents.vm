@@ -1,0 +1,48 @@
+
+#if ( $students.size() == 0 )
+
+	Query return no result.
+
+#else
+	
+<input type="button" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.admission.module.SubjectRegistrationXLServlet'">
+
+<div class="outer">
+	<div class="inner">
+		
+<table class="subjectList" style="background:#C4C4C4">
+<tr style="height:30px">
+
+<th class="th" style="width:300px"></th>
+##<td style="width:150px;background:#E0DEDE" valign="top">Matric No</td>
+
+#foreach( $subject in $subjects )
+    <td class="td" style="width:200px;background:#E0DEDE" valign="top" align="center">
+    	<input class="text" style="width:80px;text-align:center;font-weight:bold" value="$subject.code" readonly>
+    </td>
+#end
+</tr>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $student in $students )
+    #set ( $cnt = $cnt + 1 )
+    <tr>
+    <th class="th" style="width:300px" nowrap>
+    	<input class="text" value="$student.matricNo&nbsp;&nbsp;$student.biodata.name">
+    </th>
+    </tr>
+    #end
+</table>
+
+
+	
+</div>
+</div>
+
+<table>
+	<tr>
+		<td>$cnt students.</td>
+	</tr>
+</table>
+	
+#end

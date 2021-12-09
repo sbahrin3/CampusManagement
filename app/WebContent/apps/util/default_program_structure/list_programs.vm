@@ -1,0 +1,29 @@
+
+<table width="700" align="center">
+<tr><td>
+
+<table width="100%">
+<tr>
+<td>Program:</td>
+<td>
+<select name="program_id" onchange="doAjaxCall${_formName}('get_structure_by_centre','')" style="width:400px">
+<option value="">- Select Program -</option>
+#foreach ( $p in $programs )
+<option value="$p.id" #if ( $p.id == $program_id ) selected #end>&nbsp;&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="right">
+$button.command("get_structure_by_centre").text("Program Structure")
+</td></tr>
+</table>
+
+
+
+
+
+</td></tr>
+</table>

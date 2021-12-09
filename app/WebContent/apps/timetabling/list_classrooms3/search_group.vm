@@ -1,0 +1,16 @@
+
+<div class="padding:10px">
+<table>
+	<tr><td style="width:300px">
+		<input class="form-control" name="findGroupName" id="findGroupName" placeholder="Find groups...">
+	</td>
+	<td>
+	&nbsp;
+	<button type="button" class="btn btn-success btn-sm" onclick="if ( $('findGroupName').value != '' ) { doDivAjaxCall$formname('groupList','findGroupByName',''); }">Search</button>
+	<button type="button" class="btn btn-primary btn-sm" onclick="doDivAjaxCall$formname('findBy_3','selectGroups','')">Select Groups</button>
+	</td></tr>
+</table>
+
+<div id="groupList"></div>
+
+</div>

@@ -1,0 +1,82 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {font-family:verdana;font-size:10pt;font-weight:bold;}
+td {font-family:verdana;font-size:10pt;}
+</style>
+
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td style="width:150px">IC/Passport:</td>
+<td style="font-weight:bold">
+#if ( $applicant.biodata.icno && $applicant.biodata.icno != "") 
+$applicant.biodata.icno
+#else
+$applicant.biodata.passport
+#end
+</td>
+<tr><td>Name:</td><td style="font-weight:bold">$applicant.biodata.name</td></tr>
+
+#if ( $error_program )
+<tr><td></td><td style="font-weight:bold;color:red">Please Select Program Of Study</td></tr>
+#end
+
+<tr><td>Program Of Study:</td>
+<td>
+<select name="program_id" style="width:400px;font-weight:bold" onchange="doAjaxCall${_formName}('get_applicant','')">
+<option value="">- select Program -</option>
+#foreach ( $p in $programs )
+<option value="$p.id" #if ( $program.id == $p.id ) selected #end>&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+</td></tr>
+
+#if ( $error_intake )
+<tr><td></td><td style="font-weight:bold;color:red">Please Select Intake</td></tr>
+#end
+
+<tr>
+<td>Intake:</td>
+<td>
+
+<select name="intake_id" style="width:400px;font-weight:bold">
+<option value="">- select Intake -</option>
+#foreach( $i in $intakes )
+<option value="$i.id" #if ( $current_session.id == $i.id ) selected #end>&nbsp;&nbsp;$i.name</option>
+#end
+</select>
+</td></tr>
+
+#if ( $error_centre )
+<tr><td></td><td style="font-weight:bold;color:red">Please Select Learning Centre</td></tr>
+#end
+
+<tr>
+<td>Learning Centre:</td>
+<td>
+<select name="centre_id" style="width:400px;font-weight:bold">
+##<option value="">-select Centre-</option>
+#foreach ( $c in $centres )
+<option value="$c.id" #if ( $centre.id == $c.id ) selected #end>&nbsp;&nbsp;$c.name</option>
+#end
+</td></tr>
+
+</table>
+
+<table width="100%">
+<tr><td align="right">
+$button.command("register_student").style("height:50px;font-weight:bold").text("REGISTER THIS STUDENT ... ")
+</td></tr></table>
+
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="applicant_id" value="$!applicant.id">

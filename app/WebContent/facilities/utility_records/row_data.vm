@@ -1,0 +1,11 @@
+
+
+<td>$!r.type.name</td>
+<td>$!r.accountNo</td>
+<td>$!r.month</td>
+<td>$!r.year</td>
+<td>$!r.amountConsumption</td>
+<td>$!r.unitConsumption</td>
+
+
+

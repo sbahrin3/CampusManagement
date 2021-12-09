@@ -1,0 +1,76 @@
+<table width="700" align="center">
+<tr><td>
+
+<table width="100%">
+<tr>
+<td>Subject:</td>
+<td>
+<select name="subject_id" style="width:300px" onchange="doDivAjaxCall$formname('div_students1','enrolled_students','')">
+<option value=""></option>
+#foreach( $s in $subjects )
+<option value="$s.id">$s.code $s.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Section:</td>
+<td>
+<select name="section_id" style="width:300px" onchange="doDivAjaxCall$formname('div_students1','enrolled_students','')">
+<option value=""></option>
+#foreach( $s in $sections )
+<option value="$s.id">$s.code $s.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Session:</td><td>
+<select name="session_id" style="width:300px" onchange="doDivAjaxChainCall$formname('div_students1','enrolled_students','','div_students2','all_students','')">
+<option value="">- Select Session -</option>
+#foreach( $session in $sessions )
+<option value="$session.id" #if ( $session.id == $current_session.id ) selected #end>
+#if ( $session.id == $current_session.id ) &gt; #end
+$session.code $session.name
+</option>
+#end
+</select>
+
+<input type="button" value="List Students" onclick="doDivAjaxChainCall$formname('div_students1','enrolled_students','','div_students2','all_students','')">
+
+##<input type="button" value="Enrolled Students" onclick="doDivAjaxCall$formname('div_students1','enrolled_students','')">
+<input type="button" value=".." onclick="doDivAjaxCall$formname('div_students2','all_students','')">
+
+</td>
+</tr>
+</table>
+
+</td></tr>
+<tr><td>
+
+<table width="100%">
+
+<tr  bgcolor="lightgrey">
+<td width="50%" align="center">
+<input type="button" value="Remove" onclick="doDivAjaxCall$formname('div_students1','remove_students','')">
+</td>
+<td align="center">
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('div_students1','add_students','')">
+</td>
+</tr>
+
+<tr>
+<td width="50%" valign="top">
+<div id="div_students1" name="div_students1"></div>
+</td>
+<td valign="top">
+<div id="div_students2" name="div_students2"></div>
+</td>
+</tr>
+</table>
+
+
+</td></tr>
+</table>

@@ -1,0 +1,69 @@
+#**
+#set ( $cnt = 0 )
+#foreach( $r in $stats)
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#ccc" ) #else #set ( $bgcolor = "#fff" ) #end
+
+<td bgcolor="$bgcolor">
+<table cellpadding="0" cellspacing="0">
+<tr><td style="width:80px" align="center">$r.s1</td></tr>
+<tr><td style="width:80px" align="center">&nbsp;</td></tr>
+<tr><td align="center">$r.cnt</td></tr>
+</table>
+</td>
+#end
+</tr>
+</table>
+##end
+
+<br/>
+**#
+
+
+
+<table align="center"><tr><td>
+<table style="width:100%;height:50px;" align="center" valign="middle" cellpadding="2" cellspacing="2"><tr><td align="center" style="font-size:11pt;font-weight:bold;color:#000">
+Total Number of Students by Semester and Gender
+</td></tr></table>
+<table align="center" cellpadding="0" cellspacing="0"  style="border-left:2px solid #000;border-top:2px solid #000;border-bottom:2px solid #000">
+<tr><td>
+
+
+<table cellspacing="0" cellpadding="0">
+<tr>
+#foreach( $p in $periods )
+<td colspan="2" style="width:80px;border-right:2px solid #000;font-weight:bold;background:#ABABAB;color:#fff" align="center">$p</td>
+#end
+</tr>
+<tr>
+#set ( $i = 0 )
+#foreach( $r in $stats2)
+#set ( $i = $i + 1 )
+<td>
+#if ( $i % 2 == 0 )
+<table cellpadding="0" cellspacing="0">
+<tr><td style="width:40px;border-right:2px solid #000;background:#ABABAB;color:#fff" align="center">&nbsp;</td></tr>
+<tr><td style="width:40px;border-right:2px solid #000;font-weight:bold;background:#ABABAB;color:#fff" align="center">$r.s2</td></tr>
+<tr><td style="width:40px;border-right:2px solid #000;background:#ABABAB;color:#fff" align="center">&nbsp;</td></tr>
+<tr><td style="width:40px;border-right:2px solid #000;" align="center">&nbsp;</td></tr>
+<tr><td style="width:40px;border-right:2px solid #000" align="center">$r.cnt</td></tr>
+<tr><td style="width:40px;border-right:2px solid #000" align="center">&nbsp;</td></tr>
+</table>
+#else
+<table cellpadding="0" cellspacing="0">
+<tr><td style="width:40px;;background:#ABABAB;color:#fff" align="center">&nbsp;</td></tr>
+<tr><td style="width:40px;font-weight:bold;background:#ABABAB;color:#fff" align="center">$r.s2</td></tr>
+<tr><td style="width:40px;;background:#ABABAB;color:#fff" align="center">&nbsp;</td></tr>
+<tr><td style="width:40px;" align="center">&nbsp;</td></tr>
+<tr><td style="width:40px;" align="center">$r.cnt</td></tr>
+<tr><td style="width:40px;" align="center">&nbsp;</td></tr>
+</table>
+
+#end
+</td>
+#end
+</tr>
+</table>
+
+</td></tr></table>
+</td></tr></table>

@@ -1,0 +1,199 @@
+<style>
+.button1 { background-color:blue; font-family:arial; font-size:10pt; color:#ffffff; border-top:1px solid; border-bottom:1px solid; border-left:1px solid; border-right:1px solid }
+td { font-family:arial;font-size:10pt}
+input { font-family:arial;font-size:10pt}
+</style>
+
+<script>
+		var mTimer;
+		var pTimer;
+		var in_room = false;
+		var prev_slide = "";
+		var pCount  = 0;
+		var roomId = "main";
+		
+		function setRoomId(id) {
+		  roomId = id;
+		}
+		
+		function setInRoom(b) {
+		  in_room = b;
+		}
+		
+	function ajaxCall(qs) 	{
+	    var result;
+	    var url = '${serverUrl}/servlet/org.slidemeeting.ChatServlet';
+    	new Ajax.Request(
+        			url, 
+        				{
+            			method: 'post', 
+            			parameters: qs, 
+            			asynchronous: false,
+            			onComplete: function(t) {
+               				result = t.responseText;
+            				},
+            			on404: function(t) {
+               				div_chat.innerHTML = 'Error 404: location "' + t.statusText + '" was not found.';
+               				clearInterval(mTimer);
+            				},
+            				onFailure: function(t) {
+               				div_chat.innerHTML = 'Error ' + t.status + ' -- ' + t.statusText;
+               				clearInterval(mTimer);
+        					}            				
+        				});
+	    return result;
+	}
+
+function checkKey(e) {
+	var keynum;
+	if(window.event) keynum = e.keyCode;
+	else if(e.which) keynum = e.which;
+	if ( keynum == 13 ) sendChatText();
+}
+
+function sendChatText() {
+
+	if ( in_room ) {
+
+		    var user = "$!login";
+		    var message = $('chat_message').value;
+		  
+    		div_chat.innerHTML += "<div><b><font color=\"blue\">me:</font></b>" +  message + "</div>";
+			div_chat.scrollTop = div_chat.scrollHeight; 
+			  		  
+    		ajaxCall('action=doMessage&room=' + escape(roomId) + '&user_profile_id=' + escape($userprofile.id) + '&message=' + escape(message));		  
+  		
+  		  	$('chat_message').value = '';		 
+  		
+  		}
+  		else {
+  
+    		div_chat.innerHTML = 'You are not in room!';				
+  		
+  		}
+ 		
+	}
+		
+	function getChatText() {
+
+  		var user = "$!login";
+  		result = ajaxCall('action=doMessage&room=' + escape(roomId) + '&user_profile_id=' + escape($userprofile.id) + '&message=');
+
+		var response = eval("(" + result + ")");
+
+		for(i=0;i < response.data.messages.message.length; i++) {
+  		  	if (response.data.messages.message[i].text != null && response.data.messages.message[i].text != '' ) {
+		      div_chat.innerHTML += "<div><b>" + response.data.messages.message[i].user + ":</b>" + response.data.messages.message[i].text + "</div>";
+		      div_chat.scrollTop = div_chat.scrollHeight;
+	    	}
+  		}
+   
+  		var slide_current = response.data.slide_number;
+  
+  		if ( prev_slide != slide_current ) {
+    		prev_slide = slide_current;
+    		if ( in_room ) {
+	      		doDivAjaxSilentCall$formname('div_slide','goto_slide','slide_no=' + slide_current + '&room=' + roomId);
+	    	}
+  		} else {
+     		pCount++;
+     		if ( pCount > 1 ) {
+       			pCount = 0;
+       			getPeopleList();
+     		}
+   		}
+   		mTimer = setTimeout('getChatText();',2000); //Refresh our chat in 2 seconds
+	}
+		
+	
+	function getPeopleList() {
+  		doDivAjaxSilentCall$formname('div_people2', 'people_list', 'room=' + roomId);
+	}
+		
+	function checkKey(e) {
+		var keynum;
+
+  		if(window.event) keynum = e.keyCode;
+  		else if(e.which) keynum = e.which;
+
+  		if ( keynum == 13 ) sendChatText();
+
+}
+
+function registerUser(room) {
+   ajaxCall('action=register_user&user_profile_id=$!{userprofile.id}&room=' + room + '&message=');
+}
+
+
+function unRegisterUser(room) {
+   ajaxCall('action=unregister_user&user_profile_id=$!{userprofile.id}&room=' + room + '&message=');
+}
+
+function clearChatBox() {
+  div_chat.innerHTML = "";
+}
+
+##set timer for chat box - actually this function does everything
+mTimer = setTimeout('getChatText();',1000);
+##initialize list of people
+getPeopleList();
+
+
+</script>
+
+
+
+
+
+<table width="100%">
+<tr>
+<td width="100px" valign="top">
+
+<table width="100%">
+<tr><td>
+#parse ( "vm/slideshare/my_profile.vm")
+</td></tr>
+<tr><td>
+
+#parse( "vm/slideshare/people_list.vm")
+</td></tr>
+</table>
+
+</td><td width="720px" valign="top">
+
+<div name="div_upload_slide" id="div_upload_slide"
+style="position:absolute;width:500px;height:270px;visibility:hidden;border-style:solid;border-color:#B4B4B4;background-color:#ffffff";>
+</div>
+
+<div name="div_slide" id="div_slide" style="width:100%">
+#parse( "vm/slideshare/slide_list.vm")
+</div>
+
+
+</td>
+
+<td valign="top">
+
+<table width="100%">
+<tr><td>
+
+
+
+</td></tr>
+<tr><td>
+
+#parse( "vm/slideshare/chat_box.vm")
+
+</td></tr>
+</table>
+
+
+</td>
+
+
+</tr>
+</table>
+
+<script>
+
+</script>

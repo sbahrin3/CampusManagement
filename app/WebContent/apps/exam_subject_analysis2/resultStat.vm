@@ -1,0 +1,59 @@
+<script>
+$('resultStat').style.display="block";
+</script>
+
+<div onclick="$('resultStat').style.zIndex='999';$('gradeFreq').style.zIndex='99';">
+<table width="100%" style="background:#300FA8">
+<tr><td style="color:#fff;font-weight:bold">
+STATISTIC SUMMARY
+</td><td style="width:10px" align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('resultStat').style.display='none';">
+</td></tr></table>
+
+<div style="background:#C6C6C6;padding:2px;margin-bottom:5px;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold;text-align:center">
+$subject.code<br/>$subject.name
+</div>
+<table cellpadding="2" cellspacing="0" align="center">
+
+<tr style="height:35px">
+<td style="width:50px;font-weight:bold;border-top:1px solid;border-bottom:1px solid;border-right:1px solid;">&nbsp;</td>
+<td style="width:100px;font-weight:bold;border-top:1px solid;border-bottom:1px solid" align="center">Total Mark</td>
+<td style="width:100px;font-weight:bold;border-top:1px solid;border-bottom:1px solid" align="center">Point</td>
+</tr>
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">High</td>
+<td style="" align="right">$numFormat.format($highMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($highPoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">Low</td>
+<td style="" align="right">$numFormat.format($lowMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($lowPoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">Average</td>
+<td style="" align="right">$numFormat.format($averageMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($averagePoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">Median</td>
+<td style="" align="right">$numFormat.format($medMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($medPoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">SD</td>
+<td style="" align="right">$numFormat.format($sdMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($sdPoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<img src="../servlet/educate.chart.NormalDistChart?mean=$averageMark&sd=$sdMark&low=0&high=100">
+
+</div>

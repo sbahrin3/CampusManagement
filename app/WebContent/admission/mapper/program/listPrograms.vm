@@ -1,0 +1,25 @@
+<table cellpadding="1" cellspacing="0">
+<tr class="sectionHeader" style="height:30px">
+<td style="width:500px">Online App. Program</td>
+<td style="width:400px">Registration Program</td>
+</tr>
+<tr><td colspan="2">&nbsp;</td></tr>
+#foreach( $p in $onappPrograms )
+<tr>
+<td>
+$p.code - $p.name
+#if ( $p.leadingTo ) - Leading to $p.leadingTo.code #end
+</td>
+<td>
+<select class="textr" name="program_$p.id" onchange="doDivAjaxCall3$formname('saveMapper','saveMapper','onappProgramId=$p.id')">
+<option value=""></option>
+#foreach ( $p2 in $programs )
+<option value="$p2.id" #if ( $mapper.get("$p.id") == $p2.id ) selected #end>$p2.code - $p2.name</option>
+#end
+</select>
+</td>
+</tr>
+#end
+</table>
+
+<div id="saveMapper"></div>

@@ -1,0 +1,94 @@
+<script>
+$('divEditStatus').style.display="block";
+$('div_ontop').style.display="block";
+</script>
+
+<div style="padding:10px">
+
+<table width="100%" style="background:#FFF;border-bottom:1px solid #000"><tr style="height:30px">
+<td style="font-weight:bold;">Edit Student Status</td>
+<td align="right">
+</td></tr></table>
+
+<div style="background:#FFF">
+	
+<table style="width:100%" cellpadding="2">
+	<tr style="height:30px">
+		#if ( !$student.program.isNoneSessionType )
+    		<td class="h" style="width:100px;">Session Name</td>
+    		<td class="h" style="width:150px;">Session Date</td>
+		#end
+		<td class="h" style="">Semester</td>
+		<td class="h" style="width:250px;">Status</td>
+	</tr>
+
+	<tr style="background:$bgcolor;height:30px">
+		#if ( !$student.program.isNoneSessionType )
+			<td nowrap>$studentStatus.session.name &nbsp;&nbsp;</td>
+			<td nowrap>$dateFormat.format($studentStatus.session.startDate) - $dateFormat.format($studentStatus.session.endDate) &nbsp;&nbsp;</td>
+		#end
+		<td nowrap>$!studentStatus.period.name #if ( $studentStatus.period.parent ) ($studentStatus.period.parent.name) #end &nbsp;&nbsp;</td>
+		<td nowrap>
+			#if ( $student.program.isNoneSessionType )
+				$studentStatus.type.name
+			#else
+        		<select class="texts" id="statusId" name="statusId" style="width:250px" onchange="if ( this.value == 'quit' ) { $('div_withdraw').style.display = 'block'; } else { $('div_withdraw').style.display = 'none'; }">
+                #foreach( $type in $types )
+                <option value="$type.id" #if ( $studentStatus.type.id == $type.id ) selected #end>$type.name</option>
+                #end
+                </select>
+    		#end
+		</td>
+	</tr>
+</table>
+<br/>
+
+<div id="div_withdraw" #if ( $studentStatus.type.id == "quit" ) style="display:block" #else style="display:none" #end>
+<table align="right">
+	<tr>
+		<td align="right" style="font-weight:bold">Date :</td>
+		<td>
+			#if ( $studentStatus.statusDate ) #set ($statusDate = $dateFormat.format($studentStatus.statusDate) ) #else #set( $statusDate = "" ) #end
+			<input class="texts" id="statusDate" name="statusDate" value="$!statusDate">
+			<script> new JsDatePick({ useMode:2, target:"statusDate", dateFormat:"%d-%m-%Y" }); </script>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="font-weight:bold">Withdraw Reason :</td>
+		<td>
+			<select class="texts" name="withdrawTypeId" style="width:250px">
+            <option value="">-</option>
+            #foreach( $w in $withdrawTypes )
+            <option value="$w.id" #if ( $studentStatus.withdrawType.id == $w.id ) selected #end>$w.name</option>
+            #end
+            </select>
+		</td>
+	</tr>
+	<tr>
+		<td align="right" style="font-weight:bold">Remark :</td>
+		<td>
+			<input class="texts" name="statusRemark" value="$!studentStatus.remark">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+<br/>
+<table style="width:100%">
+	<tr>
+		<td align="right">
+			#if ( $student.program.isNoneSessionType )
+				<button class="btn btn-primary" type="button" onclick="$('divEditStatus').style.display='none';$('div_ontop').style.display='none';doDivAjaxCall$formname('listStatuses','updateCurrentStatus','studentStatusId=$studentStatus.id')">Set as Current Status</button>	
+			#else
+				<button class="btn btn-primary" type="button" onclick="$('divEditStatus').style.display='none';$('div_ontop').style.display='none';doDivAjaxCall$formname('listStatuses','saveStatus','studentStatusId=$studentStatus.id')">Update Student Status</button>
+			#end
+			<button class="btn btn-default" type="button" onclick="$('divEditStatus').style.display='none';$('div_ontop').style.display='none';">Close</button>
+		</td>
+	</tr>
+</table>
+	
+</div>
+
+
+</div>

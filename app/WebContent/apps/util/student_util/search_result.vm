@@ -1,0 +1,50 @@
+
+
+<table width="100%" align="center"><tr><td align="right">
+$button.command("").text("Back")
+</td></tr></table>
+
+<table width="100%" align="center" cellpadding="1" cellspacing="1">
+<tr>
+<td></td>
+<td>Matric/Name</td>
+<td>Program</td>
+<td>Intake</td>
+<td>Nationality</td>
+<td>
+Visa
+</td>
+<td>
+Passport
+</td>
+</tr>
+<tr><td colspan="10"><hr/></td></tr>
+#foreach( $student in $students )
+#set ( $fontcolor = "red" )
+#if ($student.biodata.nationality)
+#set ( $fontcolor = "black" )
+#end
+<tr #if ( $velocityCount % 2 == 0 ) bgcolor="lightgray" #end>
+<td valign="top" align="right" style="color:$fontcolor">$velocityCount)</td>
+<td valign="top" style="color:$fontcolor">
+$href.command("get_student").param("student_id=$student.id, back_command=$!back_command").style("color:$fontcolor").text("$student.matricNo")<br/>
+$href.command("get_student").param("student_id=$student.id, back_command=$!back_command").style("color:$fontcolor").text("$student.biodata.name")
+<td valign="top" style="color:$fontcolor">#if ($student.program) $student.program.code<br>$student.program.name #else -ND- #end</td>
+<td valign="top" style="color:$fontcolor">#if ($student.intake) $student.intake.code<br>$student.intake.name #end</td>
+
+<td valign="top" style="color:$fontcolor">#if ($student.biodata.nationality) $student.biodata.nationality.name #end</td>
+
+<td valign="top" style="color:$fontcolor">
+#if ($student.biodata.visaNumber) $student.biodata.visaNumber #end<br>
+#if ($student.biodata.visaIssueDate) $dateFormat.format($student.biodata.visaIssueDate) #end<br/>
+#if ($student.biodata.visaExpireDate) $dateFormat.format($student.biodata.visaExpireDate)#end
+</td>
+<td valign="top" style="color:$fontcolor">
+#if ($student.biodata.passport) $student.biodata.passport #end<br/>
+#if ($student.biodata.passportIssueDate) $dateFormat.format($student.biodata.passportIssueDate) #end<br/>
+#if ($student.biodata.passportExpireDate) $dateFormat.format($student.biodata.passportExpireDate) #end
+</td>
+</tr>
+#end
+</table>
+<input type="hidden" name="search_name" value="$!search">

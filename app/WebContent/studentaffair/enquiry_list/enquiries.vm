@@ -1,0 +1,40 @@
+
+<table>
+<tr>
+<td colspan="8" align="right">
+<select class="textr" style="width:200px" name="enquiryStatusList" onchange="doDivAjaxCall3$formname('enquiries','listEnquiries','')">
+<option value="pending" #if ( $enquiryStatusList == "pending" ) selected #end>Pending</option>
+<option value="open" #if ( $enquiryStatusList == "open" ) selected #end>Open</option>
+<option value="in-progress" #if ( $enquiryStatusList == "in-progress" ) selected #end>In Progress</option>
+<option value="close" #if ( $enquiryStatusList == "close" ) selected #end>Close</option>
+</select>
+<input class="linkbutton" type="button" value="List Complaints" onclick="doDivAjaxCall3$formname('enquiries','listEnquiries','')">
+</td>
+</tr>
+<tr style="background:#B5BBBF;height:30px">
+<td style="width:20px;"></td>
+<td style="width:200px;font-weight:bold">Student</td>
+<td style="width:100px;font-weight:bold">Date Posted</td>
+<td style="width:300px;font-weight:bold">Complaint</td>
+<td style="width:300px;font-weight:bold">Action</td>
+<td style="width:150px;font-weight:bold" align="center">Status</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach ( $e in $enquiries )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td style="padding-top:10px;" valign="top">$cnt.</td>
+<td style="padding-top:10px;" valign="top">
+<a href="javascript:void(0)" onclick="doDivAjaxCall3$formname('studentInfo','getStudent','studentId=$e.student.id')">
+$e.student.biodata.name</a>
+<br/>$e.student.matricNo</td>
+<td style="padding-top:10px;" valign="top">$dateFormat.format($e.datePosted)</td>
+<td style="" valign="top"><textarea class="textr" style="height:100px" disabled>$!e.enquiryText</textarea></td>
+<td style="" valign="top"><textarea class="textr" style="height:100px" disabled>$!e.actionText</textarea></td>
+<td style="padding-top:10px;" valign="top" align="center">
+<a href="javascript:void(0)" onclick="doDivAjaxCall3$formname('enquiryInfo','openEnquiry','enquiryId=$e.id')">
+$e.status</a>
+</td>
+</tr>
+#end
+</table>

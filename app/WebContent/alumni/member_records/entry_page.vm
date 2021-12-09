@@ -1,0 +1,72 @@
+
+#macro ( title $title )
+<tr><td colspan="3"></td></tr>
+<tr><td class="section_title" colspan="3">$title</td></tr>
+<tr><td colspan="3"></td></tr>
+#end
+
+#macro ( input $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value" onkeyup="at(this, event)">
+</td></tr>
+#end
+
+#macro ( input_required $input_id $input_title $value)
+<tr><td  valign="top"><span style="color:#FF2A00">*</span>&nbsp;$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value" onkeyup=" $('err_$input_id').innerHTML=''; at(this, event);">
+<div id="err_$input_id" style="color:#CC0000;font-weight:bold;border:2px #000"></div>
+</td></tr>
+#end
+
+#macro ( textarea $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<textarea class="textarea" id="$input_id" name="$input_id">$value</textarea>
+</td></tr>
+#end
+
+#macro ( textarea_required $input_id $input_title $value)
+<tr><td  valign="top"><span style="color:#FF2A00">*</span>&nbsp;$input_title</td><td valign="top">:</td><td>
+<textarea class="textarea" id="$input_id" name="$input_id" onkeyup=" $('err_$input_id').innerHTML=''; at(this, event);">$value</textarea>
+<div id="err_$input_id" style="color:#CC0000;font-weight:bold;border:2px #000"></div>
+</td></tr>
+#end
+
+#macro ( select $input_id $input_title $list $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<select class="texts" id="$input_id" name="$input_id" value="$value">
+<option value=""></option>
+#foreach( $i in $list )
+<option #if ( $i.id == $value ) selected #end value="$i.id">$i.name</option>
+#end
+</select>
+</td></tr>
+#end
+
+#macro ( date_input $input_id $input_title $value )
+<tr><td >$input_title</td><td>:</td><td>
+$html.dateField.name("$input_id").value("$value").style("width:100px").cssClass("texts")
+</td></tr>
+#end
+
+#set ( $member = $r )
+
+<fieldset>
+<legend class="legend">Update Status</legend>
+<table width="80%" cellpadding="1" cellspacing="2">
+<tr><td  style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td >Status</td><td>:</td><td>
+<select class="texts" style="width:300px" name="membershipStatus">
+<option value=""></option>
+<option value="pending" #if ( $member.status == "pending" ) selected #end>Pending</option>
+<option value="approved" #if ( $member.status == "approved" ) selected #end>Approved</option>
+<option value="rejected" #if ( $member.status == "rejected" ) selected #end>Rejected</option>
+</select>
+<input type="button" value="Update Status" onclick="doDivAjaxCall3$formname('updateStatus','updateStatus','memberId=$member.id')">
+</td></tr>
+</table>
+<div id="updateStatus"></div>
+</fieldset>
+<fieldset>
+<legend class="legend">$label_entry</legend>
+#parse("alumni/member_records/membership.vm")
+</fieldset>

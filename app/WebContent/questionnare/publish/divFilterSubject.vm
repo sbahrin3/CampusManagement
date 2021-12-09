@@ -1,0 +1,6 @@
+<select name="filterSubject" class="text">
+<option value=""></option>
+#foreach( $i in $subjects )
+<option value="$i.id">$i.code $i.name</option>
+#end
+</select>

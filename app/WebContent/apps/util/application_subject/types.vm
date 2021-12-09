@@ -1,0 +1,9 @@
+<table>
+<tr>
+#foreach( $t in $types )
+<td id="td_$t" class="gradient" style="font-weight:bold;height:30px;width:100px;cursor:pointer" align="center" onclick="doDivAjaxCall$formname('div_subjects','list_subjects','type=$t')">
+$t
+</td>
+#end
+</tr>
+</table>

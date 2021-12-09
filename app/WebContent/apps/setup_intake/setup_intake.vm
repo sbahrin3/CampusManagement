@@ -1,0 +1,183 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+
+
+#divPathNameX {
+    position:fixed;
+    top: 50%;
+    left: 30%;
+    width:400px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#divPathName {
+    position:fixed;
+    left: 30%;
+    width:400px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#div_input {
+    position:fixed;
+    top: 30%;
+    left: 30%;
+    width:500px;
+    height:200px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+</style>
+
+#set ( $arr_year = [1990..2099] )
+
+
+<div style="padding:10px">
+	
+<div id="display_error_message" style="font-family:helvetica; font-weight:bold; color:red"></div>
+
+
+	<table>
+		
+		
+		<tr>
+			<td>
+				<div id="listPath">
+				#parse("apps/setup_intake/listPath.vm")
+				</div>
+			</td>
+			<td>&nbsp;</td>
+			<td style="width:50px">
+				<button class="btn btn-primary" type="button" style="" onclick="get()">Get</button>
+			</td>
+			<td>&nbsp;</td>
+			<td style="width:50px">
+				<button class="btn btn-success" type="button" style="" onclick="doDivAjaxCall$formname('divPathName','editPathName','')">Rename</button>
+			</td>
+			<td>&nbsp;</td>
+			<td style="width:50px">
+				#if ( $modeAdmin )
+				<input class="linkbutton" type="button" style="" value="Remove Sessions!" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('divResult','removeSessions','')">
+				#end
+			</td>
+			<td style="width:400px" align="right">
+				##<a href="javascript:void()" onclick="scrollDown()">Go Last</a>
+			</td>
+			<td></td>
+		</tr>	
+		
+		
+	</table>
+	
+	
+		
+		<div class="shadow" id="divPathName" style="display:none"></div>
+		
+		<div class="shadow" id="div_input" name="div_input" style="">
+		<table width="100%" cellpadding="1" cellspacing="1">
+    		<tr>
+    			<td>
+    				#parse("apps/setup_intake/div_form.vm")
+    			</td>
+    			<td style="width:10px">
+    			</td>
+    		</tr>
+		</table>
+		</div>
+
+		
+		<br>
+			
+
+
+<div id="list_sessions" name="list_sessions"></div>
+##style="overflow:auto;width:800px;height:500px;border:1px solid #000;border-color:#B4B4B4"></div>
+
+
+	#if ( $modeAdmin )
+		#parse("apps/setup_intake/copy_path.vm")
+	#end
+
+	<input type="hidden" name="session_id">
+	<input type="hidden" name="direction" value="$direction">
+		
+		
+</div>
+
+<div id="divResult"></div>
+<script>
+
+
+function add() {
+	if ( $('actionButton').value == "Add Session" ) {
+		doDivAjaxCall$formname('list_sessions','add_session','');
+	} else {
+		doDivAjaxCall$formname('list_sessions','update_session','');
+		$('actionButton').value = 'Add Session';
+		$('div_input').style.display = 'none';
+	}
+	
+}
+	
+function removeSession(id) {
+	if ( !window.confirm('Are you sure?') ) return;
+	$('session_id').value = id;
+	doDivAjaxCall$formname('list_sessions', 'remove_session','');
+}
+
+function edit(session_id, session_code, session_name, year1, month1, day1, year2, month2, day2) {
+	$('session_id').value = session_id;
+	$('session_code').value = session_code;
+	$('session_name').value = session_name;
+	$('year1').value = year1;
+	$('month1').value = month1;
+	$('day1').value = day1;
+	$('year2').value = year2;
+	$('month2').value = month2;
+	$('day2').value = day2;
+	$('div_input').style.display = 'block';
+	$('actionButton').value = 'Update Session';
+	$('actionTitle').innerHTML = 'UPDATE SESSION';
+}
+function cancelUpdate() {
+		$('div_input').style.display = 'none';
+		$('actionButton').value = 'Add Session';
+	}
+function get() {
+doDivAjaxCall$formname('list_sessions','list_sessions','');
+}
+function getOrder(s) {
+$('direction').value = s;
+	get();
+}
+function scrollDown() {
+	list_sessions.scrollTop = list_sessions.scrollHeight;
+}
+function showAddSession() {
+	$('div_input').style.display = 'block';
+	$('actionButton').value = 'Add Session';
+	$('actionTitle').innerHTML = 'ADD NEW SESSION';
+}
+function showEditSession() {
+	$('div_input').style.display = 'block';
+	$('actionButton').value = 'Update Session';
+	$('actionTitle').innerHTML = 'UPDATE SESSION';
+}
+
+_jq(document).ready(function () {
+	get();
+});
+</script>	

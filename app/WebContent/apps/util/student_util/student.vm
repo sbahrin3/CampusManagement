@@ -1,0 +1,104 @@
+<table width="600" align="center"><tr><td>
+
+<table width="100%" align="center"><tr><td>
+$button.command("$back_command").text("Back")
+</td></tr></table>
+
+
+
+<table width="100%">
+<tr><td valign="top">
+
+<table width="100%" align="center">
+
+<tr><td style="width:50px">Matric:</td><td>$href.command("get_student").param("student_id=$student.id, back_command=$!back_command").text("$student.matricNo")</td></tr>
+
+<tr><td>Name:</td><td><input name="name" value="$!student.biodata.name" style="font-weight:bold;width:250px"></td></tr>
+
+<tr><td>DOB:</td><td>
+#if ( $student.biodata.dob ) 
+$html.dateField.name("dob").value("$dateFormat.format($student.biodata.dob)").style("width:100px") 
+#else
+$html.dateField.name("dob").value("").style("width:100px") 
+#end</td></tr>
+
+
+<tr><td colspan="2"><br/></td></tr>
+
+<tr><td>Nationality:</td><td>
+						$html.getDropDownRequired($nationalities,$!student.biodata.nationality.id).name("nationality").style("width:250px").message("Please Select Nationality")
+</td></tr>
+<tr><td>Race:</td><td>
+						$html.getDropDownRequired($races,$!student.biodata.race.id).name("race").style("width:250px").message("Please Select Race")
+					</td>
+</td></tr>
+
+<tr><td colspan="2"><br/></td></tr>
+
+<tr><td><b>Passport:</b></td><td>
+<input name="passport_no" value="$!student.biodata.passport" style="font-weight:bold;width:250px">
+</td></tr>
+<tr><td>Issue Date:</td><td>
+#if ( $student.biodata.passportIssueDate ) 
+$html.dateField.name("passport_date_issue").value("$dateFormat.format($student.biodata.passportIssueDate)").style("width:100px") 
+#else
+$html.dateField.name("passport_date_issue").value("").style("width:100px") 
+#end
+</td></tr>
+<tr><td>Expire Date:</td><td>
+#if ( $student.biodata.passportExpireDate ) 
+$html.dateField.name("passport_date_expire").value("$dateFormat.format($student.biodata.passportExpireDate)").style("width:100px") 
+#else
+$html.dateField.name("passport_date_expire").value("").style("width:100px") 
+#end
+</td></tr>
+
+<tr><td colspan="2"><br/></td></tr>
+
+<tr><td><b>Visa:</b></td><td><input name="visa_no" value="$!student.biodata.visaNumber" style="font-weight:bold;width:250px"></td></tr>
+<tr><td>Issue Date:</td><td>
+#if ( $student.biodata.visaIssueDate ) 
+$html.dateField.name("visa_date_issue").value("$dateFormat.format($student.biodata.visaIssueDate)").style("width:100px") 
+#else
+$html.dateField.name("visa_date_issue").value("").style("width:100px") 
+#end</td></tr>
+<tr><td>Expire Date:</td><td>
+#if ( $student.biodata.visaExpireDate ) 
+$html.dateField.name("visa_date_expire").value("$dateFormat.format($student.biodata.visaExpireDate)").style("width:100px") 
+#else
+$html.dateField.name("visa_date_expire").value("").style("width:100px") 
+#end</td></tr>
+
+
+
+<tr><td colspan="2"><br/></td></tr>
+
+<tr><td>Telephone:</td><td><input style="width:250px" name="telephone" value="$!student.biodata.telephoneNo"></td></tr>
+<tr><td>Mobile:</td><td><input style="width:250px" name="mobile" value="$!student.biodata.mobileNo"></td></tr>
+<tr><td>Email:</td><td><input style="width:250px" name="email" value="$!student.biodata.email"></td></tr>
+<tr><td>Email 2:</td><td><input style="width:250px" name="email2" value="$!student.biodata.email2"></td></tr>
+
+<tr><td colspan="2"></td></tr>
+<tr><td colspan="2" align="right">
+$button.command("save_info").param("student_id=$student.id, back_command=$!back_command").text("SAVE INFO")
+</td></tr>
+
+
+</table>
+
+
+</td><td valign="top" align="right">
+<u><i>Program</i></u><br/>
+<b>$student.program.name ($student.program.code)</b><br/><br/>
+<u><i>Intake</i></u><br/>
+<b>$student.intake.name ($student.intake.code)</b><br/><br/>
+<u><i>Current Session</i></u><br/>
+<b>$student_status.session.name</b><br/><br/>
+<u><i>Current Semester</i></u><br/>
+<b>$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) </b><br/>#end
+</b>
+
+</td></tr>
+
+</td></tr></table>
+<input type="hidden" name="search_name" value="$!search">

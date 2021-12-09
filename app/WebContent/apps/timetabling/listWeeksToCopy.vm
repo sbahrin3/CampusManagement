@@ -1,0 +1,6 @@
+
+<select name="week_copy" style="width:100px">
+#foreach( $w in [1..$weeks] )
+	<option value="$w">Week $w</option>
+#end
+</select>

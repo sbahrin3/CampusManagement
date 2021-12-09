@@ -1,0 +1,18 @@
+<table width="100%" border="0" align="center"><tr><td>
+
+<div class="shadow" name="div_find_student" id="div_find_student"
+style="width:800px;height:340px;position:absolute;visibility:hidden;border-style:solid;border-color:#D2D2D2;background-color:#ffffff;">
+<table width="100%"><tr height="30px" bgcolor="lightgrey"><td align="right" style="font-weight:bold">
+
+##<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_find_student2','find_student','sponsor_id=$sponsor.id')">Find Again</a> |
+<a href="javascript:void()" onclick="$('div_find_student').style.visibility='hidden';$('div_find_student2').style.visibility='hidden'">Close</a>
+
+</td></tr>
+<tr><td>
+<div id="div_find_student2" name="div_find_student2" style="overflow:auto;height:300px;width:100%">
+</div>
+
+</td></tr></table>
+</div>
+
+</td></tr></table>

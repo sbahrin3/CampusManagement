@@ -1,0 +1,46 @@
+<table cellpadding="4">
+<tr style="height:30px;background:#AFB1B5">
+<td style="font-weight:bold;" align="center">&nbsp;</td>
+<td style="font-weight:bold;" align="center">IC No</td>
+<td style="font-weight:bold;" align="center">Matric No</td>
+<td style="font-weight:bold;" align="center">Name</td>
+<td style="font-weight:bold;" align="center">Address</td>
+<td style="font-weight:bold;" align="center">Telephone</td>
+<td style="font-weight:bold;" align="center"></td>
+<td style="font-weight:bold;" align="center"></td>
+<td></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $g in $graduates )
+#set ( $cnt = $cnt + 1 )
+<tr style="background:#EDEFF2">
+<td style="width:30px" valign="top">$cnt.</td>
+<td style="width:120px" valign="top">$!g.student.biodata.icno</td>
+<td style="width:120px" valign="top">$!g.student.matricNo</td>
+<td style="width:250px" valign="top">$util.capitalized($!g.student.biodata.name)</td>
+<td style="width:250px" valign="top">
+#if ( $g.student.address.address1 && $g.student.address.address1 != "" ) $!g.student.address.address1<br/> #end
+#if ( $g.student.address.address2 && $g.student.address.address2 != "" ) $!g.student.address.address2<br/> #end
+#if ( $g.student.address.address3 && $g.student.address.address3 != "" ) $!g.student.address.address3<br/> #end
+#if ( $g.student.address.address4 && $g.student.address.address4 != "" ) $!g.student.address.address4<br/> #end
+#if ( $g.student.address.postcode && $g.student.address.postcode != "") $!g.student.address.postcode #end
+#if ( $g.student.address.city ) $!g.student.address.city<br/> #end
+#if ( $g.student.address.state ) $!g.student.address.state.name #end
+</td>
+<td style="width:150px" valign="top">
+#if ( $g.student.biodata.telephoneNo && $g.student.biodata.telephoneNo != "" ) $g.student.biodata.telephoneNo<br/> #end
+#if ( $g.student.biodata.mobileNo && $g.student.biodata.mobileNo != "" ) $g.student.biodata.mobileNo #end
+</td>
+<td align="center"><input class="linkbutton" type="button" value="Invitation Letter"
+onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintGraduationInvitationModule?graduateId=$!g.id&pdfName=$!{g.student.biodata.name}-invitation'"></td>
+<td align="center">
+
+##<input class="linkbutton" type="button" value="Scroll" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintGraduationScrollModule?graduateId=$!g.id&pdfName=$!{g.id}-invitation'">
+
+<input class="linkbutton" type="button" value="Scroll" onclick="popitup('$!{g.id}', '../v/educate.sis.module.PrintGraduationScrollModule?graduateId=$!g.id')">
+
+</td>
+<td></td>
+</tr>
+#end
+</table>

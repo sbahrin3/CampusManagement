@@ -1,0 +1,133 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+</style>
+
+<table width="800" align="center"><tr><td>
+
+#if ( $student )
+
+
+<input type="hidden" name="student_status_id" value="$!student_status.id">
+<input type="hidden" name="student_id" value="$!student.id">
+
+<table width="100%"><tr><td>
+
+
+#parse("apps/util/student_info/student_info.vm")
+
+
+#if ( $student_status )
+
+
+<table width="90%" align="center"><tr><td align="center">
+<div class="shadow" name="div_registered_subjects_main" id="div_registered_subjects_main"
+style="width:800px;height:300px;background-color:#ffffff;visibility:hidden;position:absolute;border-style:solid;border-color:#2D2D2D;background-color:#ffffff">
+
+<table width="100%"><tr height="30px" bgcolor="lightgrey"><td align="right" style="font-weight:bold">
+[<a href="javascript:void()" onclick="$('div_registered_subjects_main').style.visibility='hidden';$('div_registered_subjects').style.visibility='hidden'">Close</a>]
+</td></tr>
+<tr><td>
+<div name="div_registered_subjects" id="div_registered_subjects" style="position:relative;overflow:auto;height:260px;width:100%"></div>
+</td></tr></table>
+
+</div>
+</td></tr></table>
+
+
+
+
+<br>
+<table width="100%"><tr><td>
+<fieldset style="background-color:#D4FFFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%">
+<tr><td align="center">
+<input class="gradient" type="button" style="height:35px;font-weight:bold" value="Previous Registered Subjects" onclick="$('div_registered_subjects_main').style.visibility='visible';doDivAjaxCall$formname('div_registered_subjects','registered_subjects','')">
+<input class="gradient" type="button" style="height:35px;font-weight:bold" value="View Statement of Account" onclick="$('div_registered_subjects_main').style.visibility='visible';doDivAjaxCall$formname('div_registered_subjects','statement_account','')">
+</td></tr>
+</table>
+
+</fieldset></td></tr></table>
+
+
+
+<br>
+<table width="100%"><tr><td>
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+#if ( $outstanding_amount > 0 )
+<fieldset style="background-color:#FFD4AA;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="background-color:#000000;color:#FF0000;font-family:arial;font-size:12pt;font-weight:bold">&nbsp;Message&nbsp;</legend>
+<table width="100%"><tr><td style="font-family:verdana;font-size:10pt">
+There are outstanding amount of <b>RM $numFormat.format($outstanding_amount)</b> in your account.<br><br>
+Please proceed with the payment prior to the subjects registration.  For details click at the 
+Statement of Account.
+</td></tr></table>
+</fieldset>
+#end
+##if ( $student_mode && $outstanding_amount == 0 )
+
+<table width="100%">
+<tr height="30px"><td style="font-weight:bold">
+List Of Subjects.
+</td></tr></table>
+
+<table width="100%" cellspacing="0">
+<tr height="30px" bgcolor="lightgrey">
+<td width="30px" style="font-weight:bold"></td>
+<td width="100px" style="font-weight:bold">Code</td>
+<td style="font-weight:bold">Subject Name</td>
+<td width="100px"></td>
+</tr>
+</table>
+
+##LIST SUBJECTS
+
+
+#foreach( $s in $subject_list )
+
+#set ( $student_subjects = $student_status.studentSubjects )
+
+#set ( $has_registered = "no" )
+#foreach ( $student_subject in $student_subjects )
+#if ( $student_subject.subject.id == $s.subject.id ) #set ( $has_registered = "yes" ) #end
+#end
+
+<div name="div_subject_$s.id" id="div_subject_$s.id">
+#if ( $has_registered == "yes" )
+
+#parse("apps/util/subject_registration_student/subject_list_item_registered.vm")
+
+#else
+
+#parse("apps/util/subject_registration_student/subject_list_item.vm")
+
+#end
+</div>
+#end
+</table>
+
+
+#end
+
+</fieldset></td></tr></table>
+#if ( $student_status )
+<div name="div_reg_status" id="div_reg_status">
+#parse("apps/util/subject_registration_student/reg_status.vm")
+</div>
+#else
+<table width="50%" align="center"><tr><td align="center" style="font-weight:bold;color:red">
+ERROR: CAN'T GET STUDENT STATUS
+</td></tr></table>
+#end
+
+#end
+
+
+</td></tr></table>
+
+
+

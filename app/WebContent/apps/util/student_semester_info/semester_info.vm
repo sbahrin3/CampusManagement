@@ -1,0 +1,40 @@
+<table width="700" align="center"><tr><td>
+
+<table width="100%">
+<tr height="30px" bgcolor="lightgrey"><td style="font-weight:bold">Student's Information</td></tr>
+</table>
+
+<table width="100%">
+<tr><td style="width:200px">Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>Learning Centre:</td><td style="font-weight:bold">$student.learningCenter.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+
+
+<tr><td>Current Semester:</td><td style="font-weight:bold">
+$student_status.period.name 
+
+#if ( $student_status.period.parent )
+
+($student_status.period.parent.name)
+
+#end
+
+</td></tr>
+
+
+</table>
+
+<table width="100%">
+<tr height="30px" bgcolor="lightgrey"><td style="font-weight:bold">List Of Registered Subjects</td></tr>
+</table>
+
+
+<table width="100%">
+#foreach ( $s in $student_subjects )
+<tr><td>$s.subject.code</td><td>$s.subject.name</td></tr>
+#end
+</table>
+
+
+</td></tr></table>

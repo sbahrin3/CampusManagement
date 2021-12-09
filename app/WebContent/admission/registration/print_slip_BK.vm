@@ -1,0 +1,51 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {font-family:verdana;font-size:10pt;font-weight:bold;}
+td {font-family:verdana;font-size:10pt;}
+</style>
+
+<table width="100%" align="left">
+<tr><td align="right">
+<img src="../barcode?data=$!student.matricNo" border="0">
+</td></tr>
+<tr><td>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:verdana;font-size:12pt;font-weight:bold">REGISTRATION SLIP</legend>
+
+<table width="100%">
+<tr height="0px"><td style="width:120px"></td><td style="width:10px"></td><td></td><td style="width:150px"></td></tr>
+
+
+<tr height="30px"><td style="width:120px">Matric No</td><td style="width:10px">:</td><td class="text">$student.matricNo</td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Name</td><td style="width:10px">:</td><td class="text">$student.biodata.name</td><td style="width:150px"></td></tr>
+<tr height="30px"><td style="width:120px">MyKad</td><td style="width:10px">:</td><td class="text">$student.biodata.icno</td><td style="width:150px"></td></tr>
+<tr height="30px"><td style="width:120px">Passport</td><td style="width:10px">:</td><td class="text">$student.biodata.passport</td><td style="width:150px"></td></tr>
+
+#if ( $student.biodata.dob )
+$dateFormat.applyPattern("d MMM, yyyy")
+<tr height="30px"><td style="width:120px">Date Of Birth</td><td style="width:10px">:</td><td class="text">$dateFormat.format($student.biodata.dob)</td><td style="width:150px"></td></tr>
+#end
+
+#if ( $student.biodata.gender )
+<tr height="30px"><td style="width:120px">Gender</td><td style="width:10px">:</td><td class="text">$student.biodata.gender.name</td><td style="width:150px"></td></tr>
+#end
+
+<tr height="30px"><td style="width:120px">Program</td><td style="width:10px">:</td><td class="text">$student.program.code $student.program.name</td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Intake</td><td style="width:10px">:</td><td class="text">$student.intake.code $student.intake.name</td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Learning Centre</td><td style="width:10px">:</td><td class="text">$student.learningCenter.code $student.learningCenter.name</td><td style="width:150px"></td></tr>
+
+</table>
+
+</fieldset>
+
+</td></tr></table>
+
+<script>
+window.print();
+</script>

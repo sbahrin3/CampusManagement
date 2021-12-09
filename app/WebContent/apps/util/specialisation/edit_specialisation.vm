@@ -1,0 +1,11 @@
+
+<table>
+<tr><td>Specialisation Code:</td><td><input name="code" value="$specialisation.code" style="width:100px"></td></tr>
+<tr><td>Specialisation Name:</td><td><input name="name" value="$specialisation.name" style="width:300px"></td></tr>
+
+<tr><td></td><td>
+<input type="button" value="Update" onclick="doDivAjaxCall$formname('list_specialisations', 'update_specialisation', 'specialisation_id=$specialisation.id')">
+</td></tr>
+</table>
+
+<br><br>

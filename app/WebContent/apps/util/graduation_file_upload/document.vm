@@ -1,0 +1,52 @@
+#set ( $row = 1 )
+<table>
+#foreach ( $num in [1..20] )
+<tr><td style="width:250px;padding-top:7px" valign="top">Graduation Document $num:</td><td>
+<table>
+<tr><td style="width:250px">
+<input type="file" id="document$num" name="document$num" style="width:200px">
+</td><td>
+<input type="button" value="Upload" onclick="uploadDocument('document$num', 'divDocument${num}_${row}')">
+<input type="button" value="Remove" onclick="if ( !confirm('Remove document?') ) return; doDivAjaxCall3$formname('divDocument${num}_${row}','deleteDocument','documentId=document$num')">
+</td></tr>
+</table>
+<table>
+<tr>
+<td colspan="2">
+<span id="divDocument${num}_${row}">
+#set ( $document = "" )
+
+#if ( $num == 1 ) #set ( $document = $graduationForm.document1 )
+#elseif ( $num == 2 ) #set ( $document = $graduationForm.document2 )
+#elseif ( $num == 3 ) #set ( $document = $graduationForm.document3 )
+#elseif ( $num == 4 ) #set ( $document = $graduationForm.document4 )
+#elseif ( $num == 5 ) #set ( $document = $graduationForm.document5 )
+#elseif ( $num == 6 ) #set ( $document = $graduationForm.document6 )
+#elseif ( $num == 7 ) #set ( $document = $graduationForm.document7 )
+#elseif ( $num == 8 ) #set ( $document = $graduationForm.document8 )
+#elseif ( $num == 9 ) #set ( $document = $graduationForm.document9 )
+#elseif ( $num == 10 ) #set ( $document = $graduationForm.document10 )
+#elseif ( $num == 11 ) #set ( $document = $graduationForm.document11 )
+#elseif ( $num == 12 ) #set ( $document = $graduationForm.document12 )
+#elseif ( $num == 13 ) #set ( $document = $graduationForm.document13 )
+#elseif ( $num == 14 ) #set ( $document = $graduationForm.document14 )
+#elseif ( $num == 15 ) #set ( $document = $graduationForm.document15 )
+#elseif ( $num == 16 ) #set ( $document = $graduationForm.document16 )
+#elseif ( $num == 17 ) #set ( $document = $graduationForm.document17 )
+#elseif ( $num == 18 ) #set ( $document = $graduationForm.document18 )
+#elseif ( $num == 19 ) #set ( $document = $graduationForm.document19 )
+#elseif ( $num == 20 ) #set ( $document = $graduationForm.document20 )
+#end
+
+#if ( $document != "" )
+<a href="../download?file=$document" style="">$fileNameUtil.filePart("$document")</a>
+#end
+</span>
+</td>
+<td>
+</td>
+</tr>
+</table>
+</td></tr>
+#end
+</table>

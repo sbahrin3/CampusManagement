@@ -1,0 +1,62 @@
+
+
+<div style="">
+	#if ( !$studentMode )
+    <table>
+    	<tr style="height:20px"><td style="width:150px;font-weight:bold">NAME</td><td style="width:10px">:</td><td style="font-weight:bold">$student.biodata.name.toUpperCase()</td></tr>
+    	<tr style="height:20px"><td style="font-weight:bold">NRIC/PASSPORT</td><td>:</td><td style="font-weight:bold">#if ( $student.biodata.icno != "" ) $student.biodata.icno #else $!student.biodata.passport #end</td></tr>
+    	<tr style="height:20px"><td style="font-weight:bold">STUDENT ID</td><td>:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+    	<tr style="height:20px"><td style="font-weight:bold">PROGRAMME</td><td>:</td><td style="font-weight:bold">$student.program.name</td></tr>
+    </table>
+    <br/>
+	#end
+    <table cellpadding="2" cellspacing="0">
+    	<tr style="height:30px;background:#F4F2F2">
+    		<td style="width:80px;font-weight:bold;border-bottom:2px solid #CCC;border-right:2px solid #CCC;border-top:2px solid #CCC;border-left:2px solid #ccc" align="center">DATE</td>
+    		<td style="width:80px;font-weight:bold;border-bottom:2px solid #CCC;border-right:2px solid #CCC;border-top:2px solid #CCC" align="center">DAY</td>
+    		<td style="width:200px;font-weight:bold;border-bottom:2px solid #CCC;border-right:2px solid #CCC;border-top:2px solid #CCC" align="center">TIME</td>
+    		<td style="width:100px;font-weight:bold;border-bottom:2px solid #CCC;border-right:2px solid #CCC;border-top:2px solid #CCC" align="center">SUBJECT<br/>CODE</td>
+    		<td style="width:300px;font-weight:bold;border-bottom:2px solid #CCC;border-right:2px solid #CCC;border-top:2px solid #CCC" align="center">SUBJECT</td>
+			<td style="width:200px;font-weight:bold;border-bottom:2px solid #CCC;border-right:2px solid #CCC;border-top:2px solid #CCC" align="center">CLASS TYPE</td>
+    		<td style="width:200px;font-weight:bold;border-bottom:2px solid #CCC;border-right:2px solid #CCC;border-top:2px solid #CCC" align="center">ROOM</td>
+    	</tr>
+		#set ( $cnt = 0 )
+        #foreach( $item in $items )
+			#if ( $item.date.after($yesterday) )
+    			#set ( $cnt = $cnt + 1 )
+    			#if ( $cnt > 8 )
+    				<tr id="tr_$cnt" style="height:30px;display:none">
+    			#else
+    				<tr id="tr_$cnt"style="height:30px;">
+    			#end
+            		<td align="center" style="width:80px;border-bottom:2px solid #CCC;border-right:2px solid #CCC;border-left:2px solid #ccc">$dateFormat.format($item.date)</td>
+            		<td align="center" style="width:80px;border-bottom:2px solid #CCC;border-right:2px solid #CCC">$item.dayName</td>
+            		<td align="center" style="width:200px;border-bottom:2px solid #CCC;border-right:2px solid #CCC">$timeFormat.format($item.startTime) - $timeFormat.format($item.endTime)</td>
+            		<td align="center" style="width:100px;border-bottom:2px solid #CCC;border-right:2px solid #CCC">$item.subject.code</td>
+            		<td style="width:300px;border-bottom:2px solid #CCC;border-right:2px solid #CCC">$item.subject.name</td>
+        			<td align="center" style="width:200px;border-bottom:2px solid #CCC;border-right:2px solid #CCC">$item.classroomType</td>
+            		<td align="center" style="width:200px;border-bottom:2px solid #CCC;border-right:2px solid #CCC">$item.room.name</td>
+        		</tr>
+			#end
+			#if ( $cnt == 11 )
+				<tr id="showAll">
+					<td colspan="6"></td>
+					<td align="right" style="cursor:pointer" onclick="showAll()">
+						Show All..
+					</td>
+				</tr>
+			#end
+		#end
+		<tr id="hideMe" style="display:none">
+			<td colspan="6"></td>
+			<td align="right" style="cursor:pointer" onclick="hideMe()">
+			Hide..
+			</td>
+		</tr>
+		<script>
+			setmaxr($cnt)
+		</script>
+
+	</table>
+</div>
+	

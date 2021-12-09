@@ -1,0 +1,14 @@
+<table width="100%" align="left">  
+<tr><td>
+<input name="student_no">
+<input type="button" value="Get Student..." onclick="doDivAjaxCall$formname('div_student','get_student',''">
+</td></tr>
+<tr><td>
+
+
+<div id="div_student" name="div_student"></div>
+
+
+
+
+</td></tr></table>

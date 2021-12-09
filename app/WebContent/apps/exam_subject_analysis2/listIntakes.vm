@@ -1,0 +1,7 @@
+
+<select class="input-text" style="width:400px" id="intakeId" name="intakeId" onchange="if ( this.value != '' ) { $('reportButton').style.display='block'; doDivAjaxCall$formname('listSessions','listSessions',''); } else { $('reportButton').style.display='none'; }">
+##<option value=""></option>
+#foreach ( $s in $intakes )
+<option value="$s.id">$s.code $s.name</option>
+#end
+</select>

@@ -1,0 +1,76 @@
+
+<table>
+	<tr>
+		<td>
+			Subject: 
+			<select name="subjectId" class="text" style="width:300px">
+				<option value="">Combination of all subjects</option>
+				#foreach( $s in $subjects )
+					<option value="$s.id" #if ( $subject.id == $s.id ) selected #end>$s.code - $s.name</option>
+				#end
+			</select>
+			<input class="linkbutton" type="button" value="View Statistic" onclick="doDivAjaxCall$formname('div_main','statisticByAllFaculties','setId=$set.id&dateStart=$dateFormat.format($startDate)')">
+			<input class="linkbutton" type="button" value="Back" onclick="doDivAjaxCall$formname('div_main','home','')">
+		</td>
+	</tr>
+</table>
+<br/>
+<br/>
+<div style="font-family:Verdana;font-size:11pt;font-weight:bold">
+	#if ( $subject )
+		$subject.code $subject.name
+	#else
+		Combination of all subjects
+	#end
+</div>
+<br/>
+<br/>
+
+<a class="linkbutton" style="font-family:Verdana;font-size:9pt" href="javascript:void(0)" onclick="document.location='../servlet/educate.questionnare.StatisticXLServlet?reportType=faculties'">Download as EXCEL Document</a>
+<br/>
+<br/>
+<div style="overflow-y:scroll;overflow-x:scroll;width:100%;height:400px;">
+	
+<table cellpadding="2" cellspacing="0"> 
+	<tr>
+		<td class="cell_end" style="width:50px;border-top:1px solid #000" align="center">#</td>
+		<td class="cell_end" style="width:200px;border-top:1px solid #000" align="center">Item</td>
+		#foreach($faculty in $faculties)
+			<td class="cell_end" style="border-bottom:1px solid #000;;border-top:1px solid #000" colspan="4" style="width:150px" align="center">
+				$faculty.code<br/>
+				$faculty.name
+			</td>
+		#end
+	</tr>
+	
+	<tr>
+		<td class="cell_end" style="border-bottom:1px solid #000">&nbsp;</td>
+		<td class="cell_end" style="border-bottom:1px solid #000">&nbsp;</td>
+		#foreach($faculty in $faculties)
+			<td class="cell" style="width:50px;border-bottom:1px solid #000" align="center">Mean</td>
+			<td class="cell" style="width:50px;border-bottom:1px solid #000" align="center">Median</td>
+			<td class="cell" style="width:50px;border-bottom:1px solid #000" align="center">SD</td>
+			<td class="cell_end" style="width:50px;border-bottom:1px solid #000" align="center">n</td>
+		#end
+	</tr>
+		
+		#set ( $cnt = 0 )
+    	#foreach($refNo in $refNos)
+			#set ( $cnt = $cnt + 1 )
+			#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E2E2E2" ) #else #set ( $bgcolor = "#FFFFFF" ) #end
+    		#set ( $question = $questionMap.get("$refNo") )
+    		<tr style="background:$bgcolor;height:50px">
+    			<td class="cell_end" style="width:50px">$refNo</td>
+    			<td class="cell_end" style="width:200px">$question.questionText</td>
+    		#foreach($faculty in $faculties)
+    			#set ( $stat = $statMap.get("${faculty.id}${refNo}") )
+				<td class="cell" style="width:50px" align="center">$stat.mean_</td>
+				<td class="cell" style="width:50px" align="center">$stat.median_</td>
+				<td class="cell" style="width:50px" align="center">$stat.sd_</td>
+				<td class="cell_end" style="width:50px" align="center">$stat.size</td>
+    		#end
+    		</tr>
+    	#end
+</table>
+	
+</div>

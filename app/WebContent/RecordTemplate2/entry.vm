@@ -1,0 +1,63 @@
+<input id="current_page_num" name="current_page_num" type="hidden" value="$!current_page_num">
+<div id="div_list" name="div_list" style="display:none"></div>
+
+<div id="search_entry">
+<fieldset style="background-color:#fff;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">Search:</legend>
+<table width="100%">
+
+<tr><td>
+
+<div id="search_page" name="search_page" style="display:block;">
+<table width="100%">
+<tr><td colspan="2" align="center">
+#parse("$search_entry_page")
+</td></tr>
+<tr>
+<td>
+<input class="button" type="button" value="LIST ALL RECORDS" onclick="$('div_list').innerHTML='<img src=../img/wait-animated.gif><br/>Please Wait...';$('div_list').style.display='block';doDivAjaxCall3$formname('div_list','list','');$('divDataEntry').style.display='none';$('search_entry').style.display='none'; $('search_open').innerHTML='Open Search';">
+</td>
+<td align="right">
+<input class="button" type="button" value="FIND..." onclick="if ( checkSearchField() ) { $('div_list').innerHTML='<img src=../img/wait-animated.gif><br/>Please Wait...';$('div_list').style.display='block'; doDivAjaxCall3$formname('div_list','list_find','');$('divDataEntry').style.display='none';$('search_entry').style.display='none';  $('search_open').innerHTML='Open Search';}">
+</td></tr>
+</table>
+</div>
+
+</td></tr></table>
+</fieldset>
+</div>
+
+<table width="100%"><tr><td>&nbsp;</td><td style="height:25px;width:150px;background:#C6DFE6" align="center">
+<span id="_mix_min">
+<a href="javascript:void(0)" style="text-decoration:none;color:#000;" 
+onclick="if ( $('search_entry').style.display == 'none' ) { _jq('#search_entry').slideDown('slow'); $('search_open').innerHTML = 'Close Search'; } else {_jq('#search_entry').slideUp('slow'); $('search_open').innerHTML = 'Open Search'; } ">
+
+<span id="search_open">Search</span>
+
+</a>
+</span>
+</td></tr></table>
+
+<br>
+
+<table width="100%">
+<tr><td align="right">
+##<input class="button" type="button" value="TAMBAH BARU" onclick="doDivAjaxCall3$formname('div_main','add_new','')">
+##<input class="button" type="button" value="UPDATE STATUS" onclick="doDivAjaxCall$formname('div_main','save_data','record_id=$!r.id')">
+</td></tr>
+</table>
+
+<div id="divDataEntry">
+<table width="100%">
+<tr><td style="width:200px"></td><td style="width:10px"></td><td></td></tr>
+
+#parse("$data_entry_page")
+
+<tr><td colspan="3" style="height:30px" align="right"></td></tr>
+<tr><td colspan="3" align="right">
+##<input class="button" type="button" value="SIMPAN" onclick="doDivAjaxCall$formname('div_main','save_data','record_id=$!r.id')">
+</td></tr>
+
+
+</table>
+</div>

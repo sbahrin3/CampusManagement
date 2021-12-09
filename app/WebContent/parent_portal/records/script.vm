@@ -1,0 +1,17 @@
+function validate() {
+	var err_count = 0;
+	
+	if ( $('email').value == "" ) {
+		$('errorMessage').style.display = "block";
+		$('errorMessage').innerHTML = "Email is required";
+		err_count++;
+	}
+	if ( $('identityNo').value == "" ) {
+		$('errorMessage').style.display = "block";
+		$('errorMessage').innerHTML = "IC No is required";
+		err_count++;
+	}	
+	
+	
+	return err_count == 0;
+}

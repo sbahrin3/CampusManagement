@@ -1,0 +1,62 @@
+<script>
+$('divInput').style.display = "none";
+</script>
+
+<table cellpadding="0" cellspacing="1">
+	<tr>
+		<td colspan="7" align="right">
+			<input class="linkbutton" type="button" value="Add Fee" onclick="doDivAjaxCall$formname('divInput','getFee','')">
+		</td>
+	</tr>
+	<tr style="height:30px;background:#C6C4C4">
+		<td style="width:30px;font-weight:bold;border-bottom:1px solid #ccc" align="center">&nbsp;</td>
+		<td style="width:100px;font-weight:bold;border-bottom:1px solid #ccc" align="center">Code</td>
+		<td style="width:500px;font-weight:bold;border-bottom:1px solid #ccc" align="center">Description</td>
+		<td style="width:100px;font-weight:bold;border-bottom:1px solid #ccc" align="center">Fee Type</td>
+		##<td style="width:100px;font-weight:bold;border-bottom:1px solid #ccc" align="center">Partner Share?</td>
+		<td style="width:100px;font-weight:bold;border-bottom:1px solid #ccc" align="center">Paying Mode</td>
+		<td style="width:50px;font-weight:bold;border-bottom:1px solid #ccc" align="center">
+			
+		</td>
+	</tr>
+	#set ( $cnt = 0 )
+	#foreach( $fee in $fees )
+		#set ( $cnt = $cnt + 1 )
+		#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#DDDBDB" ) #else #set ( $bgcolor = "#FFF" ) #end
+		<tr style="height:25px;background:$bgcolor">
+			<td style="">$cnt.</td>
+			<td style="">$fee.code</td>
+			<td style="">$fee.description</td>
+			<td align="center" style="">
+				#if ( $fee.subjectType == 1 )
+					By Credit Hours
+				#elseif ( $fee.subjectType == 2 )
+					By Subjects Count
+				#else
+					Default
+				#end
+			</td>
+			#** 
+			<td align="center" style="">
+				#if ( $fee.partnerType == 1 )
+					Yes
+				#else
+					-
+				#end
+			</td>
+			**#
+			<td align="center" style="">
+				#if ( $fee.payingMode == 0 ) Not Defined
+				#elseif ( $fee.payingMode == 1 ) One Time
+				#elseif ( $fee.payingMode == 2 ) Flexi
+				#elseif ( $fee.payingMode == 3 ) Monthly
+				#end
+			</td>
+			<td align="center" style="" nowrap>
+				<input class="linkbutton" type="button" value="Edit" onclick="doDivAjaxCall$formname('divInput','getFee','feeId=$fee.id')">
+				<input class="linkbutton" type="button" value="x" onclick="if ( !confirm('Delete Fee Item?') ) return; doDivAjaxCall$formname('listFees','deleteFee','feeId=$fee.id')">
+			</td>
+		</tr>
+	#end
+</table>
+	

@@ -1,0 +1,33 @@
+
+
+<table width="100%">
+<tr><td valign="top" style="width:600px">
+
+	<table width="100%">
+	
+	<tr><td  style="width:120px">Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+	<tr><td>Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+	<tr><td>Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+	<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+	<tr><td>Centre:</td><td style="font-weight:bold">$!student.learningCenter.name</td></tr>
+	#if ( $student_status )
+	<tr><td>Semester:</td><td style="font-weight:bold">
+	$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end
+	($student_status.session.name)
+	</td></tr>
+	
+	<tr><td>Status:</td><td style="font-weight:bold">
+	$!student_status.type.name
+	</td></tr>
+	#end
+	</table>
+
+</td><td valign="top" style="text-align:left">
+	#if($student.photoFileName != "")
+	<img style="height:150px" src="../download?file=$!student.photoFileName">
+	#else
+	<img style="height:150px" src="../img/nophoto.gif" border="0">
+	#end
+
+</td></tr>
+</table>

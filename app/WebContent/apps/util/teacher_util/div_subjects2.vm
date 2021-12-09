@@ -1,0 +1,8 @@
+<table width="100%">
+#foreach( $subject in $selected_subjects )
+<tr>
+<td><input type="checkbox" value="$subject.id" name="selected_subject_ids"></td>
+<td valign="top">$subject.code</td>
+<td valign="top">$subject.name</td></tr>
+#end
+</table>

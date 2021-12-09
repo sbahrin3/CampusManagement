@@ -1,0 +1,40 @@
+#parse("apps/util/student_util/report_button.vm")
+
+<table width="600" align="center"><tr><td align="center" style="font-family:arial; font-weight:bold; font-size:14pt">
+$!report_title
+</td></tr></table>
+<table width="600" align="center"><tr><td>
+$chart.setFusionChartPath("/fusionchart")
+#if ( $chart.dataSize > 4 )
+$chart.setWidth(800)
+#end
+<div align="center">
+$chart.fusionChartObject
+</div>
+</td></tr></table>
+<br/><br/>
+<table width="600" align="center">
+<tr>
+<td></td>
+<td colspan="2" style="font-weight:bold">Program</td>
+<td align="center" style="font-weight:bold">No. Students</td>
+</tr>
+<tr><td colspan="4"><hr/></td></tr>
+#set ( $total = 0 )
+#foreach( $result in $results)
+#set ( $total = $total + $result.counter )
+<tr>
+<td align="right">$velocityCount)</td>
+<td>$result.key</td>
+<td>$result.label</td>
+<td align="center">$result.counter</td>
+</tr>
+#end
+<tr><td colspan="4"><hr/></td></tr>
+<tr>
+<td align="right"></td>
+<td></td>
+<td></td>
+<td align="center" style="font-weight:bold">$total</td>
+</tr>
+</table>

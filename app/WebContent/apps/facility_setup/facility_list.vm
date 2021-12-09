@@ -1,0 +1,16 @@
+<table width="100%">
+
+#foreach( $facility in $facilities )
+<tr>
+<td style="width:20px" align="right">$velocityCount)</td>
+<td>
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('facility_data', 'edit_facility', 'facility_id=$facility.id')">
+$facility.code
+</a>
+</td>
+<td>$facility.name</td>
+</tr>
+#end
+
+
+</table>

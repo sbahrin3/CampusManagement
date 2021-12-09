@@ -1,0 +1,67 @@
+<table width="100%" cellspacing="0" style="border-bottom:2px solid #C3C3C3;">
+<tr height="30px">
+
+<td style="font-weight:bold"><span id="parent_post">Postings &raquo;</span></td>
+<td style="width:10px"></td>
+<td><img src="../img/classroom/status.gif"><td style="font-weight:bold"><span id="parent_status">Status</span></td>
+<td style="width:10px"></td>
+<td><img src="../img/classroom/members.gif"><td style="font-weight:bold"><span id="parent_discussion">Discussion</span></td>
+<td style="width:10px"></td>
+<td><img src="../img/classroom/assessment.gif"><td style="font-weight:bold"><span id="parent_assignment">Assignment</span></td>
+<td style="width:10px"></td>
+
+#**
+<td><img src="../img/classroom/question.gif"><td style="font-weight:bold"><span id="parent_question">Question</span></td>
+<td style="width:10px"></td>
+<td><img src="../img/link.gif"><td style="font-weight:bold"><span id="parent_link">Link</span></td>
+<td style="width:10px"></td>
+<td><img src="../img/email.gif"><td style="font-weight:bold"><span id="parent_message">Message</span></td>
+**#
+</tr></table>
+
+<div id="menu_post" class="menu1" style="width:100px">
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall3$formname('div_postings','list_postings','');$('menu_post').style.visibility='hidden';wait_indicator($('div_postings_wait'));">List All</a>
+</div>
+
+<div id="menu_status" class="menu1" style="width:100px">
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall$formname('div_posting','post_status','');$('menu_status').style.visibility='hidden';">New Status</a>
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall3$formname('div_postings','list_statuses','');$('menu_status').style.visibility='hidden';wait_indicator($('div_postings_wait'));">List Statuses</a>
+</div>
+
+<div id="menu_discussion" class="menu1" style="width:140px">
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall$formname('div_posting','post_discussion','');$('menu_discussion').style.visibility='hidden';">New Discussion</a>
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall3$formname('div_postings','list_discussions','');$('menu_discussion').style.visibility='hidden';wait_indicator($('div_postings_wait'));">List Discussions</a>
+#if ( $user_role == "teacher" ) <a class="menu2" href="javascript:void()" onclick="doDivAjaxCall$formname('div_postings','create_discussion_group','')">Discussion Groups</a> #end
+</div>
+
+<div id="menu_assignment" class="menu1"  style="width:140px">
+#if ( $user_role == "teacher" ) <a class="menu2" href="javascript:void()" onclick="doDivAjaxCall$formname('div_posting','post_assignment','');$('menu_assignment').style.visibility='hidden';">New Assignment</a> #end
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall3$formname('div_postings','list_assignments','');$('menu_assignment').style.visibility='hidden';wait_indicator($('div_postings_wait'));">List Assignments</a>
+#if ( $user_role == "teacher" ) <a class="menu2" href="javascript:void()" onclick="doDivAjaxCall$formname('div_postings','create_assignment_group','')">Assignment Groups</a> #end
+</div>
+
+<div id="menu_question" class="menu1"  style="width:120px" >
+#if ( $user_role == "teacher" ) <a class="menu2" href="javascript:void()" onclick="doDivAjaxCall$formname('div_posting','post_question','');$('menu_question').style.visibility='hidden';">New Question</a> #end
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall3$formname('div_postings','list_questions','');$('menu_question').style.visibility='hidden';wait_indicator($('div_postings_wait'));">List Questions</a>
+</div>
+
+<div id="menu_link" class="menu1" style="width:100px">
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall$formname('div_posting','post_link','');$('menu_link').style.visibility='hidden';">New Link</a>
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall3$formname('div_postings','list_links','');$('menu_link').style.visibility='hidden';wait_indicator($('div_postings_wait'));">List Links</a>
+</div>
+
+<div id="menu_message" class="menu1" style="width:100px">
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall$formname('div_posting','post_message','');$('menu_message').style.visibility='hidden';">New Message</a>
+<a class="menu2" href="javascript:void()" onclick="doDivAjaxCall3$formname('div_postings','list_messages','');$('menu_message').style.visibility='hidden';wait_indicator($('div_postings_wait'));">List Messages</a>
+</div>
+
+<script>
+at_attach("parent_post", "menu_post", "hover", "y", "pointer");
+at_attach("parent_status", "menu_status", "hover", "y", "pointer");
+at_attach("parent_discussion", "menu_discussion", "hover", "y", "pointer");
+at_attach("parent_assignment", "menu_assignment", "hover", "y", "pointer");
+at_attach("parent_question", "menu_question", "hover", "y", "pointer");
+
+at_attach("parent_link", "menu_link", "hover", "y", "pointer");
+at_attach("parent_message", "menu_message", "hover", "y", "pointer");
+</script>

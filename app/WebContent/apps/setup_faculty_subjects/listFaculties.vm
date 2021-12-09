@@ -1,0 +1,22 @@
+<div id="listOfFaculties">
+	<fieldset>
+	<legend class="legend">Faculties</legend>
+	
+	<table cellspacing="0" cellpadding="0" style="width:100%">
+	<tr style="height:30px; background-color:#f4f4f3;">
+	<td style="font-weight:bold;font-size:12pt">$institution.abbrev - $institution.name</td>
+	<td align="right">
+	
+	</td>
+	</tr>
+	<tr><td>
+	<div class="shadow" id="entryFaculty" style="visibility:hidden;background-color:#fff;position:absolute;border:1px"></div>
+	</td></tr>
+	</table>
+	
+	<div id="divListFaculties">#parse("apps/setup_faculty_subjects/divListFaculties.vm")</div>
+	</fieldset>
+
+</div>
+
+<div id="listFacultyItems"></div>

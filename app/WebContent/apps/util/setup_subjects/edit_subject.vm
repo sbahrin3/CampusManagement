@@ -1,0 +1,68 @@
+<table width="700" align="center">
+<tr><td align="right" style="font-weight:bold">
+[$href.command("list_subjects").text("Back")]
+</td></tr>
+<tr><td>
+
+#if ( $faculty )
+<hr/>
+
+<table width="100%">
+<tr><td style="font-weight:bold">$faculty.code $faculty.name</td></tr>
+</table>
+
+<br/>
+
+<table width="100%">
+#if ( $required_code ) <tr><td></td><td style="font-weight:bold;color:red">Code is required!</td></tr> #end
+<tr><td>Code:</td><td><input name="code" value="$!subject.code" style="width:400px"></td></tr>
+#if ( $required_name ) <tr><td></td><td style="font-weight:bold;color:red">Name is required!</td></tr> #end
+<tr><td>Title:</td><td><input name="name" value="$!subject.name" style="width:400px"></td></tr>
+<tr><td>Alternate Title:</td><td><input name="alt_name" value="$!subject.altName" style="width:400px"></td></tr>
+
+<tr><td>Credit Unit:</td>
+<td>
+<select name="credit_hours" style="width:50px">
+#foreach ( $i in [0..10] )
+<option value="$i" #if ( $subject.credithrs == $i ) selected #end>&nbsp;&nbsp;&nbsp;$i</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr><td>Subject Group:</td>
+<td>
+<select name="subject_group" style="width:200px">
+<option value=""> - </option>
+#foreach ( $g in $subject_groups )
+<option value="$g.id" #if ( $subject.subjectGroup.id == $g.id ) selected #end>&nbsp;&nbsp;&nbsp;$g.name</option>
+#end
+</select>
+</td>
+</tr>
+
+
+<tr><td>Use for GPA?</td>
+<td>
+<select name="exclude_gpa">
+				<option value="0" #if ( $subject.excludeGpa == 0 ) selected #end>YES</option>
+				<option value="1" #if ( $subject.excludeGpa == 1 ) selected #end>NO</option>
+</select>
+</td>
+</tr>
+
+
+<tr><td></td><td>
+$button.command("update_subject").style("font-weight:bold;height:30px").text("UPDATE")
+$button.command("delete_subject").confirm("ARE YOU SURE?").style("font-weight:bold;height:30px").text("DELETE")
+</td></tr>
+</table>
+
+
+#end
+
+
+</td></tr></table>
+
+<input type="hidden" name="faculty_id" value="$!faculty.id">
+<input type="hidden" name="subject_id" value="$!subject.id">

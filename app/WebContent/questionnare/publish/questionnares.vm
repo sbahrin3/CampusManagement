@@ -1,0 +1,117 @@
+<table style="">
+<tr><td>
+#if ( !$reportView )
+<input class="linkbutton" type="button" value="Publish a Quiz" onclick="doDivAjaxCall3$formname('div_input','newQuestionnare','')">
+#end
+##<input class="linkbutton" type="button" value="Filter" onclick="$('divFilterParams').style.display='block';">
+</td></tr>
+</table>
+<br/><br/>
+
+<table style="width:100%">
+
+<tr><td colspan="11" style="font-weight:bold">
+#if ( $program ) <p>$program.code $program.name</p> #end
+#if ( $intake ) <p>$intake.code $intake.name</p> #end
+#if ( $subject ) <p>$subject.code $subject.name</p> #end
+#if ( $set ) <p>$set.name</p> #end
+
+
+</td></tr>
+<tr><td colspan="11">
+<br/>
+<input type="checkbox" #if ( $listStatus == "open" ) checked #end value="open" onclick="doDivAjaxCall$formname('div_main','listQuestionnares','list_status=open')">Open
+<input type="checkbox" #if ( $listStatus == "closed" ) checked #end value="closed" onclick="doDivAjaxCall$formname('div_main','listQuestionnares','list_status=closed')">Closed
+<input type="checkbox" #if ( $listStatus == "all" ) checked #end value="all" onclick="doDivAjaxCall$formname('div_main','listQuestionnares','list_status=all')">All
+
+
+</td></tr>
+
+<tr style="height:30px">
+<td class="colTitle" style="width:40px">&nbsp;</td>
+##<td class="colTitle" style="width:100px" align="center">Audience</td>
+<td class="colTitle" style="width:180px" align="center">Date - Open, Close</td>
+<td class="colTitle" style="width:250px" align="center">Questions Set</td>
+<td class="colTitle" style="width:100px" align="center">Type</td>
+
+#** 
+<td class="colTitle" style="width:100px" align="center">Program</td>
+<td class="colTitle" style="width:100px" align="center">Intake</td>
+<td class="colTitle" style="width:100px" align="center">Subject</td>
+<td class="colTitle" style="width:150px" align="center">Teacher</td>
+**#
+
+<td class="colTitle" style="width:200px" align="center"></td>
+#if ( !$reportView )
+<td class="colTitle" style="width:50px" align="right"></td>
+#end
+
+</tr>
+
+#set ( $cnt = 0 )
+#set ( $tmp = "" )
+#foreach ( $q in $questionnares )
+
+#if ( $tmp != $q.publishedId )
+	#set ( $tmp = $q.publishedId )
+	#set ( $cnt = $cnt + 1 )
+	#set ( $start_group = "yes" )
+#else	
+	#set ( $start_group = "no" )
+#end
+
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#FFF" ) #else #set ( $bgcolor = "#FFF" ) #end
+
+<tr id="row_$q.id" class="row_normal" style="height:25px;">
+<td class="row">$velocityCount.</td>
+##<td class="row" align="center">$q.audienceType&nbsp;</td>
+<td class="row" align="center">
+#if ( $q.startDate ) $dateFormat.format($q.startDate) #end,
+#if ( $q.endDate ) $dateFormat.format($q.endDate) #end
+</td>
+<td class="row">$q.set.name&nbsp;</td>
+<td class="row" align="center">
+	#if ( $q.set.typeQuestionnare )
+		Questionnare
+	#else
+		Quiz
+	#end
+</td>
+#** 
+<td class="row">$!q.program.code&nbsp;</td>
+<td class="row">$!q.intake.code&nbsp;</td>
+<td class="row">
+	#if ( $q.subject.code ) $q.subject.code #end
+</td>
+<td class="row">$!q.teacher.name&nbsp;</td>
+**#
+<td class="row" align="right">
+
+#if ( !$reportView )
+<input class="linkbutton" type="button" value="Change Date" onclick="getElementById('row_$q.id').className='row_highlighted'; doDivAjaxCall$formname('div_input','editQuestionnare','questionnareId=$q.id')">
+#end
+
+#if ( $q.set.typeQuestionnare )
+<input class="linkbutton" type="button" value="Result" onclick="doDivAjaxCall$formname('div_report','viewReport','questionnareId=$q.id')">
+#else
+<input class="linkbutton" type="button" value="Result" onclick="doDivAjaxCall$formname('div_report','viewResult','questionnareId=$q.id')">
+#end
+
+</td>
+#if ( !$reportView )
+<td class="row" align="center">
+#if ( $start_group == "yes" )
+<input class="linkbutton" type="button" value="X" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('div_main','deleteQuestionnare','questionnareId=$q.id')">
+#end
+
+</td>
+#end
+</tr>
+#end
+
+</table>
+	
+
+<script>
+$('divFilterParams').style.display='none';
+</script>

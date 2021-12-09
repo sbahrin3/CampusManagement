@@ -1,0 +1,9 @@
+
+
+<td>$!r.matricNo</td>
+<td>$!r.biodata.name</td>
+<td>#if ( $r.biodata.passport != "" ) $r.biodata.passport #else $!r.biodata.icno #end</td>
+<td>$!r.program.code $!r.program.name</td>
+
+
+

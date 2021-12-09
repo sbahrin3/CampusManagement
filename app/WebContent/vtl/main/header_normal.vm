@@ -1,0 +1,38 @@
+  
+<div class="page_header">
+
+	##dispay LOGO here.. AS background image
+	  
+    <div class="portal_logo" style="padding-left:10px;padding-right:10px">
+  	     
+       #if ( $userIsLogged && ${session.getAttribute("_portal_role")} != "anon" ) 
+          <div>#parse ( "vtl/main/user_role_tabs_menu.vm" )</div>
+       #end
+             
+		<div class="font_title" style="display:block;float:left">
+			$!portalTitle
+		</div>
+      	##LOGIN FIELDS
+		<div style="display:block;float:right;width:300px;">
+	    #if ( $userIsLogged )
+        	#parse ( "vtl/main/greeting.vm" )
+        #else
+        	#parse ("vtl/main/login_input.vm" )
+        	#parse("vtl/main/tab_login.vm")
+        #end
+        </div>
+        
+    </div>
+
+    
+</div>
+
+<script>
+function changeVisitor(visitor) {
+	var visitor = document.flogin.visitor.value;
+	document.location = "?visitor="+visitor;
+}
+function changeRole(role) {
+	document.location = "?myrole="+role;
+}
+</script> 

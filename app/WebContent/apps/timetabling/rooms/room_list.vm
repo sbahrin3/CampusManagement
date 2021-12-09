@@ -1,0 +1,111 @@
+#if ( $deleteMessage )
+    <script>
+    $('divDeleteMessage').style.display="block";
+    $('deleteMessage').innerHTML = "$deleteMessage";
+    </script>
+#end
+
+<table cellpadding="0" cellspacing="0">
+	
+    <tr height="40px">
+    <td class="colTitle" style=""></td>
+    <td class="colTitle" style=""></td>
+    <td class="colTitle" style=""></td>
+    <td colspan="2" class="colTitle" style="" align="center">Capacity</td>
+	<td colspan="$classroomTypes.size()" class="colTitle" style="" align="center">Classroom Types</td>
+    <td class="colTitle" style="font-weight:bold"></td>
+	<td class="colTitle" style="font-weight:bold"></td>
+    </tr>
+	
+    <tr height="40px">
+    <td class="colTitle" style=""></td>
+    <td class="colTitle" style="">Room Code</td>
+    <td class="colTitle" style="">Room Name</td>
+    <td class="colTitle" style="" align="center">Course</td>
+	<td class="colTitle" style="" align="center">Exam</td>
+	#foreach( $ct in $classroomTypes )
+		<td class="colTitle" style="" align="center">$ct.code</td>
+	#end
+    <td class="colTitle" style="font-weight:bold"></td>
+	<td class="colTitle" style="font-weight:bold"></td>
+    </tr>
+
+
+#set ( $cnt = 0 )
+#foreach( $room in $rooms )
+#set ( $cnt = $cnt + 1 )
+
+<tr style="height:40px">
+	
+<td class="colInput" style="width:40px">$cnt)</td>
+<td style="width:100px">
+	<input class="colInput" id="code_$room.id" name="code_$room.id" value="$!room.code" onchange="doDivAjaxCall$formname('roomUpdate','updateCode','roomId=$room.id')">
+</td>
+<td style="width:200px">
+	<input class="colInput" id="name_$room.id" name="name_$room.id" value="$!room.name" onchange="doDivAjaxCall$formname('roomUpdate','updateName','roomId=$room.id')">
+</td>
+<td style="width:50px">
+	<input class="colInput" style="text-align:center" id="capacity_$room.id" name="capacity_$room.id" value="$!room.capacity" onchange="doDivAjaxCall$formname('roomUpdate','updateCapacity','roomId=$room.id')">
+</td>
+<td style="width:50px">
+	<input class="colInput" style="text-align:center" id="examCapacity_$room.id" name="examCapacity_$room.id" value="$!room.examCapacity" onchange="doDivAjaxCall$formname('roomUpdate','updateExamCapacity','roomId=$room.id')">
+</td>
+
+#foreach( $ct in $classroomTypes )
+	<td id="classroomType_${ct.id}_${room.id}" class="colInput" #if ( $roomUtil.hasClassroomType($ct.id, $room.id) ) style="width:50px;background:#b8edb8" #else style="width:50px;background:#fff" #end align="center">
+		$ct.code<br/>
+		##<input type="checkbox" name="checkClassroomType_${ct.id}_${room.id}" value="1" #if ( $roomUtil.hasClassroomType($ct.id, $room.id) ) checked #end onchange="doDivAjaxCall$formname('roomUpdate','addDeleteClassroomType','roomId=$room.id&classroomTypeId=$ct.id')">
+	
+	</td>
+#end
+
+<td class="colInput" style="width:40px" align="center">
+	<a href="javascript:void(0)"  onclick="doDivAjaxCall3$formname('roomList','deleteRoom','roomId=$room.id')">X</a>
+</td>
+<td class="colInput" style="width:200px" align="center">
+<div id="combinedRoomList_$room.id" class="shadow" style="display:none;position:absolute;background:#fff;border:1px dotted #000"></div>
+
+#if ( $room.combined )
+	#set ( $i = 0 )
+	##<a href="javascript:void()" onclick="doDivAjaxCall3$formname('combinedRoomList_$room.id','getCombinedRoomList','roomId=$room.id');"><u>Combined Rooms:</u></a><br/> 
+	#foreach ( $cr in $room.combinedRooms )
+		#set ( $i = $i + 1 )
+		$cr.code#if ( $i < $room.combinedRooms.size() ),#end
+	#end
+	
+#end
+</td>
+</tr>
+
+#end
+</table>
+
+
+#**
+<table cellpadding="0" cellspacing="1">
+<tr height="30px">
+<td style="width:40px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold">Room Code</td>
+<td style="width:300px;font-weight:bold">Room Name</td>
+<td style="width:40px;font-weight:bold">Capacity</td>
+<td style="width:40px;font-weight:bold">Exam Capacity</td>
+<td style="width:100px;"></td>
+<td style="width:10px;"></td>
+</tr><tr>
+<td></td>
+<td><input class="colInput" id="room_code" name="room_code"></td>
+<td><input class="colInput" id="room_name" name="room_name"></td>
+<td><input class="colInput" id="room_capacity" name="room_capacity"></td>
+<td><input class="colInput" id="room_examCapacity" name="room_examCapacity"></td>
+<td>
+
+<div id="combinedRoomList" class="shadow" style="display:none;position:absolute;background:#fff;"></div>
+
+<input class="linkbutton" style="width:100%" type="button" value="Add Room" onclick="if ( $('room_code').value != '' && $('room_name').value != '' && $('room_capacity').value != '' )  doDivAjaxCall3$formname('roomList','addRoom','');">
+</td><td>
+<input class="linkbutton" type="button" value="Create Combined Rooms" onclick="if ( $('room_code').value != '' && $('room_name').value != '' && $('room_capacity').value != '' )  doDivAjaxCall3$formname('combinedRoomList','combinedRoomList','');">
+</td>
+</tr>
+
+</table>
+**#

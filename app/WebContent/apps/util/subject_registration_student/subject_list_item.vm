@@ -1,0 +1,74 @@
+#set ( $_found = "no" )
+#foreach ( $_s in $list_registered )
+#if ( $_s.id == $s.id ) #set ( $_found = "yes" ) #end
+#end
+
+#if ( $_found == "yes" )
+#set ( $bgcolor = "#FFD455" )
+#else
+#set ( $bgcolor = "#FFFFD4" )
+#end
+<table height="2px" width="100%" cellspacing="0"><tr><td></td></tr></table>
+#if ( !$preRequisiteOK )
+<div id="divPreRequisiteMessage_$s.id" style="position:absolute;padding:4px;width:760px;background:#F7DAD4;border:1px solid #000;font-weight:bold">
+<div style="background:#777777;font-weight:bold;font-size:10pt;padding:4px;color:#fff">
+#if ( $prerequisiteSubjectFailed )
+	You have failed the pre-requisites of this subject.
+#else
+	Pre-Requisite Alert!! 
+#end
+</div>
+<table width="100%">
+<tr><td style="font-weight:bold">
+
+<span style="font-size:10pt">$s.subject.code - $s.subject.name</span><br/>
+#if ( $pre_requisite_subjects.size() > 0 )
+    has following pre-requisite(s):<br/>
+    #set ( $c = 0 )
+    #foreach ( $preq in $pre_requisite_subjects )
+    #set ( $c = $c + 1 )
+    $c)&nbsp;$preq.code - $preq.name<br/>
+    #end
+    <br/>
+#end
+#if ( $failed_pre_requisite_subjects.size() > 0 )
+	has following pre-requisite(s) failed:<br/>
+	#set ( $c = 0 )
+    #foreach ( $preq in $failed_pre_requisite_subjects )
+    #set ( $c = $c + 1 )
+    $c)&nbsp;$preq.code - $preq.name<br/>
+    #end
+    <br/>
+#end
+</td>
+<td style="width:100px" align="right" valign="top">
+<input type="button" value="OK" style="padding:4px;border:2px solid;font-weight:bold" onclick="$('divPreRequisiteMessage_$s.id').style.display='none';">
+</td>
+</tr></table>
+</div>
+#end
+<table width="100%" cellspacing="0">
+<tr  height="30px" bgcolor="$bgcolor">
+<td width="30px">#if ( $_found == "yes" ) * #end</td>
+<td width="100px">$s.subject.code</td>
+<td>$s.subject.name</td>
+<td width="100px" align="center">$s.subject.credithrs</td>
+<td width="100px" align="right">
+
+#set ( $disabled = "" )
+#if ( $student_mode )
+#if ( $outstanding_amount > 0 ) #set ( $disabled = "disabled" ) #end
+#end
+
+#if ( $_found == "no" )
+	
+	##if ( $allowSubjectRegister ) #set ( $disabled = "" ) #else #set ( $disabled = "disabled" ) #end
+	#set ( $disabled = "" )
+	
+	<input $disabled  class="gradient" type="button" style="height:30px;width:150px;font-weight:bold"  value="ADD Subject" onclick="doDivAjaxChainCall$formname('div_subject_$s.id','subject_register','subject_reg_id=$s.id','div_reg_status','reg_status','')">
+#else
+	<input $disabled  class="gradient" type="button" style="height:30px;width:150px;font-weight:bold"  value="Cancel ADD" onclick="doDivAjaxChainCall$formname('div_subject_$s.id','cancel_subject_register','subject_reg_id=$s.id','div_reg_status','reg_status','')">
+#end
+</td>
+</tr>
+</table>

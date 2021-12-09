@@ -1,0 +1,43 @@
+<style>
+.legend {
+	background-color:#DCDCDC;
+	padding: 0.2em 0.2em;
+	font-family:arial;
+	font-size:10pt;
+	font-weight:bold;
+}
+.title { font-weight:bold;}
+.field { border-top: solid 1px; border-bottom: none; border-left: none; border-right: none;}
+
+#divGroups {
+    position:fixed;
+    top: 30%;
+    left: 10%;
+    width:1000px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+</style>
+
+<script>
+function checkAll(bx, name) {
+  var cbs = document.getElementsByTagName('input');
+  for(var i=0; i < cbs.length; i++) {
+    if(cbs[i].type == 'checkbox') {
+      if ( cbs[i].name == name ) cbs[i].checked = bx.checked;
+    }
+  }
+}
+
+function addStudentsToGroup(sid) {
+	var groupNumber = document.getElementById("groupNumber").value;
+	##doDivAjaxCall3$formname('studentsGroup_' + groupNumber, 'addStudentsToGroup','classroomSectionId=' + sid);
+	doDivAjaxChainCall3$formname('studentsGroup_' + groupNumber, 'addStudentsToGroup','classroomSectionId=' + sid, 'allStudents','getRemainingStudents','classroomSectionId=' + sid);
+}
+</script>
+
+<div id="sections_param">#parse("$path/params.vm")</div>

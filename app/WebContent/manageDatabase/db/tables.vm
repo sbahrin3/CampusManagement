@@ -1,0 +1,14 @@
+<table>
+	#set ( $cnt = 0 )
+    #foreach( $table in $tables )
+		#set ( $cnt = $cnt + 1 )
+		<tr>
+			<td style="width:40px;border-bottom:1px dotted #000;">
+				$cnt.
+			</td>
+			<td style="width:200px;border-bottom:1px dotted #000;cursor:pointer" onclick="doDivAjaxCall$formname('main','view','tableName=$table.name')">
+				$table.name
+			</td>
+		</tr>
+	#end
+</table>

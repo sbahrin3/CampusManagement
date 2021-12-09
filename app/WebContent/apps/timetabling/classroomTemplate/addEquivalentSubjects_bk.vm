@@ -1,0 +1,64 @@
+
+
+
+  <div style="background:#3071A9;padding:10px">
+
+		
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff"><label>Equivalents</label></td>
+			<td align="right">
+				<button type="button" class="btn btn-primary" onclick="$('addEquivalentSubjects').style.display='none';">x</button>
+			</td>
+		</tr>
+	</table>
+  	
+  </div>
+
+
+
+	<div id="divSubjects" style="height:420px;overflow:auto;overflow-x:hidden;">
+
+	
+		<table class="table table-striped table-hover">
+		
+		<tbody>
+			#foreach( $f in $departments )
+				<tr>
+					<td>$f.name</td>
+					<td align="center" style="cursor:pointer" >
+					
+						<button type="button" class="btn btn-default btn-sm" onclick="if ( $('subjects_$f.id').style.display == 'none' ) { $('subjects_$f.id').style.display = 'block'; } else { $('subjects_$f.id').style.display = 'none'; } ">...</button>
+					
+					</td>
+				</tr>
+				
+				#set ( $subjects = $subjectsMap.get("$f.id") )
+				#if ( $subjects )
+					#if ( $subjects.size() > 0 )
+					<tr>
+						<td colspan="2">
+						<div id="subjects_$f.id" style="display:none">
+						<ul style="list-style: none;">
+						#foreach( $s in $subjects )
+							#if ( $s.id != $subject.id )
+								<li>
+								<input type="checkbox" #if ( $eqSubjects.contains($s) ) checked #end name="facultySubjects" value="$s.id" onchange="doDivAjaxCall$formname('empty','addEquivalentSubject','subjectId=$s.id')">
+								$s.code - $s.name
+								</li>
+							#end
+						#end	
+						</ul>
+						</div>
+						</td>
+					</tr>
+					#end
+				#end
+					
+			#end
+		</tbody>
+		</table>
+		
+	</div>
+
+

@@ -1,0 +1,35 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+.fset { background-color:#E2FEE2}
+</style>
+
+<table width="800">
+<tr><td align="right">
+[$href.command("list_subjects").text("Back")]
+</td></tr>
+<tr><td>
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">MARKS ENTRY</legend>
+
+<table width="100%">
+<tr><td style="width:100px">Program:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Session:</td><td style="font-weight:bold">$session.code $session.name</td></tr>
+<tr><td>Semester:</td><td style="font-weight:bold">$period.name #if ( $period.parent ) ($period.parent.name) #end</td></tr>
+<tr><td>Subject:</td><td style="font-weight:bold">$subject.code $subject.name</td></tr>
+</table>
+
+</fieldset>
+
+#parse( "apps/util/student_sections/div_list_students.vm" )
+
+
+
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="session_id" value="$!session.id">
+<input type="hidden" name="period_id" value="$!period.id">
+<input type="hidden" name="subject_id" value="$!subject.id">

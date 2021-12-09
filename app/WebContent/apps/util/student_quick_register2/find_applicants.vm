@@ -1,0 +1,11 @@
+<table width="100%">
+#foreach( $app in $applicants )
+<tr>
+<td style="width:50px">$velocityCount)</td>
+
+<td><a href="javascript:void()" onclick="doDivAjaxCall$formname('div_register','get_applicant_by_id','applicant_id=$app.id')">$app.biodata.name</a></td>
+<td style="width:150px">#if ( $app.applyDate ) $dateFormat.format($app.applyDate) #end</td>
+<td style="width:150px">#if ( $app.applyTime ) $timeFormat.format($app.applyTime) #end</td>
+</tr>
+#end
+</table>

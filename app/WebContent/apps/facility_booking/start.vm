@@ -1,0 +1,32 @@
+<table width="900" align="center">
+
+<tr><td>
+
+<table cellpadding="0" cellspacing="0" width="100%"  style="BORDER-BOTTOM: 1px solid;"><tr><td>
+<table cellpadding="0" cellspacing="0" >
+<tr>
+<td align="center" bgcolor="lightgrey" style="height:30px;width:100px;BORDER-LEFT: 1px solid; BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid;">
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('facility_data', 'list_facilities', 'facility_type=P')">
+PLACE
+</a>
+</td>
+<td style="width:5px"></td>
+<td align="center" bgcolor="lightgrey" style="height:30px;width:100px;BORDER-LEFT: 1px solid; BORDER-RIGHT: 1px solid; BORDER-TOP: 1px solid;">
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('facility_data', 'list_facilities', 'facility_type=E')">
+EQUIPMENT
+</a>
+</td>
+</tr>
+</table>
+</td></tr></table>
+
+</td></tr>
+<tr><td>
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<div id="facility_data" name="facilty_data"></div>
+</fieldset>
+</td></tr>
+<tr><td>
+
+
+</td></tr></table>

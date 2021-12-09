@@ -1,0 +1,39 @@
+<table width="100%">
+<tr><td style="width:50%" valign="top">
+
+<fieldset><legend class="legend">Classrooms</legend>
+
+<table>
+<tr bgcolor="#ABABAB" height="30px">
+<td style="width:50px;"></td>
+<td style="width:200px;font-weight:bold">Subject</td>
+<td style="width:100px;font-weight:bold">Classroom Name</td>
+<td style="width:50px;font-weight:bold" align="center">Slots</td>
+<td style="width:50px" align="center">
+<input type="checkbox" onclick="checkAll(this, 'classroomIds')">
+</td>
+</tr>
+</table>
+
+<div class="box" id="divClassrooms" style="width:550px;height:400px;overflow:auto;overflow-x:hidden;">
+#parse("$path/div_classrooms.vm")
+</div>
+
+<table width="100%"><tr><td align="right">
+<span id="divSelectCluster">
+#parse("$path/select_cluster.vm")
+</span>
+<input type="button" value="Add to Cluster"
+onclick="addToCluster()"> 
+##onclick="doDivAjaxCall3$formname('divListCluster','addToCluster','')">
+</td></tr></table>
+
+</fieldset>
+
+</td><td style="width:50%" valign="top">
+
+<fieldset><legend class="legend">List of Clusters</legend>
+<div id="divListCluster">#parse("$path/list_cluster.vm")</div>
+</fieldset>
+
+</td></tr></table>

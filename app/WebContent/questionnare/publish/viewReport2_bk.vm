@@ -1,0 +1,178 @@
+<script>
+$('div_report').style.display="block";
+$('div_main').style.display="none";
+</script>
+
+##<div style="height:500px;overflow:auto;padding:10px">
+
+<div>
+<table id="reportHandle" width="100%" style="background:#ebebeb">
+<tr style="height:30px"><td style="font-weight:bold;color:#000;font-size:10pt">Questionnare Result Report</td>
+<td align="right"><input class="linkbutton" type="button" value="Close" 
+onclick="$('row_$questionnare.id').className='row_normal'; $('div_report').style.display='none';$('div_main').style.display='block';"
+>
+</td>
+</tr></table>
+
+<table width="100%"><tr style="height:40px">
+<td align="=">
+<a href="javascript:void(0)" onclick="document.location='../servlet/educate.questionnare.QuestionnareResultXLServlet'">Excel</a> |
+<a href="javascript:void(0)" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.questionnare.PrintReportPDFModule?questionnareId=$questionnare.id&amp;pdfName=evaluation_report';">PDF</a>
+
+</td></tr>
+</table>
+
+
+
+
+
+<br/><br/>
+
+<table>
+	<tr style="height:0px"><td style="width:80px"></td><td style="width:40px"></td><td></td></tr>
+	<tr style="height:30px"><td colspan="3">Results</td></tr>
+	#** 
+	<tr style="height:25px"><td>Code</td><td>:</td><td>$subject.code</td></tr>
+	<tr style="height:25px"><td>Subject</td><td>:</td><td>$subject.name</td></tr>
+	<tr style="height:25px"><td>Lecturer</td><td>:</td><td>$!teacher.name</td></tr>
+	<tr style="height:25px"><td>Semester</td><td>:</td><td>
+			#if ( $currentSession )
+				$currentSession.name
+			#end
+	</td></tr>
+	**#
+</table>
+
+<br/><br/>
+
+resultHeaders = $resultHeaders.size()
+<table>
+
+<tr>
+
+<td class="colTitle" style="width:50px"></td>
+#set ( $cnt = 0 )
+#foreach ( $h in $resultHeaders )
+	
+	#set ( $i = $cnt)
+	#set ( $id = $identifiers.get($i) )
+	#set ( $av = $answerValueMap.get("$id") )
+	#if ( $av.valueType == "number" )
+		<td class="colTitle" align="center" style="width:50px">$h</td>
+	#end
+	#set ( $cnt = $cnt + 1 )
+#end
+</tr>
+
+#set ( $rCnt = 0 )
+#foreach( $result in $resultDataList )
+	#set ( $rCnt = $rCnt + 1 )
+    <tr>
+    #set ( $cnt = 0 )
+    #foreach( $r in $result )
+        
+		
+		
+    	#if ( $cnt == 0 )
+			<td  class="row" style="height:25px" >$rCnt)</td>
+    	#else
+			
+			#set ( $i = $cnt - 1 )
+			#set ( $id = $identifiers.get($i) )
+			#set ( $av = $answerValueMap.get("$id") )
+			#set ( $bgcolor = "#fff" )
+        	#if ( $av.type == "avg" )
+        		#set ( $bgcolor = "#ebebeb" )
+        	#end
+			#if ( $av.valueType == "number" )
+				<td  class="row" style="height:25px;background:$bgcolor" align="center">$r</td>
+			#end
+    	#end
+        
+        #set ( $cnt = $cnt + 1 )
+    #end
+    </tr>
+
+#end
+
+<tr>
+<td class="row" style="height:25px"></td>
+#set ( $cnt = 0 )
+#foreach( $avg in $averages )
+	#set ( $i = $cnt)
+	#set ( $id = $identifiers.get($i) )
+	#set ( $av = $answerValueMap.get("$id") )
+	#set ( $bgcolor = "#fff" )
+	#if ( $av.type == "avg" )
+		#set ( $bgcolor = "#ebebeb" )
+	#end
+	#if ( $av.valueType == "number" )
+		<td class="row" style="height:25px;background:$bgcolor" align="center">$numFormat.format($avg)</td>
+	#end
+	 #set ( $cnt = $cnt + 1 )
+#end
+</tr>
+
+
+</table>
+
+
+<div style="padding:4px;margin-top:20px">
+
+	<table cellpadding="0">
+		<tr style="height:30px;">
+			<td style="width:30px;border-bottom:1px dotted #000; font-weight:bold">&nbsp;</td>
+			<td style="width:400px;border-bottom:1px dotted #000; font-weight:bold">Performance Indicators (Survey Questions and Assessment Areas)</td>
+			<td style="width:200px;border-bottom:1px dotted #000; font-weight:bold" align="center">Ratings</td>
+		</tr>
+	#set ( $cnt = 0 )
+	#set ( $tot_avg = 0 )
+	#foreach ( $q in $questionList )
+		#set ( $id = $q.id )
+		#set ( $av = $answerValueMap.get("$id") )
+		
+		#if ( $av.valueType == "number" )
+			#set ( $cnt = $cnt + 1 )
+			#set ( $tot_avg = $tot_avg + $av.average )
+			<tr style="height:20px;border-bottom:1px dotted #ccc">
+				<td style="border-bottom:1px dotted #ccc">$q.refNo</td>
+				<td style="border-bottom:1px dotted #ccc">$q.question.questionText</td>
+				<td style="border-bottom:1px dotted #ccc" align="center">$numFormat.format($av.average)</td>
+			</tr>
+		#end
+	#end
+	#set ( $avg_total = $tot_avg/$cnt )
+	<tr style="height:25px;border-bottom:1px dotted #ccc">
+		<td style="border-bottom:1px dotted #ccc"></td>
+		<td style="border-bottom:1px dotted #ccc;font-weight:bold" align="right">TOTAL AVERAGE</td>
+		<td style="border-bottom:1px dotted #ccc;font-weight:bold" align="center">
+			$avg_total
+			##$numFormat.format($avg_total)
+		</td>
+	</tr>
+	</table>
+		
+</div>
+
+<div style="padding:4px">
+		<div style="padding:4px;font-weight:bold;">
+			List of Comments
+		</div>
+		#set ( $cnt = 0 )
+		#foreach ( $comment in $comments )
+			#if ( $comment != "" )
+				#set ( $cnt = $cnt + 1 )
+    			<div style="padding:4px;">
+    				$cnt) $comment
+    			</div>
+			#end
+		#end
+	</div>
+
+</div>
+
+<div style="text-align:right">
+$questionnare.id
+</div>
+
+<script>new Draggable('div_report', {handle: 'reportHandle'});</script>

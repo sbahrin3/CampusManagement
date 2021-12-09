@@ -1,0 +1,106 @@
+<table>
+<tr bgcolor="#D1C8C8">
+<td style="height:30px;width:400px;font-weight:bold;border-bottom:1px solid">Program</td>
+<td style="width:120px;font-weight:bold;border-bottom:1px solid">Start Date</td>
+<td style="width:120px;font-weight:bold;border-bottom:1px solid">Time</td>
+<td style="width:120px;font-weight:bold;border-bottom:1px solid">End Date</td>
+<td style="width:120px;font-weight:bold;border-bottom:1px solid">Time</td>
+<td style="width:100px;font-weight:bold;border-bottom:1px solid">&nbsp;</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $p in $programs )
+#set ( $cnt = $cnt + 1 )
+<tr bgcolor="#F2E8E8">
+<td>$p.code - $p.name</td>
+#if ( $p.startDate ) 
+	#set ( $dateValue = $dateFormat.format($p.startDate )) 
+#else 
+	#set ( $dateValue = "") 
+#end
+
+<td>
+
+##$html.dateField.name("startDate_$p.id").value("$!dateValue").style("width:100px").cssClass("textr")
+
+<input class="texts" style="width:100px" id="startDate_$cnt" name="startDate_$p.id" value="$!dateValue">
+<script> new JsDatePick({ useMode:2, target:"startDate_$cnt", dateFormat:"%d-%m-%Y" }); </script>
+
+</td>
+<td>
+#if ( $p.startDate ) #set ( $startTime = $timeFormat.format($p.startDate)) #else #set( $startTime = "" ) #end
+<select class="textr" name="startTime_$p.id">
+<option value="12:00 AM" #if ( $startTime == "12:00 AM" ) selected #end>12:00 AM</option>
+<option value="01:00 AM" #if ( $startTime == "01:00 AM" ) selected #end>1:00 AM</option>
+<option value="02:00 AM" #if ( $startTime == "02:00 AM" ) selected #end>2:00 AM</option>
+<option value="03:00 AM" #if ( $startTime == "03:00 AM" ) selected #end>3:00 AM</option>
+<option value="04:00 AM" #if ( $startTime == "04:00 AM" ) selected #end>4:00 AM</option>
+<option value="05:00 AM" #if ( $startTime == "05:00 AM" ) selected #end>5:00 AM</option>
+<option value="06:00 AM" #if ( $startTime == "06:00 AM" ) selected #end>6:00 AM</option>
+<option value="07:00 AM" #if ( $startTime == "07:00 AM" ) selected #end>7:00 AM</option>
+<option value="08:00 AM" #if ( $startTime == "08:00 AM" ) selected #end>8:00 AM</option>
+<option value="09:00 AM" #if ( $startTime == "09:00 AM" ) selected #end>9:00 AM</option>
+<option value="10:00 AM" #if ( $startTime == "10:00 AM" ) selected #end>10:00 AM</option>
+<option value="11:00 AM" #if ( $startTime == "11:00 AM" ) selected #end>11:00 AM</option>
+<option value="12:00 PM" #if ( $startTime == "12:00 PM" ) selected #end>12:00 PM</option>
+<option value="01:00 PM" #if ( $startTime == "01:00 PM" ) selected #end>1:00 PM</option>
+<option value="02:00 PM" #if ( $startTime == "02:00 PM" ) selected #end>2:00 PM</option>
+<option value="03:00 PM" #if ( $startTime == "03:00 PM" ) selected #end>3:00 PM</option>
+<option value="04:00 PM" #if ( $startTime == "04:00 PM" ) selected #end>4:00 PM</option>
+<option value="05:00 PM" #if ( $startTime == "05:00 PM" ) selected #end>5:00 PM</option>
+<option value="06:00 PM" #if ( $startTime == "06:00 PM" ) selected #end>6:00 PM</option>
+<option value="07:00 PM" #if ( $startTime == "07:00 PM" ) selected #end>7:00 PM</option>
+<option value="08:00 PM" #if ( $startTime == "08:00 PM" ) selected #end>8:00 PM</option>
+<option value="09:00 PM" #if ( $startTime == "09:00 PM" ) selected #end>9:00 PM</option>
+<option value="10:00 PM" #if ( $startTime == "10:00 PM" ) selected #end>10:00 PM</option>
+<option value="11:00 PM" #if ( $startTime == "11:00 PM" ) selected #end>11:00 PM</option>
+</select>
+</td>
+
+#if ( $p.endDate ) 
+	#set ( $dateValue = $dateFormat.format($p.endDate )) 
+#else 
+	#set ( $dateValue = "") 
+#end
+<td>
+
+##$html.dateField.name("endDate_$p.id").value("$!dateValue").style("width:100px").cssClass("textr")
+
+<input class="texts" style="width:100px" id="endDate_$cnt" name="endDate_$p.id" value="$!dateValue">
+<script> new JsDatePick({ useMode:2, target:"endDate_$cnt", dateFormat:"%d-%m-%Y" }); </script>
+
+
+</td>
+<td>
+#if ( $p.endDate ) #set ( $endTime = $timeFormat.format($p.endDate)) #else #set( $endTime = "" ) #end
+<select class="textr" name="endTime_$p.id">
+<option value="12:00 AM" #if ( $endTime == "12:00 AM" ) selected #end>12:00 AM</option>
+<option value="01:00 AM" #if ( $endTime == "01:00 AM" ) selected #end>1:00 AM</option>
+<option value="02:00 AM" #if ( $endTime == "02:00 AM" ) selected #end>2:00 AM</option>
+<option value="03:00 AM" #if ( $endTime == "03:00 AM" ) selected #end>3:00 AM</option>
+<option value="04:00 AM" #if ( $endTime == "04:00 AM" ) selected #end>4:00 AM</option>
+<option value="05:00 AM" #if ( $endTime == "04:00 AM" ) selected #end>5:00 AM</option>
+<option value="06:00 AM" #if ( $endTime == "06:00 AM" ) selected #end>6:00 AM</option>
+<option value="07:00 AM" #if ( $endTime == "07:00 AM" ) selected #end>7:00 AM</option>
+<option value="08:00 AM" #if ( $endTime == "08:00 AM" ) selected #end>8:00 AM</option>
+<option value="09:00 AM" #if ( $endTime == "09:00 AM" ) selected #end>9:00 AM</option>
+<option value="10:00 AM" #if ( $endTime == "10:00 AM" ) selected #end>10:00 AM</option>
+<option value="11:00 AM" #if ( $endTime == "11:00 AM" ) selected #end>11:00 AM</option>
+<option value="12:00 PM" #if ( $endTime == "12:00 PM" ) selected #end>12:00 PM</option>
+<option value="01:00 PM" #if ( $endTime == "01:00 PM" ) selected #end>1:00 PM</option>
+<option value="02:00 PM" #if ( $endTime == "02:00 PM" ) selected #end>2:00 PM</option>
+<option value="03:00 PM" #if ( $endTime == "03:00 PM" ) selected #end>3:00 PM</option>
+<option value="04:00 PM" #if ( $endTime == "04:00 PM" ) selected #end>4:00 PM</option>
+<option value="05:00 PM" #if ( $endTime == "05:00 PM" ) selected #end>5:00 PM</option>
+<option value="06:00 PM" #if ( $endTime == "06:00 PM" ) selected #end>6:00 PM</option>
+<option value="07:00 PM" #if ( $endTime == "07:00 PM" ) selected #end>7:00 PM</option>
+<option value="08:00 PM" #if ( $endTime == "08:00 PM" ) selected #end>8:00 PM</option>
+<option value="09:00 PM" #if ( $endTime == "09:00 PM" ) selected #end>9:00 PM</option>
+<option value="10:00 PM" #if ( $endTime == "10:00 PM" ) selected #end>10:00 PM</option>
+<option value="11:00 PM" #if ( $endTime == "11:00 PM" ) selected #end>11:00 PM</option>
+</select>
+</td>
+<td><input class="linkbutton" type="button" value="Update" onclick="doDivAjaxCall3$formname('divEmpty','update','programId=$p.id')"></td>
+
+</tr>
+#end
+</table>

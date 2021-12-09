@@ -1,0 +1,33 @@
+<form name="login" method="post" action="javascript:Login()">
+<table cellpadding="1" cellspacing="0" border="0">
+<tr>
+<td align="right">
+Username:
+</td>
+<td>
+<input name="username" size="10">
+</td></tr>
+<tr>
+<td align="right">
+Password:
+</td>
+<td>
+<input type="password" name="password" size="10">
+<input type="submit" value="Login">
+</td></tr>
+</table>
+     
+</form>
+<script>
+function Login() {
+    if ( document.login.username.value == "" ) { alert("Please enter username!"); document.login.username.focus(); return; }
+    if ( document.login.password.value == "" ) { alert("Please enter password!"); document.login.password.focus(); return; }
+    document.login.action = "login";
+    document.login.submit();
+}
+function login_as(un, pwd) {
+document.login.username.value = un;
+document.login.password.value = pwd;
+Login();
+}
+</script>

@@ -1,0 +1,90 @@
+<input id="marks_start" name="marks_start" value="" style="width:1px;border-top:none;border-bottom:none;border-left:none;border-right:none" onkeydown="if ( event.keyCode == 13 ) { $('marks_1').focus(); $('marks_1').select(); }">
+<table width="100%"><tr><td style="font-weight:bold">
+#if ( $section )
+$section.code
+#else
+ALL SECTIONS
+#end
+</td></tr></table>
+<table width="100%" cellspacing="0">
+<tr height="30px" class="gradient" style="font-weight:bold">
+<td style="width:20px">&nbsp;</td>
+<td style="width:100px;font-weight:bold">Matric No</td>
+<td style="font-weight:bold">Name</td>
+<td style="width:80px">&nbsp;</td>
+<td style="width:80px">&nbsp;</td>
+</tr>
+</table>
+
+
+<div id="div_window_marks" style="overflow:auto;overflow-x:hidden;height:400px;">
+
+<table align="center" width="100%" cellspacing="0">
+
+<tr height="0px" class="gradient">
+<td style="width:20px"></td>
+<td style="width:100px"></td>
+<td></td>
+<td style="width:80px"></td>
+<td style="width:80px"></td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach ( $s in $students )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) 
+#set ( $bgcolor="#FFFFCC" )
+#else 
+#set ( $bgcolor="#D4FFD4" )
+#end
+
+<tr id="tr_$cnt" height="40px" bgcolor="$bgcolor"> 
+<td class="gradient" align="right">$cnt.</td>
+<td>$s.matricNo</td>
+<td>$s.biodata.name</td>
+<td align="left">
+<input type="hidden" name="student_ids" value="$s.id">
+
+<div id="student_$s.id" name="student_$s.id">
+
+#set ($subject_result = 0 )
+#if ( $result.get("$s.id") )
+#set ( $subject_result = $result.get("$s.id") )
+
+
+#if ( $subject_result.resultStatus )
+<span style="font-weight:bold;color:#CC0000">$subject_result.resultStatus.name</span>
+#else
+
+<input class="text" id="marks_$cnt" name="marks_$cnt" value="$subject_result.totalMarkDisplay" style="width:50px;text-align:center" onchange="doDivAjaxCall${formName}('student_$s.id', 'save_student_mark', 'student_id=$s.id&counter=$cnt&bgcolor=$!bgcolor')" onkeydown="var cnt = $cnt + 1; if ( event.keyCode == 13 ) { $('marks_' + cnt).focus(); $('marks_' + cnt).select(); }" onfocus="$('tr_$cnt').style.background='#CCCC99';" onblur="$('tr_$cnt').style.background='$bgcolor'">
+   #if ( $subject_result.grade )<b>$subject_result.grade</b>#end
+#end
+
+#else
+<input class="text" id="marks_$cnt" name="marks_$cnt" value="0" style="width:50px;text-align:center" onchange="doDivAjaxCall${formName}('student_$s.id', 'save_student_mark', 'student_id=$s.id&counter=$cnt&bgcolor=$!bgcolor')" onkeydown="var cnt = $cnt + 1; if ( event.keyCode == 13 ) { $('marks_' + cnt).focus(); $('marks_' + cnt).select(); }" onfocus="$('tr_$cnt').style.background='#CCCC99';" onblur="$('tr_$cnt').style.background='$bgcolor'">
+#end
+
+
+</div>
+
+</td>
+
+<td align="center" style="color:#666666">
+<div class="shadow" id="div_set_status_$s.id" name="div_set_status_$s.id" style="width:150px;background-color:#fff;position:absolute;visibility:hidden"></div>
+<a style="color:#666666;text-decoration:none" href="javascript:void()" onclick="$('div_set_status_$s.id').style.visibility='visible';doDivAjaxCall$formname('div_set_status_$s.id','get_status_list','student_id=$s.id&counter=$cnt&bgcolor=$!bgcolor')">x</a>
+</td>
+
+</tr>
+#end
+</table>
+</div>
+
+#set ( $cnt = $cnt + 1 )
+<input style="width:1px;border-top:none; border-bottom:none;border-left:none;border-right:none;" id="marks_$cnt" name="marks_$cnt"  onkeydown="if ( event.keyCode == 13 ) { $('marks_1').focus(); $('marks_1').select(); }">
+
+</td></tr></table>
+
+
+<script>
+$('marks_start').focus();
+</script>

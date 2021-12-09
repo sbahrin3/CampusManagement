@@ -1,0 +1,16 @@
+<table width="100%">
+<tr><td align="center" style="font-family:helvetica;font-size:12pt;font-weight:bold">
+Current Status : $applicant.status
+<br><br>
+</td></tr>
+<tr><td align="center" style="font-family:helvetica;font-size:12pt;font-weight:bold">
+
+#if ( $applicant.programOffered )
+
+$applicant.programOffered.code $applicant.programOffered.name
+
+#end
+
+
+</td></tr>
+</table>

@@ -1,0 +1,238 @@
+<style>
+
+.textr {color:#000;background-color:#fff;font-weight:normal;font-family:verdana;font-size:10pt; border-bottom:1px solid #66CCCC; border-top: 1px solid #66CCCC; border-left: 1px solid #66CCCC; border-right:1px solid #66CCCC; height:25px; width:100%;padding-left:5px; padding-top:2px; padding-bottom: 2px;}
+.textr:focus {color:#000;background-color:#D4D4FF;font-family:verdana;font-size:10pt; border-bottom:1px solid #0808B2; border-top: 1px solid #66CCCC; border-left: 1px solid #66CCCC; border-right:1px solid #0808B2; height:25px; width:100%;padding-left:5px; padding-top:2px; padding-bottom: 2px;}
+
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+.line {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:none;}
+.box {border-bottom:1px solid #C3C3C3; border-top:1px solid #C3C3C3; border-left:1px solid #C3C3C3; border-right:1px solid #C3C3C3;}
+
+.tabs1 {
+	background: #F2F0EE;
+	height:30px;
+	cursor: pointer;
+	font-weight:bold;
+}
+
+.tabs0 {
+	background: #F2F0EE;
+	height:30px;
+	cursor: pointer;
+	font-weight:bold;
+}
+.student_info {
+	-moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888;
+	position:absolute;
+	background-color:#fff;
+	left:20%;
+	width:800px;
+	height:600px;
+	padding-top:1px;
+	padding-left:1px;
+	padding-right:1px;
+	border:1px solid;
+}
+
+.mark_entry_period {
+	-moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888;
+	position:absolute;
+	background-color:#E3E3E3;
+	width:400px;
+	height:200px;
+	left:50%;
+	margin-left:-200px;
+	vertical-align:middle;
+	padding-top:1px;
+	padding-left:1px;
+	padding-right:1px;
+}	
+</style>
+
+<script>
+
+
+var isNN = (navigator.appName.indexOf("Netscape")!=-1);
+function at(input, e) {
+  var keyCode = (isNN) ? e.which : e.keyCode; 
+  if ( keyCode == 13 ) {
+    input.form[(getIndex(input)+1) % input.form.length].focus();
+  }
+}
+
+function getIndex(input) {
+    var index = -1, i = 0, found = false;
+    while (i < input.form.length && index == -1) {
+    	if (input.form[i] == input)index = i;
+    	else i++;
+    }
+    return index;
+}
+
+function log(msg) {
+   setTimeout(function() {
+       throw new Error(msg);
+    }, 0);
+}
+
+function markKeyIn(input, e, resultId, percentage, errorId) {
+	var d = parseFloat($(resultId).value); 
+	if ( d > percentage ) { 
+		$(resultId).style.backgroundColor='#F9410B'; 
+		$(errorId).value = 'err'; 
+	} else { 
+		$(resultId).style.backgroundColor='#ffffff'; 
+		$(errorId).value = '';
+		var keyCode = (isNN) ? e.which : e.keyCode; 
+  		if ( keyCode == 13 ) {
+    		input.form[(getIndex(input)+1) % input.form.length].focus();
+  		} 
+	}
+}
+
+function markKeyIn2(input, e, resultId, percentage, errorId, count) {
+	var d = parseFloat($(resultId).value); 
+	if ( d > percentage ) { 
+		$(resultId).style.backgroundColor='#F9410B'; 
+		$(errorId).value = 'err'; 
+	} else { 
+		$(resultId).style.backgroundColor='#ffffff'; 
+		$(errorId).value = '';
+		var keyCode = (isNN) ? e.which : e.keyCode; 
+  		if ( keyCode == 13 ) {
+			$('buttonSave_' + count).click();
+  		} 
+	}
+}
+
+function simulateTab(input) {
+	var e = input.form[(getIndex(input)+1) % input.form.length];
+	e.focus();
+}
+
+function putFocus(n) {
+	var n = n + 1;
+	var id = $('mark_id_' + n).value;
+	if ( id != "" ) {
+		$(id).focus();
+		//var e = $(id).form[(getIndex($(id))-2) % $(id).form.length];
+		//e.focus();
+	}
+}
+
+## <INPUT id="txtChar" onkeypress="return isNumber(event)" type="text" name="txtChar">
+## number only
+function isNumber(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+function isDecimal(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if ( charCode == 46 ) return true;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+
+
+function addMarkingField() {
+	var h = document.getElementById('markingCount').value;
+	var n =  parseInt(h) + 1;
+	if ( n < 12 ) {	
+		document.getElementById('markingField_' + h).style.display = 'block';
+		document.getElementById('markingCount').value = n;
+	}
+	else {
+		alert('done!');
+	}
+}
+
+
+</script>
+
+
+<div id="mark_entry_period" class="mark_entry_period" style="visibility:hidden;"></div>
+
+<table width="100%">
+<tr><td>
+
+<input type="hidden" name="page_size" value="40" size="1">
+
+<div id="examEntryParams">
+<fieldset style="background:#F2F0EE">
+
+<table width="100%">
+<tr><td>
+
+<table>
+
+
+<tr>
+<td style="width:150px">Learning Centre: </td>
+<td style="width:500px">
+<select class="textr" name="centreId" style="width:400px">
+<option value=""> - </option>
+#foreach( $s in $centres )
+<option value="$s.id">$s.code $s.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td style="">Program:</td>
+<td>
+<select class="textr" style="width:400px" name="program_id" onchange="doDivAjaxCall3$formname('divSessions','listSessions','')">
+<option value=""></option>
+#foreach( $p in $programs )
+<option value="$p.id">$p.code - $p.name</option>
+#end
+</select>
+
+</td></tr>
+
+
+<tr>
+<td style="font-weight:bold">Session:</td>
+<td>
+<div id="divSessions">
+
+</div>
+
+</td>
+</tr>
+
+
+
+<tr>
+<td style="font-weight:bold">Subject:</td>
+<td>
+<div id="listSubjects">
+	
+
+</div>
+</td>
+</tr>
+</table>
+</td><td>
+<table>
+<tr>
+<td>
+</td>
+<td align="right">
+</td>
+</table>
+</td></tr></table>
+</fieldset>
+</div> ##examEntryParams
+
+<tr><td>
+<fieldset>
+<div id="results" name="results" style="width:100%;"></div>
+</fieldset>
+
+
+</tr></td></table>

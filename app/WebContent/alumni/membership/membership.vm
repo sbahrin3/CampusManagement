@@ -1,0 +1,99 @@
+<div id="membershipForm">
+
+<div class="formTitle" style="width:800px">ALUMNI MEMBERSHIP FORM</div>
+<div class="partTitle">A. PERSONAL DETAILS</div>
+<div class="partDetail">
+<table>
+<tr><td style="width:200px"></td><td style="width:10px"></td><td style="width:550px"></td></tr>
+<tr><td>Title</td><td>:</td><td><input class="texts" name="title" value="$!member.title"></td></tr></tr>
+<tr><td>Full Name</td><td>:</td><td><input class="texts" name="fullName" value="$!member.fullName"></td></tr></tr>
+<tr><td>ICNo</td><td>:</td><td><input class="texts" name="icno" value="$!member.icno"></td></tr></tr>
+<tr><td>Citizenship</td><td>:</td><td>
+<input type="radio" name="citizenship" value="Malaysian" #if ( $member.citizenship == "Malaysian" ) checked #end>Malaysian
+<input type="radio" name="citizenship" value="0ther" #if ( $member.citizendhip == "Other" ) checked #end>Other
+<input class="texts" style="width:350px" name="otherCitizenship" value="$!member.otherCitizenship">
+</td></tr></tr>
+<tr><td valign="top">Permanent Address</td><td valign="top">:</td>
+<td>
+<textarea class="texts" style="height:80px" name="permanentAddress">$!member.permanentAddress</textarea>
+</td>
+</tr>
+<tr><td>Email</td><td>:</td><td><input class="texts" name="email" value="$!member.email"></td></tr></tr>
+<tr><td>H/Phone</td><td>:</td><td><input class="texts" name="mobileNo" value="$!member.mobileNo"></td></tr></tr>
+<tr><td>Tel (Res)</td><td>:</td><td><input class="texts" name="telephoneNo" value="$!member.telephoneNo"></td></tr></tr>
+
+
+<tr><td valign="top">Photo</td><td valign="top">:</td>
+<td>
+<div>
+#if ( $member.photoFileName )
+	##<img id="imgPhoto" src="../download?file=$!member.photoFileName">
+	<img id="imgPhoto" src="../servlet/educate.alumni.module.MemberImgSrc?id=$member.id&type=profile">
+#else
+	<img id="imgPhoto" src="">
+#end
+</div>
+<br/>
+<input type="file" id="memberPhoto" name="memberPhoto" style="width:200px">&nbsp;
+<input class="button" type="button" value="Upload" onclick="uploadFile('$!member.id','memberPhoto', 'divUploadFile')">
+<input type="hidden" id="photoFileName" name="photoFileName" value="$!member.photoFileName">
+<input type="hidden" id="avatarName" name="avatarName" value="$!member.avatarName">
+<div id="divUploadFile"></div>
+</td>
+</tr>
+
+
+</table>
+</div>
+
+<div class="partTitle">B. QUALIFICATION OBTAINED FROM CUCMS (ONLY)</div>
+<div class="partDetail">
+<table>
+<tr><td style="width:170px;font-weight:bold" align="center">Degree</td><td style="width:500px;font-weight:bold" align="center">Course</td><td style="width:100px;font-weight:bold" align="center">Year of Convocation</td></tr>
+<tr><td><input type="checkbox">Diploma</td><td><input class="texts" name="diploma" value="$!member.diploma"></td><td><input class="texts" name="diplomaYear"  value="$!member.diplomaYear"></td></tr>
+<tr><td><input type="checkbox">First Degree</td><td><input class="texts" name="firstDegree" value="$!member.firstDegree"></td><td><input class="texts" name="firstDegreeYear"  value="$!member.firstDegreeYear"></td></tr>
+<tr><td><input type="checkbox">Master Degree</td><td><input class="texts" name="masterDegree" value="$!member.masterDegree"></td><td><input class="texts" name="masterDegreeYear"  value="$!member.masterDegreeYear"></td></tr>
+<tr><td><input type="checkbox">Ph D</td><td><input class="texts" name="phd" value="$!member.phd"></td><td><input class="texts" name="phdYear"  value="$!member.phdYear"></td></tr>
+<tr><td><input type="checkbox">Others</td><td><input class="texts" name="otherDegree" value="$!member.otherDegree"></td><td><input class="texts" name="otherDegreeYear"  value="$!member.otherDegreeYear"></td></tr>
+</table>
+</div>
+
+<div class="partTitle">C. QUALIFICATION OBTAINED FROM OTHER INSTITUTIONS</div>
+<div class="partDetail">
+<table>
+<tr><td style="width:10px">1.</td><td style="width:760px"><input class="texts" name="qualification1" value="$!member.qualification1"></td></tr>
+<tr><td style="width:10px">2.</td><td style="width:760px"><input class="texts" name="qualification2" value="$!member.qualification2"></td></tr>
+<tr><td style="width:10px">3.</td><td style="width:760px"><input class="texts" name="qualification3" value="$!member.qualification3"></td></tr>
+</table>
+</div>
+
+<div class="partTitle">D. EMPLOYMENT DETAIL</div>
+<div class="partDetail">
+
+<table>
+<tr><td style="width:200px"></td><td style="width:10px"></td><td style="width:550px"></td></tr>
+<tr><td>Position/Job Title</td><td>:</td><td><input class="texts" name="jobTitle" value="$!member.jobTitle"></td></tr></tr>
+<tr><td>Company</td><td valign="top">:</td><td><input class="texts" name="company" value="$!member.company"></td></tr></tr>
+<tr><td valign="top">Address</td><td valign="top">:</td>
+<td>
+<textarea class="texts" style="height:80px" name="companyAddress" value="$!member.companyAddress"></textarea>
+</td>
+</tr>
+<tr><td>Business Email</td><td>:</td><td><input class="texts" name="businessEmail" value="$!member.businessEmail"></td></tr></tr>
+<tr><td>Tel (Office)</td><td>:</td><td><input class="texts" name="officeTelNo" value="$!member.officeTelNo"></td></tr></tr>
+<tr><td>Fax (Office)</td><td>:</td><td><input class="texts" name="officeFaxNo" value="$!member.officeFaxNo"></td></tr></tr>
+</table>
+</div>
+
+<div>
+<table><tr><td width="800px" align="right">
+#if ( $member )
+	<input class="linkbutton" type="button" style="font-weight:bold" value="Save" onclick="doDivAjaxCall3$formname('submit','updateMembership','memberId=$member.id')">
+#else
+	<input class="linkbutton" type="button" style="font-weight:bold" value="Submit Membership Form" onclick="doDivAjaxCall3$formname('submit','addMembership','')">
+#end
+</td><tr></table>
+</div>
+
+</div>
+<div id="submit"></div>

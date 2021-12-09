@@ -1,0 +1,39 @@
+<fieldset style="background-color:#fff;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%">
+<tr><td align="right">
+<input class="button" type="button" value="CLOSE" onclick="$('div_list').style.display='none';$('divDataEntry').style.display='block'">
+</td></tr>
+
+
+<tr><td style="font-weight:bold">
+Number Of Records: <span id="data_size">$data_size</span>, Number Of Pages: <span id="total_page">$total_page</span>
+<input type="hidden" name="last_page" value="$!total_page">
+</td></tr>
+
+<tr><td style="font-weight:bold" align="right">
+
+<span id="_wait"></span>
+
+<select id="page_num" name="page_num" style="text-align:center" onchange="$('_wait').innerHTML='Please wait...';doDivAjaxCall3$formname('div_items','get_page_list','data_size=$data_size&total_page=$total_page')">
+#foreach ( $i in [1..$total_page] )
+<option value="$i">$i</option>
+#end
+</select>
+<input type="button" class="button" style="height:22px" value="&lt;&lt;" onclick="$('_wait').innerHTML='Please wait...';doDivAjaxCall3$formname('div_items','get_first_page','data_size=$data_size&total_page=$total_page')">
+<input type="button" class="button" style="height:22px" value="&lt;" onclick="if ( $('page_num').value != '1' )  { $('_wait').innerHTML='Please wait...';doDivAjaxCall3$formname('div_items','get_previous','data_size=$data_size&total_page=$total_page') }">
+<input type="button" class="button" style="height:22px" value="&gt;" onclick="if ( $('page_num').value != '$total_page' )  { $('_wait').innerHTML='Please wait...';doDivAjaxCall3$formname('div_items','get_next','data_size=$data_size&total_page=$total_page'); }">
+<input type="button" class="button" style="height:22px" value="&gt;&gt;" onclick="$('_wait').innerHTML='Please wait...';doDivAjaxCall3$formname('div_items','get_last_page','data_size=$data_size&total_page=$total_page')">
+
+</td></tr>
+<tr><td>
+
+<div id="div_items" style="height:500px;overflow:auto;overflow-x:hidden;">
+#parse("$templateDir/div_items.vm")
+</div>
+
+</td></tr>
+</table>
+
+</fieldset>
+

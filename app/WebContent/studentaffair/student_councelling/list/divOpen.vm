@@ -1,0 +1,6 @@
+<table width="100%" style="background:#E6EAED">
+<tr>
+<td></td><td align="right" style="width:20px;">
+<input class="linkbutton" type="button" value="x" onclick="$('divList').style.display='block';$('divOpen').style.display='none';$('divStudent').innerHTML='';"></td>
+</tr></table>
+<div id="divStudent"></div>

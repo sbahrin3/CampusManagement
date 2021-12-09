@@ -1,0 +1,39 @@
+<table width="800" align="center">
+<tr><td align="right">
+<input type="button" style="font-weight:bold;height:30px;" value="Close" onclick="$('student_info').style.visibility='hidden';">
+</td></tr>
+<tr><td>
+#if ( $student )
+<table width="100%">
+<tr><td height="30px">
+<table><tr>
+<td class="tabs1" id="tab_info" style="width:150px" onclick="$('info_detail').style.display='block';$('exam_transcript').style.display='none';" align="center">
+Biodata
+</td>
+<td style="width:5px"></td>
+<td class="tabs0" id="tab_transcript" style="width:150px" onclick="$('info_detail').style.display='none';$('exam_transcript').style.display='block';" align="center">
+Exam Transcript
+</td>
+</tr></table>
+
+
+</td></tr>
+<tr><td>
+<div id="info_detail" name="info_detail" style="display:block;overflow:auto;height:500px;border:1px solid">
+#parse( "apps/util/assessment_result/student_info_detail.vm" )
+</div>
+
+<div id="exam_transcript" style="display:none;overflow:auto;height:500px;border:1px solid">
+#parse( "apps/util/assessment_result/transcript.vm" )
+</div>
+
+</td></tr>
+</table>
+
+#else
+
+NO STUDENT...
+
+#end
+
+</td></tr></table>

@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+<div style="padding:10px">
+
+#parse("apps/util/grade_setup_by_program/select_params.vm")
+<div id="divMain"></div>
+<div id="divEmpty"></div>
+
+
+</div>

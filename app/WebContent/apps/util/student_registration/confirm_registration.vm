@@ -1,0 +1,65 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {font-family:verdana;font-size:10pt;font-weight:bold;}
+td {font-family:verdana;font-size:10pt;}
+</style>
+
+<table width="700" align="center">
+<tr><td align="right">
+$href.command("").text("Register New Student")
+</td></tr>
+<tr><td>
+<br/><br/>
+<table width="100%" cellspacing="0"><tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">STUDENT SUCESSFULLY ENROLLED</td>
+</tr></table>
+#set ( $student = $invoice.student )
+<table width="100%">
+<tr><td style="width:100px">Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td style="width:100px">Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td style="width:100px">ICNO:</td><td style="font-weight:bold">$student.biodata.icno</td></tr>
+<tr><td style="width:100px">Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td style="width:100px">Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+<tr><td style="width:100px">Learning Centre:</td><td style="font-weight:bold">$student.learningCenter.name</td></tr>
+</table>
+<br/><br/>
+<table width="100%"><tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">STUDENT INVOICE INFO</td>
+</tr></table>
+<br/><br/>
+<table width="100%">
+<tr><td style="width:100px">Date/Time:</td><td style="font-weight:bold">
+$dateFormat.format($invoice.createDate) ($timeFormat.format($invoice.createTime))
+</td></tr>
+<tr><td style="width:100px">Invoice No:</td><td style="font-weight:bold">$invoice.invoiceNo</td></tr>
+<tr><td style="width:100px">Amount:</td><td style="font-weight:bold">RM $numFormat.format($invoice.amount)</td></tr>
+</table>
+<br>
+<table width="100%" cellspacing="0">
+<tr height="30px">
+<td style="font-weight:bold">Fee</td>
+<td align="right" style="font-weight:bold">Amount (RM)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</td>
+</tr>
+#foreach ( $i in $invoice.invoiceItems )
+<tr>
+<td>$i.description</td>
+<td align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</td>
+</tr>
+#end
+</table>
+
+</td></tr>
+<tr><td>
+<br><br>
+</td></tr>
+<tr><td align="right">
+
+<input class="gradient" style="height:40px;font-weight:bold" type="button" value="Print Registration Slip"
+onclick="window.open('../y/educate.sis.module.StudentRegistrationModule?command=print_slip&student_id=$student.id','mywin','left=20,top=20,width=500,height=500,toolbar=0,resizable=0');">
+
+
+</td></tr></table>

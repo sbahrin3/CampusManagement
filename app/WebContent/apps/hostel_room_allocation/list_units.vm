@@ -1,0 +1,46 @@
+#set ( $studentGender = 2 )
+#if ( $student.biodata.gender )
+	#if ( $student.biodata.gender.code == "M" ) #set ( $studentGender = 1 ) 
+	#elseif ( $student.bidata.gender.code == "F" ) #set ( $studentGender = 0 )
+	#end
+#end
+<table>
+<tr height="30px">
+<td><a style="text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_info', 'list_buildings', 'hostel_id=$floor.block.building.hostel.id')">$floor.block.building.hostel.name</a></td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info', 'list_buildings', 'hostel_id=$floor.block.building.hostel.id')"><img src="../img/menu_left.gif"></td>
+<td><a style="text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_info','list_blocks','building_id=$floor.block.building.id')">$floor.block.building.name</a></td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info','list_blocks','building_id=$floor.block.building.id')"><img src="../img/menu_left.gif"></td>
+<td>
+$floor.name
+</td>
+<td>
+	#if ( $floor.floorPlanImageId )
+	[<a href="javascript:void(0)" onclick="$('divViewFloorPlan').style.display='block';$('titleViewFloorPlan').innerHTML='$!floor.name';document.getElementById('imgFloorPlan').src='../servlet/educate.sis.module.FloorPlanImgServlet?id=$!floor.id&floorPlanImageId=$!floor.floorPlanImageId';">View Floor Plan</a>]
+	#end
+</td>
+</tr></table>
+
+<table width="100%">
+
+<tr height="25px" bgcolor="lightgrey">
+<td style="width:100px; font-weight:bold">Unit Id</td>
+<td style="font-weight:bold">Unit Name</td>
+</tr>
+
+#foreach ( $unit in $floor.units )
+<tr>
+<td height="25px">$unit.code</td>
+<td style="cursor:pointer" 
+	#if ($unit.gender == $studentGender ) 
+		onclick="doDivAjaxCall$formname('hostel_info','list_rooms','unit_id=$unit.id')"
+	#else
+		onclick="alert('Your gender is not compatible with this unit.')"
+	#end
+	>
+$unit.name
+#if ( $unit.gender == 1 ) (MALE) #elseif ( $unit.gender == 2 ) (FEMALE) #end
+</td>
+</tr>
+
+#end
+</table>

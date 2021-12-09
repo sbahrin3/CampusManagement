@@ -1,0 +1,145 @@
+#if ( $set.typeQuestionnare )
+
+#else
+
+	<div class="btn-group">
+	#foreach( $part in $partQuestion.part.set.parts )
+		#foreach ( $q in $part.questions )
+			
+			<button type="button" #if ( $partQuestion.refNo == $q.refNo ) class="btn btn-primary btn-sm" #else class="btn btn-default btn-sm" #end 
+			    #if ( $answered.get("$q.refNo") )
+			    		style="font-weight:bold"
+			    #end
+				onclick="doDivAjaxCall3$formname('div_main','getQuestion','partQuestionId=$q.id&fromQuestionId=$partQuestion.id')">$q.refNo</button>
+		#end
+	#end
+	</div>
+	
+#end
+
+<table cellpadding="0" cellspacing="0" align="center">
+
+<tr><td colspan="2">
+
+	<table style="background:#fff;width:700px;" align="center">
+		<tr><td style="height:40px;font-size:10pt;font-weight:bold">
+			$partQuestion.refNo
+		</td></tr>
+		<tr><td>
+			<div style="padding:10px;margin-bottom:20px;font-size:10pt;">
+			$!partQuestion.question.questionText
+			</div>
+		</td></tr>
+		<tr><td>
+			#if ( $partQuestion.question.questionText2 != "" )
+				<div style="padding:10px;margin-bottom:20px;font-size:10pt;">
+				$util.putLineBreak($partQuestion.question.questionText2)
+				</div>
+			#end
+		</td></tr>
+		<tr><td style="padding:10px">
+		
+		
+		#set ( $choiceCount = 0 ) 
+		#if ( $partQuestion.question.type == "likert" )
+			#set ( $likert = $partQuestion.question.likert )
+			
+			<table>
+				<tr style="height:30px"><td style="width:10px"><input type="radio" name="likert" value="1" #if ( $answerLog.likertValue == 1 ) checked #end></td><td style="font-size:10pt">$likert.label1</td></tr>
+				<tr style="height:30px"><td><input type="radio" name="likert" value="2" #if ( $answerLog.likertValue == 2 ) checked #end></td><td style="font-size:10pt">$likert.label2</td></tr>
+				<tr style="height:30px"><td><input type="radio" name="likert" value="3" #if ( $answerLog.likertValue == 3 ) checked #end></td><td style="font-size:10pt">$likert.label3</td></tr>
+				<tr style="height:30px"><td><input type="radio" name="likert" value="4" #if ( $answerLog.likertValue == 4 ) checked #end></td><td style="font-size:10pt">$likert.label4</td></tr>
+				<tr style="height:30px"><td><input type="radio" name="likert" value="5" #if ( $answerLog.likertValue == 5 ) checked #end></td><td style="font-size:10pt">$likert.label5</td></tr>
+			</table>
+			
+		#elseif ( $partQuestion.question.type == "single" )
+			<table>
+				#if ( $partQuestion.question.choice1 != "" ) <tr style="height:30px"><td style="width:30px"><input type="radio" name="single_choice" value="1"  #if ( $answerLog.singleChoice == 1 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice1</td></tr> #end
+				#if ( $partQuestion.question.choice2 != "" ) <tr style="height:30px"><td style=""><input type="radio" name="single_choice" value="2"  #if ( $answerLog.singleChoice == 2 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice2</td></tr> #end
+				#if ( $partQuestion.question.choice3 != "" ) <tr style="height:30px"><td style=""><input type="radio" name="single_choice" value="3"  #if ( $answerLog.singleChoice == 3 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice3</td></tr> #end
+				#if ( $partQuestion.question.choice4 != "" ) <tr style="height:30px"><td style=""><input type="radio" name="single_choice" value="4"  #if ( $answerLog.singleChoice == 4 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice4</td></tr> #end
+				#if ( $partQuestion.question.choice5 != "" ) <tr style="height:30px"><td style=""><input type="radio" name="single_choice" value="5"  #if ( $answerLog.singleChoice == 5 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice5</td></tr> #end
+			</table>
+		#elseif ( $partQuestion.question.type == "multiple" )
+			<table>
+				#if ( $partQuestion.question.choice1 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr style="height:30px"><td style="width:30px"><input type="checkbox" name="choice1" value="1" #if ( $answerLog.choice1 == 1 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice1</td></tr> #end
+				#if ( $partQuestion.question.choice2 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr style="height:30px"><td style="width:30px"><input type="checkbox" name="choice2" value="1" #if ( $answerLog.choice2 == 1 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice2</td></tr> #end
+				#if ( $partQuestion.question.choice3 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr style="height:30px"><td style="width:30px"><input type="checkbox" name="choice3" value="1" #if ( $answerLog.choice3 == 1 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice3</td></tr> #end
+				#if ( $partQuestion.question.choice4 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr style="height:30px"><td style="width:30px"><input type="checkbox" name="choice4" value="1" #if ( $answerLog.choice4 == 1 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice4</td></tr> #end
+				#if ( $partQuestion.question.choice5 != "" ) #set ( $choiceCount = $choiceCount + 1 ) <tr style="height:30px"><td style="width:30px"><input type="checkbox" name="choice5" value="1" #if ( $answerLog.choice5 == 1 ) checked #end></td><td style="font-size:10pt">$partQuestion.question.choice5</td></tr> #end
+			</table>
+		#elseif ( $partQuestion.question.type == "text" )
+			<table style="width:100%"><tr><td>
+				<textarea class="form-control" name="textAnswer" style="height:100px"
+				onKeyDown="limitText(event, this.form.textAnswer,this.form.charsCount,255);" 
+				onKeyUp="limitText(event, this.form.textAnswer,this.form.charsCount,255);">$!answerLog.textAnswer</textarea>
+				<br/>
+				<input style="border: none; width:25px; text-align:right;" name="charsCount" value="255" readonly> characters left.
+				</td></tr>
+			</table>
+		#elseif ( $partQuestion.question.type == "essay" )
+			<table style="width:100%"><tr><td>
+			<textarea class="form-control" name="essayAnswer" style="height:100px">$!answerLog.essayAnswer</textarea>
+			</td></tr>
+			</table>
+		#elseif ( $partQuestion.question.type == "upload" )
+			<table style="width:100%"><tr><td>
+			
+			</td></tr></table>
+		#elseif ( $partQuestion.question.type == "date" )
+			
+			<table style="width:100%"><tr><td style="width:100px">Select A Date</td><td style="width:10px">:</td><td>
+			<input class="text" style="width:100px" id="dateInput" name="dateInput" #if ( $answerLog.dateInput ) value="$dateFormat.format($answerLog.dateInput)" #end readonly>
+			<script> new JsDatePick({ useMode:2, target:"dateInput", dateFormat:"%d-%m-%Y" }); </script>
+			</td></tr></table>
+		
+		#elseif ( $partQuestion.question.type == "none" )
+			<table><tr><td>
+			Click Next to continue.
+			</td></tr></table>			
+		#end
+		</td></tr>
+	</table>
+	
+</td></tr>
+<tr><td colspan="2" align="center">
+<br/><br/>
+
+#if ( $previousPartQuestion )
+	<input id="btn1" class="btn btn-warning btn-sm" style="width:100px;" type="button" value="&lt; Back" onclick="$('btn1').disabled=true;$('btn2').disabled=true;doDivAjaxCall3$formname('div_main','getPrevious','partQuestionId=$previousPartQuestion.id')">
+	
+#else
+	<input id="btn1" style="display:none">
+#end
+
+#if ( $partQuestion.question.type != "stop" )
+	<input id="btn2" class="btn btn-success btn-sm" style="width:100px;" type="button" value="Next &gt;" 
+	#if ( $partQuestion.required )
+		onclick="if ( !checkAnswer('$partQuestion.question.type', $choiceCount, $partQuestion.minimumChars) ) return; #if ( $previousPartQuestion ) $('btn1').disabled=true; #end $('btn2').disabled=true;doDivAjaxCall3$formname('div_main','getNext','partQuestionId=$partQuestion.id')">
+	#else
+		onclick="#if ( $previousPartQuestion ) $('btn1').disabled=true; #end $('btn2').disabled=true;doDivAjaxCall3$formname('div_main','getNext','partQuestionId=$partQuestion.id')">
+	#end
+	
+#else
+<input id="btn2" style="display:none">
+#end
+
+
+</td></tr>
+<tr><td colspan="2" align="center">
+
+<div id="errorAnswer" style="display:none;text-align:center;width:400px;font-weight:bold;color:#F20C0C">
+Please choose your answer!
+</div>
+
+</td></tr>
+<tr><td colspan="3" align="center">
+<div style="padding:20px">
+#if ( $partQuestion.required )
+	Answer is required!
+#end
+</div>
+</td></tr>
+</table>
+
+

@@ -1,0 +1,6 @@
+#set ( $bgcolor = "#FFFF55" )
+#parse("apps/util/applicant/frm_program_choices.vm")
+<table width="100%">
+<tr><td align="right">
+<input type="button" style="height:30px;font-weight:bold" value="UPDATE" onclick="doDivAjaxCall${formName}('program_choices','update_program_choices','')">
+</td></tr></table>

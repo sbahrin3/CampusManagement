@@ -1,0 +1,104 @@
+<script>
+$('divEditClassroom').style.display="block";
+</script>
+
+<div style="padding:2px">
+
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#0000FF">
+<tr><td style="height:30px"><span id="editClassroomTitle" style="padding:2px;font-family:Verdana, sans-serif;font-size:10pt;color:#fff">Actual Start - End Time</span></td>
+<td align="right">
+
+</td></tr></table>
+<div>
+<table width="100%">
+<tr style="height:30px"><td style="width:150px">Subject:</td><td style="font-weight:bold">$subject.code $subject.name</td></tr>
+<tr style="height:30px"><td style="">Classroom:</td><td style="font-weight:bold">$type.name</td></tr>
+
+
+
+##if ( $classroom.classroomSection.classroomType.examType )
+	#set ( $h1 = $classroom.actualStartTimeComponent )
+        <tr style="height:30px"><td>Actual Start Time:</td>
+        <td>
+        <select disabled class="text" style="width:50px;background:#ccc" name="h1">
+        	<option value="01" #if ( $h1.hour == "01" ) selected #end>1</option>
+        	<option value="02" #if ( $h1.hour == "02" ) selected #end>2</option>
+        	<option value="03" #if ( $h1.hour == "03" ) selected #end>3</option>
+        	<option value="04" #if ( $h1.hour == "04" ) selected #end>4</option>
+        	<option value="05" #if ( $h1.hour == "05" ) selected #end>5</option>
+        	<option value="06" #if ( $h1.hour == "06" ) selected #end>6</option>
+        	<option value="07" #if ( $h1.hour == "07" ) selected #end>7</option>
+        	<option value="08" #if ( $h1.hour == "08" ) selected #end>8</option>
+        	<option value="09" #if ( $h1.hour == "09" ) selected #end>9</option>
+        	<option value="10" #if ( $h1.hour == "10" ) selected #end>10</option>
+        	<option value="11" #if ( $h1.hour == "11" ) selected #end>11</option>
+        	<option value="12" #if ( $h1.hour == "12" ) selected #end>12</option>
+        </select>
+        <select class="text" style="width:50px" name="m1">
+        	<option value="00" #if ( $h1.minute == "00" ) selected #end>00</option>
+        	<option value="05" #if ( $h1.minute == "05" ) selected #end>05</option>
+        	<option value="10" #if ( $h1.minute == "10" ) selected #end>10</option>
+        	<option value="15" #if ( $h1.minute == "15" ) selected #end>15</option>
+        	#**
+        	<option value="20" #if ( $h1.minute == "20" ) selected #end>20</option>
+        	<option value="25" #if ( $h1.minute == "25" ) selected #end>25</option>
+        	<option value="30" #if ( $h1.minute == "30" ) selected #end>30</option>
+        	**#
+        </select>
+        <select disabled class="text" style="width:50px;background:#ccc" name="a1">
+        	<option value="AM" #if ( $h1.a == "AM" ) selected #end>AM</option>
+        	<option value="PM" #if ( $h1.a == "PM" ) selected #end>PM</option>
+        </select>
+        </td>
+        </tr>
+        #set ( $h1 = $classroom.actualEndTimeComponent )
+        <tr style="height:30px"><td>Actual End Time:</td>
+        <td>
+        <select disabled class="text" style="width:50px;background:#ccc" name="h2">
+        	<option value="01" #if ( $h1.hour == "01" ) selected #end>1</option>
+        	<option value="02" #if ( $h1.hour == "02" ) selected #end>2</option>
+        	<option value="03" #if ( $h1.hour == "03" ) selected #end>3</option>
+        	<option value="04" #if ( $h1.hour == "04" ) selected #end>4</option>
+        	<option value="05" #if ( $h1.hour == "05" ) selected #end>5</option>
+        	<option value="06" #if ( $h1.hour == "06" ) selected #end>6</option>
+        	<option value="07" #if ( $h1.hour == "07" ) selected #end>7</option>
+        	<option value="08" #if ( $h1.hour == "08" ) selected #end>8</option>
+        	<option value="09" #if ( $h1.hour == "09" ) selected #end>9</option>
+        	<option value="10" #if ( $h1.hour == "10" ) selected #end>10</option>
+        	<option value="11" #if ( $h1.hour == "11" ) selected #end>11</option>
+        	<option value="12" #if ( $h1.hour == "12" ) selected #end>12</option>
+        </select>
+        <select class="text" style="width:50px" name="m2">
+        	<option value="00" #if ( $h1.minute == "00" ) selected #end>00</option>
+        	<option value="05" #if ( $h1.minute == "05" ) selected #end>05</option>
+        	<option value="10" #if ( $h1.minute == "10" ) selected #end>10</option>
+        	<option value="15" #if ( $h1.minute == "15" ) selected #end>15</option>
+        	#** 
+        	<option value="20" #if ( $h1.minute == "20" ) selected #end>20</option>
+        	<option value="25" #if ( $h1.minute == "25" ) selected #end>25</option>
+        	<option value="30" #if ( $h1.minute == "30" ) selected #end>30</option>
+        	**#
+        </select>
+        <select disabled class="text" style="width:50px;background:#ccc" name="a2">
+        	<option value="AM" #if ( $h1.a == "AM" ) selected #end>AM</option>
+        	<option value="PM" #if ( $h1.a == "PM" ) selected #end>PM</option>
+        </select>
+        </td>
+        </tr>
+##end
+
+<tr><td colspan="2" align="right">
+
+<br/>
+
+<button type="button" class="btn btn-warning" onclick="$('divEditClassroom').style.display='none';doDivAjaxCall$formname('slot_$slot.id','update_classroom','classroomId=$classroom.id')">Save</button>
+<button type="button" class="btn btn-info" onclick="$('divEditClassroom').style.display='none';">Cancel</button>
+
+</td></tr>
+
+</table>
+
+</div>
+<br/>
+
+</div>

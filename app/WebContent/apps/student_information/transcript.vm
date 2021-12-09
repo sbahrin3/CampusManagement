@@ -1,0 +1,59 @@
+#if ( $student )
+
+
+<table width="100%" style="border-top: 2px solid #D2D2D2; border-bottom: 2px solid #D2D2D2; border-right: 2px solid #D2D2D2; border-left: 2px solid #D2D2D2;">
+<tr><td align="center" style="font-weight:bold">$student.matricNo $student.biodata.name</td></tr>
+<tr><td align="center" style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+</table>
+<br>
+<br>
+
+#set ( $get_current = "N" )
+<table width="100%" style="border-top: 2px solid #D2D2D2; border-bottom: 2px solid #D2D2D2; border-right: 2px solid #D2D2D2; border-left: 2px solid #D2D2D2;">
+
+##ADMIN MODE START
+#if ( $admin_mode )
+#foreach ( $r in $results )
+#if ( $get_current == "N" )
+#parse("apps/student_information/transcript_section.vm")
+#end
+
+
+#if ( $r.session.id == $current_session.id )
+#set ( $get_current = "Y" )
+#end
+#end
+
+#else ##ADMIN MODE END, STUDENT MODE START
+
+#foreach ( $r in $results )
+#if ( $r.session.id == $current_session.id )
+#set ( $get_current = "Y" )
+#else
+#set ( $get_current = "N" )
+#end
+
+#if ( $get_current == "Y" )
+#parse("apps/student_information/transcript_section.vm")
+#end
+#end
+
+#end
+##STUDENT MODE END
+
+</table>
+
+
+<br><br>
+#if ( $student_mode )
+<table width="100%"><tr><td style="font-weight:bold">
+
+*Your academic record only shown your current semester only.
+
+</td></tr></table>
+#end
+
+#end ##if student
+
+
+

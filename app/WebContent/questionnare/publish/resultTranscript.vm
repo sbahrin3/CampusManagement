@@ -1,0 +1,159 @@
+<div id="dragHandle" width="100%" style="height:35px;background:#2B0BBC;cursor:pointer">
+<table style="width:100%"><tr><td style="color:#fff">
+&nbsp;&nbsp;Answer transcript by: $userLog.userId
+</td><td style="width:10px;text-align:right">
+<input class="linkbutton" type="button" value="x" onclick="$('div_transcript').style.display='none';">
+</td></tr></table>
+</div>
+
+<div style="height:400px;overflow:auto">
+<table>
+#foreach ( $path in $userLog.userPaths )
+	<tr>
+		<td valign="top">
+			#if ( $result.get("$path.question.refNo") )
+				<span style="color:#4caf50;font-size:15pt">&#10004;</span>
+			#else
+				<span style="color:#ff0000;font-size:15pt">&#10008;</span>
+			#end
+		</td>
+		<td style="font-weight:bold" valign="top">
+			$path.question.refNo
+		</td>
+		<td valign="top">
+			$path.question.question.questionText
+		</td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td></td>
+		<td>
+		
+		#if ( $path.question.question.type == "single" )
+			
+			<ul>
+				#if ( $path.question.question.choice1 != "" ) 
+					<li #if ( $path.question.question.correctSingleChoice == 1 ) style="font-weight:bold" #end>$path.question.question.choice1
+					#if ( $path.singleChoice == 1 && $path.question.question.correctSingleChoice == 1 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.singleChoice == 1 )
+						<span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end
+					
+					</li> 
+				#end
+				#if ( $path.question.question.choice2 != "" ) 
+					<li #if ( $path.question.question.correctSingleChoice == 2 ) style="font-weight:bold" #end>$path.question.question.choice2
+					#if ( $path.singleChoice == 2 && $path.question.question.correctSingleChoice == 2 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.singleChoice == 2 )
+						<span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end
+					
+					</li> 
+				#end
+				#if ( $path.question.question.choice3 != "" ) 
+					<li #if ( $path.question.question.correctSingleChoice == 3 ) style="font-weight:bold" #end>$path.question.question.choice3
+					#if ( $path.singleChoice == 3 && $path.question.question.correctSingleChoice == 3 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.singleChoice == 3 )
+						<span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end					
+					</li> 
+				#end
+				#if ( $path.question.question.choice4 != "" ) 
+					<li #if ( $path.question.question.correctSingleChoice == 4 ) style="font-weight:bold" #end>$path.question.question.choice4
+					#if ( $path.singleChoice == 4 && $path.question.question.correctSingleChoice == 4 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.singleChoice == 4 )
+						 <span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end					
+					</li> 
+				#end
+				#if ( $path.question.question.choice5 != "" ) 
+					<li #if ( $path.question.question.correctSingleChoice == 5 ) style="font-weight:bold" #end>$path.question.question.choice5
+					#if ( $path.singleChoice == 5 && $path.question.question.correctSingleChoice == 5 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.singleChoice == 5 )
+						<span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end					
+					</li> 
+				#end
+			</ul>
+		#elseif ( $path.question.question.type == "multiple" )
+			
+			<ul>
+				#if ( $path.question.question.choice1 != "" ) 
+					<li #if ( $path.question.question.correct1 ) style="font-weight:bold" #end>$path.question.question.choice1 
+					#if ( $path.choice1 == 1 && $path.question.question.correct1 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.choice1 == 1 )
+						<span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end
+					</li> 
+				#end
+				#if ( $path.question.question.choice2 != "" ) 
+					<li #if ( $path.question.question.correct2 ) style="font-weight:bold" #end>$path.question.question.choice2 
+					#if ( $path.choice2 == 1 && $path.question.question.correct2 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.choice2 == 1 )
+						<span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end
+					</li> 
+				#end
+				#if ( $path.question.question.choice3 != "" ) 
+					<li #if ( $path.question.question.correct3 ) style="font-weight:bold" #end>$path.question.question.choice3 
+					#if ( $path.choice3 == 1 && $path.question.question.correct3 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.choice3 == 1 )
+						<span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end
+					</li> 
+				#end
+				#if ( $path.question.question.choice4 != "" ) 
+					<li #if ( $path.question.question.correct4 ) style="font-weight:bold" #end>$path.question.question.choice4 
+					#if ( $path.choice4 == 1 && $path.question.question.correct4 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.choice4 == 1 )
+						<span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end
+					</li> 
+				#end
+				#if ( $path.question.question.choice5 != "" ) 
+					<li #if ( $path.question.question.correct5 ) style="font-weight:bold" #end>$path.question.question.choice5 
+					#if ( $path.choice5 == 1 && $path.question.question.correct5 )
+						<span style="color:blue;font-size:12pt">&#10004;</span>
+					#elseif ( $path.choice5 == 1 )
+						<span style="color:#f78307;font-size:12pt">&#10008;</span>
+					#end
+					</li> 
+				#end
+			</ul>
+		#end
+		</td>
+	</tr>
+	
+
+#end
+</table>
+<br/>
+<div>
+	<table align="right">
+		<tr style="height:50px;background:#ebebeb">
+			<td style="width:100px;text-align:center;font-weight:bold;border-top:1px solid #000;border-bottom:1px solid #000"><span style="color:#4caf50;font-size:18pt">&#10004;</span></td>
+			<td style="width:100px;text-align:center;font-weight:bold;border-top:1px solid #000;border-bottom:1px solid #000"><span style="color:#ff0000;font-size:18pt">&#10008;</span></td>
+			<td style="width:100px;text-align:center;font-weight:bold;font-size:12pt;border-top:1px solid #000;border-bottom:1px solid #000">Pct.</td>
+		</tr>
+		<tr style="height:50px">
+			<td style="text-align:center;font-weight:bold;font-size:12pt">$answer.correct_count</td>
+			<td style="text-align:center;font-weight:bold;font-size:12pt">$answer.wrong_count</td>
+			<td style="text-align:center;font-weight:bold;font-size:12pt">$answer.percentage</td>
+		</tr>
+	</table>
+</div>
+
+
+</div>
+
+<script>new Draggable('div_transcript', {handle: 'dragHandle'});</script>

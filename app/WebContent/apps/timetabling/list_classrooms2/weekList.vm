@@ -1,0 +1,17 @@
+
+<table><tr><td style="width:300px">
+
+	<select class="form-control" id="week" name="week" style="width:100%" >
+	#foreach( $w in [1..$weeks] )
+	<option value="$w">
+	#if ( $currentWeek == $w ) &gt; #end
+	Week $w
+	</option>
+	#end
+	</select>
+
+</td><td>
+	&nbsp;
+	<button type="button" class="btn btn-info btn-sm" onclick="doDivAjaxCall3$formname('classroomList','getClassroomList','')">Show All</button>
+
+</td></tr></table>

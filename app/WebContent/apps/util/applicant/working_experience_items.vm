@@ -1,0 +1,30 @@
+<table width="100%">
+#foreach( $e in $applicant.employments )
+
+<tr>
+<td style="width:200px;">$!e.company</td>
+<td style="width:200px;">$!e.position</td>
+<td style="width:80px;" align="center">$!e.yfrom</td>
+<td style="width:80px;" align="center">$!e.yto</td>
+<td style="width:80px;" align="center">$!e.numberOfYears</td>
+<td>
+<input type="button" value="X" onclick="doDivAjaxCall$formname('div_working_experience','delete_working_experience','employment_id=$e.id')">
+</td>
+</tr>
+
+#end
+</table>
+
+<table width="100%">
+<tr>
+<td style="width:200px;"><input style="width:100%" name="company_name"></td>
+<td style="width:200px;"><input style="width:100%" name="position_name"></td>
+<td style="width:80px;"><input style="width:100%" name="yfrom"></td>
+<td style="width:80px;"><input style="width:100%" name="yto"></td>
+<td style="width:80px;"><input style="width:100%" name="number_of_years"></td>
+<td></td>
+</tr>
+<tr><td colspan="6" align="right">
+<input type="button" value="ADD.." onclick="doDivAjaxCall$formname('div_working_experience','add_working_experience','')">
+</td></tr>
+</table>

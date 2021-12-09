@@ -1,0 +1,20 @@
+<div name="div_people" id="div_people" style="width:100%;height:300px;background-color:#ffffff">
+<table width="100%" style="">
+<tr id="people_handle" name="people_handle" bgcolor="#FFD455">
+<td style="font-family:arial;font-size:10pt;font-weight:bold;height:25px">
+&nbsp;People List
+</td></tr>
+<tr><td>
+<table width="100%">
+<tr><td>
+<div name="div_people2" id="div_people2" style="overflow:auto;height:280px;width:100%">
+</div>
+</td></tr>
+</table>
+<input type="text" style="visibility:hidden">
+</td></tr></table>
+</div>
+
+<script>
+new Draggable('div_people', {handle:'people_handle'});
+</script>

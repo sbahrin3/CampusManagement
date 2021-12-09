@@ -1,0 +1,73 @@
+
+#set ( $records = $account_statement.records )
+#set ( $total_invoiced = $account_statement.totalInvoiced )
+#set ( $total_paid = $account_statement.totalPaid )
+#set ( $total_balance = $account_statement.totalBalance )
+
+$dateFormat.applyPattern("d MMM, yyyy")
+
+
+
+<table width="100%" align="center" cellspacing="0" cellpadding="1">
+
+<tr><td colspan="7" style="border-bottom:1px solid #999595"></td></tr>
+
+<tr style="height:40px">
+<td colspan="3" style="font-weight:bold;border-right:1px solid #999595" align="center">Invoiced (RM)</td>
+<td colspan="3" style="font-weight:bold" align="center">Paid (RM)</td>
+<td style="width:80px;font-weight:bold;border-left:1px solid #999595" align="center">Balance</td>
+</tr>
+
+<tr><td colspan="7" style="border-top:1px solid #999595">&nbsp;</td></tr>
+
+#foreach( $r in $records )
+<tr style="height:30px">
+
+#if ( $r.side == 0 )
+	#if ( $r.amount != 0 )
+    <td style="width:100px;" valign="top">$dateFormat.format($r.date)</td>
+    <td style="width:180px;" valign="top">
+    $!r.referenceNo<br/>$!r.description
+    </td>
+    <td style="width:80px;border-right:1px solid #999595" align="right" valign="top">$numFormat.format($r.amount)&nbsp;&nbsp;</td>
+    <td style="">&nbsp;</td>
+    <td style="">&nbsp;</td>
+    <td style="" >&nbsp;</td>
+    
+    <td  style="width:80px;border-left:1px solid #999595" align="right" valign="top">$numFormat.format($r.balance)&nbsp;&nbsp;</td>
+	#end
+#else
+	#if ( $r.amount != 0 )
+    <td style="">&nbsp;</td>
+    <td style="">&nbsp;</td>
+    <td style="border-right:1px solid #999595">&nbsp;</td>
+    <td style="width:100px;" valign="top">$dateFormat.format($r.date)</td>
+    <td style="width:180px;" valign="top">
+    $!r.referenceNo<br/>$!r.description
+    </td>
+    <td style="width:80px;" align="right" valign="top">$numFormat.format($r.amount)&nbsp;&nbsp;</td>
+	
+	<td  style="width:80px;border-left:1px solid #999595" align="right" valign="top">$numFormat.format($r.balance)&nbsp;&nbsp;</td>
+	#end
+#end
+</tr>
+#end
+<tr><td colspan="7" style="border-bottom:1px solid #999595">&nbsp;</td></tr>
+
+
+<tr style="height:40px">
+<td></td>
+<td colspan="2" align="right" style="font-weight:bold;border-right:1px solid #999595">
+$numFormat.format($total_invoiced)&nbsp;&nbsp;
+</td>
+<td></td>
+<td colspan="2" align="right" style="font-weight:bold">
+$numFormat.format($total_paid)&nbsp;&nbsp;
+</td>
+<td align="right" style="font-weight:bold;border-left:1px solid #999595">
+$numFormat.format($total_balance)&nbsp;&nbsp;
+</td>
+</tr>
+<tr><td colspan="7" style="border-bottom:1px solid #999595"></td></tr>
+</table>
+

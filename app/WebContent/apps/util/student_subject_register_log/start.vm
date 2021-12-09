@@ -1,0 +1,46 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {font-family:verdana;font-size:8pt;border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+.fset { background-color:#E2FEE2}
+</style>
+
+<table width="900px" align="left">
+<tr><td>
+
+
+<fieldset class="fset" style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">SUBJECT ADD DROP LOG</legend>
+
+<table width="100%">
+<tr>
+<td>
+<div id="div_log_date" name="div_log_date" style="font-family:arial;font-weight:bold;font-size:12pt"></div>
+</td>
+<td align="right">
+<table>
+<tr><td align="right">
+Matric No: <input name="matric_no">
+<input class="gradient" style="height:25px;font-weight:bold" type="button" value="Find.." onclick="doDivAjaxCall$formname('div_result','get_student','')">
+</td></tr>
+<tr><td align="right">
+Between date:
+$dateFormat.applyPattern("dd-MM-yyyy")
+$html.dateField.name("log_date").value("$dateFormat.format($log_date)").style("width:100px")
+$html.dateField.name("log_date2").value("$dateFormat.format($log_date2)").style("width:100px")
+<input class="gradient" style="height:25px;font-weight:bold" type="button" value="GET.." onclick="doDivAjaxCall$formname('div_result','reload','')">
+</td></tr>
+</table>
+
+</td></tr></table>
+
+<div class="shadow" id="div_registration" name="div_registration" style="visibility:hidden;position:absolute;width:800px;background-color:#FFFFFF"></div>
+<div id="div_result" name="div_result" style="height:420px">#parse("apps/util/student_subject_register_log/result.vm")</div>
+
+
+</fieldset>
+
+
+
+</td></tr></table>

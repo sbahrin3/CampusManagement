@@ -1,0 +1,25 @@
+<style>
+.legend {
+	background-color:#DCDCDC;
+	padding: 0.2em 0.2em;
+	font-family:arial;
+	font-size:10pt;
+	font-weight:bold;
+}
+</style>
+
+
+<table width="100%">
+<tr><td>
+
+<fieldset><legend class="legend">Select</legend>
+#parse("$path/selectPeriod.vm")
+</fieldset>
+
+</td></tr>
+<tr><td>
+
+<div id="listStudents"></div>
+
+</td></tr>
+</table>

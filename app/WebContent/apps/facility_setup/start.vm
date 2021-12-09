@@ -1,0 +1,25 @@
+<table width="700" align="center"><tr><td>
+
+<table width="100%">
+<tr>
+<td style="width:100px">Select Type:</td>
+<td>
+<select name="facility_type" style="width:300px" onchange="doDivAjaxCall$formname('facility_data', 'type_selected', '')">
+<option value="">- select - </option>
+<option value="P">PLACE</option>
+<option value="E">EQUIPMENT</option>
+</select>
+<input type="button" value="List" onclick="doDivAjaxCall$formname('facility_data', 'list_facilities', '')">
+<input type="button" value="New" onclick="doDivAjaxCall$formname('facility_data', 'type_selected', '')">
+</td>
+</tr>
+</table>
+
+</td></tr>
+<tr><td>
+<div id="facility_data" name="facilty_data"></div>
+</td></tr>
+<tr><td>
+
+
+</td></tr></table>

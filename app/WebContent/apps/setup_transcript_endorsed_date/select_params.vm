@@ -1,0 +1,16 @@
+<table>
+<tr>
+<td style="width:150px">Program: </td>
+<td style="width:500px">
+<select class="textr" style="width:400px" id="programId" name="programId" onchange="if ( this.value == '' ) return;doDivAjaxCall3$formname('divMain','getProgram','')">
+<option value=""></option>
+#foreach ( $p in $programs )
+<option value="$p.id">$p.code - $p.name</option>
+#end
+</select>
+<input type="button" value="..." onclick="doDivAjaxCall3$formname('divMain','getProgram','')">
+</td>
+</tr>
+
+
+</table>

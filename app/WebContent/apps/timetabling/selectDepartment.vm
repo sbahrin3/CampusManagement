@@ -1,0 +1,38 @@
+
+<div style="background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff"><label>Faculties</label></td>
+			<td align="right">
+				<button type="button" class="btn btn-primary" onclick="$('selectIncludeTag').style.display='none';">x</button>
+			</td>
+		</tr>
+	</table>
+  	
+</div>
+
+<div style="height:250px;overflow:auto;overflow-x:hidden;text-align:left">
+<table class="table">
+<tr>
+	<td></td>
+	<td>Select None</td>
+	<td>
+	<button type="button" class="btn btn-info btn-xs" onclick="$('departmentName').value='(All)';$('departmentId').value='';$('selectIncludeTag').style.display='none';">&gt;</button>
+		
+	</td>
+</tr>
+#foreach ( $d in $departments )
+	<tr>
+		<td></td>
+		<td>$d.id - $d.name</td>
+		<td>
+		<button type="button" class="btn btn-info btn-xs" onclick="$('departmentName').value='$d.name';$('departmentId').value='$d.id';$('selectIncludeTag').style.display='none';">&gt;</button>
+			
+		</td>
+	</tr>
+#end
+</table>
+
+</div>
+

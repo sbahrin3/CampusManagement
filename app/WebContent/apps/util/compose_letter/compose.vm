@@ -1,0 +1,16 @@
+<table width="100%">
+<tr><td>
+
+
+<textarea class="compose" rows="10"  id="text" name="text" style="width:100%;" onkeyup="resizeTextArea(this)">$!letter.text</textarea>
+
+
+</td></tr>
+<tr><td align="right">
+<input class="gradient" style="height:30px" type="button" value="Save" onclick="doDivAjaxCall$formname('div_letter','save','')">
+</td></tr>
+</table>
+
+<script>
+new TextAreaResize('text');
+</script>

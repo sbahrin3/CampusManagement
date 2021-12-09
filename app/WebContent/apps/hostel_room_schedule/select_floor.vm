@@ -1,0 +1,12 @@
+<table>
+<tr>
+<td width="100px">Floor:</td>
+<td width="500px">
+<select style="width:350px" name="select_floor" id="select_floor" onchange="$('div_room_history').innerHTML='';if ( $('select_floor').value == '' ) return;doDivAjaxCall$formname('div_room_history','room_history','')">
+<option value=""></option>
+#foreach( $h in $block.floors)
+<option value="$h.id">&nbsp;$h.name</option>
+#end
+</select>
+<input type="button" value="Reload" onclick="$('div_room_history').innerHTML='';if ( $('select_floor').value == '' ) return;doDivAjaxCall$formname('div_room_history','room_history','')">
+</td></tr></table>

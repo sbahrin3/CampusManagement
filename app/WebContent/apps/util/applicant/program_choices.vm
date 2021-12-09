@@ -1,0 +1,10 @@
+<table width="100%">
+<tr><td align="right" style="width:150px">First Choice :</td><td><input readonly style="width:100%" name="first_choice" value="$!applicant.choice1.code $!applicant.choice1.name"></td></tr>
+<tr><td align="right">Second Choice :</td><td><input readonly style="width:100%" name="first_choice" value="$!applicant.choice2.code $!applicant.choice2.name"></td></tr>
+<tr><td align="right">Third Choice :</td><td><input readonly style="width:100%" name="first_choice" value="$!applicant.choice3.code $!applicant.choice3.name"></td></tr>
+</table>
+
+<table width="100%">
+<tr><td align="right">
+<input type="button" style="height:30px;font-weight:bold" value="EDIT ..." onclick="doDivAjaxCall${formName}('program_choices','edit_program_choices','')">
+</td></tr></table>

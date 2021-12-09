@@ -1,0 +1,97 @@
+<table width="700">
+<tr><td align="right">
+<input type="button" style="background-color:#fff; height:25px;font-weight:bold" value="Back to Status of Applications" onclick="doAjaxCall$formname('','')">
+</td></tr>
+
+<tr><td>
+
+<div name="div_applicant" id="div_applicant" style="background-color:#FFFFAA;visibility:hidden;overflow:auto;position:absolute;width:780px;border-style:solid;border-color:#B4B4B4"></div>
+
+</td></tr>
+
+<tr><td>
+
+<br><br>
+
+
+
+<table width="100%"><tr>
+<td style="font-weight:bold">
+$program.name
+</td>
+<td align="right" style="font-weight:bold">
+$status :
+$applicants.size() applicants
+</td></tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0">
+<tr height="30px" bgcolor="lightgrey">
+<td style="width:10px" colspan="2"></td>
+<td style="width:200px;font-weight:bold">Particular</td>
+<td style="font-weight:bold">Education Background</td>
+</tr>
+</table>
+
+##begin list...
+<div style="overflow:auto;overflow-x:hidden;top:0;height:600px; width:700px; background-color:#E1E1E1">
+
+
+<table bgcolor="#ffffff" width="100%" border="0">
+<tr height="0px">
+<td style="width:10px" colspan="2"></td>
+<td style="width:200px"></td>
+<td style=""></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $applicant in $applicants )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td style="width:20px" valign="top" align="right">$cnt)</td>
+<td valign="top">
+##<input type="checkbox" name="applicant_ids" value="$applicant.id">
+</td>
+<td valign="top">
+
+
+<div id="div_$applicant.id" name="div_$applicant.id">
+$applicant.referenceNo<br>
+<b>$applicant.biodata.name</b><br>
+#if ( $applicant.biodata.icno ) $applicant.biodata.icno <br>#end
+#if ( $applicant.biodata.passport ) $applicant.biodata.passport <br>#end
+
+#if ( $applicant.applyDate ) 
+$dateFormat.format($applicant.applyDate)
+#if ( $applicant.applyTime ) $timeFormat.format($applicant.applyTime) #end
+#elseif ( $applicant.registerDate ) $dateFormat.format($applicant.registerDate)  #end
+<br>
+<input type="button" value="Open.." onclick="$('div_applicant').style.visibility='visible';doDivAjaxCall$formname('div_applicant','get_applicant','applicant_id=$applicant.id')">
+</td>
+</div>
+
+
+<td valign="top">#parse("apps/util/applicant/education_background.vm")</td>
+
+</tr>
+
+<tr><td colspan="5"><hr/></td></tr>
+#end
+
+</table>
+
+</div>
+##... end list
+
+
+
+</td></tr>
+<tr><td>
+
+##parse("apps/util/applicant/button.vm")
+
+</td></tr>
+
+</table>
+
+<input type="hidden" name="status" value="$!status">
+<input type="hidden" name="program_id" value="$!program.id">

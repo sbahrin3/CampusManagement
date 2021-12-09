@@ -1,0 +1,46 @@
+<div>
+
+<table cellspacing="2" cellpadding="1" border="0">
+<tr><td style="font-weight:bold">
+#if ( $classroom )
+$classroom.subjectId&nbsp;$classroom.subjectTitle
+#end
+</td></tr>
+</table>
+
+
+<table align="center">
+<tr><td>
+<span id="button_prev">
+
+</span>
+</td><td>
+
+<table width="700" height="220" align="center"><tr><td>
+<div id="div_list_students">
+#if ( $classroom )
+#parse( "apps/lms2/create_groups/div_list_students.vm" )
+#else
+PLEASE SELECT A CLASSROOM
+#end
+<div> ##div_list_students
+</td></tr></table>
+
+</td><td>
+<span id="button_next">
+#if ( $classroom )
+<a href="javascript:void()" onclick="doDivAjaxCall3$formname('div_list_students','next_student_list','classroom_id=$!classroom.id');"><img src="../img/img_next.gif" border=0></a>
+#end
+</span>
+
+</td></tr></table>
+
+</div>
+
+#if ( $classroom )
+<script>
+
+doDivAjaxCall3$formname('div_groups','list_groups','classroom_id=$classroom.id');
+
+</script>
+#end

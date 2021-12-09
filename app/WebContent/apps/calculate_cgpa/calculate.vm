@@ -1,0 +1,9 @@
+$student.matricNo - $student.biodata.name
+
+<br/><br/>
+#foreach( $r in $results )
+
+$r.gpa
+<br/>
+
+#end

@@ -1,0 +1,21 @@
+<table width="100%">
+<tr><td align="right" style="font-weight:bold;height:40px;">
+Copy From Other Learning Centre:
+<select name="other_centre_id" style="font-weight:bold">
+#foreach( $c in $centres )
+<option value="$c.id">&nbsp;&nbsp;&nbsp;$c.name</option>
+#end
+</select>
+<input type="button" value="COPY" onclick="if (!confirm('WARNING!!THIS ACTION WILL REMOVE AND REPLACE CURRENT STRUCTURE. ARE YOU SURE?') ) return;doDivAjaxCall3$formname('div_program_structure','copy_from_centre','')">
+</td></tr>
+
+<tr><td align="right" style="font-weight:bold;height:40px;">
+Copy From Other Intake:
+<select name="other_intake_id" style="font-weight:bold">
+#foreach( $c in $intakes )
+<option value="$c.id">&nbsp;&nbsp;&nbsp;$c.name</option>
+#end
+</select>
+<input type="button" value="COPY" onclick="if ( !confirm('WARNING!! THIS ACTION WILL REMOVE AND REPLACE CURRENT STRUCTURE. ARE YOU SURE?') ) return;doDivAjaxCall3$formname('div_program_structure','copy_from_intake','')">
+</td></tr>
+</table>

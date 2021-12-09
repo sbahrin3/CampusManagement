@@ -1,0 +1,6 @@
+$dateFormat.applyPattern("dd-MMM-yyyy hh:mm a")
+Voting Session:<b>
+#if ( $votingSession.startDate ) $dateFormat.format($!votingSession.startDate) #end
+ - 
+#if ( $votingSession.endDate ) $dateFormat.format($votingSession.endDate) #end
+</b>

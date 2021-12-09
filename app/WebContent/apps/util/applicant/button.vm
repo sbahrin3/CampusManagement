@@ -1,0 +1,30 @@
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%">
+<tr><td>
+Go To:
+<select name="go_to_status" style="height:20px" onchange="doAjaxCall${_formName}('go_to','')">
+#foreach( $s in $statuses )
+<option value="$s" #if ( $status == $s ) selected #end>$s</status>
+#end
+</select>
+</td>
+<td align="right">
+
+#if ( $status == "NEW" )
+Set marked applicants as:
+$button.command("mark_incomplete").style("height:30px").text("Incomplete") 
+$button.command("mark_deleted").style("height:30px").text("Deleted")
+#elseif ( $status == "INCOMPLETE" )
+Set marked applicants as:
+$button.command("mark_new").style("height:30px").text("New") 
+$button.command("mark_deleted").style("height:30px").text("Deleted")
+#elseif ( $status == "DELETED" )
+Set marked applicants as:
+$button.command("mark_new").style("height:30px").text("New") 
+$button.command("mark_incomplete").style("height:30px").text("Incomplete") 
+#end
+</td></tr>
+</table>
+
+</fieldset>

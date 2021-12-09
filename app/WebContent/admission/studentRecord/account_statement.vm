@@ -1,0 +1,83 @@
+
+#set ( $acct_records = $account_statement.records )
+#set ( $total_invoiced = $account_statement.totalInvoiced )
+#set ( $total_paid = $account_statement.totalPaid )
+#set ( $total_balance = $account_statement.totalBalance )
+
+##$dateFormat.applyPattern("d MMM, yyyy")
+$dateFormat.applyPattern("dd/MM/yyyy")
+
+#** 
+<table width="100%"><tr><td align="right">
+<input type="button" style="height:30px;" value="PDF" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.finance.module.PrintStudentAcctStatementModule?matricNo=$!acct.matricNo';">
+</td></tr></table>
+**#
+
+<table width="100%" align="center" cellspacing="0" cellpadding="1" border="0">
+<tr height="40px" bgcolor="lightgrey">
+<td colspan="3" style="width:45%;font-weight:bold" align="center">Invoiced (RM)</td>
+<td colspan="3" style="width:45%;font-weight:bold" align="center">Paid (RM)</td>
+<td style="width:80px;font-weight:bold" align="center">Balance</td>
+</tr>
+
+#foreach( $acct in $acct_records )
+<tr height="25px">
+
+#if ( $acct.side == 0 )
+	#if ( $acct.amount != 0 )
+        <td style="border-bottom:1px solid #BCBCBC;border-left:1px solid #BCBCBC">$dateFormat.format($acct.date)</td>
+        <td style="width:200px;border-bottom:1px solid #BCBCBC">
+		
+			$!acct.referenceNo<br/>
+			$!acct.description<br>$!acct.remark
+		
+        </td>
+        <td style="border-bottom:1px solid #BCBCBC;border-right:1px solid #BCBCBC;" align="right">$numFormat.format($acct.amount)&nbsp;&nbsp;</td>
+        
+		<td style="border-bottom:1px solid #BCBCBC">&nbsp;</td>
+        <td style="border-bottom:1px solid #BCBCBC">&nbsp;</td>
+        <td style="border-bottom:1px solid #BCBCBC;" >&nbsp;</td>
+		
+		
+		<td  style="border-bottom:1px solid #BCBCBC;border-right:1px solid #BCBCBC;border-left:1px solid #BCBCBC" align="right">$numFormat.format($acct.balance)&nbsp;&nbsp;</td>
+
+	#end
+#else
+	#if ( $acct.amount != 0 )
+        <td style="border-bottom:1px solid #BCBCBC;border-left:1px solid #BCBCBC">&nbsp;</td>
+        <td style="border-bottom:1px solid #BCBCBC">&nbsp;</td>
+        <td style="border-bottom:1px solid #BCBCBC;border-right:1px solid #BCBCBC">&nbsp;</td>
+		
+        <td style="border-bottom:1px solid #BCBCBC">$dateFormat.format($acct.date)</td>
+        <td style="width:200px;border-bottom:1px solid #BCBCBC">
+       
+			$!acct.referenceNo<br/>
+			$!acct.description<br>$!acct.remark
+	
+        </td>
+		
+        <td style="border-bottom:1px solid #BCBCBC" align="right">$numFormat.format($acct.amount)&nbsp;&nbsp;</td>
+		
+		
+		<td  style="border-bottom:1px solid #BCBCBC;border-right:1px solid #BCBCBC;border-left:1px solid #BCBCBC" align="right">$numFormat.format($acct.balance)&nbsp;&nbsp;</td>
+
+	#end
+#end
+</tr>
+#end
+
+<tr height="40px">
+<td></td>
+<td colspan="2" align="right" style="font-weight:bold">
+$numFormat.format($total_invoiced)&nbsp;&nbsp;
+</td>
+<td></td>
+<td colspan="2" align="right" style="font-weight:bold">
+$numFormat.format($total_paid)&nbsp;&nbsp;
+</td>
+<td align="right" style="font-weight:bold">
+$numFormat.format($total_balance)&nbsp;&nbsp;
+</td>
+</tr>
+<tr><td colspan="7"></td></tr>
+</table>

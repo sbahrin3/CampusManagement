@@ -1,0 +1,3 @@
+<script>
+doDivAjaxCall$formname('div_$status_id','create_invoice','student_status_id=$status_id&count=0');
+</script>

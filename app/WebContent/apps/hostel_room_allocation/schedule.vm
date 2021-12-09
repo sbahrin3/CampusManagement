@@ -1,0 +1,76 @@
+<table width="700" align="center"><tr><td>
+
+$month - $year
+<table cellpadding="0" cellspacing="1" bgcolor="#A5A5A5">
+
+<tr height="20px">
+<td bgcolor="#FFFFFF"></td>
+#foreach( $i in [1..$days])
+<td style="width:30px;background-color:#D2D2D2" align="center">$i</td>
+#end
+</tr>
+
+#foreach ( $slot in $slots )
+
+<tr height="20px">
+<td bgcolor="#D2D2D2">$slot.room.code</td>
+#foreach( $i in [1..$days])
+
+
+#if ( $slot.getOccupants($i).size() > 0 )
+#set ( $occupants = $slot.getOccupants($i) )
+
+
+#set ( $txt = "Room:<b>${slot.room.code}</b>; Date:<b>${i}-${month}-${year}</b><ul>" )
+#foreach ( $occupant in $occupants )
+#set ( $txt = $txt + "<li>$!occupant.student.biodata.name ($!occupant.student.matricNo)")
+#end
+#if ( $occupants.size() > 1 )
+#set ( $txt = $txt + "</ul>" + $occupants.size() + " occupants" )
+#else
+#set ( $txt = $txt + "</ul>" + $occupants.size() + " occupant" )
+#end
+#if ( $occupants.size() == $slot.room.capacity )
+#set ( $bcolor = "#FF0000" )
+#elseif ( $occupants.size() == 1 )
+#set ( $bcolor = "#FFFF2A" )
+#elseif ( $occupants.size() == 2 )
+#set ( $bcolor = "#FF7FFF" )
+#elseif ( $occupants.size() == 3 )
+#set ( $bcolor = "#FFAA55" )
+#elseif ( $occupants.size() > 3 )
+#set ( $bcolor = "#FF5500" )
+#end
+
+<td style="width:28px;background-color:$bcolor;cursor:hand; cursor:pointer;color:#A5A5A5;size:8pt" 
+#if ( $i < 10 ) 
+onclick="document.getElementById('date_in').value = '0${i}-${month}-${year}'; if ( !confirm('Select Room: ${slot.room.name}?') ) return; doDivAjaxCall$formname('student_rooms', 'room_in', 'room_id=$slot.room.id')"
+#else
+onclick="document.getElementById('date_in').value = '${i}-${month}-${year}'; if ( !confirm('Select Room: ${slot.room.name}?') ) return; doDivAjaxCall$formname('student_rooms', 'room_in', 'room_id=$slot.room.id')"
+#end
+onMouseover='fixedtooltip("$txt", this, event, "400px")' onMouseout="delayhidetip()" onclick="delayhidetip()">
+
+$occupants.size()
+</td>
+
+#else
+
+
+<td style="width:28px;background-color:#D4FFD4;cursor:hand; cursor:pointer;"
+#if ( $i < 10 ) 
+onclick="document.getElementById('date_in').value = '0${i}-${month}-${year}'; if ( !confirm('Select Room: ${slot.room.name}?') ) return; doDivAjaxCall$formname('student_rooms', 'room_in', 'room_id=$slot.room.id')"
+#else
+onclick="document.getElementById('date_in').value = '${i}-${month}-${year}'; if ( !confirm('Select Room: ${slot.room.name}?') ) return; doDivAjaxCall$formname('student_rooms', 'room_in', 'room_id=$slot.room.id')"
+#end
+align="center"></td>
+
+#end
+#end
+</tr>
+
+#end
+
+</table>
+
+
+</td></tr></table>

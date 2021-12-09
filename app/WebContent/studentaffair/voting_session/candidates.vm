@@ -1,0 +1,44 @@
+
+#if ( $result.selectedCandidate )
+<table><tr><td style="font-size:14pt;font-weight:bold">
+You've already cast your vote.
+<td></tr></table>
+#end
+<table>
+
+<tr style="background:#B0B4B7;height:30px">
+<td style="width:40px;font-weight:bold"></td>
+<td style="width:500px;font-weight:bold">Candidate</td>
+<td></td>
+<td style="width:50px;font-weight:bold"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $c in $candidates )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td style="border-bottom:1px solid #BEC1C3">$cnt.</td>
+<td style="border-bottom:1px solid #BEC1C3">
+$c.student.biodata.name<br/>
+$c.student.matricNo<br/>
+$c.student.program.name<br/>
+</td>
+<td>
+#if($c.student.photoFileName != "")
+<img src="../download?file=$!c.student.photoFileName">
+#else
+<img src="../img/nophoto.gif" border="0">
+#end
+</td>
+<td style="" align="center">
+#if ( $result.selectedCandidate.id == $c.id )
+<img src="../img/check2.png">
+#else
+#if ( $canVote )
+<input class="linkbutton" type="button" value="VOTE" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('candidates','vote','candidateId=$!c.id')">
+#end
+#end
+
+</td>
+</tr>
+#end
+</table>

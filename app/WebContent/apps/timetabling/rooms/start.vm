@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<style>
+
+#divDeleteMessage { 
+	width:300px; 
+	height:200px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 40%; 
+	left: 50%; 
+	margin-top: -100px; 
+	margin-left: -150px; 
+	display:none;
+} 
+.colInput {
+	height:40px;
+	border:1px dotted #ccc;
+	font-family:arial;
+	font-size:9pt;
+}
+</style>
+
+<div style="padding:10px;font-weight:bold;font-size:14pt;font-family:helvetica, arial">
+	List of Rooms for Class Scheduling
+</div>
+
+<div style="padding:10px">
+	Filter by
+	Code:<input class="texts" style="width:100px" name="filterByCode" id="filterByCode" onchange="if ( this.value != '' ) { doDivAjaxCall$formname('roomList','filterByCode',''); } else { }" onkeypress="$('filterByName').value='';">
+	&nbsp, or by Name:<input class="texts" style="width:200px" name="filterByName" id="filterByName" onchange="if ( this.value != '' ) { doDivAjaxCall$formname('roomList','filterByName',''); } else { }" onkeypress="$('filterByCode').value='';">
+</div>
+<div id="roomList" style="padding:10px">#parse("apps/timetabling/rooms/room_list.vm")</div>
+
+
+<div id="roomUpdate"></div>
+<div id="divEmpty"></div>
+
+<div id="divDeleteMessage" class="shadow" style="padding-top:20px;background:#ebebeb">
+
+    <table width="100%">
+    	<tr>
+			<td align="right">
+				<input class="linkbutton" style="padding:2px" type="button" value="Close" onclick="$('divDeleteMessage').style.display='none';">
+			</td>
+		</tr>
+    	<tr>
+			<td align="center" style="font-weight:bold">Room Deletion Failed!</td>
+		</tr>
+    	<tr>
+			<td align="center" id="deleteMessage" style="font-weight:bold">
+			</td>
+		</tr>
+    </table>
+	<br/><br/>
+</div>

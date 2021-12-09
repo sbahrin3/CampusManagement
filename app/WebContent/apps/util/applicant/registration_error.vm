@@ -1,0 +1,6 @@
+<span style="font-weight:bold;font-size:12pt;color:#FF0000">Error:</span><br/>
+<span style="font-weight:bold;font-size:12pt;color:#FF0000">Can't Register: Not enough academic sessions for backdated enrollment</span>
+
+<script>
+document.location.href="#portal_top";
+</script>

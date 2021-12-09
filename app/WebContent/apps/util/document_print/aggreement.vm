@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css"> 
+td {font-family:helvetica;font-size:9pt} 
+.title {font-family:helvetica;font-size:10pt;font-weight:bold}
+.box {border-bottom:1px solid #000; border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000;}
+</style>
+</head>
+<body>
+#set ( $salinan = "Salinan Pelajar" )
+#parse("apps/util/document_print/aggreement_content.vm")
+<br/><br/>
+#set ( $salinan = "Salinan Penjamin" )
+#parse("apps/util/document_print/aggreement_content.vm")
+<br/><br/>
+#set ( $salinan = "Salinan Pejabat" )
+#parse("apps/util/document_print/aggreement_content.vm")
+</body>
+</html>

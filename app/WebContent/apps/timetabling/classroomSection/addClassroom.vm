@@ -1,0 +1,23 @@
+<table width="100%" cellpadding="0" cellspacing="0"><tr style="height:30px;background:#9B9FA0;color:#fff"><td style="font-weight:bold;color:#fff">
+Add Classroom Group
+</td>
+<td align="right">
+<input class="linkbutton" style="padding:2px" type="button" value="X" onclick="$('addClassroom').style.display='none';">
+</td></tr></table>
+
+<table>
+<tr><td>Code</td><td>:</td><td><input class="texts" id="classroomSection_code" name="classroomSection_code"  style="width:100%;height:25px"></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" id="classroomSection_name" name="classroomSection_name"  style="width:100%;height:25px"></td></tr>
+<tr><td>Classroom Type</td><td>:</td><td>
+<select class="texts" name="classroomTypeId" style="width:300px">
+#foreach( $c in $classroomTypes )
+<option value="$c.id">$c.name</option>
+#end
+</select>
+</td></tr>
+<tr><td></td><td></td>
+<td align="right">
+<input class="linkbutton" type="button" value="Add" onclick="doDivAjaxCall3$formname('classroomSectionList','addClassroomSection','')">
+</td>
+</tr>
+</table>

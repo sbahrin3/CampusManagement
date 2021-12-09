@@ -1,0 +1,25 @@
+<a href="javascript:void(0)" onclick="doDivAjaxCall3$formname('reservation','getReservation','reservationId=$reservation.id')">...</a><br/>
+<table>
+<tr height="0px"><td style="width:150px"></td><td style="width:5px"></td><td style="width:500px"></td></tr>
+
+<tr height="30px">
+<td colspan="3" style="font-size:10pt;font-weight:bold;border-bottom:1px solid #AAAAAA">Reservation Detail</td></tr>
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Venue</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">$reservation.room.name</td></tr>
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Programme</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">$reservation.programmeName</td></tr>
+$dateFormat.applyPattern("dd-MM-yyyy (hh:mm a)")
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Date From - To</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">$dateFormat.format($reservation.dateFrom) - $dateFormat.format($reservation.dateTo)</td></tr>
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Date Apply</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">$dateFormat.format($reservation.dateCreate)</td></tr>
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Status</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">$reservation.status</td></tr>
+</table>
+
+<br/>
+
+<table>
+<tr height="0px"><td style="width:150px"></td><td style="width:5px"></td><td style="width:500px"></td></tr>
+
+<tr height="30px">
+<td colspan="3" style="font-size:10pt;font-weight:bold;border-bottom:1px solid #AAAAAA">Equipments Loan</td></tr>
+#foreach ( $e in $reservation.equipments )
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA" align="right">$velocityCount)</td><td></td><td style="font-weight:bold;background:#F2EFEF">$e.asset.description, $e.asset.brandName, $e.asset.modelName</td></tr>
+#end
+</table>

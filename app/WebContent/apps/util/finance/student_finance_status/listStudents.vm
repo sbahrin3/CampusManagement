@@ -1,0 +1,55 @@
+
+<table>
+<tr>
+<td colspan="9" align="right">
+<a href="../servlet/educate.sis.servlets.CreateXLServlet?reportname=$reportname&filename=${reportname}"><img src="../img/xls.gif" border="0"></a>
+</td>
+</tr>
+<tr style="height:30px;background:#B7B7B7">
+<td rowspan="2" style="width:30px;font-weight:bold">&nbsp;</td>
+<td rowspan="2" style="width:150px;font-weight:bold" align="center">Matric</td>
+<td rowspan="2" style="width:250px;font-weight:bold" align="center">Name</td>
+<td rowspan="2" style="width:150px;font-weight:bold" align="center">IC No</td>
+<td colspan="4" style="font-weight:bold" align="center">Balance</td>	
+</tr>
+<tr style="height:30px;background:#B7B7B7">
+<td style="width:120px;font-weight:bold" align="center">Current</td>
+#if( $aging1 )
+	<td style="width:120px;font-weight:bold" align="center">$age1 Days</td>
+#end
+#if( $aging2 )
+	<td style="width:120px;font-weight:bold" align="center">$age2 Days</td>
+#end	
+#if( $aging3 )
+	<td style="width:120px;font-weight:bold" align="center">$age3 Days</td>
+#end	
+</tr>
+#foreach( $r in $records )
+	
+	<tr style="height:30px;background:#F7F4F4">
+	<td>$velocityCount.</td>
+	<td>$r.student.matricNo</td>
+	<td>$r.student.biodata.name</td>
+	<td>$r.student.biodata.icno</td>
+	<td align="right">#if ( $r.amount > 0 ) $numFormat.format($r.amount)&nbsp;&nbsp;#end</td>
+	#if ( $aging1.get("$r.student.id") )
+		#set ( $a = $aging1.get("$r.student.id"))
+		<td align="right">#if ( $a.amount > 0 ) $numFormat.format($a.amount)&nbsp;&nbsp; #end</td>
+	#else
+		<td></td>
+	#end
+	#if ( $aging2.get("$r.student.id") )
+		#set ( $a = $aging2.get("$r.student.id"))
+		<td align="right">#if ( $a.amount > 0 ) $numFormat.format($a.amount)&nbsp;&nbsp;#end</td>
+		#else
+		<td></td>
+	#end
+	#if ( $aging3.get("$r.student.id") )
+		#set ( $a = $aging3.get("$r.student.id"))
+		<td align="right">#if ( $a.amount > 0 ) $numFormat.format($a.amount)&nbsp;&nbsp;#end</td>
+		#else
+		<td></td>
+	#end
+	</tr>
+#end
+</table>

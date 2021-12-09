@@ -1,0 +1,80 @@
+
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table align="center">
+<tr><td style="width:150px"></td><td style="width:20px"></td><td style="width:400px"></td></tr>
+<tr><td style="font-weight:bold">Receipt No</td><td>:</td><td style="">$payment.paymentNo</td></tr>
+<tr><td style="font-weight:bold">Date</td><td>:</td><td style="">$!dateFormat.format($payment.createDate)</td></tr>
+<tr><td style="font-weight:bold">Total</td><td>:</td><td style="">RM $numFormat.format($payment.amount)</td></tr>
+</table>
+
+<br/>
+<table cellspacing="0">
+<tr height="30px">
+<td style="width:20px;border-bottom:1px solid #BCBCBC">&nbsp;</td>
+<td style="width:500px;border-bottom:1px solid #BCBCBC;font-weight:bold">Description</td>
+<td style="width:100px;border-bottom:1px solid #BCBCBC;font-weight:bold" align="right">Amount Paid</td>
+<td style="width:80px;border-bottom:1px solid #BCBCBC;font-weight:bold" align="right">&nbsp;</td>
+</tr>
+
+#foreach ( $i in $payment_items )
+<tr height="30px">
+<td style="width:20px;border-bottom:1px solid #BCBCBC">&nbsp;</td>
+<td style="width:500px;border-bottom:1px solid #BCBCBC">$i.description</td>
+<td style="width:100px;border-bottom:1px solid #BCBCBC" align="right">$numFormat.format($i.amount)</td>
+<td style="width:80px;border-bottom:1px solid #BCBCBC" align="right">#if ( $i.flexi) Flexi #else &nbsp; #end</td>
+</tr>
+#end
+</table>
+
+<table>
+<tr><td style="width:150px;padding-top:8px">Payment mode:</td><td style="padding-top:8px;border-bottom:1px solid #BCBCBC">$!payment.paymentMode</td></tr>
+<tr><td style="width:150px;padding-top:8px">Cheque No:</td><td style="padding-top:8px;border-bottom:1px solid #BCBCBC">$!payment.checkNo</td></tr>
+<tr><td style="padding-top:8px">Remark:</td><td style="padding-top:8px;border-bottom:1px solid #BCBCBC">$!payment.remark</td></tr>
+
+
+
+<tr><td valign="top" style="padding-top:8px">Item Knock-off:</td>
+<td>
+<table width="100%" cellpadding="0" cellspacing="0">
+#foreach ( $paidItem in $payment.paidItems )
+<tr><td style="height:30px;width:300px;border-bottom:1px solid #BCBCBC">$paidItem.invoiceItem.invoice.invoiceNo - $paidItem.invoiceItem.description</td>
+<td style="width:170px;border-bottom:1px solid #BCBCBC;cursor:pointer" align="right">$numFormat.format($paidItem.amount)</td></tr>
+#end
+</table>
+</td>
+</tr>
+
+
+#** 
+<tr><td style="width:150px;padding-top:8px">Supporting Document:</td><td style="padding-top:8px;border-bottom:1px solid #BCBCBC">
+
+<table width="100%" cellpadding="0" cellpadding="0"><tr>
+<td>
+<div id="paymentSupportingDocument" name="paymentSupportingDocument">
+#if ( $payment.documentFileName)<a href="../download?file=$!payment.documentFileName">Download</a>#end
+</div>
+</td>
+<td align="right"><input class="linkbutton" type="button" style="padding:2px" value="Change.." onclick="$('changeDocument').style.display='block';"></td>
+</tr></table>
+
+</td></tr>
+</table>
+
+<br><br>
+
+</fieldset>
+
+<div id="changeDocument" style="display:none">
+<table>
+<tr><td></td></tr>
+<tr><td>
+<input type="file" id="supportingDocument2" name="supportingDocument2" style="width:200px">&nbsp;
+<input class="linkbutton" type="button" value="Upload" onclick="uploadFile2('$payment.id', 'supportingDocument2', 'paymentSupportingDocument')">
+</td></tr>
+
+**#
+</table>
+</div>
+

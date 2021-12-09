@@ -1,0 +1,57 @@
+<table cellspacing="0" cellpadding="2" width="100%">
+<tr style="height:30px;background:#BABBBC">
+<td style="width:100px;font-weight:bold">Code</td>
+<td style="width:300px;font-weight:bold">Name</td>
+<td style="width:100px;font-weight:bold" align="center">Cdt. Unit</td>
+#if ( !$classroomMode )
+	<td style="width:200px;font-weight:bold">Level</td>
+	<td style="width:50px;font-weight:bold">CGPA?</td>
+	<td style="width:200px;font-weight:bold">Grade Scheme</td>
+	<td style="width:50px;font-weight:bold">Quota</td>
+#end
+<td></td>
+<td style="width:10px"></td>
+<td style="width:10px"></td>
+<td style="width:10px"></td>
+<td style="width:10px"></td>
+#if ( $classroomMode )
+<td style="width:10px"></td>
+#end
+<td style="width:10px"></td>
+</tr>
+#foreach( $subject in $subjects )
+
+<tr style="height:25px" onmouseover="this.style.backgroundColor='#FFFF99'" onmouseout="this.style.backgroundColor='#FFF'">
+<td class="row">$subject.code</td>
+<td class="row" style="cursor:pointer">$subject.name</td>
+<td class="row" align="center">$subject.credithrs</td>
+
+#if ( !$classroomMode )
+	<td class="row">$!subject.subjectGroup.name</td>
+	<td class="row">#if ( $subject.excludeGpa == 1 ) NO #else YES #end</td>
+	<td class="row">$!subject.markingGrade.name</td>
+	<td class="row">#if ( $subject.quota > 0 ) $subject.quota #end</td>
+#end
+
+<td class="row"></td>
+
+#if ( !$classroomMode )
+	<td class="row"><input class="rowbutton" type="button" value="Edit" onclick="$('editSubject_$subject.id').innerHTML = '';doDivAjaxCall$formname('editSubject_$subject.id','editSubject','subjectId=$subject.id&subjectGroupId=$subjectGroup.id&facultyId=$facultyId')"></td>
+	<td class="row"><input class="rowbutton" type="button" value="Prerequisites" onclick="$('editSubject_$subject.id').innerHTML = '';doDivAjaxCall$formname('editSubject_$subject.id','prerequisiteSubjects','subjectId=$subject.id&subjectGroupId=$subjectGroup.id&facultyId=$facultyId')"></td>
+#end
+
+<td class="row"><input class="rowbutton" type="button" value="Lectures" onclick="$('editSubject_$subject.id').innerHTML = '';doDivAjaxCall$formname('editSubject_$subject.id','assignTeachers','subjectId=$subject.id&subjectGroupId=$subjectGroup.id&facultyId=$facultyId')"></td>
+<td class="row"><input class="rowbutton" type="button" value="Classrooms" onclick="$('editSubject_$subject.id').innerHTML = '';doDivAjaxCall$formname('editSubject_$subject.id','assignClassrooms2','subjectId=$subject.id&subjectGroupId=$subjectGroup.id&facultyId=$facultyId')"></td>
+#if ( $classroomMode )
+<td class="row"><input class="rowbutton" type="button" value="Classroom Templates" onclick="doDivAjaxCall3$formname('divClassroomTemplates','getClassroomTemplates','templateSubjectId=$subject.id')"></td>
+#end
+#if ( !$classroomMode )
+	<td class="row"><input class="rowbutton" type="button" value="x" onclick="$('messageSubject_$subject.id').innerHTML='<b>Deleting Subject... Please Wait..</b>';doDivAjaxCall3$formname('divListSubjects','deleteSubject','subjectId=$subject.id&subjectGroupId=$!subjectGroup.id&facultyId=$!facultyId')"></td>
+#end
+</tr>
+<tr height="0px"><td colspan="5" style="height:0px">
+<span id="messageSubject_$subject.id"></span>
+<div class="shadow" id="editSubject_$subject.id" style="visibility:hidden;background-color:#fff;position:absolute;border:1px"></div>
+</td></tr>
+#end
+</table>

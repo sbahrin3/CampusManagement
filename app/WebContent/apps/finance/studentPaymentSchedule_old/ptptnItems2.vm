@@ -1,0 +1,30 @@
+<table>
+	<tr style="height:30px;background:#AEB1B2">
+		<td style="width:20px"></td>
+		<td style="width:100px">Date Due</td>
+		<td style="width:100px" align="center">Amount Due</td>
+		<td style="width:50px"></td>
+	</tr>
+	#set ( $cnt = 0 )
+	#foreach ( $i in $ptptnItems )
+		#set ( $cnt = $cnt + 1 )
+		<tr style="height:30px">
+			<td>$cnt)</td>
+			<td>$dateFormat.format($i.dateDue)</td>
+			<td align="center">$numFormat.format($i.amountDue)</td>
+			<td align="center"><input class="linkbutton" type="button" value="x" onclick="doDivAjaxChainCall$formname('ptptnItems','deletePaymentItem','itemId=$i.id','listPaymentSchedule','listPaymentSchedule','')"></td>
+		</tr>
+	#end
+	<tr style="height:30px">
+		<td></td>
+		
+		<td>
+			<input class="texts" name="ptptnDateDue" id="ptptnDateDue">
+			<script> new JsDatePick({ useMode:2, target:"ptptnDateDue", dateFormat:"%d-%m-%Y" }); </script>
+		</td>
+		
+		<td><input class="texts" name="ptptnAmountDue"></td>
+			
+		<td align="center"><input class="linkbutton" type="button" value="+" onclick="doDivAjaxChainCall$formname('ptptnItems','addPaymentItem','','listPaymentSchedule','listPaymentSchedule','')"></td>
+	</tr>
+</table>

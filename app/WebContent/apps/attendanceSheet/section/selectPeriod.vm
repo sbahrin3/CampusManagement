@@ -1,0 +1,20 @@
+<table><tr><td>Select Period :</td><td>
+<select name="periodId" style="width:200px">
+#foreach( $ps in $periodSchemes )
+	#foreach ( $p in $ps.functionalPeriodList )
+	<option value="$p.id">$p.name</option>
+	#end
+#end
+</select>
+</td></tr>
+<tr><td>Select Section :</td><td>
+<select name="sectionId" style="width:200px">
+#foreach( $s in $sections )
+<option value="$s.id">$s.name</option>
+#end
+<option value="">Not Defined</option>
+</select>
+</td>
+<tr><td></td><td>
+<input type="button" value="List Students" onclick="doDivAjaxCall$formname('listStudents','listStudents','')">
+</td></tr></table>

@@ -1,0 +1,16 @@
+<script>
+$('getCouncellingIssue').style.display="block";
+</script>
+
+<table width="100%" style="background:#A09F9F;height:30px">
+<tr><td style="font-weight:bold;color:#fff">Councelling Issue</td>
+<td style="width:40px" align="right"><input class="linkbutton" style="padding:2px" type="button" value="X" onclick="$('getCouncellingIssue').style.display='none';"></td></tr></table>
+
+<table style="width:100%">
+<tr><td style="width:150px">Code:</td><td><input class="texts" name="code" value="$!issue.code"></td></tr>
+<tr><td>Name:</td><td><input class="texts" name="name" value="$!issue.name"></td></tr>
+<tr><td>Description:</td><td><input class="texts" name="description" value="$!issue.description"></td></tr>
+<tr><td></td><td align="right">
+<input class="linkbutton" type="button" value="Save" onclick="doDivAjaxCall3$formname('councellingIssues','saveCouncellingIssue','issueId=$!issue.id');$('getCouncellingIssue').style.display='none';">
+</td></tr>
+</table> 

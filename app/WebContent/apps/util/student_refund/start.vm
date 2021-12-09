@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+
+
+<table width="1200px" align="left"><tr><td>
+
+#if ( !$list_outstanding )
+<fieldset style="background-color:#CCCCFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+#else
+<fieldset style="background-color:#FFD4FF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+#end
+<table width="100%">
+<tr><td>
+
+<table width="100%">
+
+#**
+<tr height="30px"><td>Selection:</td><td>
+<select name="list_type" style="width:400px">
+<option value="active">SHOW ONLY ACTIVE STUDENTS</option>
+<option value="all">SHOW ALL STUDENTS (ACTIVE AND NON-ACTIVE)</option>
+</select>
+</td></tr>
+**#
+
+<tr height="30px"><td>Program:</td><td><div id="div_programs" name="div_programs">
+#parse("apps/util/student_refund/list_programs.vm")
+</div></td></tr>
+<tr height="30px"><td>Intake:</td><td>
+<div id="div_intakes" name="div_intakes">
+<select style="width:400px" id="intake_id"  name="intake_id">
+<option value=""> (All Intakes) </option>
+</select>
+</div></td></tr>
+##<tr height="30px"><td>Session:</td><td><div id="div_sessions" name="div_sessions"></div></td></tr>
+
+</table>
+
+</td><td>
+
+#if ( $list_outstanding )
+<input class="gradient" type="button" style="height:40px;font-weight:bold" value="LIST OUTSTANDINGS" onclick="doDivAjaxCall$formname('div_result','list_outstanding','')">
+#else
+<input class="gradient" type="button" style="height:40px;font-weight:bold" value="Get Refunds List" onclick="doDivAjaxCall$formname('div_result','list_students','')">
+#end
+
+</td></tr></table>
+
+</fieldset>
+
+<br><br>
+
+<div id="div_result" name="div_result"></div>
+
+</td></tr>
+<tr><td>
+
+<div id="div_empty"></div>
+
+</td></tr></table>

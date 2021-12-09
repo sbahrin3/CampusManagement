@@ -1,0 +1,83 @@
+<div id="checkIn_$room.id" class="shadow" style="display:none;background:#E1E1E1;position:absolute;width:400px;padding:1px">
+#parse("apps/hostel_room_allocation/checkInRoom.vm")
+</div>
+<table cellpadding="0" cellspacing="0"><tr style="height:25px">
+
+#if ( $room.available ) 
+
+    #if ( $room.roomAllocations.size() > 0 )
+        #set ( $bgcolor = "#FFD455" ) 
+        #else
+        #set ( $bgcolor = "#00FF55" ) 
+    #end
+
+#else 
+    
+    #set ( $bgcolor = "#FF2A2A" ) 
+
+#end
+
+
+#if ( $room.roomAllocations.size() > 0 )
+
+	#set ( $txt = "<b>Room: $room.code</b> (<b>Capacity: $room.capacity</b>)<br><hr/><b>Tenant(s):</b><br><ul>" )
+	#foreach ( $roomAllocation in $room.roomAllocations )
+		#set ( $txt = $txt + "<li>$!roomAllocation.student.biodata.name ($!roomAllocation.student.matricNo)")
+
+		#set ( $date_in = "-" )
+		#set ( $date_out = "-" )
+		#if ( $roomAllocation.checkInDate ) #set ( $date_in = $dateFormat.format($roomAllocation.checkInDate) ) #end
+		#if ( $roomAllocation.checkOutDate ) #set ( $date_out = $dateFormat.format($roomAllocation.checkOutDate) ) #end
+
+		#set ( $txt = $txt + "<br>In:$date_in, Out:$date_out</li>")
+	#end
+
+    <td style="width:150px;background-color:$bgcolor;cursor:hand; cursor:pointer;" align="center" 
+    onclick="$('div_room_info').style.visibility='visible';$('div_room_info2').style.visibility='visible';$('div_room_info2').innerHTML='$txt'">
+    
+    $room.roomAllocations.size() #if ( $room.roomAllocations.size() > 1 ) occupants #else occupant #end
+
+#else
+
+    #set ( $txt = "<b>Room: $room.code</b><br/><b>Capacity: $room.capacity</b>" )
+    
+    <td style="width:150px;background-color:$bgcolor;cursor:hand; cursor:pointer;" align="center" 
+    onclick="$('div_room_info').style.visibility='visible';$('div_room_info2').style.visibility='visible';$('div_room_info2').innerHTML='$txt'">
+    Vacant
+#end
+
+</td>
+
+<td style="width:100px" align="center">
+#if ( $room.available )
+
+<div class="shadow" name="div_check_in_$room.id" id="div_check_in_$room.id" style="visibility:hidden;position:absolute;border-style: solid;border-color:#B4B4B4;background-color:#FFFFAA">
+$room.name
+</div>
+
+#if ( $checkInMode == "transfer_room" )
+    <input class="linkbutton" style="padding:2px"  type="button" value="Transfer" 
+    onclick="if ( $('student_flag').value == '' ) { alert('Tenant not selected!'); return; } else { $('checkIn_$room.id').style.display='block'; }">
+#else
+	#if ( !$isCheckedIn )
+        <input class="linkbutton" style="padding:2px"  type="button" value="Check In" 
+        onclick="if ( $('student_flag').value == '' ) { alert('Tenant not selected!'); return; } else { $('checkIn_$room.id').style.display='block'; }">
+	#end
+#end
+
+#else
+
+<span style="font-weight:bold;color:#FF0000">
+Full
+</span>
+#end
+
+</td>
+<td style="width:100px" align="center">
+#if ( !$isCheckedIn )
+	<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_vacancy_$room.id', 'check_vacancy', 'room_id=$room.id')"><img src="../img/icon-reload.gif" border="0"></a>
+#end
+</td>
+</tr></table>
+
+

@@ -1,0 +1,54 @@
+
+
+<table>
+<tr style="height:30px">
+<td style="width:200px">Date From:</td>
+<td style="width:400px">
+	
+	<input class="input-text" style="width:150px" id="date_from" name="date_from" value="$!date_from">
+	<script> new JsDatePick({ useMode:2, target:"date_from", dateFormat:"%d-%m-%Y" }); </script>
+
+</td>
+</tr>
+<tr style="height:30px">
+<td>Date To:</td>
+<td>
+	
+	<input class="input-text" style="width:150px" id="date_to" name="date_to" value="$!date_to">
+	<script> new JsDatePick({ useMode:2, target:"date_to", dateFormat:"%d-%m-%Y" }); </script>
+
+</td>
+</tr>
+
+<tr style="height:30px">
+<td>Select Program:</td>
+<td>
+<select class="input-text" name="program_id">
+<option value="">(ALL)</option>
+#foreach( $i in $programs )
+<option value="$i.id" #if ( $program_id == $i.id ) selected #end >$i.code $i.name</option>
+#end
+</select>
+</td>
+</tr>
+
+
+<tr style="height:30px">
+<td></td>
+<td>
+
+<div style="display:none">
+<input type="checkbox" name="cb_receipt" value="yes" checked />Receipt
+<input type="checkbox" name="cb_creditnote" value="yes" />Credit Note
+</div>
+
+</td>
+</tr>
+
+<tr style="height:30px">
+<td colspan="2" align="right">
+<button type="button" class="btn btn-primary" value="" onclick="if ( $('date_from').value == '' || $('date_to').value == '' ) { alert('Please select date range.');  } else { doDivAjaxCall$formname('list_payments','list_payments',''); }">Get Payments Report..</button>
+</td></tr>
+</table>
+
+

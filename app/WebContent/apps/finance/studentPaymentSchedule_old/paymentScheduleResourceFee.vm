@@ -1,0 +1,60 @@
+<div style="padding:10px;font-weight:bold;border:1px solid #000">
+	Resource Fee Payment Schedule
+</div>
+	
+<input type="hidden" name="resourceFeePaymentScheduleId" value="$resourceFeePaymentSchedule.id">
+	
+
+
+	
+
+<div id="listResourceFee">
+#parse("apps/finance/studentPaymentSchedule/listResourceFeePaymentScheduleItems.vm")
+</div>
+
+<div>
+	
+	<table style="width:100%"><tr><td align="right">
+	
+    <table>
+    	<tr style="height:30px;background:#AEB1B2">
+    		<td style="width:20px"></td>
+    		<td style="width:100px">Date Due</td>
+    		<td style="width:100px" align="center">Amount Due</td>
+    		<td style="width:50px"></td>
+    	</tr>
+    	#set ( $cnt = 0 )
+    	#foreach ( $i in $resourceFeeItems )
+    		#set ( $cnt = $cnt + 1 )
+    		<tr style="height:30px">
+    			<td>$cnt)</td>
+    			<td>$dateFormat.format($i.dateDue)</td>
+    			<td align="center">$numFormat.format($i.amountDue)</td>
+    			<td align="center">
+					##<input class="linkbutton" type="button" value="x" onclick="doDivAjaxCall$formname('paymentScheduleResourceFee','deletePaymentItemResourceFee','itemId=$i.id')">
+					<input class="linkbutton" type="button" value="x" onclick="doDivAjaxChainCall$formname('paymentScheduleResourceFee','deletePaymentItemResourceFee','itemId=$i.id'), 'getPaymentSchedule','listPaymentSchedules','studentId=$ptptnPaymentSchedule.student.id'">
+				</td>
+    		</tr>
+    	#end
+    	<tr style="height:30px">
+    		<td></td>
+    		
+    		<td>
+    			<input class="texts" name="dateDue" id="dateDue">
+    			<script> new JsDatePick({ useMode:2, target:"dateDue", dateFormat:"%d-%m-%Y" }); </script>
+    		</td>
+    		
+    		<td><input class="texts" name="amountDue"></td>
+    			
+    		<td align="center">
+				##<input class="linkbutton" type="button" value="+" onclick="doDivAjaxCall$formname('paymentScheduleResourceFee','addPaymentItemResourceFee','')">
+				<input class="linkbutton" type="button" value="+" onclick="doDivAjaxChainCall$formname('paymentScheduleResourceFee','addPaymentItemResourceFee','', 'getPaymentSchedule','listPaymentSchedules','studentId=$ptptnPaymentSchedule.student.id')">
+			</td>
+    	
+    </tr>
+    </table>
+	
+	
+	</td></tr></table>
+		
+</div>

@@ -1,0 +1,68 @@
+<script>
+$('div_input').style.display = "block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+	<tr style="height:35px">
+	<td style="font-weight:bold;color:#fff">
+	#if ( $partQuestion )
+		Question $!partQuestion.refNo
+	#else
+		New Question
+	#end
+	</td>
+	<td align="right">
+	<button type="button" class="btn btn-default btn-sm" onclick="$('div_input').style.display='none';">x</button>
+	</td></tr>
+</table>
+<br/>
+
+<div id="divQuestionsBank" style="display:none;background:#fff;height:400px;overflow:auto">
+
+	<table class="table table-stripped" style="background:#fff">
+		<thead>
+		<tr style="height:30px">
+			<th colspan="3" style="width:40px;border-bottom:1px dotted #ccc;font-weight:bold">
+				Select from question bank.
+			</th>
+			<th style="width:100px;border-bottom:1px dotted #ccc;text-align:right">
+				<button type="button" class="btn btn-primary btn-sm" style="width:60px" onclick="$('divQuestionsBank').style.display='none';$('divEditQuestionSave').style.display='block';$('divEditQuestion').style.display='block'">Back</button>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+		#set ($cnt = 0)
+		#foreach( $pq in $questionBanks )
+		#set ( $cnt = $cnt + 1 )
+		<tr style="height:30px">
+			<td style="width:40px;border-bottom:1px dotted #ccc">
+				$cnt.
+			</td>
+			<td style="border-bottom:1px dotted #ccc">
+				$pq.question.questionText
+			</td>
+			<td style="width:100px;border-bottom:1px dotted #ccc" align="center">
+				$pq.question.type
+			</td>
+			<td style="width:100px;border-bottom:1px dotted #ccc;text-align:right">
+				<button type="button" class="btn btn-default btn-sm" style="width:60px" onclick="doDivAjaxCall$formname('divEditQuestion','selectQuestion','setId=$!set.id&partId=$!part.id&questionId=$pq.question.id');$('divQuestionsBank').style.display='none';$('divEditQuestion').style.display='block';$('divEditQuestionSave').style.display='block';">Select</button>
+			</td>
+		</tr>
+		#end
+		</tbody>
+	</table>
+	
+</div>
+
+<div id="divEditQuestion" style="height:500px;overflow:auto">
+	#parse("questionnare/create/question_input2.vm")
+</div>
+
+<div id="divEditQuestionSave" style="text-align:right">
+	<button type="button" class="btn btn-primary" onclick="$('div_input').style.display='none'; doDivAjaxCall3$formname('part_$part.id','saveQuestion','partQuestionId=$!partQuestion.id&partId=$!part.id')">Save Question</button>
+
+</div>
+
+##<script>displayType('$!partQuestion.question.type');</script>
+
+<script>new Draggable('div_input', {handle: 'dragHandle'});</script>

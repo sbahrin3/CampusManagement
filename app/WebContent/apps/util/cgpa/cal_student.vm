@@ -1,0 +1,64 @@
+#if ( $student )
+
+<table width="100%">
+<tr><td align="center" style="font-weight:bold">$student.matricNo $student.biodata.name</td></tr>
+<tr><td align="center" style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td align="right">
+
+[<a href="javascript:doDivAjaxCall$formName('cgpa_student', 'calculate_cgpa_student', 'student_id=$student.id')">calculate</a>]
+<tr><td>&nbsp;</td></tr>
+</table>
+#if ( $results )
+<table width="100%">
+#foreach ( $r in $results )
+<tr><td>
+<table width="100%">
+<td style="font-weight:bold">$r.session.name</td>
+<td style="font-weight:bold" align="right">$r.period.name #if ( $r.period.parent ) ($r.period.parent.name) #end</td>
+</table>
+</td></tr>
+<tr><td>
+
+<table bgcolor="lightgrey" width="100%" cellspacing="0" cellpadding="1">
+<tr>
+<td style="width:60px">Code</td>
+<td style="width:400px">Name</td>
+<td style="width:60px">CHrs</td>
+<td style="width:60px">Point</td>
+<td style="width:60px">Grade</td>
+<td></td>
+</tr>
+</table>
+
+</td></tr>
+#set ( $subjects = $r.subjects )
+<tr><td>
+<table width="100%" cellspacing="0" cellpadding="1">
+#foreach ( $s in $subjects )
+<tr>
+<td style="width:60px">$s.subject.code</td>
+<td style="width:400px">$s.subject.name</td>
+<td style="width:60px">$s.creditHour</td>
+<td style="width:60px">$numFormat.format($s.point)</td>
+<td style="width:60px">$!s.grade</td>
+<td></td>
+</tr>
+<tr><td colspan="5"></td></tr>
+#end
+</table>
+</td></tr>
+<tr><td>
+
+<table width="100%" cellspacing="0" cellpadding="1">
+<tr><td style="width:520px"></td><td>CHours: $r.totalHours</td></tr>
+<tr><td style="width:520px"></td><td>GPA: $numFormat.format($r.gpa)</td></tr>
+<tr><td style="width:520px"></td><td>CGPA: $numFormat.format($r.cgpa)</td></tr>
+<tr><td style="width:520px"></td><td>$!r.standing</td></tr>
+</table>
+</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+#end
+</table>
+#end
+#end

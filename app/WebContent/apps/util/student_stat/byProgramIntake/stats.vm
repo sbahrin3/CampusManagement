@@ -1,0 +1,226 @@
+
+<table style="background:#ABB8C5" cellpadding="2" cellspacing="1">
+<tr>
+<td colspan="14" align="right" style="height:30px;background:#fff">
+<input type="button" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.enrollment.report.DashboardStatisticByMonthXL'">
+</td></tr>
+
+<tr><td colspan="14" style="background:#fff">
+<div style="font-family:Verdana, sans-serif;font-size:18px;font-weight:bold;padding:5px">
+STUDENTS POPULATION BY PROGRAM / INTAKE
+</div>
+</td></tr>
+
+<tr style="height:30px;background:#fff"><td></td><td></td><td colspan="12" style="height:30px;font-weight:bold;background:#fff" align="center">
+YEAR $!year
+</td></tr>
+<tr style="height:30px;background:#EDEAEA">
+<td style="font-weight:bold;width:40px"></td>
+<td style="font-weight:bold;width:400px">PROGRAM : INTAKE</td>
+<td style="font-weight:bold;width:50px" align="center">JAN</td>
+<td style="font-weight:bold;width:50px" align="center">FEB</td>
+<td style="font-weight:bold;width:50px" align="center">MAR</td>
+<td style="font-weight:bold;width:50px" align="center">APR</td>
+<td style="font-weight:bold;width:50px" align="center">MAY</td>
+<td style="font-weight:bold;width:50px" align="center">JUN</td>
+<td style="font-weight:bold;width:50px" align="center">JUL</td>
+<td style="font-weight:bold;width:50px" align="center">AUG</td>
+<td style="font-weight:bold;width:50px" align="center">SEP</td>
+<td style="font-weight:bold;width:50px" align="center">OCT</td>
+<td style="font-weight:bold;width:50px" align="center">NOV</td>
+<td style="font-weight:bold;width:50px" align="center">DEC</td>
+</tr>
+
+#foreach( $p in $programNames )
+<tr style="height:25px">
+<td style="background:#fff"></td>
+<td style="background:#fff">$p</td>
+#foreach ( $m in [0..11] )
+<td style="background:#fff" align="center">
+#if ( $stats.get("$p - $m") )
+	#if ( $stats.get("$p - $m") > 0 )
+		#set ( $programId = $ids.get("$p - programId") )
+		#set ( $intakeId = $ids.get("$p - intakeId") )
+		<a style="text-decoration:none" href="javascript:void(0)" onclick="$('listStudents').style.display='block';doDivAjaxCall3$formname('listStudents','listStudents','month=$m&programId=$programId&intakeId=$intakeId')">
+		$stats.get("$p - $m")
+		</a>
+	#end
+#end
+</td>
+#end
+</tr>
+#end
+
+
+<tr style="height:25px;background:#EDEAEA">
+<td style="background:#EDEAEA"></td>
+<td style="background:#EDEAEA;font-weight:bold" align="right">TOTAL</td>
+#foreach ( $m in [0..11] )
+<td style="background:#EDEAEA;font-weight:bold" align="center">
+#if ( $totals.get(":$m") )
+	#if ( $totals.get(":$m") > 0 )
+		$totals.get(":$m")
+	#end
+#end
+</td>
+#end
+</tr>
+
+<tr><td colspan="14" style="background:#fff">
+<div style="font-family:Verdana, sans-serif;font-size:18px;font-weight:bold;padding:5px">
+STUDENTS POPULATION BY GENDER
+</div>
+</td></tr>
+
+<tr>
+<td colspan="14" align="right" style="height:30px;background:#fff">
+<input type="button" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.enrollment.report.DashboardStatisticByMonthGenderXL'">
+</td></tr>
+
+<tr style="height:30px;background:#EDEAEA">
+<td style="font-weight:bold;width:40px"></td>
+<td style="font-weight:bold;width:400px">GENDER</td>
+<td style="font-weight:bold;width:50px" align="center">JAN</td>
+<td style="font-weight:bold;width:50px" align="center">FEB</td>
+<td style="font-weight:bold;width:50px" align="center">MAR</td>
+<td style="font-weight:bold;width:50px" align="center">APR</td>
+<td style="font-weight:bold;width:50px" align="center">MAY</td>
+<td style="font-weight:bold;width:50px" align="center">JUN</td>
+<td style="font-weight:bold;width:50px" align="center">JUL</td>
+<td style="font-weight:bold;width:50px" align="center">AUG</td>
+<td style="font-weight:bold;width:50px" align="center">SEP</td>
+<td style="font-weight:bold;width:50px" align="center">OCT</td>
+<td style="font-weight:bold;width:50px" align="center">NOV</td>
+<td style="font-weight:bold;width:50px" align="center">DEC</td>
+</tr>
+
+#foreach( $g in $genders )
+<tr style="background:#fff;height:25px">
+<td style="background:#fff;"></td>
+<td style="background:#fff;">$g.name</td>
+#foreach ( $m in [0..11] )
+<td style="background:#fff;" align="center">
+#if ( $genderStat.get("${g.id}:$m") )
+	#if ( $genderStat.get("${g.id}:$m") > 0 )
+		<a style="text-decoration:none" href="javascript:void(0)" onclick="$('listStudents').style.display='block';doDivAjaxCall3$formname('listStudents','listStudentsByGender','month=$m&genderId=$g.id')">
+		$genderStat.get("${g.id}:$m")
+		</a>
+	#end
+#end
+</td>
+#end
+</tr>
+#end
+
+<tr style="background:#fff;height:25px">
+<td style="background:#fff;"></td>
+<td style="background:#fff;">(ND)</td>
+#foreach ( $m in [0..11] )
+<td style="background:#fff;" align="center">
+#if ( $genderStat.get("null:$m") )
+	#if ( $genderStat.get("null:$m") > 0 )
+		<a style="text-decoration:none" href="javascript:void(0)" onclick="$('listStudents').style.display='block';doDivAjaxCall3$formname('listStudents','listStudentsByGender','month=$m&genderId=null')">
+		$genderStat.get("null:$m")
+		</a>
+	#end
+#end
+</td>
+#end
+</tr>
+
+<tr style="height:25px">
+<td style="background:#EDEAEA"></td>
+<td style="background:#EDEAEA;font-weight:bold" align="right">TOTAL</td>
+#foreach ( $m in [0..11] )
+<td style="background:#EDEAEA;font-weight:bold" align="center">
+#if ( $genderTotals.get(":$m") )
+	#if ( $genderTotals.get(":$m") > 0 )
+		$genderTotals.get(":$m")
+	#end
+#end
+</td>
+#end
+</tr>
+
+
+
+##RACE
+
+<tr><td colspan="14" style="background:#fff">
+<div style="font-family:Verdana, sans-serif;font-size:18px;font-weight:bold;padding:5px">
+STUDENTS POPULATION BY RACE
+</div>
+</td></tr>
+
+<tr>
+<td colspan="14" align="right" style="height:30px;background:#fff">
+<input type="button" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.enrollment.report.DashboardStatisticByMonthRaceXL'">
+</td></tr>
+
+<tr style="height:30px;background:#EDEAEA">
+<td style="font-weight:bold;width:40px"></td>
+<td style="font-weight:bold;width:400px">RACE</td>
+<td style="font-weight:bold;width:50px" align="center">JAN</td>
+<td style="font-weight:bold;width:50px" align="center">FEB</td>
+<td style="font-weight:bold;width:50px" align="center">MAR</td>
+<td style="font-weight:bold;width:50px" align="center">APR</td>
+<td style="font-weight:bold;width:50px" align="center">MAY</td>
+<td style="font-weight:bold;width:50px" align="center">JUN</td>
+<td style="font-weight:bold;width:50px" align="center">JUL</td>
+<td style="font-weight:bold;width:50px" align="center">AUG</td>
+<td style="font-weight:bold;width:50px" align="center">SEP</td>
+<td style="font-weight:bold;width:50px" align="center">OCT</td>
+<td style="font-weight:bold;width:50px" align="center">NOV</td>
+<td style="font-weight:bold;width:50px" align="center">DEC</td>
+</tr>
+
+#foreach( $g in $races )
+<tr style="background:#fff;height:25px">
+<td style="background:#fff;"></td>
+<td style="background:#fff;">$g.name</td>
+#foreach ( $m in [0..11] )
+<td style="background:#fff;" align="center">
+#if ( $raceStat.get("${g.id}:$m") )
+	#if ( $raceStat.get("${g.id}:$m") > 0 )
+		<a style="text-decoration:none" href="javascript:void(0)" onclick="$('listStudents').style.display='block';doDivAjaxCall3$formname('listStudents','listStudentsByRace','month=$m&raceId=$g.id')">
+		$raceStat.get("${g.id}:$m")
+		</a>
+	#end
+#end
+</td>
+#end
+</tr>
+#end
+
+<tr style="background:#fff;height:25px">
+<td style="background:#fff;"></td>
+<td style="background:#fff;">(ND)</td>
+#foreach ( $m in [0..11] )
+<td style="background:#fff;" align="center">
+#if ( $raceStat.get("null:$m") )
+	#if ( $raceStat.get("null:$m") > 0 )
+		<a style="text-decoration:none" href="javascript:void(0)" onclick="$('listStudents').style.display='block';doDivAjaxCall3$formname('listStudents','listStudentsByRace','month=$m&raceId=null')">
+		$raceStat.get("null:$m")
+		</a>
+	#end
+#end
+</td>
+#end
+</tr>
+
+<tr style="height:25px">
+<td style="background:#EDEAEA"></td>
+<td style="background:#EDEAEA;font-weight:bold" align="right">TOTAL</td>
+#foreach ( $m in [0..11] )
+<td style="background:#EDEAEA;font-weight:bold" align="center">
+#if ( $raceTotals.get(":$m") )
+	#if ( $raceTotals.get(":$m") > 0 )
+		$raceTotals.get(":$m")
+	#end
+#end
+</td>
+#end
+</tr>
+
+
+</table>

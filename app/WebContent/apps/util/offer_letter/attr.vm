@@ -1,0 +1,14 @@
+<input type="hidden" name="attr_id" value="$!attr.id">
+<table>
+<tr><td style="width:100px"></td><td style="width:300px"></td></tr>
+<tr><td>Date:</td><td><input style="width:100%" name="date" value="$!attr.date"></td></tr>
+<tr><td>Time:</td><td><input style="width:100%" name="time" value="$!attr.time"></td></tr>
+<tr><td>Location:</td><td><input style="width:100%" name="location" value="$!attr.location"></td></tr>
+<tr><td></td>
+<td>
+
+<input type="button" value="Save" onclick="doDivAjaxCall$formname('div_a','save','')">
+
+</td>
+</tr>
+</table>

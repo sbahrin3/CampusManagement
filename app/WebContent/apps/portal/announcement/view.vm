@@ -1,0 +1,32 @@
+
+<div style="padding:3px;background:#fff">
+    <table style="width:100%" cellpadding="0" cellspacing="0">
+    
+    <tr>
+    <td style="font-weight:bold;font-size:11pt;font-weight:bold;color:#000">
+    $!announcement.title
+    </td>
+    </tr>
+    
+    <tr>
+    <td style="font-size:10pt;color:#000">
+    
+    <div style="margin:20px;">
+    $_util.putLineBreak($!announcement.text)
+    </div>
+    #if ( $announcement.fileName )
+    <div style="margin-top:10px;margin-bottom:20px">
+    Document: <a href="../download?file=$!a.serverFileName"><u>$!announcement.fileName</u></a>
+    </div>
+    #end
+    </td>
+    </tr>
+    </table>
+
+    <table width="100%">
+    <tr><td align="right">
+    <input class="linkbutton" type="button" value="Close" style="height:30px;font-weight:bold" onclick="closeView('$!announcement.id');">
+    </td></tr>
+    </table>
+
+</div>

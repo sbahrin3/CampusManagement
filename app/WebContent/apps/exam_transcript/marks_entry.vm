@@ -1,0 +1,87 @@
+<table width="90%" align="center"><tr><td>
+
+<table width="100%">
+<tr><td>Matric:</td><td>
+$href.command("get_student").param("student_id=$student.id").text("$student.matricNo")
+
+
+</td></tr>
+<tr><td>Name:</td><td>$student.biodata.name</td></tr>
+
+</table>
+<hr/>
+<table width="100%">
+<tr><td>
+<b>
+$session_result.session.name ($session_result.period.parent.name - $session_result.period.name)
+</b>
+</td></tr>
+</table>
+<br/>
+<br/>
+
+<table width="100%">
+#foreach( $subject_result in $session_result.subjects)
+<tr>
+<td>
+$subject_result.subject.code - $subject_result.subject.name</td>
+
+<td align="right">
+$subject_result.subject.credithrs
+</td>
+
+<td>
+<input type="hidden" name="subject_ids" value="$subject_result.subject.id">
+<input style="width:80px;text-align:center" name="subject_marks" value="$subject_result.totalMark">
+</td>
+
+<td align="right">
+$subject_result.grade
+</td>
+<td align="right">
+$subject_result.point
+</td>
+<td align="right">
+$subject_result.pointValue
+</td>
+</tr>
+
+
+#end
+
+<tr><td colspan="7"><hr/></td></tr>
+
+<tr>
+<td></td>
+<td></td>
+<td align="right">
+Total Credit Hrs:<br/>
+Total Points:<br/>
+GPA:
+</td>
+<td align="right">
+$session_result.totalCreditHrs<br/>
+$session_result.totalPoint<br/>
+$util.formatDecimal($session_result.gpa)
+</td>
+</tr>
+
+<tr><td colspan="5"><hr/></td></tr>
+
+<tr>
+<td></td>
+<td>$button.command("save_result").param("student_status_id=$student_status_id").style("width:80px;height:30px").text("SAVE")</td>
+<td></td>
+<td></td>
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+</td></tr></table>

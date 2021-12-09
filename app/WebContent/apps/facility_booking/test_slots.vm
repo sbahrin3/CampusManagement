@@ -1,0 +1,75 @@
+		<table width="820" align="center"><tr><td>
+		
+		<div style="overflow:auto;top:0;height:300px; width:800px">
+		
+		
+<table cellpadding="0" cellspacing="0" bgcolor="silver" border=1>
+<tr>
+<td>
+
+<table width="100px" cellpadding="0" cellspacing="1">
+<tr><td height="20px" ></td></tr>
+<tr><td height="20px" ></td></tr>
+
+</td>
+
+
+</table>
+
+</td>
+
+
+#foreach( $slot in $day_slots )
+<td>
+<table width="50px" cellpadding="0" cellspacing="1">
+<tr><td height="20px" bgcolor="#ffffff">$slot.dayDate</td></tr>
+<tr><td height="20px" bgcolor="#ffffff">$slot.dayName</td></tr>
+</table>
+</td>
+#end
+
+</tr>
+</table>
+
+
+
+
+<table cellpadding="0" cellspacing="0" bgcolor="silver" border=1>
+<tr>
+<td>
+
+<table width="100px" cellpadding="0" cellspacing="1">
+<tr><td height="20px" ></td></tr>
+<tr><td height="20px" ></td></tr>
+#foreach ( $t in $time_displays )
+<tr><td style="height:30px" bgcolor="#ffffff" align="center">$t.time</td></tr>
+#end
+</table>
+
+</td>
+#foreach( $slot in $day_slots )
+<td>
+<table width="50px" cellpadding="0" cellspacing="1">
+<tr><td height="20px" bgcolor="#ffffff">$slot.dayDate</td></tr>
+<tr><td height="20px" bgcolor="#ffffff">$slot.dayName</td></tr>
+
+#foreach ( $time_slot in $slot.timeSlots )
+<tr>
+#if ( $time_slot.occupied )
+<td style="height:30px" bgcolor="#7FAAFF"></td>
+#else
+<td style="height:30px" bgcolor="#ffffff"></td>
+#end
+</tr>
+#end
+</table>
+
+</td>
+#end
+</tr>
+
+</table>
+
+
+</div>
+</td></tr></table>

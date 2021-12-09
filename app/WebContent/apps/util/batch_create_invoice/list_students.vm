@@ -1,0 +1,70 @@
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Batch Creation of Invoices</legend>
+
+<table width="100%">
+<tr><td align="right">
+#if ( $programId == "null" ) #set ( $programId = "" ) #end
+#if ( $intakeId == "null" ) #set ( $intakeId = "" ) #end
+
+<input class="gradient" type="button" style="height:30px" value="PRINT INVOICES" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintStudentInvoiceListModule?programId=$!programId&intakeId=$!intakeId&sessionId=$!sessionId';">
+<input type="button" class="gradient" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.sis.module.BatchCreateInvoiceXLServlet?programId=$!programId&intakeId=$!intakeId&sessionId=$!sessionId'">
+
+
+<div id="div_progress" name="div_progress">
+<b>$students.size() Students</b>
+</div>
+</td></tr>
+</table>
+
+<br>
+
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:30px">&nbsp;</td>
+<td style="width:150px;font-weight:bold">Matric No.</td>
+<td style="width:150px;font-weight:bold">ICNo</td>
+<td style="width:300px;font-weight:bold">Name</td>
+<td style="width:150px;font-weight:bold">Semester</td>
+<td style=""></td>
+</tr>
+</table>
+
+<div id="div_flow" name="div_flow" style="overflow:auto;overflow-x:hidden;height:400px">
+
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="0px">
+<td style="width:30px"></td>
+<td style="width:150px;"></td>
+<td style="width:150px;"></td>
+<td style="width:300px;"></td>
+<td style="width:150px;"></td>
+<td style=""></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $students )
+
+
+#set ( $cnt = $cnt + 1 )
+<tr height="30px">
+<td class="gradient">$velocityCount)</td>
+<td><input class="text" readonly value="$s.student.matricNo"></td>
+<td><input class="text" readonly value="$s.student.biodata.icno"></td>
+<td><input class="text" readonly value="$s.student.biodata.name"></td>
+<td><input class="text" readonly value="$s.period.name #if ( $s.period.parent ) ($s.period.parent.name) #end"></td>
+<td style="border-bottom:1px solid #C3C3C3;">
+<div id="div_$s.id" name="div_$s.id">
+#if ( $cnt == 1 ) 
+<input class="gradient" type="button" value="Start" onclick="doDivAjaxCall$formname('div_$s.id','start_create','status_id=$s.id')">
+&lt;--click to start.
+#end
+</div>
+</td>
+</tr>
+
+#end
+
+</table>
+</div>
+
+</fieldset>

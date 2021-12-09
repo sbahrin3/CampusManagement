@@ -1,0 +1,137 @@
+<script>
+$('div_payments').style.display='none';
+</script>
+
+
+<table width="800" align="">
+
+<tr><td align="right">
+	<button class="btn btn-primary btn-xs" type="button" onclick="$('div_payments').style.display='block';$('div_detail').style.display='none';">Close</button>
+</td></tr>
+
+<tr><td>
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">PAYMENT DETAIL</legend>
+
+$dateFormat.applyPattern("d MMM, yyyy")
+<br>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table align="center" width="100%">
+
+<tr><td style="width:100px">Payment No:</td><td style="font-weight:bold">$payment.paymentNo</td></tr>
+<tr><td style="width:100px">Date/Time:</td><td style="font-weight:bold">$dateFormat.format($payment.createDate) 
+</td></tr>
+<tr><td style="width:100px">Amount (RM):</td><td style="font-weight:bold">$numFormat.format($payment.amount)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+#if ( $payment.adjusted )
+	<span style="color:#ff0000">
+	Adjustment made on:
+	#if ( $payment.adjustDate )
+	<b>$dateFormat.format($payment.adjustDate)</b>
+	#end
+	#if ( $payment.adjustTime )
+	<b>$timeFormat.format($payment.adjustTime)</b>
+	#end
+	#if ( $payment.adjustUserId )
+	By: <b>$payment.adjustUserId</b>
+	#end
+	</span>
+#end
+
+
+</td></tr>
+<br>
+</table>
+
+
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">
+Item Description
+</td>
+<td align="right" style="font-weight:bold">Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</td>
+</tr>
+#foreach ( $i in $payment.paymentItems )
+<tr height="30px">
+<td style="">$i.description</td>
+<td style="" align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+<tr><td colspan="4" align="right"><br/></td></tr>
+</table>
+
+</fieldset>
+
+
+#if ( $xpayments.size() > 0 )
+
+<table width="100%">
+<tr height="30px">
+<td style="font-weight:bold">$xpayments.size() adjustments(s) have been made.</td>
+</tr>
+</table>
+
+
+
+
+
+#foreach( $x in $xpayments )
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table align="center" width="100%" cellpadding="0" cellspacing="0">
+<tr class="gradient" bgcolor="lightgrey" height="30px">
+<td style="width:20px">
+##${velocityCount})
+</td>
+<td>
+#if ( $x.adjustDate )
+Adjusted on: <b>$dateFormat.format($x.adjustDate) $timeFormat.format($x.adjustTime)</b>
+#if ( $x.adjustUserId )
+&nbsp;&nbsp;by <b>$x.adjustUserId
+#end
+
+#else
+Original Payment
+#end
+
+</td>
+<td align="right" style="font-weight:bold"></td>
+</tr>
+<tr>
+<td colspan="3">
+
+<table width="100%">
+#foreach ( $i in $x.paymentItems )
+<tr height="30px">
+<td>#if ( $i.description ) $i.description #end</td>
+<td align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+<tr height="30px">
+<td colspan="2" style="border-top:1px solid #C3C3C3;font-weight:bold" align="right">
+$numFormat.format($x.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+
+
+
+</td>
+</tr>
+</table>
+</fieldset>
+#end
+
+
+#end
+
+</fieldset>
+
+</td></tr></table>
+
+

@@ -1,0 +1,9 @@
+<table width="100%">
+#foreach ( $s in $students )
+<tr>
+<td width="50px" align="right">$velocityCount)</td>
+<td>$s.matricNo</td>
+<td>$s.biodata.name</td>
+</tr>
+#end
+</table>

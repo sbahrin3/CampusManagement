@@ -1,0 +1,17 @@
+<table width="700" align="center">
+<tr><td>
+
+<table width="100%">
+<tr><td align="right">
+<select name="program_id" onchange="doAjaxCall${_formName}('list_students','')">
+<option value="">(PLEASE SELECT A PROGRAM OF STUDY)</option>
+#foreach ( $p in $programs )
+<option value="$p.id">&nbsp;&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+
+
+
+</td></tr>
+</table>
+

@@ -1,0 +1,82 @@
+$dateFormat.applyPattern("EEEE d MMM, yyyy")
+<table width="100%" cellspacing="0" border="0">
+
+
+#foreach( $reply in $post.replies )
+
+##start
+
+<tr bgcolor="#E2E2FE"><td style="width:40px" valign="top">
+
+#if($reply.user.userAvatarName != "")
+<img src="../download?file=$!reply.user.userAvatarName" width="40px">
+#else
+<img src="../img/nophoto.gif" border="0" width="40px">
+#end
+
+</td><td valign="top">
+<table width="100%" cellspacing="0">
+<tr><td class="posting"><span class="posting_user_name">$!reply.user.userName</span>
+$util.putLineBreak($reply.message)
+</td></tr>
+
+#if ( $reply.attachments.size() > 0 )
+<tr><td class="posting_date">
+<table width="100%" cellspacing="0">
+#foreach( $att in $reply.attachments)
+<tr><td style="width:20px" align="center">
+<a href="../download?file=$att.fullFileName"><img src="../img/attachment_icon.gif" border="0"></a>
+</td><td>
+<a href="../download?file=$att.fullFileName" style="font-family:arial;font-size:8pt;text-decoration:none">$att.fileName</a>
+</td></tr>
+#end
+</table>
+</td></tr>
+#end
+
+<tr><td class="posting_date">
+$dateFormat.format($reply.postDate) at $timeFormat.format($reply.postTime)
+</td></tr>
+
+#if ( $post.type == "discussion" )
+<tr><td>
+<div id="div_rank_$reply.id">
+#if ( $user_role == "teacher" )
+#parse( "apps/lms2/give_rank.vm" )
+#else
+#parse( "apps/lms2/show_rank.vm" )
+#end
+																																																																		</div>
+</td></tr>
+#end
+
+</table>
+
+</td></tr>
+
+<tr height="5px"><td colspan="2"></td></tr>
+#end
+</table>
+
+
+##end post replies
+
+<table width="100%" cellspacing="0" border="0">
+
+<tr bgcolor="#E2E2FE"><td colspan="2">
+ 	&bull;
+<a style="font-weight:bold;color:#0000FF" href="javascript:void()" onclick="$('div_reply_$post.id').style.display='block';">Reply</a>
+</td></tr>
+
+<tr><td colspan="2">
+<div id="div_reply_wait_indicator_$post.id" name="div_reply_wait_indicator_$post.id" style="visibility='hidden'"></div>
+</td></tr>
+</table>
+
+
+
+<table width="100%" cellspacing="0">
+<tr><td>
+#parse("apps/lms2/div_reply_post.vm")
+</td></tr>
+</table>

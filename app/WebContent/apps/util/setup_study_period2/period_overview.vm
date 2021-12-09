@@ -1,0 +1,42 @@
+
+
+
+<div class="well">
+
+<div style="text-align:right;padding:10px">
+	<button type="button" class="btn btn-success" onclick="if ( !confirm('Add New Period Structure?') ) return; doDivAjaxCall$formname('div_list_periods','addNewPeriods','')">Add New</button>
+	<button type="button" class="btn btn-warning" onclick="doDivAjaxCall$formname('div_list_periods','reload','')">Reload</button>
+</div>
+
+#set ( $c = 0 )
+
+<table >
+	<tr>
+	#foreach( $ps in $period_schemes )
+		
+		#set ( $c = $c + 1 )
+		
+		<td valign="top" style="width:300px">
+		<span style="font-weight:bold">$ps.code</span>
+		<span>
+		<button type="button" class="btn btn-link btn-xs" onclick="doDivAjaxCall$formname('div_list_periods','list_periods','period_scheme_id=$!ps.id')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+		<button type="button" class="btn btn-link btn-xs" onclick="if ( !confirm('Delete Period Structure?') ) return; doDivAjaxCall$formname('div_list_periods','delete_scheme','period_scheme_id=$!ps.id')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+		</span>
+		
+			#set ( $periods = $ps.getPeriodList())
+			#parse("apps/util/setup_study_period2/periods_list.vm")
+		</td>
+	
+		#if ( $c == 4 ) #set ( $c = 0 ) </tr><tr> #end
+	
+	#end
+	
+	#if ( $c < 4 ) </tr> #end
+</table>
+</div>
+
+#**
+<div class="well">
+<button type="button" class="btn btn-success" onclick="$('period_overview').style.display='none';$('period_edit').style.display='block';">Create/Modify Period Structure</button>
+</div>
+**#

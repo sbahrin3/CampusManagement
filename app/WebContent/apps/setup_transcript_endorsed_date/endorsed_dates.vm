@@ -1,0 +1,38 @@
+<table width="100%"><tr><td>
+<span style="font-family:verdana, sans-serif;font-size:10pt;font-weight:bold">Achievement Levels for programme:</span><br/>
+<span style="font-family:verdana, sans-serif;font-size:12pt;font-weight:bold">$program.code - $program.name</span>
+</td><td align="right">
+<a href="javascript:void(0)" onclick="doDivAjaxCall3$formname('divMain','back','')">&lt;</a>
+</td></tr></table>
+<br/>
+<br/>
+
+<table>
+
+<tr>
+<td style="">&nbsp;</td>
+<td style="border-bottom:1px solid #000;font-weight:bold">Session</td>
+<td style="border-bottom:1px solid #000;font-weight:bold">Endorsed Date</td>
+<td style="border-bottom:1px solid #000;">&nbsp;</td>
+</tr>
+
+#foreach( $s in $sessions )
+
+<tr>
+<td style="width:50px"></td>
+<td style="width:200px">$s.name</td>
+
+#if ( $endorsedDateMap.get("$s.id" ) )
+	#set ( $dateValue = $dateFormat.format($endorsedDateMap.get("$s.id").endorsedDate) )
+#else
+	#set ( $dateValue = "" )
+#end
+
+
+<td style="width:150px">$html.dateField.name("endorsedDate_$s.id").value("$!dateValue").style("width:100px").cssClass("textr")</td>
+<td style="width:100px">
+<input type="button" class="linkbutton" value="Update" onclick="doDivAjaxCall3$formname('divEmpty','update','sessionId=$s.id&programId=$program.id')">
+</td>
+</tr>
+#end
+</table>

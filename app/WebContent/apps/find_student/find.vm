@@ -1,0 +1,17 @@
+
+<table class="table table-striped">
+	##<tr><td colspan="4">Found $students.size() records for &quot;$findByName&quot;</td></tr>
+	#set ( $cnt = 0 )
+	#foreach ( $s in $students )
+		#set ( $cnt = $cnt + 1 )
+		<tr>
+			<td style="width:10px;font-size:10pt">$cnt.</td>
+			<td style="width:150px;font-size:10pt">$s.matricNo</td>
+			<td style="width:400px;font-size:10pt">$s.biodata.name</td>
+			<td style="width:50px;" align="right">
+				<button class="btn btn-sm" onclick="parent.${elementId}.value='$s.matricNo';parent.$('divFindStudent').style.display='none'"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+			</td>
+		</tr>
+	#end
+</table>
+

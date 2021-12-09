@@ -1,0 +1,46 @@
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="javascript:void(0)" onclick="doDivAjaxCall$formname('info_detail', 'enrollment_biodata', '')">Enrollment & Biodata</a></li>
+  <li><a href="javascript:void(0)" onclick="doDivAjaxCall$formname('info_detail', 'finance_records', '')">Payment Records</a></li>
+</ul>
+<br/>
+
+<div name="div_upload_photo" id="div_upload_photo" style="">
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Enrollment Information</div>
+  <div class="panel-body row">
+  	
+  	<div class="col-sm-8">
+  		#parse( "apps/student_information/div_enrollment.vm" )
+  	</div>
+  	<div class="col-sm-4">
+  		<div id="div_photo" name="div_photo" style="text-align:center">
+			#parse( "apps/student_information/div_photo.vm" )
+		</div>
+		
+
+  	</div>
+  	
+
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">Biodata</div>
+  <div class="panel-body">
+  
+  	<div id="div_biodata" name="div_biodata">
+		#parse( "apps/student_information/div_biodata.vm" )
+	</div>
+  
+  </div>
+</div>
+
+
+
+
+
+

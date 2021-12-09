@@ -1,0 +1,42 @@
+<fieldset style="background-color:#fff; width:100%; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+
+#set ( $subject_result_id = "" )
+<table width="100%">
+
+#if ( $updated )
+<tr>
+<td align="center" colspan="3">
+<b>Data Saved!</b>
+</td>
+</tr>
+#end
+
+<tr>
+<td align="right" colspan="3">
+[<a href="javascript:void" onclick="doDivAjaxCall$formname('ass_$student_id', 'done', '')">close</a>]
+</td>
+</tr>
+
+
+
+#foreach ( $ass in $assessments )
+#set ( $subject_result_id = $ass.subjectResult.id )
+<tr>
+<td>$ass.courseworkItem.name</td>
+<td>
+<input name="$ass.id" value="$ass.marks" style="width:50px;text-align:center">
+</td>
+<td align="right">
+$ass.courseworkItem.percentage
+</td>
+</tr>
+#end
+<tr>
+<td align="center" colspan="3" bgcolor="lightgrey">
+<input type="button" style="height:30px" value="SAVE" onclick="doDivAjaxCall$formname('ass_$student_id', 'save_assessment', 'subject_result_id=$subject_result_id')">
+</td>
+</tr>
+</table>
+
+</fieldset>

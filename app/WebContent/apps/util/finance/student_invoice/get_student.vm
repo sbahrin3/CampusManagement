@@ -1,0 +1,16 @@
+<table width="700" align="center">
+<tr><td>
+
+
+</tr></tr>
+<tr><td align="right">
+
+<input name="student_no" style="width:200px">
+$button.command("select_period").style("height:30px").text("Get Student")
+
+
+
+
+
+</td></tr>
+</table>

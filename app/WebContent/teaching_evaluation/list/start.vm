@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<style>
+.box { background:#fff; }
+.comment { font-family:Verdana;font-size:10pt }
+.counting { border: none; width:25px; text-align:right; }
+.header { background:#C1BFBF; height:30px; font-weight:bold}
+.tr1 { background:#FFF; height:25px}
+.tr2 { background:#F4FFA5; height:25px}
+</style>
+
+<div style="padding:10px;font-family:Verdana;font-size:12pt;font-weight:bold">
+STUDENT EVALUATION ON TEACHING
+</div>
+<div style="padding:10px">
+<input type="button" style="height:30px;" value="Download as XL Document" onclick="document.location='../servlet/educate.questionnare.TeachingEvaluationXLServlet'">
+</div>
+<div id="questionnareList" style="padding:10px">
+#parse("teaching_evaluation/list/list.vm")
+</div>

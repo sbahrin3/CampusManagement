@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+<table width="100%">
+<tr><td align="right">
+[
+<a href="javascript:doDivAjaxCall$formName('list_graduates', 'list_all', '')">List All</a>
+
+|
+<a href="javascript:doDivAjaxCall$formName('list_graduates', 'list_approved', '')">List of students approved for graduation</a>
+
+|
+<a href="javascript:doDivAjaxCall$formName('list_graduates', 'list_disapproved', '')">List of students disapproved for graduation</a>
+
+]
+</td>
+</tr>
+</table>
+
+<br/><br/>
+<div id="list_graduates" name="list_graduates">
+#parse("apps/util/student_graduation/list_graduates2.vm")
+</div>

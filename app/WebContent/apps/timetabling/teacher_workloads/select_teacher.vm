@@ -1,0 +1,49 @@
+<table >
+
+
+<tr style="height:40px"><td style="width:150px">Select Faculty:</td>
+<td>
+	<select class="form-control" name="departmentId" id="departmentId">
+		<option value=""></option>
+		#foreach ( $d in $userDepartments )
+			<option value="$d.id">$d.id - $d.name</option>
+		#end
+	</select>
+</td>
+<td>
+
+</td>
+</tr>
+
+<tr style="height:40px">
+	<td style="width:150px">Lecturer:</td>
+	<td>
+	#parse("apps/timetabling/teacher_workloads/find_teacher.vm")
+	</td>
+</tr>
+
+
+<tr style="height:40px">
+	<td style="width:150px">Select Week:</td>
+	<td>
+	#parse("apps/timetabling/teacher_workloads/find_week.vm")
+	</td>
+</tr>
+
+
+
+<tr>
+	<td></td>
+	<td>
+		&nbsp;<button type="button" class="btn btn-info btn-sm" onclick="if ( $('teacherId').value == '' && $('departmentId').value == '' ) { alert('Select Faculty or Please find Lecturer first!'); } else { if ( $('week').value == '' ) { alert('Please select week.');} else { $('getReport').innerHTML='Please Wait...';doDivAjaxCall$formname('getReport','getReport',''); } }">Get Workload Report</button>
+	
+	</td>
+</tr>
+
+</table>
+
+
+	
+<div id="getDeliveryPeriod"></div>
+
+

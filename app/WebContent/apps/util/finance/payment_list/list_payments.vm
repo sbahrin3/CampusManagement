@@ -1,0 +1,17 @@
+<div style="padding:10px">
+
+<div style="margin-bottom:20px">
+#parse("apps/util/student_info/student_info.vm")
+</div>
+
+<div id="div_payments" name="div_payments">
+#parse("apps/util/finance/payment_list/payments.vm")
+</div>
+
+
+
+
+<div id="div_detail" name="div_detail" style="display:none"></div>
+
+
+</div>

@@ -1,0 +1,7 @@
+
+
+<div id="institution" style="padding:20px">
+	#parse("apps/setupInstitution/data.vm")
+</div>
+
+	

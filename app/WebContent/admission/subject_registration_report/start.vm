@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<style>
+table.subjectList {
+  table-layout: fixed; 
+  *margin-left: -100px;/*ie7*/
+}
+
+.td {
+  vertical-align: top;
+}
+
+.th {
+  position:absolute;
+  *position: relative; /*ie7*/
+  left:0; 
+}
+.outer {position:relative}
+.inner {
+  overflow-x:scroll;
+  overflow-y:visible;
+  margin-left:300px;
+}
+</style>
+
+
+<div id="divSelectParam">#parse("admission/subject_registration_report/select_params.vm")</div>
+<br/>
+<div id="listStudents"></div>

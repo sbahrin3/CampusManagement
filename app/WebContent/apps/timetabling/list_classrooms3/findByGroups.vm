@@ -1,0 +1,30 @@
+	<table>
+	<tr>
+		<td style="width:150px">Search by Group:</td>
+		<td style="width:300px">
+			##<input class="form-control" name="groupName" name="groupName" placeholder="Click 'Find...' button" readonly>
+			##<input type="hidden" name="groupId" id="groupId">
+			
+			
+			#if ( $groups )
+				#foreach( $g in $groups)
+					$g.code,
+					<input type="hidden" name="groupIds" value="$g.id">
+				#end
+			#end
+			
+		</td>
+		<td>
+			&nbsp;
+			<button type="button" class="btn btn-success btn-sm" onclick="$('calendars').style.display='none';$('classroomList').style.display='none';$('findTeacher').style.display='none';$('findGroup').style.display='block';$('findProgram').style.display='none';$('findRoom').style.display='none';">Find...</button>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td colspan="2">
+			<div style="margin-top:20px">
+			<button type="button" class="btn btn-primary btn-sm" onclick="if ( $('sessionId').value == '' || $('week').value == '' ) { alert('Please select week');return; } else { doDivAjaxCall$formname('classroomList','filterByGroup',''); }">Get Report</button>
+			</div>
+		</td>
+	</tr>
+	</table>

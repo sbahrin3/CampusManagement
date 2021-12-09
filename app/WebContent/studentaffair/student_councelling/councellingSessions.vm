@@ -1,0 +1,34 @@
+<script>
+$('addCase').style.display='block';
+</script>
+<table width="100%" style="height:30px;background:#A7ADB2;">
+<tr><td style="font-weight:bold;color:#fff">COUNCELLING SESSIONS</td>
+<td width="10px" style="cursor:pointer;color:#fff" onclick="$('addCase').style.display='none'">x</td></tr>
+</table>
+
+<table width="100%" style="height:30px;background:#fff;">
+<tr><td style="width:50px">Issue</td><td style="width:10px">:</td><td style="">$!councelling.issue.name</td>
+</tr></table>
+
+
+<table>
+<tr style="height:30px;background:#D0D6DB">
+<td style="width:120px;">Referred Date:</td>
+<td style="width:350px;">Referral Name:</td>
+<td style="width:350px;">Counsellor Name:</td>
+</tr>
+<tr style="height:30px;background:#EFF4F9">
+<td>#if ( $councelling.referredDate ) $dateFormat.format($councelling.referredDate)#end</td>
+<td>$!councelling.referralName</td>	
+<td>$!councelling.councellor.name</td>
+</tr>
+</table>
+<br/>
+
+<div id="sessions">
+#if ( $councelling.sessions.size() == 0 )
+#parse("studentaffair/student_councelling/session.vm")
+#else
+#parse("studentaffair/student_councelling/listSessions.vm")
+#end
+</div>

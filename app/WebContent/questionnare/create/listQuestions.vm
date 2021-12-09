@@ -1,0 +1,15 @@
+<div style="text-align:right;font-family:Verdana, sans-serif;">
+
+<button type="button" class="btn btn-default" onclick="doDivAjaxCall3$formname('divTestRun','testRun','setId=$!set.id')">Test Run</button>
+<button type="button" class="btn btn-default" onclick="doDivAjaxCall3$formname('div_main','','')">Back</button>
+
+</div>
+<br/><br/>
+<div style="font-weight:bold;font-family:Verdana, sans-serif;font-size:10pt;font-size:10pt;padding-bottom:2px;border-bottom:1px solid #000;">$!set.name</div>
+<br/>
+#if ( $set.parts.size() == 0 )
+	Begin with add a Part.
+	<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('div_input','addPart','setId=$!set.id')">Add Part</button>
+#else
+	#parse("questionnare/create/listQuestions2.vm")
+#end

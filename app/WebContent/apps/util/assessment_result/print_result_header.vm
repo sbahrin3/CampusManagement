@@ -1,0 +1,58 @@
+
+
+<div style="font-family:arial;font-size:14pt;font-weight:bold;margin-bottom:10px">FINAL EXAM RESULT $!session.name SEMESTER</div>
+
+
+<table>
+	
+	<tr>
+		<td style="width:100px">Course</td><td style="width:10px">:</td><td style="font-weight:bold">$program.code $program.name</td>
+	</tr>
+	
+	#if ( $intake )
+    	<tr>
+    		<td>Intake</td><td>:</td><td style="font-weight:bold">$!intake.name</td>
+    	</tr>
+	#end
+	
+	<tr>
+		<td>Subject Code</td><td>:</td><td style="font-weight:bold">$subject.code</td>
+	</tr>
+	
+	<tr>
+		<td>Subject</td><td>:</td><td style="font-weight:bold">$subject.name</td>
+	</tr>
+	
+	#**
+	<tr>
+		<td>Session</td><td>:</td><td style="font-weight:bold">$!session.name</td>
+	</tr>
+	**#
+</table>
+
+<table>
+	<tr>
+		<td colspan="20" style="border-bottom:1px solid #000">
+			&nbsp;
+		</td>
+	</tr>
+	<tr style="height:30px">
+		<td style="width:30px">NO</td>
+		<td style="width:120px">STUDENT ID</td>
+		<td style="width:200px">STUDENT NAME</td>
+		#set ( $cntItems = 0 )
+		#foreach ( $m in $markItems )
+			#set ( $cntItems = $cntItems + 1 )
+			<td style="width:50px" align="center">$m.code</td>
+		#end
+		
+		<td style="width:50px">TOTAL MARKS</td>
+		##<td style="width:50px">Grade</td>
+		##<td style="width:150px">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="20" style="border-bottom:1px solid #000">
+			&nbsp;
+		</td>
+	</tr>
+</table>

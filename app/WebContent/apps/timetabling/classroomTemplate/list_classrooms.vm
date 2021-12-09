@@ -1,0 +1,41 @@
+<div id="selectSubjects" style="display:none">
+	<table style="width:100%">
+	<tr><td style="width:10px"></td>
+	<td style="width:800px">
+		
+		#parse("apps/timetabling/classroomTemplate/find_subject.vm")
+		
+	</td></tr>
+	
+	</table>
+	<input type="hidden" id="subjectId" name="subjectId">
+</div>
+
+<div id="find_subject" style="display:block">
+	#parse("apps/timetabling/classroomTemplate/search_subject.vm")
+</div>
+
+<br/>
+
+<div id="mainDisplay" style="display:none">
+
+	<div id="selectTags" style="margin-bottom:10px">
+	<table style="width:100%"><tr><td align="right">
+		#** 
+		Tag: <select class="texts" style="width:50px;height:30px" name="listTagNumber">
+			<option value=""></option>
+			#foreach( $t in [0..20])
+				<option value="$t">$t</option>
+			#end
+		</select>
+		<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('divClassrooms','listClassroomsByTag','')">List by Tag No.</button>
+		**#
+		<button type="button" class="btn btn-info" onclick="$('mainDisplay').style.display='none';$('find_subject').style.display='block';">Select Other Course</button>
+	</td></tr></table>
+	</div>
+	
+	<div id="divClassrooms"></div>
+
+</div>
+
+

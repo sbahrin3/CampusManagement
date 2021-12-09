@@ -1,0 +1,8 @@
+<script>
+$('divView').style.display="block";
+</script>
+<table width="100%" style="height:30px;background:#89939E"><tr>
+<td></td><td align="right"><input class="linkbutton" type="button" value="x" onclick="$('divView').style.display='none'"></td></tr></table>
+<div style="overflow:auto;height:360px">
+#parse("apps/util/finance/payment_custom/print_student_receipt.vm")
+</div>

@@ -1,0 +1,10 @@
+<script>
+function popitup(url) {
+	newwindow=window.open(url,'popitup','height=500,width=800,scrollbars=yes');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+</script>
+
+<a href="javascript:void(0)" 
+onclick="return popitup('../x/educate.admission.module.StudentMoheDataReportModule?command=report')">Maklumat Asas Graduan</a>

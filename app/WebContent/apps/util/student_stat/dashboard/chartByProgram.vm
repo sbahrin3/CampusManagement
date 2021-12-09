@@ -1,0 +1,20 @@
+#**
+chartType = Bar2D.swf, Pie3D.swf, etc
+**#
+
+#macro(chart $chart $caption $height $width $chartType)
+$chart.setFusionChartPath("/fusionchart")
+<table width="$width"><tr><td>
+$chart.setFusionChartName("$chartType")
+$chart.setCaption("$caption")
+$chart.setHeight($height)
+$chart.setWidth($width)
+<div align="center">
+$chart.fusionChartObject
+</div>
+</td></tr></table>
+#end
+
+<table align="center"><tr><td>
+#chart($program_chart "" 500 500 "Pie3D.swf")
+</td></tr></table>

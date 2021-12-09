@@ -1,0 +1,243 @@
+
+#parse("apps/timetabling/header.vm")
+
+
+#set ( $totalSlots = $slotTimeList.size() )
+$dateFormat.applyPattern("dd, MMM yyyy")
+
+
+#if ( $filterBy == "all" )
+
+#elseif ( $filterBy == "teacher" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Lecturer : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$teacher.name ($!teacher.id)
+	</span>
+#elseif ( $filterBy == "group" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Group : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	#foreach( $g in $groups )
+		$g.code, 
+	#end
+	</span>
+#elseif ( $filterBy == "program" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Program : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$program.code - $program.name
+	</span>
+#elseif ( $filterBy == "room" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Room : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	
+	$!room.name -
+	$!room.floor.name - $!room.floor.block.name -
+	$!room.floor.block.building.name - $!room.floor.block.building.campus.name
+	
+	</span>
+#elseif ( $filterBy == "subject" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Search By Course: </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$subject.code - $subject.name
+	</span>	
+#end
+
+
+<br/><br/>
+
+<table border="0" cellpadding="1" cellspacing="0" style="border:1px solid #000">
+$timeFormat.applyPattern("hh:mm a")
+
+
+
+<tr><td style="width:30px;border-right:1px solid #000;" bgcolor="#fff">&nbsp;</td>
+#set ( $i = 0 )
+#foreach( $slotTime in $slotTimeList )
+	#set ( $i = $i + 1 )
+	#if ( $i % 2 == 0 )
+	    <td colspan="2" style="height:30px;border-right:1px solid #000;font-weight:normal;font-family:sans-serif;font-size:8pt">
+	    $timeFormat.format($t.startTime)
+	    </td>
+    #end
+    #set ( $t = $slotTime )
+#end
+</tr>
+
+
+<tr style="height:0px"><td style="width:30px;height:0px;border-top:1px solid #000" bgcolor="#fff"></td>
+#foreach( $slotTime in $slotTimeList )
+    <td style="width:30px;height:0px;border-top:1px solid #000"></td>
+#end
+</tr>	
+
+#foreach( $dayNum in [1..7])	
+
+	#set ( $rowOfClassrooms = $timetable.get($dayNum) )
+	
+	#if ( $rowOfClassrooms.size() > 0 ) 
+
+		#set ( $rowCnt = 0 )
+		
+		#foreach ( $classrooms in $rowOfClassrooms )
+		
+			#set ( $rowCnt = $rowCnt + 1 )
+			
+			<tr>
+				
+			#if ( $rowCnt == 1 )
+				#set ( $rowspan = $rowOfClassrooms.size() )
+				<td style="border-right:1px solid #000;font-family:sans-serif;font-size:8pt" #if ( $rowspan > 1 ) rowspan="$rowspan" #end valign="top">
+				
+				#if ( $dayNum == 1 ) MON
+				#elseif ( $dayNum == 2 ) TUE
+				#elseif ( $dayNum == 3 ) WED
+				#elseif ( $dayNum == 4 ) THU
+				#elseif ( $dayNum == 5 ) FRI
+				#elseif ( $dayNum == 6 ) SAT
+				#elseif ( $dayNum == 7 ) SUN
+				#end
+				
+				</td>
+			#end
+			
+			#set ( $lastSlot = 0 )
+			#set ( $slotCount = 0 )
+			
+			#foreach ( $d in $classrooms )
+				
+				#set ( $space = $d.beginSlot - $lastSlot - 1 )
+				#if ( $space > 0 )
+					#foreach ( $i in [1..$space] )
+						#set ( $slotCount = $slotCount + 1 )
+						
+						<td 
+							#if ( $rowCnt == 1 ) 
+								style="background:#fff;" 
+							#elseif ( $rowCnt == $rowOfClassrooms.size() )
+								style="background:#fff;" 
+							#else
+								style="background:#fff;" 
+							#end
+						>
+						&nbsp;
+						</td>
+					#end
+				#end
+				
+				
+				#set ( $slotCount = $d.classroom.slot.posX)
+				#set ( $slotCount = $slotCount + $d.totalSlot - 1)
+				
+				
+				<td colspan="$d.totalSlot" align="center" style="font-family:sans-serif;font-size:8pt;padding:1px">
+					
+					<div style="min-height:110px;overflow:hidden;border:1px solid #000;padding:1px;font-family:sans-serif;font-size:8pt;">
+					
+	    				$!d.classroom.subject.code
+	    				<br/>
+	    				$!d.classroom.classroomSection.classroomType.learningActivityType.name<br/>
+	    				 
+	    				#if ( $d.classroom.grouped )
+	    					#foreach( $room in $d.classroom.room.combinedRooms )
+	    					$room.description&nbsp;
+	    					#end
+	    				#else
+	    					$!d.classroom.room.description
+	    				#end
+	    				
+	
+	    				#if ( $d.classroom.classTeachers.size() > 0 )
+	    					<br/>
+	    					#foreach ( $t in $d.classroom.classTeachers )
+	    						$t.teacher.id<br/>
+	    					#end
+	    				#end	
+	    				<br/>
+	    				#foreach( $g in $d.classroom.studentSubjectGroups )
+	    					$g.code<br/>
+	    				#end
+    				
+    				</div>
+    				
+
+				</td>
+				
+				
+				#set ( $lastSlot = $d.endSlot )
+				
+			
+			#end
+			
+			#if ( $lastSlot < $totalSlots )
+				#set ( $n = $totalSlots - 1 )
+				#foreach( $i in [$lastSlot..$n])
+					#set ( $slotCount = $slotCount + 1 )
+					
+						<td 
+							#if ( $rowCnt == 1 ) 
+								style="background:#fff;" 
+							#elseif ( $rowCnt == $rowOfClassrooms.size() )
+								style="background:#fff;" 
+							#else
+								style="background:#fff;" 
+							#end
+						>
+							&nbsp; 
+						</td>
+					
+				#end
+			#end
+			
+			</tr>
+		#end
+		
+		
+	#else ##no classrooms in this day
+	
+		#set ( $rowspan = $rowOfClassrooms.size() )
+    	<tr style="height:30px">
+			<td style="border-right:1px solid #000;font-family:sans-serif;font-size:8pt" #if ( $rowspan > 1 ) rowspan="$rowspan" #end valign="top">
+        		
+	        	#if ( $dayNum == 1 ) MON
+	        	#elseif ( $dayNum == 2 ) TUE
+	        	#elseif ( $dayNum == 3 ) WED
+	        	#elseif ( $dayNum == 4 ) THU
+	        	#elseif ( $dayNum == 5 ) FRI
+	        	#elseif ( $dayNum == 6 ) SAT
+	        	#elseif ( $dayNum == 7 ) SUN
+	        	#end
+	        	
+        	</td>
+        	
+        	#set ( $i = 0 )
+			#foreach( $i in [1..$totalSlots] )	
+				#set ( $i = $i + 1 )
+				
+					<td 
+						#if ( $rowCnt == 1 ) 
+							style="background:#fff;" 
+						#elseif ( $rowCnt == $rowOfClassrooms.size() )
+							style="background:#fff;" 
+						#else
+							style="background:#fff;" 
+						#end
+					>
+					&nbsp;
+					</td>
+				
+			#end
+		</tr>
+		
+
+    #end
+    
+    	<tr style="height:2px;"><td style="width:30px;height:2px;border-bottom:1px solid #000;border-right:1px solid #000" bgcolor="#fff"></td>
+		#foreach( $slotTime in $slotTimeList )
+		    <td style="width:30px;height:2px;border-bottom:1px solid #000"></td>
+		#end
+		</tr>
+#end	
+
+</table>
+
+<br/><br/>
+

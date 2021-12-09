@@ -1,0 +1,28 @@
+<table width="400" align="center">
+<tr><td align="right">
+<input type="button" style="font-weight:bold;height:30px;" value="Close" onclick="$('mark_entry_period').style.visibility='hidden';">
+</td></tr>
+<tr><td>
+
+<table>
+<tr><td>Start Date:</td>
+<td>
+#if ( $markEntryPeriod.startDate ) #set ( $dateValue = $dateFormat.format($markEntryPeriod.startDate)) #else #set ( $dateValue = "") #end
+$html.dateField.name("start_mark_date").value("$!dateValue").style("width:100px").cssClass("texts")
+</td>
+</tr>
+<tr><td>End Date:</td>
+<td>
+#if ( $markEntryPeriod.endDate ) #set ( $dateValue = $dateFormat.format($markEntryPeriod.endDate)) #else #set ( $dateValue = "") #end
+$html.dateField.name("end_mark_date").value("$!dateValue").style("width:100px").cssClass("texts")
+</td>
+</tr>
+<tr><td></td>
+<td align="right">
+<input type="button" value="SET MARK ENTRY PERIOD" onclick="doDivAjaxCall$formname('mark_entry_period','save_mark_entry_period','');$('mark_entry_period').style.visibility='hidden';">
+</td>
+</tr>
+</table>
+
+</td></tr>
+</table>

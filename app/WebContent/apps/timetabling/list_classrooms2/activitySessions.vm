@@ -1,0 +1,50 @@
+<div>
+
+<div>
+	List of Periods
+</div>
+
+<table class="table">
+#set ( $i = 0 )
+#foreach ( $a in $activitySessions )
+	#set ( $i = $i + 1 )
+	#set ( $d = $a.academicCalendar.deliveryPeriod )
+	<tr>
+		<td style="width:10px">$i)</td>
+		<td style="width:300px">
+			$d.DELIVERYPERIODDESCLONG
+		</td>
+		<td>
+			#set ( $dates = $a.dates )
+			#if ( $dates )
+				#set ( $weekGroup = 0 )
+				<table class="table">
+				#foreach ( $date in $dates )
+					#set ( $weekGroup = $weekGroup + 1 )
+					
+					<tr style="height:20px">
+						<td style="width:120px">Weeks $weekGroup</td>
+						<td>
+						#set ( $weekMap = $weekNumberMap.get("$date.id") )
+						#set ( $weekStart = $weekMap.get("weekStart") )
+						#set ( $weekEnd = $weekMap.get("weekEnd") )
+						
+						<div class="btn-group">
+						#set ( $cnt = 0 )
+						#foreach( $w in [$weekStart..$weekEnd] )
+							#set ( $cnt = $cnt + 1 )
+							<button type="button" class="btn btn-sm btn-default" onclick="doDivAjaxCall$formname('getWeekNumber','getWeekNumber','weekNumber=$w&deliveryPeriod_Id=$d.id')")>$cnt</button>
+						#end
+						</div>
+						</td>
+					</tr>
+				#end
+				</table>
+			#end
+			
+		</td>
+	</tr>
+#end
+</table>
+
+</div>

@@ -1,0 +1,20 @@
+
+<div id="div_empty" style="height:30px"></div>
+
+<table>
+<tr><td valign="top">
+<fieldset>
+<legend style="font-weight:bold">List Of Marking Schemes</legend>
+<div id="div_schemes">
+#parse("apps/util/assessment_scheme/schemes.vm")
+</div>
+</fieldset>
+</td><td valign="top">
+
+
+
+<div id="div_items"></div>
+</td></tr>
+
+
+</table>

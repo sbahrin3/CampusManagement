@@ -1,0 +1,8 @@
+<script>
+var e = parent.document.getElementById('${divUploadStatusName}');
+#if ( $filenames.size() > 0 )
+	#foreach ( $f in $filenames )
+		e.innerHTML = "$f";
+	#end
+#end
+</script>

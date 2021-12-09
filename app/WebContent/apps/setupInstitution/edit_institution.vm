@@ -1,0 +1,19 @@
+
+<div class="row" style="margin-bottom:10px">
+	<div class="col-sm-4">
+		<label for="centre_code">Abbrev:</label>
+	    <input type="text" class="form-control" name="abbrev" value="$!institution.abbrev">
+	</div>
+	<div class="col-sm-8">
+		<label for="centre_name">Name:</label>
+	    <input type="text" class="form-control" name="name" value="$!institution.name">
+	</div>
+</div>
+
+<br/>
+<div class="row">
+	<div class="col-sm-12">
+	<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('institution','save_institution','institution_id=$!institution.id')">Save Centre</button>
+	<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('institution','reload','')">Cancel</button>
+	</div>
+</div>

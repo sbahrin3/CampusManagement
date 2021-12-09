@@ -1,0 +1,7 @@
+
+<select name="subject_group_$s.id" style="width:100%" onchange="doDivAjaxCall$formname('div_$s.id','update_group','subject_id=$s.id')">
+<option value=""> - </option>
+#foreach ( $g in $subject_groups )
+<option value="$g.id" #if ( $s.subjectGroup.id == $g.id ) selected #end>&nbsp;&nbsp;&nbsp;$g.name</option>
+#end
+</select>

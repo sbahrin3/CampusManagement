@@ -1,0 +1,70 @@
+<table class="shadow" cellpadding="2" cellspacing="0"  style="background-color:#FFD455">
+<tr height="25px">
+<td>
+<a href="javascript:void()" style="text-decoration:none;font-weight:bold;" data-popupmenu="popmenu1">List Rooms:</a>
+</td>
+<td>
+<a href="javascript:void()" style="text-decoration:none" data-popupmenu="popmenu1"><img src="../arrow.gif" border="0"></a>
+</td>
+</tr>
+</table>
+
+<ul id="popmenu1" class="jqpopupmenu">
+#foreach( $h in $hostels )
+<li>
+<a href="#">$h.name</a>
+#if ( $h.buildings.size() == 1 )
+
+
+
+<ul>
+#foreach( $bl in $h.getBlocks() )
+<li><a href="#">$bl.name</a>
+#if ( $bl.floors.size() > 0 )
+<ul>
+#foreach( $f in $bl.getFloorList() )
+<li><a href="#" onclick="doDivAjaxCall$formname('hostel_info','list_rooms','floor_id=$f.id')">$f.name</a></li>
+#end
+</ul>
+
+
+
+
+#end
+</li>
+
+#end
+</ul>
+#elseif ( $h.buildings.size() > 0 )
+<ul>
+#foreach ( $b in $h.getBuildingList() )
+
+
+<li>
+<a href="#">$b.name</a>
+#if ( $b.blocks.size() > 0 )
+<ul>
+#foreach( $bl in $b.getBlockList() )
+<li><a href="#">$bl.name</a>
+#if ( $bl.floors.size() > 0 )
+<ul>
+#foreach( $f in $bl.getFloorList() )
+<li><a href="#" onclick="doDivAjaxCall$formname('hostel_info','list_rooms','floor_id=$f.id')">$f.name</a></li>
+#end
+</ul>
+#end
+</li>
+#end
+</ul>
+#end
+</li>
+
+
+
+#end
+</ul>
+#end
+</li>
+#end
+
+</ul>

@@ -1,0 +1,24 @@
+
+
+<td>$!r.userId</td>
+<td>$!r.name</td>
+<td>
+#if ( $r.aimCampuses.size() > 0 )
+	#foreach ( $c in $r.aimCampuses )
+		$c.name, 
+	#end
+#end
+
+</td>
+
+<td>
+#if ( $r.aimDepartments.size() > 0 )
+	#foreach ( $d in $r.aimDepartments )
+		$d.name, 
+	#end
+#end
+</td>
+
+##<td></td>
+
+

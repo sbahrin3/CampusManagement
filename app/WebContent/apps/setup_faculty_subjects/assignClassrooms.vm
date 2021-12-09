@@ -1,0 +1,45 @@
+<fieldset><legend class="legend">Classrooms: $subject.name</legend>
+
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Add/Remove" onclick="doDivAjaxCall3$formname('editSubject_$subjectId','updateAssignClassrooms','subjectId=$subjectId')">
+<input class="linkbutton" type="button" value="Close" onclick="$('editSubject_$subjectId').style.visibility='hidden';">
+</td></tr></table>
+
+
+<fieldset>
+<legend class="legend">Classrooms</legend>
+<div id="teacherList" style="height:100px;overflow-y:scroll">
+<table width="100%">
+#foreach( $classroom in $assignedClassrooms )
+<tr>
+<td style="width:20px"><input type="checkbox" name="removeClassroomIds" value="$classroom.id"></td>
+<td style="width:400px">$classroom.section.name</td>
+</tr>
+#end
+</table>
+</div>
+
+</fieldset>
+
+
+
+
+<fieldset>
+<legend class="legend">Not-Assigned Classrooms</legend>
+<div id="teacherList" style="height:100px;overflow-y:scroll">
+<table width="100%">
+#foreach( $classroom in $classrooms )
+<tr>
+<td style="width:20px"><input type="checkbox" name="classroomIds" value="$classroom.id"></td>
+<td style="width:400px">$classroom.name</td>
+</tr>
+#end
+</table>
+</div>
+
+</fieldset>
+
+##<table width="100%"><tr><td align="right">
+##<input class="linkbutton" type="button" value="Close" onclick="$('editSubject_$subjectId').style.visibility='hidden';">
+##</td></tr></table>
+</fieldset>

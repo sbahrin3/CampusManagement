@@ -1,0 +1,16 @@
+<script>
+$('div_ontop').style.display="block";
+$('div_input').style.display="block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+TITLE
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('div_input').style.display='none';$('div_ontop').style.display='none';">
+</td></tr>
+</table>
+
+<script>new Draggable('div_input', {handle: 'dragHandle'});</script>

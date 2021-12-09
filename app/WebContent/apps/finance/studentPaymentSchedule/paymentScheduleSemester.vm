@@ -1,0 +1,59 @@
+<div style="padding:10px;font-weight:bold;border:1px solid #000">
+	Semester Payment Schedule
+</div>
+	
+	
+
+
+	
+
+<div id="listSemesterFee">
+#parse("apps/finance/studentPaymentSchedule/listSemesterPaymentScheduleItems.vm")
+</div>
+
+<div>
+	
+	<table style="width:100%"><tr><td align="right">
+	
+    <table>
+    	<tr style="height:30px;background:#AEB1B2">
+    		<td style="width:20px"></td>
+    		<td style="width:100px">Date Due</td>
+    		<td style="width:100px" align="center">Amount Due</td>
+    		<td style="width:50px"></td>
+    	</tr>
+    	
+    	#set ( $cnt = 0 )
+    	#foreach ( $i in $semesterItems )
+    		#set ( $cnt = $cnt + 1 )
+    		<tr style="height:30px">
+    			<td>$cnt)</td>
+    			<td>$dateFormat.format($i.dateDue)</td>
+    			<td align="center">$numFormat.format($i.amountDue)</td>
+    			<td align="center">
+					<input class="linkbutton" type="button" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxChainCall$formname('paymentScheduleSemester','deletePaymentItemSemester','itemId=$i.id', 'getPaymentSchedule','getPaymentSchedule','')">
+				</td>
+    		</tr>
+    	#end
+    	<tr style="height:30px">
+    		<td></td>
+    		
+    		<td>
+    			<input class="texts" name="dateDueSemester" id="dateDueSemester">
+    			<script> new JsDatePick({ useMode:2, target:"dateDueSemester", dateFormat:"%d-%m-%Y" }); </script>
+    		</td>
+    		
+    		<td><input class="texts" name="amountDueSemester"></td>
+    			
+    		<td align="center">
+				##<input class="linkbutton" type="button" value="+" onclick="doDivAjaxChainCall$formname('paymentScheduleSemester','addPaymentItemSemester','', 'getPaymentSchedule','listPaymentSchedules','studentId=$ptptnPaymentSchedule.student.id')">
+				<input class="linkbutton" type="button" value="+" onclick="doDivAjaxChainCall$formname('paymentScheduleSemester','addPaymentItemSemester','', 'getPaymentSchedule','getPaymentSchedule','')">
+			</td>
+    	
+    </tr>
+    </table>
+	
+	
+	</td></tr></table>
+		
+</div>

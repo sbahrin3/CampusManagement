@@ -1,0 +1,48 @@
+
+<br/><br/><br/>
+
+<fieldset>
+<table border="0">
+<tr height="35px">
+<td style="font-weight:bold;border-bottom:1px solid">&nbsp;</td>
+<td colspan="2" style="font-weight:bold;border-bottom:1px solid">Subject</td>
+<td align="center" style="font-weight:bold;border-bottom:1px solid">Credit Hours</td>
+<td style="font-weight:bold;border-bottom:1px solid">Type</td>
+</tr>
+#set ( $totalCreditHours = 0 )
+#set ( $cnt = 0 )
+#foreach( $s in $registeredSubjects )
+    #set ( $cnt = $cnt + 1 )
+	#set ( $totalCreditHours = $totalCreditHours + $s.subject.credithrs )
+    <tr height="30px">
+    <td style="width:50px">$cnt.</td>
+    <td style="width:80px">$s.subject.code.toUpperCase()</td>
+    <td style="width:400px">$s.subject.name.toUpperCase()</td>
+    <td style="width:100px" align="center">$s.subject.credithrs</td>
+    <td style="width:100px">$!s.category.name.toUpperCase()</td>
+    </tr>
+#end
+
+	<tr height="30px">
+    <td style="width:50px;border-top:1px solid #ccc">&nbsp;</td>
+    <td style="width:80px;border-top:1px solid #ccc">&nbsp;</td>
+    <td style="width:400px;border-top:1px solid #ccc" align="right">Total Credit Hours:</td>
+    <td style="width:100px;border-top:1px solid #ccc" align="center">$totalCreditHours</td>
+    <td style="width:100px;border-top:1px solid #ccc">&nbsp;</td>
+    </tr>
+</table>
+
+</fieldset>
+
+<table width="100%">
+<tr><td align="right">
+
+<input class="gradient" style="height:30px;font-weight:bold" type="button" value="Print Registration Slip"
+onclick="location.href='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.admission.module.SubjectRegistrationSlipPrint?studentStatusId=$studentStatus.id&pdfName=slip_subject_registration';">
+
+#if ( !$student_mode )
+<input type="button" class="gradient" style="height:30px;font-weight:bold" 
+value="Redo My Subject Registration" onclick="doDivAjaxCall3$formname('div_student','doRegistration','')">
+#end
+
+</td></tr></table>

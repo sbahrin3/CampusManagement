@@ -1,0 +1,243 @@
+
+<table>
+<tr>
+<td style="width:200px"></td><td style="width:10px"></td><td style="width:600px"></td></tr>
+
+<tr><td>IC No</td><td>:</td><td><input class="texts" name="nokp" value="$!mohe.nokp" disabled></td></tr>
+<tr><td>No. Matriks</td><td>:</td><td><input class="texts" name="matric" value="$!mohe.matric" disabled></td></tr>
+<tr><td>Nama</td><td>:</td><td><input class="texts" name="nama_penuh" value="$!mohe.nama_penuh"></td></tr>
+
+<tr><td>Emel</td><td>:</td><td><input class="texts" name="email" value="$!mohe.email"></td></tr>
+
+<tr><td>Jantina</td><td>:</td><td>
+<select class="texts" name="jantina">
+<option value="1" #if ( $!mohe.jantina == "1" ) selected #end>LELAKI</option>
+<option value="2" #if ( $!mohe.jantina == "2"  ) selected #end>PEREMPUAN</option>
+</select>
+
+</td></tr>
+
+
+<tr><td>Date</td><td>:</td><td>
+$html.dateField.name("tarikh_lahir").value("$!mohe.tarikh_lahir").style("width:120px").cssClass("texts")
+</td></tr>
+
+<tr><td>Warganegara</td><td>:</td><td>
+<select class="texts" name="warganegara">
+<option value="1" #if ( $mohe.warganegara == "1" ) selected #end>Warganegara</option>
+<option value="2" #if ( $mohe.warganegara == "2" ) selected #end>Bukan Warganegara</option>
+<option value="3" #if ( $mohe.warganegara == "3" ) selected #end>Penduduk Tetap</option>
+</select>
+</td></tr>
+
+##JIKA BUKAN WARGANEGARA
+<tr><td>Negara asal</td><td>:</td><td><input class="texts" name="negara_asal" value="$!mohe.negara_asal"></td></tr>
+
+
+<tr><td>Alamat Tetap</td><td>:</td><td><input name="alamat_tetap1" class="texts" value="$!mohe.alamat_tetap1"></td></tr>
+<tr><td></td><td></td><td><input name="alamat_tetap2" class="texts" value="$!mohe.alamat_tetap2"></td></tr>
+<tr><td></td><td></td><td><input name="alamat_tetap3" class="texts" value="$!mohe.alamat_tetap3"></td></tr>
+<tr><td>Negeri</td><td>:</td><td>
+
+<select class="texts" name="negeri_tetap" onchange="doDivAjaxCall3$formname('list_daerah','listDaerah','')">
+<option value=""></option>
+#foreach( $k in $kodNegeriList )
+<option value="$k.code" #if ( $mohe.negeri_tetap == $k.code ) selected #end>$k.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Daerah</td><td>:</td><td>
+<div id="list_daerah">
+#parse("admission/mohe/list_daerah.vm")
+</div>
+</td></tr>
+
+<tr><td>Poskod</td><td>:</td><td><input class="texts" name="poskod_tetap" value="$!mohe.poskod_tetap"></td></tr>
+
+<tr><td>Keturunan</td><td>:</td><td>
+<select class="texts" name="keturunan">
+<option value=""></option>
+#foreach( $k in $kodKeturunanList )
+<option value="$k.code" #if ( $mohe.keturunan == $k.code ) selected #end>$k.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Peringkat Pengajian</td><td>:</td><td>
+<select class="texts" name="peringkat_pengajian">
+<option value=""></option>
+#foreach( $k in $kodPeringkatPengajianList )
+<option value="$k.code" #if ( $mohe.peringkat_pengajian == $k.code ) selected #end>$k.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Bidang Pengajian</td><td>:</td><td>
+<select class="texts" name="bidang_pengajian" onchange="doDivAjaxCall3$formname('list_subbidang','listSubbidang','')">
+<option value=""></option>
+#foreach( $k in $kodBidangList )
+<option value="$k.code" #if ( $mohe.bidang_pengajian == $k.code ) selected #end>$k.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Subbidang Pengajian</td><td>:</td><td>
+<div id="list_subbidang">
+#parse("admission/mohe/list_subbidang.vm")
+</div>
+</td></tr>
+
+<tr><td>National Education Code</td><td>:</td><td>
+<select class="texts" name="national_education_code">
+<option value=""></option>
+#foreach( $k in $kodNecList )
+<option value="$k.code" #if ( $mohe.national_education_code == $k.code ) selected #end>$k.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Fakulti</td><td>:</td><td><input class="texts" name="fakulti" value="$!mohe.fakulti"></td></tr>
+<tr><td>Ijazah</td><td>:</td><td><input class="texts" name="ijazah" value="$!mohe.ijazah"></td></tr>
+<tr><td>Singkatan Ijazah</td><td>:</td><td><input class="texts" name="ijazah_singkatan" value="$!mohe.ijazah_singkatan"></td></tr>
+
+<tr><td>Kod Kursus</td><td>:</td><td><input class="texts" name="kod_kursus" value="$!mohe.kod_kursus"></td></tr>
+<tr><td>Program Pengajian</td><td>:</td><td><input class="texts" name="program" value="$!mohe.program"></td></tr>
+<tr><td>Pengkhususan</td><td>:</td><td><input class="texts" name="pengkhususan" value="$!mohe.pengkhususan"></td></tr>
+
+<tr><td>CGPA</td><td>:</td><td><input class="texts" name="cgpa" value="$!mohe.cgpa"></td></tr>
+<tr><td>Gred</td><td>:</td><td><input class="texts" name="gred" value="$!mohe.gred"></td></tr>
+
+<tr><td>Lokasi Pengajian</td><td>:</td><td>
+<select class="texts" name="lokasi_pengajian">
+<option value=""></option>
+<option value="1" #if ( $mohe.lokasi_pengajian == "1" ) selected #end>Pengajian Dalam Kampus</option>
+<option value="2" #if ( $mohe.lokasi_pengajian == "2" ) selected #end>Pengajian Luar Kampus</option>
+</select>
+</td></tr>
+
+<tr><td>Mod Pengajian</td><td>:</td><td>
+<select class="texts" name="mod_pengajian">
+<option value=""></option>
+<option value="1" #if ( $mohe.mod_pengajian == "1" ) selected #end>Sepenuh Masa</option>
+<option value="2" #if ( $mohe.mod_pengajian == "2" ) selected #end>Separuh Masa</option>
+</select>
+</td></tr>
+
+<tr><td>Kaedah Pengajian</td><td>:</td><td>
+<select class="texts" name="kaedah_pengajian">
+<option value=""></option>
+<option value="3" #if ( $mohe.kaedah_pengajian == "3" ) selected #end>Pengajian Jarak Jauh</option>
+<option value="4" #if ( $mohe.kaedah_pengajian == "4" ) selected #end>Pembelajaran Maya/Online</option>
+<option value="5" #if ( $mohe.kaedah_pengajian == "5" ) selected #end>Program Pembelajaran Fleksibel</option>
+<option value="8" #if ( $mohe.kaedah_pengajian == "8" ) selected #end>Eksekutif</option>
+<option value="9" #if ( $mohe.kaedah_pengajian == "9" ) selected #end>Kerja Kursus (konvensional)</option>
+<option value="10" #if ( $mohe.kaedah_pengajian == "10" ) selected #end>Penyelidikan</option>
+<option value="11" #if ( $mohe.kaedah_pengajian == "11" ) selected #end>Francais</option>
+<option value="21" #if ( $mohe.kaedah_pengajian == "21" ) selected #end>Penyelidikan &amp; Kerja Kursus</option>
+</select>
+</td></tr>
+
+<tr><td>Bulan Mula Pengajian</td><td>:</td><td><input class="texts" name="bulan_mula_pengajian" value="$!mohe.bulan_mula_pengajian"></td></tr>
+<tr><td>Tahun Mula Pengajian</td><td>:</td><td><input class="texts" name="tahun_mula_pengajian" value="$!mohe.tahun_mula_pengajian"></td></tr>
+
+<tr><td>Bulan Tamat Pengajian</td><td>:</td><td><input class="texts" name="bulan_tamat_pengajian" value="$!mohe.bulan_tamat_pengajian"></td></tr>
+<tr><td>Tahun Tamat Pengajian</td><td>:</td><td><input class="texts" name="tahun_tamat_pengajian" value="$!mohe.tahun_tamat_pengajian"></td></tr>
+
+<tr><td>Penaja Pengajian</td><td>:</td><td>
+<select class="texts" name="penaja">
+<option value=""></option>
+#foreach( $k in $kodPenajaList )
+<option value="$k.code" #if ( $mohe.penaja == $k.code ) selected #end>$k.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Bahasa Melayu (SPM)</td><td>:</td><td>
+<select class="texts" name="spm_bm">
+<option value=""></option>
+#foreach( $k in $kodKelayakanBahasaList )
+<option value="$k.code" #if ( $mohe.spm_bm == $k.code ) selected #end>$k.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Bahasa Inggeris (SPM)</td><td>:</td><td>
+<select class="texts" name="spm_bi">
+<option value=""></option>
+#foreach( $k in $kodKelayakanBahasaList )
+<option value="$k.code" #if ( $mohe.spm_bi == $k.code ) selected #end>$k.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Keputusan MUET</td><td>:</td><td>
+<select class="texts" name="muet">
+<option value=""></option>
+<option value="1" #if ( $mohe.muet == "1" ) selected #end>Band 1</option>
+<option value="2" #if ( $mohe.muet == "2" ) selected #end>Band 2</option>
+<option value="3" #if ( $mohe.muet == "3" ) selected #end>Band 3</option>
+<option value="4" #if ( $mohe.muet == "4" ) selected #end>Band 4</option>
+<option value="5" #if ( $mohe.muet == "5" ) selected #end>Band 5</option>
+<option value="6" #if ( $mohe.muet == "6" ) selected #end>Band 6</option>
+<option value="7" #if ( $mohe.muet == "7" ) selected #end>Tidak Berkaitan</option>
+</select>
+</td></tr>
+
+<tr><td>Cawangan</td><td>:</td><td><input class="texts" name="cawangan" value="$!mohe.cawangan"></td></tr>
+<tr><td>Kampus Francais</td><td>:</td><td><input class="texts" name="francais" value="$!mohe.francais"></td></tr>
+<tr><td>Nama Kampus Francais</td><td>:</td><td><input class="texts" name="nama_institusi_francais" value="$!mohe.nama_institusi_francais"></td></tr>
+
+<tr><td>Kelayakan Masuk</td><td>:</td><td>
+<select class="texts" name="kelayakan_masuk">
+<option value=""></option>
+#foreach( $k in $kodKelayakanMasukList )
+<option value="$k.code" #if ( $mohe.kelayakan_masuk == $k.code ) selected #end>$k.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Kelayakan Lain</td><td>:</td><td><input class="texts" name="kelayakan_lain" value="$!mohe.kelayakan_lain"></td></tr>
+
+
+<tr><td>Status Latihan Industri</td><td>:</td><td>
+<select class="texts" name="status_latihan_industri">
+<option value=""></option>
+<option value="1" #if ( $mohe.status_latihan_industri == "1" ) selected #end>Ya, wajib</option>
+<option value="2" #if ( $mohe.status_latihan_industri == "2" ) selected #end>Tidak wajib</option>
+<option value="3" #if ( $mohe.status_latihan_industri == "3" ) selected #end>Dipilih oleh pelajar</option>
+<option value="4" #if ( $mohe.status_latihan_industri == "4" ) selected #end>Tidak Berkenaan</option>
+</select>
+</td></tr>
+
+<tr><td>Status OKU</td><td>:</td><td>
+<select class="texts" name="status_oku">
+<option value=""></option>
+<option value="1" #if ( $mohe.status_oku == "1" ) selected #end>Ya</option>
+<option value="2" #if ( $mohe.status_oku == "2" ) selected #end>Tidak</option>
+</select>
+</td></tr>
+
+<tr><td>Jenis OKU</td><td>:</td><td>
+<select class="texts" name="jenis_oku">
+<option value=""></option>
+<option value="1" #if ( $mohe.jenis_oku == "1" ) selected #end>Penglihatan</option>
+<option value="2" #if ( $mohe.jenis_oku == "2" ) selected #end>Pendengaran</option>
+<option value="3" #if ( $mohe.jenis_oku == "3" ) selected #end>Anggota fizikal</option>
+<option value="5" #if ( $mohe.jenis_oku == "5" ) selected #end>Pertuturan</option>
+<option value="6" #if ( $mohe.jenis_oku == "6" ) selected #end>Pelbagai</option>
+</select>
+</td></tr>
+
+<tr height="20px"><td colspan="3"></td></tr>
+
+<tr><td colspan="3" align="right">
+<span id="saveMoheData"></span>
+<input class="linkbutton" type="button" value="Save ..." onclick="doDivAjaxCall3$formname('saveMoheData','saveMoheData','')">
+<input class="linkbutton" type="button" value="Print"
+onclick="location.href='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.admission.module.StudentMoheDataPrint?matric_no=$util.replaceSp($student.matricNo)&pdfName=mohe_data';">
+</td></tr>
+
+
+</table>
+

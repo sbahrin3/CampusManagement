@@ -1,0 +1,26 @@
+<table width="100%">
+<tr><td style="width:500px">
+<select name="period_scheme_id" class="texts" onchange="if ( this.value == '' ) { return; } else if ( this.value == 'add') { $('div_new_scheme').style.display='block'; doDivAjaxCall$formname('div_new_scheme','add_new',''); } else { $('div_waiting').innerHTML='<img src=../img/upload_wait.gif';doDivAjaxCall3$formname('div_list_periods','list_periods',''); }">
+<option value="">- select period scheme -</option>
+<option value="add"> (ADD NEW) </option>
+#foreach ( $ps in $period_schemes )
+	#if ( $ps.code != "" )
+	<option value="$ps.id" #if ( $ps.id == $scheme_id ) selected #end>$ps.code</option>
+	#end
+#end
+</select>
+</td>
+<td style="width:100px"><span id="div_waiting"></span></td>
+<td align="center">
+<a href="javascript:void(0)" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('div_select_schemes','delete_scheme','')">Delete this Period Structure?</a>
+</td>
+</tr>
+</table>
+
+#if ( !$errorMessage )
+	<script>
+	$('div_list_periods').innerHTML = "";
+	</script>
+#else
+	<span style="font-weight:bold">$errorMessage</span>
+#end

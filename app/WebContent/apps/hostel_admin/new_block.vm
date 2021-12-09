@@ -1,0 +1,17 @@
+<table width="100%">
+<tr>
+<td width="100px">ID:</td>
+<td><input name="block_code" width="100%"></td>
+</tr>
+<tr>
+<td>Block Name:</td>
+<td><input name="block_name" width="100%"></td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="button" value="Save" onclick="doDivAjaxCall$formname('div_block','add_block','building_id=$building.id')">
+<input type="button" value="Cancel" onclick="doDivAjaxCall$formname('div_block','list_blocks','building_id=$building.id')">
+</td>
+</tr>
+
+</table>

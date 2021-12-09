@@ -1,0 +1,76 @@
+<table width="900px">
+
+<tr><td>
+
+<span style="font-weight:bold">Timetable for Session: $session.name</span>
+
+
+</td></tr>
+
+#if ( $student_filter_mode )
+
+<tr><td>
+Matric No:
+<input name="matric_no" value="$!matric_no" style="width:100px">
+<input type="button" value="Get Classrooms" onclick="doDivAjaxCall$formname('list_classrooms','filter_student_classrooms','')">
+<input type="button" value="Find Student..." onclick="popwin_$formName();doDivAjaxCall$formName('win$formName','search_student_page','')">
+</td></tr>
+
+
+<tr><td align="center">
+
+
+<div name="div_students" id="div_students"
+style="visibility:hidden;position:absolute;left:400px;width:500px;height:300px;border-style:solid;border-color:#B4B4B4;background-color:#FFFFAA">
+
+<table width="100%"><tr height="30px" bgcolor="lightgrey"><td align="right" style="font-weight:bold">
+[<a href="javascript:void()" onclick="$('div_students').style.visibility='hidden';$('div_students2').style.visibility='hidden'">Close</a>]
+</td></tr>
+<tr><td>
+<div name="div_students2" id="div_students2" style="overflow:auto;height:260px;width:100%"></div>
+</td></tr></table>
+
+</div>
+
+</td></tr>
+
+#elseif ( $teacher_filter_mode )
+
+<tr><td>
+<fieldset>
+<legend class="legend"></legend>
+<table>
+<tr>
+<td>Select Teacher:</td>
+<td>
+<select name="teacher_id" style="width:300px" onchange="doDivAjaxCall$formname('list_classrooms','filter_teacher_classrooms','')">
+<option value="">- Select -</option>
+#foreach ( $teacher in $teachers )
+<option value="$teacher.id">$teacher.name</option>
+#end
+</select>
+
+</td></tr>
+</table>
+
+</fieldset>
+</td></tr>
+
+#end
+<tr><td>
+&nbsp;
+</td></tr>
+<tr><td align="center">
+
+<div id="list_classrooms" name="list_classrooms">
+
+#if ( !$student_filter_mode && !$teacher_filter_mode )
+
+#parse( "apps/timetabling/list_classrooms/list_classrooms.vm" )
+
+#end
+
+</div>
+<div id="divEmpty"></div>
+
+</td></tr></table>

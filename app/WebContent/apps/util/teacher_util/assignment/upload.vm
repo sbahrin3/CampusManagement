@@ -1,0 +1,27 @@
+<table width="600" align="center">
+<tr><td style="font-family:arial;font-weight:bold;font-size:12pt">
+Assignment - Academic Facilitator's Batch Upload
+</td></tr>
+<tr><td>
+<hr/>
+</td></tr>
+<tr><td style="font-family:arial;font-weight:bold;font-size:12pt">
+STEP 2: Select files to be uploaded.<br />
+Then click the Upload button.<br /><br />
+</td></tr>
+
+
+<tr><td>
+
+<table align="center" cellspacing="0" cellpadding="0">
+<tr><td>$html.uploadFilesField.count(5)</td></tr>
+
+</table>
+</td></tr>
+
+<tr><td align="right">
+$button.command("doneUploadFiles").style("font-family:arial;font-weight:bold;font-size:10pt").text("Next: Select Subject(s)")
+$button.command("create_assignment").style("font-family:arial;font-weight:bold;font-size:10pt").text("Back")
+</td></tr>
+
+</table>

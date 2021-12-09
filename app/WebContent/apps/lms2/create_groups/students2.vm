@@ -1,0 +1,101 @@
+<style>
+.onOver { background-color:#9999CC; color:#ffffff; font-weight:bold; cursor:pointer }
+.onOut { background-color:#ffffff; color:#000000 }
+.hoverActive { background-color:#C4D5F8 }
+</style>
+
+
+
+<table width="100%" >
+<tr><td width="400px">
+
+<table width="100%">
+<tr height="25px">
+<td>
+<a href="javascript:void()" style="text-decoration:none;font-weight:bold" onclick="if ($('div_subjects').style.display == 'none' ) { $j('#div_subjects').show('slow'); $('show_subjects').innerHTML = '[-]'; } else { $j('#div_subjects').hide('slow');  $('show_subjects').innerHTML = '[+]'; }"><span id="show_subjects">[+]</span>Select Classroom</a>
+</td>
+</tr>
+<tr><td>
+<div class="shadow" id="div_subjects" style="position:absolute;background-color:#ffffff;display:none;z-index:99;border-bottom:1px solid #C3C3C3;border-top:1px solid #C3C3C3;border-left:1px solid #C3C3C3;border-right:1px solid #C3C3C3">
+<div style="overflow:auto;overflow-x:hidden;height:300px;padding:0px">
+<table width="100%" style="background-color:#ffffff;width:410px" cellspacing="0">
+#foreach( $classroom in $classrooms )
+<tr height="25px">
+<td onmouseover="this.className='onOver'" onmouseout="this.className='onOut'" onclick="doDivAjaxCall3$formname('div_students','by_subject','classroom_id=$classroom.id');$j('#div_subjects').hide('slow');  $('show_subjects').innerHTML = '[+]'; $('div_members').innerHTML = '';$('group_name').innerHTML='PLEASE SELECT A GROUP'">
+$classroom.subjectId&nbsp;
+$classroom.subjectTitle</td>
+</tr>
+#end
+</table>
+</div>
+</div>
+</td></tr>
+</table>
+
+
+<fieldset style="background-color:#D4E0FA;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<div id="div_students" style="height:250px;padding:0px">
+#parse( "apps/lms2/create_groups/div_students2.vm" )
+</div>
+
+</fieldset>
+
+</td></tr><td valign="top"> ##parent table td
+
+
+<fieldset style="background-color:#D4E0FA;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<span id="group_name" style="font-weight:bold"></span>
+<div id="droparea" style="overflow:auto;overflow-y: hidden;width:800px;height:130px;">
+
+<table style="width:100%;"><tr><td>
+
+<div id="div_members">
+#parse("apps/lms2/create_groups/group.vm")
+</div>
+&nbsp;&nbsp;&nbsp;
+</td></tr></table>
+
+</div>
+
+
+</fieldset>
+
+
+
+</td></tr></table> ##end parent table
+
+
+
+<script>
+
+   Droppables.add(
+     'droparea',
+     {
+        hoverclass: 'hoverActive',
+        onDrop: isDropped
+     }
+  );
+   // Set drop area by default  non cleared.
+   $('droparea').cleared = false;
+
+function isDropped(draggable, droparea) {
+var memberListStr = $('member_list_str').value;
+if ( memberListStr.indexOf(draggable.id + ',') < 0 ) {
+   //can add member
+   doDivAjaxCall3$formname('div_members', 'add_group_member' ,'userprofile_id=' + draggable.id);
+} else {
+   //already exists
+}
+}
+
+</script>
+
+
+
+
+##GROUP SECTION
+<div id="div_groups">
+
+</div>
+

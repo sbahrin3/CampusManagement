@@ -1,0 +1,107 @@
+<script>
+$('gradeFreq').style.display="block";
+</script>
+
+<div onclick="$('gradeFreq').style.zIndex='999';$('resultStat').style.zIndex='99';">
+<table width="100%" style="background:#300FA8">
+<tr><td style="color:#fff;font-weight:bold">
+GRADES FREQUENCY
+</td><td style="width:10px" align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('gradeFreq').style.display='none';">
+</td></tr></table>
+
+<div style="background:#C6C6C6;padding:2px;margin-bottom:5px;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold;text-align:center">
+$subject.code<br/>$subject.name
+</div>
+
+##$gradeFreqs
+
+<table cellpadding="0" cellspacing="0" border="0">
+#set ( $totalnum = 0 )
+<tr style="height:25px">
+<td style="width:5px;font-weight:bold;border-bottom:1px solid;">&nbsp;</td>
+<td style="width:50px;font-weight:bold;border-right:1px solid;border-bottom:1px solid;">Grade</td>
+<td style="width:50px;font-weight:bold;border-bottom:1px solid;" align="center">Freq.</td>
+<td style="width:50px;font-weight:bold;border-bottom:1px solid;" align="center">%</td>
+<td></td>
+</tr>
+
+$numFormat.applyPattern("0")
+#foreach ( $g in $grades )
+<tr style="height:25px">
+<td style="font-weight:bold;">&nbsp;</td>
+<td style="font-weight:bold;border-right:1px solid;">&nbsp;&nbsp;$g.letter</td>
+<td style="" align="center">
+#if ( $gradeFreqs.get("$g.letter") )
+	#set ( $num = $gradeFreqs.get("$g.letter") )
+	#if ( $num > 0 )
+		#set ( $totalnum = $totalnum + $num )
+		$num
+	#else
+		0
+	#end
+#else
+	0
+#end
+</td>
+<td>
+#if ( $gradePct.get("$g.letter") )
+	$numFormat.format($gradePct.get("$g.letter"))%
+#end
+</td>
+</td>
+<td>
+#if ( $gradeFreqs.get("$g.letter") )
+	#set ( $num = $gradePct.get("$g.letter") )
+	#if ( $num > 0 )
+		#set ( $i = $num * 4 )
+	#else
+		#set ( $i = 0 )
+	#end
+#else
+	#set ( $i = 0 )
+#end
+#set ( $width = $i*2 )
+
+#if ( $g.letter == "A+" ) #set ( $barcolor = "#4352A8" )
+#elseif ( $g.letter == "A" ) #set ( $barcolor = "#4395A8" )
+#elseif ( $g.letter == "A-" ) #set ( $barcolor = "#45A046" )
+
+#elseif ( $g.letter == "B+" ) #set ( $barcolor = "#E5B104" )
+#elseif ( $g.letter == "B" ) #set ( $barcolor = "#E2E212" )
+#elseif ( $g.letter == "B-" ) #set ( $barcolor = "#B29662" )
+
+#elseif ( $g.letter == "C+" ) #set ( $barcolor = "#4352A8" )
+#elseif ( $g.letter == "C" ) #set ( $barcolor = "#4395A8" )
+#elseif ( $g.letter == "C-" ) #set ( $barcolor = "#45A046" )
+
+#elseif ( $g.letter == "D+" ) #set ( $barcolor = "#E271AA" )
+#elseif ( $g.letter == "D" ) #set ( $barcolor = "#CC71E2" )
+#elseif ( $g.letter == "D-" ) #set ( $barcolor = "#B171E2" )
+
+#elseif ( $g.letter == "E+" ) #set ( $barcolor = "#E24848" )
+#elseif ( $g.letter == "E" ) #set ( $barcolor = "#F20909" )
+#elseif ( $g.letter == "E-" ) #set ( $barcolor = "#CE52EA" )
+
+#else #set ( $barcolor = "#EA7D52" )
+#end
+
+<table cellspacing="0" cellpadding="0"><tr><td>
+<div style="height:24px;width:${width}px;background:$barcolor;color:$barcolor;-moz-box-shadow: 2px 2px 2px #888; -webkit-box-shadow: 2px 2px 2px #888; box-shadow: 2px 2px 2px #888;">.</div></td><td style="color:$barcolor">
+#if ( $i > 0 )
+&nbsp;<b>$g.letter</b>
+#end
+</tr></tr></table>
+</td>
+</tr>
+#end
+#**
+<tr style="height:20px">
+<td style="font-weight:bold;border-top:1px solid;">&nbsp;</td>
+<td style="font-weight:bold;border-right:1px solid;border-top:1px solid;">Total</td>
+<td style="border-top:1px solid;" align="center">$totalnum</td>
+<td></td>
+</tr>
+**#
+</table>
+</div>

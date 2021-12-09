@@ -1,0 +1,18 @@
+#if ( $error )
+
+<table width="400" align="center" bgcolor="lightgrey">
+<tr><td>$error</td></tr>
+</table>
+
+#end
+
+<table width="600" align="center">
+<tr><td>Name: </td><td><input style="width:100%" name="contact_name"> </td></tr>
+<tr><td>Address: </td><td><input style="width:100%"  name="contact_address"> </td></tr>
+<tr><td colspan="2" align="right">
+
+<input type="button" value="ADD CONTACT" 
+onclick="doDivAjaxChainCall$formname('div_contact_list','add_contact','','div_input_data','empty_data','')">
+
+</td></tr>
+</table>

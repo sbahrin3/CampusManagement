@@ -1,0 +1,19 @@
+
+<table width="100%">
+#set ( $cnt = 0 )
+#foreach ( $s in $students )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td style="width:50px" align="right">$cnt)</td>
+<td>
+<a href="javascript:doDivAjaxCall$formName('cgpa_student', 'cgpa_student', 'student_id=$s.id')">
+$s.matricNo
+</a>
+</td>
+<td>$s.biodata.name</td>
+<td align="right">
+##[<a href="javascript:doDivAjaxCall$formName('cgpa_student', 'calculate_cgpa_student', 'student_id=$s.id')">calc.</a>]
+</td>
+</tr>
+#end
+</table>

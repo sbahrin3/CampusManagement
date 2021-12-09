@@ -1,0 +1,11 @@
+<table width="100%">
+#foreach( $s in $students )
+<tr>
+<td>$velocityCount)</td>
+<td>$s.student.matricNo</td>
+<td>$s.student.biodata.name</td>
+<td>$s.period.name #if ( $s.period.parent ) ($s.period.parent.name) #end</td>
+<td></td>
+</tr>
+#end
+</table>

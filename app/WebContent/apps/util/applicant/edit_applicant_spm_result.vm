@@ -1,0 +1,10 @@
+#set ( $bgcolor = "#FFFF55" )
+#parse("apps/util/applicant/frm_applicant_spm_result.vm")
+
+<br><br>
+
+<table width="100%"><tr><td align="right">
+<input type="button" style="font-weight:bold;height:30px"  value="BACK" onclick="doDivAjaxCall${formName}('spm','get_spm','')">
+<input type="button" style="font-weight:bold;height:30px"  value="SAVE SPM" onclick="doDivAjaxCall${formName}('spm','save_spm','')">
+</td></tr></table>
+

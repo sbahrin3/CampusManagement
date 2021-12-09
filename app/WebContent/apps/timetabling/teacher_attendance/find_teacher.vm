@@ -1,0 +1,15 @@
+<table>
+
+	<tr><td style="width:300px">
+		
+		<input class="form-control" name="teacherName" placeholder="Click button Find..." readonly>
+		
+		<input type="hidden" name="teacherId" id="teacherId">
+	</td><td>
+		&nbsp;
+		<button type="button" class="btn btn-success btn-sm" onclick="$('divMain').style.display='none';$('findTeacher').style.display='block';">Find ...</button>
+	
+	</td></tr>
+
+</table>
+

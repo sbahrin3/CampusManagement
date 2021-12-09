@@ -1,0 +1,27 @@
+<table width="100%" style="border-top: 2px solid #D2D2D2; border-bottom: 2px solid #D2D2D2; border-right: 2px solid #D2D2D2; border-left: 2px solid #D2D2D2;">
+<tr><td colspan="2" style="height:30px;background-color:lightgrey;font-weight:bold">Enrollment Information</td></tr>
+<tr height="180px"><td valign="top">
+#parse( "apps/util/assessment_result/div_enrollment.vm" )
+</td></tr>
+<tr><td colspan="2" style="height:30px;background-color:lightgrey;font-weight:bold">Biodata</td></tr>
+<tr><td>
+<div name="div_upload_photo" id="div_upload_photo"
+style="visibility:hidden;position:absolute;left:200px;width:500px;height:250px;border-style:solid;border-color:#B4B4B4;background-color:#ffffff">
+</div>
+</td></tr>
+
+<tr><td>
+<table height="600px" width="100%">
+<tr><td valign="top">
+<div id="div_biodata" name="div_biodata">
+#parse( "apps/util/assessment_result/div_biodata.vm" )
+</div>
+</td>
+<td valign="top" align="right" style="width:170px">
+<div id="div_photo" name="div_photo">
+#parse( "apps/util/assessment_result/div_photo.vm" )
+</div>
+</td></tr>
+</table>
+
+</td></tr></table>

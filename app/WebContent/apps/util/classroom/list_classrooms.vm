@@ -1,0 +1,35 @@
+<table width="100%" cellpadding="2" cellspacing="0">
+<tr>
+<td colspan="5" align="right">
+$button.command("remove_classrooms").confirm("Are you sure to remove classrooms?").text("Remove Classrooms")
+$button.command("edit_classrooms").text("Edit Classrooms")
+</td></tr>
+
+#foreach ( $c in $classrooms )
+<tr bgcolor="lightgrey">
+<td colspan="3" style="font-weight:bold">
+$c.name
+</td>
+<td align="right">
+$button.command("add_students").param("classroom_id=$c.id").text("+")
+$button.command("remove_students").param("classroom_id=$c.id").text("-")
+</td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach( $s in $c.students )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td>$cnt)</td>
+<td><input type="checkbox" name="student_ids" value="$s.id"></td>
+<td>$s.matricNo</td>
+<td>$s.biodata.name</td>
+</tr>
+#end
+<tr>
+<td colspan="4">
+&nbsp;
+</td>
+</tr>
+#end
+</table>

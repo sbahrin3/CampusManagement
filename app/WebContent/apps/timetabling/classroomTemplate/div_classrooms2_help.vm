@@ -1,0 +1,25 @@
+<div style="padding:10px">
+
+<div style="margin:10px">
+<b>Slot-Time Preference</b><br/>
+
+Select time range where you purposely want this class to be held.
+
+
+</div>
+<div style="margin:10px">
+<b>Slot-Day Preference</b><br/>
+
+Select day(s) where you purposely want this class to be held.
+
+</div>
+<div style="margin:10px">
+<b>Override Blocked Slots?</b><br/>
+
+If the selected time range and/or day(s) you have purposely 
+selected fall in the blocked slots (refer to Time-Slot Availability setting), 
+and you want this class to be able to be slotted in blocked slots, 
+you must override these by enabling this option.
+
+</div>
+</div>

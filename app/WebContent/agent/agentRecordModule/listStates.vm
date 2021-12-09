@@ -1,0 +1,6 @@
+<select name="stateId" id="stateId" class="texts" onchange="doDivAjaxCall3$formname('listCities','listCities','')">
+	<option value="">-- Select State --</option>
+	#foreach ( $s in $states )
+		<option value="$s.code" #if ( $r.state.code == $s.code ) selected #end>$s.name.toUpperCase()</option>
+	#end
+</select>

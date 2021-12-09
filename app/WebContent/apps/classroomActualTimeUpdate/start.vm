@@ -1,0 +1,5 @@
+
+
+<div id="update">
+<input class="linkbutton" type="button" value="Run Update" onclick="doDivAjaxCall$formname('update','update','')">
+</div>

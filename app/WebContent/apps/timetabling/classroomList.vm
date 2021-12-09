@@ -1,0 +1,56 @@
+
+
+#parse("apps/timetabling/time.vm")
+#parse("apps/useLocal.vm")
+
+
+
+#set ( $filterBy = "all" )
+	
+#if ( $filterBy == "all" )
+
+#elseif ( $filterBy == "teacher" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Filter By Teacher : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$teacher.name
+	</span>
+#elseif ( $filterBy == "group" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Filter By Group : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$group.code
+	</span>
+#elseif ( $filterBy == "program" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Filter By Program : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$program.name
+	</span>
+#elseif ( $filterBy == "room" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Filter By Room : </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$room.name
+	</span>
+
+#elseif ( $student )
+	<span style="padding:0.3cm;font-family:Verdana, sans-serif;font-size:10pt;">Filter By Student : </span>
+	<span style="padding:0.3cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$student.matricNo - $student.biodata.name
+	</span>
+#elseif ( $filterBy == "subject" )
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;">Filter By Course: </span>
+	<span style="padding:0.1cm;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+	$subject.name
+	</span>
+#end
+
+#** 
+<button type="button" class="btn btn-default btn-sm" onclick="document.location='$pre/servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.timetabling.module.ClassroomTimetablePDFModule?campusId=$!campus.id&amp;sessionId=$!session.id&amp;week=$!week&amp;teacherId=$!teacher.id&amp;groupId=$!group.id&roomId=$!room.id&amp;programId=$!program.id&amp;subjectId=$!subject.id&amp;filterBy=$!filterBy&pdfName=timetable';">
+	Download PDF
+</button>
+
+**#
+
+<div id="div_timetable" style="padding:2px">
+#parse("apps/timetabling/classroomTimetable.vm")
+</div>
+
+

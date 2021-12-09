@@ -1,0 +1,44 @@
+#if ( $conflictCode == "001" )
+	## SAME CLASS IN A DAY
+ 	SAME CLASS IN A DAY
+
+#elseif ( $conflictCode == "002" )
+ 	## STUDENTS' GROUP CONFLICTS
+ 	STUDENTS' GROUP CONFLICTS
+
+#elseif ( $conflictCode == "003" )
+	## ACTIVITY TYPES PRIORITY CONSTRAINT
+	ACTIVITY TYPES PRIORITY CONSTRAINT
+
+#elseif ( $conflictCode == "004" )
+	## CLASS CONFLICTS IN A SLOT
+ 	CLASS CONFLICTS IN A SLOT
+
+#elseif ( $conflictCode == "005" )
+	## ROOM NOT AVAILABLE
+	ROOM NOT AVAILABLE
+	
+#elseif ( $conflictCode == "006" )
+	## ROOM IS TAKEN
+ 	ROOM IS IN TAKEN
+
+#elseif ( $conflictCode == "007" )
+	## TEACHER CONFLICTS
+	LECTURER CONFLICTS
+	
+#elseif ( $conflictCode == "102" )
+	## SLOT IS BLOCKED
+	SLOT IS BLOCKED
+#elseif ( $conflictCode == "201" )
+	CAN'T FIND AVAILABLE TEACHERS
+#elseif ( $conflictCode == "SYS_ERROR" )
+	Internal System Error.
+#elseif ( $conflictCode == "L001" )
+	Lecturer's Teaching Hours Exceeded.
+#elseif ( $conflictCode == "L002" )
+	Lecturer's Teaching Hours Exceeded (1 Week).	
+#else
+	($conflictCode)
+	CAN'T FIND AVAILABLE SLOT
+#end
+

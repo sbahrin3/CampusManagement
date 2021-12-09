@@ -1,0 +1,70 @@
+<table>
+<tr><td>
+#set ( $g = 0 )
+#if ( $template.globalCounter ) #set ( $g = 1 ) #end
+<table>
+<tr><td style="font-weight:bold">Template:</td><td style="width:300px"><input class="texts" name="prefix" id="prefix" value="$!template.prefix"></td><td></td></tr>
+<tr><td style="font-weight:bold">Digit for counter:</td>
+	<td>
+		<select class="texts" name="digit">
+			#foreach ( $n in [2..10] )
+				<option value="$n" #if ( $template.digit == $n ) selected  #end>$n</option>
+			#end
+		</select>
+	</td>
+	<td></td>
+</tr>
+
+<tr><td style="font-weight:bold">Scope of counter</td><td>
+
+<select class="texts" name="global_counter">
+<option value=""></option>
+<option value="0" #if ( !$template.globalCounter ) selected #end>By Counter Scope</option>
+<option value="1" #if ( $template.globalCounter ) selected #end>Global Counter</option>
+</select>
+
+</td><td></td></tr>
+
+<tr><td style="font-weight:bold">Counter Scope:</td><td style="width:300px"><input class="texts" name="counterScopePrefix" id="counterScopePrefix" value="$!template.counterScopePrefix"></td><td></td></tr>
+
+
+<tr><td></td><td align="right">
+
+<input class="linkbutton" style="font-weight:bold" type="button" value="UPDATE" onclick="doDivAjaxCall$formname('div_matric','save','')">
+
+</td><td></td></tr>
+
+</table>
+
+</td><td valign="top">
+
+<table style="width:100%">
+	<tr><td style="width:50px"></td><td></td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{&amp;}')">&amp;</td><td style="font-weight:bold">Placeholder for the Counter</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{YY}')">{YY}</td><td style="font-weight:bold">Two digit for current Year</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{Y}')">{Y}</td><td style="font-weight:bold">One digit for current Year</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{MM}')">{MM}</td><td style="font-weight:bold">Two digit for current Month</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{M}')">{M}</td><td style="font-weight:bold">One digit for current Month</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{LC}')">{LC}</td><td style="font-weight:bold">Learning Centre Code</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{P}')">{P}</td><td style="font-weight:bold">Program of Study Code</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{S}')">{S}</td><td style="font-weight:bold">Intake Session Code</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{PS}')">{PS}</td><td style="font-weight:bold">Program Batch Code</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{F}')">{F}</td><td style="font-weight:bold">Faculty Code</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{C}')">{C}</td><td style="font-weight:bold">Course Code</td></tr>
+	<tr><td style="font-weight:bold;cursor:pointer" onclick="putPrefix('{SM}')">{SM}</td><td style="font-weight:bold">Study Mode Code</td></tr>
+</table>
+
+</b>
+</td></tr>
+</table>
+
+<br><br>
+<table>
+<tr>
+<td style="font-weight:bold">
+Sample: 
+</td>
+<td style="background-color:#000;color:#FFFFFF;font-size:14pt;padding:2px">
+$!matric_number
+</td></tr>
+</table>

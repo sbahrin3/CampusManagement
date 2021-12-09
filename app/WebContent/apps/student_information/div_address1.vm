@@ -1,0 +1,145 @@
+<table class="table">
+<tr>
+<td valign="top" style="width:150px">Mailing Address:</td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="address1" style="width:100%" value="$!student.address.address1"></td>
+</tr>
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="address2" style="width:100%" value="$!student.address.address2"></td>
+</tr>
+
+#if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td valign="top">Postcode:</td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="postcode" style="width:100%" value="$!student.address.postcode"></td>
+</tr>
+
+<tr>
+<td valign="top">City:</td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="city" style="width:100%" value="$!student.address.city"></td>
+</tr>
+
+<tr>
+<td valign="top">State:</td>
+<td valign="top" style="font-weight:bold" >
+	
+	<select class="form-control" name="state_id">
+	<option value="">- select state -</option>
+		#foreach( $state in $states )
+		<option value="$state.id" #if ( $student.address.state.id == $state.id ) selected #end>$state.name</option>
+		#end
+	</select>
+</td>
+</tr>
+#else
+
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="address3" style="width:100%" value="$!student.address.address3"></td>
+</tr>
+
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="address4" style="width:100%" value="$!student.address.address4"></td>
+</tr>
+
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-weight:bold" >
+<select class="form-control" name="country_id">
+<option value="">- select country -</option>
+#foreach( $country in $countries )
+<option value="$country.id" #if ( $student.address.country.id == $country.id ) selected #end>$country.name</option>
+#end
+</select>
+</td>
+</tr>
+
+#end
+
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top"></td>
+</tr>
+
+
+<tr>
+<td valign="top">Perm. Address:</td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="perm_address1" style="width:100%" value="$!student.permanentAddress.address1"></td>
+</tr>
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="perm_address2" style="width:100%" value="$!student.permanentAddress.address2"></td>
+</tr>
+
+				#if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td valign="top">Postcode:</td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="perm_postcode" style="width:100%" value="$!student.permanentAddress.postcode"></td>
+</tr>
+
+<tr>
+<td valign="top">City:</td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="perm_city" style="width:100%" value="$!student.permanentAddress.city"></td>
+</tr>
+
+<tr>
+<td valign="top">State:</td>
+<td valign="top" style="font-weight:bold" >
+<select class="form-control" name="perm_state_id">
+<option value="">- select state -</option>
+#foreach( $state in $states )
+<option value="$state.id" #if ( $student.permanentAddress.state.id == $state.id ) selected #end>$state.name</option>
+#end
+</select>
+</td>
+</tr>
+#else
+
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="perm_address3" style="width:100%" value="$!student.permanentAddress.address3"></td>
+</tr>
+
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-weight:bold" ><input class="form-control" name="perm_address4" style="width:100%" value="$!student.permanentAddress.address4"></td>
+</tr>
+
+<tr>
+<td valign="top"></td>
+<td valign="top" style="font-weight:bold" >
+<select class="form-control" name="perm_country_id">
+<option value="">- select country -</option>
+#foreach( $country in $countries )
+<option value="$country.id" #if ( $student.permanentAddress.country.id == $country.id ) selected #end>$country.name</option>
+#end
+</select>
+</td>
+</tr>
+
+#end
+	
+
+<tr style="height:20px">
+<td valign="top"></td>
+<td valign="top">
+
+</tr>
+
+<tr>
+<td valign="top"></td>
+<td valign="top">
+	Hide this student?
+	<select class="form-control" name="fakeStudent" style="width:100px">
+		<option value="">No</option>
+		<option #if ( $student.fakeStudent == "hide" ) selected #end value="hide">Yes</option>
+	</select>
+</td>
+</tr>
+				
+
+</table>

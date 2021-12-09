@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+
+<table>
+<tr><td>Position:</td>
+<td>
+<select class="texts" name="positionId" style="width:400px" onchange="doDivAjaxCall3$formname('candidates','listResult','')">
+<option value=""></option>
+#foreach( $p in $positions )
+<option value="$p.id">$p.name</option>
+#end
+</select>
+<input class="linkbutton" type="button" value="List.." onclick="doDivAjaxCall3$formname('candidates','listResult','')">
+</td>
+</tr></table>
+<br/><br/>
+<div id="candidates"></div>

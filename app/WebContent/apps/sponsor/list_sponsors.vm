@@ -1,0 +1,29 @@
+
+
+
+<table width="100%" cellpadding="0" cellspacing="0">
+
+<tr height="30px" style="background:lightgrey">
+<td  style="width:30px;">&nbsp;</td>
+<td  style="width:100px;font-weight:bold">Code</td>
+<td  style="width:400px;font-weight:bold">Name</td>
+<td  style=";font-weight:bold">Address</td>
+<td  style="width:24px"></td>
+</tr>
+
+
+#foreach( $sponsor in $sponsors )
+<tr>
+<td align="center" style="background:lightgrey" valign="top">${velocityCount}.</td>
+<td style="" valign="top"><input name="code_$sponsor.id" class="text" value="$sponsor.code" onchange="doDivAjaxCall$formname('div_updated','update_sponsor','sponsor_id=$sponsor.id')"></td>
+<td style="" valign="top"><input name="name_$sponsor.id" class="text" value="$sponsor.name" onchange="doDivAjaxCall$formname('div_updated','update_sponsor','sponsor_id=$sponsor.id')"></td>
+<td valign="top"><textarea name="address_$sponsor.id" class="texts" style="height:100px" onchange="doDivAjaxCall$formname('div_updated','update_sponsor','sponsor_id=$sponsor.id')">$!sponsor.address</textarea></td>
+<td align="center" valign="top">
+<input style="width:100%;font-weight:bold;height:30px" type="button" value="X"
+onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall$formname('div_list_sponsors','delete_sponsor','sponsor_id=$sponsor.id')">
+</td>
+</tr>
+#end
+
+</table>
+

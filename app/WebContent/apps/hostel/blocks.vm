@@ -1,0 +1,30 @@
+<table width="100%" bgcolor="#FFFFAA"><tr><td>
+
+<table width="100%"><tr><td>BLOCKS</td><td align="right"><a href="javascript:void()" onclick="doDivAjaxCall$formname('building_$building.id', 'close', '')">close</a></td></tr></table>
+<table width="100%">
+<tr>
+<td><input name="code_$building.id" style="width:100%"</td>
+<td width="380px"><input name="name_$building.id" style="width:100%"></td>
+<td>
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('building_$building.id','add_block','building_id=$building.id')">
+</td>
+</tr>
+</table>
+
+<table width="100%">
+#foreach ( $block in $building.blocks )
+<tr>
+<td>
+$block.code
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('block_$block.id','list_floors','block_id=$block.id')">
+$block.name
+</a>
+</td>
+</tr>
+
+<tr><td colspan="2">
+<div id="block_$block.id" name="block_$block.id"></div>
+</td></tr>
+#end
+</table>
+</td></tr></table>

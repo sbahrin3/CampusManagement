@@ -1,0 +1,58 @@
+<table width="700" align="center">
+<tr><td align="right">
+$href.command("").text("Back")
+</td></tr>
+<tr><td>
+
+<table width="100%" align="center">
+<tr><td>Program:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$intake.code $intake.name</td></tr>
+<tr><td>
+</table>
+
+</td></tr>
+<tr><td>
+
+##parse("apps/util/graduation/main_program_structure.vm")
+
+
+#**
+#if ( $structures )
+<table width="100%">
+<tr><td align="center" style="font-weight:bold">
+Program Structure Available for these ($structures.size()) Learning Centres.
+<br/><br/>
+</td></tr>
+#foreach ( $s in $structures )
+<tr><td align="center">
+$href.command("get_structure_by_centre").param("centre_id=$s.learningCenter.id").text("$s.learningCenter.name")
+<br/><br/>
+</td></tr>
+#end
+</table>
+#end
+**#
+
+#if ( $centres )
+#if ( $centres.size() > 0 )
+<table width="100%">
+<tr><td style="font-weight:bold">
+Select a Learning Centre to view Program Structure
+<br/><br/>
+</td></tr>
+#foreach ( $s in $centres )
+<tr><td>
+$href.command("get_structure_by_centre").param("centre_id=$s.id").text("$s.name")
+<br/><br/>
+</td></tr>
+#end
+</table>
+
+#end
+#end
+
+</td></tr>
+</table>
+
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="program_id" value="$!program.id">

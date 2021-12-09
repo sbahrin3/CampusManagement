@@ -1,0 +1,36 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("list_students").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td style="width:100px">Program:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Session:</td><td style="font-weight:bold">$session.code $session.name</td></tr>
+<tr><td>Semester:</td><td style="font-weight:bold">$period.name #if ( $period.parent ) ($period.parent.name) #end</td></tr>
+</table>
+<br><br>
+
+<table width="100%">
+#foreach ( $c in $classrooms )
+<tr bgcolor="lightgrey">
+<td colspan="2" style="font-weight:bold">
+<input name="names" value="$c.name">
+<input type="hidden" name="ids" value="$c.id">
+</td>
+</tr>
+#end
+<tr>
+<td colspan="2">
+$button.command("update_classrooms").style("height:30px").text("SAVE CLASSROOM'S NAME")
+</td>
+</table>
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="session_id" value="$!session.id">
+<input type="hidden" name="period_id" value="$!period.id">
+<input type="hidden" name="total_students" value="$students.size()">

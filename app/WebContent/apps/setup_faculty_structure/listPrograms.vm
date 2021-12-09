@@ -1,0 +1,22 @@
+<fieldset>
+<legend class="legend">List of Programs</legend>
+
+
+<input type="hidden" name="courseId" value="$!course.id">
+<table cellspacing="0" cellpadding="2" style="width:100%">
+<tr style="height:30px; background-color:#f4f4f3;">
+<td style="font-weight:bold;font-size:10pt">$course.code $course.name</td>
+<td align="right">
+<button type="button" class="btn btn-warning" onclick="doDivAjaxCall$formname('entryProgram','entryProgram','')">Add Program</button>
+<button type="button" class="btn btn-success" onclick="$('listProgramGroups').style.display='block';$('listCourseItems').style.display='none';">Back</button>
+</td>
+</tr>
+<tr><td>
+<div class="shadow" id="entryProgram" style="visibility:hidden;background-color:#fff;position:absolute;border:1px">test</div>
+</td></tr>
+</table>
+
+<div id="divListPrograms">#parse("$path/divListPrograms.vm")</div>
+</fieldset>
+
+

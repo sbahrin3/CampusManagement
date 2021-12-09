@@ -1,0 +1,24 @@
+
+#parse("apps/hostel_setup/divHeader.vm")
+
+<div style="margin-bottom:10px;margin-left:20px;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold;">
+List of Blocks
+</div>
+<div>
+<table cellpadding="1" cellspacing="0">
+<tr style="background:#D6D4D4">
+<td style="width:20px"></td>
+<td style="height:30px;width:100px;font-weight:bold">Code</td>
+<td style="width:350px;font-weight:bold">Name</td>
+<td style="width:50px"></td>
+<td style="width:50px"></td>
+</tr>
+</table>
+</div>
+<div id="listBlocks">
+	#parse("apps/hostel_setup/listBlocks.vm")
+</div>
+<script>
+
+</script>
+

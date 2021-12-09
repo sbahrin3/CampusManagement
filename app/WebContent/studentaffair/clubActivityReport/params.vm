@@ -1,0 +1,27 @@
+<table>
+<tr>
+<td>Date From:</td>
+<td>
+<input class="texts" style="width:100px" id="fromDate" name="fromDate" value="">
+<script> new JsDatePick({ useMode:2, target:"fromDate", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+<td>Date To:</td>
+<td>
+<input class="texts" style="width:100px" id="toDate" name="toDate" value="">
+<script> new JsDatePick({ useMode:2, target:"toDate", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+<td>Status:</td>
+<td>
+
+<select class="texts" style="width:200px" name="proposalStatus">
+<option value="">all</option>
+<option value="in-process">in-process</option>
+<option value="approved">approved</option>
+<option value="rejected">rejected</option>
+</select>
+</td>
+<td colspan="2" align="right">
+<input type="button" class="linkbutton" value="Get Report" onclick="doDivAjaxCall3$formname('div_report','getReport','')">
+</td></tr>
+
+</table>

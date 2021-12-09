@@ -1,0 +1,13 @@
+<table width="700" align="center">
+<tr><td align="center" style="font-weight:bold">
+<fieldset style="background-color:lightgrey;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="100%"><tr><td align="center">
+<b>Applicant not found for ${icno}.</b>
+<br><br>
+$button.command("").text("BACK")
+</td></tr></table>
+
+</fieldset>
+
+
+</td></tr></table>

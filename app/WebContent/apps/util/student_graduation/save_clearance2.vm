@@ -1,0 +1,15 @@
+<script>
+#if ($graduate.clearanceFinance) 
+
+#end
+#if ($graduate.clearanceLibrary)
+
+#end
+#if ($graduate.clearanceStudentAffair) 
+
+#end
+#if ($graduate.clearanceFaculty) 
+
+#end
+$('clearance_${graduate.id}').style.display='none';
+</script>

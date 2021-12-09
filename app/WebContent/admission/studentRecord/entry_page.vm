@@ -1,0 +1,154 @@
+
+
+
+
+<fieldset>
+##<div style="height:450px;overflow:auto">
+<div>
+	
+	
+<legend class="legend">$label_entry</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+
+
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td rowspan="6" style="width:100px">
+	
+    	#if($r.photoFileName != "")
+			<img style="height:180px" src="../download?file=$!r.photoFileName">
+		#else
+			<img style="height:180px" src="../img/nophoto.gif" border="0">
+    	#end
+    	
+	</td>
+</tr>
+
+<tr>
+	<td>Matric No</td>
+	<td>:</td>
+	<td><input disabled class="texts" value="$!r.matricNo"></td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Name</td>
+	<td>:</td>
+	<td><input disabled class="texts" value="$!r.biodata.name"></td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>IC No/Passport</td>
+	<td>:</td>
+	<td><input disabled class="texts" #if ( $r.biodata.passport != "" ) value="$!r.biodata.passport" #else value="$!r.biodata.icno" #end></td>
+	<td></td>
+</tr>
+
+<tr>
+	<td>Program</td>
+	<td>:</td>
+	<td><input disabled class="texts" value="$!r.program.code $!r.program.name"></td>
+</tr>
+
+<tr>
+	<td>Intake</td>
+	<td>:</td>
+	<td><input disabled class="texts" value="$!r.intake.name"></td>
+</tr>
+
+#if ( $studentStatus.period )
+#set ( $period = $studentStatus.period )
+#if ( $period.parent )
+	#set ( $semester = $period.parent.name + " " + $period.name )
+#else
+	#set ( $semester = $period.name )
+#end
+#else
+	#set ( $semester = "" )
+#end
+
+<tr>
+	<td>Semester</td>
+	<td>:</td>
+	<td colspan="2"><input disabled class="texts" value="$!semester"></td>
+</tr>
+
+</table>
+<br/>
+<legend class="legend">Personal Information</legend>
+
+<table width="100%">
+	<tr><td style="width:50%" valign="top">
+
+        <table width="100%">
+        <tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+        <tr><td>Birth Date</td><td>:</td><td><input disabled class="texts" #if ( $r.biodata.dob ) value="$dateFormat.format($r.biodata.dob )" #end></td></tr>
+        <tr><td>Gender</td><td>:</td><td><input disabled class="texts" value="$!r.biodata.gender.name"></td></tr>
+		<tr><td>Telephone No</td><td>:</td><td><input disabled class="texts" value="$!r.biodata.telephoneNo"></td></tr>
+		<tr><td>Email</td><td>:</td><td><input disabled class="texts" value="$!r.biodata.email"></td></tr>
+        </table>
+		
+	</td><td style="width:50%" valign="top">
+		
+		
+		<table width="100%">
+        <tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+        <tr><td>Nationality</td><td>:</td><td><input disabled class="texts" value="$!r.biodata.nationality.name"></td></tr>
+        <tr><td>Race</td><td>:</td><td><input disabled class="texts" value="$!r.biodata.race.name"></td></tr>
+		<tr><td>Mobile No</td><td>:</td><td><input disabled class="texts" value="$!r.biodata.mobileNo"></td></tr>
+        </table>
+		
+	</td></tr>
+</table>
+
+
+
+<table width="100%">
+	<tr><td style="width:50%" valign="top">
+			
+		<table width="100%">
+        <tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+
+		<tr><td valign="top">Address</td><td valign="top">:</td>
+			<td>
+				<input disabled class="texts" value="$!r.address.address1"><br/>
+				<input disabled class="texts" value="$!r.address.address2"><br/>
+				<input disabled class="texts" value="$!r.address.postcode $!r.address.city"><br/>
+				<input disabled class="texts" value="$!r.address.astate.name"><br/>
+			</td>
+		</tr>
+		</table>
+		
+	</td><td style="width:50%" valign="top">
+		
+		<table width="100%">
+        <tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+		
+		<tr><td valign="top">Permanent<br/>Address</td><td valign="top">:</td>
+			<td>
+				<input disabled class="texts" value="$!r.permanentAddress.address1"><br/>
+				<input disabled class="texts" value="$!r.permanentAddress.address2"><br/>
+				<input disabled class="texts" value="$!r.permanentAddress.postcode $!r.permanentAddress.city"><br/>
+				<input disabled class="texts" value="$!r.permanentAddress.state.name"><br/>
+				
+			</td>
+		</table>
+
+	</td></tr>
+</table>
+
+<br/><br/>
+
+<legend class="legend">Account Statement</legend>
+#parse("admission/studentRecord/getPaymentSchedule.vm")
+
+<br/><br/>
+<legend class="legend">Examination Transcript</legend>
+#parse("admission/studentRecord/exam_transcript.vm")
+
+</div>
+</fieldset>

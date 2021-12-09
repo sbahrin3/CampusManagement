@@ -1,0 +1,72 @@
+
+<fieldset>
+<legend style="font-weight:bold;font-size:10pt">REGISTRATION</legend>
+
+<table width="100%">
+<tr height="0px"><td style="width:120px"></td><td style="width:10px"></td><td></td><td style="width:200px"></td></tr>
+
+<tr height="30px"><td>Intake</td><td>:</td><td>
+
+<select class="texts" id="intake_id" name="intake_id">
+<option value=""> - select intake - </option>
+#foreach( $i in $intakes )
+<option value="$i.id" #if ( $current_session.id == $i.id ) selected #end>#if ( $current_session.id == $i.id ) &gt; #end$i.code $i.name</option>
+#end
+</select>
+
+</td><td><div id="div_intake" name="div_intake"></div></td></tr>
+
+#if ( $_institutionType == "school" )
+<tr height="30px"><td>Period</td><td>:</td><td>
+
+<select class="texts" id="period_id" name="period_id">
+#foreach( $p in $periods )
+<option value="$p.id">$p.name</option>
+#end
+</select>
+
+</td><td><div id="div_period" name="div_period"></div></td></tr>
+#else
+<tr><td></td><td></td><td>
+<input type="hidden" id="period_id" name="period_id" value="">
+</td><td></td></tr>
+#end
+
+
+
+<tr height="30px"><td>Learning Centre</td><td>:</td><td>
+<select class="texts" id="centre_id" name="centre_id">
+#foreach ( $c in $centres )
+<option value="$c.id">$c.code $c.name</option>
+#end
+</select>
+</td><td></td></tr>
+
+</table>
+
+<br>
+
+<table width="100%">
+<tr><td align="right">
+
+#if ( $_institutionType == "school" )
+<input class="gradient" style="height:40px;font-weight:bold" type="button" value="ENROLL THIS STUDENT"
+onclick="if ( !confirm('Register new student?') ) return;doAjaxCall$formname('register_applicant_school','applicant_id=$!applicant.id')" >
+
+#else
+
+<input class="gradient" style="height:40px;font-weight:bold" type="button" value="REGISTER THIS APPLICANT"
+onclick="if ( !confirm('Register new student?') ) return;doAjaxCall$formname('register_applicant','applicant_id=$!applicant.id')" >
+
+#end
+
+</td></tr></table>
+
+
+</fieldset>
+
+
+##MATRIC NUMBER PREFIX, SET THIS PREFIX TO EMPTY STRING SO THAT MATRIC NUMBER SHALL BE GENERATED FROM TEMPLATE
+<input type="hidden" name="matric_prefix" value="">
+
+<div id="div_test"></div>

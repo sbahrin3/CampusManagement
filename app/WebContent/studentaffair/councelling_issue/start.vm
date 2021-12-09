@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+<style>
+#getCouncellingIssue {
+    position:fixed;
+    top: 30%;
+    left: 30%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#fff;
+    display:none;
+}
+</style>
+
+<div id="councellingIssues">#parse("studentaffair/councelling_issue/listCouncellingIssues.vm")</div>
+<div id="getCouncellingIssue"></div>

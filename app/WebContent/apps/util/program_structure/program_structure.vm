@@ -1,0 +1,87 @@
+<table width="700" align="center">
+<tr><td align="right" style="font-weight:bold">
+[$href.command("get_structure").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%" align="center">
+<tr><td>Program:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$intake.code $intake.name</td></tr>
+<tr><td>Learning Centre:</td><td style="font-weight:bold">$centre.code $centre.name</td></tr>
+<tr><td>
+</table>
+
+</td></tr>
+<tr><td>
+
+#if ( $periods.size() > 0 )
+<table width="100%">
+
+<tr><td colspan="5"><hr/></td></tr>
+<tr>
+<td>&nbsp;&nbsp;</td>
+<td style="font-weight:bold;height:30px;">Code</td>
+<td style="font-weight:bold;">Name</td>
+<td style="font-weight:bold;">Credit<br/>Hours</td>
+<td style="font-weight:bold;">Category</td>
+</tr>
+
+
+#foreach($period in $periods)
+<tr bgcolor="lightgrey">
+<td colspan="5" style="font-weight:bold;height:40px;">
+$href.command("add_subjects").param("period_id=$period.id").text("$period.name #if ( $period.parent ) ($period.parent.name ) #end")
+</td></tr>
+
+#if ( $programUtil.getSubjectRegs($programStructure, $period.id) )
+#set ( $subjectCount = 0 )
+#foreach ( $reg in $programUtil.getSubjectRegs($programStructure, $period.id))
+#set ( $subjectCount = $subjectCount + 1 )
+<tr>
+<td>&nbsp;&nbsp;</td>
+<td>$!reg.subject.code</td>
+<td>$!reg.subject.name</td>
+<td align="center">$!reg.subject.credithrs</td>
+<td>$!reg.category.name</td>
+</tr>
+#end
+
+#if ( $subjectCount == 0 )
+<tr><td colspan="5">-</td></tr>
+#end
+
+#else
+<tr><td colspan="5">-</td></tr>
+#end
+
+#end
+
+<tr><td colspan="5"></td></tr>
+
+</table>
+
+
+<hr/>
+
+#parse("apps/util/graduation/copy_from.vm")
+</td></tr>
+
+
+#else
+
+<tr><td align="center" style="font-weight:bold;color:red">
+<br><br>
+ERROR:
+Periods has not been defined to this Program Of Study.
+</td></tr>
+
+#end
+
+
+
+</table>
+
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="structure_id" value="$!programStructure.id">
+<input type="hidden" name="centre_id" value="$!centre.id">

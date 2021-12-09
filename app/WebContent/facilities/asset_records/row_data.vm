@@ -1,0 +1,11 @@
+
+
+<td>$!r.category.name</td>
+<td>$!r.description</td>
+<td>$!r.tagNo</td>
+<td>$!r.serialNo</td>
+<td>$!r.brandName</td>
+<td>$!r.modelName</td>
+
+
+

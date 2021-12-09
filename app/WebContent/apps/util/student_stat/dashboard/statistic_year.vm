@@ -1,0 +1,26 @@
+#**
+chartType = Bar2D.swf, Pie3D.swf, etc
+**#
+
+#macro(chart $chart $caption $height $width $chartType)
+$chart.setFusionChartPath("/fusionchart")
+<table width="$width"><tr><td>
+$chart.setFusionChartName("$chartType")
+$chart.setCaption("$caption")
+$chart.setHeight($height)
+$chart.setWidth($width)
+<div align="center">
+$chart.fusionChartObject
+</div>
+</td></tr></table>
+#end
+
+
+
+<table align="center">
+<tr><td style="font-weight:bold;font-size:12pt" align="center">
+Number of Active Students by Year
+</td></tr>
+<tr><td>
+#chart($year_chart "" 300 800 "Line.swf")
+</td></tr></table>

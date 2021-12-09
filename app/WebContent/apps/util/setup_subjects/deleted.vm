@@ -1,0 +1,15 @@
+<table width="700" align="center">
+<tr><td align="right" style="font-weight:bold">
+[$href.command("list_subjects").text("Back")]
+</td></tr>
+<tr><td>
+
+
+<table width="100%"><tr><td style="font-weight:bold">
+This subject was successfully deleted!
+</td></tr></table>
+
+
+</td></tr></table>
+
+<input type="hidden" name="faculty_id" value="$!faculty.id">

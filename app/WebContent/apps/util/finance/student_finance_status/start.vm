@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<div style="padding:5px">
+
+<table>
+<tr><td style="width:200px">Program:</td>
+<td>
+<select style="width:400px" id="programId" name="programId" onchange="if ( $('programId').value == '' ) return; doDivAjaxCall3$formname('divIntakes','listIntakes','')">
+<option value=""> Select a Program </option>
+#foreach( $p in $programs )
+<option value="$p.id">$p.code - $p.name</option>
+#end
+</select>
+</td></tr>
+<tr><td>Intake:</td>
+<td>
+<div id="divIntakes"></div>
+</td></tr>
+
+<tr><td>Show aging (in days):</td>
+<td>
+<input name="aging1" value="90" style="width:50px;text-align:center">
+<input name="aging2" value="180" style="width:50px;text-align:center">
+<input name="aging3" value="360" style="width:50px;text-align:center">
+<input class="linkbutton" type="button" value="Get Report" onclick="doDivAjaxCall3$formname('divStudents','listStudents','')">
+</td>
+</tr>
+</table>
+</div>
+<div id="divStudents" style="padding:5px"></div>

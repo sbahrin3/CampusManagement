@@ -1,0 +1,14 @@
+
+<table width="100%" cellspacing="0">
+<tr height="0px">
+<td style="width:100px"></td>
+<td style=""></td>
+</tr>
+#foreach( $c in $classrooms )
+<tr>
+<td>$c.subjectId</td>
+<td>$util.capitalized($c.subjectTitle)</td>
+</tr>
+#end
+</table>
+

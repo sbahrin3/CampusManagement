@@ -1,0 +1,36 @@
+<script>
+$('divRooms').style.display="block";
+</script>
+
+<table width="100%" style="background:#D3D3D3">
+<tr><td style="font-weight:bold;">Venue List</td>
+<td align="right"><input class="linkbutton" type="button" value="x" onclick="$('divRooms').style.display='none';"></td></tr></table>
+
+<table>
+<tr style="height:30px;background:#EDEDED">
+<td style="width:80px"></td>
+<td style="width:300px;font-weight:bold">Venue</td>
+<td style="width:50px;font-weight:bold">Capacity</td>
+<td style="width:50px"></td>
+</tr>
+</table>
+<div style="overflow:auto;height:300px">
+<table>
+<tr style="height:0px">
+<td style="width:80px"></td>
+<td style="width:300px"></td>
+<td style="width:50px"></td>
+<td style="width:50px"></td>
+</tr>
+#foreach( $room in $rooms )
+<tr style="height:30px">
+<td style="border-bottom:1px solid #C4C4C4">$room.code</td>
+<td style="border-bottom:1px solid #C4C4C4">$room.name</td>
+<td style="border-bottom:1px solid #C4C4C4">$room.capacity</td>
+<td style="border-bottom:1px solid #C4C4C4">
+<input class="linkbutton" type="button" value="Select..." onclick="$('roomName').value='$room.name';$('roomId').value='$room.id';$('divRooms').style.display='none';">
+</td>
+</tr>
+#end
+</table>
+</div>

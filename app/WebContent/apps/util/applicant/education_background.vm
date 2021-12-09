@@ -1,0 +1,30 @@
+
+<table width="100%">
+<tr>
+<td valign="top" style="width:130px">
+<table width="100%">
+<tr bgcolor="lightgrey"><td colspan="2" style="font-weight:bold">SPM</td></tr>
+#if ( $applicant.spmResults )
+#foreach ( $r in $applicant.spmResults )
+<tr>
+<td>$r.subject.name</td><td valign="top" align="right">$!r.generalExamGrade.name</td>
+</tr>
+#end
+#end
+</table>
+</td>
+
+<td valign="top" style="width:130px">
+<table width="100%">
+<tr bgcolor="lightgrey"><td colspan="2" style="font-weight:bold">STPM</td></tr>
+#if ( $applicant.stpmResults )
+#foreach ( $r in $applicant.stpmResults )
+<tr>
+<td>$r.subject.name</td><td valign="top" align="right">$!r.generalExamGrade.name</td>
+</tr>
+#end
+#end
+</table>
+</td>
+</tr>
+</table>

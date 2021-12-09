@@ -1,0 +1,62 @@
+<style>
+.topTitle {
+  	font-family: verdana, sans-serif;   
+  	font-weight: bold;
+	font-size:10pt
+} 
+
+#divFindStudent {
+    position:fixed;
+    top: 30%;
+    left: 25%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+</style>
+
+
+
+#set ( $field_name = "student_no")
+#parse("divFindStudent.vm")
+
+<div style="padding:10px">
+<table>
+<tr style="height:40px">
+	<td></td>
+	<td style="width:200px">
+		<input class="input-find" style="width:200px" value="$!student.matricNo" name="student_no" id="student_no" placeholder="Key in student no.">
+	</td>
+	<td>
+		&nbsp;
+		<button class="btn btn-primary" type="button" onclick="doDivAjaxCall$formname('div_transcript','get_transcript','')">Get</button>
+	</td>
+	<td>
+		&nbsp;
+		<button class="btn btn-info" type="button" onclick="doDivAjaxCall$formname('div_transcript','recalculate','')">Re-calculate</button>
+		<button type="button" class="btn btn-success" onclick="$('divFindStudent').style.display='block';">Find...</button>
+		##<input type="checkbox" name="twocolumns" value="yes">2 columns
+		##<input type="checkbox" name="summary" value="yes">Show Summary
+	</td>
+</tr>
+<tr style="height:30px">
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>
+		&nbsp;
+		<input type="checkbox" name="hideF" value="yes">&nbsp;<b>Remove all F grades and do not calculate in result</b>
+	</td>
+</tr>
+</table>
+
+</div>
+
+<div style="padding:10px">
+<div id="div_transcript" name="div_transcript"></div>
+</div>
+
+

@@ -1,0 +1,15 @@
+<table>
+#if ( $applicant.spmResults )
+<tr bgcolor="lightgrey"><td style="width:350px;height:20px">Subject</td><td style="width:50px" valign="top" align="center">Grade</td></tr>
+
+#foreach ( $r in $applicant.spmResults )
+<tr><td style="width:200px;height:20px">$r.subject.name</td><td style="width:50px" valign="top" align="center">$!r.grade</td></tr>
+
+#end
+#end
+</table>
+#**
+<table width="100%"><tr><td align="right">
+<input type="button" style="font-weight:bold;height:30px"  value="EDIT ..." onclick="doDivAjaxCall${formName}('spm','edit_spm','')">
+</td></tr></table>
+**#

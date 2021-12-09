@@ -1,0 +1,37 @@
+<table width="100%" align="center" cellpadding="2">
+<tr><td>Assigning subjects to <b>$href.command("list_subjects_faculty").param("teacher_id=$!teacher.id, faculty_id=$!faculty.id").text("$!teacher.name")</b>
+</td></tr>
+</table>
+<br/>
+
+<table width="100%" align="center">
+<tr><td>
+
+
+<table width="100%" cellspacing="0">
+<tr bgcolor="silver">
+<td></td>
+<td></td>
+#foreach( $section in $subjectSections)
+<td width="10%" align="center">$section.name</td>
+#end
+#foreach( $subject in $subjects)
+<tr #if ( $velocityCount % 2 == 0 ) bgcolor="lightgray" #end>
+<td valign="top">$velocityCount)</td>
+<td valign="top">$subject.code &nbsp;&nbsp; $subject.name </td>
+#foreach( $section in $subjectSections)
+<td width="10%" align="center"><input name="subject_sections" type="checkbox" value="${subject.id}_${section.id}"></td>
+#end
+#end
+</table>
+
+<table width="100%">
+<tr><td align="right">
+$button.command("assign_sections").param("teacher_id=$teacher.id, faculty_id=$faculty.id").text("ASSIGN SUBJECTS & SECTIONS TO THIS TEACHER")
+</td></tr>
+</table>
+
+
+
+</td></tr>
+</table>

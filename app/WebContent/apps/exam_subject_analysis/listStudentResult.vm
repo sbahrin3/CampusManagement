@@ -1,0 +1,43 @@
+
+
+
+<table cellspacing="0" cellpadding="2">
+	
+<tr style="height:35px">
+	<td colspan="7">
+		##<a href="javascript:void(0)" onclick="doDivAjaxCall3$formname('listStudentResult','filterCgpa','cgpa=2.0')">Show only CGPA &lt; 2.0</a>
+	</td>
+</tr>
+	
+<tr style="height:35px">
+<td style="width:30px;font-weight:bold;border-top:1px solid;border-bottom:1px solid">&nbsp;</td>
+<td style="width:150px;font-weight:bold;border-top:1px solid;border-bottom:1px solid;cursor:pointer;text-decoration: underline;" onclick="doDivAjaxCall3$formname('listStudentResult','orderResultBy','by=matricNo')">Matric No</td>
+<td style="width:250px;font-weight:bold;border-top:1px solid;border-bottom:1px solid;cursor:pointer;text-decoration: underline;" onclick="doDivAjaxCall3$formname('listStudentResult','orderResultBy','by=name')">Name</td>
+<td style="width:50px;font-weight:bold;border-top:1px solid;border-bottom:1px solid;cursor:pointer;text-decoration: underline;" align="center" onclick="doDivAjaxCall3$formname('listStudentResult','orderResultBy','by=grade')" >Total<br/>Mark</td>
+<td style="width:50px;font-weight:bold;border-top:1px solid;border-bottom:1px solid;cursor:pointer;text-decoration: underline;" align="center" onclick="doDivAjaxCall3$formname('listStudentResult','orderResultBy','by=grade')">Grade</td>
+<td style="width:50px;font-weight:bold;border-top:1px solid;border-bottom:1px solid;cursor:pointer;text-decoration: underline;" align="center" onclick="doDivAjaxCall3$formname('listStudentResult','orderResultBy','by=grade')">Point</td>
+<td style="width:50px;font-weight:bold;border-top:1px solid;border-bottom:1px solid;cursor:pointer;text-decoration: underline;" align="center" onclick="doDivAjaxCall3$formname('listStudentResult','orderResultBy','by=cgpa')">CGPA</td>
+
+</tr>
+
+$numFormat.applyPattern("#.00")
+
+#set ( $cnt = 0 )
+#foreach ( $r in $results )
+#set ( $cnt = $cnt + 1 )
+<tr style="height:25px;border-bottom:1px dotted #000">
+<td style="width:30px;">$cnt.</td>
+
+<td style="width:150px">$!r.parent.student.matricNo</td>
+<td style="width:250px">$!r.parent.student.biodata.name</td>
+<td style="width:50px;" align="right">$numFormat.format($r.totalMark)</td>
+<td style="width:50px;" align="center">$!r.grade</td>
+<td style="width:50px;" align="right">$numFormat.format($r.point)</td>
+<td style="width:50px;" align="right">$numFormat.format($r.parent.cgpa)</td>
+</tr>
+#end
+
+<tr style="height:25px"><td colspan="7"></td></tr>
+
+
+</table>

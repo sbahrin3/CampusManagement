@@ -1,0 +1,98 @@
+#if ( $student_graduate.status == "APPLIED" )
+	
+	<div>
+	
+	<table><tr>
+	<td style="width:20px"><img src="../img/menu_right.gif"></td>
+	<td style="width:600px;font-size:11pt">
+	
+	
+	
+	#set ( $disabled = "disabled" )
+	#if ( $tracerStudy.filledFields > 43 )
+		#set ( $disabled = "" )
+		You can open your Tracer Study form if you wish to modify:
+	#else
+		#set ( $disabled = "disabled" )
+
+		<span style="color:#E50606">
+		You are required to complete the Tracer Study form.<br/>
+		Please click the Tracer Study button to do this:
+		</span>
+			
+	#end
+	
+	
+	</td><td>
+	<input class="linkbutton" style="width:90px" type="button" value="Tracer Study"
+	onclick="doDivAjaxCall$formName('apply_graduation', 'apply_graduation', 'student_id=$student_graduate.student.id&graduate_id=$student_graduate.id')">
+	</td>
+	</tr></table>
+	<br/>
+	
+	<div id="div_attend" style="height:30px"></div>
+	<table>
+	<tr><td colspan="3" style="font-size:11pt">Please confirm your attendance for the Convocation Rehearsal and Ceremony:</td></tr>
+	
+	<tr>
+	<td style="width:20px"><img src="../img/menu_right.gif"></td>
+	<td style="width:500px;font-size:11pt">	Attendance to Convocation Rehearsal</td>
+	<td>
+	<input type="checkbox" id="rehearsal_yes" #if ( $student_graduate.attendRehearsal ) checked #end onclick="if ( this.checked ) { $('rehearsal_no').checked = false; doDivAjaxCall3$formname('div_attend','attendRehearsal','attend=yes&graduate_id=$student_graduate.id'); } else { $('rehearsal_yes').checked = true; }">Attend
+	<input type="checkbox" id="rehearsal_no" #if ( !$student_graduate.attendRehearsal ) checked #end onclick="if ( this.checked ) { $('rehearsal_yes').checked = false; doDivAjaxCall3$formname('div_attend','attendRehearsal','attend=no&graduate_id=$student_graduate.id');} else { $('rehearsal_no').checked = true; }">Not Attend
+	</td>
+	</tr>
+	
+	<tr>
+	<td style="width:20px"><img src="../img/menu_right.gif"></td>
+	<td style="width:500px;font-size:11pt">	Attendance to Convocation Ceremony</td>
+	<td>
+	<input type="checkbox" id="ceremony_yes" #if ( $student_graduate.attendCeremony ) checked #end onclick="if ( this.checked ) { $('ceremony_no').checked = false; doDivAjaxCall3$formname('div_attend','attendCeremony','attend=yes&graduate_id=$student_graduate.id');} else { $('ceremony_yes').checked = true; }">Attend
+	<input type="checkbox" id="ceremony_no" #if ( !$student_graduate.attendCeremony ) checked #end onclick="if ( this.checked ) { $('ceremony_yes').checked = false; doDivAjaxCall3$formname('div_attend','attendCeremony','attend=no&graduate_id=$student_graduate.id');} else { $('ceremony_no').checked = true; }">Not Attend
+	</td>
+	</tr>
+
+	</table>
+	
+	<br/>
+	<table><tr><td style="font-size:11pt">
+	Please download all documents below:
+	</td></tr></table>
+	
+	<table>
+	<tr><td style="width:20px"><img src="../img/menu_right.gif"></td><td style="width:600px">Graduation Invitation Letter</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintGraduationInvitationModule?graduateId=$!student_graduate.id&pdfName=$!{student_graduate.id}-invitation'"></td></tr>
+	
+	#if ( $graduationForm.document1 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document1)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document1'"></td></tr> #end
+	#if ( $graduationForm.document2 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document2)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document2'"></td></tr> #end
+	#if ( $graduationForm.document3 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document3)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document3'"></td></tr> #end
+	#if ( $graduationForm.document4 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document4)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document4'"></td></tr> #end
+	#if ( $graduationForm.document5 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document5)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document5'"></td></tr> #end
+	#if ( $graduationForm.document6 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document6)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document6'"></td></tr> #end
+	#if ( $graduationForm.document7 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document7)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document7'"></td></tr> #end
+	#if ( $graduationForm.document8 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document8)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document8'"></td></tr> #end
+	#if ( $graduationForm.document9 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document9)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document9'"></td></tr> #end
+	#if ( $graduationForm.document10 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document10)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document10'"></td></tr> #end
+	#if ( $graduationForm.document11 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document11)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document11'"></td></tr> #end
+	#if ( $graduationForm.document12 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document12)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document12'"></td></tr> #end
+	#if ( $graduationForm.document13 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document13)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document13'"></td></tr> #end
+	#if ( $graduationForm.document14 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document14)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document14'"></td></tr> #end
+	#if ( $graduationForm.document15 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document15)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document15'"></td></tr> #end
+	#if ( $graduationForm.document16 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document16)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document16'"></td></tr> #end
+	#if ( $graduationForm.document17 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document17)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document17'"></td></tr> #end
+	#if ( $graduationForm.document18 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document18)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document18'"></td></tr> #end
+	#if ( $graduationForm.document19 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document19)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document19'"></td></tr> #end
+	#if ( $graduationForm.document20 != "" ) <tr><td><img src="../img/menu_right.gif"></td><td>$fileNameUtil.filePart($graduationForm.document20)</td><td><input $disabled class="linkbutton" style="width:90px" type="button" value="Download" onclick="document.location='../download?file=$!graduationForm.document20'"></td></tr> #end
+	
+	</table>
+	
+	<br/><br/>
+
+	
+	</div>
+#else
+	<div style="margin-bottom:1cm">
+	Please click the button below, to apply.<br><br>
+	<input type="button" value="Apply for Graduation" style="height:40px" onclick="if ( !confirm('Apply for Graduation?') ) return;doDivAjaxCall$formName('apply_graduation', 'apply_graduation', 'student_id=$student.id&graduate_id=$student_graduate.id')">
+	</div>
+#end
+

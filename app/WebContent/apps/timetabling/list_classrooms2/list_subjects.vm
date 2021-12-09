@@ -1,0 +1,18 @@
+<table class="table table-hover">
+
+#foreach ( $p in $subjects )
+<tr>
+	<td>
+		$p.code
+	</td>
+	<td style="cursor:pointer" onclick="$('subjectId').value='$p.id';$('subjectName').value='$p.name';$('findSubject').style.display='none';">
+		$p.name
+	</td>
+	<td>
+		$!p.department.id -
+		$!p.department.name
+	</td>
+</tr>
+#end
+
+</table>

@@ -1,0 +1,65 @@
+
+
+$dateFormat.applyPattern("d MMM, yyyy")
+$timeFormat.applyPattern("h:mm a")
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:30px">&nbsp;</td>
+<td style="width:90px;font-weight:bold">Date</td>
+<td style="width:70px;font-weight:bold">Time</td>
+<td style="width:100px;font-weight:bold">Session</td>
+<td style="width:100px;font-weight:bold">Semester</td>
+<td style="width:80px;font-weight:bold">Matric No</td>
+<td style="font-weight:bold">Student Name</td>
+<td style="width:80px;font-weight:bold">User Id</td>
+<td style="width:20px;"></td>
+</tr>
+</table>
+
+<div id="div_flow" name="div_flow" style="overflow:auto;overflow-x:hidden;height:400px">
+
+<table width="100%" cellspacing="0">
+<tr height="0px">
+<td style="width:30px">&nbsp;</td>
+<td style="width:90px;"></td>
+<td style="width:70px;"></td>
+<td style="width:100px;"></td>
+<td style="width:100px;"></td>
+<td style="width:80px;"></td>
+<td style=""></td>
+<td style="width:80px;"></td>
+<td style="width:20px;"></td>
+</tr>
+
+#foreach( $log in $logs )
+
+<tr height="30px">
+<td class="gradient">$velocityCount.</td>
+<td><input class="text" readonly value="#if ( $log.date) $dateFormat.format($log.date) #end"></td>
+<td><input class="text" readonly value="#if ( $log.time) $timeFormat.format($log.time) #end"></td>
+<td><input class="text" readonly value="$!log.session.name"></td>
+<td><input class="text" readonly value="$!log.period.name"></td>
+<td><input class="text" readonly value="$!log.student.matricNo"></td>
+<td><input class="text" readonly value="$!log.student.biodata.name"></td>
+<td><input class="text" readonly value="$!log.userId"></td>
+<td>
+
+<input class="gradient" style="width:20px" type="button" value=".."
+onclick="$('div_registration').style.visibility='visible';doDivAjaxCall$formname('div_registration','view_registration','log_id=$log.id')">
+
+</td>
+</tr>
+
+#end
+
+</table>
+</div>
+
+<script>
+#if ( $log_date )
+$dateFormat.applyPattern("EEEE d MMM, yyyy")
+$('div_log_date').innerHTML = "<b>$dateFormat.format($log_date) - $dateFormat.format($log_date2)</b>";
+#else
+$('div_log_date').innerHTML = "<b>Matric No: $matric_no</b>";
+#end
+</script>

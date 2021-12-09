@@ -1,0 +1,29 @@
+<style>
+.topTitle {
+  	font-family: verdana, sans-serif;   
+  	font-weight: bold;
+	font-size:10pt
+} 
+
+</style>
+<table>
+<tr><td>
+<fieldset>
+
+Matric No: <input class="inputField" style="width:200px" name="student_no">
+<input class="linkbutton" type="button" id="getStudent" value="Get Student.." onclick="doDivAjaxCall3$formname('div_transcript','get_transcript','test=ok')">
+
+</fieldset>
+</td></tr>
+
+<tr><td>
+<table width="100%"><tr><td>
+
+<div class="shadow" id="div_transcript" name="div_transcript"></div>
+##style="overflow:auto;height:500px;background-color:#ffffff;"></div>
+
+</td></tr></table>
+
+</td></tr>
+</table>
+

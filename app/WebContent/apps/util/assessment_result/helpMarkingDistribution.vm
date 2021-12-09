@@ -1,0 +1,18 @@
+<script>
+$('helpPopup').style.display="block";
+</script>
+
+<table style="width:100%;background:#06A4E8"><tr><td style="padding:5px;font-weight:bold;font-size:11pt;color:#fff">Markings Distribution Help</td><td style="width:40px;" align="center"><input type="button" value="Close" style="height:25px" onclick="$('helpPopup').style.display='none';"></td></tr></table>
+
+<table style="width:500px" align="center">
+<tr><td style="font-family:Verdana;font-size:10pt">
+The distribution of marks where total of all marks must be 100%.<br/>
+For example, a subject's markings may be made up of three individual marks, which are
+20% from assignment result, 30% from mid term result and 50% from final exam result.<br/><br/>
+You should create these distribution of markings as shown below:<br/><br/>
+</td></tr>
+<tr><td align="center">
+<b>Example:</b><br/>
+<img src="../apps/util/assessment_result/helpMarkingDistribution.png">
+</td></tr>
+</table>

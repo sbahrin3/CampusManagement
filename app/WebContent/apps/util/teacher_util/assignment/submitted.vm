@@ -1,0 +1,39 @@
+<table width="600" align="center">
+<tr><td>
+
+
+<table width="100%">
+<tr><td colspan="2" style="font-weight:bold">
+Assignment has been submitted:
+</td></tr>
+
+<tr><td colspan="2"><br/><br/></td></tr>
+
+<tr><td style="width:100px" align="top">Subject:</td><td>$data.subject</td></tr>
+<tr><td align="top">Message:</td><td>$data.message</td></tr>
+<tr><td colspan="2" style="font-weight:bold">
+<br/><br/>
+List of files uploaded:
+</td></tr>
+#foreach( $filename in $data.filenames )
+<tr><td align="right">$velocityCount)</td><td>$filename</td></tr>
+#end
+<tr><td colspn="2">
+<hr/>
+</td></tr>
+
+<tr><td colspn="2" style="font-weight:bold">
+This assignment uploaded for these subject/section (s):
+</td></tr>
+
+#foreach ( $s in $subjectList )
+<tr>
+<td>$s.subjectCode $s.subjectName</td>
+<td>$s.sectionName</td>
+</tr>
+#end
+
+
+</table>
+
+</td></tr></table>

@@ -1,0 +1,26 @@
+
+#foreach( $f in $e.feedbacks )
+	<div  style="background:#EDEFF4;margin-bottom:2px">
+	<table style="width:100%;">
+	<tr><td valign="top" style="width:50px;padding-top:10px">
+	#if ( $f.member && $f.member.avatarName != "" ) <img src="../download?file=$!f.member.avatarName"> #end</td><td>
+	<table width="100%">
+	<tr><td style="font-weight:bold">#if ( $f.date ) $dateFormat.format($f.date) #end, #if ( $f.member ) $f.member.fullName #else $!f.portalUsername #end says,</td></tr>
+	<tr><td>#if ( $f.remark ) $util.putLineBreak($f.remark) #end</td></tr>
+	<tr><td align="right">
+	#if ( $member.id == $f.member.id || $portalRole == "alumni_admin")
+		<input class="linkbutton" type="button" value="Delete" style="padding:1px" onclick="if (!confirm('Delete feedback?') ) return; doDivAjaxCall3$formname('divFeedback_$e.id','deleteFeedback','feedbackId=$f.id')">
+	#end
+	</td></tr></table>
+	</td></tr>
+	</table>
+	</div>
+#end
+
+<br/>
+<table width="100%"><tr><td style="font-weight:bold">My feedback:</td><tr><td>
+<textarea class="texts" style="height:80px" name="remark_$e.id"></textarea>
+</td><td style="width:100px" valign="top">
+<input class="linkbutton" type="button" value="Feedback" onclick="doDivAjaxCall3$formname('divFeedback_$e.id','addFeedback','eventId=$e.id&memberId=$!member.id')">
+</td></tr>
+</table>

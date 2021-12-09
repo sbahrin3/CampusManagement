@@ -1,0 +1,28 @@
+
+<table>
+	<tr>
+    #foreach( $i in $s.enrollmentIntakes )
+    	<td>
+    	<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('addEnrollmentIntake','editEnrollmentIntake','enrollmentIntakeId=$i.id')">
+    	$i.name
+		#if ( $i.name != $dateFormat.format($i.date) )
+			<br/>
+			$dateFormat.format($i.date)
+		#end
+		</button>
+    	</td>
+    	<td style="width:4px"></td>
+	#end
+	<td valign="middle">
+		<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('addEnrollmentIntake','addEnrollmentIntake','sessionId=$s.id')">
+			<i class="fa fa-plus-circle" aria-hidden="true"></i>
+		</button>
+	</td>
+	</tr>
+</table>
+
+
+<script>
+$('addEnrollmentIntake').style.display="none";
+##$('sessionRow_${s.id}').style.backgroundColor="#fff";
+</script>

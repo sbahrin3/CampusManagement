@@ -1,0 +1,47 @@
+<table width="80%" align="center">
+<tr><td style="background-color:#D2D2D2;font-weight:bold" align="center">
+#if ( $list_registered.size() > 0 || $list_dropped.size() > 0 )
+	<br>
+	You have choosen to <br>
+	#if ( $list_registered.size() > 0 )
+		ADD $list_registered.size() 
+		#if ( $list_registered.size() > 1 ) subjects. #else subject. #end 
+	#end
+	<br>
+	#if ( $list_dropped.size() > 0 )
+		DROP $list_dropped.size() 
+		#if ( $list_dropped.size() > 1 ) subjects. #else subject. #end 
+	#end
+	<br>
+	Please click the CONFIRM ADD/DROP
+	button to proceed.
+	<br>
+	
+	<br>
+
+	#if ( $student_mode )
+		<input type="button" style="height:40px;font-weight:bold" value="CONFIRM ADD/DROP" 
+		onclick="if ( !confirm('Proceed to register these subjects?') ) return;doDivAjaxCall$formname('div_student_confirm','confirm_registration','')">
+	#else
+		<input type="button" style="height:40px;font-weight:bold" value="CONFIRM ADD/DROP" 
+		onclick="if ( !confirm('Proceed to register these subjects?') ) return;doDivAjaxCall$formname('div_student','confirm_registration','')">
+	#end
+		<br><br>
+
+#else
+	<br>
+	
+	Please click the ADD or DROP button.
+	<br>
+	<br>
+	or
+	<br>
+	<br>
+	<input type="button" class="gradient" style="height:30px;font-weight:bold" 
+	value="Validate my subjects registration"
+	onclick="doDivAjaxCall3$formname('div_student_confirm','validate','')">
+	<br>
+	<br>
+#end
+</td></tr>
+</table>

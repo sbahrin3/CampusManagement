@@ -1,0 +1,3 @@
+<script>
+$('accomodation_name').value = "$!accomodation.name";
+</script>

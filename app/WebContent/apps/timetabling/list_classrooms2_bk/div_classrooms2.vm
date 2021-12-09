@@ -1,0 +1,91 @@
+
+
+<table>
+#set ( $cnt = 1 )
+#set ( $days = -1 )
+#foreach( $c in $classrooms )
+
+
+
+	#if ( $c.classroom.combined && $c.classroom.combineSlotNo > 1 )
+
+	#else
+	
+		#set ( $slotTime = $slotTimes.get($c.classroom.slot.posX) )
+	
+		#set ( $cnt = $cnt + 1 )
+		#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#C8E3F7" ) #else #set ( $bgcolor="#ffffff" ) #end
+		
+		#if ( $days != $c.days )
+		
+			#if ( $days != -1 )<tr><td colspan="7"><hr/></td></tr> #end
+			
+			<tr height="30px" style="border-top:1px solid">
+			<td style="width:130px;" valign="middle">
+			$dateFormat3.format($c.date)
+			</td>
+			#set ( $days = $c.days )
+		#else
+			<tr height="30px">
+			<td style="width:100px"></td>
+		#end
+	
+	
+		#if ( $c.classroom.combined && $c.classroom.combineSlotNo == 1 )
+			#set ( $slotLastPos = $c.classroom.slot.posX + $c.classroom.classroomSection.classroomType.slotCount - 1)
+			#set ( $slotTime2 = $slotTimes.get($slotLastPos) )
+			<td style="background:$bgcolor;width:80px" valign="middle" align="center">$timeFormat.format($slotTime.startTime)</td>
+			<td style="background:$bgcolor;width:80px" valign="middle" align="center">$timeFormat.format($slotTime2.endTime)</td>
+		#else
+			<td style="background:$bgcolor;width:80px" valign="middle" align="center">$timeFormat.format($slotTime.startTime)</td>
+			<td style="background:$bgcolor;width:80px" valign="middle" align="center">$timeFormat.format($slotTime.endTime)</td>
+		#end
+		
+		<td style="background:$bgcolor;width:250px" valign="middle">$!c.classroom.subject.code &nbsp; $!c.classroom.subject.name</td>
+		<td style="background:$bgcolor;width:120px" valign="middle">$!c.classroom.classroomSection.name</td>
+		<td style="background:$bgcolor;width:150px" valign="middle">$!c.classroom.room.name</td>
+		#if ( !$teacherView )
+		<td style="background:$bgcolor;width:300px" valign="middle">
+		#else
+		<td style="background:$bgcolor;width:200px" valign="middle">
+		#end
+		<table width="100%" cellpadding="0" cellspacing="0">
+		#if ( $c.classroom.coTeachers.size() == 0 )
+			<tr><td></td><td align="right"></td></tr>
+		#else
+			#foreach( $t in $c.classroom.coTeachers )
+				#if ( !$teacherView )
+				<tr><td style="width:200px">$t.name</td>
+				<td style="width:100px" align="center">
+				#set ( $checked = "" )
+				#if ( $attendanceData.getAttendance("$c.classroom.id", "$t.id") ) 
+					#set ( $checked = "checked" )
+				#end
+				
+				<input $checked type="checkbox"  name="check_${c.classroom.id}_${t.id}" value="1"  onclick="doDivAjaxCall3$formname('divEmpty','teacherAttendance','classroomId=$c.classroom.id&attendanceTeacherId=$t.id')">
+				
+				</td>
+				</tr>
+				#else
+					<tr><td style="width:300px">$t.name</td></tr>
+				#end
+			#end
+		#end
+		</table>
+		</td>
+		
+		<td style="width:100px" align="center">
+		
+		<input class="linkbutton" type="button" value="..." onclick="doDivAjaxCall3$formname('divAttendance','listStudents','classroomId=$c.classroom.id')">
+		
+		</td>
+		
+	#end
+	
+	</tr>
+
+#end
+
+
+
+</table>

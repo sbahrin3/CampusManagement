@@ -1,0 +1,22 @@
+<table cellpadding="2" cellspacing="2">
+<tr>
+<td width="20px" align="right">$cnt)</td>
+<td width="200px" >$!t.username</td>
+<td width="150px" >$!t.teacher.code</td>
+<td width="300px" >
+
+#if ( $t.teacher ) 
+##$href.command("teacher_info").param("username=$!t.username, teacher_id=$!t.teacher.id").text("$t.teacher.name")
+<a href="javascript:void()" onclick="doAjaxCall$formname('teacher_info','username=$!t.username&teacher_id=$!t.teacher.id')">$t.teacher.name</a>
+#else 
+##$href.command("new_info").param("username=$!t.username").text("<font color=red>DATA NOT AVAILABLE</font>")
+<a href="javascript:void()" onclick="doAjaxCAll$formname('new_info','username=$!t.username')"><font color=red>DATA NOT AVAILABLE</font></a>
+#end
+
+</td>
+<td align="center" width="200px">
+<input type="button" value="Edit" onclick="doDivAjaxCall$formname('div_teacher_$cnt','inline_edit','teacher_id=$t.teacher.id&username=$!t.username&cnt=$cnt')">
+<input type="button" value="Subjects..." onclick="doAjaxCall$formname('teacher_info','username=$!t.username&teacher_id=$!t.teacher.id')">
+</td>
+</tr>
+</table>

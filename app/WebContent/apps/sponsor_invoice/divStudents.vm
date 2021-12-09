@@ -1,0 +1,36 @@
+<script>
+#if ( $students.size() > 0 )
+$('divCreateButton').style.display="block";
+#end
+</script>
+<div style="padding:5px">
+<table>
+<tr style="height:30px">
+<td style="width:200px;background:#D3D3D3;font-weight:bold">Matric No</td>
+<td style="width:350px;background:#D3D3D3;font-weight:bold">Name</td>
+<td style="width:150px;background:#D3D3D3;font-weight:bold">IC No</td>
+<td style="width:50px;background:#D3D3D3;font-weight:bold">&nbsp;</td>
+<td></td>
+</tr>
+</table>
+<div style="overflow:auto;height:250px">
+<table>
+<tr style="height:0px">
+<td style="width:200px;"></td>
+<td style="width:350px;"></td>
+<td style="width:150px;"></td>
+<td style="width:50px;"></td>
+<td></td>
+</tr>
+#foreach( $s in $students )
+<tr style="background:#FFF;height:25px">
+<td style="border-bottom:1px solid #D3D3D3">$s.student.matricNo</td>
+<td style="border-bottom:1px solid #D3D3D3">$s.student.biodata.name</td>
+<td style="border-bottom:1px solid #D3D3D3">$s.student.biodata.icno</td>
+<td  style="border-bottom:1px solid #D3D3D3" align="center"><input type="checkbox" name="checkStudentIds" value="$s.id"></td>
+
+</tr>
+#end
+</table>
+</div>
+</div>

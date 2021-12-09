@@ -1,0 +1,48 @@
+<table class="table" align="">
+
+<tr>
+<td style="width:10px"></td>
+<td class="" style="width:100px;font-weight:bold">Code</td>
+<td class="" style="width:500px;font-weight:bold">Name</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+#foreach( $c in $centres )
+<tr style="height:35px">
+<td><span id="div_campus_$c.id">#parse("apps/util/institution/campus_status.vm")</span></td>
+<td style="">
+	<input class="form-control" id="code_$c.id" name="code_$c.id" style="width:100%;font-weight:bold" value="$!c.code" onkeypress="$('div_button_$c.id').style.display='block'">
+</td>
+<td style="">
+	<input class="form-control" id="name_$c.id" name="name_$c.id" style="width:100%;font-weight:bold" value="$!c.name"  onKeyPress="$('div_button_$c.id').style.display='block'">
+</td>
+<td style="width:50px;text-align:right">
+<button class="btn btn-danger btn-sm" style="height:30px;font-weight:bold" type="button" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall3$formname('div_centres','delete_centre','id=$!c.id')">X</button>
+</td>
+<td>
+<span id="div_button_$c.id" style="display:none">
+<button class="btn btn-success btn-sm" style="height:30px;font-weight:bold" type="button" onclick="doDivAjaxCall3$formname('div_empty','save_centre','id=$!c.id');$('div_button_$c.id').style.display='none'">Save</button>
+</span>
+</td>
+
+<td></td>
+</tr>
+#end
+
+
+<tr style="height:35px">
+<td></td>
+<td style=""><input class="form-control" id="centre_code" name="centre_code" style="width:100%;font-weight:bold" value="$!c.code" onkeypress="$('div_button_add').style.visibility='visible'"></td>
+<td style=""><input class="form-control" id="centre_name" name="centre_name" style="width:100%;font-weight:bold" value="$!c.name"  onKeyPress="$('div_button_add').style.visibility='visible'"></td>
+<td></td>
+<td>
+<div id="div_button_add" style="visibility:hidden">
+<button class="btn btn-success btn-sm" style="height:30px;font-weight:bold" type="button" onclick="doDivAjaxCall3$formname('div_centres','add_centre','institution_id=$!institution.id'); $('div_button_add').style.visibility='hidden';">Add</button>
+</div>
+</td>
+</tr>
+
+</table>
+

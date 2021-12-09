@@ -1,0 +1,30 @@
+<table>
+<tr>
+<td colspan="3" style="font-weight:bold">$!category.name</td>
+<td align="right">
+<input class="linkbutton" type="button" value="Add Question" onclick="doDivAjaxCall3$formname('div_input','newQuestion','categoryId=$!category.id')">
+<input class="linkbutton" type="button" value="Back" onclick="doDivAjaxCall3$formname('div_main','','')">
+</td>
+</tr>
+<tr style="height:30px;background:#BABABA">
+<td class="colTitle" style="width:30px"></td>
+<td class="colTitle" style="width:500px;font-weight:bold">Question Text</td>
+<td class="colTitle" style="width:100px;font-weight:bold" align="center">Type</td>
+<td class="colTitle" style="width:200px"></td>
+</tr>
+#foreach( $q in $questions )
+#if ( $velocityCount % 2 == 0 ) #set ( $bgcolor = "#fff" ) #else #set ( $bgcolor = "#EFEDED" ) #end
+<tr style="background:$bgcolor">
+<td class="row">$velocityCount.</td>
+<td class="row">$!q.questionText</td>
+<td class="row" align="center">$!q.Type</td>
+<td class="row" align="center">
+<input class="linkbutton" type="button" value="Edit" onclick="doDivAjaxCall3$formname('div_input','editQuestion','questionId=$!q.id')">
+<input class="linkbutton" type="button" value="X" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('div_main','deleteQuestion','questionId=$!q.id')">
+
+</td>
+</tr>
+#end
+</table>
+
+

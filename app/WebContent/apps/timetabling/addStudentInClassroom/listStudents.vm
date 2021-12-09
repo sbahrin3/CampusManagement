@@ -1,0 +1,38 @@
+<script>
+$('listStudents').style.display = "block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+List Of Students Registered for this Subject
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="Add Student(s)" onclick="doDivAjaxCall3$formname('getStudents','addSelectedStudents','')">
+<input class="linkbutton" type="button" value="x" onclick="$('listStudents').style.display='none';">
+</td></tr>
+</table>
+<br/>
+	
+<div style="overflow:auto;height:300px">
+<table>
+	<tr style="height:25px">
+		<td class="colTitle" style="width:50px">&nbsp;</td>
+		<td class="colTitle" style="width:200px">Matric</td>
+		<td class="colTitle" style="width:350px">Name</td>
+		<td class="colTitle" style="width:50px">&nbsp;</td>
+
+	</tr>
+	#foreach ( $s in $students )
+		<tr style="height:25px">
+			<td class="row">$velocityCount.</td>
+			<td class="row">$s.studentStatus.student.matricNo</td>
+			<td class="row">$s.studentStatus.student.biodata.name</td>
+			<td class="row"><input type="checkbox" name="ids" value="$s.id">
+		</tr>
+	#end
+</table>
+</div>
+
+
+<script>new Draggable('listStudents', {handle: 'dragHandle'});</script>

@@ -1,0 +1,235 @@
+#set ( $summary_credit_taken = 0 )
+#set ( $summary_cumulative_points = 0 )
+
+<div style="font-family:Verdana, sans-serif;font-weight:bold">ACADEMIC TRANSCRIPT</div>
+<fieldset style="border:1px solid;padding:5px">
+#parse("apps/util/student_exam_transcript/student_info.vm")
+</fieldset>
+<br>
+	
+##RELEASE THIS EXAM TRANSCRIPT TO STUDENT VIEW?
+#if ( !$student.program.releaseTranscript )
+	#set ( $current_session = $previous_session )
+#end
+
+#set ( $size = $prevSessions.size() )
+#set ( $cnt_previous = $size - 2 )
+
+
+##set ( $current_session = $prevSessions.get($cnt_previous) )	
+
+	
+<table width="100%"><tr><td>			
+
+
+#if ( $current_session )
+	
+	#if ( $twocolumns ) #set ( $twocol = "true" ) #else #set ( $twocol = "false" ) #end
+    #if ( $summary ) #set ( $summry = "true" ) #else #set ( $summry = "false" ) #end
+    #if ( $student_mode ) #set ( $smode="yes" ) #else #set ( $smode = "no" ) #end
+
+    <input class="linkbutton" type="button" value="Print with Logo" 
+    onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintStudentExamTranscriptModule?studentId=$student.id&amp;twocolumns=$twocol&amp;summary=$summary&amp;smode=$smode&amp;logo=yes&amp;hideF=$!hideF&pdfName=transcript'"
+    >
+	
+	<input class="linkbutton" type="button" value="Print without Logo" 
+    onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintStudentExamTranscriptModule?studentId=$student.id&amp;twocolumns=$twocol&amp;summary=$summary&amp;smode=$smode&amp;logo=no&amp;hideF=$!hideF&pdfName=transcript'"
+    >
+	
+#end
+</td></tr></table>
+
+
+#if ( $student_mode )
+	#set ( $show = "no" )
+#else
+	#set ( $show = "yes" )
+#end
+
+#set ( $totalrowcount = $results.size() )
+#set ( $rowcounter = 0 )
+
+#set ( $pagenum = 0 )
+#set ( $rowcount = 0 )
+
+#set ( $total_result_cnt = $results.size() )
+
+#if ( $twocolumns )
+
+    ##AVOID PAGE BREAK WITHIN DIV
+    <div style="padding:4px;page-break-inside: avoid;"> 
+    
+        <table width="100%">
+        	#set ( $col = 0 )
+        	#foreach ( $r in $results )
+        		#set ( $col = $col + 1 )
+        		#if ( $col == 1 ) 
+        			<tr> 
+        		#end
+        		<td style="width:500px" valign="top">
+        			
+        			
+        			#if ( $col == 1 )
+        				#set ( $rowcount = $rowcount + 1 )
+        				#set ( $rowcounter = $rowcounter + 1 )
+        			#end
+        		#if ( $show == "yes" )
+        			#parse("apps/util/student_exam_transcript/semester.vm")
+        			
+        			#set ( $summary_credit_taken = $summary_credit_taken + $r.takenHours )
+        			#set ( $summary_cumulative_credit_hours = $r.totalHours )
+        			#set ( $summary_cumulative_points = $r.cumulativePoints )
+        			#set ( $summary_cgpa = $r.cgpa )
+        		
+        		
+        		#end
+        		</td>
+        
+        		#if ( $col == 2 )
+        			</tr>
+        			#set ( $col = 0 )
+        		#end
+        		
+        		
+        		#if ( $r.session.id == $current_session.id ) 
+        			#set ( $show = "yes" ) 
+        		#end
+        		
+        	#end
+        </table>
+    </div>
+	
+#else  ##SINGLE COLUMN
+
+
+	#set ( $result_cnt = 0 )
+	#foreach ( $r in $results )
+		#set ( $result_cnt = $result_cnt + 1 )
+		
+		##SHOW SEMESTER RESULT
+		#if ( $student_mode )
+    		
+			
+			#if ( $r.session.id == $current_session.id ) 
+    			#set ( $show = "yes" ) 
+    		#else
+    			##set ( $show = "no" )
+				#if ( $result_cnt == $total_result_cnt )
+					#set ( $show = "yes" ) 
+				#else
+					#set ( $show = "no" ) 
+				#end
+			#end
+			
+			
+		#else
+			#set ( $show = "yes" ) 
+			#if ( $print_semester )
+				#if ( $print_sessionId == $r.session.id )
+					#set ( $show = "yes" ) 
+				#else
+					#set ( $show = "no" ) 
+				#end
+			#end
+		#end
+		
+		#set ( $status = $statusMap.get("$r.session.id") )
+		#if ( $status.type.defer )
+			#set ( $show = "no" ) 
+		#end
+
+		#if ( $show == "yes" )
+			
+			
+			
+			#set ( $rowcount = $rowcount + 1 )
+			#set ( $rowcounter = $rowcounter + 1 )
+			
+			##AVOID PAGE BREAK WITHIN DIV
+			<div style="padding:4px;page-break-inside: avoid;"> 
+    			<table width="100%" border="0">
+        		<tr> 
+        		<td style="width:500px" valign="top">
+    			
+        		#parse("apps/util/student_exam_transcript/semester.vm")
+        		
+        		#set ( $summary_credit_taken = $summary_credit_taken + $r.takenHours )
+        		#set ( $summary_cumulative_credit_hours = $r.totalHours )
+        		#set ( $summary_cumulative_points = $r.cumulativePoints )
+        		#set ( $summary_cgpa = $r.cgpa )
+        		</td>
+        		</tr>
+    			</table>
+			</div>
+			
+			
+			#if ( $pagenum == 0 )
+				#set ( $rownum = 2 )
+			#else
+				#set ( $rownum = 3 )
+			#end
+			
+			#** 
+			#if ( $rowcounter < $totalrowcount )
+    			#if ( $rowcount == $rownum )
+    				#set ( $rowcount = 0 )
+    				#set ( $pagenum = $pagenum + 1 )
+    				
+    				<h1>&nbsp;</h1>
+    				
+    			#end
+			#end
+			**#
+		#end
+
+	#end
+	
+	
+
+
+#end
+
+
+#if ( !$student_mode )
+<div style="margin-top:100px;page-break-inside: avoid;">
+	
+	<table style="width:100%">
+		<tr>
+			<td style="width:700px">
+				&nbsp;
+			</td>
+			<td>	
+				
+				<table style="width:350px;border-top:1px solid #000">
+					<tr>
+						<td valign="top" align="center">
+							Registrar/Head of Examination Unit
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+</div>
+#end
+
+##results summary here
+#if ( $summary )
+	<div style="margin-top:1cm;margin-bottom:1cm">
+	<table><tr><td align="center">
+	#parse("apps/util/student_exam_transcript/summary.vm")
+	</td></tr></table>
+	</div>
+	#end
+
+
+#if ( $student_mode )
+<div style="margin-top:1cm;margin-bottom:1cm">
+	<table><tr><td>
+		<b>Important Note:</b> This is an online transcript.  If you require a certified version of your transcript, 
+		kindly get it certified at the Registry Office.
+	</td></tr></table>
+	
+</div>
+#end

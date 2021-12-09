@@ -1,0 +1,16 @@
+<table width="100%">
+<tr>
+<td>Offered to a program: </td><td style="font-weight:bold">$program.code $program.name</td>
+<tr>
+<td>
+Select Intake:
+</td><td>
+<select name="intake_id" style="width:300px">
+#foreach ( $i in $intakes )
+<option value="$i.id" #if ( $current_session.id == $i.id ) selected #end>$i.name</option>
+#end
+</select>
+<input type="button" style="font-weight:bold;height:25px;width:80px" value="SELECT" onclick="doDivAjaxChainCall${formName}('change_status', 'offer_program_intake', 'applicant_id=$applicant_id&program_offered_id=$program.id&offer_type=$offer_type','div_$applicant.id','status_changed','before_status=$!applicant.status')">
+</td>
+</tr>
+</table>

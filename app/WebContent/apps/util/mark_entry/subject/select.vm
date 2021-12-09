@@ -1,0 +1,65 @@
+<table width="800">
+<tr><td>
+
+<table width="100%">
+<tr><td>Program:</td>
+<td>
+<select name="program_id" style="width:400px" onchange="doAjaxCall${_formName}('','')">
+<option value="">- Select Program -</option>
+#foreach( $p in $programs )
+<option value="$p.id" #if ( $program.id == $p.id ) selected #end>&nbsp;&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr><td>Session:</td>
+<td>
+<select name="session_id" style="width:400px">
+<option value="">- Select Session -</option>
+#foreach( $s in $sessions )
+<option value="$s.id" #if ( $session.id == $s.id ) selected #end>&nbsp;&nbsp;&nbsp;$s.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr><td>Period:</td>
+<td>
+<select name="period_id" style="width:400px">
+<option value="">- Select Period -</option>
+#foreach( $p in $periods )
+<option value="$p.id" #if ( $period.id == $p.id ) selected #end>&nbsp;&nbsp;&nbsp;$p.name #if ( $p.parent ) ($p.parent.name) #end</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr><td></td>
+<td>
+
+$button.command("list_subjects").style("height:30px").text("List Subjects")
+
+</td>
+</tr>
+</table>
+
+</td></tr></table>
+
+
+<script>
+
+
+function isValid(s) {
+var ValidChars = "0123456789.";
+var IsNumber=true;
+var ch;
+for (i = 0; i < s.length && IsNumber == true; i++)  { 
+  ch = s.charAt(i); 
+  if (ValidChars.indexOf(ch) == -1) {
+    IsNumber = false;
+  }
+}
+return IsNumber;
+}
+</script>

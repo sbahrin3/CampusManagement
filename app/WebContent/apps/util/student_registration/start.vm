@@ -1,0 +1,27 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {font-family:verdana;font-size:10pt;font-weight:bold;}
+td {font-family:verdana;font-size:10pt;}
+</style>
+
+<table width="700" align="center">
+<tr><td>
+Search :<input name="search_name" style="width:150px">
+Centre:
+<select name="search_centre_id" style="width:100px">
+<option value="">-Centre-</option>
+#foreach ( $c in $centres )
+<option value="$c.id">$c.code $c.name</option>
+#end
+</select>
+$button.command("search_applicants").text("Search Offered Applicants")
+</td></tr>
+<td><td>
+
+
+
+
+
+</td></tr></table>

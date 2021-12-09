@@ -1,0 +1,86 @@
+<script>
+function tt_tab_select(tabId) {
+	for ( i = 1; i < 7; i++ ) {
+		$('tt_' + i).className = "";
+		if ( i > 1 ) {
+			$('findBy_' + i).style.display="none";
+		}
+	}
+	$('tt_' + tabId).className = "active";
+	$('findBy_' + tabId).style.display="block";
+	
+}
+
+</script>
+
+<ul class="nav nav-tabs">
+  <li id="tt_1" class="active"><a href="javascript:void(0)" onclick="tt_tab_select(1)">Overall Schedule</a></li>
+  <li id="tt_2"><a href="javascript:void(0)" onclick="tt_tab_select(2)">Search by Lecturer</a></li>
+  <li id="tt_3"><a href="javascript:void(0)" onclick="tt_tab_select(3)">Filter by Group</a></li>
+  <li id="tt_4"><a href="javascript:void(0)" onclick="tt_tab_select(4)">Filter by Program</a></li>
+  <li id="tt_5"><a href="javascript:void(0)" onclick="tt_tab_select(5)">Filter by Room</a></li>
+  <li id="tt_6"><a href="javascript:void(0)" onclick="tt_tab_select(6)">Filter by Course</a></li>
+</ul>
+
+
+<div id="findBy_1" style="margin:10px">
+	<table>
+	<tr>
+		<td style="width:150px">Select Week:</td>
+		<td>
+			<input type="hidden" name="sessionId" value="$session.id">
+			#parse("apps/timetabling/list_classrooms2/find_week.vm")
+		</td>
+	</tr>
+	</table>
+</div>
+<div id="findBy_2" style="margin:10px;display:none">
+	<table>
+	<tr>
+		<td style="width:150px">Search by Lecturer:</td>
+		<td>
+			#parse("apps/timetabling/list_classrooms2/find_teacher.vm")
+		</td>
+	</tr>
+	</table>
+</div>
+<div id="findBy_3" style="margin:10px;display:none">
+	<table>
+	<tr>
+		<td style="width:150px">Filter by Group:</td>
+		<td>
+			#parse("apps/timetabling/list_classrooms2/find_group.vm")
+		</td>
+	</tr>
+	</table>
+</div>
+<div id="findBy_4" style="margin:10px;display:none">
+	<table>
+	<tr>
+		<td style="width:150px">Filter by Program:</td>
+		<td>
+			#parse("apps/timetabling/list_classrooms2/find_program.vm")
+		</td>
+	</tr>
+	</table>
+</div>
+<div id="findBy_5" style="margin:10px;display:none">
+	<table>
+	<tr>
+		<td style="width:150px">Filter by Room:</td>
+		<td>
+			#parse("apps/timetabling/list_classrooms2/find_room.vm")
+		</td>
+	</tr>
+	</table>
+</div>
+<div id="findBy_6" style="margin:10px;display:none">
+	<table>
+	<tr>
+		<td style="width:150px">Filter by Course:</td>
+		<td>
+			#parse("apps/timetabling/list_classrooms2/find_subject.vm")
+		</td>
+	</tr>
+	</table>
+</div>

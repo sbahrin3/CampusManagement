@@ -1,0 +1,10 @@
+
+#if ( $updateType == "add" )
+<script>
+$('classroomType_${classroomTypeId}_${roomId}').style.backgroundColor="#b8edb8";
+</script>	
+#else
+<script>
+$('classroomType_${classroomTypeId}_${roomId}').style.backgroundColor="#ffffff";
+</script>
+#end

@@ -1,0 +1,53 @@
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">List of Students</legend>
+
+<table width="100%">
+<tr><td style="font-weight:bold">$!program.name</td></tr>
+<tr><td style="font-weight:bold">$!intake.name</td></tr>
+<tr><td style="font-weight:bold">$!session.name</td></tr>
+</table>
+
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:30px">&nbsp;</td>
+<td style="width:80px;font-weight:bold">Matric No.</td>
+<td style="width:100px;font-weight:bold">ICNo</td>
+<td style="font-weight:bold">Name</td>
+<td style="width:150px;font-weight:bold">Session</td>
+<td style="width:100px;font-weight:bold">Period</td>
+<td style="width:100px;font-weight:bold">Status</td>
+</tr>
+</table>
+
+<div id="div_flow" name="div_flow" style="overflow:auto;overflow-x:hidden;height:400px">
+
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="0px">
+<td style="width:30px"></td>
+<td style="width:80px;"></td>
+<td style="width:100px;"></td>
+<td style=""></td>
+<td style="width:150px;"></td>
+<td style="width:100px;"></td>
+<td style="width:100px;"></td>
+</tr>
+
+#foreach( $s in $students )
+
+<tr height="30px">
+<td class="gradient">$velocityCount)</td>
+<td><input class="text" readonly value="$s.student.matricNo"></td>
+<td><input class="text" readonly value="$s.student.biodata.icno"></td>
+<td><input class="text" readonly value="$s.student.biodata.name"></td>
+<td><input class="text" readonly value="$s.session.name"></td>
+<td><input class="text" readonly value="$!s.period.name #if ( $s.period.parent ) ($s.period.parent.name) #end"></td>
+<td><input class="text" readonly value="$s.type.name"></td>
+</tr>
+
+#end
+
+</table>
+</div>
+
+</fieldset>

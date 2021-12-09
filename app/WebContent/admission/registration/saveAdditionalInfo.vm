@@ -1,0 +1,7 @@
+<script>
+
+$('displayInstitutionSPM').value = "$!student.institutionTypeSPM $!student.institutionSPM";
+$('displayInstitutionSTPM').value = "$!student.institutionTypeSTPM $!student.institutionSTPM";
+$('displayStatusTag').value = "$!student.statusTag";
+
+</script>

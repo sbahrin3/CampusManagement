@@ -1,0 +1,36 @@
+<table cellspacing="1" cellpadding="0">
+<tr height="30px">
+<td width="39px" align="center" style="cursor:pointer;cursor:hand;font-family:arial;font-size:10pt;font-weight:bold;color:#000000"
+onclick="doDivAjaxCall$formname('reservation_list', 'reservation_list_all', 'facility_id=$facility.id')"
+bgcolor="#7FAAFF"> $reservation_list.size() </td>
+#foreach( $ts in $topSlots )
+#set ( $d = $ts.day + 1 )
+#set ( $m = $tx.month + 1 )
+#if ( $ts.reserved == 0 )
+<td style="width:24px;font-family:arial" align="center" bgcolor="silver"> </td>
+#else
+
+
+#if ( $d < 10 ) 
+#set ( $date_select = "0" + "${d}-${month}-${year}" )
+#else
+#set ( $date_select = "${d}-${month}-${year}" )
+#end
+<td style="width:24px;cursor:pointer;font-family:arial;font-size:10pt;font-weight:bold;color:#000000" align="center" bgcolor="#7FAAFF"
+onclick="doDivAjaxCall$formname('reservation_list', 'reservation_list', 'date_show=${ts.selectDate}&facility_id=$facility.id')"
+> $ts.reservationCount </td>
+#end
+#end
+<td></td>
+</tr>
+</table>
+<br>
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<div id="reservation_list" name="reservation_list">
+#parse ( "apps/facility_booking/reservation_name_list.vm" )
+</div>
+
+</fieldset>
+
+
+<table width="100%" height="200px"><tr><td></td></tr></table>

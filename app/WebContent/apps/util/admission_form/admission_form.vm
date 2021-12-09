@@ -1,0 +1,215 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+##td { font-size: 8pt; font-family: verdana; }
+td {font-family:arial;font-size:10pt;}
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {height:25px;font-size: 8pt; font-family: verdana;font-weight:bold;border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:none;}
+.fset { background-color:#E2FEE2}
+.title { height:30px; font-size: 8pt; font-family: verdana; font-weight:bold; border-top:1px solid #C3C3C3; border-left:1px solid #C3C3C3; border-right:1px solid #C3C3C3; border-bottom:1px solid #C3C3C3;}
+
+.border {border-bottom:1px solid #C3C3C3; border-top: 1px solid #C3C3C3; border-left: 1px solid #C3C3C3; border-right: 1px solid #C3C3C3;}
+</style>
+
+
+<table width="600px" align="center">
+
+<tr><td height="100px">
+
+#parse("apps/logo/header.vm")
+
+</td></tr>
+
+<tr><td class="title">MAKLUMAT PERIBADI <span style="font-weight:normal">(<i>PERSONAL INFORMATION</i>)</span></td></tr>
+<tr><td>
+
+<table class="border"><tr><td>
+#if($applicant.photoFileName != "")
+<img src="../download?file=$!applicant.photoFileName">
+#else
+<img src="../img/nophoto.gif" border="0">
+#end
+</td></tr>
+</table>
+
+</td></tr>
+<tr><td>
+
+
+<table width="100%">
+<tr height="0px"><td style="width:160px"></td><td></tr></tr>
+
+
+<tr><td>NO KAD PENGENALAN<br><i>IDENTITY CARD NUMBER</i></td><td class="text">$!applicant.biodata.icno</td></tr>
+<tr><td>NAMA PENUH<br><i>FULL NAME</i></td><td class="text">$!applicant.biodata.name</td></tr>
+<tr><td>JANTINA<br><i>GENDER</i></td><td class="text">$!applicant.biodata.gender.name</td></tr>
+$dateFormat.applyPattern("dd MMM, yyyy")
+<tr><td>TARIKH LAHIR<br><i>DATE OF BIRTH</i></td><td class="text">#if ( $applicant.biodata.dob ) $dateFormat.format($applicant.biodata.dob) #end</td></tr>
+<tr><td valign="top">ALAMAT TETAP<br><i>PERMANENT ADDRESS</i></td><td class="text">
+
+#if ( $applicant.address.address1 && $applicant.address.address1 != "" ) $applicant.address.address1<br>#end
+#if ( $applicant.address.address2 && $applicant.address.address2 != "" ) $applicant.address.address2<br>#end
+#if ( $applicant.address.address3 && $applicant.address.address3 != "" ) $applicant.address.address3<br>#end
+#if ( $applicant.address.address4 && $applicant.address.address4 != "" ) $applicant.address.address4<br>#end
+#if ( $applicant.address.postcode && $applicant.address.postcode != "" ) $applicant.address.postcode&nbsp;#end
+#if ( $applicant.address.city && $applicant.address.city != "" ) $applicant.address.city<br>#end
+#if ( $applicant.address.state && $applicant.address.state.name != "" ) $applicant.address.state.name<br>#end
+#if ( $applicant.nationalityType && $applicant.nationalityType == "1") MALAYSIA #end
+#if ( $applicant.address.country && $applicant.address.country.name != "" ) $applicant.address.country.name<br>#end
+
+</td></tr>
+
+<tr><td>NO TELEFON<br><i>TELEPHONE</i></td><td class="text"><span style="font-weight:normal">TETAP:</span> $!applicant.biodata.telephoneNo&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:normal">BIMBIT:</span> $!applicant.biodata.mobileNo</td></tr>
+<tr><td>NEGERI KELAHIRAN<br><i>STATE BORN</i></td><td class="text">$!applicant.biodata.stateBorn</td></tr>
+<tr><td>AGAMA<br><i>RELIGION</i></td><td class="text">$!applicant.biodata.religion.name</td></tr>
+<tr><td>BANGSA<br><i>RACE</i></td><td class="text">$!applicant.biodata.race.name</td></tr>
+<tr><td>KEWARGANEGARAAN<br><i>NATIONALITY</i></td><td class="text">#if ( $applicant.nationalityType == "1" ) WARGANEGARA MALAYSIA #else $!applicant.biodata.nationality.name #end</td></tr>
+</table>
+
+</td></tr>
+
+<tr><td height="20px"></td></tr>
+<tr><td class="title">MAKLUMAT PROGRAM <span style="font-weight:normal">(<i>PROGRAMME INFORMATION</i>)</span></td></tr>
+<tr><td>
+
+<table width="100%">
+<tr height="0px"><td style="width:160px"></td><td></tr></tr>
+<tr><td>NOMBOR MATRIK<br><i>MATRIC NUMBER</i></td><td class="text">$!student.matricNo</td></tr>
+<tr><td>PROGRAM<br><i>PROGRAMME</i></td><td class="text">$!student.program.name</td></tr>
+<tr><td>TARIKH DAFTAR<br><i>REGISTER DATE</i></td><td class="text">#if ( $student.registerDate ) $dateFormat.format($student.registerDate) #end</td></tr>
+</table>
+</td></tr>
+
+
+<tr><td height="20px"></td></tr>
+<tr><td class="title">KELULUSAN AKADEMIK <span style="font-weight:normal">(<i>ACADEMIC QUALIFICATION</i>)</span></td></tr>
+<tr><td>
+
+<table width="100%">
+<tr height="0px"><td style="width:160px"></td><td></tr></tr>
+<tr><td>MAKLUMAT SPM<br><i>SPM DETAILS</i></td><td class="text"><span style="font-weight:normal">TAHUN AMBIL :</span>$!applicant.spmYear</td></tr>
+<tr><td valign="top"><br>KEPUTUSAN SPM<br><i>SPM RESULT</i></td><td class="text">
+
+<table>
+#if ( $applicant.spmResults )
+#foreach ( $r in $applicant.spmResults )
+<tr><td style="width:200px;height:20px">$r.subject.name</td><td style="width:50px" valign="top" align="center">$r.generalExamGrade.name</td></tr>
+#end
+#end
+</table>
+
+
+</td></tr>
+<tr><td>MAKLUMAT STPM<br><i>STPM DETAILS</i></td><td class="text"><span style="font-weight:normal">TAHUN AMBIL :</span>$applicant.stpmYear</td></tr>
+<tr><td valign="top"><br>KEPUTUSAN STPM<br><i>STPM RESULT</i></td><td class="text">
+
+<table>
+#if ( $applicant.stpmResults )
+#foreach ( $r in $applicant.stpmResults )
+<tr><td style="width:200px;height:20px">$r.subject.name</td><td style="width:50px" valign="top" align="center">$!r.generalExamGrade.name</td></tr>
+#end
+#end
+</table>
+
+</td></tr>
+<tr><td>MAKLUMAT MUET<br><i>MUET DETAILS</i></td><td class="text"><span style="font-weight:normal">Year: </span>$!applicant.muetYear&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:normal">Band: </span>$!applicant.muetBand</td></tr>
+<tr><td>KELULUSAN<br>AKADEMIK LAIN<br><i>OTHERS ACADEMIC QUALIFICATIONS</i></td><td class="text">
+
+#if ( $applicant.tertiaries.size() > 0 )
+<table align="center">
+<tr height="30px">
+<td align="center" style="font-weight:normal;width:100px">Institution</td>
+<td align="center" style="font-weight:normal;width:100px">Specialisation</td>
+<td align="center" style="font-weight:normal;width:100px">Study Level</td>
+<td align="center" style="font-weight:normal;width:100px">Year of<br>Completion</td>
+<td align="center" style="font-weight:normal;width:100px">CGPA</td>
+<td align="center" style="font-weight:normal;width:100px">Class Degree</td>
+</tr>
+#foreach( $t in $applicant.tertiaries )
+<tr>
+<td align="center" style="font-weight:bold;width:100px">$t.instituition</td>
+<td align="center" style="font-weight:bold;width:100px">$t.specialisation</td>
+<td align="center" style="font-weight:bold;width:100px">$t.level.name</td>
+<td align="center" style="font-weight:bold;width:100px">$t.year</td>
+<td align="center" style="font-weight:bold;width:100px">$t.cgpa</td>
+<td align="center" style="font-weight:bold;width:100px">$t.degreeClass.name</td>
+</tr>
+#end
+</table>
+#end
+
+
+</td></tr>
+
+</table>
+</td></tr>
+
+<tr><td height="20px"></td></tr>
+<tr><td class="title">MAKLUMAT TAMBAHAN <span style="font-weight:normal">(<i>ADDITIONAL INFORMATION</i>)</span></td></tr>
+<tr><td>
+
+<table width="100%">
+<tr height="0px"><td style="width:160px"></td><td></tr></tr>
+<tr><td>NAMA IBU/BAPA/PENJAGA<br><i>NAME OF PARENT/GUARDIAN</i></td><td class="text">$!applicant.guardianName</td></tr>
+<tr><td>NO K/P IBU/BAPA/PENJAGA<br><i>PARENT/GUARDIAN I.C. NUMBER</i></td><td class="text">$!applicant.guardianICNo</td></tr>
+<tr><td>NOMBOR TELEFON<br><i>TELEPHONE NUMBER</i></td><td class="text">$!applicant.guardianTelephoneNo</td></tr>
+<tr><td>PEKERJAAN<br><i></i>OCCUPATION</td><td class="text">$!applicant.guardianOccupation</td></tr>
+<tr><td>HUBUNGAN<br><i></i>RELATIONSHIP</td><td class="text">$!applicant.guardianRelationship</td></tr>
+
+</table>
+</td></tr>
+
+<tr><td height="20px"></td></tr>
+<tr><td class="title">PERAKUAN</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td align="center">
+<span style="font-weight:bold">
+SAYA MENGAKU SEMUA BUTIR YANG DIBERIKAN DALAM PERMOHONAN INI ADALAH BETUL<br> SEPANJANG PENGETAHUAN SAYA.
+SAYA AKUI PIHAK KOLEJ BERHAK MENOLAK KEMASUKAN INI PADA BILA-BILA MASA SEKIRANYA DIDAPATI MANA-MANA KETERANGAN
+DAN SALINAN SIJIL-SIJIL YANG SAYA<br> KEMUKAKAN ADALAH TIDAK BENAR.<br>
+</span>
+<span style="font-weight:normal;"><i>
+I CERTIFY THAT THE INFORMATION GIVEN IN THIS APPLICATION IS CORRECT TO THE BEST OF MY<br>
+KNOWLEDGE.  I ACKNOWLEDGE THAT THE COLLEGE RESERVES THE RIGHT TO REJECT MY ADMISSION AT
+ANY TIME SHOULD ANY INFORMATION AND COPIES OF CERTIFICATES PRESENTED ARE FRAUDULENT.</i>
+</span>
+</td></tr>
+<tr><td>
+<table align="center">
+<tr><td style="height:100px;width:200px; border-bottom:1px solid #C3C3C3;">&nbsp;</td><td style="width:50px">&nbsp;</td><td style="width:200px; border-bottom:1px solid #C3C3C3;">&nbsp;</td></tr>
+<tr><td align="right">TANDA TANGAN PEMOHON</td><td></td><td>TARIKH</td></tr>
+</table>
+</td></tr>
+</table>
+</td></tr>
+
+
+<tr><td height="20px"></td></tr>
+<tr><td class="title">DOKUMEN</td></tr>
+<tr><td>
+<table width="100%">
+<tr><td width="50%" valign="top">
+
+<table>
+<tr><td style="width:10px"><input type="checkbox"></td><td>2 KEPING GAMBAR</td></tr>
+<tr><td style="width:10px"><input type="checkbox"></td><td>SALINAN KAD PENGENALAN</td></tr>
+<tr><td style="width:10px"><input type="checkbox"></td><td>SALINAN SIJIL KELAHIRAN</td></tr>
+<tr><td style="width:10px"><input type="checkbox"></td><td>SALINAN SIJIL SPM</td></tr>
+<tr><td style="width:10px"><input type="checkbox"></td><td>SALINAN SIJIL STPM</td></tr>
+<tr><td style="width:10px"><input type="checkbox"></td><td>SALINAN SIJIL MUET</td></tr>
+</table>
+
+</td><td valign="top">
+
+<table>
+<tr><td style="width:10px"><input type="checkbox"></td><td>SALINAN SIJIL DIPLOMA</td></tr>
+<tr><td style="width:10px"><input type="checkbox"></td><td>SALINAN SIJIL BERHENTI</td></tr>
+<tr><td style="width:10px"><input type="checkbox"></td><td>RM 10</td></tr>
+</table>
+
+</td></tr>
+</table>
+</td></tr>
+</table>

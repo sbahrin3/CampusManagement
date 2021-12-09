@@ -1,0 +1,20 @@
+#if ( $student )
+<table width="100%">
+<tr><td style="width:100px">Matric No:</td><td>$student.matricNo</td></tr>
+<tr><td>Name:</td><td>$student.biodata.name</td></tr>
+
+</table>
+
+<table width="100%">
+<tr><td>
+<br>
+Click button "LOGIN TO KOHA" below to open your KOHA System.
+</td></tr>
+<tr><td>
+<iframe frameborder="0" width="100%" height="50px" src="../servlet/educate.koha.LoginServlet?url=http://opac/cgi-bin/koha/opac-user.pl&userid=$!koha_user.id&password=$!koha_user.password"></iframe>
+</td></tr>
+<tr><td>
+<b>Note:</b> Once you logged into KOHA, do not change your password there.
+</td></tr>
+</table>
+#end

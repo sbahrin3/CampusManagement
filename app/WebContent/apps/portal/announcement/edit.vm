@@ -1,0 +1,44 @@
+<table style="width:100%">
+
+<tr>
+<td>
+Title:<br/>
+<input name="announcement_title" style="width:100%" value="$!announcement.title">
+</td>
+</tr>
+
+<tr>
+<td>
+Expiry Date:<br/>
+#if ( $announcement.dateExpired ) #set ( $dateValue = $dateFormat.format($announcement.dateExpired)) #else #set ( $dateValue = "") #end
+$html.dateField.name("announcement_expired").value("$!dateValue").style("width:200px")
+</td>
+</tr>
+
+<tr>
+<td>
+Announcement Text:<br/>
+<textarea name="announcement_text" style="height:100px;width:100%">$!announcement.text</textarea>
+</td>
+</tr>
+
+<tr><td>
+       <input class="text" type="file" id="document" name="document" style="width:200px">&nbsp;
+        <input class="button" type="button" value="Upload" onclick="uploadFile('$!announcement.id', 'document', 'divUploadFile')">
+        <input type="hidden" id="documentName" name="documentName" value="">
+        <div id="divUploadFile"></div>		
+</td></tr>
+
+#if ( $announcement.fileName )
+<tr><td>
+	
+	Uploaded Document: $announcement.fileName
+		
+</td></tr>
+#end
+<tr><td>
+<input type="button" value="BACK" onclick="doDivAjaxCall$formname('div_${_moduleId}','list_announcements','')">
+<input type="button" value="SAVE" onclick="doDivAjaxCall$formname('div_${_moduleId}','save_announcement','announcement_id=$announcement.id')">
+</td></tr>
+
+</table>

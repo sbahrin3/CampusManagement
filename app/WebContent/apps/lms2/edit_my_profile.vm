@@ -1,0 +1,70 @@
+<style>
+		#div_photo {
+			margin: 10px 0 0 10px; /* Just while testing, to make sure we return the correct positions for the image & not the window */
+		}
+		</style>
+
+<table width="1000px" align="center" cellspacing="0" cellpadding="0" style="border-right:1px solid #C3C3C3;" border="0">
+<tr><td valign="top" style="width:200px;">
+
+<table width="100%"><tr><td class="module_title">Edit My Profile</td></tr></table>
+
+</td><td valign="top" style="width:700px;border-left:1px solid #C3C3C3;border-bottom:1px solid #C3C3C3">
+
+##inner table start
+<table width="100%"><tr><td style="width:240px" valign="top"> 
+
+<table width="100%" border="0">
+<tr><td style="width:100px" valign="top">
+<div id="div_photo" name="div_photo">#parse( "apps/lms2/div_photo.vm" )</div>
+<div name="div_upload_photo" id="div_upload_photo" style="position:absolute;width:500px;height:270px;visibility:hidden;border-style:solid;border-color:#B4B4B4;background-color:#ffffff";></div>
+</td></tr>
+
+<tr><td>
+<input class="gradient" style="height:30px;font-weight:bold" type="button" value="Change Photo..." 
+onclick="$('div_upload_photo').style.visibility='visible';doDivAjaxCall3$formname('div_upload_photo','upload_photo','')">
+</td></tr>
+</table>
+
+
+##inner table middle
+</td><td> 
+
+<table width="100%" border="0">
+<tr height="30px">
+<td colspan="3" align="right">
+<div id="div_update" name="div_update" style="text-align:right"></div>
+</td>
+</tr>
+<tr>
+<td style="width:100px;font-weight:bold" align="right">Name</td>
+<td style="width:5px;font-weight:bold">:</td>
+<td><input class="text_input" name="userprofile_name" value="$!userprofile.userName" onchange="doDivAjaxCall$formname('div_update','save_userprofile_name','')"></td></tr>
+</tr>
+
+</table>
+
+
+<br><br><br><br><br><br><br>
+<table width="100%"><tr><td align="right">
+<input class="gradient" style="height:30px;font-weight:bold" type="button" value="Back" onclick="doDivAjaxCall$formname('div_main','show_main','')">
+</td></tr></table>
+
+##inner table end xx
+</td></tr></table>
+
+
+
+
+
+
+</td></tr></table>
+
+
+
+<input type="hidden" id="x1" name="x1">
+<input type="hidden" id="y1" name="y1">
+<input type="hidden" id="x2" name="x2">
+<input type="hidden" id="y2" name="y2">
+<input type="hidden" id="width" name="width">
+<input type="hidden" id="height" name="height">

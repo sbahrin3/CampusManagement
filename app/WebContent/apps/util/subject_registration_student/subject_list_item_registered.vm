@@ -1,0 +1,49 @@
+
+#set ( $_found = "no" )
+#foreach ( $_s in $list_dropped )
+#if ( $_s.id == $s.id ) #set ( $_found = "yes" ) #end
+#end
+
+#if ( $_found == "yes" )
+#set ( $bgcolor = "#FF3333" )
+#else
+#set ( $bgcolor = "#99FFFF" )
+#end
+
+<table height="2px" width="100%" cellspacing="0"><tr><td></td></tr></table>
+
+<table width="100%" cellspacing="0">
+<tr height="30px"  bgcolor="$bgcolor">
+<td width="30px">#if ( $_found == "yes" ) * #end</td>
+<td width="100px">$s.subject.code</td>
+<td>$s.subject.name</td>
+<td width="100px" align="center">$s.subject.credithrs</td>
+<td width="150px" align="right">
+
+#set ( $disabled = "" )
+#if ( $student_mode )
+#if ( $outstanding_amount > 0 ) #set ( $disabled = "disabled" ) #end
+#end
+
+#if ( $_found == "no" )
+	#if ( $subjectRegMapper.get("$s.subject.id").category.mandatory )
+		
+		##if ( $allowSubjectRegister ) #set ( $disabled = "" ) #else #set ( $disabled = "disabled" ) #end
+		#set ( $disabled = "" )
+		<input $disabled class="gradient" type="button" style="height:30px;width:150px;font-weight:bold"  value="DROP Subject" onclick="doDivAjaxChainCall$formname('div_subject_$s.id','subject_drop','subject_reg_id=$s.id','div_reg_status','reg_status','')">
+	
+		
+	#else
+		
+		##if ( $allowSubjectRegister ) #set ( $disabled = "" ) #else #set ( $disabled = "disabled" ) #end
+		#set ( $disabled = "" )
+		<input $disabled class="gradient" type="button" style="height:30px;width:150px;font-weight:bold"  value="DROP Subject" onclick="doDivAjaxChainCall$formname('div_subject_$s.id','subject_drop','subject_reg_id=$s.id','div_reg_status','reg_status','')">
+	
+	#end
+
+#else
+	<input $disabled class="gradient" type="button" style="height:30px;width:150px;font-weight:bold"  value="Cancel DROP" onclick="doDivAjaxChainCall$formname('div_subject_$s.id','cancel_subject_drop','subject_reg_id=$s.id','div_reg_status','reg_status','')">
+#end
+</td>
+</tr>
+</table>

@@ -1,0 +1,12 @@
+<select name="cityId" id="cityId" class="texts">
+	#if ( $cities.size() > 1 )
+    	<option value="">-- Select City --</option>
+    	#foreach ( $c in $cities )
+    		<option value="$c.code" #if ( $r.city.code == $c.code ) selected #end>$c.name.toUpperCase()</option>
+    	#end
+	#else
+		#foreach ( $c in $cities )
+    		<option value="$c.code">$c.name.toUpperCase()</option>
+    	#end
+	#end
+</select>

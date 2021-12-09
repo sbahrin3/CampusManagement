@@ -1,0 +1,19 @@
+<table>
+<tr>
+<td style="width:100px">Program: </td>
+<td>
+<select class="form-control" style="width:400px" id="programId" name="programId" onchange="if ( this.value == '' ) return;doDivAjaxCall$formname('divMain','getProgram','')">
+<option value=""></option>
+#foreach ( $p in $programs )
+<option value="$p.id">$p.code - $p.name</option>
+#end
+</select>
+</td>
+<td>&nbsp;</td>
+<td>
+<button class="btn btn-primary" type="button" onclick="doDivAjaxCall$formname('divMain','getProgram','')">Get...</button>
+</td>
+</tr>
+
+
+</table>

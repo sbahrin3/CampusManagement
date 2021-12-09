@@ -1,0 +1,35 @@
+<div id="listOfSubjects">
+
+<fieldset>
+<legend class="legend">List of Subjects</legend>
+
+
+##HIDDEN FIELDS
+<input type="hidden" name="subjectGroupId" value="$!subjectGroup.id">
+
+<table cellspacing="0" cellpadding="2" style="width:100%">
+<tr style="height:30px; background-color:#f4f4f3;">
+<td>
+<table>
+<tr><td style="width:120px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td>Faculty</td><td>:</td><td style="font-weight:bold">$!faculty.name</td></tr>
+<tr><td>Subjects Group</td><td>:</td><td style="font-weight:bold">$!subjectGroup.name</td></tr>
+</table>
+</td>
+<td align="right" valign="top">
+#if ( !$classroomMode )
+	<button class="btn btn-warning" type="button" value="Add New Subject" onclick="$('entrySubject').style.visibility='visible';doDivAjaxCall$formname('entrySubject','entrySubject','')">Add Subject</button>
+#end
+<button class="btn btn-success" type="button" value="Back" onclick="backToGroupList()">Back</button>
+</td>
+</tr>
+<tr><td>
+<div class="shadow" id="entrySubject" style="visibility:hidden;background-color:#fff;position:absolute;border:1px">test</div>
+</td></tr>
+</table>
+<br/>
+<div id="divListSubjects">#parse("$path/divListSubjects.vm")</div>
+</fieldset>
+
+</div>
+

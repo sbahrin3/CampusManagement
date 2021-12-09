@@ -1,0 +1,141 @@
+<table class="table">
+
+
+
+<tr>
+<td  style="width:150px">Name:</td>
+<td  style="font-weight:bold;" ><input class="form-control" name="name" style="width:100%" value="$student.biodata.name"></td>
+</tr>
+
+#if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td  style="">IC No:*</td>
+<td  style="font-weight:bold" ><input class="form-control" name="icno" style="width:100%" value="$student.biodata.icno"></td>
+</tr>
+<tr>
+<td  style="">Passport No:</td>
+<td  style="font-weight:bold" ><input class="form-control" name="passport" style="width:100%" value="$!student.biodata.passport"></td>
+</tr>
+#else
+<tr>
+<td  style="">Passport No:*</td>
+<td  style="font-weight:bold" ><input class="form-control" name="passport" style="width:100%" value="$!student.biodata.passport"></td>
+</tr>
+<tr>
+<td  style="">IC No:</td>
+<td  style="font-weight:bold" ><input class="form-control" name="icno" style="width:100%" value="$student.biodata.icno"></td>
+</tr>
+#end
+
+<tr>
+<td  style="">Date Of Birth:</td>
+<td  style="font-weight:bold" >
+#set ( $dob = "" )
+#if ( $student.biodata.dob ) #set ( $dob = $dateFormat.format($student.biodata.dob ) ) #end
+$html.dateField.name("date_of_birth").value("$dob")
+</td>
+</tr>
+
+<tr>
+<td >Nationality:</td>
+<td  style="font-weight:bold" >
+#set ( $_nationality_name = "" )
+#if ( $student.applicant.nationalityType == "1" ) #set ( $_nationality_name = "MALAYSIA" ) #else #set ( $_nationality_name = $student.biodata.nationality.name ) #end
+<select class="form-control" name="nationality_id" onchange="doDivAjaxCall$formname('div_address','change_nationality','')">
+<option value=""> - select nationality - </option>
+#foreach( $nationality in $nationalities )
+<option value="$nationality.id" #if ( $_nationality_name == $nationality.name ) selected #end>$nationality.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td >Gender:</td>
+<td  style="font-weight:bold" >
+<select class="form-control" name="gender_id">
+<option value="">- select gender -</option>
+#foreach( $gender in $genders )
+<option value="$gender.id" #if ( $student.biodata.gender.id == $gender.id ) selected #end>$gender.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td >Race:</td>
+<td  style="font-weight:bold" >
+<select class="form-control" name="race_id">
+<option value="">- select race -</option>
+#foreach( $race in $races )
+<option value="$race.id" #if ( $student.biodata.race.id == $race.id ) selected #end>$race.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td >Telephone:</td>
+<td  style="font-weight:bold" ><input class="form-control" name="telephone" style="width:100%" value="$!student.biodata.telephoneNo"></td>
+</tr>
+
+<tr>
+<td >Mobile:</td>
+<td  style="font-weight:bold" ><input class="form-control" name="mobile_no" style="width:100%" value="$!student.biodata.mobileNo"></td>
+</tr>
+
+<tr>
+<td >Email:</td>
+<td  style="font-weight:bold" ><input class="form-control" name="email" style="width:100%" value="$!student.biodata.email"></td>
+</tr>
+
+<tr>
+<td >Email 2:</td>
+<td  style="font-weight:bold" ><input class="form-control" name="email2" style="width:100%" value="$!student.biodata.email2"></td>
+</tr>
+
+<tr>
+<td >Student Type:</td>
+<td  style="font-weight:bold" >
+##<input name="email2" style="width:100%" value="$!student.biodata.studentType">
+
+<select class="form-control" name="studentType">
+<option value="">-Select-</option>
+<option value="1" #if ( $student.studentType == "1" ) selected #end>Local</option>
+<option value="2" #if ( $student.studentType == "2" ) selected #end>International</option>
+</select>
+
+
+</td>
+</tr>
+
+
+<tr>
+<td  style="width:100px"></td>
+<td  align="right">
+
+	<button type="button" class="btn btn-success" onclick="doDivAjaxCall$formname('div_biodata','save_biodata','')">SAVE BIODATA</button>
+			
+</td>
+</tr>
+
+<tr>
+<td >&nbsp;</td>
+<td ></td>
+</tr>
+
+<tr><td colspan="2">
+<div id="div_address" name="div_address">
+	#parse( "apps/student_information/div_address1.vm" )
+</div>
+</td></tr>
+
+
+
+<tr>
+<td  style="width:100px"></td>
+<td  align="right">
+<button type="button" class="btn btn-success" onclick="doDivAjaxCall$formname('div_biodata','save_biodata','')">SAVE BIODATA</button>
+</td>
+</tr>
+</table>

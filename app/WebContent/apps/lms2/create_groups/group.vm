@@ -1,0 +1,59 @@
+#if ( $group )
+<input type="hidden" name="group_id" value="$!group.id">
+<script>
+$('group_name').innerHTML = "$!group.name";
+</script>
+<table cellspacing="2" cellpadding="0" border="0">
+<tr>
+
+#set ( $counter = 0 )
+#set ( $ucounter = 0 )
+#foreach( $u in $member_list )
+
+#set ( $counter = $counter + 1 )
+
+<td valign="top">
+
+<table style="width:100px;height:100px" cellspacing="0" cellpadding="1"><tr><td valign="top">
+
+												<div id="group_$u.id" style="background-color:#C4D5F8;height:100px;padding:0px">
+
+												<table cellspacing="0" cellpadding="0" width="100px">
+												<tr><td align="right"><a href="javascript:void()" style="text-decoration:none" onclick="doDivAjaxCall3$formname('div_members','delete_member','member_id=$u.id&group_id=$group.id')">x</a></td></tr>
+												<tr><td align="center">
+						#if($u.userAvatarName != "")
+							<img src="../download?file=$!u.userAvatarName" border="0" width="55px">
+						#else
+<img src="../img/nophoto.gif" border="0" width="55px">
+#end
+</td></tr>
+<tr><td align="center">
+$u.userName
+</td></tr></table>
+
+
+</div>
+
+
+</td></tr></table>
+
+</td>
+
+#end
+</tr>
+</table>
+<input type="hidden" id="member_list_str" name="member_list_str">
+
+
+<script>
+droparea.scrollLeft = droparea.scrollWidth;
+
+var ms = '';
+#foreach( $u in $member_list )
+ms += '$u.id,';
+#end
+$('member_list_str').value = ms;
+</script>
+#else
+PLEASE SELECT A GROUP
+#end

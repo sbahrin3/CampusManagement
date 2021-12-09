@@ -1,0 +1,202 @@
+
+<li id="li_$cr.id" style="padding:0px">
+<input type="hidden" name="classroomIds" value="$classroomSlot.id">
+<div id="divClassroom_$cr.id" class="slot" #if ( $cr.bgcolor != "" ) style="background:$cr.bgcolor" #else style="background:$bgcolor" #end>
+
+<table width="100%" cellpadding="0" cellspacing="0" style="height:120px;border:1px solid #ccc">
+<tr><td align="center" valign="top">
+
+<table width="100%" cellpadding="0" cellspacing="0" style="height:90px">
+
+#set ( $textcolor = "#FFFFFF" )
+
+
+##-- CREATE CLASSROOM OR DIVIDER
+
+#if ( $cr.subject ) 
+	<tr>
+		<td align="center" style="color:$textcolor;text-shadow:#000 1px 1px 1px;border-bottom:1px dotted #fff">
+			#if ( $cr.subject.shortName && $cr.subject.shortName != "" )
+				$!cr.subject.code
+			#else
+				$!cr.subject.code
+			#end
+		</td>
+	</tr>
+	
+	<tr><td align="center" style="color:$textcolor;text-shadow:#000 1px 1px 1px;">
+		$!cr.classroomSection.classroomType.learningActivityType.name
+	</td></tr>
+	
+	<tr>
+			
+			##SHOULD CHANGE ROOM?
+			#set ( $roomcolor = $textcolor )
+			#if ( $cr.shouldChangeRoom )
+				#set ( $roomcolor = "#e40000" )
+			#end
+	
+		<td align="center" style="color:$roomcolor;text-shadow:#000 1px 1px 1px;border-bottom:1px dotted #fff">
+	
+		<div style="height:30px;overflow:auto;overflow-x:hidden;">
+		#if ( !$cr.grouped )
+			$!cr.room.code
+		#else
+			<b>$!cr.groupCount Groups</b>
+		#end
+		</div>
+	
+	</td></tr>
+	
+	
+	<tr><td align="center" style="color:$textcolor;text-shadow:#000 1px 1px 1px;border-bottom:1px dotted #fff">
+	#if ( !$cr.grouped )
+	
+		<div style="height:50px;overflow:auto;overflow-x:hidden;">
+		
+		#if ( $cr && $cr.classTeachers )
+			#if ( $cr.classTeachers.size() > 0 )
+			
+				#set ( $i = 0 )
+				#foreach ( $t in $cr.classTeachers )
+					##$t.teacher.code -
+    				$util.subString($t.teacher.name, 8)
+    				#if ( $i < $cr.classTeachers.size() ) </br> #end
+    			#end
+			#end
+		#end
+		
+		</div>
+		</td>
+		
+		</tr>
+		
+		<tr><td align="center" style="color:$textcolor;text-shadow:#000 1px 1px 1px;border-bottom:1px dotted #fff">
+		##studentSubjectGroups
+		<div style="height:50px;overflow:auto;overflow-x:hidden;">
+		#if ( $cr.studentSubjectGroups.size() > 0 )
+			#if ( $cr.studentSubjectGroups.size() == 1 )
+			
+				#foreach ( $g in $cr.studentSubjectGroups )
+					$g.code
+				#end
+			
+			#else
+			
+				#set ( $i = 0 )
+				#foreach ( $g in $cr.studentSubjectGroups )
+					#set ( $i = $i + 1 )
+					$g.code
+					#if ( $i < $cr.studentSubjectGroups.size() )
+						<br/>
+					#end
+				#end
+			
+			#end
+		
+		#end
+		</div>
+		
+		
+	#end
+	</td></tr>
+
+#else ##-- THIS IS DIVIDER
+	<tr>
+		<td align="center" style="color:$textcolor;text-shadow:#000 1px 1px 1px;border-bottom:1px dotted #fff">
+
+		</td>
+	</tr>
+	
+	<tr><td align="center" style="color:$textcolor;text-shadow:#000 1px 1px 1px;"></tr>
+	
+	<tr><td align="center" style="color:$textcolor;text-shadow:#000 1px 1px 1px;border-bottom:1px dotted #fff">
+
+	</td></tr>
+	
+	
+	<tr><td align="center" style="color:$textcolor;text-shadow:#000 1px 1px 1px;border-bottom:1px dotted #fff">
+		
+		<div style="height:165px"></div>
+
+	</td></tr>
+#end
+
+<tr height="30px"><td valign="middle">
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr><td>
+    <div style="padding:2px">
+    #if ( $cr.subject )
+    	#if ( $cr.combineSlotNo == 1 )
+    		<a class="icon_shadow" href="javascript:void(0)" onclick="$('div_students2').innerHTML='';$('div_students').style.display='block';doDivAjaxCall$formname('div_students2','classInfo','slot_id=${slot.id}&class_session_id=${cr.id}')"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+    	#end
+    #end
+    </div>
+    </td><td align="right">
+    <div style="padding:2px">
+    #if ( !$cr.displayId || $cr.displayId == "" )
+    	X
+    #end
+    #if ( !$view_mode )
+    
+    	#if ( $editable == "true" )
+    	
+	    	#if ( $cr.subject )
+	    		#if ( $cr.combineSlotNo == 1 )
+	    			<a class="icon_shadow" href="javascript:void(0)" onclick="doDivAjaxCall3$formname('div_move','move','classroomId=$!cr.id&week_number=$!week_number&slot_id=${slot.id}&class_session_id=${cr.id}&slotClassroomId=$!classroomSlot.id')"><i class="fa fa-arrows-alt" aria-hidden="true"></i></a>
+	    			<a class="icon_shadow" href="javascript:void(0)" onclick="doDivAjaxCall3$formname('divEditClassroom','change_room','classroomId=$!cr.id')"><i class="fa fa-building-o" aria-hidden="true"></i></a>
+	    			<a class="icon_shadow" href="javascript:void(0)" onclick="doDivAjaxCall3$formname('divEditClassroom','edit_classroom','classroomId=$!cr.id')"><i class="fa fa-clock-o" aria-hidden="true"></i></a>
+	    			#if ( $cr.autoGenerate )
+	    				<a class="icon_shadow" href="javascript:void(0)" onclick="$('confirmRemoveClassroom_$cr.id').style.display='block';"><i class="fa fa-trash" aria-hidden="true"></i></a>
+	    			#else
+	    				<a class="icon_shadow" href="javascript:void(0)" onclick="$('confirmRemoveClassroom_$cr.id').style.zIndex=2000;$('confirmRemoveClassroom_$cr.id').style.display='block';"><i class="fa fa-trash" aria-hidden="true"></i></a>
+	    			#end
+	    		#end
+	    	#else
+	    		<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('slot_$slot.id','deleteDivider','slot_id=${slot.id}&slotClassroomId=${classroomSlot.id}')"><img src="../img/delete.gif" border="0"></a>
+	    	#end
+	    	
+	    	
+    	#end
+    	
+    #end
+    </div>
+	   
+</td></tr>
+
+<tr><td align="center">
+   #if ( !$view_mode )
+    	#if ( $cr.subject )
+    		#if ( $cr.combineSlotNo == 1 )		
+            <div id="confirmRemoveClassroom_${cr.id}" style="display:none;position:absolute;background:#ebebeb;width:100px;z-index:9999">
+    			
+    			Delete?
+				#if ( $cr.autoGenerate )
+    				<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('div_timetable_main','deleteGeneratedClassroom','week_number=$!week_number&classroomId=$cr.id&slot_id=${slot.id}&class_session_id=${cr.id}&slotClassroomId=$!classroomSlot.id')">Y</a>
+    			#else
+    				<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('slot_$slot.id','delete_class_session','slot_id=${slot.id}&class_session_id=${cr.id}&slotClassroomId=$!classroomSlot.id')">Y</a>
+				#end
+				| <a href="javascript:void(0)" onclick="$('confirmRemoveClassroom_${cr.id}').style.display='none'">N</a>
+           
+            </div>
+			#end
+		#end
+	#end
+</td></tr>		
+
+</table>
+
+</td></tr>
+
+</table>
+</td></tr>
+
+<tr height="2px"><td>
+</td></tr>
+</table>
+</div>
+#if ( $cr.combineSlotNo == 1 && $cr.subject )
+	##<script>new Draggable('divClassroom_$cr.id', {revert: true});</script>
+#end
+</li>	

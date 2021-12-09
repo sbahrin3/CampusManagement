@@ -1,0 +1,72 @@
+<style>
+.texts {
+		color:#000;
+		font-weight:normal;
+		font-family:verdana;
+		font-size:8pt; 
+		width:100%; 
+		padding-left:5px; 
+		padding-top:2px; 
+		padding-bottom: 2px;
+}
+.texts:focus {
+	-moz-box-shadow: 5px 5px 5px #888; -webkit-box-shadow: 5px 5px 5px #888; box-shadow: 5px 5px 5px #888; 
+	}
+.text_readonly {
+		color:#000;
+		font-weight:bold;
+		font-family:verdana;
+		font-size:8pt; 
+		width:100%; 
+		padding-left:5px; 
+		padding-top:2px; 
+		padding-bottom: 2px;
+		border-top:none; border-bottom:none; border-left:none; border-right:none;
+}	
+.legend {
+	background-color:#DCDCDC;
+	padding: 0.2em 0.2em;
+	font-family:arial;
+	font-size:10pt;
+	font-weight:bold;
+}	
+</style>	
+
+
+
+
+
+<script>
+
+function uploadPhoto(photoId) {
+	document.${formName}.enctype='multipart/form-data';
+	document.${formName}.encoding ='multipart/form-data';
+	document.${formName}.target='upload_photo';
+	document.${formName}.action='?command=uploadPhoto&photoId=' + photoId;
+	document.${formName}.submit();
+}	
+
+</script>
+
+<iframe id="upload_photo" name="upload_photo" width="0px" height="0px" style="visibility:hidden"></iframe>
+
+#macro ( input $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value">
+</td></tr>
+#end
+
+#macro ( show $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<input readonly class="text_readonly" type="text" id="$input_id" name="$input_id" value="$value">
+</td></tr>
+#end
+
+<table width="700px" align="center"><tr><td>
+
+<div id="divSignUp">
+#parse("$path/form_signup.vm")
+</div>
+
+
+</td></tr></table>

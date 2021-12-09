@@ -1,0 +1,12 @@
+
+
+#if ( $status.period.parent ) 
+	<script>
+	$('entryLevel').value="$status.period.parent.name $status.period.name";
+	</script>
+#else 
+	<script>
+	$('entryLevel').value="$status.period.name";
+	</script>
+#end
+

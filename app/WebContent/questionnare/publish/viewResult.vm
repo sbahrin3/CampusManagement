@@ -1,0 +1,95 @@
+<script>
+$('div_report').style.display="block";
+$('div_main').style.display="none";
+</script>
+
+
+<table id="reportHandle" width="100%" style="background:#ebebeb">
+<tr style="height:30px"><td style="font-weight:bold;color:#000;font-size:10pt"></td>
+<td align="right"><input class="linkbutton" type="button" value="Close" 
+onclick="$('row_$questionnare.id').className='row_normal'; $('div_report').style.display='none';$('div_main').style.display='block';"
+>
+</td>
+</tr></table>
+
+
+<div style="margin-bottom:10px;font-weight:bold;font-size:12pt">
+	$questionnare.set.name
+</div>
+
+<table>
+
+<tr style="height:30px">
+	<td style="width:200px;border-bottom:1px solid #000;border-right:1px dotted #ccc;border-top:1px dotted #ccc;background:#ebebeb">
+	
+	</td>
+	
+	#foreach ( $part in $questionnare.set.parts )
+		#foreach( $q in $part.questions )
+			#if ( $q.question.type == "single" || $q.question.type == "multiple" )
+				<td style="width:50px;text-align:center;font-weight:bold;border-bottom:1px solid #000;border-right:1px dotted #ccc;border-top:1px dotted #ccc;background:#ebebeb">
+					$q.refNo
+				</td>
+			#end
+		#end
+	#end
+	
+	##<td style="width:80px;border-bottom:1px solid #000;border-right:1px dotted #ccc;border-top:1px dotted #ccc;"></td>
+	<td style="width:80px;border-bottom:1px solid #000;border-right:1px dotted #ccc;border-top:1px dotted #ccc;background:#ebebeb;font-weight:bold;text-align:center">Result</td>
+	<td style="width:80px;border-bottom:1px solid #000;border-right:1px dotted #ccc;border-top:1px dotted #ccc;background:#ebebeb;font-weight:bold;text-align:center"></td>
+</tr>
+
+#foreach ( $u in $userLogs )
+
+<tr style="height:30px">
+	<td style="border-bottom:1px dotted #ccc;border-right:1px dotted #ccc">
+		$u.userId
+	</td>
+	
+	#set ( $answer = $userAnswers.get("$u.userId") )
+	#set ( $result = $userResults.get("$u.userId") )
+	#foreach ( $part in $questionnare.set.parts )
+		#foreach( $q in $part.questions )
+			#if ( $q.question.type == "single" || $q.question.type == "multiple" )
+			
+				#if ( $answer.get("$q.refNo") ) 
+					#set ( $bgcolor = "#f40e0e" )
+					##if ( $q.question.correctSingleChoice == $answer.get("$q.refNo") )
+					#if ( $result.get("$q.refNo" ) )
+						#set ( $bgcolor = "#2580fd" )
+					#end
+					<td style="font-size:12pt;text-align:center;border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;color:$bgcolor">
+						##$answer.get("$q.refNo")
+						#if ( $result.get("$q.refNo" ) )
+							&#10004;
+						#else
+							&#10008;
+						#end
+					</td>
+				
+				#else
+				
+					<td style="text-align:center;border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;background:#fff">
+						&nbsp;
+					</td>
+				
+				#end
+			#end
+		#end
+	#end
+	
+	##<td style="border-bottom:1px dotted #ccc;border-right:1px dotted #ccc"></td>
+	<td style="text-align:center;border-bottom:1px dotted #ccc;border-right:1px dotted #ccc">
+		#if ( $answer.get("percentage") )
+			$answer.get("percentage") %
+		#end
+		##<br/>$answer.get("total_count") - $answer.get("correct_count")
+	</td>
+	<td style="text-align:center;border-bottom:1px dotted #ccc;border-right:1px dotted #ccc">
+		<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('div_transcript','getTranscript','userLogId=$u.id')">Transcript</a>
+	</td>
+
+</tr>
+
+#end
+</table>

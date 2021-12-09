@@ -1,0 +1,31 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {font-family:verdana;font-size:10pt;font-weight:bold;border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+.fset { background-color:#E2FEE2}
+</style>
+
+<table width="900px" align="left">
+<tr><td align="right">
+Ref No/ICNo/Passport: 
+<input id="find_no" name="find_no" style="width:150px">
+<input class="gradient" style="height:25px" type="button" value="Find.." onclick="doDivAjaxCall$formname('div_register','get_applicant','')">
+</td></tr>
+
+<tr><td>
+
+<fieldset class="fset" style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">REGISTRATION</legend>
+
+<div id="div_register" name="div_register">
+#parse("apps/util/student_quick_register2/entry.vm")
+</div>
+
+</fieldset>
+
+</td></tr>
+<tr><td>
+<div id="div_empty"></div>
+
+</td></tr></table>

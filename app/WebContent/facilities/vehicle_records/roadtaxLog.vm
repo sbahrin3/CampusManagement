@@ -1,0 +1,28 @@
+<script>
+$('divRemark').style.display="block";
+</script>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr style="height:30px;background:#AFAEAE"><td style="font-weight:bold;color:#fff;">Road Tax/Insurance Renewal Log</td>
+</table>
+
+<table>
+<tr><td>Renewal Date</td><td>:</td><td>
+$dateFormat.applyPattern("dd-MM-yyyy")
+<input class="texts" style="width:100px" id="renewalDate" name="renewalDate" #if ( $roadtaxLog.renewalDate ) value="$dateFormat.format($roadtaxLog.renewalDate)" #end>
+<script> new JsDatePick({ useMode:2, target:"renewalDate", dateFormat:"%d-%m-%Y" }); </script>
+</td></tr>
+<tr><td>Expiry Date</td><td>:</td><td>
+<input class="texts" style="width:100px" id="expiryDate" name="expiryDate" #if ( $roadtaxLog.expiryDate ) value="$dateFormat.format($roadtaxLog.expiryDate)" #end>
+<script> new JsDatePick({ useMode:2, target:"expiryDate", dateFormat:"%d-%m-%Y" }); </script>
+</td></tr>
+
+<tr><td>Insured Value</td><td>:</td><td><input class="texts" name="insuredValue" value="$!roadtaxLog.insuredValue"></td></tr>
+
+</table>
+
+
+<table width="100%" style="height:40px"><tr><td align="center">
+<input class="linkbutton" type="button" value="Save" onclick="$('divRemark').style.display='none';doDivAjaxCall3$formname('roadtaxLogRecords','updateRoadtaxLog','roadtaxLogId=$!roadtaxLog.id&vehicleId=$!vehicle.id')">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('divRemark').style.display='none';">
+</td></tr></table>

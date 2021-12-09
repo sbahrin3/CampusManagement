@@ -1,0 +1,115 @@
+
+<script>
+jQuery.fn.filterByText = function(textbox, selectSingleMatch) {
+  return this.each(function() {
+    var select = this;
+    var options = [];
+    _jq(select).find('option').each(function() {
+      options.push({value: _jq(this).val(), text: _jq(this).text()});
+    });
+    _jq(select).data('options', options);
+    _jq(textbox).bind('change keyup', function() {
+      var options = _jq(select).empty().scrollTop(0).data('options');
+      var search = _jq.trim(_jq(this).val());
+      var regex = new RegExp(search,'gi');
+
+      _jq.each(options, function(i) {
+        var option = options[i];
+        if(option.text.match(regex) !== null) {
+          _jq(select).append(
+             _jq('<option>').text(option.text).val(option.value)
+          );
+        }
+      });
+      if (selectSingleMatch === true && 
+          _jq(select).children().length === 1) {
+        _jq(select).children().get(0).selected = true;
+      }
+    });
+  });
+};
+
+_jq(function() {
+    _jq('#subjectId').filterByText(_jq('#subjectFilter'), true);
+});
+</script>
+
+<table width="100%" cellspacing="0">
+<tr height="30px" bgcolor="#B4B4B4"><td colspan="2">
+
+<table style="height:30px;width:100%;background-color:#0000FF;" cellspacing="0"><tr><td>
+<span id="slot_name" style="font-weight:bold;color:#fff"></span>
+</td>
+<td style="width:50px" align="right">
+
+</td></tr></table>
+
+</td>
+</tr>
+<tr>
+<td>Subject:</td>
+<td nowrap>
+	##<input class="text" id="subjectName" name="subjectName">
+	<input class="text" id="subjectFilter" style="width:70px">
+    <select class="text" name="subject_id" id="subjectId" style="width:310px" onclick="selectAgain();">
+    <option value="">- Select Subject -</option>
+    #foreach( $subject in $subjects )
+    <option value="$subject.id">$!subject.code $!subject.name ($!subject.faculty.name)</option>
+    #end
+    </select>
+    
+	<input class="linkbutton" type="button" style="padding:3px" value="..." onclick="doDivAjaxCall$formname('div_coteachers','get_teachers3','')">
+
+</td>
+</tr>
+
+
+<tr style="height:30px">
+<td valign="top">Teacher(s):</td>
+<td>
+<div id="div_coteachers" name="div_coteachers">
+
+Please select subject first.
+
+</div>
+</td>
+</tr>
+
+<tr>
+<td>Classroom:</td>
+<td>
+<select class="text" name="classroomSection_id" id="classroomSectionId" style="width:100%" 
+onchange="doDivAjaxCall$formname('div_rooms','get_room_list','')">
+<option value="">- Select Classroom -</option>
+#foreach( $section in $classroomSections )
+<option value="$section.id">$section.name</option>
+#end
+</select>
+</td>
+</tr>
+
+
+##<tr><td style="width:100px">Topic:</td><td><input class="text" name="subject_topic"></td></tr>
+
+<tr>
+<td>Room:</td>
+<td>
+<div id="div_rooms" name="div_rooms">
+<select class="text" name="room_id" id="roomId" style style="width:100%"><option value=""></option></select>
+</div>
+</td>
+</tr>
+
+
+<tr>
+<td>
+<input class="linkbutton" type="button" value="[]" style="width:50px;height:40px;font-weight:bold" 
+onclick="doDivAjaxCall$formname('slot_' + $('_slot_id').value,'addDivider','slot_id=' + $('_slot_id').value);$('div_ttb_params').style.display='none';">
+</td>
+<td align="right">
+<input type="hidden" name="_slot_id" value="">
+<input class="linkbutton" type="button" id="btnAddClass" value="Add Classroom" style="width:150px;height:40px;font-weight:bold" onclick="if ( checkClassroomInput() ) { doDivAjaxCall$formname('slot_' + $('_slot_id').value,'add_class_session','slot_id=' + $('_slot_id').value);$('div_ttb_params').style.display='none'; }">
+<input class="linkbutton" type="button" value="Cancel" style="width:100px;height:40px;font-weight:bold" onclick="$('div_ttb_params').style.display='none';">
+</td></tr>
+</table>
+<input type="hidden" id="teacherSelected" name="teacherSelected" value="">

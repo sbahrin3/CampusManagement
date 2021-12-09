@@ -1,0 +1,2 @@
+<script src="../js/canvasjs.min.js"></script>
+#parse("apps/payment_statistic/dataLineChart.vm")

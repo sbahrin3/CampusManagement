@@ -1,0 +1,60 @@
+<input id="marks_start" name="marks_start" value="" style="width:1px;border-top:none;border-bottom:none;border-left:none;border-right:none" onkeydown="if ( event.keyCode == 13 ) { $('marks_1').focus(); $('marks_1').select(); }">
+<table width="100%"><tr><td style="font-weight:bold">
+
+</td></tr></table>
+<table width="100%" cellspacing="0">
+<tr height="30px" class="gradient" style="font-weight:bold">
+<td style="width:20px">&nbsp;</td>
+<td style="width:100px;font-weight:bold">Matric No</td>
+<td style="font-weight:bold">Name</td>
+<td style="width:80px">&nbsp;</td>
+<td style="width:80px">&nbsp;</td>
+</tr>
+</table>
+
+
+<div id="div_window_marks" style="overflow:auto;overflow-x:hidden;height:400px;">
+
+<table align="center" width="100%" cellspacing="0">
+
+<tr height="0px" class="gradient">
+<td style="width:20px"></td>
+<td style="width:100px"></td>
+<td></td>
+<td style="width:80px"></td>
+<td style="width:80px"></td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach ( $s in $students )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) 
+#set ( $bgcolor="#FFFFCC" )
+#else 
+#set ( $bgcolor="#D4FFD4" )
+#end
+
+<tr id="tr_$cnt" height="40px" bgcolor="$bgcolor"> 
+<td class="gradient" align="right">$cnt.</td>
+<td>$s.studentStatus.student.matricNo</td>
+<td>$s.studentStatus.student.biodata.name</td>
+<td>
+<select id="section_$s.id" name="section_$s.id" onchange="doDivAjaxCall$formname('div_$s.id','update_section','student_subject_id=$s.id')">
+<option value=""> - </option>
+#foreach( $section in $sections )
+<option value="$section.id" #if ( $section.id == $s.section.id ) selected #end>$section.name</option>
+#end
+</select>
+</td>
+<td>
+<div id="div_$s.id" name="div_$s.id"></div>
+</td>
+</tr>
+#end
+</table>
+</div>
+
+
+</td></tr></table>
+
+

@@ -1,0 +1,29 @@
+
+<table>
+<tr>
+<td style="width:50px"><input class="text" id="code" name="code" style="width:100%"></td>
+<td style="width:200px"><input class="text" id="name" name="name" style="width:100%"></td>
+
+<td style="width:200px">
+<select class="text" id="exclude_cgpa" name="exclude_cgpa">
+<option value="yes">Not Calculated for GPA</option>
+<option value="no">Calculated for GPA</option>
+</select>
+</td>
+
+
+<td style="width:200px">
+<select class="text" id="reset_mark" name="reset_mark">
+<option value="yes">Reset Mark to 0</option>
+<option value="no">Keep Mark</option>
+</select>
+</td>
+
+
+<td>
+<input type="button" class="linkbutton" value="Add" onclick="doDivAjaxCall$formname('div_statuses','add_status','')">
+<input type="button" class="linkbutton" value="Cancel" onclick="doDivAjaxCall$formname('div_entry','cancel_edit','');$('div_entry').style.display='none';">
+</td>
+</tr>
+</table>
+

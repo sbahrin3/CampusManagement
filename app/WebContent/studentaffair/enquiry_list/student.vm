@@ -1,0 +1,38 @@
+<script>
+$('studentInfo').style.display='block';
+</script>
+<table width="100%">
+<tr><td style="height:30px;background:#B5BBBF;color:#fff;font-weight:bold">Student Information</td></tr>
+</table>
+
+<div style="background:#fff">
+<table>
+<tr><td>
+<table>
+<tr><td style="width:150px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+
+<tr><td style="">Name</td><td style="">:</td><td style="">$student.biodata.name</td></tr>
+<tr><td style="">IC No</td><td style="">:</td><td style="">$student.biodata.icno</td></tr>
+<tr><td style="">Matric No</td><td style="">:</td><td style="">$student.matricNo</td></tr>
+<tr><td style="">Faculty</td><td style="">:</td><td style="">$student.program.course.faculty.name</td></tr>
+<tr><td style="">Programme</td><td style="">:</td><td style="">$student.program.displayName</td></tr>
+<tr><td style="">Intake</td><td style="">:</td><td style="">$student.intake.name</td></tr>
+<tr><td style="">Semester</td><td style="">:</td><td style="">$studentStatus.period.name</td></tr>
+</table>
+
+</td><td valign="top">
+
+
+#if($student.photoFileName != "")
+<img src="../download?file=$!student.photoFileName">
+#else
+<img src="../img/nophoto.gif" border="0">
+#end
+
+</td></tr>
+</td></tr></table>
+<table width="100%">
+<tr><td align="center">
+<input class="linkbutton" type="button" value="Close" onclick="$('studentInfo').style.display='none';">
+</td></tr></table>
+</div>

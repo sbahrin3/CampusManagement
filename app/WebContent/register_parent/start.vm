@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<table>
+<tr>
+<td style="width:200px" align="center">Father</td>
+<td style="width:200px" align="center">Mother</td>
+<td style="width:200px" align="center">Other</td>
+</table>
+

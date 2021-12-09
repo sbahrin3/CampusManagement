@@ -1,0 +1,180 @@
+<table width="100%" cellspacing="3" cellpadding="4">
+
+<tr>
+<td valign="top" style="width:100px"></td>
+<td valign="top" align="right"></td>
+</tr>
+
+<tr>
+<td valign="top" style="">Name:</td>
+<td valign="top" style="font-weight:bold;" bgcolor="#EBEBEB">$student.biodata.name</td>
+</tr>
+
+##if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td valign="top" style="">IC No:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$student.biodata.icno</td>
+</tr>
+##else
+<tr>
+<td valign="top" style="">Passport No:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.biodata.passport</td>
+</tr>
+##end
+
+<tr>
+<td valign="top" style="">Date Of Birth:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">						#if ( $student.biodata.dob ) $dateFormat.format($student.biodata.dob ) #end
+						</td>
+</tr>
+
+
+#if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td valign="top">Nationality:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">MALAYSIA</td>
+</tr>
+#else
+<tr>
+<td valign="top">Nationality:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.biodata.nationality.name</td>
+</tr>
+#end
+
+<tr>
+<td valign="top">Gender:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.biodata.gender.name</td>
+</tr>
+
+<tr>
+<td valign="top">Race:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.biodata.race.name</td>
+</tr>
+
+<tr>
+<td valign="top">Telephone:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.biodata.telephoneNo</td>
+</tr>
+
+<tr>
+<td valign="top">Mobile:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.biodata.mobileNo</td>
+</tr>
+
+<tr>
+<td valign="top">Email:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.biodata.email</td>
+</tr>
+
+<tr>
+<td valign="top">Email 2:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.biodata.email2</td>
+</tr>
+
+
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top"></td>
+</tr>
+
+
+
+
+<tr>
+<td valign="top">Mailing Address:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.address.address1</td>
+</tr>
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.address.address2</td>
+</tr>
+
+				#if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td valign="top">Postcode:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.address.postcode</td>
+</tr>
+
+<tr>
+<td valign="top">City:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.address.city</td>
+</tr>
+
+<tr>
+<td valign="top">State:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.address.state.name</td>
+</tr>
+#else
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.address.address3</td>
+</tr>
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.address.address4</td>
+</tr>
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.address.country.name</td>
+</tr>
+
+#end
+
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top"></td>
+</tr>
+
+
+<tr>
+<td valign="top">Perm. Address:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.permanentAddress.address1</td>
+</tr>
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.permanentAddress.address2</td>
+</tr>
+
+				#if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td valign="top">Postcode:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.permanentAddress.postcode</td>
+</tr>
+
+<tr>
+<td valign="top">City:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.permanentAddress.city</td>
+</tr>
+
+<tr>
+<td valign="top">State:</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.permanentAddress.state.name</td>
+</tr>
+#else
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.permanentAddress.address3</td>
+</tr>
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.permanentAddress.address4</td>
+</tr>
+
+<tr>
+<td valign="top">&nbsp;</td>
+<td valign="top" style="font-weight:bold" bgcolor="#EBEBEB">$!student.permanentAddress.country.name</td>
+</tr>
+
+#end
+
+
+</table>

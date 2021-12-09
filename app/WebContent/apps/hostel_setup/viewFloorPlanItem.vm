@@ -1,0 +1,5 @@
+#if ( $h.floorPlanImageId )
+	<a href="javascript:void(0)" onclick="$('divViewFloorPlan').style.display='block';$('titleViewFloorPlan').innerHTML='$!h.name';document.getElementById('imgFloorPlan').src='../servlet/educate.sis.module.FloorPlanImgServlet?id=$!h.id&floorPlanImageId=$!h.floorPlanImageId';">View</a>
+#else
+	N/A
+#end

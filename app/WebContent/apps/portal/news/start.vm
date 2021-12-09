@@ -1,0 +1,11 @@
+<table width="800">
+<tr><td>
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('div_news','add_news','')">
+</td></tr>
+<tr><td>
+<div id="div_news">
+#parse("apps/portal/news/news.vm")
+</div>
+
+
+</td></tr></table>

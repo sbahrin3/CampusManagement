@@ -1,0 +1,48 @@
+#set ( $g = $graduate )
+
+
+<div style="text-align:center;margin-top:1.4cm;font-family:Vivaldi;font-size:22pt;">
+It is certified that
+</div>
+<div style="text-align:center;margin-top:0.5cm;font-family:Vivaldi;font-size:24pt;font-weight:bold">
+$util.capitalized($g.student.biodata.name)
+</div>
+
+<div style="text-align:center;margin-top:0.4cm;font-family:Vivaldi;font-size:22pt;">
+having followed the approved programmed of study in the
+</div>
+
+<div style="text-align:center;margin-top:0.5cm;font-family:Vivaldi;font-size:24pt;font-weight:bold">
+$g.student.program.course.faculty.name
+</div>
+
+<div style="text-align:center;margin-top:0.3cm;font-family:Vivaldi;font-size:22pt;">
+and having passed the examination and having fullfilled all other conditions
+</div>
+<div style="text-align:center;margin-top:0.5cm;font-family:Vivaldi;font-size:22pt;">
+prescribed by the university
+</div>
+<div style="text-align:center;margin-top:0.4cm;font-family:Vivaldi;font-size:22pt;">
+is hereby awarded
+</div>
+
+
+<div style="text-align:center;margin-top:0.3cm;font-family:Vivaldi;font-size:24pt;font-weight:bold">
+$g.student.program.displayName
+</div>
+
+<div style="margin-top:3.6cm">
+
+<table align="center">
+
+
+<tr>
+<td style="font-family:Vivaldi;font-size:12pt;width:200px;border-top:1px dotted #000" align="center">President</td>
+<td style="width:100px">&nbsp;</td>
+<td style="font-family:Vivaldi;font-size:12pt;width:200px;border-top:1px dotted #000" align="center">Registrar</td>
+<td style="width:100px">&nbsp;</td>
+<td style="font-family:Vivaldi;font-size:12pt;width:200px;border-top:1px dotted #000" align="center">Dean</td>
+</tr>
+
+</table>
+</div>

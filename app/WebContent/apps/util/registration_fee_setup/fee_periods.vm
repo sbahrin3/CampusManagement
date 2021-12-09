@@ -1,0 +1,22 @@
+<fieldset style="background-color:#D4E0FA;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%">
+<tr><td style="font-weight:bold">$program.code $program.name</td></tr>
+</table>
+<br>
+<table>
+<tr height="30px">
+<td class="gradient" style="font-weight:bold">Semester</td>
+<td class="gradient" style="font-weight:bold" align="center">Tuition</td>
+##<td class="gradient" style="font-weight:bold" align="center">Accomodation</td>
+</tr>
+#foreach ( $p in $periods )
+<tr>
+<td style="width:100px">$p.name</td>
+
+<td align="center"><input id="fee_tuition_$p.id" name="fee_tuition_$p.id" value='$!tuitions.get("$p.id")' style="width:50px" onchange="doDivAjaxCall$formname('div_empty','save_fee','fee_type=tuition&program_id=$program.id&period_id=$p.id')"></td>
+##<td align="center"><input id="fee_accomodation_$p.id" name="fee_accomodation_$p.id" value='$!accomodations.get("$p.id")' style="width:50px" onchange="doDivAjaxCall$formname('div_empty','save_fee','fee_type=accomodation&program_id=$program.id&period_id=$p.id')"></td>
+</tr>
+#end
+</table>
+</fieldset>

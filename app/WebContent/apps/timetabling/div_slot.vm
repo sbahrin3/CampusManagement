@@ -1,0 +1,115 @@
+
+<table style="width:100%" cellpadding="0" cellspacing="0" border="0" style="">
+<tr><td align="center" style="padding:0px">
+	<div style="height:50px;background:$slotcolor;border-bottom:1px dotted #000">
+		##$slot.posY, $slot.posX<br/>
+		#if ( $slot.slotDate ) 
+			$slotFormat.format($slot.slotDate) <br/> 
+		#elseif ( $slotDates.get($cnt)) 
+			$slotFormat.format($slotDates.get($cnt)) </br>
+		#end
+		#set ( $pos = $slot.posX - 1 )
+		<span style="font-size:8pt">
+		$slotTimeList.get($pos).label
+		</span>
+	</div>
+	
+	#if ( $slot.slotClassrooms.size() > 0 )
+		
+		<a class="icon_shadow" href="javascript:void(0)" onclick="doDivAjaxCall$formname('slot_$slot.id','rearrangeClassroomSequence','reloadSlotId=$slot.id')"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></a>
+	
+	#else
+		&nbsp;
+	#end
+</td></tr>
+
+
+<tr><td style="padding:0px">
+
+<ul id="ul_classroomList_$slot.id" style="list-style-type:none;padding:0px;">
+#foreach ( $classroomSlot in $slot.slotClassrooms )
+	
+	
+	
+	#set ( $cr = $classroomSlot.classroom )
+
+	#set ( $show = "true" )
+	#if ( $displayAll == "yes" )
+		#set ( $show = "true" )
+	#else
+	
+		##filter by displayId
+		#if ( $displayId == $cr.displayId )
+			#set ( $show = "true" )
+		#else
+			#set ( $show = "false" )
+		#end
+		
+		#if ( $cr.subject )
+			#if ( $show == "true" )
+				##filter by departments
+				#if ( $cr.hasDepartmentByGroup($userDepartments) )
+					#set ( $show = "true" )
+				#else
+					#set ( $show = "false" )
+				#end
+			#end
+		#end
+		
+	#end
+
+	#set ( $editable = "true" )
+	#if ( $displayId == $cr.displayId )
+		#if ( $cr.hasDepartmentByGroup($userDepartments) )
+			#set ( $editable = "true" )
+		#else
+			#set ( $editable = "false" )
+		#end
+	#else
+		#set ( $editable = "false" )
+	#end	
+	
+	#if ( $show == "true" )
+		#if ( $showExamOnly == "yes" )
+			#if ( $cr.classroomSection.classroomType.examType )
+				#parse("apps/timetabling/div_slot_classrooms.vm" )
+			#end
+		#else
+			#parse("apps/timetabling/div_slot_classrooms.vm")
+		#end
+	#end
+
+#end
+</ul>
+
+</td></tr>
+</table>
+
+<script>
+
+Sortable.create('ul_classroomList_$slot.id', { onUpdate:function(){ doDivAjaxCall$formname('slot_$slot.id','updateClassroomSequence','reloadSlotId=$slot.id');  } });
+
+
+#if ( $message )
+
+$('divMessage').style.display='block';
+$('divMessageInner').innerHTML = '$message';
+
+#if ( $studentsConflictType )
+	
+	#set ( $displayMessage = "" )
+	#foreach( $map in $studentsConflictMap )
+		#set ( $student = $map.get("student") )
+		#set ( $displayMessage = $displayMessage + "<br/>$student.matricNo - $student.biodata.name" )
+	#end
+	$('divMessageInner').innerHTML = "$message<br/><br/>$displayMessage"
+#end
+
+#end
+
+
+#if ( $nextSlot )
+	doDivAjaxCall3$formname('slot_$nextSlot.id','reloadSlot','reloadSlotId=$nextSlot.id&slotSequence=$!slotSequence&slotCount=$!slotCount&slotMovedId=$!slotMovedId');
+#end
+
+</script>

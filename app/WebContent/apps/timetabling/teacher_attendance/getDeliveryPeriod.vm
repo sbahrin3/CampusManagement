@@ -1,0 +1,6 @@
+<script>
+
+$('date1').value = "$!startDate";
+$('date2').value = "$!endDate";
+
+</script>

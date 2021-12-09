@@ -1,0 +1,48 @@
+<table width="100%">
+
+<tr height="20px">
+<td colspan="6" style="font-weight:bold">
+STATEMENT OF ACCOUNT
+</td></tr>
+<tr height="40px" bgcolor="lightgrey">
+<td style="font-weight:bold">Date</td>
+<td style="font-weight:bold" align="center" colspan="2">Invoiced (RM)</td>
+<td style="font-weight:bold" align="center" colspan="2">Paid (RM)</td>
+<td style="font-weight:bold" align="center">Balance</td>
+</tr>
+
+#foreach( $r in $records )
+<tr height="25px">
+<td style="width:70px">$dateFormat.format($r.date)</td>
+#if ( $r.side == 0 )
+<td style="width:180px">$r.description</td>
+<td style="width:80px" align="right">$numFormat.format($r.amount)&nbsp;&nbsp;</td>
+<td></td>
+</td><td>
+#else
+<td></td>
+</td><td>
+<td style="width:180px">$r.description</td>
+<td style="width:80px" align="right">$numFormat.format($r.amount)&nbsp;&nbsp;</td>
+#end
+<td  style="width:80px" align="right">$numFormat.format($r.balance)&nbsp;&nbsp;</td>
+</tr>
+#end
+<tr><td colspan="6"><hr/></td></tr>
+
+
+<tr>
+<td></td>
+<td colspan="2" align="right" style="font-weight:bold">
+$numFormat.format($total_invoiced)&nbsp;&nbsp;
+</td>
+<td colspan="2" align="right" style="font-weight:bold">
+$numFormat.format($total_paid)&nbsp;&nbsp;
+</td>
+<td align="right" style="font-weight:bold">
+$numFormat.format($total_balance)&nbsp;&nbsp;
+</td>
+</tr>
+
+</table>
+

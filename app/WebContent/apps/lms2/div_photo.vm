@@ -1,0 +1,40 @@
+<table>
+<tr><td>
+						#if($userprofile.userPhotoName != "")
+							<img id="image_profile" src="../download?file=$!userprofile.userPhotoName">
+						#else
+<img src="../img/nophoto.gif" border="0">
+#end
+</td></tr>
+
+#if ( $just_uploaded )
+<tr><td>
+<div id="div_avatar" name="div_avatar"></div>
+<input class="gradient" type="button" value="Create Avatar &gt;" onclick="doDivAjaxCall3$formname('div_avatar','save_avatar','')">
+</td></tr>
+#end
+</table>
+
+
+<script>
+#if ( $just_uploaded )
+		function onEndCrop( coords, dimensions ) {
+			$( 'x1' ).value = coords.x1;
+			$( 'y1' ).value = coords.y1;
+			$( 'x2' ).value = coords.x2;
+			$( 'y2' ).value = coords.y2;
+			$( 'width' ).value = dimensions.width;
+			$( 'height' ).value = dimensions.height;
+		}
+		
+				new Cropper.Img( 
+					'image_profile', 
+					{ 
+						ratioDim: { x: 100, y: 100 }, 
+						displayOnInit: true, 
+						onEndCrop: onEndCrop 
+					} 
+									);
+#end
+</script>
+

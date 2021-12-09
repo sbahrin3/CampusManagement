@@ -1,0 +1,13 @@
+#**
+<table width="100%"><tr><td align="right"><input type="button"  class="gradient" 
+style="height:30px;font-weight:bold" value="List Applicants" 
+onclick="doAjaxCall$formname('save_and_list','')"></td></tr></table>
+**#
+#parse("apps/util/applicant/page1.vm")
+
+#if ( $_institutionType != "school" )
+#parse("apps/util/applicant/page_education_background.vm")
+#end
+
+#parse("apps/util/applicant/registration_entry.vm")
+

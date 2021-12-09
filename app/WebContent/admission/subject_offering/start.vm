@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+	
+<style>
+	.row_offered { background:#F2F4CB }
+	.row_normal { background:#FFF }
+</style>
+
+<div>
+	#parse("admission/subject_offering/selectParams.vm")
+</div>
+	
+
+<div id="listSubjects" style="margin-top:10px"></div>

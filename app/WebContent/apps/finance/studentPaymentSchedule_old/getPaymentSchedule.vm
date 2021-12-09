@@ -1,0 +1,61 @@
+
+<input type="hidden" name="paymentScheduleId" value="$paymentSchedule.id">
+
+<div style="padding:10px">
+	
+	<div id="studentInfo" style="border:1px solid #000;margin:15px">
+		#parse("apps/finance/studentPaymentSchedule/studentInfo.vm")
+	</div>
+	
+	<div id="firstPayment" style="margin:15px">
+		#parse("apps/finance/studentPaymentSchedule/firstPayment.vm")
+	</div>
+	
+	<div id="paymentScheduleMain" class="col-md-7">
+		#parse("apps/finance/studentPaymentSchedule/paymentScheduleMain.vm")
+	</div>
+	
+	<div class="col-md-5">
+		
+		<div id="listPaymentSchedule_Flexi"  style="margin-bottom:40px">
+    	#parse("apps/finance/studentPaymentSchedule/listPaymentSchedule_Flexi.vm")
+    	</div>
+		
+		<div id="paymentSchedulePTPTN" style="margin-bottom:40px">
+    	#parse("apps/finance/studentPaymentSchedule/paymentSchedulePTPTN.vm")
+    	</div>
+		
+		<div id="paymentScheduleResourceFee" style="margin-bottom:100px">
+			#parse("apps/finance/studentPaymentSchedule/paymentScheduleResourceFee.vm")
+		</div>
+		
+		
+		<div id="paymentScheduleSemester" style="margin-bottom:100px">
+			#parse("apps/finance/studentPaymentSchedule/paymentScheduleSemester.vm")
+		</div>
+		
+		<div id="paymentScheduleHostel" style="margin-bottom:100px">
+			#parse("apps/finance/studentPaymentSchedule/paymentScheduleHostel.vm")
+		</div>
+    	
+	</div>
+	<br/><br/><br/>
+	<div style="text-align:right">
+		<div id="deletePaymentSchedule" style="display:block">
+			<a href="javascript:void(0)" onclick="$('deletePaymentSchedule').style.display='none'; $('confirmDeletePaymentSchedule').style.display='block';">Delete this payment schedule</a>
+		</div>
+		<div id="confirmDeletePaymentSchedule" style="display:none;color:#ff0000;font-weight:bold">
+		WARNING! ARE YOU SURE TO DELETE THIS PAYMENT SCHEDULE? ALL DATA WILL BE LOST!!!
+		(<a href="javascript:void(0)" onclick="if ( !confirm('DELETE THIS PAYMENT SCHEDULE?') ) return; doDivAjaxCall$formname('getPaymentSchedule','deletePaymentSchedule','paymentScheduleId=$paymentSchedule.id');$('deletePaymentSchedule').style.display='block'; $('confirmDeletePaymentSchedule').style.display='none';">
+		YES
+		</a>
+		)(
+		<a href="javascript:void(0)" onclick="$('deletePaymentSchedule').style.display='block'; $('confirmDeletePaymentSchedule').style.display='none';">
+		NO
+		</a>
+		)
+		</div>
+	</div>
+
+</div>
+

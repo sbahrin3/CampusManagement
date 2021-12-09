@@ -1,0 +1,10 @@
+
+
+<td>$!r.biodata.name</td>
+<td>#if ( $r.biodata.icno != "" ) $!r.biodata.icno #else $!r.biodata.passport #end</td>
+<td>#if ( $r.biodata.dob ) $dateFormat.format($r.biodata.dob) #else - #end</td>
+<td>$!r.biodata.gender.name</td>
+<td>$!r.biodata.nationality.name</td>
+
+
+

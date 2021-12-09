@@ -1,0 +1,4 @@
+<script>
+parent.document.getElementById('${divUploadStatusName}').innerHTML = "";
+parent.displayData();
+</script>

@@ -1,0 +1,44 @@
+
+<table cellspacing="0">
+<tr height="30px" bgcolor="#ABABAB">
+<td style="width:10px"></td>
+<td style="width:100px;font-weight:bold;">Code</td>
+<td style="width:200px;font-weight:bold;">Name</td>
+<td style="width:40px">&nbsp;</td>
+<td style="width:40px">&nbsp;</td>
+</tr>
+</table>
+
+<ul id="tablist" style="list-style-type:none; padding: 0px;">
+#set ( $c = 0 )
+#foreach( $e in $exams )
+#set ( $c = $c + 1 )
+<li id="tablist_$c">
+<table cellspacing="0">
+<tr height="30px">
+<td style="width:10px"><input type="hidden" name="exam_ids" value="$e.id"></td>
+<td style="width:100px"><input name="exam_code_$e.id" value="$e.code" style="width:100%" onchange="doDivAjaxCall$formname('div_empty','update_code','exam_id=$e.id')"></td>
+<td style="width:200px"><input name="exam_name_$e.id" value="$e.name" style="width:100%" onchange="doDivAjaxCall$formname('div_empty','update_name','exam_id=$e.id')"></td>
+<td style="width:40px"><input type="button" style="width:100%" value="x" onclick="if ( !confirm('Are you sure to delete this?') ) return; doDivAjaxCall$formname('div_exam','delete_exam','exam_id=$e.id')"></td>
+<td style="width:40px">&nbsp;::&nbsp;</td>
+</tr>
+</table>
+</li>
+#end
+</ul>
+<table cellspacing="0">
+<tr height="30px">
+<td style="width:10px"></td>
+<td style="width:100px"><input name="code" style="width:100%"></td>
+<td style="width:200px"><input name="name" style="width:100%"></td>
+<td>
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('div_exam','add_exam','')">
+<input type="button" value="Save Order" onclick="doDivAjaxCall$formname('div_empty','save_order','')">
+</td>
+</tr>
+</table>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('tablist');
+div_unblock();
+</script>

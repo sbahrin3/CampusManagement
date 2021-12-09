@@ -1,0 +1,6 @@
+<script>
+parent.document.getElementById('${divUploadStatusName}').innerHTML = "";
+parent.document.getElementById('photoFileName').value = "$!serverFileName";
+parent.document.getElementById('avatarFileName').value = "$!avatarFileName";
+parent.doDivAjaxCall3$formname('listPhotos', 'listPhotos','eventId=$eventId');
+</script>

@@ -1,0 +1,83 @@
+<script>
+$('addCase').style.display='block';
+</script>
+
+
+<table width="100%" style="background:#A7ADB2;"><tr><td style="height:30px;font-family:Verdana, sans-serif;font-weight:bold;color:#fff">
+COUNCELLING CASE
+</td><td style="width:20px;font-family:Verdana, sans-serif;color:#fff;cursor:pointer" align="right" onclick="$('addCase').style.display='none';">
+x
+</td></tr></table>
+
+<table>
+
+<tr><td>Referred Date:</td><td>
+#set ( $dateValue = "" )
+#if ( $studentCase )
+	$dateFormat.applyPattern("dd-MM-yyyy")
+	#if ( $studentCase.referredDate ) #set ( $dateValue = $dateFormat.format($studentCase.referredDate) ) #end
+#end
+$html.dateField.name("referredDate").value("$!dateValue").style("width:120px").cssClass("texts")
+</td></tr>
+
+<tr><td style="width:200px">Councelling Issue:</td><td style="width:500px">
+<select class="texts" name="issueId">
+<option value=""></option>
+#foreach( $c in $cases )
+<option value="$c.id" #if ( $studentCase.issue.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td valign="top">Summary Of Issue:</td><td>
+<textarea class="textr" style="height:150px" name="issueSummary">$!studentCase.issueSummary</textarea>
+</td></tr>
+
+<tr><td>Referral Type</td><td>
+<select class="textr" name="referralType">
+<option value="lecturer" #if ( !$studentCase.referralType ) selected #end>Lecturer</option>
+<option value="staff" #if ( $studentCase.referralType ) selected #end>Staff</option>
+<option value="self" #if ( $studentCase.referralType ) selected #end>Self</option>
+<option value="other" #if ( $studentCase.referralType ) selected #end>Other</option>
+</select>
+</td></tr>
+
+<tr><td valign="top">Referral Id:</td><td><input class="textr" name="referralId" value="$!studentCase.referralId"></td></tr>
+<tr><td valign="top">Referral Name:</td><td><input class="textr" name="referralName" value="$!studentCase.referralName"></td></tr>
+<tr><td valign="top">Referral Contact No:</td><td><input class="textr" name="referralContactNo" value="$!studentCase.referralContactNo"></td></tr>
+<tr><td valign="top">Referral Email:</td><td><input class="textr" name="referralEmail" value="$!studentCase.referralEmail"></td></tr>
+
+<tr><td valign="top">Referral Reason:</td><td>
+<textarea class="textr" style="height:150px" name="referralTypeRemark">$!studentCase.referralReason</textarea>
+</td></tr>
+
+<tr><td style="width:200px">Counsellor:</td><td style="width:500px">
+<select class="texts" name="councellorId">
+<option value=""></option>
+#foreach( $c in $councellors )
+<option value="$c.id" #if ( $studentCase.councellor.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td valign="top">Councellor Action:</td><td>
+<textarea class="textr" style="height:150px" name="councellorRemark">$!studentCase.councellorRemark</textarea>
+</td></tr>
+
+<tr><td valign="top">Student Remark:</td><td>
+<textarea class="textr" style="height:150px" name="studentRemark">$!studentCase.studentRemark</textarea>
+</td></tr>
+
+
+<tr><td></td><td>
+#if ( $studentCase )
+<input class="linkbutton" type="button" value="Save" onclick="doDivAjaxCall3$formname('studentCase','saveStudentCase','studentCaseId=$studentCase.id')">
+<input class="linkbutton" type="button" value="Delete" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('studentCase','deleteCase','studentCaseId=$studentCase.id')">
+#else
+<input class="linkbutton" type="button" value="Add" onclick="doDivAjaxCall3$formname('studentCase','studentCase','studentId=$student.id')">
+#end
+
+<input class="linkbutton" type="button" value="Cancel" onclick="$('addCase').style.display='none';">
+</td></tr>
+</table>
+

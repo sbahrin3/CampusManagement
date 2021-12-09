@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+
+<table><tr><td style="width:100px">Matric No:</td>
+<td style="width:200px"><input class="texts" name="matricNo"></td>
+<td><input class="linkbutton" type="button" value="Get" onclick="doDivAjaxCall3$formname('divMain','getStudent','')"></td>
+</tr></table>
+
+<div id="divMain"></div>

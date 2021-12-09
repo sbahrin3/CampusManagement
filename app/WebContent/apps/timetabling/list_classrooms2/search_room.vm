@@ -1,0 +1,15 @@
+
+<div class="padding:10px">
+<table>
+	<tr><td style="width:300px">
+		<input class="form-control" name="findRoomName" id="findRoomName" placeholder="Find rooms...">
+	</td>
+	<td>
+	&nbsp;
+	<button type="button" class="btn btn-success btn-sm" onclick="if ( $('findRoomName').value != '' ) { doDivAjaxCall$formname('roomList','findRoomByName',''); }">Search</button>
+	</td></tr>
+</table>
+
+<div id="roomList"></div>
+
+</div>

@@ -1,0 +1,39 @@
+<div style="padding:10px">
+	<table style="width:100%">
+		<tr>
+			<td style="width:50%" valign="top">
+            	<table cellpadding="1" cellspacing="1">
+            		<tr style="height:25px"><td style="width:100px">Matric No</td><td style="width:20px">:</td><td style="width:400px">$student.matricNo</td></tr>
+            		<tr style="height:25px"><td>Name</td><td>:</td><td>$student.biodata.name</td></tr>
+            		<tr style="height:25px"><td>Intake</td><td>:</td><td>$student.intake.name</td></tr>
+            		<tr style="height:25px"><td>Semester</td><td>:</td><td>$studentStatus.period.name #if ( $studentStatus.period.parent ) ($studentStatus.period.parent.name) #end</td></tr>
+            	</table>
+			</td>
+			
+			#**
+			<td style="width:50%" valign="top">
+				<table cellpadding="1" cellspacing="1">
+            		<tr style="height:25px"><td style="width:100px">Mobile</td><td style="width:20px">:</td><td style="width:400px">$!student.biodata.mobileNo</td></tr>
+            		<tr style="height:25px"><td>Home</td><td>:</td><td>$!student.biodata.telephoneNo</td></tr>
+            		<tr style="height:25px"><td>Parent/Guardian No</td><td>:</td>
+						<td>
+							#if ( $student.applicant )
+								$!student.applicant.guardianTelephoneNo
+							#end
+						</td>
+					</tr>
+            		<tr style="height:25px"><td valign="top">Address</td><td valign="top">:</td>
+						<td>
+							$!student.address.address1<br/>
+							$!student.address.address2<br/>
+							$!student.address.address3<br/>
+						</td>
+					</tr>
+					<tr style="height:25px"><td>Email</td><td>:</td><td>$!student.biodata.email</td></tr>
+            	</table>
+				
+			</td>
+			**#
+		</tr>
+	</table>
+</div>

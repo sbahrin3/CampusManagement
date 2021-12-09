@@ -1,0 +1,11 @@
+
+
+<td>$!r.issueDescription</td>
+<td>$!r.category.name</td>
+<td>$!r.officerName</td>
+<td>#if ( $r.startDate ) $dateFormat.format($!r.startDate) #end</td>
+<td>$!r.status</td>
+<td>#if ( $r.closeDate ) $dateFormat.format($!r.closeDate) #end</td>
+
+
+

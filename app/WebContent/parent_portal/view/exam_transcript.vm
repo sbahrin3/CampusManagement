@@ -1,0 +1,20 @@
+<script>
+$('div_student').style.display="block";
+</script>
+
+
+<div style="width:900px" onclick="makeOnTop($cnt, $students.size())">
+<table width="100%" style="height:30px;background:#005083;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+EXAMINATION RESULT: $!student.biodata.name
+</td>
+<td align="right">
+<input class="linkbutton" type="button" style="padding:2px;font-weight:bold;" value="Close" onclick="$('div_student').style.display='none';">
+</td></tr>
+</table>
+</div>
+
+<div style="height:400px;overflow:auto">
+#parse("parent_portal/view/transcript2.vm")
+</div>

@@ -1,0 +1,38 @@
+<div class="shadow" style="background:#fff">
+	<table style="width:100%;background:#ABABAD">
+		<tr style="height:30px">
+			<td style="font-weight:bold;color:#fff">Failed Classroom Logs</td>
+			<td align="right">
+				<input class="linkbutton" style="padding:2px" type="button" value="x" onclick="$('divFailedTemplates').style.display='none';"></td>
+		</tr>
+	</table>
+	
+		<table>
+		#foreach ( $ct in $nextIterationList )
+		#set ( $bgcolor = $slotColor.colorMap.get("${ct.subject.id}-${ct.section.id}") )
+		<tr><td style="width:150px;background:$bgcolor">
+		
+		<table cellpadding="1" cellspacing="1" style="width:100%;">
+		<tr>
+		<td style="color:#FFFFFF;text-shadow:#000 1px 1px 1px;">$ct.subject.code</td></tr>
+		<td style="color:#FFFFFF;text-shadow:#000 1px 1px 1px;">$ct.section.name</td></tr>
+		<tr><td style="color:#FFFFFF;text-shadow:#000 1px 1px 1px;">
+		
+		#if ( $ct.coTeachers.size() > 0 )
+			#foreach ( $t in $ct.coTeachers )
+				$t.code
+			#end
+		#end
+		
+		</td></tr>
+		</tr>
+		</table>
+	
+	</td><td style="width:50px;background:#F4F4C8" align="center">
+	
+		<a class="icon_shadow" href="javascript:void(0)" onclick="doDivAjaxCall3$formname('div_move','putFailedTemplate','templateId=$ct.id')"><img src="../img/move.png" border="0"></a>
+	
+	</td></tr>
+	#end
+	</table>
+</div>

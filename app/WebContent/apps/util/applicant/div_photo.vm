@@ -1,0 +1,14 @@
+<table width="100%"><tr><td>
+						#if($applicant.photoFileName != "")
+							<img src="../download?file=$!applicant.photoFileName">
+						#else
+<img src="../img/nophoto.gif" border="0">
+#end
+</td><td>
+You may upload your passport size photo here.<br>Click on the <b>Upload Photo..</b> button.
+<br>
+<input type="button" value="Upload Photo.." onclick="$('div_upload_photo').style.visibility='visible';">
+</td></tr>
+<tr><td colspan="2">
+
+</td></tr></table>

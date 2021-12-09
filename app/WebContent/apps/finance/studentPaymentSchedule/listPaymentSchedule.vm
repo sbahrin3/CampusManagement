@@ -1,0 +1,89 @@
+	
+	<div id="createInvoices" style="padding:10px">
+		
+		<table>
+        		<tr>
+        			<td>
+            		#if ( $paymentSchedule.invoiceCreated )
+            			Monthly Invoice created.
+            		#else
+                    				
+						Invoices for the Monthly Flexi Payments has not been created.  Please click 
+						<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('createInvoices','createInvoices','paymentScheduleId=$paymentSchedule.id')">here</a> 
+						to generate.
+            				
+            		#end
+			</td>
+        		</tr>
+        	</table>
+	</div>
+	
+	<div style="padding:10px">
+
+	
+	<table cellpadding="1" cellspacing="1">
+		<tr style="height:25px"><td style="width:150px">Total Amount</td><td style="width:20px">:</td><td style="width:100px" align="right">$numFormat.format($paymentSchedule.totalAmount)</td></tr>
+		<tr style="height:25px"><td>Monthly Flexi Pmt.</td><td>:</td><td align="right">$numFormat.format($paymentSchedule.monthlyAmount)</td></tr>
+		
+	</table>
+	</div>
+	
+	
+	<table>
+		<tr style="height:30px;background:#AEB1B2">
+			<td style="width:20px"></td>
+			<td style="width:80px" align="center">Date</td>
+			<td style="width:80px" align="right">Due</td>
+			<td style="width:80px" align="right">Paid</td>
+			<td style="width:80px" align="right">Balance</td>
+			<td style="width:80px" align="right">Outstanding</td>
+			<td style="width:80px" align="center"></td>
+		</tr>
+		#set ( $cnt = 0 )
+		#foreach ( $i in $scheduleItems )
+			#set ( $cnt = $cnt + 1 )
+			#if ( $cnt % 2 == 0 )
+				#set ( $bgcolor = "#fff")
+			#else
+				#set ( $bgcolor = "#D6E2EE" )
+			#end
+			<tr style="height:30px;background:$bgcolor">
+				<td>$cnt)</td>
+				<td align="center">
+					#if ( $i.paymentDate )
+						$dateFormat.format($i.paymentDate)
+					#end
+				</td>
+				<td align="right">$numFormat.format($i.amountDue)</td>
+								
+				<td align="right" style="cursor:pointer" 
+					##onclick="doDivAjaxCall$formname('divMakePayment','makePayment','scheduleItemId=$!i.id')"
+				>$numFormat.format($i.amountPaid)</td>
+				<td align="right">$numFormat.format($i.currentBalance)</td>
+				<td align="right">$numFormat.format($i.outstandingBalance)</td>
+				<td align="center">
+				#if ( $i.type == 0 )
+					FL
+				#elseif ( $i.type == 1 )
+					PTPTN
+				#end
+				</td>
+			</tr>
+		#end
+    	
+	</table>
+	<br/>
+	<br/>
+	
+	<div id="divdDeletePaymentSchedule" style="border:1px solid #EF1717">
+	<table style="width:100%">
+		<tr>
+			<td>
+				<input class="linkbutton" type="button" value="Delete this Payment Schedule" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall$formname('getPaymentSchedule','deletePaymentSchedule','paymentScheduleId=$paymentSchedule.id')">
+			</td>
+		</tr>
+	</table>
+	</div>
+	
+	
+	

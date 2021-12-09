@@ -1,0 +1,87 @@
+<script>
+$('div_students').style.display = "block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+$dateFormat.format($date1)
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('div_students').style.display='none';">
+</td></tr>
+</table>
+<br/>
+<table>
+
+<tr><td style="font-weight:bold">
+$dateFormat.format($date1)
+</td></tr>
+
+#if ( $feeItem )
+<tr>
+<td>Filter By Fee:</td>
+<td style="font-weight:bold">$feeItem.description</td>
+</tr>
+#end
+
+#if ( $program )
+<tr>
+<td>Program:</td>
+<td style="font-weight:bold">$program.code $program.name</td>
+</tr>
+#end
+</table>
+<br/>
+
+<table cellpadding="2" cellspacing="0">
+<tr height="30px" bgcolor="lightgrey">
+<td class="gradient" style="width:40px"></td>
+<td class="gradient" style="width:120px;font-weight:bold">Matric</td>
+<td class="gradient" style="width:120px;font-weight:bold">IC No</td>
+<td class="gradient" style="width:200px;font-weight:bold">Name</td>
+##<td class="gradient" style="width:150px;font-weight:bold" align="center">Invoice (RM)</td>
+<td class="gradient" style="width:150px;font-weight:bold" align="center">Payment (RM)</td>
+</tr></table>
+
+<div style="overflow:auto;height:400px">
+<table cellpadding="2" cellspacing="0">
+<tr height="0px" bgcolor="lightgrey">
+<td class="gradient" style="width:40px"></td>
+<td class="gradient" style="width:120px;font-weight:bold"></td>
+<td class="gradient" style="width:120px;font-weight:bold"></td>
+<td class="gradient" style="width:200px;font-weight:bold"></td>
+##<td class="gradient" style="width:150px;font-weight:bold" align="center"></td>
+<td class="gradient" style="width:150px;font-weight:bold" align="center"></td>
+</tr>
+
+#foreach( $r in $records )
+<tr height="30px">
+<td>${velocityCount}.</td>
+<td>$!r.matricNo</td>
+<td>$!r.icno</td>
+<td>$!r.name</td>
+##<td align="right">#if ( $r.invoiced == 0 ) - #else $numFormat.format($r.invoiced) #end&nbsp;&nbsp;&nbsp;</td>
+<td align="right">#if ( $r.paid == 0 ) - #else $numFormat.format($r.paid) #end&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+
+<tr>
+<td colspan="7"><hr/></td>
+</tr>
+<tr>
+<td align="right"></td>
+<td></td>
+<td></td>
+<td></td>
+##<td align="right" style="font-weight:bold">#if ( $total_invoiced == 0 ) - #else $numFormat.format($total_invoiced) #end&nbsp;&nbsp;&nbsp;</td>
+<td align="right" style="font-weight:bold">#if ( $total_paid == 0 ) - #else $numFormat.format($total_paid) #end&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+<tr>
+<td colspan="7"><hr/></td>
+</tr>
+</table>
+</div>
+
+<script>new Draggable('div_students', {handle: 'dragHandle'});</script>

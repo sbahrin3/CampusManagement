@@ -1,0 +1,10 @@
+<table width="100%">
+<tr><td style="width:10px"></td><td style="width:150px"></td><td style="width:100px"></td><td></td><td style="width:10px"></td></tr>
+#foreach( $s in $students )
+<tr style="height:25px"><td>$velocityCount.</td><td>$!s.matricNo</td><td>$!s.biodata.icno</td><td>$!s.biodata.name</td><td><a href="javascript:void()" style="text-decoration:none" onclick="if ( !confirm('Remove this student?') ) return; doDivAjaxCall3$formname('divStudents','removeStudent','studentId=$s.id&parentId=$!parentId')">x</a></td></tr>
+#end
+</table>
+
+<script>
+$('matricNo').value = "";
+</script>

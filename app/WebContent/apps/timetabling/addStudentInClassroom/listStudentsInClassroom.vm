@@ -1,0 +1,49 @@
+<table style="">
+	<tr>
+		<td style="width:120px">Subject</td><td style="width:20px">:</td>
+		<td style="font-family:Verdana;font-size:10pt;font-weight:bold">
+			$subject.code - $subject.name
+		</td>
+	</tr>
+	<tr>
+		<td>Classroom</td><td>:</td>
+		<td style="font-family:Verdana;font-size:10pt;font-weight:bold">
+			$classroomSection.name
+		</td>
+	</tr>
+	<tr>
+		<td></td><td></td>
+		<td>
+			<input class="linkbutton" type="button" value="Add All Students" onclick="doDivAjaxCall3$formname('getStudents','addStudentInClassroom','')">
+			<input class="linkbutton" type="button" value="Add Selected Students" onclick="doDivAjaxCall3$formname('listStudents','listStudents','')">
+
+			<input class="linkbutton" type="button" value="Remove All Students" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('getStudents','removeAllStudents','')">
+			<input class="linkbutton" type="button" value="Remove Selected Students" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('getStudents','removeSelectedStudents','')">
+
+		</td>
+	</tr>
+</table>
+<br/>
+<br/> 
+<table>
+	<tr style="height:25px">
+		<td class="colTitle" style="width:50px">&nbsp;</td>
+		<td class="colTitle" style="width:200px">Matric</td>
+		<td class="colTitle" style="width:350px">Name</td>
+		<td class="colTitle" style="width:50px">&nbsp;</td>
+
+	</tr>
+	#foreach ( $s in $students )
+		<tr style="height:25px">
+			<td class="row">$velocityCount.</td>
+			<td class="row">$s.studentStatus.student.matricNo</td>
+			<td class="row">$s.studentStatus.student.biodata.name</td>
+			<td class="row"><input type="checkbox" name="studentSubjectIds" value="$s.id">
+		</tr>
+	#end
+</table>
+	
+
+<script>
+$('listStudents').style.display = "none";
+</script>

@@ -1,0 +1,3 @@
+
+<div id="newActivity" class="shadow" style="display:none;position:absolute;background:#fff;left:5%;border:1px solid #D0D6DB"></div>
+<div id="activities">#parse("studentaffair/clubActivity/activities.vm")</div>

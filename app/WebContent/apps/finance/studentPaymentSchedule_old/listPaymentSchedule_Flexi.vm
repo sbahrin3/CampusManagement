@@ -1,0 +1,66 @@
+
+
+	<div style="padding:10px;font-weight:bold;border:1px solid #000">
+
+    	<table cellpadding="1" cellspacing="1" style="width:100%">
+    		<tr style="height:25px">
+    			<td style="font-weight:bold">Monthly/Flexi Payment Schedule</td>
+    			<td style="width:100px;font-weight:bold" align="right">
+    		
+    		</td></tr>
+    	</table>
+    </div>
+
+
+	
+	<table style="width:100%">
+		<tr style="height:40px;background:#AEB1B2">
+			<td style="width:20px"></td>
+			<td style="width:100px" align="center">Due Date</td>
+			<td style="width:100px" align="right">Amt. Due</td>
+			<td style="width:100px" align="right">Pmt. Date</td>
+			<td style="width:100px" align="right">Paid</td>
+			<td style="width:100px" align="right"></td>
+		</tr>
+		#set ( $cnt = 0 )
+		#foreach ( $i in $scheduleItems )
+			
+			#if ( $i.type == 0 )
+			
+    			#set ( $cnt = $cnt + 1 )
+    			#if ( $cnt % 2 == 0 )
+    				#set ( $bgcolor = "#fff")
+    			#else
+    				#set ( $bgcolor = "#D6E2EE" )
+    			#end
+    			<tr style="height:30px;background:$bgcolor">
+    				<td>$cnt)</td>
+    				<td align="center">
+    					#if ( $i.paymentDate )
+    						$dateFormat.format($i.paymentDate)
+    					#end
+    				</td>
+    				<td align="right">$numFormat.format($i.amountDue)</td>
+    								
+    				<td align="right">
+					#if ( $i.paidDate )
+						$dateFormat.format($i.paidDate)
+					#end
+					</td>
+					<td align="right">$numFormat.format($i.amountPaid)</td>
+					<td align="center">
+						#if ( $i.amountPaid < $i.amountDue )
+							<input type="button" class="linkbutton" value="Pay Now"  onclick="doDivAjaxCall$formname('divMakePayment','makeFlexiPayment','scheduleItemId=$!i.id&paymentType=Flexi')">
+						#else
+							<a href="javascript:void(0)"  onclick="doDivAjaxCall$formname('divMakePayment','makeFlexiPayment','scheduleItemId=$!i.id&paymentType=Flexi')">Detail</a>
+						#end
+					</td>
+    			</tr>
+			
+			#end
+		#end
+    	
+	</table>
+	<br/>
+	<br/>
+

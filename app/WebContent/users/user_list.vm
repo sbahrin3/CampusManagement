@@ -1,0 +1,309 @@
+<form name="userListForm" method="post">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="3" height="8"></td></tr>
+<tr>
+    <td width="8"></td> 
+    <td>
+        <table width="100%" cellpadding="1" cellspacing="1">
+        <tr>
+            <td>
+            <!--
+            <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td align="right">
+                        <input type="button" value="Print (without Admin)" onclick="getPrintable('0')">
+                        <input type="button" value="Print (with Admin)" onclick="getPrintable('1')">
+                    </td>
+                </tr>
+            </table>
+            -->
+            
+            <!--
+            <table border="0" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td nowrap>
+                        Update selected user[s] with this role: 
+                        <select name="role">
+                            <option value="">select a role</option>
+                        #foreach ($role in $roles)
+                            <option value="$role.getName()">$role.getName()</option>
+                        #end
+                        </select>
+                    </td>
+                    <td>
+                        <input type="button" value="Update" onclick="doUpdateRole()">
+                    </td>
+                </tr>
+            </table>
+            -->
+            
+            <!--
+            <table border="0" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td nowrap>    
+                        Update selected user[s] with this scheme:
+                        <select name="scheme">
+                            <option value="">select a scheme</option>
+                        #foreach ($scheme in $schemes)
+                            #<option value="$scheme.getName()">$scheme.getTitle()</option>
+                        #end
+                        </select>
+                    </td>
+                    <td>
+                        <input type="button" value="Update" onclick="doUpdateScheme()">
+                    </td>
+                </tr>
+            </table>
+            <table border="0" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td><input type="button" value="Delete selected user[s]" onclick="doDelete()"></td>
+                </tr>
+            </table>
+            
+            -->
+            <table width="100%">
+              <tr>
+              <td>
+              Filter by role:
+                        <select name="filter_role">
+                            <option value="">select a role</option>
+                        #foreach ($role in $roles)
+                            <option value="$role.getName()">$role.getName()</option>
+                        #end
+                        </select>     
+                        <input type="button" value="Filter by this role" onclick="doFilter()">         
+              </td>
+              </tr>
+            
+            </table>
+            
+            </td>
+        </tr>
+        <tr>
+            <td class="table_head">
+            <table width="100%" border="0" cellpadding="2" cellspacing="0">
+                <tr>
+                    <td  align="left">Total Users: $totalUsers</td>
+                    <td  align="right">
+                        Show
+                        <select name="itemsPerPage" onchange="doChange()">
+                            <option value="10" #if ($itemsPerPage == 10) selected #end>10</option>
+                            <option value="20" #if ($itemsPerPage == 20) selected #end>20</option>
+                            <option value="30" #if ($itemsPerPage == 30) selected #end>30</option>
+                            <option value="40" #if ($itemsPerPage == 40) selected #end>40</option>
+                            <option value="50" #if ($itemsPerPage == 50) selected #end>50</option>
+                        </select>
+                        users per page
+                    </td>
+                 </tr>
+            </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td nowrap>
+                    #if( $isStartPage )
+                        <input type="button" value="<< Previous" disabled>
+                    #else
+                        <input type="button" value="<< Previous" onclick="doPrevious()">
+                    #end
+                    #if( $isLastPage )
+                        <input type="button" value="Next >>" disabled>
+                    #else
+                        <input type="button" value="Next >>" onclick="doNext()">
+                    #end
+                    </td>
+                    <td width="90%">
+                    &nbsp;
+                    #set ( $range = [1..$totalPages] )
+                    #set ( $j = 0 - $itemsPerPage )
+                    #foreach ( $i in $range )
+                        #set ( $j = $j + $itemsPerPage )
+                        #if ($j == $index)
+                        <b>[$i]</b>
+                        #else
+                        [<a href="javascript: doGoto('$i','$j')">$i</a>]
+                        #end
+                    #end
+                    </td>
+                    <td align="right" nowrap>Page $page of $totalPages</td>
+                </tr>
+                </table>
+            </td>
+        </tr>
+        </table>
+        <table width="100%" cellpadding="1" cellspacing="1">
+        <tr>
+            <td class="table_head" colspan="6">
+                <table width="100%" cellpadding="1" cellspacing="1">
+                <tr>
+                    <td class="table_head" colspan="6">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td class="table_head" nowrap>List of users</td>
+                            <td class="table_head" nowrap align="right">
+                            Order By
+                            <select name="orderBy" onchange="doChange()">
+                                <option value="name" #if ($orderBy == "name") selected #end>name</option>
+                                <option value="role" #if ($orderBy == "role") selected #end>role</option>
+                                <option value="scheme" #if ($orderBy == "scheme") selected #end>scheme</option>
+                            </select>
+                            </td>
+                        </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td >No.</td>
+                    <td >User Id</td>
+                    <td >Name</td>
+                    <td >Role</td>
+                    <td >Scheme</td>
+                    <td ><input type="checkbox" name="all" onclick="doCheckAll()"></td>
+                </tr>
+                #if (!$users.isEmpty())
+                    #foreach ($user in $users)
+                        #set ($rowCount = $velocityCount)
+                        #if ( ($rowCount % 2) == 0 )
+                            #set( $rowClass = "row2" )
+                        #else
+                            #set( $rowClass = "row1" )
+                        #end
+                <tr>
+                    <td class="$rowClass">$rowCount</td>
+                    <td class="$rowClass">$user.getLogin()</td>
+                    <td class="$rowClass">$user.getName()</td>
+                    <td class="$rowClass">$user.getRole()</td>
+                    <td class="$rowClass">$user.getScheme()</td>
+                    <td class="$rowClass"><input type="checkbox" value="$user.getLogin()" name="users"></td>
+                </tr>
+                    #end
+                #else
+                <tr>
+                    <td class="row1" colspan="6" align="center">No users found</td>
+                </tr>
+                #end
+                </table>
+            </td>
+        </tr>
+    </table>
+    </td>
+    <td width="8"></td> 
+</tr>
+<tr><td colspan="3" height="8"></td></tr>
+</table>
+<input type="hidden" name="command" value="">
+<input type="hidden" name="navigation" value="">
+<input type="hidden" name="index" value="$index">
+<input type="hidden" name="page" value="$page">
+</form>
+<script>
+function doCheckAll()
+{    
+    if (document.userListForm.all.checked == true)
+    {
+        if (document.userListForm.users.length == null)
+        {
+            document.userListForm.users.checked = true;
+        } else {
+            for (i = 0; i < document.userListForm.users.length; i++)
+            {
+                document.userListForm.users[i].checked = true;
+            }
+        }
+    } else {
+        if (document.userListForm.users.length == null)
+        {
+            document.userListForm.users.checked = false;
+        } else {
+            for (i = 0; i < document.userListForm.users.length; i++)
+            {
+                document.userListForm.users[i].checked = false;
+            }
+        }
+    }
+}
+function doDelete()
+{
+    if (confirm("Continue to Delete Users?") == true )
+    {
+        document.userListForm.command.value = "delete_user";
+        doSubmit();
+    }
+}
+function doUpdateRole()
+{
+    if (document.userListForm.role.value == "")
+    {
+        alert("No role was selected");
+    } else {
+        if (confirm("Confirm Action: Do you want to continue?") == true)
+        {
+            document.userListForm.command.value = "update_role";
+            doSubmit();
+        }
+    }
+}
+function doUpdateScheme()
+{
+    if (document.userListForm.scheme.value == "")
+    {
+        alert("No scheme was selected");
+    } else {
+        if (confirm("Confirm Action: Do you want to continue?") == true)
+        {   
+            document.userListForm.command.value = "update_scheme";
+            doSubmit();
+        }
+    }
+}
+function doChange()
+{
+    document.userListForm.command.value = "get_user_list";
+    doSubmit();
+}
+function doNext()
+{
+    document.userListForm.command.value = "get_user_list";
+    document.userListForm.navigation.value = "next_page";
+    doSubmit();
+}
+function doPrevious()
+{
+    document.userListForm.command.value = "get_user_list";
+    document.userListForm.navigation.value = "previous_page";
+    doSubmit();
+}
+function doGoto(i,j)
+{
+    document.userListForm.command.value = "get_user_list";
+    document.userListForm.navigation.value = "goto_page";
+    document.userListForm.page.value = i;
+    document.userListForm.index.value = j;
+    doSubmit();
+}
+function doSubmit()
+{
+    document.userListForm.action = "";
+    document.userListForm.submit();
+}
+function doFilter() 
+{
+document.userListForm.command.value = "filter_by_role";
+doSubmit();
+}
+function openWindow(url)
+{
+    var hWnd = window.open(url,'printuser','width=800,height=500, resizable=yes,scrollbars=yes');
+    if ((document.window != null) && (!hWnd.opener))
+        hWnd.opener = document.window;
+    if (hWnd.focus != null) hWnd.focus();
+}
+function getPrintable(i)
+{
+    var url = "../users/print_user.jsp?print_version="+i;
+    openWindow(url);
+}
+</script>

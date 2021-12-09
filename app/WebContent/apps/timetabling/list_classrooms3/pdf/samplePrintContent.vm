@@ -1,0 +1,6 @@
+#set ( $tt_section = "1" )
+#parse("apps/timetabling/list_classrooms3/pdf/classroomTimetable1.vm")
+#set ( $tt_section = "2" )
+#parse("apps/timetabling/list_classrooms3/pdf/classroomTimetable1.vm")
+
+

@@ -1,0 +1,81 @@
+#set ( $cols = $subjects.size() + 1 )
+<table>
+<tr>
+<td style="width:100px;font-family:Verdana;font-size:11pt">
+$refNo
+</td>
+<td style="width:10px">:</td>
+<td style="font-family:Verdana;font-size:11pt">
+$question.question.questionText
+</td>
+</tr><tr>
+<td></td>
+<td valign="top"></td>
+<td>
+
+</td>
+</tr>
+</table>
+<br/><br/>
+<table bgcolor="#C4C2C2" cellpadding="1" cellspacing="2">
+<tr style="height:30px">
+<td bgcolor="#E2E0E0"></td>
+<td bgcolor="#E2E0E0" colspan="$cols" align="center">
+Mean<br/>
+Standard Deviation
+</td>
+</tr>
+<tr style="height:30px">
+
+<td bgcolor="#FFF" style="width:300px">
+
+</td>
+#foreach( $subject in $subjects )
+<td bgcolor="#FFF" style="width:100px" align="center">$subject.code</td>
+#end
+
+<td bgcolor="#E2E0E0" style="width:100px" align="center"> By Lecturer</td>
+
+</tr>
+#foreach( $faculty in $faculties )
+<tr>
+<td bgcolor="#FFF">$faculty.name</td>
+#foreach( $subject in $subjects )
+
+#set ( $stat = $statMap.get("${subject.id}${faculty.id}") )
+
+<td bgcolor="#FFF" align="center">
+#if ( $stat.mean > 0 ) $stat.mean #end<br/>
+## #if ( $stat.median > 0 ) $stat.median #end<br/>
+#if ( $stat.mean > 0 ) $decFormat.format($stat.sd) #end<br/>
+</td>
+#end
+
+#set ( $stat = $statMap.get("${faculty.id}") )
+
+<td bgcolor="#E2E0E0" align="center">
+#if ( $stat.mean > 0 ) $stat.mean #end<br/>
+## #if ( $stat.median > 0 ) $stat.median #end<br/>
+#if ( $stat.mean > 0 ) $decFormat.format($stat.sd) #end<br/>
+</td>
+
+</tr>
+#end
+
+<tr>
+<td bgcolor="#E2E0E0" align="center">By Course</td>
+#foreach( $subject in $subjects )
+
+#set ( $stat = $statMap.get("${subject.id}") )
+
+<td bgcolor="#E2E0E0" align="center">
+#if ( $stat.mean > 0 ) $stat.mean #end<br/>
+## #if ( $stat.median > 0 ) $stat.median #end<br/>
+#if ( $stat.mean > 0 ) $decFormat.format($stat.sd) #end<br/>
+</td>
+#end
+<td bgcolor="#E2E0E0" align="center"></td>
+
+</tr>
+
+</table>

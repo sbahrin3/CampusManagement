@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<table width="100%">
+
+<tr>
+<td></td>
+#foreach( $status in $status_types)
+<td bgcolor="lightgrey" align="center" style="width:80px">$statusNameTable.get("$status")</td>
+#end
+</tr>
+
+#foreach($intake in $intakeTable.get("$program.id"))
+<tr>
+<td>$intake.name</td>
+
+
+#foreach( $status in $status_types)
+#set ( $result = $resultTable.get("$!{program.id}_$!{intake.id}_$!{status}"))
+<td align="center" style="width:80px">
+
+#if ( $resultTable.get("$!{program.id}_$!{intake.id}_$!{status}") ) 
+<a href="javascript:void()" onclick="$('div_students').style.top=cursorY;$('div_students').style.visibility='visible';$('div_students2').style.visibility='visible';doDivAjaxCall$formname('div_students2','list_students','program_id=$!{program.id}&intake_id=$!{intake.id}&status=$!{status}')">$result.counter</a>
+#else 
+- 
+#end
+
+</td>
+#end
+</tr>
+#end
+</table>

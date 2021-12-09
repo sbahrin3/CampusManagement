@@ -1,0 +1,41 @@
+
+
+<table>
+
+
+<tr><td style="width:150px">Select Week:</td>
+<td>
+<input type="hidden" name="sessionId" value="$session.id">
+#parse("apps/timetabling/list_classrooms2/find_week.vm")
+</td></tr>
+
+
+<tr><td>Filter by Lecturer:</td>
+<td>
+
+#parse("apps/timetabling/list_classrooms2/find_teacher.vm")
+
+</td></tr>
+
+<tr><td>Filter by Group:</td>
+<td>
+
+#parse("apps/timetabling/list_classrooms2/find_group.vm")
+
+</td></tr>
+
+<tr><td>Filter by Program:</td>
+<td>
+
+#parse("apps/timetabling/list_classrooms2/find_program.vm")
+
+</td></tr>
+
+<tr><td>Filter by Room:</td>
+<td>
+
+#parse("apps/timetabling/list_classrooms2/find_room.vm")
+
+</td></tr>
+
+</table>

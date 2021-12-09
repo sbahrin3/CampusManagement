@@ -1,0 +1,387 @@
+
+
+<div id="tt_conflictMessage" class="shadow" style="padding:2px;display:none">
+	<div id ="handle_conflictMessage">
+		<table style="width:100%">
+			<tr style="height:40px;background:#31B0D5">
+				<td style="font-weight:bold;color:#fff">
+					Failed Slotting Logs
+				</td>
+				<td align="right" style="font-weight:bold;color:#fff">
+
+					<button type="button" class="btn btn-default btn-sm" onclick="$('tt_conflictMessage').style.display='none';">x</button>
+					
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	
+	<div id="display_failed_logs" style="width:680px;height:350px;overflow:auto">
+		#parse("apps/timetabling/display_failed_logs.vm")
+	</div>
+	
+</div>
+<script>
+new Draggable('tt_conflictMessage', {handle: 'handle_conflictMessage'});
+</script>
+
+<div id="divConflictMessage" style="display:block">
+
+</div>
+
+<div id="divNextIterationList" style="display:block;">
+
+
+#if ( $failedTemplateLogs && $failedTemplateLogs.size() > 0 )
+	
+	<table>
+		<tr style="height:25px;">
+			<td style="font-size:10pt;;">
+			&nbsp;There are classes failing to be slotted.
+			</td>
+			<td style="width:10px"></td>
+			<td style="cursor:pointer;font-size:10pt;background:#ebebeb;color:#ff0000" onclick="$('tt_conflictMessage').style.display='block';" onmouseover="this.style.backgroundColor='#31b0d5'" onmouseout="this.style.backgroundColor='#ebebeb'" >
+			&nbsp;Click here to view logs.&nbsp;
+			</td>
+			<td style="width:10px"></td>
+			<td style="cursor:pointer;font-size:10pt;background:#ebebeb"  onmouseover="this.style.backgroundColor='#31b0d5'" onmouseout="this.style.backgroundColor='#ebebeb'" 
+			onclick="if ( !confirm('Run classes slotting again?') ) return; $('confirmRunAutoGenerate').style.display='none';$('div_progressWindow').style.display='block';doDivAjaxCall$formname('div_progressWindowContent','auto_generate_timetable2','week_number=$week_number')"">
+			&nbsp;Run again..&#9658;
+			</td>
+		</tr>
+	</table>
+#end
+
+</div>
+
+<table width="100%">
+
+<tr><td>
+
+
+	
+	
+	<div id="runButtons">
+	
+	<table>
+	<tr>
+	
+		<td valign="top">
+		
+	
+		
+		##--
+		<div class="shadow" style="display:none;height:100px;background:#ebebeb;margin-right:2px">
+			
+			<table >
+			<tr>
+				<td style="width:180px">A) Student's constraints:</td>
+				<td style="width:350px">
+					<div id="subjectsConflictButton" class="" style="">
+						<input id="clusterConflict" name="clusterConflict" type="checkbox" value="yes" #if ( $clusterConflict ) checked #end>Classrooms Clusters
+						<br/>
+						<input id="programStructureConflict" name="programStructureConflict" type="checkbox" value="yes" #if ( $programStructureConflict ) checked #end>Subjects in Program Structure
+						<br/>
+						<input id="studentsConflict" name="studentsConflict" type="checkbox" value="yes" #if ( $studentsConflict ) checked #end>Individual Student's Conflict
+						<br/>
+						<input id="sameDayConflict" name="sameDayConflict" type="checkbox" value="yes" #if ( $sameDayConflict ) checked #end>Same Day Conflict
+						
+						&nbsp;
+					</div>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			</table>
+	
+			<table >
+			<tr>
+				<td style="width:180px">B) Soft Constraints:</td>
+				<td style="width:350px">
+					<div id="softConstraintButton" class="" style="">
+						<input id="applySoftConstraint" name="applySoftConstraint" type="checkbox" value="yes" 
+							checked onclick="if (this.checked ) { $('ignoreSoftConstraint').checked = false; } else { $('ignoreSoftConstraint').checked = true; }">Apply
+							&nbsp;&nbsp;
+					    <input id="ignoreSoftConstraint" name="ignoreSoftConstraint" type="checkbox" value="yes"
+							onclick="if (this.checked ) { $('applySoftConstraint').checked = false; } else { $('applySoftConstraint').checked = true; }">Do Not Apply
+	
+					</div>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			</table>
+		
+		</div>
+		##---
+		
+	</td>
+	
+	<td>
+	
+	<span style="margin-left:20px;width:100px;padding:10px;text-align:center;border:1px dotted #000;">
+		<i class="fa fa-bolt fa-2x" aria-hidden="true"></i>
+		<button type="button" class="btn btn-link" onclick="$('menuTimetable').style.zIndex=1000;if ( $('menuTimetable').style.display=='none' ) { $('menuTimetable').style.display='block'; } else { $('menuTimetable').style.display='none'; }" >Action</button>
+	
+	</span>
+	
+	
+	
+	#if ( $displayAll == "yes" )
+		<span style="margin-left:5px;width:100px;padding:10px;text-align:center;border:1px dotted #000;font-size:10pt">
+		<i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+		All classes are displayed
+		</span>
+	#end
+	#if ( $department )
+		<span style="margin-left:5px;width:100px;padding:10px;text-align:center;border:1px dotted #000;font-size:10pt">
+		<i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>
+		$department.id - $department.name
+		</span>
+	#end
+	
+	## schedule view type
+	## 0 = slotting view
+	## 2 = timetable report view
+	<input type="hidden" name="scheduleViewType" value="$!defaultViewType">
+	#** 
+	<span style="margin-left:5px;width:300px;padding:10px;">
+		<select class="text" style="height:30px;width:200px;font-size:10pt" name="scheduleViewType">
+			<option value="">-- Select View Type --</option>
+			<option value="scheduleView" #if ( $viewType == "scheduleView" ) selected #end>Schedule View</option>
+			<option value="slotView" #if ( $viewType == "slotView" ) selected #end>Slot View</option>
+		</select>
+	</span>
+	**#
+	<div id="menuTimetable" class="shadow" style="position:absolute;display:none;width:400px;padding:1px;margin-left:20px;background:#fff;border:1px dotted #000">
+		<table class="table table-hover">
+		
+			<tr style="height:40px;border-bottom:1px dotted #000">
+				<td><i class="fa fa-dot-circle-o fa-2x" aria-hidden="true"></i></td>
+				<td style="cursor:pointer">
+	
+				<input type="hidden" name="displayAll" id="displayAll" value="$!displayAll">
+				#if ( $displayAll == "yes" )
+					Uncheck this to display only selected Activity's Calendar classes.
+				#else
+					Check this to display all classes.
+				#end
+				</td>
+				<td>
+				#if ( $displayAll == "yes" )
+					<input type="checkbox" checked onclick="$('displayAll').value='';doDivAjaxCall$formname('div_timetable_main','get_timetable','week_number=$week_number')">
+				#else
+					<input type="checkbox" onclick="$('displayAll').value='yes';doDivAjaxCall$formname('div_timetable_main','get_timetable','week_number=$week_number')">
+				#end
+				</td>
+			</tr>
+		
+			<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa-tags fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="$('menuTimetable').style.display='none';$('optionTitle').innerHTML='Options...';$('buttonRunNow').style.visibility='hidden';$('confirmRunAutoGenerate').style.display='block';$('confirmRunAutoGenerate').style.zIndex=9999;">Select Faculty</td><td>&#9658;</td></tr>
+			<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa-calendar fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="$('menuTimetable').style.display='none'; $('selectActivitySession').style.display='block';$('selectActivitySession').style.zIndex=9999;">Select Other Semester Group</td><td>&#9658;</td></tr>
+			<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa fa-list fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="$('menuTimetable').style.display='none';$('listClassroomTemplates').style.zIndex=1000;doDivAjaxCall$formname('listClassroomTemplates','listClassroomTemplates','week_number=$week_number')">Unslotted Classes</td><td>&#9658;</td></tr>	
+			
+			
+			<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa-magic fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="$('menuTimetable').style.display='none';$('optionTitle').innerHTML='Run Auto Generate';$('buttonRunNow').style.visibility='visible';$('confirmRunAutoGenerate').style.display='block';$('confirmRunAutoGenerate').style.zIndex=9999;">Run Auto Generate</td><td>&#9658;</td></tr>
+			<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa-undo fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="$('menuTimetable').style.display='none';$('confirmUndo').style.display='block';$('confirmUndo').style.zIndex='999'">Undo Last Auto Generate</td><td>&#9658;</td></tr>
+	
+			<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa-eraser fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="$('menuTimetable').style.display='none';$('confirmEmptySlots').style.display='block';$('confirmEmptySlots').style.zIndex='999'">Clear All Slots</td><td>&#9658;</td></tr>
+			
+			
+			
+			##<tr style="height:20px;border-bottom:1px dotted #000"><td>&#9675;</td><td style="cursor:pointer" onclick="if ( !confirm('Copy from previous week?') ) return; $('menuTimetable').style.display='none';$('listClassroomTemplates').style.zIndex=1000;doDivAjaxCall$formname('div_timetable_main','copyFromPreviousWeek','week_number=$week_number')"; >Copy from Previous Week</td><td>&#9658;</td></tr>
+			##<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa-th fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="if ( !confirm('Copy to all weeks?') ) return; $('menuTimetable').style.display='none';doDivAjaxCall$formname('div_timetable_main','copySlotsToManyWeeks','week_number=$week_number&schedule_type=-1')"; >Copy Slots to All Weeks</td><td>&#9658;</td></tr>
+		
+			<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa-clipboard fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="$('menuTimetable').style.display='none';$('divCopyFrom').style.zIndex=9999;doDivAjaxCall$formname('divCopyFrom','copyFrom','week_number=$week_number&schedule_type=-1')"; >Copy From...</td><td>&#9658;</td></tr>
+			
+			
+			<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa-check fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="$('menuTimetable').style.display='none';$('confirmReadyToPublish').style.display='block';$('confirmReadyToPublish').style.zIndex='999'">Ready to Publish</td><td>&#9658;</td></tr>
+			<tr style="height:20px;border-bottom:1px dotted #000"><td><i class="fa fa-times fa-2x" aria-hidden="true"></i></td><td style="cursor:pointer" onclick="$('menuTimetable').style.display='none';$('confirmReadyToUnPublish').style.display='block';$('confirmReadyToUnPublish').style.zIndex='999'">Cancel Publish</td><td>&#9658;</td></tr>
+		
+		
+		</table>
+	</div>
+	
+	
+	</td>
+	
+		
+	<td valign="top">
+		
+	<div id="divCopyFrom" style="position:absolute;left:5%;background:#fff;border:1px solid #6B6363;display:none;padding:5px" class="shadow"></div>
+	
+	<div id="listClassroomTemplates2" style="position:absolute;left:40%;background:#EAE8E8;border:2px solid #6B6363;display:none;text-align:center;padding:5px" class="shadow"></div>
+	<div id="listClassroomTemplates" style="position:fixed;width:500px;height:460px;top: 50%;left: 50%;margin-top:-200px; margin-left: -200px;display:none;background-color: #FFF;border:1px dotted #ccc;padding:2px" class="shadow"></div>
+	
+	
+	##-- AUTO GENERATE TIME TABLE
+	<div id="confirmRunAutoGenerate" style="position:absolute;background:#EAE8E8;border:2px solid #6B6363;display:none;width:400px;padding:5px" class="shadow">
+	
+		<table style="height:30px;width:100%;background:#cde5f4;border-bottom:2px dotted #000"><tr><td><span id="optionTitle" style="font-weight:bold;">Run Auto Generate</span></td><td align="right"><input class="linkbutton" type="button" style="font-weight:bold;" value="X" onclick="$('confirmRunAutoGenerate').style.display='none';"></td></tr></table>
+	
+	
+		<br/>
+		
+		## HIDE THE TAGS 
+		<div style="display:none">
+		<table style="width:100%">
+			<tr>
+				<td style="width:50px">Tag:</td>
+				<td>
+					<select class="texts" style="height:35px" name="tagNumber" id="tagNumber">
+						<option value="">-All-</option>
+						#foreach ( $i in [0..20] )
+							<option value="$i" #if ( $i == $tagNumber ) selected #end>$i</option>
+						#end
+					</select>
+					
+				</td>
+				<td style="width:30px" align="right">
+					<button type="button" class="btn btn-warning" onclick="$('selectIncludeTag').style.zIndex=9999;doDivAjaxCall$formname('selectIncludeTag','selectIncludeTag','')">...</button>
+					
+				</td>
+			</tr>
+			</table>
+			</div>
+			##----
+			
+			<div>
+			<table style="width:100%">
+			<tr style="height:40px">
+				<td colspan="2">
+					Select a Faculty:
+					(or select none to generate classes for all your assigned faculties)
+				</td>
+			</tr>
+			<tr>
+				<td>
+				
+				<input class="texts"style="height:35px" name="departmentName" id="departmentName" readonly #if ( $department ) value="$!department.name" #else value="(All)" #end>
+		
+				</td>
+				<td style="width:30px" align="right">
+				<button type="button" class="btn btn-warning" onclick="$('selectIncludeTag').style.zIndex=9999;doDivAjaxCall$formname('selectIncludeTag','selectDepartment','')">...</button>
+				
+				</td>
+			</tr>
+			</table>
+			</div>
+		
+		
+		
+		<br/><br/>
+		##FACULTY
+		<input type="hidden" id="departmentId" name="departmentId" value="$!department.id">
+		
+		<input type="hidden" name="excludeTagNumber" value="">
+		<input type="hidden" name="spanWeeks" value="1">
+		
+		<br/><br/>
+	
+		##<input type="checkbox" id="skipHolidays" name="skipHolidays" value="1" #if ( $skipHolidays == "1" ) checked #end>Skip Holidays
+		<input type="hidden" id="skipHolidays" name="skipHolidays" value="">
+		
+		
+		##BUTTONS
+		<br/><br/>
+		<div style="text-align:right">
+		
+		
+		## BUTTON RUN AUTO GENERATE
+		##<input id="buttonRunNow" class="linkbutton" type="button" style="font-weight:bold;" value="Run Now..." onclick="$('runButtons').style.display='none';$('confirmRunAutoGenerate').style.display='none';doDivAjaxCall$formname('div_timetable_main','auto_generate_timetable','week_number=$week_number')">
+		<input id="buttonRunNow" class="linkbutton" type="button" style="font-weight:bold;" value="Run Now..." onclick="$('confirmRunAutoGenerate').style.display='none';$('div_progressWindow').style.display='block';doDivAjaxCall$formname('div_progressWindowContent','auto_generate_timetable2','week_number=$week_number')">
+		
+		
+		
+		##<input class="linkbutton" type="button" style="font-weight:bold;" value="Reset" onclick="$('tagNumber').value=''; $('excludeTagNumber').value='';$('spanWeeks').value='1';">
+		<input id="buttonOptionOK" class="linkbutton" type="button" style="font-weight:bold;" value="OK" onclick="$('confirmRunAutoGenerate').style.display='none';doDivAjaxCall$formname('div_timetable_main','get_timetable','');">
+		</div>
+		<br/><br/>
+	</div>
+	
+	
+	
+	<div id="selectIncludeTag" style="position:absolute;background:#EAE8E8;border:2px solid #6B6363;display:none;width:400px;text-align:center;padding:5px" class="shadow"></div>
+	
+	
+	##-- EMPTY SLOTS?
+	<div id="confirmUndo" style="position:absolute;background:#EAE8E8;border:2px solid #6B6363;display:none;width:200px;text-align:center;padding:5px" class="shadow">
+	<div style="font-family:Verdana, sans-serif;font-weight:bold">UNDO PREVIOUS AUTO GENERATED CLASSROOMS?</div>
+	<br/>
+	<input class="linkbutton" type="button" style="font-weight:bold;" value="YES" onclick="$('runButtons').style.display='none';$('confirmUndo').style.display='none';doDivAjaxCall$formname('div_timetable_main','undo_timetable','week_number=$week_number')">
+	<input class="linkbutton" type="button" style="font-weight:bold;" value="CANCEL" onclick="$('confirmUndo').style.display='none';">
+	<br/>
+	</div>
+	
+	##<input class="linkbutton" type="button" value="Clear All Slots" onclick="$('confirmEmptySlots').style.display='block';$('confirmEmptySlots').style.zIndex='999'">
+	
+	##-- EMPTY SLOTS?
+	<div id="confirmEmptySlots" style="position:absolute;background:#EAE8E8;border:2px solid #6B6363;display:none;width:200px;text-align:center;padding:5px" class="shadow">
+	<div style="font-family:Verdana, sans-serif;font-weight:bold">CLEAR ALL CLASSROOMS FOR THIS WEEK?</div>
+	<br/>
+	<input class="linkbutton" type="button" style="font-weight:bold;" value="YES" onclick="$('runButtons').style.display='none';$('confirmEmptySlots').style.display='none';doDivAjaxCall$formname('div_timetable_main','empty_timetable','week_number=$week_number')">
+	<input class="linkbutton" type="button" style="font-weight:bold;" value="CANCEL" onclick="$('confirmEmptySlots').style.display='none';">
+	<br/>
+	</div>
+	
+
+	##-- READY TO PUBLISH?
+	<div id="confirmReadyToPublish" style="position:absolute;background:#EAE8E8;border:2px solid #6B6363;display:none;width:200px;text-align:center;padding:5px" class="shadow">
+	<div style="font-family:Verdana, sans-serif;font-weight:bold">READY TO PUBLISH?</div>
+	<br/>
+	<input class="linkbutton" type="button" style="font-weight:bold;" value="YES" onclick="$('runButtons').style.display='none';$('confirmReadyToPublish').style.display='none';doDivAjaxCall$formname('div_timetable_main','readyToPublish','week_number=$week_number&published=1')">
+	<input class="linkbutton" type="button" style="font-weight:bold;" value="CANCEL" onclick="$('confirmReadyToPublish').style.display='none';">
+	<br/>
+	</div>
+	
+	
+	##-- UNPUBLISH?
+	<div id="confirmReadyToUnPublish" style="position:absolute;background:#EAE8E8;border:2px solid #6B6363;display:none;width:200px;text-align:center;padding:5px" class="shadow">
+	<div style="font-family:Verdana, sans-serif;font-weight:bold">CANCEL PUBLISH?</div>
+	<br/>
+	<input class="linkbutton" type="button" style="font-weight:bold;" value="YES" onclick="$('runButtons').style.display='none';$('confirmReadyToUnPublish').style.display='none';doDivAjaxCall$formname('div_timetable_main','readyToPublish','week_number=$week_number&published=0')">
+	<input class="linkbutton" type="button" style="font-weight:bold;" value="CANCEL" onclick="$('confirmReadyToPublish').style.display='none';">
+	<br/>
+	</div>
+		
+	</td>
+	
+	
+	</tr></table>
+	</div>
+
+
+</td>
+
+<td align="right">
+
+</td>
+</tr>
+</table>
+
+
+
+## MAIN TIMETABLE SLOTS
+
+
+#if ( $show_timetable )
+
+	#if ( $viewType == "slotView" )
+	
+		<div id="timeTableView" style="width:3500px;padding:2px;border:2px dotted #000">
+			#parse("apps/timetabling/div_timetable_main2.vm")
+		</div>
+		
+	#elseif ( $viewType == "scheduleView" )
+	
+		<div id="timeTableView" style="width:1600px;padding:2px;border:2px dotted #000">
+			#parse("apps/timetabling/classroomList.vm")
+		</div>
+		
+	#end
+#end
+
+
+

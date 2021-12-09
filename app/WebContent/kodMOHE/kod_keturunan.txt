@@ -1,0 +1,15 @@
+1=Melayu
+2=Cina
+3=India
+4=Iban
+5=Bidayuh
+6=Melanau
+7=Kadazan/Dusun
+8=Bajau
+9=Murut
+14=Orang Asli (Semenanjung)
+23=Tidak Berkaitan (bukan warganegara)
+24=Bumiputera Lain
+26=Lain-lain bumiputera Sabah
+27=Lain-lain bumiputera Sarawak
+28=Sikh

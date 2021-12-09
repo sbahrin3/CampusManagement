@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+<style>
+#divFindStudent {
+    position:fixed;
+    top: 30%;
+    left: 25%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+</style>
+
+<div style="padding:10px">
+
+
+#set ( $field_name = "student_no")
+#parse("divFindStudent.vm")
+
+<table width="100%"><tr><td>
+<input class="input-find" name="student_no" id="student_no" value="$!student.matricNo" style="width:200px;height:32px">
+<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('getStudent','get_student_by_matric','')">Get Student</button>
+<button type="button" class="btn btn-success" onclick="$('divFindStudent').style.display='block';">Find...</button>
+	
+
+
+<div id="getStudent"></div>
+
+
+</div>
+
+

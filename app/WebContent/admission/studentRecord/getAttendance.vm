@@ -1,0 +1,4 @@
+<div id="listClassrooms2">
+	##parse("apps/timetabling/student_classroom/listClassrooms2.vm")
+	#parse("admission/studentRecord/getAttendanceClassrooms.vm")
+</div>

@@ -1,0 +1,19 @@
+<table>
+<tr style="background:#AAA9A9">
+<td style="width:40px;">&nbsp;</td>
+<td style="width:250px;font-weight:bold">Name</td>
+<td style="width:50px;"><input class="linkbutton" type="button" value="Add" onclick="doDivAjaxCall3$formname('getVotingPosition','getVotingPosition','positionId=')"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $i in $positions )
+#set ( $cnt = $cnt + 1 )
+<tr style="background:#E8E3E3">
+<td>$cnt.</td>
+<td>$i.name</td>
+<td>
+<input class="linkbutton" type="button" style="padding:1px" value="..." onclick="doDivAjaxCall3$formname('getVotingPosition','getVotingPosition','positionId=$!i.id')">
+<input class="linkbutton" type="button" style="padding:1px" value="X" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall3$formname('votingPositions','deleteVotingPosition','positionId=$!i.id')">
+</td>
+</tr>
+#end
+</table>

@@ -1,0 +1,9 @@
+
+db = $user_campus
+<br/>
+
+<ul>
+	#foreach ( $student in $students )
+		<li>$student.biodata.name</li>
+	#end
+</ul>

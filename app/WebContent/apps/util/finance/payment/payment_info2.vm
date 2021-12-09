@@ -1,0 +1,71 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("get_student").text("Back")]
+</td></tr>
+<tr><td>
+<br/><br/>
+
+<fieldset style="background-color:lightgrey; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%">
+<tr><td align="center" style="font-weight:bold;font-family:helvetica;font-size:14pt">
+
+Payment Has Been Made Successfully.
+
+</td></tr></table>
+</fieldset>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">STUDENT'S INFORMATION</legend>
+<br>
+##<table width="100%"><tr height="30px">
+##<td style="font-weight:bold">STUDENT ENROLLMENT INFORMATION<hr/></td>
+##</tr></table>
+#set ( $student = $invoice.student )
+<table width="100%">
+<tr><td style="width:100px">Matric No:</td><td style="font-weight:bold">
+$href.command("payment_info").text("$payment.student.matricNo")
+</td></tr>
+<tr><td style="width:100px">Name:</td><td style="font-weight:bold">$payment.student.biodata.name</td></tr>
+<tr><td style="width:100px">ICNO:</td><td style="font-weight:bold">$payment.student.biodata.icno</td></tr>
+<tr><td style="width:100px">Program:</td><td style="font-weight:bold">$payment.student.program.code $payment.student.program.name</td></tr>
+<tr><td style="width:100px">Intake:</td><td style="font-weight:bold">$payment.student.intake.name</td></tr>
+<tr><td style="width:100px">Learning Centre:</td><td style="font-weight:bold">$payment.student.learningCenter.name</td></tr>
+</table>
+
+</fieldset>
+<br/><br/>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">PAYMENT DETAILS</legend>
+<br>
+<table width="100%">
+<tr><td style="width:100px">Date/Time:</td><td style="font-weight:bold">
+$dateFormat.format($payment.createDate) ($timeFormat.format($payment.createTime))
+</td></tr>
+<tr><td style="width:100px">Payment No:</td><td style="font-weight:bold">$payment.paymentNo</td></tr>
+<tr><td style="width:100px">Amount:</td><td style="font-weight:bold">RM $numFormat.format($payment.amount)</td></tr>
+</table>
+<br/>
+<table width="100%" cellspacing="0">
+<tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">Fee</td>
+<td align="right" style="font-weight:bold">Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</td>
+</tr>
+<tr><td colspan="2"><br/></td></tr>
+#foreach ( $i in $payment.paymentItems )
+<tr>
+<td>$i.invoiceItem.description</td>
+<td align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+</table>
+<br/>
+
+</fieldset>
+
+
+</td></tr></table>
+<input type="hidden" name="student_id" value="$!payment.student.id">
+<input type="hidden" name="payment_id" value="$!payment.id">

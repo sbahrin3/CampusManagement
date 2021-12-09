@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+
+
+<div class="container">
+	#parse("apps/timetabling/slot_time/main.vm")
+</div>
+
+
+<br/><br/>
+
+<div id="empty"></div>

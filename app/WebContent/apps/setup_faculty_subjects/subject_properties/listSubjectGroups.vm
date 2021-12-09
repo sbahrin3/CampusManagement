@@ -1,0 +1,6 @@
+<select class="texts" name="subjectGroupId">
+	<option value=""></option>
+	#foreach ( $g in $subjectGroups )
+		<option value="$g.id" #if ( $subject.subjectGroup.id == $g.id ) selected  #end>$g.name</option>
+	#end
+</select>

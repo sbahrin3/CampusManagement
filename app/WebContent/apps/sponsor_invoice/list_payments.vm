@@ -1,0 +1,102 @@
+
+<br>
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">$sponsor.code - $sponsor.name</legend>
+
+<table width="100%" cellspacing="0">
+
+<tr class="gradient" height="30px">
+<td style="width:20px">&nbsp;</td>
+<td style="width:100px;font-weight:bold">Invoice No</td>
+<td style="width:100px;font-weight:bold">Matric No</td>
+<td style="font-weight:bold">Name</td>
+<td style="width:100px;font-weight:bold" align="center">Invoiced<br>Amount</td>
+<td style="width:100px;font-weight:bold" align="center">Payment</td>
+<td style="width:30px">
+<td style="width:20px">&nbsp;</td>
+</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $inv in $unpaid_invoices )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td class="gradient">$cnt.</td>
+<td><input class="text" style="background-color:#FFD4AA" readonly value="$inv.invoiceNo"></td>
+<td><input class="text" style="background-color:#FFD4AA" readonly value="$inv.student.matricNo"></td>
+<td><input class="text" style="background-color:#FFD4AA" readonly value="$inv.student.biodata.name"></td>
+<td><input class="text" style="background-color:#FFD4AA;text-align:right" readonly value="$numFormat.format($inv.amount)"></td>
+<td><input class="text" id="amount_$inv.id" name="amount_$inv.id" style="text-align:right" value="$numFormat.format($inv.amount)"></td>
+<td style="border-bottom:1px solid #C3C3C3">
+<input type="checkbox" name="invoice_ids" id="cb_$cnt" value="$inv.id">
+</td>
+<td>
+</td>
+</tr>
+#end
+
+#foreach( $inv in $paid_invoices )
+#set ( $cnt = $cnt + 1 )
+
+#if ( $paids.get("$inv.student.id") )
+#set ( $amt = $inv.amount - $paids.get("$inv.student.id") )
+#else
+#set ( $amt = $inv.amount )
+#end
+
+
+<tr>
+<td class="gradient">$cnt.</td>
+<td><input class="text" style="background-color:#A1F6A1" readonly value="$inv.invoiceNo"></td>
+<td><input class="text" style="background-color:#A1F6A1" readonly value="$inv.student.matricNo"></td>
+<td><input class="text" style="background-color:#A1F6A1" readonly value="$inv.student.biodata.name"></td>
+<td><input class="text" style="background-color:#A1F6A1;text-align:right" value="$numFormat.format($inv.amount)"></td>
+<td><input class="text" style="text-align:right" id="amount_$inv.id" name="amount_$inv.id" value="$numFormat.format($amt)"></td>
+<td style="border-bottom:1px solid #C3C3C3;background-color:#A1F6A1">
+<input type="checkbox" name="invoice_ids" id="cb_$cnt" value="$inv.id">
+</td>
+<td>
+<input class="gradient" style="height:25px"  type="button" value="Receipts" onclick="$('div_$cnt').style.display='block'; doDivAjaxCall$formname('div_$cnt','student_receipts','cnt=$cnt&invoice_id=$inv.id&sponsor_invoice_id=$sponsor_invoice.id')">
+
+</td>
+</tr>
+<tr><td colspan="10">
+<div id="div_$cnt" style="display:none;position:absolute;overflow:auto;overflow-x:hidden;height:400px; width:800px;"></div>
+</td></tr>
+#end
+<tr>
+<td colspan="4"></td>
+<td colspan="2" align="right">Check/Uncheck All:</td>
+<td>
+#set ( $cnts = $cnt + 1 )
+<input id="cb" type="checkbox" onclick="if ( $('cb').checked == true ) { for ( i=1; i < $cnts; i++ ) { $('cb_' + i).checked=true; } } else { for ( i=1; i < $cnts; i++ ) { $('cb_' + i).checked=false; } }"
+
+</td>
+<td></td>
+</tr>
+</table>
+
+<table width="100%">
+
+<tr>
+<td style="width:80px;font-weight:bold">Date:</td>
+<td style="width:500px">
+<input class="texts" id="paymentDate" name="paymentDate" style="width:100px">
+<script> new JsDatePick({ useMode:2, target:"paymentDate", dateFormat:"%d-%m-%Y" }); </script>
+<td align="right" valign="top"></td>
+</tr>
+
+<tr>
+<td style="width:80px;font-weight:bold" valign="top">Remark:</td>
+<td style="width:500px" valign="top"><textarea class="texts" name="paymentRemark" style="width:100%;height:100px"></textarea></td>
+<td align="right" valign="top">
+<input type="button" class="gradient" style="height:30px;font-weight:bold" value="Process Payments" onclick="if ( !confirm('Process Payments?') ) return;doDivAjaxChainCall$formname('div_payments','save_payments','sponsor_invoice_id=$sponsor_invoice.id','div_invoices','get_invoices','sponsor_id=$sponsor.id')">
+#if ( $userId == "none" )
+	<a href="javascript:void()" onclick="if ( !confirm('CANCEL Payments?') ) return;doDivAjaxChainCall$formname('div_payments','cancel_payments','sponsor_invoice_id=$sponsor_invoice.id', 'div_invoices','get_invoices','sponsor_id=$sponsor.id')">x</a>
+#end
+</td>
+</tr>
+
+
+</table>
+
+</fieldset>

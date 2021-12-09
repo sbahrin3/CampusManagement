@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<style>
+.tabNormal { background: #9B9B9B; color: #FFF; }
+.tabSelected { background: #FFF; color: #000; border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000}
+</style>
+
+
+
+<table width="900px">
+<tr><td>
+
+<fieldset class="fset" style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Student Identification Number Template</legend>
+<div id="div_matric">
+#parse( "apps/matric_number/template.vm")
+</div>
+</fieldset>
+
+</td></tr>
+<tr height="40px"><td>
+</td></tr>
+
+<tr><td>
+<fieldset class="fset" style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Codes Prefix Setup</legend>
+
+<table style="width:100%">
+<tr height="30px">
+
+<td id="tab1" class="tabNormal" style="cursor:pointer" width="100px" align="center" onclick="doDivAjaxCall$formname('div_matric_codes','list_codes','type=centre');tabSelect(1)">Learning Centre</td>
+<td id="tab2" class="tabNormal" style="cursor:pointer" width="100px" align="center" onclick="doDivAjaxCall$formname('div_matric_codes','list_codes','type=session');tabSelect(2)">Session</td>
+<td id="tab3" class="tabNormal" style="cursor:pointer" width="100px" align="center" onclick="doDivAjaxCall$formname('div_matric_codes','list_codes','type=program');tabSelect(3)">Program</td>
+<td id="tab4" class="tabNormal" style="cursor:pointer" width="100px" align="center" onclick="doDivAjaxCall$formname('div_matric_codes','list_codes','type=faculty');tabSelect(4)">Faculty</td>
+<td id="tab5" class="tabNormal" style="cursor:pointer" width="100px" align="center" onclick="doDivAjaxCall$formname('div_matric_codes','list_codes','type=course');tabSelect(5)">Course</td>
+<td id="tab6" class="tabNormal" style="cursor:pointer" width="100px" align="center" onclick="doDivAjaxCall$formname('div_matric_codes','list_codes','type=ps_setup');tabSelect(6)">Program Batch</td>
+<td id="tab7" class="tabNormal" style="cursor:pointer" width="100px" align="center" onclick="doDivAjaxCall$formname('div_matric_codes','list_codes','type=study_mode');tabSelect(7)">Study Mode</td>
+##<td id="tab8" class="tabNormal" style="cursor:pointer" width="100px" align="center" onclick="doDivAjaxCall$formname('div_matric_codes','list_codes','type=level');tabSelect(8)">Level</td>
+
+</tr>
+</table>
+<div id="div_matric_codes">
+</div>
+<div id="div_empty"></div>
+
+
+</fieldset>
+</td></tr>
+</table>
+	
+
+<script>
+function tabSelect(i) {
+	for ( k = 1; k < 8; k++ ) {
+		document.getElementById("tab" + k).className = "tabNormal";
+	}
+	document.getElementById("tab" + i).className = "tabSelected";
+}
+
+function putPrefix(pre) {
+
+	var txt = $('prefix').value;
+	txt = txt + pre;
+	$('prefix').value = txt;
+
+}
+</script>
+

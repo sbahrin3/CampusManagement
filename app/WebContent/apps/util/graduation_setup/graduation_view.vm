@@ -1,0 +1,135 @@
+#set ( $requirement_count = 0 )
+<table width="700" align="center">
+<tr><td align="right">
+$href.command("").text("Select Other Program") |
+$href.command("graduation_requirement").text("Modify Requirement")
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td>
+
+<table width="100%">
+<tr><td style="font-weight:bold">
+$href.command("view").text("$program.code $program.name")</td></tr>
+<tr><td style="font-weight:bold">$intake.code $intake.name</td></tr>
+<tr><td style="font-weight:bold">#if ( $type == "S" ) SPECIALISE #else GENERAL #end</td></tr>
+</table>
+
+</td>
+<td>
+##$button.command("graduation_requirement").style("width:150px;height:50px;font-weight:bold").text("Modify Requirement")
+##$button.command("").style("width:80px;height:50px;font-weight:bold").text("Back")
+</tr>
+
+<br>
+
+<tr><td align="center">
+
+#if ( $grad.minCGPA > 0 )
+#set ( $requirement_count = $requirement_count + 1 )
+<fieldset style="background-color:#fff; width:500px; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="400" align="center">
+<tr><td style="font-weight:bold">
+CGPA Requirement
+</td></tr>
+
+
+<tr>
+<td align="center" style="font-weight:bold;font-size:12pt;font-family:helvetica">
+CGPA:
+$!grad.minCGPA
+</td>
+</tr>
+
+</table>
+
+</fieldset>
+#end
+
+<br><br>
+#if ( $has_credit_hours )
+#set ( $requirement_count = $requirement_count + 1 )
+#if ( $grad.categoryCounts.size() > 0 )
+<fieldset style="width:500px; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="400" align="center">
+<tr><td style="font-weight:bold">
+Credit Unit Requirement
+</td></tr>
+</table>
+
+
+<table width="400" align="center">
+<tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold" align="center">Category</td>
+<td style="font-weight:bold" align="center">Credit Unit</td>
+</tr>
+#foreach ( $cat in $grad.categoryCounts )
+#if ( $cat.count > 0 )
+<tr>
+<td align="center">$cat.category.name</td>
+<td align="center">$cat.count</td>
+</tr>
+#end
+#end
+</table>
+
+</fieldset>
+
+#end
+
+#end
+
+<br>
+<tr><td align="center">
+<br><br>
+#if ( $subjects.size() > 0 )
+#set ( $requirement_count = $requirement_count + 1 )
+<fieldset style="width:500px; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="400" align="center">
+<tr><td style="font-weight:bold">
+Subject/Program Requirement
+</td></tr>
+</table>
+<br>
+
+
+<table width="400" align="center">
+<tr height="30px" bgcolor="lightgrey">
+<td></td>
+<td style="font-weight:bold">Subject</td>
+<td align="center" style="font-weight:bold">Mark</td>
+</tr>
+#foreach( $subject in $subjects )
+<tr>
+<td>$subject.subject.code</td>
+<td>$subject.subject.name</td>
+<td align="center">$subject.mark</td>
+</tr>
+#end
+</table>
+</fieldset>
+#end
+
+</td></tr>
+<br><br>
+#if ( $requirement_count == 0 )
+<tr><td align="center" style="font-family:helvetica;font-weight:bold;font-size:10pt">
+<fieldset style="width:500px; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+Graduation Requirement for this Programme/Intake are not set.<br><br>
+$href.command("graduation_requirement").text("Please Click Here for Requirement Setup")
+
+</fieldset>
+</td></tr>
+#end
+
+</table>
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="type" value="$!type">
+<input type="hidden" name="centre_code" value="CYKL">

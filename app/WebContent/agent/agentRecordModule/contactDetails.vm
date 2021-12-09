@@ -1,0 +1,29 @@
+<div id="getContact" class="shadow"></div>
+
+<table style="width:100%" cellpadding="0" cellspacing="1">
+	<tr style="background:#ccc;height:30px">
+		<td style="width:30px"></td>
+		<td style="font-weight:bold">Name</td>
+		<td style="width:200px;font-weight:bold">Contact No</td>
+		<td style="width:40px" align="center">&nbsp;</td>
+		<td style="width:40px" align="center">&nbsp;</td>
+	</tr>
+	#foreach ( $c in $r.contacts )
+		
+		<tr style="height:25px;">
+			<td style="border-bottom:1px solid #CCC;border-right:1px solid #CCC;">&nbsp;</td>
+			<td style="border-bottom:1px solid #CCC;border-right:1px solid #CCC;">$!c.name</td>
+			<td style="border-bottom:1px solid #CCC;border-right:1px solid #CCC;">$!c.phoneNo</td>
+			<td style="border-bottom:1px solid #CCC;border-right:1px solid #CCC;cursor:pointer" align="center" onclick="doDivAjaxCall$formname('getContact','getContact','contactId=$c.id')"><img src="../img/edit.gif"></td>
+			<td style="border-bottom:1px solid #CCC;border-right:1px solid #CCC;cursor:pointer" align="center" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall$formname('contactDetails','deleteContact','agentId=$r.id&contactId=$c.id')"><img src="../img/trash.gif"></td>
+		</tr>
+
+				
+	#end
+	<tr style="height:25px">
+		<td>&nbsp;</td>
+		<td><input class="texts" name="contactName"></td>
+		<td><input class="texts" name="contactPhoneNo"></td>
+		<td colspan="2"><input class="linkbutton" style="padding:5px;width:100%" type="button" value="Add" onclick="doDivAjaxCall$formname('contactDetails','addContact','agentId=$r.id')"></td>
+	</tr>
+</table>

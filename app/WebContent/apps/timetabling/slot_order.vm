@@ -1,0 +1,28 @@
+
+<ul id="slotClassroomList" style="list-style-type:none;padding:0px;">
+#foreach ( $slotClassroom in $slot.slotClassrooms )
+#set ( $cr = $slotClassroom.classroom )
+#set ( $bgcolor = $slotColor.colorMap.get("${cr.subject.id}-${cr.classroomSection.id}") )
+<li>
+<table align="center" width="200px" bgcolor="$bgcolor">
+<tr><td align="center" bgcolor="$bgcolor" style="cursor:pointer">
+$!cr.subject.code -
+$!cr.classroomSection.name -
+$!cr.room.code
+<input type="hidden" name="slotClassroomIds" value="$slotClassroom.id">
+</td></tr>
+</table>
+</li>
+#end
+</ul>
+
+<table width="100%"><tr><td align="right">
+<input type="button" value="Cancel" onclick="$('divPopup').style.display='none';">
+
+<input type="button" value="OK" 
+onclick="doDivAjaxCall$formname('slot_$slot.id','updateSequence','slotId=$slot.id');$('divPopup').style.display='none';">
+</td></tr></table>
+
+<script>
+Sortable.create('slotClassroomList');
+</script>

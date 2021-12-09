@@ -1,0 +1,35 @@
+##parse("apps/util/student_stat/menu.vm")
+
+<table width="700" align="center"><tr><td style="font-family:arial;font-weight:bold;font-size:10pt">
+##$href.command("statistic_chart").text("Back") |
+[<a href="javascript:void()" onclick="$('div_chart_data').style.visibility='hidden';">Close</a>]
+</td></tr></table>
+
+<table width="700" align="center"><tr><td>
+<table width="100%" align="center">
+<tr><td colspan="6" align="centre" style="font-family:arial; font-weight:bold; font-size:12pt">
+$!title
+</td></tr>
+<tr>
+<td></td>
+<td style="font-weight:bold">Matric</td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">Program</td>
+<td style="font-weight:bold" align="center">Dob</td>
+<td style="font-weight:bold" align="center">Age</td>
+</tr>
+<tr><td colspan="6"><hr/></td></tr>
+#set ( $cnt = 0 )
+#foreach ( $student in $students )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td valign="top" align="right" style="width:20px">$cnt)</td>
+<td valign="top"  style="width:100px">$student.matricNo</td>
+<td valign="top" >$student.biodata.name</td>
+<td valign="top" style="width:250px">$student.program.name</td>
+<td valign="top" style="width:200px" align="center">$dateFormat.format($student.biodata.dob)</td>
+<td valign="top" style="width:200px" align="center">$ageCalc.getAge($student.biodata.dob)</td>
+</tr>
+#end
+</table>
+</td></tr></table>

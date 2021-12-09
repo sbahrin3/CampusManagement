@@ -1,0 +1,85 @@
+<div class="well" style="width:700px">
+
+<table style="">
+<tr><td>
+
+<table>
+
+<tr><td style="font-weight:bold">
+WHERE SEMESTER CGPA
+</td></tr>
+
+
+<tr><td style="width:500px">
+<select class="textr" name="comparator_$row">
+<option value="eqgt" #if ( $standingRule.comparator == "eqgt" ) selected #end>Equal/Greater Than</option>
+<option value="lt" #if ( $standingRule.comparator == "lt" ) selected #end>Less Than</option>
+</select>
+</td></tr>
+
+<tr><td>
+<input class="textr" name="cgpaValue_$row" value="$!standingRule.cgpaValue">
+</td></tr>
+
+<tr><td style="font-weight:bold">
+<br/>
+AND SEMESTER GPA
+</td></tr>
+
+<tr><td style="width:500px">
+<select class="textr" name="comparator2_$row">
+<option value="nd" #if ( $standingRule.comparator2 == "nd" ) selected #end>Not Defined</option>
+<option value="eqgt" #if ( $standingRule.comparator2 == "eqgt" ) selected #end>Equal/Greater Than</option>
+<option value="lt" #if ( $standingRule.comparator2 == "lt" ) selected #end>Less Than</option>
+</select>
+</td></tr>
+
+<tr><td>
+<input class="textr" name="gpaValue_$row" value="$!standingRule.gpaValue">
+</td></tr>
+
+<tr><td style="font-weight:bold">
+<br/>
+IF PREVIOUS STANDING
+</td></tr>
+
+<tr><td>
+<select class="textr" name="previousStandingId_$row">
+<option value=""></option>
+#foreach( $standing in $standings )
+<option value="$standing.id" #if ( $standingRule.previousStanding.id == $standing.id ) selected #end>$standing.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td style="font-weight:bold">
+<br/>
+THEN CURRENT STANDING
+</td></tr>
+
+<tr><td>
+<select class="textr" name="currentStandingId_$row">
+<option value=""></option>
+#foreach( $standing in $standings )
+<option value="$standing.id" #if ( $standingRule.currentStanding.id == $standing.id ) selected #end>$standing.name</option>
+#end
+</select>
+</td></tr>
+
+
+
+</table>
+</td><td>&nbsp;
+</td><td align="" valign="bottom">
+#if ( $row == "0" )
+<button class="btn btn-warning btn-sm" type="button" style="width:100px" onclick="doDivAjaxCall3$formname('main_standingRule','addStandingRule','')">Add</button>
+#else
+<button class="btn btn-warning btn-sm" type="button" style="width:100px" onclick="doDivAjaxCall3$formname('standingRule_$row','saveStandingRule','row=$row&standingRuleId=$standingRule.id')">Save</button>
+#end
+<br/><br/>
+<button class="btn btn-success btn-sm" type="button" style="width:100px" value="Cancel" onclick="$('edit_standingRule_$row').innerHTML = '';">Cancel</button>
+
+</td></tr></table>
+
+</div>
+

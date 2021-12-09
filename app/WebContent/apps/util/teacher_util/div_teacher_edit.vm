@@ -1,0 +1,11 @@
+<table cellpadding="2" cellspacing="2">
+<tr>
+<td width="20px" align="right">$cnt)</td>
+<td width="200px" >$!t.username</td>
+<td width="150px" ><input style="width:100%" name="code_$cnt" value="$!t.teacher.code"></td>
+<td width="300px" ><input style="width:100%" name="name_$cnt" value="$!t.teacher.name"></td>
+<td align="center" width="200px">
+<input type="button" style="font-weight:bold" value="SAVE" onclick="doDivAjaxCall$formname('div_teacher_$cnt','inline_update','teacher_id=$!t.teacher.id&username=$!t.username&cnt=$cnt')">
+</td>
+</tr>
+</table>

@@ -1,0 +1,58 @@
+<div style="font-family:Verdana;font-size:11pt;font-weight:bold">
+	Statistical Report: List of Questionnares
+</div>
+<br/>
+<table>
+<tr style="height:30px">
+<td class="colTitle" style="width:40px">&nbsp;</td>
+<td class="colTitle" style="width:100px" align="center">Open Date</td>
+<td class="colTitle" style="width:500px" align="center">Questions Set</td>
+<td class="colTitle" style="width:50px" align="center">Last Generated</td>
+<td class="colTitle" align="center">&nbsp;</td>
+<td class="colTitle" align="center" colspan="4">View Statistics By</td>
+</tr>
+
+#foreach ( $q in $questionnares )
+	#set ( $generate = $statGenerateMap.get("${q.set.id}-${q.startDate}") )
+	#set ( $hasSubject = $hasSubjectMap.get("${q.set.id}-${q.startDate}") )
+<tr style="height:25px">
+<td class="row">$velocityCount.</td>
+<td class="row">#if ( $q.startDate ) $dateFormat.format($q.startDate) #end&nbsp;</td>
+<td class="row">$q.set.name&nbsp;</td>
+
+<td class="row">
+	<div id="div_$q.id">
+	#if ( $generate )
+		$dateFormat.format($generate.generatedDate)
+	#end
+	</div>
+</td>
+
+<td class="row">
+<input class="linkbutton" type="button" value="Generate" onclick="doDivAjaxCall$formname('div_$q.id','generateReport','setId=$!q.set.id&dateStart=$dateFormat.format($q.startDate)')">
+</td>
+#if ( $hasSubject )
+    <td class="row">
+    <input class="linkbutton" type="button" value="Lecturers" onclick="doDivAjaxCall$formname('div_main','statisticByAllTeachers','setId=$!q.set.id&dateStart=$dateFormat.format($q.startDate)')">
+    </td>
+    <td class="row">
+    <input class="linkbutton" type="button" value="Faculties" onclick="doDivAjaxCall$formname('div_main','statisticByAllFaculties','setId=$!q.set.id&dateStart=$dateFormat.format($q.startDate)')">
+    </td>
+    <td class="row">
+    <input class="linkbutton" type="button" value="Programs" onclick="doDivAjaxCall$formname('div_main','statisticByAllPrograms','setId=$!q.set.id&dateStart=$dateFormat.format($q.startDate)')">
+    </td>
+	<td class="row">
+    <input class="linkbutton" type="button" value="Overall" onclick="doDivAjaxCall$formname('div_main','statisticByOverall','setId=$!q.set.id&dateStart=$dateFormat.format($q.startDate)')">
+    </td>
+#else
+	<td class="row" colspan="4" align="center">
+	    <input class="linkbutton" type="button" value="Overall" onclick="doDivAjaxCall$formname('div_main','statisticByOverall','setId=$!q.set.id&dateStart=$dateFormat.format($q.startDate)')">
+	</td>
+#end
+
+
+
+</tr>
+#end
+
+</table>

@@ -1,0 +1,46 @@
+<table width="700" align="center">
+<tr><td>
+
+<table width="100%">
+<tr>
+<td align="right">Learning Centre:
+<select name="centre_id" style="width:300px" onchange="doAjaxCall${_formName}('statistic','')">
+<option value="">(ALL CENTRES)</option>
+#foreach($c in $centres)
+<option value="$c.id" #if ( $centre.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td>
+</tr>
+</table>
+
+
+<table width="100%">
+<tr height="40px">
+<td bgcolor="lightgrey">Code</td>
+<td bgcolor="lightgrey">Name</td>
+<td bgcolor="lightgrey" align="center">No. Of Students</td>
+</tr>
+#set ( $total = 0 )
+#foreach ( $r in $results )
+#set ( $total = $total + $r.counter )
+<tr>
+<td>$r.label</td>
+<td>$r.text</td>
+<td align="center">
+$href.command("list_students").param("subject_id=$r.key").text("$r.counter")
+
+</td>
+</tr>
+#end
+<tr><td colspan="3"><hr/></td></tr>
+<tr>
+<td colspan="2" style="font-weight:bold" align="right">Total</td>
+<td align="center" style="font-weight:bold">$total</td>
+</tr>
+
+</table>
+
+
+
+</td></tr></table>

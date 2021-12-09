@@ -1,0 +1,93 @@
+<br><br>
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Invoices</legend>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr height="30px">
+<td style="width:10px">&nbsp;</td>
+<td style="font-family:arial;font-weight:bold;font-size:12pt">
+$sponsor.code - $sponsor.name
+</td>
+<td style="width:200px" align="right">
+#if ( !$is_payment )
+<input class="linkbutton" type="button" style="height:30px;font-weight:bold" value="New Invoice" onclick="doDivAjaxCall$formname('divInvoiceEntry','create_invoice','sponsor_id=$sponsor.id')">
+#end
+</td>
+</tr>
+</table>
+<br/>
+<table cellpadding="0" cellspacing="0">
+
+<tr height="30px">
+<td  class="gradient" style="width:40px;">&nbsp;</td>
+<td  class="gradient" style="width:100px;font-weight:bold">Date</td>
+<td  class="gradient" style="width:150px;font-weight:bold">Session</td>
+<td  class="gradient" style="width:250px;font-weight:bold">Program</td>
+<td  class="gradient" style="width:100px;font-weight:bold" align="center">Amount</td>
+<td  class="gradient" style="width:100px;font-weight:bold" align="center">Paid</td>
+<td  class="gradient" style="width:40px"></td>
+<td  class="gradient" style="width:40px"></td>
+<td  class="gradient" style="width:40px"></td>
+</tr>
+</table>
+
+<div style="overflow:auto;height:160px;width:100%">
+
+<table cellpadding="0" cellspacing="0">
+
+<tr height="1px">
+<td  class="gradient" style="width:40px;"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:150px;font-weight:bold"></td>
+<td  class="gradient" style="width:250px;font-weight:bold"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:40px"></td>
+<td  class="gradient" style="width:40px"></td>
+<td  class="gradient" style="width:40px"></td>
+</tr>
+
+
+#foreach( $i in $invoice_list )
+
+<tr>
+<td style="border-bottom:1px solid #BCB3B3">${velocityCount}.</td>
+<td><input class="text" value="$dateFormat.format($i.sponsor_invoice.invoiceDate)" readonly></td>
+<td><input class="text" value="$i.sponsor_invoice.session.name" readonly></td>
+<td><input class="text" value="$i.sponsor_invoice.program.code" readonly></td>
+<td><input class="text" style="text-align:right" value="$numFormat.format($i.sponsor_invoice.amount)" readonly></td>
+<td>
+#if ( $i.amount_paid > 0 ) <input class="text" style="text-align:right" value="$numFormat.format($i.amount_paid)" readonly> #else
+<input class="text" style="text-align:right" value="" readonly> #end
+</td>
+#if ( !$is_payment )
+<td>
+<input type="button" class="linkbutton" style="padding:2px;width:100%;" value="View" onclick="doDivAjaxCall$formname('divInvoiceEntry','viewInvoices','invoice_id=$i.sponsor_invoice.id')">
+</td>
+<td>
+<input type="button" class="linkbutton" style="padding:2px;width:100%;" value="PDF"
+onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintSponsorInvoiceModule?invoice_id=$i.sponsor_invoice.id';">
+</td>
+<td><input type="button" class="linkbutton" style="padding:2px;width:100%;" value="x"
+onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall$formname('div_invoices','delete_invoice','invoice_id=$i.sponsor_invoice.id&sponsor_id=$sponsor.id')"></td>
+
+#else
+<td colspan="2" align="center">
+<input type="button" class="gradient" style="height:30px;width:20px;" value="..."
+onclick="doDivAjaxCall$formname('div_payments','make_payments','invoice_id=$i.sponsor_invoice.id&sponsor_id=$sponsor.id')"></td>
+</td>
+
+#end
+</tr>
+
+#end
+
+</div>
+
+</table>
+
+</fieldset>
+
+
+

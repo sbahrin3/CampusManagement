@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+
+<table width="100%"><tr><td>
+
+<table width="100%" cellspacing="0">
+<tr><td>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Student's Status</legend>
+
+
+<table width="100%" cellspacing="0" style="background:#C9C9C9">
+<tr height="40px">
+<td style="width:30px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold">Code</td>
+<td style="font-weight:bold;width:200px">Name</td>
+<td style="width:100px;font-weight:bold">Status</td>
+<td style="width:100px;font-weight:bold">Type</td>
+<td style="width:80px;font-weight:bold" align="center">Active</td>
+<td style="width:80px;font-weight:bold" align="center">Defer</td>
+<td style="width:80px;font-weight:bold" align="center">Quit</td>
+<td style="width:80px;font-weight:bold" align="center">Default</td>
+<td style="width:30px;font-weight:bold"></td>
+</tr>
+</table>
+
+<div id="div_z" name="div_z" style="position:absolute;visibility:hidden;height:400px;width:100%">
+<br><br><br><br>
+<table width="800"><tr><td>
+
+<table width="200px" bgcolor="#FFFFFF" align="center">
+<tr height="50px"><td align="center" style="font-weight:bold;">
+PLEASE WAIT
+</td></tr>
+</table>
+
+</td></tr></table>
+</div>
+<div id="div_status_type" name="div_status_type">
+#parse( "apps/util/status_config/config.vm" )
+</div>
+
+
+</fieldset>
+
+
+<table width="100%">
+
+<tr><td align="right">
+Click this button when you have re-ordered the sequence above -&gt;
+<input class="linkbutton" style="height:30px" type="button" value="Save Order" onclick="doDivAjaxCall3$formname('div_status_type','save_order','')">
+</td></tr>
+
+
+</table>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:10pt;font-weight:bold">Add Status</legend>
+
+<table bgcolor="#E2E2FE">
+<tr height="30px">
+	<td style="width:100px;font-weight:bold">Code</td>
+	<td style="width:400px;font-weight:bold">Status Name</td>
+	<td></td>
+</tr>
+<tr>
+    <td><input class="texts"  name="status_code"></td>
+    <td><input class="texts"  name="status_name"></td>
+    <td>
+    <input class="linkbutton" type="button" style="height:30px" value="ADD NEW STATUS" onclick="div_block(); doDivAjaxCall3$formname('div_status_type','add_status','')">
+    </td>
+</tr>
+<tr>
+	<td colspan="3">
+		Note: Add the status type first, then you can change it's properties.
+	</td>
+</tr>
+</table>
+
+</fieldset>
+
+</td></tr>
+</table>
+
+</td></tr></table>
+
+<script>
+
+function div_block() {
+var divHeight = $('div_status_type').clientHeight;
+ $('div_z').style.zIndex=divHeight;
+ $('div_z').style.visibility='visible'; 
+}
+function div_unblock() {
+ $('div_z').style.zIndex='-1';
+ $('div_z').style.visibility='hidden'; 
+}
+</script>

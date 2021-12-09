@@ -1,0 +1,22 @@
+<fieldset><legend class="legend">Edit Faculty</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr><td>Faculty Code</td><td>:</td><td><input class="texts" name="facultyCode_$facultyId" value="$!faculty.code"></td></tr>
+<tr><td>Faculty Name</td><td>:</td><td><input class="texts" name="facultyName_$facultyId" value="$!faculty.name"></td></tr>
+<tr style="display:none"><td>Matric Card Color</td><td>:</td><td><input class="texts" name="matricCardColor_$facultyId" value="$!faculty.matricCardColor"></td></tr>
+
+<tr><td>Matric Card Template (PNG)</td><td>:</td><td><input class="texts" name="matricTemplateName_$facultyId" value="$!faculty.matricTemplateName"></td></tr>
+
+<tr><td></td><td></td>
+	<td>
+		<img src="$appUrl/matric_card_image/${faculty.matricTemplateName}.png" style="width:200px;border:1px solid #000">
+	</td>
+</tr>
+
+</table>
+<br/>
+<table width="100%"><tr><td align="right">
+<button class="btn btn-primary" type="button" onclick="$('editFaculty_$facultyId').style.visibility='hidden';doDivAjaxCall3$formname('divListFaculties','saveFaculty','facultyId=$!faculty.id')">Save</button>
+<button class="btn btn-primary" type="button" onclick="$('editFaculty_$facultyId').style.visibility='hidden';">Cancel</button>
+</td></tr></table>
+</fieldset>

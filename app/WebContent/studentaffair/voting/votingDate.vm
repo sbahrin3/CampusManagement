@@ -1,0 +1,66 @@
+<script>
+$('votingDate').style.display="block";
+</script>
+
+<table align="center">
+<tr><td style="width:150px">Date Start:</td><td>
+<input class="texts" style="width:100px" id="startDate" name="startDate" #if ( $startDate ) value="$dateFormat.format($startDate)" #end>
+<script> new JsDatePick({ useMode:2, target:"startDate", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+
+<td>
+<select class="texts" id="h1">
+#foreach( $i in [0..23] )
+#if ( $i < 10 )
+<option #if ( $h1 == $i ) selected #end value="0$i">0$i</option>
+#else
+<option #if ( $h1 == $i ) selected #end value="$i">$i</option>
+#end
+#end
+</select>
+</td><td>
+<select class="texts" id="m1">
+<option #if ( $m1 == 0 ) selected #end value="00">00</option>
+<option #if ( $m1 == 15 ) selected #end value="15">15</option>
+<option #if ( $m1 == 30 ) selected #end value="30">30</option>
+<option #if ( $m1 == 45 ) selected #end value="45">45</option>
+</select>
+
+</td>
+
+</td>
+
+</tr>
+<tr><td style="width:150px">Date End:</td><td>
+<input class="texts" style="width:100px" id="endDate" name="endDate" #if ( $endDate ) value="$dateFormat.format($endDate)" #end>
+<script> new JsDatePick({ useMode:2, target:"endDate", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+<td>
+
+
+<select class="texts" id="h2">
+#foreach( $i in [0..23] )
+#if ( $i < 10 )
+<option #if ( $h2 == $i ) selected #end value="$i">0$i</option>
+#else
+<option #if ( $h2 == $i ) selected #end value="$i">$i</option>
+#end
+#end
+</select>
+</td><td>
+<select class="texts" id="m2">
+<option #if ( $m2 == 0 ) selected #end value="00">00</option>
+<option #if ( $m2 == 15 ) selected #end value="15">15</option>
+<option #if ( $m2 == 30 ) selected #end value="30">30</option>
+<option #if ( $m2 == 45 ) selected #end value="45">45</option>
+</select>
+
+</td>
+</tr>
+
+<tr><td></td><td colspan="2" align="right">
+<br/><br/>
+<input class="linkbutton" type="button" value="Save.." onclick="doDivAjaxCall3$formname('voting_session','saveVotingDate','');$('votingDate').style.display='none';">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('votingDate').style.display='none';">
+</td></tr>
+</table>

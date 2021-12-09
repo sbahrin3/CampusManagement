@@ -1,0 +1,64 @@
+<style>
+.legend {
+	background-color:#DCDCDC;
+	padding: 0.2em 0.2em;
+	font-family:arial;
+	font-size:10pt;
+	font-weight:bold;
+}
+</style>
+<script>
+function clearStudentData() {
+	$('listStudents').innerHTML = "";
+	$('selectPeriod').innerHTML = "";
+	$('selectSection').innerHTML = "";
+}
+function changePeriod() {
+	$('listStudents').innerHTML = "";
+}
+
+
+function setAttendance(div, studentId, dateValue, i) {
+	if ( $('enableEdit_' + i).checked ) {
+		doDivAjaxCall$formname(div,'saveAttendance','studentStatusId=' + studentId + '&dateValue=' + dateValue);
+	}
+}
+</script>
+
+<table width="860px">
+<tr><td>
+
+
+<table width="100%">
+<tr>
+<td valign="top" width="50%">
+<fieldset><legend class="legend">Select</legend>
+#parse("$path/selectParams.vm")</td>
+</fieldset>
+<td valign="top">
+
+<fieldset><legend class="legend">Attendance Time Sheet</legend>
+<table width="100%"><tr><td>
+<span id="programName" style="font-weight:bold;font-size:8pt">-Please select parameters-</span><br/>
+<span id="periodName" style="font-weight:bold;font-size:8pt"></span><br/>
+<span id="sectionName" style="font-weight:bold;font-size:8pt"></span><br/>
+</td></tr>
+
+</table>
+
+</fieldset>
+
+</td>
+</tr></table>
+
+
+</td></tr>
+<tr><td>
+<fieldset><legend class="legend">Students</legend>
+
+<div id="listStudents"></div>
+<div id="saveAttendance"></div>
+
+</fieldset>
+</td></tr>
+</table>

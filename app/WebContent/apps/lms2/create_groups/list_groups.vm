@@ -1,0 +1,21 @@
+<fieldset style="background-color:#ffffff;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<legend style="font-weight:bold">List of Groups - $classroom.subjectTitle</legend>
+
+<table width="100%">
+#foreach( $g in $groups)
+<tr>
+<td>
+<a href="javascript:void()" onclick="doDivAjaxCall3$formname('div_members','select_group','select_group_id=$g.id')" style="text-decoration:none">
+$g.name</a>
+</td>
+</tr>
+#end
+</table>
+
+<table width="100%">
+<tr><td>Group Name: <input style="width:300px" name="group_name"><input type="button" value="Add New Group" onclick="doDivAjaxCall3$formname('div_groups','add_group','classroom_id=$classroom.id')"></td>
+</tr>
+</table>
+
+</fieldset>

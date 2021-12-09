@@ -1,0 +1,9 @@
+<table width="800">
+<tr><td>
+
+<div id="div_a">
+#parse("apps/util/offer_letter/attr.vm");
+</div>
+
+</td></tr>
+</table>

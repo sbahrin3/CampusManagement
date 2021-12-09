@@ -1,0 +1,71 @@
+
+
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr><td style="font-weight:bold">
+#if ( $list_type == "all" )
+All
+#elseif ( $list_type == "approved" )
+Approved
+#elseif ( $list_type == "disapproved" )
+Disapproved
+#else
+All
+#end
+</td></tr>
+</table>
+<br>
+<table width="100%" cellpadding="0" cellspacing="0">
+
+<tr height="50px" bgcolor="#D6D6D6">
+<td style="width:40px"></td>
+<td style="font-weight:bold;width:250px">Name</td>
+<td style="font-weight:bold;width:150px">Matric No</td>
+##<td style="font-weight:bold;width:100px" align="center">Final<br>Semester</td>
+<td style="font-weight:bold;width:100px" align="center">Finance<br>Clearance</td>
+<td style="font-weight:bold;width:100px" align="center">Library<br>Clearance</td>
+<td style="font-weight:bold;width:100px" align="center">Student Affairs<br>Clearance</td>
+<td style="font-weight:bold;width:100px" align="center">Faculty<br>Clearance</td>
+<td align="center" style="font-weight:bold"></td>
+<td></td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach ( $g in $graduate_list )
+#set ( $cnt = $cnt + 1 )
+#set ( $bgcolor = "#F9F4F5" )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#fff" ) #end
+	
+<tr style="height:25px">
+<td>$cnt. </td>
+<td>$g.student.biodata.name</td>
+<td>$g.student.matricNo</td>
+##<td align="center">$g.session.name</td>
+<td align="center">
+
+<div id="clearance_$g.id" class="shadow" style="display:none;position:absolute;background:#D6D6D6;width:500px;"></div>
+<span id="clearance_finance_$g.id">#if ( $g.clearanceFinance ) YES #else <font color="red">NO</font> #end</span>
+</td>
+<td align="center">
+<span id="clearance_library_$g.id">#if ( $g.clearanceLibrary ) YES #else <font color="red">NO</font> #end</span>
+</td>
+<td align="center">
+<span id="clearance_student_affair_$g.id">#if ( $g.clearanceStudentAffair ) YES #else <font color="red">NO</font> #end</span>
+</td>
+<td align="center">
+<span id="clearance_faculty_$g.id">#if ( $g.clearanceFaculty ) YES #else <font color="red">NO</font> #end</span>
+</td>
+
+<td align="right">
+
+<input type="button" value="Clearance" onclick="$('clearance_$g.id').style.display='block';doDivAjaxCall3$formname('clearance_$g.id','edit_graduate2','graduate_id=$g.id')">
+
+##[$href.command("edit_graduate").param("graduate_id=$g.id, list_type=$!list_type").text("Edit")]
+[$href.command("remove_graduate").param("graduate_id=$g.id, list_type=$!list_type").confirm("Remove Graduate?").text("Remove")]
+</td>
+<td>
+<div id="save_clearance_$g.id"></div>
+</td>
+</tr>
+#end
+</table>

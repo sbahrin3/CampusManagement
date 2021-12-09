@@ -1,0 +1,117 @@
+<script>
+$('listRoomItems_$room.id').style.display='block';
+</script>
+
+
+<table width="100%" style="background:#7E7E7F"><tr><td style="font-weight:bold;color:#fff">
+$room.name: List of Items
+</td><td align="right" style="width:30px;">
+<input class="linkbutton" type="button" style="font-weight:bold" value="Close"  onclick="$('listRoomItems_$room.id').style.display='none';">
+</td></tr></table>
+
+<table>
+<tr style="background:#C7CACC">
+<td style="font-weight:bold;width:30px">&nbsp;</td>
+<td style="font-weight:bold;width:200px">Type</td>
+<td style="font-weight:bold;width:200px">Item Description</td>
+<td style="font-weight:bold;width:150px">Tag Number</td>
+<td style="font-weight:bold;width:50px">Value<br/>(RM)</td>
+<td style="font-weight:bold;width:150px">Condition</td>
+</tr>
+</table>
+
+#set ( $cnt = 0 )
+#foreach( $i in $items )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E6E6ED" ) #else #set ( $bgcolor = "#F4F6F7" ) #end
+<div id="item_$i.id" style="display:block;padding:0px">
+
+<table>
+<tr style="background:$bgcolor;height:30px;">
+<td style="width:30px">$cnt.</td>
+<td style="width:200px" id="rowType_$i.id">$i.type.name</td>
+<td style="width:200px" id="rowDescription_$i.id">$!i.description</td>
+<td style="width:150px" id="rowTag_$i.id">$!i.tag</td>
+<td style="width:50px" align="right" id="rowValue_$i.id">$!i.item.value</td>
+<td style="width:150px" id="rowItemCondition_$i.id">$!i.item.itemCondition.name</td>
+
+<td style="width:100px" align="right">
+##<input class="linkbutton" type="button" value="Edit" onclick="$('item_$i.id').style.display='none';$('item_edit_$i.id').style.display='block';">
+##<input class="linkbutton" type="button" value="Move" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listRoomItems_$room.id','moveRoomItem','roomItemId=$i.id')">
+
+<a class="linkbutton" href="javascript:void(0)" onclick="$('item_$i.id').style.display='none';$('item_edit_$i.id').style.display='block';">Edit</a> |
+<a class="linkbutton" href="javascript:void(0)" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listRoomItems_$room.id','moveRoomItem','roomItemId=$i.id')">Move</a>
+</td>
+
+</tr>
+</table>
+</div>
+<div id="item_edit_$i.id" style="display:none;padding:0px">
+<table>
+
+
+<td style="width:30px">$cnt.</td>
+<td style="width:200px">
+<select class="text" name="itemTypeId_$i.id"  onchange="">
+<option value=""></option>
+#foreach ( $type in $itemTypes )
+<option value="$type.id" #if ( $i.type.id == $type.id ) selected #end>$type.name</option>
+#end
+</select>
+</td>
+<td style="width:200px"><input class="text" name="itemDescription_$i.id" value="$!i.description" onchange=""></td>
+<td style="width:150px"><input class="text" name="itemTag_$i.id" value="$!i.tag"  onchange=""></td>
+<td style="width:50px"><input class="text" name="itemValue_$i.id" value="$!i.item.value"  onchange=""></td>
+<td style="width:150px">
+<select class="text" name="itemConditionId_$i.id"  onchange="">
+<option value=""></option>
+#foreach ( $c in $itemConditions )
+<option value="$c.id" #if ( $i.item.itemCondition.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td>
+<td style="width:100px">
+<input class="linkbutton" type="button" style="width:100%" value="OK" onclick="doDivAjaxCall3$formname('saveItem_$i.id','saveRoomItem','roomItemId=$i.id')">
+</td>
+</tr>
+</table>
+</div>
+<div id="saveItem_$i.id" style="display:none"></div>
+#end
+</table>
+
+<div>
+<table>
+<tr>
+<td style="width:30px"></td>
+<td style="width:200px">
+<select class="text" name="itemTypeId_$room.id">
+<option value=""></option>
+#foreach ( $type in $itemTypes )
+<option value="$type.id">$type.name</option>
+#end
+</select>
+</td>
+
+<td style="width:200px"><input class="text" name="itemDescription_$room.id"></td>
+<td style="width:150px"><input class="text" name="itemTag_$room.id"></td>
+<td style="width:50px"><input class="text" name="itemValue_$room.id"></td>
+<td style="width:150px">
+<select class="text" name="itemConditionId_$room.id">
+#foreach ( $c in $itemConditions )
+<option value="$c.id">$c.name</option>
+#end
+</select>
+</td>
+<td style="width:100px"><input class="linkbutton" type="button" style="width:100%" value="Add" onclick="doDivAjaxCall3$formname('listRoomItems_$room.id','addRoomItem','roomId=$!room.id')"></td>
+</tr>
+<tr>
+<td colspan="7" align="right">
+<input class="linkbutton" type="button" value="List Moved Items"
+onclick="$('movedItems').style.display='block';doDivAjaxCall3$formname('movedItems','listMovedItems','roomId=$!room.id')">
+
+</td>
+</tr>
+</table>
+
+</div>

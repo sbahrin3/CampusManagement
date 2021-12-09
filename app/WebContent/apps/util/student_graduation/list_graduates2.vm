@@ -1,0 +1,95 @@
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr><td style="font-weight:bold">
+#if ( $list_type == "all" )
+All
+#elseif ( $list_type == "approved" )
+Approved
+#elseif ( $list_type == "disapproved" )
+Disapproved
+#else
+All
+#end
+<input type="hidden" name="listType" value="$list_type">
+</td></tr>
+</table>
+<br>
+<div id="divGraduateUpdate"></div>
+<table width="100%" cellpadding="0" cellspacing="0">
+
+<tr height="50px" bgcolor="#D6D6D6">
+<td style="width:40px"></td>
+<td style="font-weight:bold;width:250px">Name</td>
+<td style="font-weight:bold;width:150px">Matric No</td>
+<td style="font-weight:bold;width:100px" align="center">Finance<br>Clearance</td>
+<td style="font-weight:bold;width:100px" align="center">Library<br>Clearance</td>
+<td style="font-weight:bold;width:100px" align="center">Student Affairs<br>Clearance</td>
+<td style="font-weight:bold;width:100px" align="center">Faculty<br>Clearance</td>
+<td align="center" style="font-weight:bold"></td>
+<td></td>
+</tr>
+
+<tr bgcolor="#D6D6D6">
+<td style="border-bottom:1px solid;">&nbsp;</td>
+<td style="border-bottom:1px solid;">&nbsp;</td>
+<td style="border-bottom:1px solid;">&nbsp;</td>
+
+<td align="center" style="border-bottom:1px solid;">
+<input type="checkbox" checked onclick="this.checked = true; if ( !confirm('Check All?') ) return; doDivAjaxCall3$formname('list_graduates','checkAll','dept=finance&operation=checkAll')">
+<input type="checkbox" onclick="this.checked = false; if ( !confirm('Uncheck All?') ) return;  doDivAjaxCall3$formname('list_graduates','checkAll','dept=finance&operation=uncheckAll')">
+</td>
+<td align="center" style="border-bottom:1px solid;">
+<input type="checkbox" checked onclick="this.checked = true; if ( !confirm('Check All?') ) return;  doDivAjaxCall3$formname('list_graduates','checkAll','dept=library&operation=checkAll')">
+<input type="checkbox" onclick="this.checked = false; if ( !confirm('Uncheck All?') ) return;  doDivAjaxCall3$formname('list_graduates','checkAll','dept=library&operation=uncheckAll')">
+</td>
+<td align="center" style="border-bottom:1px solid;">
+<input type="checkbox" checked onclick="this.checked = true; if ( !confirm('Check All?') ) return;  doDivAjaxCall3$formname('list_graduates','checkAll','dept=studentAffair&operation=checkAll')">
+<input type="checkbox" onclick="this.checked = false; if ( !confirm('Uncheck All?') ) return;  doDivAjaxCall3$formname('list_graduates','checkAll','dept=studentAffair&operation=uncheckAll')">
+</td>
+<td align="center" style="border-bottom:1px solid;">
+<input type="checkbox" checked onclick="this.checked = true; if ( !confirm('Check All?') ) return;  doDivAjaxCall3$formname('list_graduates','checkAll','dept=faculty&operation=checkAll')">
+<input type="checkbox" onclick="this.checked = false; if ( !confirm('Uncheck All?') ) return;  doDivAjaxCall3$formname('list_graduates','checkAll','dept=faculty&operation=uncheckAll')">
+</td>
+<td align="center" style="width:50px;border-bottom:1px solid;">&nbsp;</td>
+<td align="center" style="width:50px;border-bottom:1px solid;">&nbsp;</td>
+<td></td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach ( $g in $graduate_list )
+	#set ( $cnt = $cnt + 1 )
+	#set ( $bgcolor = "#F9F4F5" )
+	#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#fff" ) #end
+	<tr style="background:$bgcolor;height:25px" onmouseover="this.style.background='#D6D6D6'" onmouseout="this.style.background='#FFF'">
+	<td>$cnt.</td>
+	<td>$g.student.biodata.name</td>
+	<td>$g.student.matricNo</td>
+	<td align="center">
+	
+	<div id="clearance_$g.id" class="shadow" style="display:none;position:absolute;background:#D6D6D6;width:500px;"></div>
+	<input id="checkFinance_$g.id" name="checkFinance_$g.id" type="checkbox" value="Y" #if ( $g.clearanceFinance ) checked #end onclick="doDivAjaxCall3$formname('clearance_$g.id','clearanceFinance','graduate_id=$g.id')">
+	</td>
+	<td align="center">
+	<input id="checkLibrary_$g.id" name="checkLibrary_$g.id" type="checkbox" value="Y" #if ( $g.clearanceLibrary ) checked #end onclick="doDivAjaxCall3$formname('clearance_$g.id','clearanceLibrary','graduate_id=$g.id')">
+	</td>
+	<td align="center">
+	<input id="checkStudentAffair_$g.id" name="checkStudentAffair_$g.id" value="Y" type="checkbox"#if ( $g.clearanceStudentAffair ) checked #end onclick="doDivAjaxCall3$formname('clearance_$g.id','clearanceStudentAffair','graduate_id=$g.id')">
+	</td>
+	<td align="center">
+	<input id="checkFaculty_$g.id" name="checkFaculty_$g.id" type="checkbox" value="Y" #if ( $g.clearanceFaculty ) checked #end onclick="doDivAjaxCall3$formname('clearance_$g.id','clearanceFaculty','graduate_id=$g.id')">
+	</td>
+	
+	<td align="center">
+	<input class="linkbutton" type="button" style="padding:2px;height:20px" value="Remark" onclick="$('clearance_$g.id').style.display='block';doDivAjaxCall3$formname('clearance_$g.id','edit_graduate2','graduate_id=$g.id')">
+	</td>
+	<td align="right">	
+	<input class="linkbutton" type="button" style="padding:2px;height:20px" value="X" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('list_graduates','remove_graduate','graduate_id=$g.id')">
+	##[$href.command("edit_graduate").param("graduate_id=$g.id, list_type=$!list_type").text("Edit")]
+	##[$href.command("remove_graduate").param("graduate_id=$g.id, list_type=$!list_type").confirm("Remove Graduate?").text("Remove")]
+	</td>
+	<td>
+	<div id="save_clearance_$g.id"></div>
+	</td>
+	</tr>
+#end
+</table>

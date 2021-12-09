@@ -1,0 +1,6 @@
+<select style="width:400px" id="status_id"  name="status_id">
+<option value="">All</option>
+#foreach( $i in $statuses )
+<option value="$i.id">$i.name</option>
+#end
+</select>

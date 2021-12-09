@@ -1,0 +1,23 @@
+
+
+
+<input type="hidden" id="autoCreateId" name="autoCreateId" value="$!createId">
+<div style="padding:10px">
+
+<div id="getProcessStatus">
+	<span style="font-weight:bold;font-size:18px">
+	Please wait.... 
+	</span>
+</div>
+
+
+</div>
+
+<script>
+
+startGetProcessInterval();
+
+</script>
+
+
+

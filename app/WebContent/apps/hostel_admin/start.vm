@@ -1,0 +1,72 @@
+
+<script>
+	function uploadFloorPlanImage(floorId, documentId, e) {
+		document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+		document.${formName}.enctype='multipart/form-data';
+		document.${formName}.encoding ='multipart/form-data';
+		document.${formName}.target='upload_document';
+		document.${formName}.action='?command=uploadFile&floorId=' + floorId + '&documentId=' + documentId + '&divUploadStatusName=' + e;
+		document.${formName}.submit();
+	}
+</script>
+<iframe id="upload_document" name="upload_document" width="0px" height="0px" style="visibility:hidden"></iframe>
+
+<table width="900"><tr><td>
+
+<table width="100%"><tr><td align="right">
+<div name="select_hostels" id="select_hostels" style="height:30px">
+#parse( "apps/hostel_admin/select_hostels.vm")
+</div>
+</td></tr></table>
+<br><br>
+</td></tr><tr><td>
+<div name="div_hostel" id="div_hostel" style="height:50px">
+#parse( "apps/hostel_admin/hostel.vm" )
+</div>
+</td></tr><tr><td>
+
+
+<table width="100%" border="0" cellpadding="1" cellspacing="0">
+<tr>
+<td width="50%">
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold;background-color:#FFD455;height:20px">&nbsp;&nbsp;Buildings&nbsp;&nbsp;</legend>
+<div name="div_building" id="div_building" style="overflow:auto;top:0;height:200px; width:100%%; overflow-x: hidden"></div>
+</fieldset>
+</td>
+<td width="50%">
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold;background-color:#FFD455;height:20px">&nbsp;&nbsp;
+Blocks
+<span name="selected_building_name" id="selected_building_name"></span>
+&nbsp;&nbsp;</legend>
+<div name="div_block" id="div_block" style="overflow:auto;top:0;height:200px; width:100%; overflow-x: hidden"></div>
+</fieldset>
+</td>
+</tr><tr>
+<td width="50%">
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold;background-color:#FFD455;height:20px">&nbsp;&nbsp;
+Floors
+<span name="selected_block_name" id="selected_block_name"></span>
+&nbsp;&nbsp;</legend>
+<div name="div_floor" id="div_floor" style="overflow:auto;top:0;height:200px; width:100%; overflow-x: hidden"></div>
+</fieldset>
+</td>
+<td width="50%">
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold;background-color:#FFD455;height:20px">&nbsp;&nbsp;
+Rooms
+<span name="selected_floor_name" id="selected_floor_name"></span>
+&nbsp;&nbsp;</legend>
+<div name="div_room" id="div_room" style="overflow:auto;top:0;height:200px; width:100%; overflow-x: hidden"></div>
+</fieldset>
+</td>
+</tr></table>
+
+
+
+
+
+
+</td></tr></table>

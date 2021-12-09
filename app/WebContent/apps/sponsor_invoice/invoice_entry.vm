@@ -1,0 +1,45 @@
+<script>
+$('divInvoiceEntry').style.display="block";
+</script>
+
+<table width="100%" cellspacing="0" cellpadding="0" style="background:#8E8E8E">
+<tr><td style="font-weight:bold;color:#fff">$sponsor.name</td><td align="right" style="width:80px"><input class="linkbutton" type="button" value="x" onclick="$('divInvoiceEntry').style.display='none';"></td></tr></table>
+
+<table>
+<tr><td style="width:200px">Select Programme:</td>
+<td>
+<select name="programId" class="texts" onchange="doDivAjaxChainCall3$formname('divSessions','getSessions','','divStudents','getStudents','')">
+<option value="">-</option>
+#foreach( $p in $programs )
+<option value="$p.id">$p.code - $p.name</option>
+#end
+</select>
+</td></tr>
+<tr><td>Select Session:</td><td><div id="divSessions"></div></td></tr>
+</table>
+<div id="divCreateButton" style="display:none">
+<table width="100%"><tr><td align="right">
+<table><tr>
+<td>Invoice Date:
+<input class="texts" id="invoice_date" name="invoice_date" style="width:100px">
+<script> new JsDatePick({ useMode:2, target:"invoice_date", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+<td>&nbsp;Date, From - To:
+<input class="texts" id="invoice_date_from" name="invoice_date_from" style="width:100px">
+<script> new JsDatePick({ useMode:2, target:"invoice_date_from", dateFormat:"%d-%m-%Y" }); </script>
+-
+<input class="texts" id="invoice_date_to" name="invoice_date_to" style="width:100px">
+<script> new JsDatePick({ useMode:2, target:"invoice_date_to", dateFormat:"%d-%m-%Y" }); </script>
+
+</td>
+
+
+<td>
+<input type="button" class="linkbutton" value="Create Invoice" 
+onclick="$('divInvoiceEntry').style.display='none'; doDivAjaxCall$formname('div_invoices','save_invoice','sponsor_id=$sponsor.id')">
+</td></tr></table>
+</td><td style="width:80px" align="right">
+<input class="linkbutton" style="width:100%" type="button" value="Cancel" onclick="$('divInvoiceEntry').style.display='none';">
+</td></td></tr></table>
+</div>
+<div id="divStudents"></div>

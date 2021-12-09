@@ -1,0 +1,40 @@
+<script>
+$('roomList').style.display="block";
+</script>
+
+<div style="padding:5px">
+	
+<table width="100%" cellpadding="0" cellspacing="0"><tr style="height:40px;background:#ccc;color:#000"><td style="font-weight:bold;color:#000">
+&nbsp;Rooms for Classroom Type: $classroomType.name
+</td>
+<td align="right">
+<input class="linkbutton" style="padding:5px;height:30px;color:#000" type="button" value="Save" onclick="$('roomList').style.display='none'; doDivAjaxCall$formname('rooms_$classroomType.id','saveRooms','classroomTypeId=$classroomType.id')">
+<input class="linkbutton" style="padding:5px;height:30px;color:#000" type="button" value="X" onclick="$('roomList').style.display='none';">
+</td></tr></table>
+
+<div style="padding:5px;overflow:auto;height:320px;background:#fff">
+<table width="100%">
+#set ( $i = 0 )
+#foreach( $r in $rooms )
+#set ( $i = $i + 1 )
+<tr style="height:40px">
+	<td style="border-bottom:1px dotted #000;width:50px" align="center">
+		<input type="checkbox" value="$r.id" name="rooms_$classroomType.id" #if ( $classroomType.hasRoom($r) ) checked #end >
+	</td>
+	<td style="width:200px;border-bottom:1px dotted #000;">
+		$r.code
+	</td>
+	<td style="border-bottom:1px dotted #000;">
+		$r.name
+	</td>
+</tr>
+#end
+
+<tr><td colspan="4" align="center" style="border-bottom:1px dotted #000">
+<input class="linkbutton" type="button" value="Save" onclick="$('roomList').style.display='none'; doDivAjaxCall$formname('rooms_$classroomType.id','saveRooms','classroomTypeId=$classroomType.id')">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('roomList').style.display='none';">
+</td></tr>
+</table>
+</div>
+
+</div>

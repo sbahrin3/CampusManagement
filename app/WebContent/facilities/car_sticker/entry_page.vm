@@ -1,0 +1,43 @@
+
+<fieldset>
+<legend class="legend">$label_entry</legend>
+
+<div style="height:400px;overflow:auto">
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+
+<tr><td>Owner Type</td><td>:</td>
+<td>
+<select class="texts" name="ownerType" id="ownerType">
+<option value=""></option>
+<option value="Student" #if ( $r.ownerType == "Student" ) selected #end>Student</option>
+<option value="Staff" #if ( $r.ownerType == "Staff" ) selected #end>Staff</option>
+</select>
+</td>
+</tr>
+<tr><td>Owner Id</td><td>:</td><td><input class="texts" name="ownerId" id="ownerId" value="$!r.ownerId"></td></tr>
+<tr><td>Owner Name</td><td>:</td><td><input class="texts" name="ownerName" id="ownerName" value="$!r.ownerName"></td></tr>
+<tr><td>Plate No</td><td>:</td><td><input class="texts" name="plateNo" id="plateNo" value="$!r.plateNo"></td></tr>
+
+<tr><td valign="top">Car Detail</td><td valign="top">:</td><td><textarea class="texts" style="height:100px" name="carDetail" id="carDetail">$!r.carDetail</textarea></td></tr>
+
+#if ( $r )
+	#set ( $carStickerId = $r.id )
+    <tr style="height:30px;">
+    <td colspan="3" style="font-weight:bold;border-bottom:1px solid #CCC">
+	Offences History
+    </td></tr>
+    
+    <tr><td></td><td></td>
+    <td>
+    
+    <div id="offenceHistory">
+    #parse("facilities/car_sticker/offences/offenceHistory.vm")
+    </div>
+    
+    </td></tr>
+#end
+</table>
+<br/>
+</div>
+</fieldset>

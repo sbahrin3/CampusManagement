@@ -1,0 +1,24 @@
+<table>
+<tr><td>
+<select name="path_id" onchange="doAjaxCall${_formName}('list_programs','')">
+#foreach($p in $paths)
+<option value="$p.id" #if ($path.id == $p.id ) selected #end>$p.name</option>
+#end
+</select>
+</td></tr>
+</table>
+
+#if ( $programs )
+
+<table>
+<tr><td>
+<select name="program_id" onchange="doAjaxCall${_formName}('list_programs','')">
+#foreach($program in $programs)
+<option value="$program.id">$program.name</option>
+#end
+</select>
+</td></tr>
+</table>
+
+#end
+

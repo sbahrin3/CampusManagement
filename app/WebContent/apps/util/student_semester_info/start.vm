@@ -1,0 +1,18 @@
+<table width="800" align="center">
+<tr><td align="right">
+
+Matric No: <input name="student_no"><input type="button" value="Get Student.." onclick="doDivAjaxCall$formname('div_status','get_status','')">
+
+</td></tr>
+
+<tr><td>
+<table width="100%"><tr><td>
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<div id="div_status" name="div_status" 
+style="overflow:auto;height:300px;background-color:#ffffff;"></div>
+</fieldset>
+</td></tr></table>
+
+</td></tr>
+</table>
+

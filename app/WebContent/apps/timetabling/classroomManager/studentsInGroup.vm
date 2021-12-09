@@ -1,0 +1,28 @@
+
+
+<table cellpadding="1" cellspacing="0">
+<tr style="height:0px" bgcolor="#B4B4B4">
+<td style="width:50px;"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:350px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:50px;"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $students )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#F4F4F4" ) #else #set ( $bgcolor = "#fff" ) #end
+<tr bgcolor="$bgcolor">
+<td align="right">$cnt.&nbsp;</td>
+<td>$s.student.matricNo</td>
+<td>$s.student.biodata.name</td>
+<td>&nbsp;</td>
+<td>
+<input type="checkbox" name="groupStudentIds" value="$s.id">
+</td>
+</tr>
+#end
+</table>
+<table width="100%"><tr><td align="center">
+<input type="button" value="Remove from group" onclick="doDivAjaxChainCall3$formname('studentsGroup_$group','removeStudentsInGroup','removeGroupNumber=$group&classroomSectionId=$classroomSection.id', 'allStudents','getRemainingStudents','classroomSectionId=$classroomSection.id')">
+</td></tr></table>

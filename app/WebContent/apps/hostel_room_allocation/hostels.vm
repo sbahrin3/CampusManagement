@@ -1,0 +1,19 @@
+<table width="100%" style="border-top: 2px solid #D2D2D2; border-bottom: 2px solid #D2D2D2; border-right: 2px solid #D2D2D2; border-left: 2px solid #D2D2D2;">
+<tr><td colspan="4" style="height:30px;background-color:lightgrey;font-weight:bold">Hostel Room Selection</td></tr>
+#foreach( $hostel in $hostels )
+<tr>
+<td>
+$hostel.code
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_$hostel.id', 'hostel_info', 'type=building&hostel_id=$hostel.id')">
+$hostel.name
+</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<div id="hostel_$hostel.id" name="hostel_$hostel.id"></div>
+</td>
+</tr>
+#end
+</table>
+

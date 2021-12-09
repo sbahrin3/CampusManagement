@@ -1,0 +1,6 @@
+<select class="input-text" id="enrollmentIntake_id" name="enrollmentIntake_id">
+<option value=""> - Select batch if available- </option>
+#foreach( $i in $session.enrollmentIntakes )
+<option value="$i.id">$i.code</option>
+#end
+</select>

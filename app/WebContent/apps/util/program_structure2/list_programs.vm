@@ -1,0 +1,55 @@
+
+
+<table width="600">
+<tr>
+<td style="width:150px">Program:</td>
+<td>
+<select class="text" name="program_id" onchange="show_wait();doDivAjaxCall3$formname('div_program_structure','list_intakes','')">
+<option value="">- Select Program -</option>
+#foreach ( $p in $programs )
+<option value="$p.id" #if ( $p.id == $program_id ) selected #end>&nbsp;&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+</td>
+</tr>
+<tr>
+<td>Intake:</td>
+<td>
+<select class="text" name="intake_id">
+<option value="">- Select Intake -</option>
+#foreach( $in in $intakes )
+<option value="$in.id" #if ( $in.id == $intake_id ) selected #end>&nbsp;&nbsp;&nbsp;$in.code $in.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Learning Centre:</td>
+<td>
+<select class="text" name="centre_id">
+<option value="">- Select Learning Centre -</option>
+#foreach( $c in $centres )
+<option value="$c.id" #if ( $c.id == $centre_id ) selected #end>&nbsp;&nbsp;&nbsp;$c.code $c.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="right">
+<input class="linkbutton" style="height:30px" type="button" value="Program Structure" onclick="show_wait();doDivAjaxCall3$formname('div_program_structure','get_structure_by_centre','')">
+</td></tr>
+</table>
+
+<table width="100%">
+<tr><td align="center"><span id="div_wait"></span></td></tr></table>
+
+<script>
+function show_wait() {
+$('div_wait').innerHTML = "<img src=../img/upload_wait.gif>";
+}
+</script>
+
+
+

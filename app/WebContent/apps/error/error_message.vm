@@ -1,0 +1,32 @@
+<form name="frm$moduleId" method="post">
+<table width="100%" cellpadding="5" cellspacing="0">
+	<tr>
+		<td>
+			<table cellpadding="2" cellspacing="0">
+				<tr>
+					<td bgcolor="#FF0000">
+						<table cellpadding="2" cellspacing="0">
+							<tr>
+								<td><font color="#FFFFFF"><b>Error</b></font></td>
+							</tr>
+							<tr>
+								<td bgcolor="#FFFFFF">
+									<p align="justify">$errMsg</p>
+									<div align="center"><input type="button" value="OK" onclick="doOK()"></div>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="command">
+</form>
+<script>
+function doOK() {
+	document.frm$!{moduleId}.command.value = "";
+	document.frm$!{moduleId}.submit();
+}
+</script>

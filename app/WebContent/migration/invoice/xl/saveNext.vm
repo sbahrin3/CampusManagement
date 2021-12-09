@@ -1,0 +1,3 @@
+<script>
+doDivAjaxCall$formname('result_$nextCnt','saveMark','cnt=$nextCnt')
+</script>

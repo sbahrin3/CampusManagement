@@ -1,0 +1,14 @@
+<table width="100%">
+<tr height="100px"><td align="center" style="font-weight:bold">
+
+$!message
+
+</td></tr>
+
+<tr><td align="center">
+<input type="button" value="OK" onclick="$('div_ttb_alert').style.visibility='hidden';">
+</td>
+</tr>
+
+
+</table>

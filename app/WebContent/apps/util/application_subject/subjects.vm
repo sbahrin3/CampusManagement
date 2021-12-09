@@ -1,0 +1,65 @@
+
+<script>
+#foreach( $t in $types )
+$('td_$t').className = "gradient";
+#end
+$('td_$type').className = "gradient_select";
+</script>
+
+
+<fieldset style="background-color:#FFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">$type</legend>
+<table cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:100px">Code</td>
+<td style="width:400px">Name</td>
+<td style="width:50px"></td>
+<td style="width:50px"></td>
+<td style="width:30px"></td>
+</tr>
+</table>
+
+<ul id="tablist" style="list-style-type:none; padding: 0px;">
+#set ( $c = 0 )
+#foreach( $s in $subjects )
+#set ( $c = $c + 1 )
+<li id="tablist_$c">
+<table cellspacing="0">
+<tr>
+<td style="width:100px"><input class="text" style="width:100%" id="code_$s.id" name="code_$s.id" value="$s.code" onchange="doDivAjaxCall$formname('div_empty','update_code','subject_id=$s.id')"></td>
+<td style="width:400px"><input class="text" style="width:100%" id="name_$s.id" name="name_$s.id" value="$s.name" onchange="doDivAjaxCall$formname('div_empty','update_name','subject_id=$s.id')"></td>
+<td style="width:50px" align="center">
+##<input type="checkbox" id="cb_$s.id" #if ( $s.default ) checked #end onclick="if ( this.checked == true ) { doDivAjaxCall$formname('div_empty','update_default','default=yes&subject_id=$s.id'); } else { doDivAjaxCall$formname('div_empty','update_default','default=no&subject_id=$s.id');  }">
+</td>
+<td style="width:50px">
+<input class="gradient" style="height:30px;font-weight:bold" type="button" value="X" onclick="doDivAjaxCall$formname('div_subjects','delete_subject','subject_id=$s.id&type=$type')">
+</td>
+<td class="gradient" style="width:30px">&nbsp;<div id="div_subject_$s.id"><input type="hidden" name="subject_ids" value="$s.id"></div></td>
+</tr>
+</table>
+</li>
+#end
+</ul>
+
+<table>
+<tr>
+<td style="width:100px"><input class="text" style="width:100%" id="code" name="code" value=""></td>
+<td style="width:400px"><input class="text" style="width:100%" id="name" name="name" value=""></td>
+<td style="width:50px" align="center">
+##<input type="checkbox" id="cb_default" value="yes">
+</td>
+<td align="center">
+<input class="gradient" style="height:30px;font-weight:bold" type="button" value="Add" onclick="doDivAjaxCall$formname('div_subjects','add_subject','type=$type')">
+<input class="gradient" style="height:30px;font-weight:bold" type="button" value="Save Order" onclick="doDivAjaxCall$formname('div_empty','save_order','type=$type')">
+</td>
+</tr>
+</table>
+
+</fieldset>
+
+<div id="div_empty"></div>
+
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('tablist');
+</script>

@@ -1,0 +1,4 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<div id="main">
+	#parse("manageDatabase/db/tables.vm")
+</div>

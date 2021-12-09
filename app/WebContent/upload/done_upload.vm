@@ -1,0 +1,15 @@
+<table>
+<tr><td>
+Number of files uploaded = $filenames.size()
+</td></tr>
+
+#foreach ( $filename in $filenames ) 
+<tr><td align="center">
+$filename
+</td></tr>
+#end
+
+<tr><td>
+$button.command("uploadAgain").text("UPLOAD AGAIN")
+</td></tr>
+</table>

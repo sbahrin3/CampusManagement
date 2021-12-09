@@ -1,0 +1,56 @@
+
+<table>
+
+<tr>
+<td colspan="9" align="right">
+<input class="linkbutton" type="button" value="Back" onclick="doDivAjaxCall3$formname('div_main','listGroups','')">
+</td>
+</tr>
+
+
+<tr>
+<td colspan="9">
+Instruction:</br>
+$!instruction
+</td>
+</tr>
+
+<tr style="height:30px">
+<td class="colTitle" style="width:40px">&nbsp;</td>
+<td class="colTitle" style="width:100px" align="center">Open Date</td>
+<td class="colTitle" style="width:100px" align="center">Close Date</td>
+<td class="colTitle" style="width:200px" align="center">Questions Set</td>
+<td class="colTitle" style="width:100px" align="right">Subject</td>
+<td class="colTitle" style="width:200px" align="right">Teacher</td>
+<td class="colTitle" style="width:100px" align="right">Status&nbsp;</td>
+<td class="colTitle" style="width:50px" align="right">&nbsp;</td>
+</tr>
+
+#foreach ( $q in $questionnares )
+<tr style="height:25px">
+<td class="row">$velocityCount.</td>
+<td class="row">#if ( $q.startDate ) $dateFormat.format($q.startDate) #end&nbsp;</td>
+<td class="row">#if ( $q.endDate ) $dateFormat.format($q.endDate) #end&nbsp;</td>
+<td class="row">$q.set.name&nbsp;</td>
+<td class="row">$!q.subject.code&nbsp;</td>
+<td class="row">$!q.teacher.name&nbsp;</td>
+<td class="row" align="center">
+<div id="divStatus$q.id">
+#if ( $takeStatus.get("$q.id") )
+	#set ( $status = $takeStatus.get("$q.id") )
+#else
+	#set ( $status = "" )
+#end
+#parse("questionnare/list/status.vm")
+</div>
+&nbsp;
+</td>
+
+<td class="row" align="right">
+<input class="linkbutton" type="button" value="Take" onclick="doDivAjaxCall3$formname('divTestRun','testRun','userId=demo&questionnareId=$q.id&setId=$q.set.id')">
+</td>
+
+</tr>
+#end
+
+</table>

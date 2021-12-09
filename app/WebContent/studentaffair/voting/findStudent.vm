@@ -1,0 +1,10 @@
+<script>
+$('studentInfo').style.display='block';
+</script>
+<table width="100%">
+<tr><td>Matric No:
+<input class="textr" style="width:200px" name="matricNo">
+<input class="linkbutton" type="button" value="Get Student" onclick="doDivAjaxCall3$formname('studentInfo','getStudent','')">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('studentInfo').style.display='none';">
+</td></tr>
+</table>

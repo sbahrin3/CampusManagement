@@ -1,0 +1,9 @@
+#if ( $subjectReg.offered ) Yes #else &nbsp; #end
+
+<script>
+#if ( $subjectReg.offered )
+    $('row_${subjectReg.id}').className = "row_offered";
+#else
+	$('row_${subjectReg.id}').className = "row_normal";
+#end
+</script>

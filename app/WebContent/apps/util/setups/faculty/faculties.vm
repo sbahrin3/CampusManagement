@@ -1,0 +1,56 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td style="font-weight:bold" align="center">$institution.abbrev $institution.name</td></tr>
+<tr><td><br><br></td></tr>
+<tr><td style="font-weight:bold">
+LIST OF FACULTIES
+<hr/>
+</td></tr>
+</table>
+
+<br/>
+
+<table width="100%">
+#foreach ( $f in $faculties )
+<tr>
+<td>
+$href.command("edit").param("faculty_id=$f.id").text("$f.code")
+</td>
+<td>$f.name</td>
+<td>
+$button.command("courses").param("faculty_id=$f.id").text("Courses")
+$button.command("edit").param("faculty_id=$f.id").text("Edit")
+$button.command("delete").param("faculty_id=$f.id").text("Delete")
+</td>
+</tr>
+#end
+</table>
+
+<br/><br/>
+
+<table width="100%" align="center">
+<tr><td align="right" style="width:100px">Code:</td><td><input name="code" style="width:100px" value="$!faculty.code"></td></tr>
+<tr><td align="right" >Name:</td><td><input name="name" style="width:400px" value="$!faculty.name"></td></tr>
+<tr><td></td><td>
+#if ( $faculty )
+$button.command("update").param("faculty_id=$faculty.id").style("height:30px;font-weight:bold").text("UPDATE FACULTY")
+#else
+$button.command("add").style("height:30px;font-weight:bold").text("ADD FACULTY")
+#end
+</td></tr>
+</table>
+
+</td></tr>
+#if ( $error )
+<tr><td align="center" style="font-weight:bold">
+$error
+</td></tr>
+#end
+
+</table>
+<input type="hidden" name="institution_id" value="$!institution.id">

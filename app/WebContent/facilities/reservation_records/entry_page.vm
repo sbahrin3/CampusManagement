@@ -1,0 +1,58 @@
+
+
+<fieldset>
+<legend class="legend">$label_entry</legend>
+
+<table>
+<tr height="0px"><td style="width:150px"></td><td style="width:5px"></td><td style="width:500px"></td><td></td></tr>
+
+<tr height="30px">
+<td colspan="3" style="font-size:10pt;font-weight:bold;border-bottom:1px solid #AAAAAA">Reservation Detail</td><td></td></tr>
+
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Borrower Name</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">#if ( $userName ) $userName.toUpperCase() #end</td><td></td></tr>
+
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Venue</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">$r.room.name</td><td></td></tr>
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Programme</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">$r.programmeName</td><td></td></tr>
+$dateFormat.applyPattern("EEEE dd/MM/yyyy (hh:mm a)")
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Date From - To</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">
+#if ( $r.dateFrom ) $dateFormat.format($r.dateFrom) #end
+ - 
+#if ( $r.dateTo ) $dateFormat.format($r.dateTo) #end
+
+</td><td></td></tr>
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Date Apply</td><td>:</td><td style="font-weight:bold;background:#F2EFEF">
+#if ( $r.dateCreate ) $dateFormat.format($r.dateCreate) #end
+</td><td></td></tr>
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA">Status</td><td>:</td>
+<td style="font-weight:bold;background:#F2EFEF" id="reservationStatus">
+$r.status
+</td>
+<td style="border-bottom:1px solid #AAAAAA">
+<input type="checkbox" id="venueApprove" #if ( $r.status == "approved" ) checked #end onclick="if (this.checked) { $('venueDisapprove').checked = false; $('reservationStatus').innerHTML='approved'; doDivAjaxCall3$formname('divApproval','approveReservation','reservationId=$r.id'); } else { $('reservationStatus').innerHTML='pending'; doDivAjaxCall3$formname('divApproval','pendingReservation','reservationId=$r.id'); }">Approve
+<input type="checkbox" id="venueDisapprove" #if ( $r.status == "disapproved" ) checked #end onclick="if (this.checked) { $('venueApprove').checked = false; $('reservationStatus').innerHTML='disapproved'; doDivAjaxCall3$formname('divApproval','disApproveReservation','reservationId=$r.id'); } else { $('reservationStatus').innerHTML='pending'; doDivAjaxCall3$formname('divApproval','pendingReservation','reservationId=$r.id'); }">Disapprove
+</td>
+</tr>
+</table>
+
+<br/>
+
+<table>
+<tr height="0px"><td style="width:150px"></td><td style="width:5px"></td><td style="width:500px"></td><td></td></tr>
+
+<tr height="30px">
+<td colspan="3" style="font-size:10pt;font-weight:bold;border-bottom:1px solid #AAAAAA">Equipments Loan</td></tr>
+#foreach ( $e in $r.equipments )
+<tr height="30px"><td style="border-bottom:1px solid #AAAAAA" align="right">$velocityCount)</td><td></td><td style="font-weight:bold;background:#F2EFEF">$e.asset.description, $e.asset.brandName, $e.asset.modelName (SN: $e.asset.serialNo)</td>
+<td style="border-bottom:1px solid #AAAAAA">
+<input type="checkbox" id="itemApprove_$e.id" #if ( $e.status == "approved" ) checked #end onclick="if (this.checked) { $('itemDisapprove_$e.id').checked = false; doDivAjaxCall3$formname('divApproval','approveLoanEquipment','loanEquipmentId=$e.id'); } else {  doDivAjaxCall3$formname('divApproval','pendingLoanEquipment','loanEquipmentId=$e.id'); }">Approve
+<input type="checkbox" id="itemDisapprove_$e.id"  #if ( $e.status == "disapproved" ) checked #end onclick="if (this.checked) { $('itemApprove_$e.id').checked = false; doDivAjaxCall3$formname('divApproval','disApproveLoanEquipment','loanEquipmentId=$e.id'); } else {  doDivAjaxCall3$formname('divApproval','pendingLoanEquipment','loanEquipmentId=$e.id'); }">Disapprove
+</td>
+</tr>
+#end
+</table>
+
+
+
+
+</fieldset>
+<div id="divApproval"></div>

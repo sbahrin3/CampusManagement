@@ -1,0 +1,28 @@
+<table width="100%" bgcolor="#BCBCBC">
+<tr><td>
+<table width="100%" align="left" bgcolor="#FFFF99">
+#foreach( $status in $statuses )
+<tr>
+<td style="font-weight:bold" onmouseover="this.style.background='#E2E2FE';" onmouseout="this.style.background='#FFFF99';">
+<a href="javascript:void()" onclick="$('div_set_status_$s.id').style.visibility='hidden';$('status_name_$s.id').innerHTML='$status.name';$('status_id_$s.id').value='$status.id';#if ( $status.excludeGPA ) $('div_mark_$s.id').style.visibility='hidden' #else $('div_mark_$s.id').style.visibility='visible' #end; ">
+$status.name
+</a>
+## ;#if ( $status.resetMark ) $('mark_$s.id').value='0' #end
+</td>
+</tr>
+#end
+<tr>
+<td style="font-weight:bold" onmouseover="this.style.background='#E2E2FE';" onmouseout="this.style.background='#FFFF99';">
+<a href="javascript:void()" onclick="$('div_set_status_$s.id').style.visibility='hidden';$('status_name_$s.id').innerHTML='';$('div_mark_$s.id').style.visibility='visible';$('status_id_$s.id').value='';">
+RESTORE
+</a>
+</td></tr>
+
+</table>
+</td>
+<td style="width:5px" valign="top">
+<span style="background-color:#000000"><a href="javascript:void()" onclick="$('div_set_status_$s.id').style.visibility='hidden';" style="color:#ffffff;text-decoration:none;font-weight:bold">x</a></span>
+
+</td>
+</tr>
+</table>

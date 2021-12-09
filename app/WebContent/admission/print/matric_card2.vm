@@ -1,0 +1,62 @@
+<table cellpadding="0" cellspacing="0">
+
+<tr><td colspan="3"><img src="${applicationURL}/matric_card_image/$!{matricTemplateName}.png" style="width:${width}cm;"></td></tr>
+
+	
+</table>
+
+
+<div id="divStudentPhoto">
+	<img style="width:${photowidth}cm" src="${applicationURL}/download?file=$!student.photoFileName">
+</div>
+	
+<div id="divStudentDetail">
+<table width="100%" border="0">
+	<tr>
+		<td align="center" style="font-weight:bold;font-size:14pt;font-family:Verdana, sans-serif">
+			#if ( $student.biodata.displayName ) 
+				$student.biodata.displayName
+			#else
+				$student.biodata.name
+			#end
+			<br/><br/>
+			$student.matricNo
+			
+		</td>
+	</tr>
+</table>
+
+<br/>
+#** 
+<table>
+	<tr style="height:30px"><td></td>
+		<td>:</td>
+		<td>
+			$student.matricNo
+		</td>
+	</tr>
+	<tr style="height:30px"><td>Expired Date</td>
+		<td>:</td>
+		<td>
+			$dateFormat.applyPattern("dd-MM-yyyy")
+			$dateFormat.format($endDate)
+		</td>
+	</tr>
+
+</table>
+**#
+<table width="100%" border="0">
+	<tr style="height:30px">
+		<td align="left" style="font-size:10pt;font-family:arial, sans-serif">
+			*If found please return to the College Security.
+		</td>
+	</tr>
+</table>
+
+</div>
+
+<div id="divStudentBarcode">
+	<img src="${applicationURL}/barcode?data=$!student.matricNo" style="width:6.2cm;height:2cm" border="0"/>
+</div>
+	
+

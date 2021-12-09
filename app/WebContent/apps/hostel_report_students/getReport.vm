@@ -1,0 +1,31 @@
+<table>
+<tr><td colspan="8" align="right">
+<input type="button" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.hostel.module.StudentReportXL'">
+</td></tr>
+
+<tr style="height:30px;background:#C1BFBF">
+<td style="width:30px"></td>
+<td style="width:320px">Name</td>
+<td style="width:150px">Matric</td>
+<td style="width:50px" align="center">Gender</td>
+<td style="width:100px" align="center">Check In</td>
+<td style="width:100px" align="center">Expected Out</td>
+<td style="width:100px" align="center">Unit</td>
+<td style="width:100px" align="center">Room</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $a in $allocs )
+#set ( $cnt = $cnt + 1 )
+<tr style="height:25px;background:#EAE8E8">
+<td>$cnt.</td>
+<td>$a.student.biodata.name</td>
+<td>$a.student.matricNo</td>
+<td align="center">$!a.student.biodata.gender.code</td>
+<td align="center">#if ( $a.checkInDate ) $dateFormat.format($a.checkInDate) #end</td>
+<td align="center">#if ( $a.expectedDateOut ) $dateFormat.format($a.expectedDateOut) #end</td>
+##<td align="center">#if ( $a.checkOutDate ) $dateFormat.format($a.checkOutDate) #end</td>
+<td align="center">$a.room.unit.name</td>
+<td align="center">$a.room.name</td>
+</tr>
+#end
+</table>

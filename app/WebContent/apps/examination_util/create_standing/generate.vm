@@ -1,0 +1,17 @@
+<table width="100%">
+#set ( $cnt = 0 )
+#foreach( $student in $students )
+#set ( $cnt = $cnt  + 1 )
+<tr>
+<td>$velocityCount)</td>
+<td>$student.matricNo</td>
+<td>$student.biodata.name</td>
+<td>$student.program.code $student.program.name</td>
+<td>
+<input type="button" value="..." onclick="doDivAjaxCall$formname('student$cnt','generate_individual','student_id=$student.id')">
+<td>
+<div id="student$cnt" name="student$cnt"></div>
+<td>
+</tr>
+#end
+</table>

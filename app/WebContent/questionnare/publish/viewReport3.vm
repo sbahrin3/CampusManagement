@@ -1,0 +1,147 @@
+
+
+
+<table>
+	<tr style="height:0px"><td style="width:80px"></td><td style="width:40px"></td><td></td></tr>
+	<tr style="height:20px"><td colspan="3" style="font-weight:bold">Student's Evaluation on Teaching & Learning</td></tr>
+	<tr style="height:15px"><td>Code</td><td>:</td><td>$subject.code</td></tr>
+	<tr style="height:15px"><td>Subject</td><td>:</td><td>$subject.name</td></tr>
+	<tr style="height:15px"><td>Lecturer</td><td>:</td><td>$!teacher.name</td></tr>
+	<tr style="height:15px"><td>Semester</td><td>:</td><td>
+			#if ( $currentSession )
+				<b>$currentSession.name</b>
+			#end
+	</td></tr>
+</table>
+
+<br/><br/>
+<table cellpadding="0" cellspacing="0">
+
+<tr style="height:30px">
+
+<td class="colTitle" style="width:50px;border-right:1px dotted #ccc;border-bottom:1px dotted #000;border-top:1px dotted #000"></td>
+#set ( $cnt = 0 )
+#foreach ( $h in $resultHeaders )
+	
+	#set ( $i = $cnt)
+	#set ( $id = $identifiers.get($i) )
+	#set ( $av = $answerValueMap.get("$id") )
+	#if ( $av.valueType == "number" )
+		<td class="colTitle" align="center" style="width:30px;border-right:1px dotted #ccc;border-bottom:1px dotted #000;border-top:1px dotted #000">$h</td>
+	#end
+	#set ( $cnt = $cnt + 1 )
+#end
+</tr>
+
+#set ( $rCnt = 0 )
+#foreach( $result in $resultDataList )
+	#set ( $rCnt = $rCnt + 1 )
+    <tr style="height:20px">
+    #set ( $cnt = 0 )
+    #foreach( $r in $result )
+
+    	#if ( $cnt == 0 )
+			<td  class="row" style="border-right:1px dotted #ccc;border-bottom:1px dotted #ccc" >$rCnt)</td>
+    	#else
+			
+			#set ( $i = $cnt - 1 )
+			#set ( $id = $identifiers.get($i) )
+			#set ( $av = $answerValueMap.get("$id") )
+			#set ( $bgcolor = "#fff" )
+        	#if ( $av.type == "avg" )
+        		#set ( $bgcolor = "#ebebeb" )
+        	#end
+			#if ( $av.valueType == "number" )
+				<td  class="row" style="background:$bgcolor;border-right:1px dotted #ccc;border-bottom:1px dotted #ccc" align="center">$r</td>
+			#end
+    	#end
+        
+        #set ( $cnt = $cnt + 1 )
+    #end
+    </tr>
+
+#end
+
+<tr>
+<td class="row" style="height:25px;border-top:1px dotted #000;border-bottom:1px dotted #000"></td>
+#set ( $cnt = 0 )
+#foreach( $avg in $averages )
+	#set ( $i = $cnt)
+	#set ( $id = $identifiers.get($i) )
+	#set ( $av = $answerValueMap.get("$id") )
+	#set ( $bgcolor = "#fff" )
+	#if ( $av.type == "avg" )
+		#set ( $bgcolor = "#ebebeb" )
+	#end
+	#if ( $av.valueType == "number" )
+		<td class="row" style="height:25px;background:$bgcolor;border-right:1px dotted #ccc;border-top:1px dotted #000;border-bottom:1px dotted #000" align="center">$numFormat.format($avg)</td>
+	#end
+	 #set ( $cnt = $cnt + 1 )
+#end
+</tr>
+
+
+</table>
+
+
+<div style="padding:4px;margin-top:20px">
+
+	<table cellpadding="0">
+		<tr style="height:30px;">
+			<td style="width:30px;border-bottom:1px dotted #000; font-weight:bold">&nbsp;</td>
+			<td style="width:400px;border-bottom:1px dotted #000; font-weight:bold">Performance Indicators (Survey Questions and Assessment Areas)</td>
+			<td style="width:200px;border-bottom:1px dotted #000; font-weight:bold" align="center">Ratings</td>
+		</tr>
+	#set ( $cnt = 0 )
+	#set ( $tot_avg = 0 )
+	#foreach ( $q in $questionList )
+		#set ( $id = $q.id )
+		#set ( $av = $answerValueMap.get("$id") )
+		
+		#if ( $av.valueType == "number" )
+			#set ( $cnt = $cnt + 1 )
+			#set ( $tot_avg = $tot_avg + $av.average )
+			<tr style="height:20px;border-bottom:1px dotted #ccc">
+				<td style="border-bottom:1px dotted #ccc">$q.refNo</td>
+				<td style="border-bottom:1px dotted #ccc">$q.question.questionText</td>
+				<td style="border-bottom:1px dotted #ccc" align="center">$numFormat.format($av.average)</td>
+			</tr>
+		#end
+	#end
+	#set ( $avg_total = $tot_avg/$cnt )
+	<tr style="height:25px;border-bottom:1px dotted #ccc">
+		<td style="border-bottom:1px dotted #ccc"></td>
+		<td style="border-bottom:1px dotted #ccc;font-weight:bold" align="right">TOTAL AVERAGE</td>
+		<td style="border-bottom:1px dotted #ccc;font-weight:bold" align="center">$numFormat.format($avg_total)</td>
+	</tr>
+	</table>
+		
+</div>
+
+<div style="padding:4px;page-break-inside: avoid;">
+		<div style="padding:4px;font-weight:bold;">
+			Additional Comments
+		</div>
+		#set ( $cnt = 0 )
+		#foreach ( $comment in $comments )
+			#if ( $comment != "" )
+				#set ( $cnt = $cnt + 1 )
+    			<div style="">
+    				$cnt) $comment
+    			</div>
+			#end
+		#end
+	</div>
+
+</div>
+
+<div style="padding:4px;page-break-inside: avoid;">	
+	<table cellspacing="0">
+        <tr style="height:15px"><td style="border-bottom:1px solid #000;border-top:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" colspan="2" align="center">SCALE</td></tr>
+		<tr style="height:15px"><td style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;width:100px" align="center">1 - 2</td><td style="border-bottom:1px solid #000;border-right:1px solid #000;width:200px" align="center">LOW</td></tr>
+		<tr style="height:15px"><td style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="center">2 - 3</td><td style="border-bottom:1px solid #000;border-right:1px solid #000;" align="center">BELOW AVERAGE</td></tr>
+		<tr style="height:15px"><td style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="center">3 - 4</td><td style="border-bottom:1px solid #000;border-right:1px solid #000;" align="center">AVERAGE</td></tr>
+		<tr style="height:15px"><td style="border-bottom:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;" align="center">4 - 5</td><td style="border-bottom:1px solid #000;border-right:1px solid #000;" align="center">ABOVE AVERAGE</td></tr>
+	</table>
+	
+</div>

@@ -1,0 +1,33 @@
+
+
+<table class="table table-striped" cellspacing="0">
+
+<tr height="30px" bgcolor="lightgrey">
+<td style="width:20px"></td>
+<td style="width:200px;font-weight:bold">Receipt No</td>
+<td style="width:200px;font-weight:bold">Date</td>
+<td style="width:100px;font-weight:bold" align="right">Amount&nbsp;&nbsp;&nbsp;</td>
+<td></td>
+</tr>
+
+$dateFormat.applyPattern("dd MMM yyyy")
+#foreach( $i in $payments )
+<tr height="30px">
+<td class="gradient" align="right">${velocityCount}.</td>
+<td style="border-bottom:1px solid #C3C3C3">
+<a href="javascript:void()" style="text-decoration:none" onclick="doDivAjaxCall$formname('div_detail','payment_info','payment_id=$i.id')">$i.paymentNo</a>
+</td>
+<td style="border-bottom:1px solid #C3C3C3">$dateFormat.format($i.createDate)</td>
+<td style="border-bottom:1px solid #C3C3C3" align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;</td>
+<td style="border-bottom:1px solid #C3C3C3;color:#F9410B">
+#if ( $i.adjusted )
+<b>Adjusted<b>
+#else
+&nbsp;
+#end
+</td>
+</tr>
+#end
+</table>
+
+</fieldset>

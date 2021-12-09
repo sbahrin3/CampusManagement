@@ -1,0 +1,18 @@
+<script>
+$('divPathName').style.display="block";
+</script>
+
+<table width="100%">
+<tr><td style="width:100px">Path Name</td><td style="width:10px">:</td>
+<td>
+<input style="width:100%" name="pathName" value="$!pathName">
+</td>
+</tr>
+</table>
+
+<table width="100%"><tr>
+<td align="right">
+<input type="button" value="Save" onclick="doDivAjaxCall$formname('listPath','savePathName','pathNo=$pathNo');$('divPathName').style.display='none';">
+<input type="button" value="Cancel" onclick="$('divPathName').style.display='none';">
+</td>
+</tr></table>

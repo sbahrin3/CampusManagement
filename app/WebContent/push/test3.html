@@ -1,0 +1,23 @@
+<head>
+<title>index</title>
+<script type='text/javascript' src='../dwr/engine.js'></script>
+<script type='text/javascript' src='../dwr/interface/ReverseClass3.js'></script>
+<script type='text/javascript' src='../dwr/util.js'></script>
+
+<script language="javascript">
+   function onloadmethod() {
+      dwr.engine.setActiveReverseAjax(true);
+      ReverseClass3.callReverseAjax();
+   }
+</script>
+</head>
+<body onload="onloadmethod()">
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+<script>
+function myFunc(i) {
+	div2.innerHTML = "thru script - " + i;
+}
+</script>
+</html>

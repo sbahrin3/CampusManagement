@@ -1,0 +1,17 @@
+<table width="90%" align="center"><tr><td align="right">
+
+</td></tr></table>
+
+<table width="90%" align="center">
+<tr><td style="width:100px"></td><td></td></tr>
+<tr><td>Name:</td><td>$href.command("get_student").param("student_id=$student.id").text("$student.biodata.name")</td></tr>
+<tr><td>ICNo:</td><td>$student.biodata.icno</td></tr>
+<tr><td>Passport:</td><td>$!student.biodata.passport</td></tr>
+<tr><td>Date Of Birth:</td><td>$dateFormat.format($student.biodata.dob)</td></tr>
+<tr><td>Nationality:</td><td>#if ($student.biodata.nationality) $student.biodata.nationality.name #end</td></tr>
+<tr><td>Race:</td><td>#if ($student.biodata.race) $student.biodata.race.name #end</td></tr>
+<tr><td>Telephone:</td><td>$!student.biodata.telephoneNo</td></tr>
+<tr><td>Mobile:</td><td>$!student.biodata.mobileNo</td></tr>
+<tr><td>Email:</td><td>$!student.biodata.email</td></tr>
+<tr><td>Email 2:</td><td>$!student.biodata.email2</td></tr>
+</table>

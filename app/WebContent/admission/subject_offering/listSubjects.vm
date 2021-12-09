@@ -1,0 +1,24 @@
+<table style="width:90%" cellpadding="1" cellspacing="0">
+	<tr style="height:30px">
+		<td colspan="4" align="right">
+			<input type="checkbox" checked onclick="doDivAjaxCall3$formname('listSubjects','selectAll','')">Select All
+			<input type="checkbox" onclick="doDivAjaxCall3$formname('listSubjects','unSelectAll','')">Unselect All
+		</td>
+	</tr>
+	<tr style="height:30px;background:#D3D1D1">
+		<td style="width:100px;font-weight:bold">Code</td>
+		<td style=";font-weight:bold">Title</td>
+		<td style=";font-weight:bold" colspan="2" align="center">Offered</td>
+	</tr>
+	#foreach( $subjectReg in $subjectRegs )
+		<tr id="row_${subjectReg.id}" style="height:30px;">
+			<td  style="border-bottom:1px solid #D3D1D1">$subjectReg.subject.code</td>
+			<td style="border-bottom:1px solid #D3D1D1">$subjectReg.subject.name</td>
+			<td style="border-bottom:1px solid #D3D1D1;width:50px" align="center"><div id="divCheckOffered_${subjectReg.id}">#parse("admission/subject_offering/offered.vm")</div></td>
+			<td style="border-bottom:1px solid #D3D1D1;width:50px" align="center">
+			<input type="checkbox" value="$subjectReg.id" #if ( $subjectReg.offered ) checked #end onclick="doDivAjaxCall3$formname('divCheckOffered_${subjectReg.id}','toggleOffered','subjectRegId=$subjectReg.id')">
+			</td>
+		</tr>
+	#end
+</table>
+

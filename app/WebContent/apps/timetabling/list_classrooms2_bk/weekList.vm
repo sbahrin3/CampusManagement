@@ -1,0 +1,12 @@
+<script>
+$('classroomList').innerHTML = "";
+</script>
+<select id="week" name="week" style="width:100px">
+#foreach( $w in [1..$weeks] )
+<option value="$w" #if ( $currentWeek == $w ) selected #end>
+#if ( $currentWeek == $w ) &gt; #end
+Week $w
+</option>
+#end
+</select>
+<input type="button" value="List Classrooms" onclick="doDivAjaxCall3$formname('classroomList','getClassroomList','')">

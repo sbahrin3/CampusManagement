@@ -1,0 +1,39 @@
+<fieldset>
+<table>
+<tr><td style="width:100px">Session:</td><td style="font-weight:bold;">$session.code $session.name</td></tr>
+<tr><td>Period:</td><td style="font-weight:bold;">$period.name</td></tr>
+<tr><td>Exam:</td><td style="font-weight:bold;">$exam.code $exam.name</td></tr>
+<tr><td>Subject:</td><td style="font-weight:bold;">$subject.code $subject.name</td></tr>
+</table>
+</fieldset>
+<br/>
+<fieldset>
+<table>
+<tr>
+<td style="width:100px;font-weight:bold;">Matric</td>
+<td style="width:300px;font-weight:bold;">Name</td>
+<td style="width:50px;font-weight:bold;" align="center">Mark</td>
+<td style="width:50px;font-weight:bold;" align="center">Grade</td>
+</tr>
+#foreach( $s in $results )
+<tr>
+<td>$s.examTranscript.studentStatus.student.matricNo</td>
+<td>
+<a href="javascript:void()" style="text-decoration:none" onclick="doDivAjaxCall$formname('div_transcript','get_transcript','result_id=$s.id');$('div_transcript_main').style.visibility='visible';$('div_transcript').style.visibility='visible';">
+$s.examTranscript.studentStatus.student.biodata.name
+</a>
+</td>
+
+<td><input style="width:100%;text-align:center" name="result_$s.id" value="$s.mark" onchange="doDivAjaxCall$formname('div_result_$s.id','save_result','result_id=$s.id')"></td>
+<td align="center">
+<span id="grade_$s.id"></span>
+<div id="div_result_$s.id">
+#if ( $s.grade )
+$s.grade.letter
+#end
+</div>
+</td>
+</tr>
+#end
+</table>
+</fieldset>

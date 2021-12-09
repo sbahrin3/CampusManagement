@@ -1,0 +1,15 @@
+
+<table>
+<tr><td>
+<select class="form-control" name="marking_id" style="font-family:helvetica;font-size:10pt;width:200px" onchange="doDivAjaxCall$formName('grade', 'list_marking', '')">
+<option value="">-select grading-</option>
+#foreach( $marking in $markings )
+<option value="$marking.id">$marking.name</option>
+#end
+</select>
+</td><td>&nbsp;
+<button class="btn btn-success" type="button" onclick="doDivAjaxCall$formName('grade', 'list_marking', '')">Get...</button>
+<button class="btn btn-warning" type="button" onclick="doDivAjaxCall$formName('marking', 'new_marking', ''); doDivAjaxCall$formName('grade', 'empty', '')">Create New</button>
+<button class="btn btn-danger" type="button" onclick="if ( !confirm('Are you sure?') ) return;doDivAjaxCall$formName('marking', 'delete_marking', ''); doDivAjaxCall$formName('grade', 'empty', '')">Remove</button>
+</td></tr>
+</table>

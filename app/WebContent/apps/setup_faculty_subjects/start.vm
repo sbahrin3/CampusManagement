@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<style>
+#divClassroomTemplates {
+    position:fixed;
+    top: 30%;
+    left: 10%;
+    width:1000px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#AFAFAF;
+    display:none;
+}
+</style>
+
+<div style="padding:10px">
+
+<table width="100%"><tr><td>
+<div id="listFaculties">#parse("apps/setup_faculty_subjects/listFaculties.vm")</div>
+</td></tr></table>
+
+<div id="divClassroomTemplates" class="shadow"></div>
+<div id="empty"></div>
+
+</div>
+
+<script>
+function clickFaculty() {
+	$('listOfFaculties').style.display = 'none';
+}
+function backToFacultyList() {
+	$('listOfFaculties').style.display = 'block';
+	$('listOfGroups').style.display = 'none';
+}
+function clickGroup() {
+	$('listOfGroups').style.display = 'none';
+}
+function backToGroupList() {
+	$('listOfGroups').style.display = 'block';
+	$('listOfSubjects').style.display = 'none';
+}
+
+function popitup(url) {
+	nw=window.open(url,'nw','height=500,width=800,scrollbars=yes');
+	if (window.focus) {nw.focus()}
+	return false;
+}
+</script>
+
+
+

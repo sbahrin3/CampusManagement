@@ -1,0 +1,60 @@
+<div style="padding:10px;font-weight:bold;border:1px solid #000">
+
+	<table cellpadding="1" cellspacing="1" style="width:100%">
+		<tr style="height:25px">
+			<td style="font-weight:bold">First Payment</td>
+			<td style="width:100px;font-weight:bold" align="right">
+		</td></tr>
+	</table>
+</div>
+
+<table>
+	<tr style="height:40px;background:#AEB1B2">
+		<td style="width:200px">Payment</td>
+		<td style="width:200px" align="right">Amount Paid</td>
+		<td style="width:200px" align="center">Date</td>
+		<td style="">
+			<input type="button" class="linkbutton" value="Make First Payment..."  onclick="doDivAjaxCall$formname('divMakePayment','makeFirstPayment','')">
+		</td>
+	</tr>
+	<tr style="height:30px">
+		<td>Application Fee</td>
+		<td align="right">#if ( $paymentSchedule.applicationFeePaid ) $numFormat.format($paymentSchedule.applicationFeePaid) #end</td>
+		<td align="center">#if ( $paymentSchedule.applicationFeePaidDate ) $dateFormat.format($paymentSchedule.applicationFeePaidDate) #end</td>
+		<td>
+			##<input type="button" class="linkbutton" value="Pay Now"  onclick="doDivAjaxCall$formname('divMakePayment','makeFirstPayment','')">
+		</td>
+	</tr>
+	<tr style="height:30px;background:#ebebeb">
+		<td>Registration Fee</td>
+		<td align="right">#if ( $paymentSchedule.registrationFeePaid ) $numFormat.format($paymentSchedule.registrationFeePaid) #end</td>
+		<td align="center">#if ( $paymentSchedule.registrationFeePaidDate ) $dateFormat.format($paymentSchedule.registrationFeePaidDate) #end</td>
+		<td>
+			##<input class="linkbutton" type="button" value="Pay Now" onclick="">
+		</td>
+	</tr>
+	<tr style="height:30px">
+		<td>Resource Fee</td>
+		<td align="right">#if ( $paymentSchedule.resourceFeePaid ) $numFormat.format($paymentSchedule.resourceFeePaid) #end</td>
+		<td align="center">#if ( $paymentSchedule.resourceFeePaidDate ) $dateFormat.format($paymentSchedule.resourceFeePaidDate) #end</td>
+		<td>
+			##<input class="linkbutton" type="button" value="Pay Now" onclick="">
+		</td>
+	</tr>
+	<tr style="height:30px;background:#ebebeb">
+		<td>First Payment</td>
+		<td align="right">#if ( $paymentSchedule.firstPaymentPaid ) $numFormat.format($paymentSchedule.firstPaymentPaid) #end</td>
+		<td align="center">#if ( $paymentSchedule.firstPaymentPaidDate ) $dateFormat.format($paymentSchedule.firstPaymentPaidDate) #end</td>
+		<td>
+			##<input class="linkbutton" type="button" value="Pay Now" onclick="">
+		</td>
+	</tr>
+	<tr style="height:40px">
+		
+		<td colspan="4" align="right">
+			<a href="javascript:void(0)" onclick="if ( !confirm('Print receipt for this payment?') ) return; document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintStudentReceiptModule2?paymentNo=$!paymentSchedule.firstPaymentNo&pdfName=$!paymentSchedule.firstPaymentNo';"><u>Print Receipt</u></a>
+
+			##<input type="button" class="linkbutton" value="Print Receipt" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintStudentReceiptModule2?paymentNo=$!paymentSchedule.firstPaymentNo&pdfName=$!paymentSchedule.firstPaymentNo';">
+		</td>
+	</tr>
+</table>

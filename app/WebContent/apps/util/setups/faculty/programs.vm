@@ -1,0 +1,73 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("courses").text("Back")]
+</td></tr>
+<tr><td align="center" style="font-weight:bold">
+$course.code $course.name
+<br><br>
+</td></tr>
+<tr><td style="font-weight:bold">
+LIST OF PROGRAMS
+<hr/>
+</td></tr>
+<tr><td>
+<br><br>
+
+<table width="100%">
+#foreach ( $p in $programs )
+<tr>
+<td>
+$href.command("edit_program").param("program_id=$p.id").text("$p.code")
+</td>
+<td>$p.name</td>
+<td>
+$button.command("edit_program").param("program_id=$p.id").text("Edit")
+$button.command("delete_program").param("program_id=$p.id").text("Delete")
+</td>
+</tr>
+#end
+</table>
+
+<br/><br/>
+
+<table width="100%" align="center">
+<tr><td align="right" style="width:100px">Code:</td><td><input name="code" style="width:100px" value="$!program.code"></td></tr>
+<tr><td align="right" >Name:</td><td><input name="name" style="width:400px" value="$!program.name"></td></tr>
+<tr><td align="right" >Abbreviation:</td><td><input name="abbrev" style="width:400px" value="$!program.abbrev"></td></tr>
+<tr><td align="right" >Registration No:</td><td><input name="register_no" style="width:400px" value="$!program.registerNo"></td></tr>
+<tr><td align="right">Level:</td>
+<td>
+<select name="level_id" style="width:400px" >
+<option value=""></option>
+#foreach( $l in $levels)
+<option value="$l.id" #if ( $program.level.id == $l.id ) selected #end>$l.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr><td align="right">Period Scheme:</td>
+<td>
+<select name="period_scheme_id" style="width:400px" >
+<option value=""></option>
+#foreach( $p in $periods)
+<option value="$p.id" #if ( $program.periodScheme.id == $p.id ) selected #end>$p.code</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr><td></td><td>
+#if ( $program )
+$button.command("update_program").param("program_id=$program.id").style("height:30px;font-weight:bold").text("UPDATE PROGRAM")
+#else
+$button.command("add_program").style("height:30px;font-weight:bold").text("ADD PROGRAM")
+#end
+</td></tr>
+</table>
+
+
+
+</td></tr></table>
+<input type="hidden" name="course_id" value="$!course.id">
+<input type="hidden" name="faculty_id" value="$!course.faculty.id">

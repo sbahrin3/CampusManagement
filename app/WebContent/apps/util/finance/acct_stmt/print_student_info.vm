@@ -1,0 +1,42 @@
+$dateFormat.applyPattern("d MMM, yyyy")
+<fieldset>
+
+<table width="100%">
+<tr><td valign="top">
+
+<table width="100%">
+<tr><td style="width:40%;font-weight:bold">
+
+$student.biodata.name<br/>
+#if ( $student.address.address1 ) $student.address.address1 <br/> #end
+#if ( $student.address.address2 ) $student.address.address2 <br/> #end
+#if ( $student.address.address3 ) $student.address.address3 <br/> #end
+#if ( $student.address.address4 ) $student.address.address4 <br/> #end
+#if ( $student.address.city ) $student.address.city <br/> #end
+#if ( $student.address.postcode ) $student.address.postcode #end
+#if ( $student.address.state ) $student.address.state.name <br/> #end
+#if ( $student.address.country ) $student.address.country.name <br/> #end
+
+
+</td><td>
+
+<table>
+<tr><td style="width:80px">Date:</td><td style="font-weight:bold">$dateFormat.format($today)</td></tr>
+<tr><td >Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>Program:</td><td style="font-weight:bold">$student.program.displayName</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+#if ( $student_status )
+<tr><td>Semester:</td><td style="font-weight:bold">
+$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end
+($student_status.session.name)
+</td></tr>
+#end
+</table>
+
+</td></tr>
+</table>
+
+</td></tr>
+</table>
+
+</fieldset>

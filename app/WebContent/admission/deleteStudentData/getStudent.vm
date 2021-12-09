@@ -1,0 +1,29 @@
+<div>
+	
+	#if ( $student )
+	<table>
+		<tr style="height:30px"><td style="width:150px"></td><td style="width:400px"></td></tr>
+		<tr style="height:30px"><td>Student ID</td><td>: $!student.matricNo</td></tr>
+		<tr style="height:30px"><td>Name</td><td>: $!student.biodata.name</td></tr>
+		<tr style="height:30px"><td>Program</td><td>: $!student.program.name</td></tr>
+		<tr style="height:30px"><td>Intake</td><td>: $!student.intake.name</td></tr>
+		
+		<tr style="height:30px"><td></td><td></td></tr>
+		
+		<tr style="height:30px"><td></td><td><input type="button" class="linkbutton" style="background:#f40e0e;color:#fff;font-weight:bold" value="Delete Data!" onclick="doDivAjaxCall$formname('getStudent','deleteData','studentId=$!student.id')"></td></tr>
+		
+	</table>
+	<br/>
+	#else
+		
+		<div style="font-weight:bold;margin-top:20px">
+			
+			Data not available!
+			
+		</div>
+		
+	#end
+	
+
+	
+</div>

@@ -1,0 +1,10 @@
+<table width="700" align="center">
+<tr><td align="center">
+<fieldset style="background-color:lightgrey;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">Find Application:</legend>
+<table width="100%"><tr><td align="center">
+ICNO/Passport: <input name="icno" style="width:200px">
+$button.command("get_applicant").text("GET APPLICATION")
+</td></tr></table>
+</fieldset>
+</td></tr></table>

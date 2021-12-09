@@ -1,0 +1,77 @@
+
+
+	<div style="padding:10px;font-weight:bold;border:1px solid #000">
+
+    	<table cellpadding="1" cellspacing="1" style="width:100%">
+    		<tr style="height:25px">
+    			<td style="font-weight:bold">OVERALL PAYMENT SCHEDULE</td>
+    			<td style="width:200px;font-weight:bold" align="right">
+					<a href="javascript:void(0)" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.finance.module.PrintPaymentScheduleStatementModule?paymentScheduleId=$!paymentSchedule.id&pdfName=PaymentSchedule';">Print Statement</a>
+				</td>
+			</tr>
+    	</table>
+    </div>
+
+
+	<div class="table-responsive">
+	<table class="table table-striped">
+		<tr style="height:40px;background:#AEB1B2">
+			<td style="width:20px"></td>
+			<td style="width:80px" align="center">Type</td>
+			<td style="width:100px" align="center">Due Date</td>
+			<td style="width:80px" align="right">Amt. Due</td>
+			<td style="width:100px" align="right">Pmt. Date</td>
+			<td style="width:80px" align="right">Paid</td>
+			<td style="width:80px" align="right">Balance</td>
+			<td style="width:80px" align="right">Outstanding</td>
+			
+		</tr>
+		#set ( $cnt = 0 )
+		#foreach ( $i in $scheduleItems )
+			
+			
+			#set ( $cnt = $cnt + 1 )
+
+			<tr style="height:30px;background:$bgcolor">
+				<td>$cnt)</td>
+				
+				<td align="center">
+					#if ( $i.type == 0 )
+						MONTHLY/FLEXI
+					#elseif ( $i.type == 1 )
+						PTPTN
+					#elseif ( $i.type == 2 )
+						RSRC FEE
+					#elseif ( $i.type == 3 )
+						SEMESTER
+					#elseif ( $i.type == 4 )
+						HOSTEL
+					#end
+		        </td>
+				
+				
+				<td align="center">
+					#if ( $i.paymentDate )
+						$dateFormat.format($i.paymentDate)
+					#end
+				</td>
+				<td align="right">$numFormat.format($i.amountDue)</td>
+								
+				<td align="right">
+				#if ( $i.paidDate )
+					$dateFormat.format($i.paidDate)
+				#end
+				</td>
+				<td align="right">$numFormat.format($i.amountPaid)</td>
+				<td align="right">$numFormat.format($i.currentBalance)</td>
+				<td align="right">$numFormat.format($i.outstandingBalance)</td>
+				
+			</tr>
+		
+		#end
+    	
+	</table>
+	</div>
+	<br/>
+	<br/>
+

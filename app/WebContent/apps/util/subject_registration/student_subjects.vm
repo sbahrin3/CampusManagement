@@ -1,0 +1,130 @@
+<input type="hidden" name="student_status_id" value="$!student_status.id">
+
+<table width="100%">
+<tr><td  colspan="4">
+
+
+    <div class="well">
+        <b>
+        &nbsp;&nbsp;&nbsp;$student_status.session.name<br/>
+        &nbsp;&nbsp;&nbsp;$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end<br/>
+        #if ( $student_status.type.defer )
+        <font style="color:red">
+        #else
+        <font style="color:blue">
+        #end
+        #if ( $student_status.type )
+        &nbsp;&nbsp;&nbsp;<i>$!student_status.type.name</i>
+        #else
+        &nbsp;&nbsp;&nbsp;<i>status undefined</i>
+        #end
+        </font>
+        </b>
+		<br/>
+		<br/>
+		##if ( !$bof ) 
+        	<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('div_list_subjects','prev_semester','')">&lt;&nbsp;Prev</button>
+        ##else 
+        	##<button type="button" class="btn btn-default" disabled>&lt;&nbsp;Prev</button>
+        ##end
+        
+        #if ( !$eof ) 
+        <button type="button" class="btn btn-default"  onclick="doDivAjaxCall$formname('div_list_subjects','next_semester','')">Next&nbsp;&gt;</button>
+        #else 
+        <button type="button" class="btn btn-default"  disabled>Next&nbsp;&gt;</button>
+        #end
+    </div>
+
+
+
+</td></tr>
+#if ( $student_status.studentSubjects )
+<tr><td colspan="4">
+
+<div id="div_student_subjects" name="div_student_subjects">
+
+#parse ("apps/util/subject_registration/div_student_subjects.vm")
+
+</div>
+
+</td></tr>
+
+<tr style="height:50px">
+
+<td colspan="6">
+
+<table><tr><td>
+#if ( $student_status.studentSubjects.size() > 0 ) 
+	<button type="button" class="btn btn-danger" onclick="doDivAjaxCall$formname('div_student_subjects','remove_subjects','')">Delete</button>
+#end
+</td><td>
+<span style="color:#f40e0e">	
+&nbsp;WARNING: Any changes made will affect the RESULT TRANSCRIPT data if there is any.
+</span>
+</td></tr>
+<tr><td>
+		
+	
+		
+</td></tr></table>
+
+</td>
+</tr>
+
+
+#end
+</table>
+
+
+<hr />
+#if ( !$student_status.type.defer )
+<table width="100%">
+<tr height="40px"><td style="height:40px;font-weight:bold">
+<i>Subjects listed under programme enrolled by this student:</i>
+</td></tr></table>
+#end
+#if ( !$student_status.type.defer )
+<table width="100%">
+<tr>
+<td style="" colspan="4">
+    <div class="well">
+    $student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end
+    - Current Student's Semester
+    </div>
+</td>
+</tr>
+
+
+
+#if ( $subjects.size() > 0 )
+    #foreach($s in $subjects)
+    <tr style="height:25px">
+    <td style="width:50px;border-bottom:1px dotted #ccc" align="center"><input type="checkbox" name="selected_subjects" value="$s.id"></td>
+    <td style="width:100px;border-bottom:1px dotted #ccc">$s.subject.code</td>
+    <td style="border-bottom:1px dotted #ccc">$s.subject.name</td>
+    <td style="width:40px;border-bottom:1px dotted #ccc" align="center">$s.subject.credithrs</td>
+    </tr>
+    
+    #end
+    
+    <tr style="height:50px"><td colspan="4" align="left">
+    #if ( $subjects.size() > 0 )
+    	<button type="button" class="btn btn-success" onclick="doDivAjaxCall$formname('div_list_subjects','add_subjects','')">Add</button>
+    #end
+    </td></tr>
+
+#else
+	
+    <tr>
+    <td colspan="2">
+    	<div style="margin:10px;padding:10px;border:1px dotted #ccc;color:#08409f">
+    		This semester does not defined any subject.
+    	</div>
+    </td>
+    </tr>
+
+
+#end
+</table>
+#end
+

@@ -1,0 +1,16 @@
+<table width="900px" align="center">
+#if ( $show_login )
+<tr><td>
+<input id="login" name="login">
+<input type="button" value="Login" onclick="doAjaxCall$formname('login','')">
+</td></tr>
+#end
+<tr><td>
+#parse("apps/lms2/launcher/user.vm")
+</td></tr>
+<tr><td>
+#parse("apps/lms2/launcher/list_enrolled.vm")
+
+
+
+</td></tr></table>

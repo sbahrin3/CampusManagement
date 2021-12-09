@@ -1,0 +1,74 @@
+<table width="900">
+
+
+<tr><td>
+
+
+<table width="100%"><tr><td>
+<div id="div_info_main" name="div_info_main" style="visibility:hidden;overflow:auto;overflow-x:hidden;position:absolute;left:550px;top:10px;width:500px;height:400px;background-color:#ffffff;border-style:solid;border-color:#D2D2D2">
+
+<table width="100%">
+<tr><td align="right">
+[<a href="javascript:void()" onclick="$('div_info_main').style.visibility='hidden';">Close</a>]
+</td></tr>
+</table>
+<div id="div_info" name="div_info"></div>
+
+</div>
+
+<table>
+<tr>
+<td width="100px">Month & Year:</td>
+<td width="500px">
+<select name="select_month">
+<option value="0" #if ( $month == 0 ) selected #end>JAN</option>
+<option value="1" #if ( $month == 1 ) selected #end>FEB</option>
+<option value="2" #if ( $month == 2 ) selected #end>MAR</option>
+<option value="3" #if ( $month == 3 ) selected #end>APR</option>
+<option value="4" #if ( $month == 4 ) selected #end>MAY</option>
+<option value="5" #if ( $month == 5 ) selected #end>JUN</option>
+<option value="6" #if ( $month == 6 ) selected #end>JUL</option>
+<option value="7" #if ( $month == 7 ) selected #end>AUG</option>
+<option value="8" #if ( $month == 8 ) selected #end>SEP</option>
+<option value="9" #if ( $month == 9 ) selected #end>OCT</option>
+<option value="10" #if ( $month == 10 ) selected #end>NOV</option>
+<option value="11" #if ( $month == 11 ) selected #end>DEC</option>
+</select>
+
+#set ( $list_year = ["2010", "2011", "2012", "2013"] )
+<select name="select_year">
+#foreach ( $y in [$2005..2020])
+<option value="$y" #if ( $y == $year ) selected #end>$y</option>
+#end
+</select>
+</td></tr></table>
+
+</td></tr>
+
+<tr><td>
+<div name="div_hostel" id="div_hostel">#parse("apps/hostel_room_schedule/select_hostel.vm")</div>
+</td></tr>
+
+<tr><td>
+<div name="div_building" id="div_building"></div>
+</td></tr>
+
+<tr><td>
+<div name="div_block" id="div_block"></div>
+</td></tr>
+
+<tr><td>
+<div name="div_floor" id="div_floor"></div>
+</td></tr>
+
+<tr><td>
+
+<div id="div_room_history" name="div_room_history"></div>
+
+</td></tr></table>
+<br>
+<br>
+
+<br>
+<br>
+</td></tr></table>

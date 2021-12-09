@@ -1,0 +1,60 @@
+<fieldset><legend class="legend">Edit Program</legend>
+<table width="100%">
+<tr><td style="width:250px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr><td>Code</td><td>:</td><td><input class="texts" name="programCode_$program.id" value="$program.code"></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" name="programName_$program.id" value="$program.name"></td></tr>
+<tr><td>Transcript Display Name</td><td>:</td><td><input class="texts" name="displayName_$program.id" value="$program.displayName"></td></tr>
+
+
+
+<tr><td>Level Type</td><td>:</td><td>
+<select class="texts" name="programLevelType_$program.id">
+<option value=""></option>
+<option value="undergraduate" #if ( $program.programLevelType == "undergraduate" ) selected #end>Undergraduate</option>
+<option value="postgraduate" #if ( $program.programLevelType == "postgraduate" ) selected #end>Postgraduate</option>
+</select>
+</td></tr>
+
+<tr><td>Period Structure</td><td>:</td><td>
+<select class="texts" name="periodScheme_$program.id" #if ( $hasStudents ) disabled style="background:#CCC" #end>
+<option value=""></option>
+#foreach( $scheme in $schemes )
+<option value="$scheme.id" #if ( $program.periodScheme.id == $scheme.id ) selected #end>$scheme.code</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Program Path</td><td>:</td><td>
+<select class="texts" name="programLevel_$program.id" #if ( $hasStudents ) disabled style="background:#CCC" #end>
+<option value=""></option>
+#foreach( $level in $levels )
+<option value="$level.id" #if ( $program.level.id == $level.id ) selected #end>$level.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Program Group</td><td>:</td><td>
+<select class="texts" name="course_$program.id">
+<option value=""></option>
+#foreach( $course in $courses )
+<option value="$course.id" #if ( $program.course.id == $course.id ) selected #end>$course.code - $course.name</option>
+#end
+</select>
+</td></tr>
+
+
+<tr style="display:none"><td>Free Session?</td><td>:</td><td>
+<select class="texts" name="noneSessionType_$program.id">
+<option value="0">No</option>
+<option value="1" #if ( $program.isNoneSessionType ) selected #end>Yes</option>
+</select>
+</td></tr>
+
+</table>
+<br/>
+<table width="100%"><tr><td align="right">
+<button type="button" class="btn btn-primary" type="button" onclick="$('messageProgram_$program.id').innerHTML='<b>Saving Program... Please Wait..</b>';doDivAjaxCall3$formname('divListPrograms','saveProgram','programId=$program.id');$('editProgram_$programId').style.visibility='hidden';">Save</button>
+<button type="button" class="btn btn-success" type="button" onclick="$('editProgram_$programId').style.visibility='hidden';">Cancel</butotn>
+</td></tr></table>
+
+</fieldset>

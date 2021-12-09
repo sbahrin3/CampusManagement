@@ -1,0 +1,46 @@
+<table width="100%"><tr><td style="font-weight:bold" align="center">
+Select a Program of Study to Offer:
+#if ( $offer_type == "conditional" ) <br>(Conditional Offer) #end
+</td></tr></table>
+<table width="100%">
+#if ( $choice1 )
+<tr><td>1st Choice</td><td>$choice1.code</td><td>$choice1.name</td>
+<td>
+<input type="button" style="font-weight:bold;height:25px;width:80px" value="Select" onclick="if ( !confirm('Make an offer to program ${choice1.name}?') ) return; doDivAjaxCall${formName}('change_status', 'offer_program', 'choice_id=$choice1.id&offer_type=$offer_type')">
+</td>
+</tr>
+#end
+
+#if ( $choice2 )
+<tr><td>2nd Choice</td><td>$choice2.code</td><td>$choice2.name</td>
+<td>
+<input type="button" style="font-weight:bold;height:25px;width:80px" value="Select" onclick="if ( !confirm('Make an offer to program ${choice2.name}?') ) return; doDivAjaxCall${formName}('change_status', 'offer_program', 'choice_id=$choice2.id&offer_type=$offer_type')">
+</td>
+
+</tr>
+#end
+
+#if ( $choice3 )
+<tr><td>3rd Choice</td><td>$choice3.code</td><td>$choice3.name</td>
+<td>
+<input type="button" style="font-weight:bold;height:25px;width:80px" value="Select" onclick="if ( !confirm('Make an offer to program ${choice3.name}?') ) return; doDivAjaxCall${formName}('change_status', 'offer_program', 'choice_id=$choice2.id&offer_type=$offer_type')">
+</td>
+
+</tr>
+#end
+
+
+<tr><td></td><td></td><td></td>
+<td>
+##<input type="button" style="font-weight:bold;height:25px;width:80px" value="Others..." onclick="doDivAjaxCall${formName}('change_status', 'offer_other', 'offer_type=$offer_type')">
+</td>
+</tr>
+
+<tr><td></td><td></td><td></td>
+<td>
+<input type="button" style="font-weight:bold;height:25px;width:80px" value="Cancel" onclick="doDivAjaxCall${formName}('change_status', 'offer_cancel', '')">
+</td>
+
+</tr>
+
+</table>

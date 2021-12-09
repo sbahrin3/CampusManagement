@@ -1,0 +1,126 @@
+#if ( $student )
+
+<div class="topTitle">
+EXAMINATION RESULT TRANSCRIPT
+</div>
+<br/>
+<fieldset style="border:1px solid;padding:5px">
+#parse("apps/util/student_exam_transcript/student_info.vm")
+</fieldset>
+<br>
+<br>
+
+#set ( $get_current = "N" )
+
+##start semesters
+<table width="100%">
+#foreach ( $r in $results )
+
+#if ( $student_mode )
+#if ( $r.session.id == $current_session.id )
+#set ( $get_current = "N" )
+#else
+#set ( $get_current = "X" )
+#end
+#end
+
+
+#if ( $get_current == "N" )
+	<tr><td>
+	#parse("apps/util/student_exam_transcript/semester.vm")
+	</td></tr>
+#end
+
+#if ( $admin_mode )
+	#if ( $r.session.id == $current_session.id )
+		#set ( $get_current = "Y" )
+	#end
+#end
+
+
+#end
+
+
+
+</table>
+##-- end semesters
+
+##results summary here
+<br/>
+<br/>
+<span style="font-family:verdana, sans-serif;font-size:10pt;font-weight:bold">
+SUMMARY
+</span>
+
+<table><tr><td style="border-left:1px solid;border-right:1px solid;border-top:1px solid;border-bottom:1px solid">
+
+#set ( $summary_ct = $specialStatusMap.get("CT") )
+#set ( $summary_ce = $specialStatusMap.get("CE") )
+#set ( $summary_ex = $specialStatusMap.get("EX") )
+
+<table width="100%">
+##<tr><td colspan="6" align="center">SUMMARY</td></tr>
+<tr>
+<td style="width:230px;font-weight:bold">CUMULATIVE CREDIT TRANSFER</td><td style="width:50px;font-weight:bold">: $!summary_ct</td>
+<td style="width:230px;font-weight:bold">CREDIT UNIT TAKEN</td><td style="width:50px;font-weight:bold">: $!summary_credit_unit</td>
+<td style="width:240px;font-weight:bold">CUMULATIVE GRADE POINT</td><td style="width:50px;font-weight:bold">: </td>
+</tr>
+
+<tr>
+<td style="font-weight:bold">CUMULATIVE CREDIT EARNED</td><td style="font-weight:bold">: $!summary_ce</td>
+<td style="font-weight:bold">CUMULATIVE CREDIT UNIT</td><td style="font-weight:bold">: </td>
+<td style="font-weight:bold">CUMULATIVE GRADE POINT AVERAGE</td><td style="font-weight:bold">: $!summary_cgpa</td>
+</tr>
+
+
+<tr>
+<td style="font-weight:bold">CUMULATIVE CREDIT EXEMPTION</td><td style="font-weight:bold">: $!summary_ex</td>
+<td style="font-weight:bold">CUMULATIVE CREDIT CALCULATED</td><td style="font-weight:bold">: </td>
+<td colspan="2" style="font-weight:bold"></td>
+</tr>
+
+<tr><td colspan="6" style="height:40px;font-weight:bold">CONFERRED $student.program.displayName.toUpperCase()</td></tr>
+
+</table>
+
+</td></tr></table>
+
+#if ( $groupResults.size() > 0 )
+<br/>
+<br/>
+<span style="font-family:verdana, sans-serif;font-size:10pt;font-weight:bold">
+GROUP AVERAGE RESULTS
+</span>
+<table><tr><td style="border-left:1px solid;border-right:1px solid;border-top:1px solid;border-bottom:1px solid">
+<table>
+<tr>
+<td style="height:30px"></td>
+<td style="font-weight:bold;border-bottom:1px solid">Group Name</td>
+<td style="font-weight:bold;border-bottom:1px solid" align="center">Total Point</td>
+<td style="font-weight:bold;border-bottom:1px solid" align="center">Total Credit Unit</td>
+<td style="font-weight:bold;border-bottom:1px solid" align="center">Average Point</td>
+<td style="font-weight:bold;border-bottom:1px solid" align="center">Grade</td>
+</tr>
+#foreach( $gr in $groupResults )
+<tr>
+<td style="width:50px">&nbsp;</td>
+<td style="width:300px">$gr.groupName</td>
+<td style="width:100px" align="center">$gr.totalPoint</td>
+<td style="width:100px" align="center">$gr.creditHours</td>
+<td style="width:100px" align="center">$gr.averagePoint</td>
+<td style="width:100px" align="center">$gr.grade</td>
+</tr>
+#end
+</table>
+
+</td></tr></table>
+
+#end
+
+#end
+<br/>
+<br/>
+<br/>
+<br/>
+
+

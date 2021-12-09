@@ -1,0 +1,93 @@
+<script>
+
+$('getReport').style.display='none';
+
+</script>
+
+#parse("apps/useLocal.vm")
+
+$dateFormat.applyPattern("dd MMM yyyy")
+<table><tr>
+<td style="font-weight:bold;font-size:12pt">
+	$teacher.name ($!teacher.id)
+<button type="button" class="btn btn-default btn-sm" onclick="document.location='$pre/servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.timetabling.module.TeacherAttendanceReportPDFModule?campusId=$!campus.id&amp;teacherId=$!teacher.id&amp;date1=$!sdate1&amp;date2=$!sdate2&amp;deliveryPeriodId=$!deliveryPeriod.id&pdfName=workload_${teacher.id}';">
+	Download PDF
+</button>	
+<button type="button" class="btn btn-default btn-sm" onclick="$('getWorkloadDetail').style.display='none';$('getReport').style.display='block';">
+	Back
+</button>
+</td>
+</tr></table>
+
+<table><tr>
+<td style="font-weight:bold;font-size:10pt">$dateFormat.format($date1) - $dateFormat.format($date2)</td>
+</tr></table>
+<br/>
+
+<table class="table table-striped">
+<tr style="height:30px;background:#C9C9C9">
+<td style="font-weight:bold;width:30px"></td>
+<td style="font-weight:bold;width:120px">Date</td>
+<td style="font-weight:bold;width:200px">Time</td>
+<td style="font-weight:bold;width:200px">Activity</td>
+<td style="font-weight:bold;width:400px">Course</td>
+<td style="font-weight:bold;width:200px">Group(s)</td>
+
+<td style="font-weight:bold;width:100px">Weightage</td>
+<td style="font-weight:bold;width:120px" align="center">Duration</td>
+</tr>
+
+#foreach( $a in $attendanceList )
+<tr  style="height:25px">
+<td>$a.seq.</td>
+<td>$dateFormat.format($a.date)</td>
+<td>$a.startTime - $a.endTime</td>
+<td>$a.classroom.classroomSection.classroomType.learningActivityType.name</td>
+<td>$a.subject.code - $a.subject.name</td>
+<td>
+#foreach( $g in $a.classroom.studentSubjectGroups )
+	$!g.code<br/>
+#end
+</td>
+
+<td align="center">
+	$a.weightage
+</td>
+<td align="center">$a.duration</td>
+</tr>
+#end
+<tr height="30px">
+<td colspan="7" style="font-weight:bold;border-top:2px solid #AAA5A5" align="right">Total:&nbsp;&nbsp;&nbsp;</td>
+<td style="font-weight:bold;border-top:2px solid #AAA5A5" align="center">
+$totalDuration
+</td>
+</tr>
+
+<tr height="30px">
+<td colspan="6"></td>
+<td colspan="3" align="center" style="font-weight:bold;border-top:2px solid #AAA5A5;border-bottom:2px solid #AAA5A5">SUMMARY</td>
+</tr>
+
+#foreach( $t in $activityTypes )
+#set ( $total = $summary.get("$t.id") )
+#if ( $total > 0 )
+	#set ( $hours = $total / 60 )
+	#set ( $minutes = $total % 60 )
+	<tr height="30px">
+	<td colspan="6"></td>
+	<td style="font-weight:bold">$t.name</td>
+	<td style="font-weight:bold" align="center">
+	#if ( $hours > 0 )
+	$hours h
+	#end
+	#if ( $minutes > 0 )
+	$minutes m</td>
+	#end
+	</td>
+	</tr>
+#end
+#end
+
+</table>
+
+<br/>

@@ -1,0 +1,35 @@
+<span id="messageCourse"></span>
+<table class="table table-striped">
+<tr style="height:30px">
+<td style="width:100px;font-weight:bold">Code</td>
+<td style="font-weight:bold">Name</td>
+<td style=""></td>
+<td style=""></td>
+<td style=""></td>
+</tr>
+#foreach( $course in $courses )
+
+<tr style="height:25px">
+<td >
+
+$course.code
+
+<span id="messageCourse_$course.id"></span>
+<div class="shadow" id="editCourse_$course.id" style="display:none;background:#fff;position:absolute;border:1px solid #000;padding:5px"></div>
+
+
+</td>
+<td  style="cursor:pointer" onclick="$('listProgramGroups').style.display='none';doDivAjaxCall$formname('listCourseItems','getPrograms','getCourseId=$course.id')">$course.name</td>
+<td  style="" align="">
+
+
+<button type="button" class="btn btn-warning btn-sm" onclick="doDivAjaxCall$formname('editCourse_$course.id','editCourse','courseId=$course.id')">Edit</button>
+<button type="button" class="btn btn-danger btn-sm" onclick="$('messageCourse_$course.id').innerHTML='<b>Deleting Course... Please Wait..</b>';doDivAjaxCall3$formname('divListCourses','deleteCourse','courseId=$course.id&facultyId=$faculty.id')">X</button>
+<button type="button" class="btn btn-primary btn-sm" onclick="$('listProgramGroups').style.display='none';doDivAjaxCall$formname('listCourseItems','getPrograms','getCourseId=$course.id')">List Programs...</button>
+
+<td >
+</td>
+</tr>
+
+#end
+</table>

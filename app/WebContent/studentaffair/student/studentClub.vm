@@ -1,0 +1,29 @@
+<script>
+$('addClub').style.display='none';
+</script>
+
+<table>
+<tr style="height:25px;background:#D0D6DB">
+<td style="width:30px;font-weight:bold">&nbsp;</td>
+<td style="width:300px;font-weight:bold">Club</td>
+<td style="width:300px;font-weight:bold">Position</td>
+<td style="width:200px;font-weight:bold">Date Joined</td>
+<td style="width:40px;font-weight:bold"></td>
+</tr>
+$dateFormat.applyPattern("MMM, dd yyyy")
+#set ( $cnt = 0 )
+#foreach ( $sc in $studentClubs )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td>$cnt.</td>
+<td>$sc.club.name</td>
+<td>$sc.position.name</td>
+<td>$dateFormat.format($sc.dateJoined)</td>
+<td>
+<input class="linkbutton" type="button" value="..." onclick="doDivAjaxCall3$formname('addClub','getStudentClub','studentClubId=$sc.id')">
+</td>
+</tr>
+#end
+</table>
+
+

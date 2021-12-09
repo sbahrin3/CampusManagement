@@ -1,0 +1,154 @@
+<table width="100%" align="center">
+<tr><td align="right" style="font-weight:bold">
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_program_structure','get_structure_by_centre','')">Back</a>
+</td></tr>
+<tr><td>
+
+<table>
+<tr><td style="width:100px">Program</td><td style="width:20px">:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Intake</td><td>:</td><td style="font-weight:bold">$intake.code $intake.name</td></tr>
+<tr><td>Learning Centre</td><td>:</td><td style="font-weight:bold">$centre.code $centre.name</td></tr>
+<tr><td>
+</table>
+
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr>
+<td align="right">
+<span id="wait_period"></span>
+</td>
+<td align="right" style="width:300px">
+<select class="text" name="period_id" style="font-weight:bold;width:300px" onchange="$('wait_period').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','select_period','')">
+#foreach ( $p in $periods )
+<option value="$p.id" #if ( $p.id == $period.id ) selected #end>&nbsp;&nbsp;&nbsp;$p.name #if ( $p.parent ) ($p.parent.name) #end</option>
+#end
+</select>
+</td></tr>
+</table>
+
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+<tr>
+<td colspan="3" style="font-weight:bold;height:40px;border-bottom:1px solid #000">
+<a href="javascript:void()" style="text-decoration:none" onclick="$('wait_period').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','select_period','period_id=$period.id')">$period.name #if ( $period.parent ) ($period.parent.name )#end<a>
+</td>
+<td colspan="4" align="right" style="border-bottom:1px solid #000">
+
+</td>
+</tr>
+</table>
+
+
+<div id="div_subjects">
+#if ( $programUtil.getSubjectRegs($programStructure, $period.id) )
+#parse ( "apps/util/program_structure2/div_subjects.vm" )
+#else
+<table width="100%"><tr><td>Empty</td></tr></table>
+#end
+</div>
+
+
+#if ( $subjects )
+<table width="400px" cellspacing="0" cellpadding="0">
+##select schools
+
+<tr>
+	<td class="shadow" style="height:30px;font-weight:bold;cursor:pointer;border-bottom:1px solid #CCC;background:#CCC" onclick="if ( $('addSubjectsAction').style.display=='none' ) { $('addSubjectsAction').style.display='block'; } else {  $('addSubjectsAction').style.display='none'; }">&nbsp;Add Subjects Actions&nbsp;&gt;</td>
+</tr>
+<tr>
+<td style="height:40px;">
+
+<div id="addSubjectsAction" class="shadow" style="display:none">
+<table style="width:400px;border:1px solid #CCC">
+	<tr><td>
+            <select class="text" id="subjectCategoryId" name="subjectCategoryId">
+            <option value=""> -Category- </option>
+            #foreach ( $cat in $categories )
+            	#if ( $cat.name != "" )
+            	<option value="$cat.id">$cat.name</option>
+            	#end
+            #end
+            </select>
+	</td></tr>
+	<tr><td style="height:25px;font-weight:bold;background:#CCC;cursor:pointer" onmouseover="this.style.backgroundColor='#FFF'" onmouseout="this.style.backgroundColor='#CCC'" onclick="$('wait_period').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','add_subjects','')">&nbsp;ADD TO STRUCTURE</td></tr>
+	#if ( $isAdmin )
+	<tr><td style="height:25px;font-weight:bold;background:#CCC;cursor:pointer" onmouseover="this.style.backgroundColor='#FFF'" onmouseout="this.style.backgroundColor='#CCC'" onclick="if ( $('subjectCategoryId').value == '' ) { alert('Select subject category!'); return; } else { if ( !confirm('Are you sure?') ) { return; } else { $('wait_period').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','add_subjects_students',''); } }">&nbsp;ADD TO STRUCTURE &amp; TO STUDENTS</td></tr>
+	#end
+</table>
+</div>
+</td>
+<td style="font-weight:bold;height:40px;" align="right">
+
+
+
+</td>
+</tr>
+
+</table>
+
+
+<table width="100%">
+<tr>
+	<td colspan="4">
+		
+		<table border="0">
+        <tr><td>
+        Faculty:<br/><select class="text" name="faculty_id" style="width:400px" 
+        onchange="$('wait_subjects_list').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxChainCall3$formname('div_subject_groups','list_subject_groups','','div_subjects_list','filter_by_faculty','')">
+        <option value="">(ALL SCHOOLS)</option>
+        #foreach( $f in $faculties )
+        <option value="$f.id" #if ( $f.id == $faculty_id ) selected #end>$f.name</option>
+        #end
+        </select>
+        <td>
+        <div id="div_subject_groups">#parse("apps/util/program_structure2/list_groups.vm")</div>
+        </td></tr>
+        </table>
+		
+	</td>
+</tr>
+
+<tr>
+	<td colspan="4" align="right">
+		
+        &gt;
+        #if ( $allow_recurring == "no" ) 
+        	<a href="javascript:void()" style="text-decoration:none" onclick="$('wait_period').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','allow_recurring','allow_recurring=yes')">Disable recurring subjects.</a>
+        #elseif ( $allow_recurring == "yes" )
+        	<a href="javascript:void()" style="text-decoration:none" onclick="$('wait_period').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_program_structure','allow_recurring','allow_recurring=no')">Allow recurring subjects.</a>
+        #end
+		&lt;
+
+	</td>
+</tr>
+
+<tr>
+<td style="width:20px"></td>
+<td style="font-weight:bold;width:80px">
+<a href="javascript:void()" onclick="$('wait_subjects_list').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_subjects_list','order_by','order_by=code')">Code</a>
+</td>
+<td style="font-weight:bold">
+<a href="javascript:void()" onclick="$('wait_subjects_list').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_subjects_list','order_by','order_by=name')">Name</a>
+</td>
+<td style="font-weight:bold;width:300px">
+School
+</td>
+</tr>
+<tr><td colspan="4"><hr/></td></tr>
+</table>
+
+<div id="div_subjects_list" name="div_subjects_list" style="overflow:auto;overflow-x:hidden;height:300px">
+#parse("apps/util/program_structure2/subjects_list.vm")
+</div>
+#end
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="centre_id" value="$!centre.id">
+<input type="hidden" name="structure_id" value="$!programStructure.id">
+<input type="hidden" name="ordered_by" value="$!order_by">

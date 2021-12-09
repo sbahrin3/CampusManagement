@@ -1,0 +1,51 @@
+<table width="700" border="0" cellspacing="2" cellpadding="2">
+  <tr>
+    <td width="92">No. Pelajar </td>
+    <td width="202">Nama</td>
+    <td width="107">Kursus</td>
+    <td width="40">Gred</td>
+    <td width="50">PNGK Terdahulu </td>
+    <td width="50">PNGS Semasa </td>
+    <td width="50">PNGK Semasa </td>
+    <td width="93">STATUS</td>
+  </tr>
+  #foreach( $r in $results )
+  <tr>
+    <td>$!r.noMatric</td>
+    <td>$!r.name</td>
+    <td width="107">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      #foreach( $s in $r.finalresult.subjects )
+      <tr>
+        <td width="102">$!s.subject.code</td>
+      </tr>
+      #end
+    </table>
+    </td>
+    <td width="40">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    #foreach( $g in $r.finalresult.subjects )
+      <tr>
+        <td>$!g.grade</td>
+      </tr>
+      #end
+    </table>
+    </td>
+    <td>$!r.pngkBefore</td>
+    <td>$!r.pngk</td>
+    <td>$!r.pngs</td>
+    <td>
+    
+    #if ( $r.status )
+    
+    #if ( $r.status == "PASS" ) LULUS
+    #elseif ( $r.status  == "CONDITIONAL_PASS" ) LULUS BERSYARAT
+    #elseif ( $r.status == "FAIL" ) GAGAL BERHENTI
+    #end
+    
+    #end
+    
+    </td>
+  </tr>
+  #end
+</table>

@@ -1,0 +1,20 @@
+
+<div style="background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff"><label>Tags</label></td>
+			<td align="right">
+				<button type="button" class="btn btn-primary" onclick="$('selectIncludeTag').style.display='none';">x</button>
+			</td>
+		</tr>
+	</table>
+  	
+</div>
+
+<div style="height:250px;overflow:auto;overflow-x:hidden;">
+#foreach ( $t in $tags )
+	<label><a href="javascript:void(0)" onclick="$('tagNumber').value='$t.id';$('selectIncludeTag').style.display='none';">$t.id</a></label>
+	<textarea readonly class="form-control">$t.description</textarea>
+#end
+</div>

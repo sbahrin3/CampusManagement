@@ -1,0 +1,11 @@
+<table width="800">
+<tr><td>
+
+
+<div id="div_program_structure" name="div_program_structure">
+#parse( "apps/util/program_structure/list_programs.vm" )
+</div>
+
+
+
+</td></tr></table>

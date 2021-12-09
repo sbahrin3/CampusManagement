@@ -1,0 +1,36 @@
+<br/>
+#if ( $error_message ) $error_message #end
+<br/>
+<table width="500" align="center" border="1" cellspacing="0"><tr><td>
+<table width="100%" align="center"><tr><td align="right">
+<b>Search Name: </b><input name="name_pattern" style="width:200px" value="$!name_pattern">
+$button.command("list_teachers").text("LIST TEACHERS")
+</td></tr></table>
+</td></tr></table>
+
+<br/>
+
+
+<table width="500" align="center" border="1"  cellspacing="0"><tr><td>
+<b>Add New Teacher:</b>
+</td></tr>
+<tr><td>
+<table width="100%" align="center">
+
+<tr><td>Code:</td><td><input name="code" style="width:100%" value="$!user.code"></td></tr>
+<tr><td>Name:</td><td><input name="name" style="width:100%" value="$!user.name"></td></tr>
+<tr><td>Email:</td><td><input name="email" style="width:100%" value="$!user.email"></td></tr>
+<tr><td>User Name:</td><td><input name="username" style="width:100%" value="$!user.username"></td></tr>
+<tr><td colspan="2" align="right">
+
+#if ( $user.hasLogin )
+$button.command("forceadd").text("ADD TEACHER INFO")
+#else
+$button.command("add").text("ADD NEW TEACHER")
+#end
+</td></tr>
+
+</table>
+
+</td></tr></table>
+

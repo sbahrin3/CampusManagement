@@ -1,0 +1,28 @@
+<table width="100%">
+<tr style="background:#D3D3D3;height:30px"><td align="center"  style="font-weight:bold">
+ROOM TRANSFER
+</td></tr></table>
+
+<table width="100%">
+<tr style="background:#D3D3D3;height:30px"><td align="center"  style="font-weight:bold">
+Current Unit: $alloc.room.unit.code - Room: $alloc.room.code
+</td></tr></table>
+
+<table width="100%">
+<tr><td valign="top" style="font-weight:bold">Reason for transfer:</td></tr>
+<tr>
+<td>
+<textarea class="text" name="transferRemark_$alloc.id" style="width:100%;height:80px"></textarea>
+</td></tr>
+</table>
+
+<table width="100%">
+<tr>
+<td>
+<b>Select the date of transfer.</b><br/>
+<b>Then click on the Transfer button of the room</b>
+</td>
+<td align="right">
+##<input type="button" value="Make Transfer" onclick="doDivAjaxCall$formname('hostel_info','list_rooms','unit_id=$!alloc.room.unit.id')">
+<input class="linkbutton" style="padding:2px" type="button" value="Cancel" onclick="$('trans_$alloc.id').style.display='none';$('checkInMode').value='check_in';doDivAjaxCall$formname('hostel_info','list_rooms','unit_id=$!alloc.room.unit.id')">
+</td></tr></table>

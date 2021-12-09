@@ -1,0 +1,25 @@
+<table cellspacing="1" cellpadding="1">
+
+<tr height="30px" bgcolor="#ccc">
+<td style="width:40px"></td>
+<td style="width:100px;font-weight:bold">Id</td>
+<td style="width:400px;font-weight:bold">Name</td>
+<td style="width:150px;font-weight:bold">Login Name</td>
+<td style="width:50px" align="center"><input type="button" value="Add" onclick="doDivAjaxCall$formname('teacherDetail','addTeacher','')"></td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach( $t in $teachers )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#F7F7F7" ) #else #set ( $bgcolor = "#fff" ) #end
+<tr bgcolor="$bgcolor">
+<td>$cnt.</td>
+<td>$!t.code</td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('teacherDetail','getTeacher','teacherId=$t.id')">$!t.name</td>
+<td>$!t.userId</td>
+<td align="center">
+<input type="button" value="..." onclick="doDivAjaxCall$formname('teacherDetail','getTeacher','teacherId=$t.id')">
+</td>
+</tr>
+#end
+</table>

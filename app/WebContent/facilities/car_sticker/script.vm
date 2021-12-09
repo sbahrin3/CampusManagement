@@ -1,0 +1,12 @@
+
+function validate() {
+	var err_count = 0;
+	if ( $('ownerId').value == "" ) err_count++;
+	if ( $('ownerName').value == "" ) err_count++;
+	if ( $('plateNo').value == "" ) err_count++;
+	if ( $('carDetail').value == "" ) err_count++;
+	if ( err_count > 0 ) {
+		alert('Please enter all fields.');
+	}
+	return err_count == 0;
+}

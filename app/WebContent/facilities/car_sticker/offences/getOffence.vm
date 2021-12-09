@@ -1,0 +1,26 @@
+<script>
+$('getOffence').style.display="block";
+</script>
+
+<table width="100%" style="background:#AAA9A9">
+<tr><td style="font-weight:bold;color:#fff">Offence</td>
+<td style="width:40px" align="right"><input type="button" value="X" onclick="$('getOffence').style.display='none';"></td></tr></table>
+<br/>
+<table style="width:100%">
+<tr><td style="width:150px">Offence Description</td><td style="width:10px">:</td><td><input class="texts" name="description" value="$!offence.description"></td></tr>
+<tr><td>Date</td><td>:</td><td>
+<input class="texts" style="width:100px" id="offenceDate" name="offenceDate" #if ( $offence.date ) value="$dateFormat.format($offence.date)" #end>
+<script> new JsDatePick({ useMode:2, target:"offenceDate", dateFormat:"%d-%m-%Y" }); </script>
+</td></tr>
+<tr><td>Action</td><td>:</td><td>
+<select class="texts" name="action">
+<option value=""></option>
+<option value="Warning (1st)" #if ( $offence.action == "Warning (1st)" ) selected #end>Warning (1st)</option>
+<option value="Warning (2nd)" #if ( $offence.action == "Warning (2nd)" ) selected #end>Warning (2nd)</option>
+<option value="Clamp" #if ( $offence.action == "Clamp" ) selected #end>Clamp</option>
+<option value="Compound" #if ( $offence.action == "Compound" ) selected #end>Compound</option>
+</select>
+</td></tr>
+
+<tr><td></td><td></td><td align="right"><input class="linkbutton" type="button" value="Save" onclick="doDivAjaxCall3$formname('offenceHistory','saveOffence','carStickerId=$!carStickerId&offenceId=$!offence.id');$('getOffence').style.display='none';"></td></tr>
+</table>

@@ -1,0 +1,29 @@
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+##.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+.text { width:100% }
+.fset { background-color:#E2FEE2}
+</style>
+
+<table width="800">
+<tr><td>
+
+
+<table cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:10px"></td>
+<td style="width:50px;font-weight:bold">Code</td>
+<td style="width:400px;font-weight:bold">Name</td>
+<td style="width:50px;font-weight:bold">Path No</td>
+<td style="width:50px"></td>
+<td style="width:30px"></td>
+</tr>
+</table>
+
+<div id="div_levels">
+#parse( "apps/util/setups/level/list_levels.vm" )
+</div>
+
+
+</td></tr></table>

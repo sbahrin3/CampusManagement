@@ -1,0 +1,24 @@
+<style>
+.menu-parent {
+	cursor:pointer;
+	font-weight:bold;
+	color:#fff;
+	height:30px;
+	background:#036E98;
+	-moz-border-radius: 10px; border-radius: 10px;
+	padding-left:10px;
+}
+.menu-child {
+	cursor:pointer;
+	color:#000;
+	height:25px;
+	background:#D0F1FE;
+	-moz-border-radius: 10px; border-radius: 10px;
+	padding-left:15px;
+}
+
+</style>
+<table width="100%" cellpadding="0" cellspacing="1">
+<tr><td class="menu-child" onclick="loadModule('sb.ajax.SayHelloModule')">Perlesenan</td></tr>
+<tr><td class="menu-child" onclick="loadModule('sb.ajax.SayHelloModule')">Sewa</td></tr>
+</table>

@@ -1,0 +1,6 @@
+<select class="text" name="room_id" id="roomId" style="width:100%">
+<option value="">- Select Room -</option>
+#foreach( $room in $rooms )
+<option value="$room.id">$room.code</option>
+#end
+</select>

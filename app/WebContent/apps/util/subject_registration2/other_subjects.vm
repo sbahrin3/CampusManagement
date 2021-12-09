@@ -1,0 +1,22 @@
+
+#if ( !$student_status.type.defer )
+<table width="100%">
+<tr>
+<td style="height:30px;font-weight:bold" colspan="4" bgcolor="lightgrey">
+$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end
+- Current Student's Semester
+</td>
+</tr>
+
+<tr><td colspan="4" align="right">
+$button.command("add_subjects").text("ADD")
+</td></tr>
+#foreach($s in $subjects)
+<tr>
+<td style="width:10px"><input type="checkbox" name="selected_subjects" value="$s.id"></td>
+<td style="width:50px">$s.subject.code</td>
+<td>$s.subject.name</td>
+</tr>
+#end
+</table>
+#end

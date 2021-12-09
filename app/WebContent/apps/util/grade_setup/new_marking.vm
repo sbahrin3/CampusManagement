@@ -1,0 +1,8 @@
+<table>
+
+<tr><td>Grading Scheme Name:</td>
+<td><input class="form-control" name="marking_name" style="width:300px"></td>
+<td><button class="btn btn-warning" type="button" onclick="doDivAjaxCall$formName('marking', 'create_marking', '')">Create</button></td>
+</tr>
+
+</table>

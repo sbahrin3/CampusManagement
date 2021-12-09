@@ -1,0 +1,85 @@
+
+#set ( $records = $account_statement.records )
+#set ( $total_invoiced = $account_statement.totalInvoiced )
+#set ( $total_paid = $account_statement.totalPaid )
+#set ( $total_balance = $account_statement.totalBalance )
+
+$dateFormat.applyPattern("dd/MM/yyyy")
+
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-weight:bold;font-size:12pt">Statement Of Account</legend>
+
+<table width="100%"><tr><td align="right">
+<input type="button" style="height:30px;" value="PDF" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.finance.module.PrintStudentAcctStatementModule?matricNo=$!student.matricNo';">
+</td></tr></table>
+
+<table width="100%" align="center" cellspacing="0" cellpadding="1" border="1">
+<tr height="40px" bgcolor="lightgrey">
+<td colspan="3" style="font-weight:bold" align="center">Invoiced (RM)</td>
+<td colspan="3" style="font-weight:bold" align="center">Paid (RM)</td>
+<td style="width:80px;font-weight:bold" align="center">Balance</td>
+</tr>
+
+#foreach( $r in $records )
+
+
+   
+    
+        #if ( $r.side == 0 )
+        	#if ( $r.amount != 0.0 )
+				<tr height="30px">
+                <td style="width:80px;border-bottom:1px solid #BCBCBC;border-left:1px solid #BCBCBC">$dateFormat.format($r.date)</td>
+                <td style="width:200px;border-bottom:1px solid #BCBCBC">
+        			<table><tr><td valign="top">$!r.referenceNo</td><td style="padding-left:10px" valign="top">$!r.description<br>$!r.remark</td></tr></table>
+                </td>
+                <td style="width:80px;border-bottom:1px solid #BCBCBC;border-right:1px solid #BCBCBC;" align="right">$numFormat.format($r.amount)&nbsp;&nbsp;</td>
+                <td style="border-bottom:1px solid #BCBCBC">&nbsp;</td>
+                <td style="border-bottom:1px solid #BCBCBC">&nbsp;</td>
+                <td style="border-bottom:1px solid #BCBCBC;" >&nbsp;</td>
+        		
+        		
+        		<td  style="width:80px;border-bottom:1px solid #BCBCBC;border-right:1px solid #BCBCBC;border-left:1px solid #BCBCBC" align="right">$numFormat.format($r.balance)&nbsp;&nbsp;</td>
+				</tr>
+        	#end
+        #else
+        	#if ( $r.amount != 0.0 )
+				<tr height="30px">
+                <td style="border-bottom:1px solid #BCBCBC;border-left:1px solid #BCBCBC">&nbsp;</td>
+                <td style="border-bottom:1px solid #BCBCBC">&nbsp;</td>
+                <td style="border-bottom:1px solid #BCBCBC;border-right:1px solid #BCBCBC">&nbsp;</td>
+                <td style="width:80px;border-bottom:1px solid #BCBCBC">$dateFormat.format($r.date)</td>
+                <td style="width:200px;border-bottom:1px solid #BCBCBC">
+        			<table><tr><td valign="top">$!r.referenceNo</td><td  style="padding-left:10px" valign="top">$!r.description<br>$!r.remark</td></tr></table>
+                </td>
+                <td style="width:80px;border-bottom:1px solid #BCBCBC" align="right">$numFormat.format($r.amount)&nbsp;&nbsp;</td>
+        		
+        		
+        		<td  style="width:80px;border-bottom:1px solid #BCBCBC;border-right:1px solid #BCBCBC;border-left:1px solid #BCBCBC" align="right">$numFormat.format($r.balance)&nbsp;&nbsp;</td>
+				</tr>
+    		#end
+        	
+        #end
+
+#end
+
+<tr><td colspan="7"></td></tr>
+
+
+<tr height="40px">
+<td></td>
+<td colspan="2" align="right" style="font-weight:bold">
+$numFormat.format($total_invoiced)&nbsp;&nbsp;
+</td>
+<td></td>
+<td colspan="2" align="right" style="font-weight:bold">
+$numFormat.format($total_paid)&nbsp;&nbsp;
+</td>
+<td align="right" style="font-weight:bold">
+$numFormat.format($total_balance)&nbsp;&nbsp;
+</td>
+</tr>
+<tr><td colspan="7"></td></tr>
+</table>
+
+</fieldset>

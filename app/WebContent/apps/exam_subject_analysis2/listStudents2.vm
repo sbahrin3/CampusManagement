@@ -1,0 +1,201 @@
+
+<div style="font-family:Verdana, sans-serif;margin-bottom:5px">
+<table>
+<tr><td style="font-size:11pt;font-weight:bold;">SUBJECT RESULT ANALYSIS REPORT</td></tr>
+<tr><td style="font-size:11pt;font-weight:bold;">$program.code - $program.name</td></tr>
+<tr><td style="font-size:11pt;font-weight:bold;">$!session.code - $!session.name</td></tr>
+</table>
+</div>
+
+<table><tr>
+<td>
+
+	<input type="button" style="padding:3px" value="&lt; Back" onclick="$('resultReport2').style.display='none';$('resultReport1').style.display='block';">
+
+	<input type="button" style="padding:3px" value="GPA Frequency Chart" onclick="$('gpaFreq').style.display='block';">
+
+	<input type="button" style="padding:3px" value="Result Statistic" onclick="$('gpaStatistic').style.display='block';">
+
+	##<input type="button" value="XLS" onclick="document.location='../servlet/educate.sis.module.SubjectResultAnalysisListXLModule'">
+</td>
+</tr></table>
+
+
+			
+<div class="outer">
+<div class="inner">
+<table class="examResults" style="background:#C4C4C4" cellpadding="0" cellspacing="0">
+<tr style="height:50px">
+
+<th class="th"></th>
+
+<td class="td" style="background:#E0DEDE;font-size:8pt;border-bottom:2px solid #000;border-top:2px solid #000" align="center">Total Grade<br/>Unit<br/><br/></td>
+<td class="td" style="background:#E0DEDE;font-size:8pt;border-bottom:2px solid #000;border-top:2px solid #000" align="center">Total Grade<br/>Point<br/><br/></td>
+<td class="td" style="background:#E0DEDE;font-size:8pt;border-bottom:2px solid #000;border-top:2px solid #000" align="center">GPA<br/><br/></td>
+<td class="td" style="background:#E0DEDE;font-size:8pt;border-bottom:2px solid #000;border-top:2px solid #000" align="center">CGPA<br/><br/></td>
+<td class="td" style="background:#E0DEDE;font-size:8pt;border-bottom:2px solid #000;border-top:2px solid #000" align="center">Status<br/><br/></td>
+<td class="td" style="background:#E0DEDE;font-size:8pt;border-bottom:2px solid #000;border-top:2px solid #000" align="center">Achievement<br/>Level<br/></td>
+
+</tr>
+
+
+#set ( $cnt = 0 )
+#foreach( $student in $students )
+#set ( $cnt = $cnt + 1 )
+<tr>
+
+<th class="th" style="background:#fff;font-size:8pt">
+<input class="text" style="width:300px" value="$student.matricNo&nbsp;&nbsp;$student.biodata.name" readonly>
+</th>
+
+
+#if ( $resultMap.get("$student.id") )
+    <td class="td" style="background:#fff;font-size:8pt" align="center"><input class="text" style="width:100px;text-align:center" value='$number.format($!resultMap.get("$student.id").creditHours)' readonly></td>
+    <td class="td" style="background:#fff;font-size:8pt" align="center"><input class="text" style="width:100px;text-align:center" value='$numFormat.format($!resultMap.get("$student.id").gradePoints)' readonly></td>
+    <td class="td" style="background:#fff;font-size:8pt" align="center"><input class="text" style="width:100px;text-align:center" value='$numFormat.format($!resultMap.get("$student.id").gpa)' readonly></td>
+    <td class="td" style="background:#fff;font-size:8pt" align="center"><input class="text" style="width:100px;text-align:center" value='$numFormat.format($!resultMap.get("$student.id").cgpa)' readonly></td>
+    <td class="td" style="background:#fff;font-size:8pt" align="center"><input class="text" style="width:200px;text-align:center" value='$!resultMap.get("$student.id").status' readonly></td>
+    <td class="td" style="background:#fff;font-size:8pt" align="center"><input class="text" style="width:200px;text-align:center" value='$!resultMap.get("$student.id").level' readonly></td>
+#else
+	<td style="background:#fff;font-size:8pt" colspan="6"></td>
+#end
+</tr>
+#end
+</table>
+
+</div>
+</div>
+<table>
+	<tr>
+		<td>
+			$students.size().
+		</td>
+	</tr>
+</table>
+
+		
+<div id="gpaFreq" style="position:fixed;left: 35%;top:5%;border: 1px solid #ccc;padding:3px;background:#E8ECEF;display:none;" class="shadow">
+
+$numFormat.applyPattern("0")
+<table width="100%" style="background:#300FA8">
+<tr><td style="color:#fff;font-weight:bold" onclick="">
+GPA FREQUENCY
+</td><td style="width:10px" align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('gpaFreq').style.display='none';">
+</td></tr></table>
+<table width="100%"><tr style="height:40px">
+<td style="font-family:Verdana, sans-serif;font-size:12pt;font-weight:bold;" align="center">
+GPA FREQUENCY
+</td></tr></table>
+
+
+<table><tr><td>
+<table>
+<tr style="background:#BFBDBD;height:30px;"><td style="width:100px;font-weight:bold" align="center">%</td><td style="width:100px;font-weight:bold" align="center">Frequency</td><td style="width:120px;font-weight:bold" align="center">Ranges</td></tr>
+<tr style="background:#F9F7F7;height:30px;">
+<td align="center" style="font-weight:bold">$numFormat.format($pct.calc($gpaFreq.get("x >= 3.75"), $totalResultCount)) %</td>
+<td align="center" style="font-weight:bold">$!gpaFreq.get("x >= 3.75")</td><td align="center" style="font-weight:bold">x &ge; 3.75</td>
+</tr>
+
+<tr style="background:#F9F7F7;height:30px;">
+<td align="center" style="font-weight:bold">$numFormat.format($pct.calc($gpaFreq.get("3.5 <= x > 3.75"), $totalResultCount)) %</td>
+<td align="center" style="font-weight:bold">$!gpaFreq.get("3.5 <= x > 3.75")</td><td align="center" style="font-weight:bold">3.5 &le; x > 3.75</td>
+</tr>
+
+<tr style="background:#F9F7F7;height:30px;">
+<td align="center" style="font-weight:bold">$numFormat.format($pct.calc($gpaFreq.get("3.0 <= x > 3.5"), $totalResultCount)) %</td>
+<td align="center" style="font-weight:bold">$!gpaFreq.get("3.0 <= x > 3.5")</td><td align="center" style="font-weight:bold">3.0 &le; x > 3.5</td>
+</tr>
+
+<tr style="background:#F9F7F7;height:30px;">
+<td align="center" style="font-weight:bold">$numFormat.format($pct.calc($gpaFreq.get("2.5 <= x > 3.0"), $totalResultCount)) %</td>
+<td align="center" style="font-weight:bold">$!gpaFreq.get("2.5 <= x > 3.0")</td><td align="center" style="font-weight:bold">2.5 &le; x > 3.0</td>
+</tr>
+
+<tr style="background:#F9F7F7;height:30px;">
+<td align="center" style="font-weight:bold">$numFormat.format($pct.calc($gpaFreq.get("2.0 <= x > 2.5"), $totalResultCount)) %</td>
+<td align="center" style="font-weight:bold">$!gpaFreq.get("2.0 <= x > 2.5")</td><td align="center" style="font-weight:bold">2.0 &le; x > 2.5</td>
+</tr>
+
+<tr style="background:#F9F7F7;height:30px;">
+<td align="center" style="font-weight:bold">$numFormat.format($pct.calc($gpaFreq.get("x > 2.0"), $totalResultCount)) %</td>
+<td align="center" style="font-weight:bold">$!gpaFreq.get("x > 2.0")</td><td align="center" style="font-weight:bold">x > 2.0</td>
+</tr>
+</table>
+</td><td>
+
+<img src="../servlet/educate.chart.GPAPieChart?values=$gpaValues">
+
+</td></tr></table>
+</div>
+
+<div id="gpaStatistic" style="position:fixed;top:5%;left: 35%;border: 1px solid #ccc;padding:3px;background:#E8ECEF;display:none;" class="shadow">
+
+<table width="100%" style="background:#300FA8">
+<tr><td style="color:#fff;font-weight:bold" onclick="">
+RESULT STATICTIC
+</td><td style="width:10px" align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('gpaStatistic').style.display='none';">
+</td></tr></table>
+<table width="100%"><tr style="height:40px">
+<td style="font-family:Verdana, sans-serif;font-size:12pt;font-weight:bold;" align="center">
+RESULT STATISTIC
+</td></tr></table>
+
+
+
+<table style="border:1px solid #000;width:600px">
+<tr style="height:30px;background:#EFEDED">
+<td style="width:150px;border-bottom:1px solid #000">Status</td>
+<td style="width:50px;border-bottom:1px solid #000" align="center">Freq.</td>
+<td style="width:50px;border-bottom:1px solid #000" align="center">Pct.</td>
+</tr>
+
+#foreach( $standing in $standings )
+#set ( $num = 0 )
+#set ( $p = 0 )
+#if ( $standingFreqs.get("$standing.name") )
+	#set ( $num = $standingFreqs.get("$standing.name") )
+	#set ( $p = $pct.calc($num, $totalStudentCount) )
+#end
+<tr style="height:25px">
+<td>$standing.name</td>
+<td align="center">#if ( $num > 0 ) $num #end</td>
+<td align="center">#if ( $p > 0 ) $numFormat.format($p) % #end</td>
+</tr>
+#end
+
+#if ( $levels.size() > 0 )
+    <tr style="height:30px;background:#EFEDED">
+    <td style="width:150px;border-bottom:1px solid #000">Achievement</td>
+    <td style="width:50px;border-bottom:1px solid #000" align="center">Freq.</td>
+    <td style="width:50px;border-bottom:1px solid #000" align="center">Pct.</td>
+    </tr>
+    
+    #foreach( $level in $levels )
+    #set ( $num = 0 )
+    #set ( $p = 0 )
+    #if ( $levelFreqs.get("$level.name") )
+    	#set ( $num = $levelFreqs.get("$level.name") )
+    	#set ( $p = $pct.calc($num, $totalStudentCount) )
+    #end
+    <tr style="height:25px">
+    <td>$level.name</td>
+    <td align="center">#if ( $num > 0 ) $num #end</td>
+    <td align="center">#if ( $p > 0 ) $numFormat.format($p) % #end</td>
+    </tr>
+    #end
+#end
+</table>
+
+
+	
+	
+</div>
+
+<script>
+new Draggable('gpaFreq');
+new Draggable('gpaStatistic');
+</script>
+
+

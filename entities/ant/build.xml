@@ -1,0 +1,115 @@
+<project name="EDUCATE_ENTITY" basedir="../">
+
+	<property name="deploy.dir" value="/usr/local/apache-tomcat-7.0.54/webapps/educate"/>
+	<property name="project.distname" value="educate-entity"/>
+
+    <!-- Local system paths -->
+    <property file="${basedir}/ant/build.properties"/>
+    <property name="webroot.dir" value="${basedir}/WebContent"/>
+	<property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
+    <property name="build.dir" value="build"/>	 
+    
+	<path id="compile.classpath">
+		<pathelement location="${webinf.dir}/lib"/>
+    	<fileset dir="${webinf.dir}/lib">
+    	    <include name="**/*.jar"/>
+        </fileset>		
+	</path>	
+
+    <!-- Check timestamp on files -->
+    <target name="prepare">
+        <tstamp/>
+    </target>
+
+    <!-- Copy any resource or configuration files -->
+    <target name="resources">
+        <copy todir="${webinf.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="JavaSource">
+            <patternset>
+                <include name="**/*.conf"/>
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+            </patternset>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- Normal build of application -->
+    <target name="compile" depends="prepare,resources">
+        <javac srcdir="JavaSource" destdir="${webinf.dir}/classes">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+	
+    <!-- Remove classes directory for clean build -->
+    <target name="clean"
+      description="Prepare for clean build">
+      <!--
+      <delete dir="${webinf.dir}/classes"/>
+      <mkdir  dir="${webinf.dir}/classes"/>
+      -->
+    </target>
+
+    <!-- Build entire project -->
+    <target name="build" depends="prepare,compile"/>
+    <target name="rebuild" depends="clean,prepare,compile"/>
+
+	<!-- Create JAR -->
+	<target name="educate-entity-jar" depends="enhance2">
+  		<jar destfile="${build.dir}/${project.distname}.jar">
+            <fileset dir="${webinf.dir}/classes">
+            	<exclude name="educate/misc/**"/>
+            	<exclude name="iqwan/web/**"/>
+            	<exclude name="**/*.svn"/>
+            	<exclude name="**/*.properties"/>
+            	<exclude name="**/*.xml"/>
+            </fileset>		
+  		</jar>
+	</target>
+	
+	
+    <path id="jpa.enhancement.classpath">
+        <pathelement location="${webinf.dir}/classes"/>
+
+        <!-- lib contains all of the jars that came with the OpenJPA binary download -->
+        <fileset dir="${webinf.dir}/lib">
+        <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="enhance2">
+    	<!-- define the openjpac task -->
+    	<taskdef name="openjpac" classname="org.apache.openjpa.ant.PCEnhancerTask">
+        	<classpath refid="jpa.enhancement.classpath"/>
+    	</taskdef>
+
+    	<!-- invoke enhancer the enhancer -->
+    	<openjpac>
+        	<classpath refid="jpa.enhancement.classpath"/>
+    	</openjpac>
+    	<echo message="Enhancing complete."/>
+    </target>
+	
+	
+    <target name="copy_jar" depends="educate-entity-jar">  
+    	<!--
+    	<copy file="${build.dir}/${project.distname}.jar" todir="/Users/Admin/Documents/workspace1/educate4/WebContent/WEB-INF/lib"/>
+    	<copy file="${build.dir}/${project.distname}.jar" todir="/Users/Admin/Documents/workspace-neon/at/WebContent/WEB-INF/lib"/>
+    	<copy file="${build.dir}/${project.distname}.jar" todir="/Users/Admin/Documents/workspace-neon/iqwan2/WebContent/WEB-INF/lib"/>
+    	
+    	
+    	 <copy file="${build.dir}/${project.distname}.jar" todir="/Users/Admin/Documents/workspace1/iqwan_timetable/WebContent/WEB-INF/lib"/>
+    	
+    	-->
+    	
+    	
+    
+    	<copy file="${build.dir}/${project.distname}.jar" todir="/Users/Admin/Documents/workspace1/educate4/WebContent/WEB-INF/lib"/>
+
+    </target>	
+	
+
+    <target name="copy_jars">
+    	<copy verbose="true" file="${build.dir}/${project.distname}.jar" todir="/Users/Admin/Documents/educate-jars"/>
+   </target>
+</project>

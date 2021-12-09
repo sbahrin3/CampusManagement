@@ -1,0 +1,202 @@
+<script>
+$('divGetStudent').style.display='none';
+</script>
+
+#if ( $fee_structure_error )
+<div class="errorMessage">
+<table width="100%">
+<tr><td style="color:#C12C0A;font-weight:bold;">
+CAN'T CREATE INVOICE, FEE STRUCTURE NOT DEFINED FOR PROGRAM $student.program.code $student.program.name
+</td></tr>
+</table>
+</div>
+#end
+
+#if ( $matric_duplicate )
+<div class="errorMessage">
+<table width="100%">
+<tr><td style="color:#C12C0A;font-weight:bold;">
+Can't update matric number because it already exists.
+</td></tr>
+</table>
+</div>
+#end
+
+<input type="button" value="test" onclick="doDivAjaxCall$formname('divGetStudent','hello','');">
+<input class="linkbutton" type="button" value="Update Registration" onclick="doDivAjaxCall3$formname('updateRegistration','getUpdateRegistration','studentId=$student.id')">
+
+
+<table width="100%">
+<tr height="0px"><td style="width:120px"></td><td style="width:10px"></td><td></td><td style="width:150px"></td></tr>
+
+<tr><td colspan="3" style="font-weight:bold;border-top:2px solid #000;padding-bottom:5px">REGISTRATION INFORMATION</td><td></td></tr>
+<tr height="30px"><td style="width:120px">Matric No</td><td style="width:10px">:</td><td><input class="texts" readonly value="$student.matricNo"></td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Name</td><td style="width:10px">:</td><td><input class="texts" readonly value="$student.biodata.name"></td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Name on ID</td><td style="width:10px">:</td><td><input class="texts" readonly value="$!student.biodata.displayName"></td><td style="width:150px"></td></tr>
+
+
+<tr height="30px"><td style="width:120px">MyKad</td><td style="width:10px">:</td><td><input class="texts" readonly value="$!student.biodata.icno"></td><td style="width:150px"></td></tr>
+<tr height="30px"><td style="width:120px">Passport</td><td style="width:10px">:</td><td><input class="texts" readonly value="$!student.biodata.passport"></td><td style="width:150px"></td></tr>
+
+#if ( $student.biodata.dob )
+$dateFormat.applyPattern("d MMM, yyyy")
+<tr height="30px"><td style="width:120px">Date Of Birth</td><td style="width:10px">:</td><td><input class="texts" readonly value="$dateFormat.format($student.biodata.dob)"></td><td style="width:150px"></td></tr>
+#end
+
+<tr height="30px"><td style="width:120px">Program</td><td style="width:10px">:</td><td><input class="texts" readonly value="$student.program.code $student.program.name"></td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Intake Session</td><td style="width:10px">:</td><td><input class="texts" readonly value="$student.intake.code $student.intake.name"></td><td style="width:150px"></td></tr>
+
+
+	
+##STUDY MODE
+<tr height="30px"><td style="width:120px">Study Mode</td><td style="width:10px">:</td><td><input class="texts" readonly value="$!student.studyMode.name"></td><td style="width:150px"></td></tr>
+
+
+<tr height="30px"><td style="width:120px">Learning Centre</td><td style="width:10px">:</td><td><input class="texts" readonly value="$student.learningCenter.code $student.learningCenter.name"></td><td style="width:150px"></td></tr>
+
+<tr height="30px"><td style="width:120px">Register Date</td><td style="width:10px">:</td>
+<td><input class="texts" readonly value="#if ($student.registerDate) $dateFormat.format($student.registerDate) #end"></td><td style="width:150px"></td></tr>
+
+
+
+<tr height="30px"><td></td>
+<td></td>
+<td align="right">
+#if ( !$registerNew )
+	\
+#end
+</td><td style="width:150px"></td></tr>
+
+##START SEMESTER
+<tr><td colspan="3" style="font-weight:bold;border-top:2px solid #000;padding-bottom:5px">LEVEL OF ENTRY</td><td></td></tr>
+
+<tr>
+	<td>Level of Entry</td><td>:</td>
+	<td>
+		<input class="texts" id="entryLevel" name="entryLevel" readonly #if ( $status.period.parent ) value="$status.period.parent.name $status.period.name" #else value="$status.period.name" #end>
+		
+	</td>
+	<td style="width:150px"></td>
+</tr>
+
+<tr height="30px"><td></td>
+<td></td>
+<td align="right">
+<input class="linkbutton" type="button" value="Change Level of Entry" onclick="doDivAjaxCall3$formname('updateRegistration','changeEntryLevel','studentId=$student.id')">
+</td><td style="width:150px"></td></tr>
+
+
+<tr><td colspan="3" style="font-weight:bold;border-top:2px solid #000;padding-bottom:5px">ADDITIONAL INFORMATION</td><td></td></tr>
+
+##ERICAN COLLEGE ADDITIONAL DATA ON STUDENT 		
+<tr height="30px">
+	<td>Applicant Status</td>
+	<td>:</td>
+	<td>
+		<input class="texts" id="displayStatusTag" name="displayStatusTag" readonly value="$!student.statusTag">
+	</td>
+	<td style="width:150px"></td>
+
+</tr>
+
+<tr height="30px"><td>School (SPM)</td><td>:</td><td><input class="texts" readonly id="displayInstitutionSPM" #if ( $student.institutionSPM != "" ) value="$!student.institutionTypeSPM&nbsp;$!student.institutionSPM" #end></td><td style="width:150px"></td><td style="width:150px"></td></tr>
+<tr height="30px"><td>School (STPM)</td><td>:</td><td><input class="texts" readonly id="displayInstitutionSTPM" #if ( $student.institutionSTPM != "" ) value="$!student.institutionTypeSTPM&nbsp;$!student.institutionSTPM">#end</td><td style="width:150px"></td><td style="width:150px"></td></tr>
+
+
+
+		
+		
+<tr height="30px"><td></td>
+<td></td>
+<td align="right">
+<input class="linkbutton" type="button" value="Update Additional Info" onclick="doDivAjaxCall3$formname('updateRegistration','getUpdateAddtionalInfo','studentId=$student.id')">
+</td><td style="width:150px"></td></tr>
+
+<tr><td colspan="3" style="font-weight:bold;border-top:2px solid #000;padding-bottom:5px">DOCUMENTS</td><td></td></tr>
+<tr height="30px"><td style="width:120px" valign="top"></td><td style="width:10px" valign="top">:</td>
+<td>
+<b>Verification Counter</b>
+<br/>
+##$checkedItems.size()
+#set($items = ["Acceptance of the Offer", "Medical Certification Form", "Medical Check-up and X-Ray", 
+"Student Financial Declaration Form", "Student Pledge", "Declaration Form", "Completed Matric Card Form",
+"Student Information Form","Photo 5 pieces"])
+#foreach ( $item in $items )
+	#set ( $checked = "" )
+	#foreach ( $checkedItem in $checkedItems )
+		#if ( $checkedItem.itemName == $item )
+			#set ( $checked = "checked" )
+		#end
+	#end
+	<input type="checkbox" name="verifications" value="$item" $checked>$item<br>
+#end
+
+<br/>
+<b>Payment Counter</b>
+<br/>
+
+#set($items = ["Completed Letter of Guarantee & Indemnity", "Money Order/Cheque/Bank Draft"])
+#foreach ( $item in $items )
+	#set ( $checked = "" )
+	#foreach ( $checkedItem in $checkedItems )
+		#if ( $checkedItem.itemName == $item )
+			#set ( $checked = "checked" )
+		#end
+	#end
+	<input type="checkbox" name="verifications" value="$item" $checked>$item<br>
+#end
+<br/>
+<b>Accommodation Counter</b>
+<br/>
+
+#set($items = ["Accommodation Registration Form", "Accommodation Rules and Registration", "Accommodation Booking Form"])
+#foreach ( $item in $items )
+	#set ( $checked = "" )
+	#foreach ( $checkedItem in $checkedItems )
+		#if ( $checkedItem.itemName == $item )
+			#set ( $checked = "checked" )
+		#end
+	#end
+	<input type="checkbox" name="verifications" value="$item" $checked>$item<br>
+#end
+<br/>
+<b>Other Counter</b>
+<br/>
+
+#set($items = ["Laboratory Unit", "Application for Library Membership"])
+#foreach ( $item in $items )
+	#set ( $checked = "" )
+	#foreach ( $checkedItem in $checkedItems )
+		#if ( $checkedItem.itemName == $item )
+			#set ( $checked = "checked" )
+		#end
+	#end
+	<input type="checkbox" name="verifications" value="$item" $checked>$item<br>
+#end
+
+</td>
+<td style="width:150px"></td></tr>
+
+
+</table>
+
+<table width="100%">
+<tr>
+<td align="right">
+
+<input class="linkbutton" style="height:40px;font-weight:bold" type="button" value="Download Registration Slip"
+onclick="doDivAjaxCall$formname('getRegistrationSlip','getRegistrationSlip','studentId=$student.id')">
+
+<input class="linkbutton" style="height:40px;font-weight:bold" type="button" value="Print Matric Card"
+onclick="doDivAjaxCall$formname('getMatricCard','getMatricCard','studentId=$student.id')">
+
+
+</td></tr></table>
+
+<div id="saveAddtionalInfo"></div>
+<div id="divUpdateEntryLevel"></div>
+
+

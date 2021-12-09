@@ -1,0 +1,73 @@
+<table width="700">
+
+#if ( !$list_mode )
+<tr><td align="right">
+<input class="gradient" style="height:30px;font-weight:bold"  type="button" value="PREVIOUS .." onclick="doDivAjaxCall$formname('div_main','biodata','from=education_background')">
+<input class="gradient" style="height:30px;font-weight:bold"  type="button" value="NEXT .." onclick="doDivAjaxCall$formname('div_main', 'review','from=education_background')">
+</td></tr>
+#end
+
+<tr><td>
+#set ( $bgcolor = "#fff" )
+<fieldset>
+<legend style="font-weight:bold">SPM RESULT</legend>
+
+<table align="center">
+<tr><td>SPM Year:</td><td><input id="spm_year" class="texts" onkeyup="at(this, event)" name="spm_year" value="$!applicant.spmYear" style="width:50px" onchange="doDivAjaxCall$formname('div_empty','save_spm_year','')"></td></tr>
+<tr><td>Number Of Credits:</td><td><input id="spm_credits" class="texts" onkeyup="at(this, event)" name="spm_credits" value="$!applicant.spmCredits" style="width:50px" onchange="doDivAjaxCall$formname('div_empty','save_spm_credits','')"></td></tr>
+</table>
+
+<div id="spm" name="spm">
+#parse("apps/util/applicant/frm_applicant_spm_result.vm")
+</div>
+
+</fieldset>
+</td></tr>
+
+<tr><td>
+<fieldset>
+<legend style="font-weight:bold">STPM RESULT</legend>
+
+<table align="center">
+<tr><td>STPM Year:</td><td><input id="stpm_year" name="stpm_year" value="$!applicant.stpmYear" class="texts" onkeyup="at(this, event)" style="width:50px" onchange="doDivAjaxCall$formname('div_empty','save_stpm_year','')"></td></tr>
+</table>
+
+
+<div id="stpm" name="stpm">
+#parse("apps/util/applicant/frm_applicant_stpm_result.vm")
+</div>
+
+</fieldset>
+</td></tr>
+
+<tr><td>
+
+<fieldset>
+<legend style="font-weight:bold">MUET RESULT</legend>
+
+<table align="center">
+<tr><td>MUET Year:</td><td><input id="muet_year" name="muet_year" class="texts" onkeyup="at(this, event)" value="$!applicant.muetYear" style="width:50px" onchange="doDivAjaxCall$formname('div_empty','save_muet_year','')"></td></tr>
+<tr><td>MUET Band:</td><td><input id="muet_band" name="muet_band" class="texts" onkeyup="at(this, event)" value="$!applicant.muetBand" style="width:50px" onchange="doDivAjaxCall$formname('div_empty','save_muet_band','')"></td></tr>
+</table>
+
+</fieldset>
+
+</td></tr>
+
+<tr><td>
+<fieldset>
+<legend style="font-weight:bold">TERTIARY EDUCATION RESULT</legend>
+<div id="tertiary" name="tertiary">
+#parse("apps/util/applicant/frm_tertiary_education.vm")
+</div>
+</fieldset>
+</td></tr>
+
+#if ( !$list_mode )
+<tr><td align="right">
+<input class="gradient" style="height:30px;font-weight:bold"  type="button" value="PREVIOUS .." onclick="doDivAjaxCall$formname('div_main','biodata','from=education_background')">
+<input class="gradient" style="height:30px;font-weight:bold"  type="button" value="NEXT .." onclick="doDivAjaxCall$formname('div_main', 'review','from=education_background')">
+</td></tr>
+#end
+
+</table>

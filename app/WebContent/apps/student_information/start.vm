@@ -1,0 +1,111 @@
+<script>
+var isNN = (navigator.appName.indexOf("Netscape")!=-1);
+
+function doFindStudent(e) {
+  var keyCode = (isNN) ? e.which : e.keyCode; 
+  if ( keyCode == 13 ) {
+    doDivAjaxCall$formname('student_info', 'student_info', '')
+  }
+}
+
+function at(input, e) {
+  var keyCode = (isNN) ? e.which : e.keyCode; 
+  if ( keyCode == 13 ) {
+    input.form[(getIndex(input)+1) % input.form.length].focus();
+  }
+}
+
+function getIndex(input) {
+    var index = -1, i = 0, found = false;
+    while (i < input.form.length && index == -1) {
+    	if (input.form[i] == input)index = i;
+    	else i++;
+    }
+    return index;
+}
+## <INPUT id="txtChar" onkeypress="return isNumber(event)" type="text" name="txtChar">
+## number only
+function isNumber(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+function isDecimal(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if ( charCode == 46 ) return true;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+## alpha only
+function isAlpha(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if ( charCode == 32 ) return true;
+    if (charCode > 31 && (charCode < 97 || charCode > 122) ) return false;
+    return true;
+}
+</script>
+
+
+<style>
+#divFindStudent {
+    position:fixed;
+    top: 30%;
+    left: 25%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+    z-Index: 9999;
+}
+
+#div_upload_photo {
+    position:fixed;
+    top: 30%;
+    left: 25%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+    z-Index: 9999;
+
+}
+
+</style>
+
+#**
+<div id="divFindStudent" class="shadow">
+<table width="100%" style="background:#357FF4"><tr style="height:30px"><td style="font-weight:bold;color:#FFF">Find</td>
+<td align="right"><input type="button" class="linkbutton" value="Find" onclick="$('iframeFindStudent').src='../gc/educate.sis.module.FindStudentByNameModule?elementId=matric_no'"><input class="linkbutton" type="button" value="Close" onclick="$('divFindStudent').style.display='none'"></td></tr></table>
+<div id=""><iframe id="iframeFindStudent" src="../gc/educate.sis.module.FindStudentByNameModule?elementId=matric_no" frameborder="0" style="width:100%;height:250px"></iframe></div>
+</div>
+**#
+
+#set ( $field_name = "matric_no")
+#parse("divFindStudent.vm")
+
+
+<div style="padding:10px">
+
+
+	<table width="100%"><tr>
+		<td style="width:300px;">
+		<input class="form-control" placeholder="Student No." id="matric_no" name="matric_no" id="matric_no" value="$!student.matricNo" onkeyup="doFindStudent(event);">
+		<input style="width:0px;border-top:none;border-left:none;border-right:none;border-bottom:none" name="dummy" disabled>
+		</td><td valign="top" style="padding-left:10px">
+		<button type="button" class="btn btn-info" onclick="doDivAjaxCall$formname('student_info', 'student_info', '')">Get Student</button>
+		<button type="button" class="btn btn-success" onclick="$('divFindStudent').style.display='block';">Find...</button>
+		
+		</td>
+	</tr></table>
+
+
+	<div id="student_info" name="student_info" style="padding:10px"></div>
+
+
+</div>

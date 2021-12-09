@@ -1,0 +1,22 @@
+<table cellpadding="1" cellspacing="0">
+<tr class="sectionHeader" style="height:30px">
+<td style="width:500px">Online App. Centre</td>
+<td style="width:400px">Registration Centre</td>
+</tr>
+<tr><td colspan="2">&nbsp;</td></tr>
+#foreach( $p in $onappCentres )
+<tr>
+<td>$p.name</td>
+<td>
+<select class="textr" name="centre_$p.id" onchange="doDivAjaxCall3$formname('saveMapper','saveMapper','onappCentreId=$p.id')">
+<option value=""></option>
+#foreach ( $p2 in $centres )
+<option value="$p2.id" #if ( $mapper.get("$p.id") == $p2.id ) selected #end>$p2.name</option>
+#end
+</select>
+</td>
+</tr>
+#end
+</table>
+
+<div id="saveMapper"></div>

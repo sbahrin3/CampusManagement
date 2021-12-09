@@ -1,0 +1,7 @@
+<table width="900">
+<tr><td>
+Matric No:
+<input name="matric_no" style="width:200px" value="$!matric_no">
+<input type="button" value="Get Payment" onclick="doAjaxCall$formname('get_student','')">
+</td></tr>
+</table>

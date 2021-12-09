@@ -1,0 +1,8 @@
+#if ( $student_status )
+
+#parse( "apps/util/subject_registration/student_subjects.vm")
+
+#end
+
+<br/>
+#parse( "apps/util/subject_registration/other_semester_subjects.vm" )

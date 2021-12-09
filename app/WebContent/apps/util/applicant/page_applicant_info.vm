@@ -1,0 +1,16 @@
+<table width="700" align="center">
+<tr><td>
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">PERSONAL PARTICULARS</legend>
+#set ( $bgcolor = "#fff" )
+#parse("apps/util/applicant/frm_applicant_info.vm")
+</fieldset>
+
+</td></tr>
+
+<tr><td align="right">
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+$button.command("choice_program").param("from=biodata").style("height:30px;font-weight:bold").text("NEXT ..")
+</fieldset>
+</td></tr></table>

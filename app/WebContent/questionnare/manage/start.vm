@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<style>
+#div_input {
+    position:fixed;
+    top: 30%;
+    left: 15%;
+    width:800px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+</style>
+
+<div id="div_main" style="padding:5px">#parse("questionnare/manage/categories.vm")</div>
+<div id="div_input"></div>
+
+<script>
+function displayType(type) {
+	if ( type == "" ) type = "likert";
+	if ( type == "likert" ) {
+		$('row_likert').style.display = "";
+		$('row_choices').style.display = "none";
+	} else if ( type == "single" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "";
+	} else if ( type == "multiple" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "";
+	} else if ( type == "text" || type == "essay" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "none";
+	} else if ( type == "upload" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "none";
+	} else if ( type == "date" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "none";	
+	} else if ( type == "none" || type == "stop" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "none";	
+	}
+}
+
+
+function limitText(evt, limitField, limitCount, limitNum) {
+    evt = (evt) ? evt : event;
+    var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : 
+        ((evt.which) ? evt.which : 0));
+    
+    if (charCode == 13) return false;
+    
+    if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+	
+}
+
+
+</script>

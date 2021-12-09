@@ -1,0 +1,32 @@
+<div name="div_profile" id="div_profile" style="width:100%;background-color:#ffffff">
+<table width="100%" style="">
+<tr id="profile_handle" name="profile_handle" bgcolor="#FFD455">
+<td style="font-family:arial;font-size:10pt;font-weight:bold;height:25px">
+&nbsp;$userprofile.userName
+</td></tr>
+
+<tr><td>
+<div name="div_upload_photo" id="div_upload_photo"
+style="position:absolute;left:50px;width:500px;height:270px;visibility:hidden;border-style:solid;border-color:#B4B4B4;background-color:#ffffff";>
+</div>
+</td></tr>
+
+<tr><td>
+<div id="div_photo" name="div_photo">
+#parse( "vm/slideshare/div_photo.vm" )
+</div>
+</td></tr>
+
+#**
+<tr><td>
+<div name="div_profile2" id="div_profile2" style="width:100%">
+</div>
+<input type="text" style="visibility:hidden">
+</td></tr>
+**#
+</table>
+</div>
+
+<script>
+new Draggable('div_profile', {handle:'profile_handle'});
+</script>

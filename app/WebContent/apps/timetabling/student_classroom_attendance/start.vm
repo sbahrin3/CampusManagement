@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+	
+
+#set ( $monthName = ["","JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"] )
+#set ( $startYear = 2012 )
+#set ( $endYear = 2015 )
+<table>
+	<tr>
+		<td style="width:50px">Year</td><td style="width:10px">:</td>
+		#foreach ( $y in [2012..2015] )
+			##<td style="width:5px"></td>
+			<td class="linkbutton" style="width:80px;cursor:pointer"> 
+				<input type="checkbox" value="$y" id="year_$y" onclick="for ( i=$startYear; i < $endYear + 1; i++ ) { $('year_' + i ).checked = false; } this.checked = true;$('year').value=$y">
+				$y
+			</td>
+		#end
+	</tr>
+</table>
+<br/>
+<table>
+	<tr>
+		<td style="width:50px">Month</td><td style="width:10px">:</td>
+		#foreach( $m in [1..12] )
+			##<td style="width:5px"></td>
+			<td class="linkbutton" style="width:60px;cursor:pointer">
+				<input type="checkbox" value="$m" id="month_$m" onclick="for ( i=1; i < 13; i++ ) { $('month_' + i ).checked = false; } this.checked = true;$('month').value=$m;if ( $('year').value == '' ) { alert('Please select Year.'); } else { doDivAjaxCall$formname('getAttendance','getAttendance','') }">
+				$monthName.get($m)
+			</td>
+		#end
+	</tr>
+</table>
+
+<input type="hidden" name="matricNo" value="$!matricNo">
+<input type="hidden"  id="year" name="year" value="$!currentYear">
+<input type="hidden"  id="month" name="month">
+
+<br/><br/>
+<div id="getAttendance"></div>

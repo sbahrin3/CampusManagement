@@ -1,0 +1,25 @@
+
+<ul class="list-group">
+#foreach( $g in $classroomTemplate.group.studentSubjectGroups )
+	<li class="list-group-item">
+		$g.code 
+		(
+		$g.facultyGroup.studyMode.code
+		#if ( $g.facultyGroup.firstTimer ) F #end
+		#if ( $g.facultyGroup.repeater ) R #end		
+		
+		,
+		
+		$g.facultyGroup.size
+		
+		)</li>
+#end
+</ul>
+
+<script>
+var size = 0;
+#foreach( $g in $classroomTemplate.group.studentSubjectGroups )
+	size = size + $g.facultyGroup.size;
+#end
+$('classroomSize').value = size;
+</script>

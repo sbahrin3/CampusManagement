@@ -1,0 +1,14 @@
+<table width="700">
+<tr>
+<td>
+
+<div id="div_section" name="div_section">
+#parse("apps/util/setup_subject_section/list_sections.vm")
+</div>
+
+
+</td>
+</tr>
+</table>
+
+<div id="div_empty"></div>

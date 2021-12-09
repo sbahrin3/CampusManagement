@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<style>
+td {
+	font-family:Verdana, sans-serif;
+	font-size:10pt;
+}
+.r {
+	border-bottom:1px solid #B7B2B2; border-right:1px solid #B7B2B2;
+	white-space:nowrap;
+}
+</style>
+
+<div style="padding:5px">
+#parse("admission/mohe_list/list.vm")
+</div>

@@ -1,0 +1,38 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {font-family:verdana;font-size:10pt;font-weight:bold;}
+td {font-family:verdana;font-size:10pt;}
+</style>
+
+<table width="800" align="center">
+<tr><td align="right">
+[$href.command("").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr bgcolor="lightgrey" height="30px">
+<td></td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">IC/Passport</td>
+<td style="font-weight:bold">Program Offered</td>
+<td style="font-weight:bold">Offered Date</td>
+</tr>
+#foreach( $app in $applicants )
+<tr>
+<td align="right">$velocityCount)</td>
+<td>
+$href.command("get_applicant").param("applicant_id=$app.id").text("$app.biodata.name")
+</td>
+<td>#if ( $app.biodata.icno && $app.biodata.icno != "" ) $app.biodata.icno #else $app.biodata.passport #end</td>
+<td>#if ( $app.programOffered ) $app.programOffered.code $app.programOffered.name #end</td>
+<td>#if ( $app.offeredDate ) $dateFormat.format($app.offeredDate) #end</td>
+</tr>
+#end
+</table>
+
+
+
+</td></tr></table>

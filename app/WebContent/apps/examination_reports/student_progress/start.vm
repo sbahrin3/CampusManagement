@@ -1,0 +1,53 @@
+<table width="800px" align="center">
+<tr><td>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table align="center">
+
+<tr>
+<td>Select Program:</td>
+<td>
+<select name="program_id" style="width:300px">
+<option value=""> - </option>
+#foreach( $program in $programs )
+<option value="$program.id">$program.code $program.name</option>
+#end
+</select>
+</td>
+</tr>
+
+
+<tr>
+<td>Select Intake:</td>
+<td>
+<select name="intake_id" style="width:300px">
+<option value=""> - </option>
+#foreach ( $intake in $intakes )
+<option value="$intake.id">$intake.name</option>
+#end
+</select>
+<input type="button" value="VIEW REPORT" onclick="doDivAjaxCall$formname('div_status','view_report','generate=Y')">
+</td>
+</tr>
+
+</td>
+</tr>
+
+</table>
+</fieldset>
+
+</td></tr>
+<tr><td style="font-weight:bold" align="center">
+<fieldset style="background-color:#FFFF66;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+LIST OF STUDENTS EXAMINATION PROGRESS
+</fieldset>
+</td></tr>
+<tr><td>
+
+<div id="div_status" name="div_status">
+</div>
+
+
+
+</td></tr>
+</table>

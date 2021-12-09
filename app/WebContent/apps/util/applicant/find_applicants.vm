@@ -1,0 +1,18 @@
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Select one data</legend>
+
+<table width="100%">
+#foreach( $app in $applicants )
+<tr>
+<td style="width:50px">$velocityCount)</td>
+
+<td><a href="javascript:void()" onclick="doDivAjaxCall$formname('div_main','get_applicant_by_id','applicant_id=$app.id')">$app.biodata.name</a></td>
+<td style="width:150px">#if ( $app.applyDate ) $dateFormat.format($app.applyDate) #end</td>
+<td style="width:150px">#if ( $app.applyTime ) $timeFormat.format($app.applyTime) #end</td>
+<td style="width:150px">$app.status</td>
+</tr>
+#end
+</table>
+
+</fieldset>

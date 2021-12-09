@@ -1,0 +1,33 @@
+<table width="700" align="center">
+<tr><td>
+
+<table width="100%">
+<tr>
+<td>Date From:</td>
+<td>$html.dateField.name("date_from").value("$!date_from").style("width:200px")</td>
+</tr>
+<tr>
+<td>Date To:</td>
+<td>$html.dateField.name("date_to").value("$!date_to").style("width:200px")</td>
+</tr>
+
+<tr>
+<td>Select Program:</td>
+<td>
+<select name="program_id">
+<option value="">(ALL)</option>
+#foreach( $i in $programs )
+<option value="$i.id" #if ( $program_id == $i.id ) selected #end >$i.code $i.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="right">
+$button.command("list_invoices").text("GET INVOICES")
+</td></tr>
+</table>
+
+
+</td></tr></table>

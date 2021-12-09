@@ -1,0 +1,34 @@
+
+<div style="margin-bottom:10px;font-weight:bold">
+	Subject Result Entry Status
+</div>
+<table class="table table-striped">
+<tr height="40px" style="background:#ebebeb">
+<td style="width:100px;font-weight:bold;border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;">Status Code</td>
+<td style="width:300px;font-weight:bold;border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;">Status Name</td>
+<td style="width:300px;font-weight:bold;border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;">Calculate or Not Calculated for GPA?</td>
+<td style="width:200px;font-weight:bold;border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;">Keep or Reset Marking?</td>
+<td style="width:100px;border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;" align="center">
+<button class="btn btn-warning btn-sm" type="button" onclick="$('div_entry').style.display='block';">Add New</button>
+</td>
+</tr>
+#foreach( $s in $statuses )
+<tr style="height:30px">
+<td style="border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;text-align:center">$s.code</td>
+<td style="border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;">$s.name</td>
+<td style="border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;">#if ( $s.excludeGPA ) Not Calculated for GPA #else Calculated for GPA #end</td>
+<td style="border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;">#if ( $s.resetMark ) Reset Mark to 0 #else Keep Mark #end</td>
+<td style="border-bottom:1px dotted #ccc;border-right:1px dotted #ccc;" align="center">
+
+<button class="btn btn-warning btn-sm" type="button" onclick="doDivAjaxCall$formname('div_entry','edit_status','id=$s.id')">Edit</button>
+<button class="btn btn-danger btn-sm" type="button" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall$formname('div_statuses','delete_status','id=$s.id')">X</button>
+
+
+</td>
+</tr>
+#end
+</table>
+
+<script>
+$('div_entry').style.display='none';
+</script>

@@ -1,0 +1,25 @@
+<table>
+
+<tr>
+<td colspan="3" align="right">
+<input type="button" class="linkbutton" value="Add New" onclick="doDivAjaxCall3$formname('div_input','addPosition','')">
+</td></tr>
+<tr style="background:#D1CFCF;height:30px">
+<td style="width:40px"></td>
+<td style="width:500px;font-weight:bold">Position Name</td>
+<td style="width:100px"></td>
+</tr>
+#foreach( $p in $positions )
+
+<tr>
+<td>$velocityCount.</td>
+<td>$p.name</td>
+<td>
+<input type="button" class="linkbutton" value="Edit" onclick="doDivAjaxCall3$formname('div_input','editPosition','positionId=$p.id')">
+<input type="button" class="linkbutton" value="X" onclick="doDivAjaxCall3$formname('div_main','deletePosition','positionId=$p.id')">
+</td>
+</tr>
+
+#end
+
+</table>

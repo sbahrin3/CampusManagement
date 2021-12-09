@@ -1,0 +1,11 @@
+<fieldset><legend class="legend">Add New Program Group</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr><td>Code</td><td>:</td><td><input class="texts" name="courseCode"></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" name="courseName"></td></tr>
+</table>
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Add Program Group" onclick="$('messageCourse').innerHTML='<b>Adding Program Group... Please Wait..</b>';doDivAjaxCall3$formname('divListCourses','addCourse','getFacultyId=$faculty.id');$('entryCourse').style.visibility='hidden';">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('entryCourse').style.visibility='hidden';">
+</td></tr></table>
+</fieldset>

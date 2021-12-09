@@ -1,0 +1,19 @@
+<div style="padding:10px;font-weight:bold;border:1px solid #000">
+	PTPTN Payment Schedule
+</div>
+
+<div style="padding:10px">
+	<table cellpadding="1" cellspacing="1">
+		<tr style="height:25px"><td style="width:100px">PTPTN Amount</td><td style="width:20px">:</td><td style="width:100px">
+			#if ( $ptptnPaymentSchedule.ptptnAmount )	
+				$numFormat.format($ptptnPaymentSchedule.ptptnAmount)
+			#end
+		</td></tr>
+	</table>
+</div>
+	
+<input type="hidden" name="ptptnScheduleId" value="$ptptnPaymentSchedule.id">
+	
+<div id="ptptnItems" style="padding:10px;">
+	#parse("apps/finance/studentPaymentSchedule/ptptnItems.vm")
+</div>

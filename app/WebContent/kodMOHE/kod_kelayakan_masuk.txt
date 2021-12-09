@@ -1,0 +1,8 @@
+1=SPM
+3=STPM
+4=Sijil
+5=Diploma
+6=STAM
+8=Ijazah Pertama/Sarjana Muda
+9=Ijazah Sarjana
+11=Diploma Lanjutan

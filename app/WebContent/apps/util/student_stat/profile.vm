@@ -1,0 +1,213 @@
+<table width="100%">
+	<tr>
+		<td class="table_head" colspan="2">
+			PERSONAL INFORMATION
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table>
+				<TR>
+					<TD><b>ID</b></td>
+					<td>
+						<input type="text" name="matricNo" value="$!student.matricNo" readonly>
+					</td>
+					<td width=250 rowspan=6 align=right>
+						#if($student.photoFileName != "")
+							<img src="../download?file=$!student.photoFileName">
+						#end
+					</td>
+				</TR>
+				<TR>
+					<TD><b>Application Reference No</b></td>
+					<td><input type="text" name="studentNo" value="$!student.applicant.referenceNo" readonly></td>
+				</TR>
+				<TR>
+					<TD><b>Full name</b></TD>
+					<td><input type="text" name="name" value="$!student.biodata.name" readonly size=40></td>
+				</TR>
+				
+				#if($student.applicant.nationalityType=="1")
+					<TR>
+						<TD><b>IC No</b></TD>
+						<td><input type="text" name="icno" value="$!student.biodata.icno" readonly size=40></td>
+					</TR>
+				#else
+					<TR>
+						<TD><b>Passport/Citizenship No</b></TD>
+						<td><input type="text" name="passport" value="$!student.biodata.passport" readonly size=40></td>
+					</TR>
+				#end
+				
+				<TR>
+					<TD><b>Date of Birth</b></TD>
+					<td><input type="text" name="dob" value="$!dateFormatter.format($student.biodata.dob)" readonly></td>
+				</TR>
+				<TR>
+					<TD><b>Gender</b></TD>
+					<td><input type="text" name="gender" value="$!student.biodata.gender.name" readonly></td>
+				</TR>
+				<TR>
+					<TD><b>Citizenship</b></TD>
+					#if($student.applicant.nationalityType=="1")
+						<td>MALAYSIAN</td>
+					#else
+						<td><input type="text" name="nationality" value="$!student.biodata.nationality.name" readonly></td>
+					#end
+				</TR>
+				#if($student.applicant.nationalityType=="1")
+					<TR>
+						<TD><b>Race</b></TD>
+						<td><input type="text" name="race" value="$!student.biodata.race.name" readonly></td>
+					</TR>
+				#end
+				<TR>
+					<TD><b>Mailing Address</b></TD>
+					<td><input type="text" name="address" value="$!student.address.address1" readonly size=40></td>
+				</TR>
+				<TR>
+					<TD></TD>
+					<td><input type="text" name="address2" value="$!student.address.address2" readonly size=40></td>
+				</TR>
+				#if($student.applicant.nationalityType=="1")
+					<TR>
+						<TD><b>City</b></TD>
+						<td><input type="text" name="city" value="$!student.address.city" readonly></td>
+					</TR>
+					<TR>
+						<TD><b>State</b></TD>
+						<td><input type="text" name="state" value="$!student.address.state.name" readonly></td>
+					</TR>
+					<TR>
+						<TD><b>Postcode</b></TD>
+						<td><input type="text" name="postcode" value="$!student.address.postcode" readonly></td>
+					</TR>
+				#else
+					<tr>
+						<td></td>
+						<td><input type="text" name="address3" value="$!student.address.address3" readonly size=40></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="text" name="address4" value="$!student.address.address4" readonly size=40></td>
+					</tr>
+					<tr>
+						<td><b>Country</b></td>
+						<td><input type="text" name="country" value="$!student.address.country.name" readonly size=40></td>
+					</tr>
+			#end
+				<TR>
+					<TD><b>Telephone No (Home)</b></TD>
+					<td><input type="text" name="tel" value="$!student.biodata.telephoneNo" readonly></td>
+				</TR>
+				<TR>
+					<TD><b>Mobile No</b></TD>
+					<td><input type="text" name="mobile" value="$!student.biodata.mobileNo" readonly></td>
+				</TR>
+				<TR>
+					<TD><b>Email</b></TD>
+					<td><input type="text" name="email" value="$!student.biodata.email" readonly size=40></td>
+				</TR>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=3 align=right>
+			<input type="hidden" name="student_id" value="$student.id">
+			<input type="hidden" name="nationalityType" value="$student.applicant.nationalityType">
+		</td>
+	</tr>
+</table>
+
+
+<br><br>
+<table width="100%" class="table_row" cellspacing="0" cellpadding="1">
+	<tr>
+		<td class="table_head">ENROLLMENT INFORMATION</td>
+	</tr>
+</table>
+<br>
+<table width="100%" class="table_row" cellspacing="1" cellpadding="2">
+		<tr>
+			<td style="font-weight:bold">Registration Date</td>
+			<td colspan=2>: <input type="text" name="regDate" value="$!dateFormatter.format($student.registerDate)" readonly></td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold">Conditional Offer</td>
+			<td colspan=2>: 
+				#if( $student.applicant.conditional == "Y" )
+					YES
+				#else
+					NO
+				#end
+			</td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold">School</td>
+			<td colspan=2>: $!student.program.course.faculty.name</td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold">Programme</td>
+			<td colspan=2>: $!student.program.code - $student.program.name</td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold">Learning Centre</td>
+			<td colspan=2>: <input type="text" name="lcentre" value="$!student.learningCenter.name.toUpperCase()" readonly></td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold">Partner (<i>if any</i>)</td>
+			<td colspan=2>: 
+				#if( $student.partner != "" )
+					<input type="text" name="partner" value="$!student.partner.name.toUpperCase()" readonly>
+				#else
+					<input type="text" name="partner" value="None" readonly>
+				#end
+			</td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold">Intake</td>
+			<td>: $!student.intake.code ($!student.intake.name)</td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold">Current Status</td>
+			<td>: $!currentStatus.type.category - $!currentStatus.type.name</td>
+		</tr>
+</table>
+
+
+<br><br>
+<table width="100%" class="table_row" cellspacing="0" cellpadding="1">
+	<tr><td class="table_head">OTHER INFORMATION</td></tr>
+</table>
+<br>
+<table width="100%" class="table_row" cellspacing="1" cellpadding="2">
+		<tr>
+			<td style="font-weight:bold">Physical Disability</td>
+			<td colspan=2>: <input type="text" name="disability" value="$!student.applicant.disability.name" readonly></td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold">Financial Support</td>
+			<td colspan=2>: <input type="text" name="financial" value="$!student.applicant.sponsor.name" readonly></td>
+		</tr>
+		<tr>
+			<td style="font-weight:bold">Knowing Us</td>
+			<td>: <input type="text" name="survey" value="$!student.applicant.survey.name" readonly></td>
+			<td>$button.command("list_filtered_students").text("BACK")
+		</tr>
+</table>
+
+
+<input name="program_id" value="$!program_id" type="hidden">
+<input name="intake_id" value="$!intake_id" type="hidden">
+<input name="education_id" value="$!education_id" type="hidden">
+<input name="race_id" value="$!race_id" type="hidden">
+<input name="disability_id" value="$!disability_id" type="hidden">
+<input name="state_id" value="$!state_id" type="hidden">
+<input name="country_id" value="$!country_id" type="hidden">
+<input name="centre_id" value="$!centre_id" type="hidden">
+<input name="partner_id" value="$!partner_id" type="hidden">
+<input name="gender_id" value="$!gender_id" type="hidden">
+<input name="sponsor_id" value="$!sponsor_id" type="hidden">
+<input name="nationality_id" value="$!nationality_id" type="hidden">
+<input name="survey_id" value="$!survey_id" type="hidden">
+<input name="open_id" value="$!open_id" type="hidden">

@@ -1,0 +1,110 @@
+
+$dateFormat.applyPattern("EEEE d MMM, yyyy")
+<table width="100%" cellspacing="0" border="0">
+
+#set ( $_show = "yes" )
+
+#foreach( $reply in $post.replies )
+
+#if ( $user_role == "teacher" )
+
+#set ( $_show = "yes" )
+
+#else
+
+#if ( $reply.user.id == $userprofile.id )
+#set ( $_show = "yes" )
+#else
+#set ( $_show = "no" )
+#end
+
+#end
+
+
+#if ( $_show == "yes" )
+
+<tr bgcolor="#E2E2FE"><td style="width:40px" valign="top">
+#if($reply.user.userAvatarName != "")
+<img src="../download?file=$!reply.user.userAvatarName" width="40px">
+#else
+<img src="../img/nophoto.gif" border="0" width="40px">
+#end
+
+</td><td valign="top">
+<table width="100%" cellspacing="0">
+<tr><td class="posting"><span class="posting_user_name">$!reply.user.userName</span>
+$util.putLineBreak($reply.message)
+</td></tr>
+
+#if ( $reply.attachments.size() > 0 )
+<tr><td class="posting_date">
+<table width="100%" cellspacing="0">
+#foreach( $att in $reply.attachments)
+<tr><td style="width:20px" align="center">
+<a href="../download?file=$att.fullFileName"><img src="../img/attachment_icon.gif" border="0"></a>
+</td><td>
+<a href="../download?file=$att.fullFileName" style="font-family:arial;font-size:8pt;text-decoration:none">$att.fileName</a>
+</td></tr>
+#end
+</table>
+</td></tr>
+#end
+
+<tr><td class="posting_date">
+$dateFormat.format($reply.postDate) at $timeFormat.format($reply.postTime)
+</td></tr>
+
+##SHOW HIDE FEEDBACKS BUTTONS
+
+<tr><td>
+<span class="posting_date" id="feedback_number_$reply.id"></span>
+##<a class="posting_date" style="font-weight:bold;color:#0000FF" href="javascript:void();" onclick="if($('div_feedbacks_$reply.id').style.display == 'none'){ $('div_feedbacks_$reply.id').style.display = 'block'; $('show_hide_feedback_$reply.id').innerHTML='Hide'; }else{ $('div_feedbacks_$reply.id').style.display = 'none'; $('show_hide_feedback_$reply.id').innerHTML='Show';}"> 
+<a class="posting_date" style="font-weight:bold;color:#0000FF" href="javascript:void();" onclick="if($('div_feedbacks_$reply.id').style.display == 'none'){ $j('#div_feedbacks_$reply.id').show('slow'); $('show_hide_feedback_$reply.id').innerHTML='Hide'; }else{ $j('#div_feedbacks_$reply.id').hide('slow'); $('show_hide_feedback_$reply.id').innerHTML='Show';}"> 
+&bull;<span id="show_hide_feedback_$reply.id">Show</span>
+</a>
+
+</td></tr>
+<tr><td>
+<div id="div_feedbacks_$reply.id" name="div_feedbacks_$reply.id" style="display:none">
+#parse("apps/lms2/div_feedbacks.vm")
+</div>
+
+</td></tr>
+<tr><td>
+#parse( "apps/lms2/div_feedback_post.vm" )
+</td></tr>
+</table>
+</td></tr>
+<tr height="5px"><td colspan="2"></td></tr>
+
+#end  ##if ( $_show)
+
+#end
+</table>
+
+
+<table width="100%" cellspacing="0" border="0">
+
+<tr bgcolor="#E2E2FE"><td colspan="2">
+ 	&#149;
+<a style="font-weight:bold;color:#0000FF" href="javascript:void()" onclick="$('div_reply_$post.id').style.display='block';">Post Reply</a>
+</td></tr>
+
+<tr><td colspan="2">
+<div id="div_reply_wait_indicator_$post.id" name="div_reply_wait_indicator_$post.id" style="visibility='hidden'"></div>
+</td></tr>
+</table>
+
+
+
+<table width="100%" cellspacing="0">
+<tr><td>
+#parse("apps/lms2/div_reply_post.vm")
+</td></tr>
+</table>
+
+<script>
+
+$('postings_number_$post.id').innerHTML = "$post.replies.size() replies";
+
+</script>

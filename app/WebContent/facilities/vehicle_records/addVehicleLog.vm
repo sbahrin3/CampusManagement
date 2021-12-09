@@ -1,0 +1,91 @@
+<script>
+$('divRemark').style.display="block";
+</script>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr style="height:30px;background:#AFAEAE"><td style="font-weight:bold;color:#fff;">Add Vehicle Movement Log</td>
+</table>
+
+
+<table width="100%">
+<tr>
+<td style="width:200px">Depart Date Time:</td>
+<td>
+
+<input class="texts" style="width:100px" id="departDateTime" name="departDateTime" value="">
+<script> new JsDatePick({ useMode:2, target:"departDateTime", dateFormat:"%d-%m-%Y" }); </script>
+
+<select name="departDateTimeHour">
+#foreach ( $h in [0..23] )
+<option value="$h">$h</option>
+#end
+</select>
+<select name="departDateTimeMinute">
+<option value="0">00</option>
+<option value="5">05</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+<option value="25">25</option>
+<option value="30">30</option>
+<option value="35">35</option>
+<option value="40">40</option>
+<option value="45">45</option>
+<option value="50">50</option>
+<option value="55">55</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Expected Return Date Time:</td>
+<td>
+
+<input class="texts" style="width:100px" id="expectedReturnDateTime" name="expectedReturnDateTime" value="">
+<script> new JsDatePick({ useMode:2, target:"expectedReturnDateTime", dateFormat:"%d-%m-%Y" }); </script>
+
+<select name="expectedReturnDateTimeHour">
+#foreach ( $h in [0..23] )
+<option value="$h">$h</option>
+#end
+</select>
+<select name="expectedReturnDateTimeMinute">
+<option value="0">00</option>
+<option value="5">05</option>
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+<option value="25">25</option>
+<option value="30">30</option>
+<option value="35">35</option>
+<option value="40">40</option>
+<option value="45">45</option>
+<option value="50">50</option>
+<option value="55">55</option>
+</select>
+</td>
+</tr>
+<tr>
+<tr>
+##<td>Driver Name:</td><td><input class="texts" id="driverName" name="driverName"></td></tr>
+
+<td>Driver:</td><td>
+<select name="driverId" class="texts">
+<option value=""></option>
+#foreach ( $d in $drivers )
+<option value="$d.id">$d.name</option>
+#end
+</select>
+
+</td></tr>
+
+<td>Destination:</td><td><input class="texts" id="destinationName" name="destinationName"></td></tr>
+<td>Remark:</td><td><textarea class="texts" id="destinationRemark" name="destinationRemark" style="height:100px"></textarea></td></tr>
+
+<td>Odometer (On Depart):</td><td><input class="texts" id="odometerDepart" name="odometerDepart"></td></tr>
+
+<tr><td colspan="2" align="right">
+<input class="button" type="button" value="Save Log" onclick="doDivAjaxCall3$formname('movementLogRecords','saveMovementLog','vehicleId=$vehicleId');$('divRemark').style.display='none';">
+<input class="button" type="button" value="Close" onclick="$('divRemark').style.display='none';">
+</td></tr></table>
+</table>
+</div>

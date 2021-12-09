@@ -1,0 +1,74 @@
+#parse("apps/useLocal.vm")
+
+<table><tr>
+<td style="font-weight:bold;font-size:12pt">$teacher.name</td>
+</tr></table>
+<br/>
+<table>
+<tr style="height:30px;background:#C9C9C9">
+<td style="font-weight:bold;width:30px"></td>
+<td style="font-weight:bold;width:120px">Date</td>
+<td style="font-weight:bold;width:100px">Start Time</td>
+<td style="font-weight:bold;width:100px">End Time</td>
+<td style="font-weight:bold;width:400px">Course</td>
+<td style="font-weight:bold;width:200px">Classroom</td>
+<td style="font-weight:bold;width:120px">Duration</td>
+</tr>
+
+#set ( $totalDuration = 0 )
+#set ( $cnt = 0 )
+#foreach( $a in $attendanceList )
+#set ( $cnt = $cnt + 1 )
+
+<tr style="background:#EFEFF4;height:25px">
+<td>$cnt.</td>
+<td>$dateFormat.format($a.classroom.slot.slotDate)</td>
+
+#set ( $slotTime = $slots.get($a.classroom.slot.posX) )
+#if ( $a.classroom.combined && $a.classroom.combineSlotNo == 1 )
+	
+	#set ( $slotLastPos = $a.classroom.slot.posX + $a.classroom.classroomSection.classroomType.slotCount - 1)
+	#set ( $slotTime2 = $slots.get($slotLastPos) )
+	<td>$timeFormat.format($slotTime.startTime)</td>
+	<td>$timeFormat.format($slotTime2.endTime)</td>
+#else
+	<td>$timeFormat.format($slotTime.startTime)</td>
+	<td>$timeFormat.format($slotTime.endTime)</td>
+#end
+
+<td>$a.classroom.subject.code - $a.classroom.subject.name</td>
+<td>$a.classroom.classroomSection.name</td>
+
+#set ( $slot = $slots.get($a.classroom.slot.posX) )
+#set ( $slotLengthInMinutes = $slot.lengthInMinutes * $a.classroom.classroomSection.classroomType.slotCount )
+#set ( $totalDuration = $totalDuration + $slotLengthInMinutes )
+
+#set ( $hours = $slotLengthInMinutes / 60 )
+#set ( $minutes = $slotLengthInMinutes % 60 )
+
+<td>
+#if ( $hours > 0 )
+	$hours #if ( $hours == 1 ) hour #else hours #end 
+#end
+#if ( $minutes > 0 )
+$minutes minutes</td>
+#end
+</td>
+</tr>
+#end
+<tr><td colspan="7" style="height:1px"></td>
+
+#set ( $hours = $totalDuration / 60 )
+#set ( $minutes = $totalDuration % 60 )
+
+<tr height="30px">
+<td colspan="6" style="background:#EFEFF4;font-weight:bold" align="right">Total:&nbsp;&nbsp;&nbsp;</td>
+<td style="background:#EFEFF4;font-weight:bold">
+#if ( $hours > 0 )
+$hours hours
+#end
+#if ( $minutes > 0 )
+$minutes minutes</td>
+#end
+</tr>
+</table>

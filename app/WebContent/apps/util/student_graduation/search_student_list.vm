@@ -1,0 +1,9 @@
+<table width="100%">
+#foreach( $student in $students )
+<tr><td>
+<a href="javascript:void()" onclick="getElementById('student_no').value='$student.matricNo';close_popwin_$formName();">
+$student.matricNo $student.biodata.name
+</a>
+</td></tr>
+#end
+</table>

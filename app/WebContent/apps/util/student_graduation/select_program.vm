@@ -1,0 +1,66 @@
+<table>
+<tr><td>
+
+<table width="100%">
+<tr>
+<td>Programme:</td>
+<td>
+<select name="program_id" style="width:300px" onchange="doAjaxCall${_formName}('select_intakes','')">
+<option value="">- Select Programme -</option>
+#foreach ( $p in $programs )
+<option value="$p.id" #if ( $p.id == $program.id ) selected #end>&nbsp;&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+<input type="button" value="..." onclick="doAjaxCall${_formName}('select_intakes','')">
+</td>
+</tr>
+
+<tr>
+<td>Intake:</td>
+<td>
+<select name="intake_id" style="width:300px">
+<option value="">- Select Intake -</option>
+#foreach ( $p in $intakes )
+<option value="$p.id" #if ( $p.id == $intake.id ) selected #end>&nbsp;&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Learning Centre:</td>
+<td>
+<select name="centre_id" style="width:300px">
+<option value="">- Select Learning Centre -</option>
+#foreach ( $p in $centres )
+<option value="$p.id" #if ( $p.id == $centre.id ) selected #end>&nbsp;&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td>
+
+<input type="hidden" name="study_type" value="G">
+</td>
+</tr>
+
+</table>
+
+<br/><br/>
+<table width="100%" align="center">
+<tr>
+<td align="center">
+
+<input type="button" value="LIST OF QUALIFIED STUDENTS" onclick="doAjaxCall$formname('list_students','type=students')">
+<input type="button" value="LIST OF APPROVED STUDENTS" onclick="doAjaxCall$formname('list_students','type=graduates')">
+
+</td>
+</tr>
+</table>
+
+
+</td></tr>
+</table>

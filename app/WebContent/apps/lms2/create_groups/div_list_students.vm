@@ -1,0 +1,73 @@
+<table align="center" cellspacing="0" cellpadding="1" border="0">
+
+<tr>
+
+#set ( $counter = 0 )
+#set ( $ucounter = 0 )
+
+#foreach( $u in $classmates )
+
+#set ( $counter = $counter + 1 )
+#set ( $ucounter = $ucounter + 1 )
+
+<td valign="top">
+
+<table  style="width:100px;height:100px" cellspacing="0" cellpadding="1"><tr><td valign="top" bgcolor="#C4D5F8">
+
+<div id="$u.id" style="cursor:pointer;padding:0px">
+
+<table cellspacing="0" cellpadding="0" width="100px">
+<tr><td align="center">
+#if($u.userAvatarName != "")
+	<img src="../download?file=$!u.userAvatarName" border="0" width="55px">
+	#else
+<img src="../img/nophoto.gif" border="0" width="55px">
+#end
+</td></tr>
+<tr><td align="center">
+$u.userName
+</td></tr></table>
+
+</div>
+
+
+<script>
+new Draggable('$u.id', { revert: true, zindex: 1000 });
+</script>
+
+
+</td></tr></table>
+
+</td>
+#if ( $counter == 6 )
+#set ( $counter = 0 )
+</tr><tr>
+#end
+
+#end
+
+#if ( $counter < 6 )
+</tr>
+#end
+</table>
+
+<input type="hidden" name="last_number" value="$last_number">
+<input type="hidden" name="list_size" value="$classmates.size()">
+
+<script>
+#set ( $y = $last_number % 12 )
+
+#if ( $y > 0 )
+$('button_next').innerHTML = "";
+#else
+$('button_next').innerHTML = "<a href=\"javascript:void()\" onclick=\"doDivAjaxCall3$formname('div_list_students','next_student_list','classroom_id=$!classroom.id')\"><img src='../img/img_next.gif' border=0></a>";
+#end
+#set ( $x = $last_number - 12)
+#if ( $x > 0 )
+$('button_prev').innerHTML = "<a href=\"javascript:void()\" onclick=\"doDivAjaxCall3$formname('div_list_students','prev_student_list','classroom_id=$!classroom.id')\"><img src='../img/img_prev.gif' border=0></a>";
+#else
+$('button_prev').innerHTML = "";
+#end
+
+
+</script>

@@ -1,0 +1,111 @@
+
+#set ( $cnt = 0 )
+<table>
+	<tr style="height:1px">
+		<td style="width:30px"></td>
+		<td style="width:120px"></td>
+		<td style="width:200px"></td>
+		#set ( $cntItems = 0 )
+		#foreach ( $m in $markItems )
+			#set ( $cntItems = $cntItems + 1 )
+			<td style="width:50px" align="center"></td>
+		#end
+		
+		<td style="width:50px"></td>
+		<td style="width:50px"></td>
+		<td style="width:150px"></td>
+	</tr>
+	#set ( $rowCnt = 0 )
+	#set ( $ind = 0 )
+	#foreach( $r in $entries )
+		#set ( $rowCnt = $rowCnt + 1 )
+		<tr style="height:25px">
+			<td>$rowCnt.</td>
+			<td>$r.get(0)</td>
+			<td>$r.get(1)</td>
+			#set ( $ind = 1 )
+			#foreach ( $i in [0..$cntItems] )
+				#set ( $ind = $ind + 1 )
+				<td align="center">$!r.get($ind)</td>
+			#end
+			##set ( $ind = $ind + 1 )
+			##<td align="center">$!r.get($ind)</td>
+			##set ( $ind = $ind + 1 )
+			##<td align="center">$!r.get($ind)</td>
+			
+		</tr>
+	#end
+	
+	#set ( $colspan = $ind + 2 )
+	<tr>
+		<td colspan="$colspan" style="border-bottom:1px solid #000">
+			&nbsp;
+		</td>
+	</tr>
+	
+</table>
+	
+<br/><br/>
+#** 
+<table>
+	<tr style="height:50px">
+		<td style="width:100px;font-weight:bold">Prepared by :</td>
+		<td style="width:200px;border-bottom:1px solid #000000">
+			#if ( $user )
+				$user.name
+			#else
+				&nbsp;
+			#end
+		</td>
+	</tr>
+	<tr style="height:50px">
+		<td style="width:100px;font-weight:bold">Approved by :</td>
+		<td style="width:200px;border-bottom:1px solid #000000">
+			&nbsp;
+		</td>
+	</tr>
+</table>
+	
+<br/><br/>
+**#
+<table style="width:80%">
+	<tr>
+		<td style="width:45%;border:1px solid #000">
+			
+			
+			<table>
+				<tr style="height:30px"><td style="width:150px">Prepared By:</td><td>Lecturer in Charge</td></tr>
+				<tr style="height:30px"><td>Name:</td><td></td></tr>
+				<tr style="height:30px"><td>Signature:</td><td></td></tr>
+				<tr style="height:30px"><td>Date:</td><td></td></tr>
+			</table>
+			
+			
+			
+			
+		</td>
+		<td></td>
+		<td style="width:45%;border:1px solid #000">
+			
+			
+			<table>
+				<tr style="height:30px"><td style="width:150px">Verified By:</td><td>HOD/Academic Manager</td></tr>
+				<tr style="height:30px"><td>Name:</td><td></td></tr>
+				<tr style="height:30px"><td>Signature:</td><td></td></tr>
+				<tr style="height:30px"><td>Date:</td><td></td></tr>
+			</table>
+			
+			
+		</td>
+	</tr>
+</table>
+
+<br/>
+<table align="center">
+	<tr>
+		<td style="font-weight:bold">Legend</td><td style="width:20px">:</td>
+		#foreach ( $m in $markItems )
+			<td style="width:100px" align="center">$m.code: $m.name</td><td style="width:10px"></td>
+		#end
+	</td>
+</table>

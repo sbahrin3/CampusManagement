@@ -1,0 +1,89 @@
+<table>
+<tr><td colspan="2">
+<b>Verification Counter</b>
+</td></tr>
+#set($items = ["Acceptance of the Offer", "Medical Certification Form", "Medical Check-up and X-Ray", 
+"Student Financial Declaration Form", "Student Pledge", "Declaration Form", "Completed Matric Card Form",
+"Student Information Form","Photo 5 pieces"])
+#foreach ( $item in $items )
+	#set ( $checked = "" )
+	#foreach ( $checkedItem in $checkedItems )
+		#if ( $checkedItem.itemName == $item )
+			#set ( $checked = "checked" )
+		#end
+	#end
+	<tr><td style="width:10px" align="center">
+	#if ( $checked == "checked" )
+	<img src="${applicationURL}/img/check-on.png" border="0"/> 
+	#else
+	<img src="${applicationURL}/img/check-off.png" border="0"/>
+	#end
+	</td><td>
+	$item</td></tr>
+#end
+<tr><td colspan="2">
+<b>Payment Counter</b>
+</td></tr>
+
+#set($items = ["Completed Letter of Guarantee & Indemnity", "Money Order/Cheque/Bank Draft"])
+#foreach ( $item in $items )
+	#set ( $checked = "" )
+	#foreach ( $checkedItem in $checkedItems )
+		#if ( $checkedItem.itemName == $item )
+			#set ( $checked = "checked" )
+		#end
+	#end
+	<tr><td style="width:10px">
+	#if ( $checked == "checked" )
+	<img src="${applicationURL}/img/check-on.png" border="0"/> 
+	#else
+	<img src="${applicationURL}/img/check-off.png" border="0"/>
+	#end
+	</td><td>
+	$item</td></tr>
+#end
+<tr><td colspan="2">
+<b>Accommodation Counter</b>
+</td></tr>
+
+#set($items = ["Accommodation Registration Form", "Accommodation Rules and Registration", "Accommodation Booking Form"])
+#foreach ( $item in $items )
+	#set ( $checked = "" )
+	#foreach ( $checkedItem in $checkedItems )
+		#if ( $checkedItem.itemName == $item )
+			#set ( $checked = "checked" )
+		#end
+	#end
+	<tr><td style="width:10px">
+	#if ( $checked == "checked" )
+	<img src="${applicationURL}/img/check-on.png" border="0"/> 
+	#else
+	<img src="${applicationURL}/img/check-off.png" border="0"/>
+	#end
+	</td><td>
+	$item</td></tr>
+
+#end
+<tr><td colspan="2">
+<b>Other Counter</b>
+</td></tr>
+
+#set($items = ["Laboratory Unit", "Application for Library Membership"])
+#foreach ( $item in $items )
+	#set ( $checked = "" )
+	#foreach ( $checkedItem in $checkedItems )
+		#if ( $checkedItem.itemName == $item )
+			#set ( $checked = "checked" )
+		#end
+	#end
+	<tr><td style="width:10px">
+	#if ( $checked == "checked" )
+	<img src="${applicationURL}/img/check-on.png" border="0"/> 
+	#else
+	<img src="${applicationURL}/img/check-off.png" border="0"/>
+	#end
+	</td><td>
+	$item</td></tr>
+
+#end
+</table>

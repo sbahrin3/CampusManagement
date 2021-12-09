@@ -1,0 +1,7 @@
+#if ( $isAdminModule && !$r.isApproved ) 
+[<a href="javascript:void()" onclick="if ( !confirm('Remove reservation by $r.user.userName?') ) return ;doDivAjaxCall$formname('schedule_data', 'delete_booking', 'booking_id=$r.id&facility_id=$r.facility.id')">Remove</a>] 
+[<a href="javascript:void()" onclick="if ( !confirm('Approve reservation by $r.user.userName?') ) return ;doDivAjaxCall$formname('approval_button_${r.id}', 'approval', 'booking_id=$r.id&facility_id=$r.facility.id')">Approve</a>] 
+#end
+#if ( !$isAdminModule && !$r.isApproved )
+#if ( $current_login == $r.user.userId ) [<a href="javascript:void()" onclick="if ( !confirm('Cancel my reservation?') ) return ;doDivAjaxCall$formname('schedule_data', 'delete_booking', 'booking_id=$r.id&facility_id=$r.facility.id')">Cancel</a>] #end
+#end

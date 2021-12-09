@@ -1,0 +1,18 @@
+<div id="div_status" style="display:block">
+<table width="100%">
+<tr><td style="font-weight:bold">
+#if ( $report ) Report was generated on $df.format($report.dateCreated), by $report.createdBy<br>#if ( $time_taken) Report was generated in $time_taken seconds #end #else Report is not generated yet... Click the Generate Report button. #end
+</td></tr>
+<tr><td>
+<input type="button" #if ( $report ) value="Re-Generate Report" onclick="if ( !confirm('Re Generate this Report?') ) return; doDivAjaxCall$formname('report_status','create_report','')" #else value="Generate Report" onclick="doDivAjaxCall$formname('report_status','create_report','')" #end >
+
+#if ( $report )
+<input type="button" value="View Local Students" onclick="if ( !$('new_window').checked ) doDivAjaxCall$formname('view_report','view_report_local',''); else { window.open('../y/educate.enrollment.report.enrollmentreport.MoheReportModule?command=view_report_local','_new','width=470,height=452,scrollbars=1'); }">
+<input type="button" value="View International Students" onclick="if ( !$('new_window').checked ) doDivAjaxCall$formname('view_report','view_report_international',''); else { window.open('../y/educate.enrollment.report.enrollmentreport.MoheReportModule?command=view_report_international','_new','width=470,height=452,scrollbars=1'); }">
+#end
+<input type="checkbox" value="yes" id="new_window" name="new_window" />New Window
+</td></tr>
+</table>
+</div>
+<div id="view_report" style="overflow:auto;width:900px;height:400px;border-style:solid"></div>
+

@@ -1,0 +1,77 @@
+
+<table width="100%">
+
+<tr height="30px">
+<td class="gradient" style="width:20px" align="center">&nbsp;</td>
+<td style="width:200px;border-bottom:1px solid #BCBCBC" valign="top" >$i.studentStatus.period.name #if ( $i.studentStatus.period.parent ) ($i.studentStatus.period.parent.name) #end ($i.studentStatus.session.name)</td>
+<td align="right" valign="top" style="border-bottom:1px solid #BCBCBC">
+#set ( $got_primary = "no" )
+#if ( $i.invoices.size() > 0 )
+
+
+#foreach ( $invoice in $i.invoices )
+
+#if ( $invoice.invoiceType == 1 ) 
+#set ( $got_primary = "yes" )
+#set ( $bgcolor = "#FFCCCC") 
+#else 
+#set ( $bgcolor = "#FFFFFF") 
+#end
+
+
+<table border="0" cellspacing="0" cellpadding="1">
+
+<tr bgcolor="$bgcolor">
+<td style="width:200px">
+$invoice.invoiceNo
+</td>
+<td style="width:100px" align="right">
+$dateFormat.format($invoice.createDate)
+</td>
+<td style="width:100px" align="right">RM $numFormat.format($invoice.amount)&nbsp;&nbsp;</td>
+
+<td>
+
+<input class="gradient" type="button" style="width:20px" value="..." onclick="$('div_invoice_detail').style.visibility='visible';doDivAjaxCall$formname('div_invoice_detail', 'invoice_detail', 'invoice_id=$invoice.id&student_status_id=$i.studentStatus.id')">
+<input class="gradient" type="button" style="width:50px" value="Print" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintStudentInvoiceModule?invoice_id=$invoice.id';">
+
+</td>
+</tr>
+#end
+</table>
+#end
+
+<div class="shadow" id="createInvoice_$i.studentStatus.id" style="display:none;background:#fff;position:absolute;border:1px solid #C2C2C2;width:300px">
+<table width="100%"><tr><td style="height:25px;font-weight:bold" align="center">CREATE PRIMARY INVOICE</td></tr></table>
+<table width="100%"><tr><td align="center">
+Invoice Date: <input id="invoice_date_$i.studentStatus.id" name="invoice_date_$i.studentStatus.id" style="width:100px" value="$dateFormat.format($today)">
+<script> new JsDatePick({ useMode:2, target:"invoice_date_$i.studentStatus.id", dateFormat:"%d-%m-%Y" }); </script>
+<br/><br/>
+<input type="button" value="Create" onclick="$('createInvoice_$i.studentStatus.id').style.display='none'; doDivAjaxCall$formname('div_invoice_$i.studentStatus.id','create_invoice','invoice_id=$invoice.id&student_status_id=$i.studentStatus.id')">
+<input type="button" value="Cancel" onclick="$('createInvoice_$i.studentStatus.id').style.display='none'">
+</td></tr></table>
+</div>
+
+
+</td>
+<td style="width:20px;border-bottom:1px solid #BCBCBC" align="center" valign="top">
+
+
+<input class="gradient" type="button" style="width:20px" value="+" onclick="$('div_invoice_detail').style.visibility='visible';doDivAjaxCall$formname('div_invoice_detail', 'custom_invoice', 'student_status_id=$i.studentStatus.id')">
+
+##PRIMARY INVOICE BUTTON
+#if ( $got_primary == "no" )
+
+<input type="button" style="width:20px;background-color:#FF9999" value="+" 
+##onclick="if ( !confirm('Create primary invoice?') ) return;doDivAjaxCall$formname('div_invoice_$i.studentStatus.id','create_invoice','invoice_id=$invoice.id&student_status_id=$i.studentStatus.id')"
+onclick="$('createInvoice_$i.studentStatus.id').style.display='block'"
+>
+
+#end
+
+
+</td>
+</tr>
+
+</table>
+

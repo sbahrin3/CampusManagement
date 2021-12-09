@@ -1,0 +1,105 @@
+
+
+<table class="table table-striped">
+<tr bgcolor="lightgrey">
+<td style="font-weight:bold;height:30px;width:20px">&nbsp;</td>
+<td style="font-weight:bold;width:100px">Session</td>
+<td style="font-weight:bold;width:150px">Period</td>
+<td style="font-weight:bold;width:100px">Status</td>
+<td style="font-weight:bold;width:40px"></td>
+<td style="font-weight:bold;width:150px">Change Status</td>
+<td style="font-weight:bold;width:40px"></td>
+<td style="font-weight:bold;width:100px">Date</td>
+<td style="font-weight:bold;width:120px">Withdraw</td>
+<td style="font-weight:bold;width:200px">Remark</td>
+<td style="font-weight:bold;width:50px"></td>
+</tr>
+
+#set ( $create_button = false )
+
+#set ( $cnt = 0 )
+#foreach( $session in $sessions )
+
+#set ( $cnt = $cnt + 1 )
+#set ( $status = ""  )
+
+#if ( $status_map.get("$session.id") )
+
+#set ( $status = $status_map.get("$session.id")  )
+
+#set ( $style = "color:black" )
+#if ( $status.type.defer )
+#set ( $style = "color:red" ) 
+#end
+<tr height="30px">
+<td style="border-bottom:1px solid #BCBCBC">$velocityCount)</td>
+<td style="border-bottom:1px solid #BCBCBC;$style">$session.name</td>
+<td style="border-bottom:1px solid #BCBCBC;$style">$status.period.name #if ( $status.period.parent ) ($status.period.parent.name) #end</td>
+<td style="border-bottom:1px solid #BCBCBC;$style">#if ( $status.type ) $status.type.name #end</td>
+
+<td style="border-bottom:1px solid #BCBCBC;$style" align="center">
+<button type="button" class="btn btn-danger btn-sm" onclick="if ( !confirm('Are you sure to REMOVE student status?') ) return; doDivAjaxCall3$formname('student_status','delete_status','status_id=$!status.id');">X</button>
+</td>
+<td style="border-bottom:1px solid #BCBCBC;$style">
+
+
+<select class="texts" name="status_$status.id" style="width:100%">
+<option value="">-</option>
+#foreach( $type in $types )
+<option value="$type.id" #if ( $status.type.id == $type.id ) selected #end>$type.name</option>
+#end
+</select>
+</td>
+
+<td>
+	<button type="button" class="btn btn-primary btn-sm" onclick="doDivAjaxCall3$formname('student_status','status_date','status_id=$!status.id&status_cnt=$cnt');">Update</button>
+</td>
+
+#if ( $status.statusDate ) #set ($date = $dateFormat.format($status.statusDate) ) #else #set( $date = "" ) #end
+
+<td style="border-bottom:1px solid #BCBCBC;$style">
+	<input class="texts" style="width:100px" id="status_date_$cnt" name="status_date_$cnt" value="$!date">
+	<script> new JsDatePick({ useMode:2, target:"status_date_$cnt", dateFormat:"%d-%m-%Y" }); </script>
+</td>
+<td style="border-bottom:1px solid #BCBCBC;$style">
+
+
+<select class="texts" name="withdraw_$status.id" style="width:100%">
+<option value="">-</option>
+#foreach( $w in $withdrawTypes )
+<option value="$w.id" #if ( $status.withdrawType.id == $w.id ) selected #end>$w.name</option>
+#end
+</select>
+
+</td>
+
+<td style="border-bottom:1px solid #BCBCBC;$style">
+<input class="texts" style="width:100%" name="remark_$status.id" value="$!status.remark">
+</td>
+
+<td style="border-bottom:1px solid #BCBCBC;$style">
+<button type="button" class="btn btn-primary btn-sm" onclick="$('save_remark_${status.id}').innerHTML='<b>Please wait..</b>';doDivAjaxCall3$formname('save_remark_${status.id}','save_remark','status_id=$!status.id&status_cnt=$cnt');">Save</button>
+<span id="save_remark_${status.id}"></span>
+</td>
+
+#else
+
+<tr height="30px">
+
+<td>$velocityCount)</td>
+<td>$session.name</td>
+<td>$dateFormat.format($session.startDate) - $dateFormat.format($session.endDate)</td>
+
+<td>UNDEFINED</td>
+<td colspan="4">
+#if ( !$create_button )
+<button type="button" class="btn btn-primary btn-sm" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall$formname('divData', 'add_status','session_id=$!session.id')">Create Student Status..</button>
+#end
+</td>
+#set ( $create_button = true )
+
+#end
+
+</tr>
+#end
+</table>

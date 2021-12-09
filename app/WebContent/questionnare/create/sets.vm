@@ -1,0 +1,48 @@
+
+<div style="font-size:12pt;font-weight:bold">
+Quizzes/Questionnare Sets
+</div>
+<div style="text-align:right;margin-top:10px;margin-bottom:10px">
+	<button type="button" class="btn btn-primary btn-sm" onclick="doDivAjaxCall$formname('div_input','newSet','')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+</div>
+
+<table class="table table-striped" style="width:100%">
+	<thead>
+	<tr style="height:30px;">
+		<th style="width:30px">&nbsp;</th>
+		<th style="width:200px;font-weight:bold">Title</th>
+		
+		<th style="width:600px;font-weight:bold">Description</th>
+		<th style="width:100px;font-weight:bold">Type</th>
+		<th style="width:150px">&nbsp;</th>
+	</tr>
+	</thead>
+	<tbody>
+	#foreach( $s in $sets )
+		<tr>
+		<td #if ( $s.typeQuestionBank ) style="font-weight:bold" #end>$velocityCount.</td>
+		<td #if ( $s.typeQuestionBank ) style="font-weight:bold" #end>
+			$!s.name
+		</td>
+		
+		<td #if ( $s.typeQuestionBank ) style="font-weight:bold" #end>$!s.description</td>
+		<td #if ( $s.typeQuestionBank ) style="font-weight:bold" #end>
+			#if ( $s.typeQuestionnare )
+				Questionnare
+			#else
+				Quiz
+			#end
+		</td>
+		
+		<td align="center">
+			<button type="button" class="btn btn-primary btn-sm" onclick="doDivAjaxCall$formname('div_main','listQuestions','setId=$!s.id')"><i class="fa fa-folder-open" aria-hidden="true"></i></button>
+			<button type="button" class="btn btn-warning btn-sm" onclick="doDivAjaxCall$formname('div_input','editSet','setId=$!s.id')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+			<button type="button" class="btn btn-danger btn-sm" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall$formname('div_main','deleteSet','setId=$s.id')"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+		</td>
+		</tr>
+	#end
+	</tbody>
+	
+</table>
+
+

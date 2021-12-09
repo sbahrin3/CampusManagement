@@ -1,0 +1,37 @@
+<fieldset><legend class="legend">Add New Program</legend>
+<table width="100%">
+<tr><td style="width:250px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr><td>Program Code</td><td>:</td><td><input class="texts" name="programCode"></td></tr>
+<tr><td>Program Name</td><td>:</td><td><input class="texts" name="programName"></td></tr>
+<tr><td>Transcript Display Name</td><td>:</td><td><input class="texts" name="displayName"></td></tr>
+<tr><td>Period Structure</td><td>:</td><td>
+<select class="texts" name="periodScheme">
+<option value=""></option>
+#foreach( $scheme in $schemes )
+<option value="$scheme.id">$scheme.code</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Level Type</td><td>:</td><td>
+<select class="texts" name="programLevelType">
+<option value="undergraduate">Undergraduate</option>
+<option value="postgraduate">Postgraduate</option>
+</select>
+</td></tr>
+
+
+<tr><td>Program Path</td><td>:</td><td>
+<select class="texts" name="programLevel">
+<option value=""></option>
+#foreach( $level in $levels )
+<option value="$level.id">$level.name</option>
+#end
+</select>
+</td></tr>
+</table>
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Add Program" onclick="doDivAjaxCall3$formname('divListPrograms','addProgram','');$('entryProgram').style.visibility='hidden';">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('entryProgram').style.visibility='hidden';">
+</td></tr></table>
+</fieldset>

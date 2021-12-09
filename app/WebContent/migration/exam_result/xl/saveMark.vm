@@ -1,0 +1,5 @@
+ok.
+<script>
+var totalCnt = document.getElementById("totalCnt").value
+doDivAjaxCall$formname('result_$nextCnt','saveMark','cnt=$nextCnt&totalCnt=' + totalCnt)
+</script>

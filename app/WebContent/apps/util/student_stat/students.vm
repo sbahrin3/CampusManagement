@@ -1,0 +1,22 @@
+
+<table width="100%" align="center">
+<tr height="50px"><td colspan="5"  bgcolor="lightgrey" align="centre" style="font-family:arial; font-weight:bold; font-size:12pt">
+$!title
+</td></tr>
+<tr><td colspan="5" align="right">
+<a href="javascript:void()" onclick="$('div_chart_data').style.visibility='hidden'">Close</a>
+</td></tr>
+#foreach ( $student in $students )
+<tr #if ( $velocityCount % 2 == 0 ) bgcolor = "lightgrey" #end>
+<td valign="top" align="right" style="width:20px">$velocityCount)</td>
+<td valign="top">
+
+<a href="javascript:void()" onclick="$('div_student_info').style.top=cursorY;$('div_student_info').style.visibility='visible';doDivAjaxCall$formname('div_student_info_2', 'get_student_by_id', 'student_id=$student.id')" style="text-decoration:none">$student.matricNo</a>
+
+</td>
+<td valign="top"  style="width:200px">$student.biodata.name</td>
+<td valign="top">$!student.program.name</td>
+<td valign="top">$!student.intake.name</td>
+</tr>
+#end
+</table>

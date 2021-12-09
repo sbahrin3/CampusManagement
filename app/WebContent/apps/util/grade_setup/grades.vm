@@ -1,0 +1,66 @@
+
+
+
+<table width="100%">
+
+<tr><td align="center">
+
+<table cellpadding="1" cellspacing="0">
+
+#if ( $grade_error )
+<tr><td colspan="6" style="height:30px;background:#F7CDCD;padding:5px;font-weight:bold;color:#F40E0E" align="center">
+Grade Overlapping Error! Please Check!
+</td></tr>
+#end
+
+<tr>
+<td align="center" style=""></td>
+<td align="center" style="font-weight:bold">&ge;&nbsp;Low</td>
+<td align="center" style="font-weight:bold">&lt;&nbsp;High</td>
+<td align="center" style="font-weight:bold">Point</td>
+<td align="center" style="font-weight:bold">Letter</td>
+<td align="center" style="font-weight:bold"></td>
+</tr>
+#foreach( $g in $grades )
+<tr>
+<td align="center" style="width:10px">
+#set ( $bgcolor = "#fff" )
+#if ( $grade_error )
+	#if ( $g.id == $g1.id )
+		#set ( $bgcolor = "#F7CDCD" )
+		<span style="font-weight:bold;font-size:11pt;color:#F40E0E">!</span>
+	#elseif ( $g.id == $g2.id )
+		#set ( $bgcolor = "#F7CDCD" )
+		<span style="font-weight:bold;font-size:11pt;color:#F40E0E">!</span>		
+	#else		
+		#set ( $bgcolor = "#fff" )
+	#end
+#end
+</td>
+<td align="center" style="width:80px"><input class="text" name="min_$g.id" value="$!g.minMark" style="width:80px;text-align:center;background:$bgcolor" onchange="doDivAjaxCall$formName('grade', 'save_grades', '')"></td>
+<td align="center" style="width:80px"><input class="text" name="max_$g.id"  value="$!g.maxMark" style="width:80px;text-align:center;background:$bgcolor" onchange="doDivAjaxCall$formName('grade', 'save_grades', '')"></td>
+<td align="center" style="width:80px"><input class="text" name="point_$g.id"  value="$!g.point" style="width:80px;text-align:center;background:$bgcolor" onchange="doDivAjaxCall$formName('grade', 'save_grades', '')"></td>
+<td align="center" style="width:80px"><input class="text" name="letter_$g.id"  value="$!g.letter" style="width:80px;text-align:center;background:$bgcolor" onchange="doDivAjaxCall$formName('grade', 'save_grades', '')"></td>
+<td align="center">
+<buttn class="btn btn-danger btn-xs" type="button" onclick="if ( !confirm('Delete this grade?') ) return;doDivAjaxCall$formName('grade', 'delete_grade', 'grade_id=$g.id')">x</button>
+</td>
+</tr>
+#end
+<tr>
+<td></td>
+<td align="center" style="width:80px"><input class="text" name="min" style="width:80px;text-align:center"></td>
+<td align="center" style="width:80px"><input class="text" name="max" style="width:80px;text-align:center"></td>
+<td align="center" style="width:80px"><input class="text" name="point" style="width:80px;text-align:center"></td>
+<td align="center" style="width:80px"><input class="text" name="letter" style="width:80px;text-align:center"></td>
+<td>
+<button class="btn btn-warning btn-sm" type="button" style="width:60px" onclick="doDivAjaxCall$formName('grade', 'add_grade', '')">Add</button>
+</td>
+</tr>
+</table>
+
+</td><td>
+
+##<input type="button" style="height:30px" value="SAVE CHANGES" onclick="doDivAjaxCall$formName('grade', 'save_grades', '')">
+
+
+</td></tr></table>

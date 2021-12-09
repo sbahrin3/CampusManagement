@@ -1,0 +1,46 @@
+
+<fieldset>
+
+<table width="100%">
+<tr><td valign="top">
+
+<table width="100%">
+
+<tr><td  style="width:120px">Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+<tr><td>Centre:</td><td style="font-weight:bold">$!student.learningCenter.name</td></tr>
+#if ( $student_status )
+<tr><td>Semester:</td><td style="font-weight:bold">
+$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end
+($student_status.session.name)
+</td></tr>
+
+<tr><td>Status:</td><td style="font-weight:bold">
+$!student_status.type.name
+</td></tr>
+
+<tr>
+	<td></td>
+	<td>
+		<br/><br/>
+		<input class="linkbutton" type="button" style="font-weight:bold;font-size:10pt;height:30px" value="Bar this student from viewing examination result" onclick="doDivAjaxCall3$formname('listBarredStudents','barStudent','studentId=$!student.id');$('getStudent').innerHTML='';$('matric_no').value='';">
+	</td>
+</tr>
+#end
+</table>
+
+</td><td valign="top">
+#if($student.photoFileName != "")
+<img src="../download?file=$!student.photoFileName">
+#else
+<img src="../img/nophoto.gif" border="0">
+#end
+
+</td></tr>
+
+
+</table>
+
+</fieldset>

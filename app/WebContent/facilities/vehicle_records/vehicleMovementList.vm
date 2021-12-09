@@ -1,0 +1,53 @@
+$dateFormat.applyPattern("dd-MM-yyyy hh:mm a")
+<table width="">
+<tr style="background:#D3CFCF;height:25px">
+<td style="font-weight:bold;width:20px"></td>
+<td style="font-weight:bold;width:150px">Depart</td>
+<td style="font-weight:bold;width:150px">Expected Return</td>
+<td style="font-weight:bold;width:150px">Return</td>
+<td  style="font-weight:bold;width:280px">Driver Name</td>
+<td style="font-weight:bold;width:300px">Destination</td>
+##<td style="font-weight:bold;width:20px">&nbsp;</td>
+##<td style="font-weight:bold;width:20px">&nbsp;</td>
+</tr>
+</table>
+
+<div style="height:300px;overflow:auto"">
+<table width="">
+<tr style="background:#fff;height:0px">
+<td style="font-weight:bold;width:20px"></td>
+<td style="font-weight:bold;width:150px"></td>
+<td style="font-weight:bold;width:150px"></td>
+<td style="font-weight:bold;width:150px"></td>
+<td  style="font-weight:bold;width:280px"></td>
+<td style="font-weight:bold;width:300px"></td>
+<td style="font-weight:bold;width:20px"></td>
+<td style="font-weight:bold;width:20px"></td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach( $m in $movementLogs )
+#set ( $cnt = $cnt + 1 )
+
+#if ( $m.returnDateTime )
+<tr style="background:#E3EEF7;height:25px">
+#else
+<tr style="background:#F4EFEF;height:25px">
+#end
+<td>$cnt.</td>
+<td>$dateFormat.format($m.departDateTime)</td>
+<td>$dateFormat.format($m.expectedReturnDateTime)</td>
+<td>#if ( $m.returnDateTime ) $dateFormat.format($m.returnDateTime) #end</td>
+<td>$!m.driver.name</td>
+<td>$!m.destinationName</td>
+<td><input class="button" type="button" value="..." onclick="doDivAjaxCall3$formname('divRemark','getRemark','movementLogId=$m.id')"></td>
+<td><input class="button" type="button" value="X" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('movementLogRecords','deleteMovementLog','movementLogId=$m.id')"></td>
+</tr>
+#end
+</table>
+</table>
+
+<script>
+$('destinationName').value = "";
+$('destinationRemark').value = "";
+</script>

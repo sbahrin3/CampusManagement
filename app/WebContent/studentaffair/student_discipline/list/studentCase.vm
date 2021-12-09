@@ -1,0 +1,51 @@
+$dateFormat.applyPattern("MMM, dd yyyy")
+
+<div>
+<table>
+<tr style="height:30px;background:#D0D6DB">
+<td style="width:30px;">&nbsp;</td>
+<td style="width:150px;" align="center">Matric No</td>
+<td style="width:200px;" align="center">Name</td>
+<td style="width:300px;" align="center">Case</td>
+<td style="width:120px;" align="center">Reported Date</td>
+<td style="width:120px;" align="center">Hearing Date</td>
+<td style="width:120px;" align="center">Case Closed?</td>
+<td style="width:120px;" align="center">Penalty Imposed?</td>
+<td style="width:40px;"></td>
+</tr>
+</table>
+</div>
+<div style="overflow:auto;height:500px">
+<table>
+<tr style="height:0px;">
+<td style="width:30px;"></td>
+<td style="width:150px;"></td>
+<td style="width:200px;"></td>
+<td style="width:300px;"></td>
+<td style="width:120px;"></td>
+<td style="width:120px;"></td>
+<td style="width:120px;"></td>
+<td style="width:120px;"></td>
+<td style="width:40px;"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach ( $sc in $studentCases )
+	#set ( $cnt = $cnt + 1 )
+	#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E6EAED" ) #else #set ( $bgcolor = "#fff" ) #end
+	<tr style="background:$bgcolor">
+	<td>$cnt.</td>
+	<td>$sc.student.matricNo</td>
+	<td>$sc.student.biodata.name</td>
+	<td>$sc.disciplinaryCase.name</td>
+	<td>#if ( $sc.reportedDate ) $dateFormat.format($sc.reportedDate)#end</td>
+	<td>#if ( $sc.hearingDate ) $dateFormat.format($sc.hearingDate)#end</td>	
+	<td align="center">#if ( $sc.caseClosed ) Yes #end</td>
+	<td align="center">#if ( $sc.penaltyImposed ) Yes #end</td>
+	
+	<td><input class="linkbutton" type="button" value="..." onclick="$('divList').style.display='none';$('divOpen').style.display='block';$('divStudent').style.display='block';doDivAjaxCall3$formname('divStudent','getStudent','matricNo=$sc.student.matricNo')"></td>
+
+	</tr>
+#end
+</table>
+</div>
+

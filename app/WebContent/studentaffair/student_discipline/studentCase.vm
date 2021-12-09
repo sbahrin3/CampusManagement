@@ -1,0 +1,34 @@
+<script>
+$('addCase').style.display='none';
+</script>
+
+<table>
+<tr style="height:30px;background:#D0D6DB">
+<td style="width:30px;">&nbsp;</td>
+<td style="width:300px;" align="center">Case Name</td>
+<td style="width:120px;" align="center">Reported Date</td>
+<td style="width:120px;" align="center">Hearing Date</td>
+<td style="width:120px;" align="center">Case Closed?</td>
+<td style="width:120px;" align="center">Penalty Imposed?</td>
+<td style="width:40px;"></td>
+##<td style="width:40px;"></td>
+</tr>
+$dateFormat.applyPattern("MMM, dd yyyy")
+#set ( $cnt = 0 )
+#foreach ( $sc in $studentCases )
+	#set ( $cnt = $cnt + 1 )
+	#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E6EAED" ) #else #set ( $bgcolor = "#fff" ) #end
+	<tr style="background:$bgcolor">
+	<td>$cnt.</td>
+	<td>$sc.disciplinaryCase.name</td>
+	<td>#if ( $sc.reportedDate ) $dateFormat.format($sc.reportedDate)#end</td>
+	<td>#if ( $sc.hearingDate ) $dateFormat.format($sc.hearingDate)#end</td>	
+	<td align="center">#if ( $sc.caseClosed ) Yes #end</td>
+	<td align="center">#if ( $sc.penaltyImposed ) Yes #end</td>
+	<td><input class="linkbutton" type="button" style="width:100%" value="..." onclick="doDivAjaxCall3$formname('addCase','getStudentCase','studentCaseId=$sc.id')"></td>
+	##<td><input class="linkbutton" type="button" style="width:100%" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('studentCase','deleteCase','studentCaseId=$sc.id')"></td>
+	</tr>
+#end
+</table>
+
+

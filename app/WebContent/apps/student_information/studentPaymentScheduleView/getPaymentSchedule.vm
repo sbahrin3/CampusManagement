@@ -1,0 +1,10 @@
+<input type="hidden" name="paymentScheduleId" value="$paymentSchedule.id">
+
+<div style="padding:10px">
+	
+	<div id="paymentScheduleMain" style="padding:20px">
+		#parse("apps/student_information/studentPaymentScheduleView/paymentScheduleMain.vm")
+	</div>
+
+</div>
+

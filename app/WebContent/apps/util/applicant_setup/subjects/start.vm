@@ -1,0 +1,19 @@
+<table width="700px" align="center">
+<tr><td align="right">
+<select name="stype" onchange="doDivAjaxCall$formname('div_list_subjects','list_subjects','')">
+<option value=""></option>
+<option value="SPM">SPM</option>
+<option value="STPM">STPM</option>
+</select>
+</td></tr>
+
+<tr><td>
+<div id="div_list_subjects" name="div_list_subjects">
+
+</div>
+
+</td></tr>
+<td><td>
+
+</td></tr>
+</table>

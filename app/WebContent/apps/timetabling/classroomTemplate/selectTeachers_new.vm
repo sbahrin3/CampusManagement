@@ -1,0 +1,60 @@
+<div style="background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff">Select Teachers</td>
+			<td align="right">
+				<button type="button" class="btn btn-info btn-sm" onclick="doDivAjaxCall$formname('listTeachers','saveTeachers','classroomTemplateId=$!classroomTemplate.id');$('classroomOptions').style.display='none';">OK</button>
+				<button type="button" class="btn btn-info btn-sm" onclick="$('classroomOptions').style.display='none';">X</button>
+			</td>
+			</tr>
+		</table>
+</div>
+
+<div id="divClassroomGroups" style="height:400px;overflow:auto;overflow-x:hidden;">
+	
+	
+	<div>
+		<label>Selected Teachers</label><br/>
+		#if ( $selectedTeachers.size() > 1 )
+			<ul style="list-style: none;">
+			#foreach( $t in $selectedTeachers)
+				<li>
+				<input type="checkbox" name="deleteTeacherIds" value="$t.id">
+				$t.name
+				</li>
+			#end
+			</ul>
+			
+			
+			<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('classroomOptions','deleteTeachers','classroomTemplateId=$!classroomTemplate.id')">Delete Teachers</button>
+		
+		#else
+			-
+		#end
+		</div>
+		
+		<div style="margin-top:20px">
+		<label>Find Teachers:</label><br/>
+		</div>
+		
+		<div>
+			<table class="table">
+				<tr>
+					<td>
+						<input class="form-control" type="text" name="searchTeacher" onkeypress="if ( event.keyCode == 13 ) { doDivAjaxCall$formname('listOtherTeachers','listOtherTeachers','classroomTemplateId=$!classroomTemplate.id'); }">
+						<input type="text" style="width:0px;visibility:hidden" name="dummy">
+					</td>
+					<td style="width:100px">
+						<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('listOtherTeachers','listOtherTeachers','classroomTemplateId=$!classroomTemplate.id')">Find..</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div id="listOtherTeachers">
+		
+		
+		</div>
+	
+</div>

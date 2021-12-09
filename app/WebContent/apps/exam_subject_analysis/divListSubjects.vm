@@ -1,0 +1,11 @@
+
+<select class="textr" name="subject_id" style="width:400px">
+<option value=""> - </option>
+#foreach( $s in $subjects )
+	#if ( $s.code )
+	<option value="$s.id">$s.code $s.name</option>
+	#end
+#end
+</select>
+<input style="font-weight:bold" type="button" 
+value="Get Results &gt;" onclick="doDivAjaxCall$formname('results', 'listStudents', '')">

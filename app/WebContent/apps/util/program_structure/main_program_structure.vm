@@ -1,0 +1,15 @@
+<br/><br/>
+#if ( $main_struct )
+<table width="100%">
+<tr><td>Master Program Structure:</td></tr>
+</table>
+#else
+<table width="100%">
+<tr><td align="center" style="font-weight:bold">Master Program Structure Not Available.  <br/>
+Do You Want To Create ?<br/>
+(
+$href.command("create_master").text("YES, Create a Master Program Structure")
+)</td></tr>
+</table>
+#end
+<br/><br/>

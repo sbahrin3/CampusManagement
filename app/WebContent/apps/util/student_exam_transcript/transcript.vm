@@ -1,0 +1,28 @@
+#if ( $student )
+
+#set ( $allow_view_transcript = "yes" )
+
+#if ( $student_mode )
+	#if ( $student.barredExamTranscript )
+		#set ( $allow_view_transcript = "no" )
+	#end
+#end
+	
+	
+#if ( $allow_view_transcript == "yes" )
+	#parse("apps/util/student_exam_transcript/transcript2.vm")
+#else
+	<div style="padding:1cm;font-family:Verdana;font-size:10pt;font-weight:bold">
+		
+		You are not allowed to view your Examination Result.<br/>
+		Please check your payment status with Bursary.
+	</div>
+#end
+
+
+
+#end
+
+
+
+

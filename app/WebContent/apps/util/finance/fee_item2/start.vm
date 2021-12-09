@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<style>
+#divInput {
+    position:fixed;
+    top: 30%;
+    left: 10%;
+    width:700px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+</style>
+<div id="listFees" style="padding:10px">#parse("apps/util/finance/fee_item2/listFees.vm")</div>
+<div id="divInput" class="shadow"></div>
+	
+<script>
+function saveFee(feeId) {
+	if ( $('code').value.trim() == "" ) {
+		return;
+	}
+	if ( $('description').value.trim() == "" ) {
+		return;
+	}
+	doDivAjaxCall$formname('listFees','saveFee','feeId=' + feeId);
+}
+</script>

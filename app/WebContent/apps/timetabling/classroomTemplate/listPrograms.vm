@@ -1,0 +1,5 @@
+<ul class="list-group">
+#foreach( $p in $classroomTemplate.group.programs )
+	<li class="list-group-item">$p.code - $p.name</li>
+#end
+</ul>

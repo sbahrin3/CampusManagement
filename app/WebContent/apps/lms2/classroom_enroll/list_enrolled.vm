@@ -1,0 +1,30 @@
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Classrooms Enrolled</legend>
+
+
+<table width="100%" cellspacing="0">
+<tr height="0px">
+<td style="width:20px"></td>
+<td style="width:100px"></td>
+<td style=""></td>
+<td style="width:100px"></td>
+</tr>
+#foreach( $c in $my_classrooms )
+<tr>
+<td><input type="checkbox" value="$c.id" name="enrolled_ids"></td>
+<td>$c.classroom.subjectId</td>
+<td>$util.capitalized($c.classroom.subjectTitle)</td>
+<td>$c.role</td>
+</tr>
+#end
+</table>
+<table width="100%" cellspacing="0">
+<tr><td align="right">
+
+<input type="button" value="Remove Classroom(s)" onclick="doDivAjaxCall$formname('div_enrolled','remove','')">
+
+</td></tr>
+</table>
+
+</fieldset>

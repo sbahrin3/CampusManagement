@@ -1,0 +1,71 @@
+
+
+
+  <div style="background:#3071A9;padding:10px">
+
+		
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff"><label>Equivalents</label></td>
+			<td align="right">
+				<button type="button" class="btn btn-primary" onclick="$('addEquivalentSubjects').style.display='none';">x</button>
+			</td>
+		</tr>
+	</table>
+  	
+  </div>
+
+
+
+	<div id="divSubjects" style="padding:10px;height:420px;overflow:auto;overflow-x:hidden;">
+		
+		<div>
+		<label>Equivalent Courses</label><br/>
+		#if ( $eqSubjects.size() > 1 )
+			<ul style="list-style: none;">
+			#foreach( $s in $eqSubjects)
+				#if ( $s.id != $subject.id )
+					<li>
+					<input type="checkbox" name="deleteSubjectIds" value="$s.id">
+					$s.code - $s.name (Version $s.version)
+					</li>
+				#end
+			#end
+			</ul>
+			
+			<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('addEquivalentSubjects','deleteSubjects','')">Delete Courses</button>
+		
+		#else
+			-
+		#end
+		</div>
+		
+		<div style="margin-top:20px">
+		<label>Other Courses</label><br/>
+		</div>
+		
+		<div>
+			<table class="table">
+				<tr>
+					<td>
+						<input class="form-control" type="text" name="searchSubject" onkeypress="if ( event.keyCode == 13 ) { doDivAjaxCall$formname('listOtherSubjects','listOtherSubjects',''); }">
+						<input type="text" style="width:0px;visibility:hidden" name="dummy">
+					</td>
+					<td style="width:100px">
+						<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('listOtherSubjects','listOtherSubjects','')">Find..</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div id="listOtherSubjects">
+		
+		
+		</div>
+
+	
+		
+		
+	</div>
+
+

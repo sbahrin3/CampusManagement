@@ -1,0 +1,13 @@
+<table width="600" align="center">
+<tr>
+<td style="width:50px"></td>
+<td style="width:200px">$contact.name</td>
+<td style="width:200px">$contact.address</td>
+
+<td>
+
+<input type="button" value="EDIT" onclick="doDivAjaxCall$formname('div_contact_$contact.id','edit_contact','contact_id=$contact.id')">
+<input type="button" value="DELETE" onclick="doDivAjaxCall$formname('div_contact_list','delete_contact','contact_id=$contact.id')">
+</td>
+</tr>
+</table>

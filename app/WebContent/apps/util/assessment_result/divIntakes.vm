@@ -1,0 +1,9 @@
+
+
+<select class="input-text" name="intake_id" style="width:400px" onchange="doDivAjaxCall3$formname('listSubjects','list_subjects','')">
+<option value=""> - </option>
+#foreach( $s in $intakes )
+<option value="$s.id" >$s.code $s.name</option>
+#end
+</select> (optional)
+

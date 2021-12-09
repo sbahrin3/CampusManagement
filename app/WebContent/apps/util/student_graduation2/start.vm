@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+
+<div id="divSelectParam">#parse("apps/util/student_graduation2/select_params.vm")</div>
+<br/>
+<div id="listStudents"></div>
+
+<script language="javascript" type="text/javascript">
+function popitup(windowName, url) {
+	newwindow=window.open(url, windowName,'height=200,width=800,scrollbars=yes');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+</script>

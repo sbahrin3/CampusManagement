@@ -1,0 +1,64 @@
+<table class="table table-striped">
+<tr style="height:30px;background:#BABBBC">
+<td style="width:50px;font-weight:bold">Code</td>
+<td style="width:300px;font-weight:bold">Name</td>
+<td style="width:50px;font-weight:bold" align="center">Unit</td>
+#if ( !$classroomMode )
+	<td style="width:100px;font-weight:bold" align="center">CGPA?</td>
+	<td style="width:200px;font-weight:bold" align="center">Grade<br/>Scheme</td>
+#end
+<td style=""></td>
+#if ( $classroomMode )
+<td style="width:10px"></td>
+#end
+
+</tr>
+
+
+#foreach( $subject in $subjects )
+
+<tr style="height:25px">
+<td nowrap>
+$subject.code
+
+<div id="messageSubject_$subject.id" style="position:absolute;background:#fff"></div>
+<div class="shadow" id="editSubject_$subject.id" style="display:none;background:#fff;position:absolute;border:1px dotted #000;padding:5px"></div>
+
+
+</td>
+<td style="cursor:pointer">$subject.name</td>
+<td align="center">$subject.credithrs</td>
+
+#if ( !$classroomMode )
+	<td align="center">#if ( $subject.excludeGpa == 1 ) NO #else YES #end</td>
+	<td align="center">$!subject.markingGrade.name</td>
+#end
+
+<td nowrap align="">
+
+#if ( !$classroomMode )
+	
+	
+	<button class="btn btn-warning btn-sm" type="button" onclick="$('editSubject_$subject.id').innerHTML = '';doDivAjaxCall$formname('editSubject_$subject.id','editSubject','subjectId=$subject.id&subjectGroupId=$subjectGroup.id&facultyId=$facultyId')">Edit</button>
+	<button class="btn btn-danger btn-sm" type="button" onclick="$('messageSubject_$subject.id').innerHTML='<b>Deleting Subject... Please Wait..</b>';doDivAjaxCall3$formname('divListSubjects','deleteSubject','subjectId=$subject.id&subjectGroupId=$!subjectGroup.id&facultyId=$!facultyId')">X</button>
+	
+	
+	<button class="btn btn-success btn-sm" type="button" onclick="$('editSubject_$subject.id').innerHTML = '';doDivAjaxCall$formname('editSubject_$subject.id','prerequisiteSubjects','subjectId=$subject.id&subjectGroupId=$subjectGroup.id&facultyId=$facultyId')">Pre-requisite</button>
+	<button class="btn btn-success btn-sm" type="button" onclick="$('editSubject_$subject.id').innerHTML = '';doDivAjaxCall$formname('editSubject_$subject.id','assignTeachers','subjectId=$subject.id&subjectGroupId=$subjectGroup.id&facultyId=$facultyId')">Lecturers</button>
+	
+
+#else
+	
+	<button class="btn btn-success btn-sm" type="button" onclick="$('editSubject_$subject.id').innerHTML = '';doDivAjaxCall$formname('editSubject_$subject.id','assignTeachers','subjectId=$subject.id&subjectGroupId=$subjectGroup.id&facultyId=$facultyId')">Lecturers</button>
+	<button class="btn btn-success btn-sm" type="button" onclick="$('editSubject_$subject.id').innerHTML = '';doDivAjaxCall$formname('editSubject_$subject.id','assignClassrooms2','subjectId=$subject.id&subjectGroupId=$subjectGroup.id&facultyId=$facultyId')">Classroom</button>
+	<button class="btn btn-success btn-sm" type="button" onclick="doDivAjaxCall3$formname('divClassroomTemplates','getClassroomTemplates','templateSubjectId=$subject.id')">Classroom Templates</button>
+	
+#end
+
+
+</td>
+</tr>
+
+
+#end
+</table>

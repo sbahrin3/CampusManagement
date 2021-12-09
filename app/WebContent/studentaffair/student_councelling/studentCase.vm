@@ -1,0 +1,34 @@
+<script>
+$('addCase').style.display='none';
+</script>
+
+<table>
+<tr style="height:25px;background:#D0D6DB">
+<td style="width:30px;">&nbsp;</td>
+<td style="width:200px;" align="center">Issue</td>
+<td style="width:120px;" align="center">Referred Date</td>
+<td style="width:200px;" align="center">Referral Name</td>
+<td style="width:200px;" align="center">Counsellor Name</td>
+<td style="width:100px;" align="center">Councelling Sessions</td>
+<td style="width:40px;"></td>
+<td style="width:40px;"></td>
+</tr>
+$dateFormat.applyPattern("MMM, dd yyyy")
+#set ( $cnt = 0 )
+#foreach ( $sc in $studentCases )
+	#set ( $cnt = $cnt + 1 )
+	#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E6EAED" ) #else #set ( $bgcolor = "#fff" ) #end
+	<tr style="background:$bgcolor">
+	<td>$cnt.</td>
+	<td>$!sc.issue.name</td>
+	<td>#if ( $sc.referredDate ) $dateFormat.format($sc.referredDate)#end</td>
+	<td>$!sc.referralName</td>	
+	<td>$!sc.councellor.name</td>
+	<td align="center" style="cursor:pointer;"><span id="counter_$sc.id">$sc.sessions.size()</span></td>
+	<td><input class="linkbutton" type="button" style="width:100%" value="List" onclick="doDivAjaxCall3$formname('addCase','getCouncellingSessions','studentCaseId=$sc.id');"></td>
+	<td><input class="linkbutton" type="button" style="width:100%" value="Edit" onclick="doDivAjaxCall3$formname('addCase','getStudentCase','studentCaseId=$sc.id')"></td>
+	</tr>
+#end
+</table>
+
+

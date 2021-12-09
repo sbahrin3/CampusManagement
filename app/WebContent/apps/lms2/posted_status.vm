@@ -1,0 +1,3 @@
+<script>
+doDivAjaxCall3$formname('div_postings','list_postings','');
+</script>

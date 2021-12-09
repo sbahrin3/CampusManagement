@@ -1,0 +1,43 @@
+<table width="800px" align="center">
+<tr><td>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table align="center">
+
+
+<tr>
+<td>Select Intake:</td>
+<td>
+<select name="intake_id" style="width:300px">
+<option value=""> - </option>
+#foreach ( $intake in $intakes )
+<option value="$intake.id">$intake.name</option>
+#end
+</select>
+<input type="button" value="VIEW STATISTIC" onclick="doDivAjaxCall$formname('div_report','view_report','')">
+</td>
+</tr>
+
+
+
+</td>
+</tr>
+
+</table>
+</fieldset>
+
+</td></tr>
+<tr><td style="font-weight:bold" align="center">
+<fieldset style="background-color:#FFFF66;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+FAILED STUDENTS STATISTIC
+</fieldset>
+</td></tr>
+<tr><td>
+
+<div id="div_report" name="div_report">
+</div>
+
+
+
+</td></tr>
+</table>

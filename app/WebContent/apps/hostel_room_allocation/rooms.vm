@@ -1,0 +1,14 @@
+<table width="100%" bgcolor="lightgrey"><tr><td>ROOMS</td><td align="right"><a href="javascript:void()" onclick="doDivAjaxCall$formname('floor_$floor.id', 'close', '')">close</a></td></tr></table>
+<table width="100%">
+#foreach ( $room in $floor.rooms )
+<tr>
+<td>
+<a href="javascript:void()" onclick="if ( !confirm('Select Room: $room.name?') ) return; doDivAjaxCall$formname('list_rooms', 'room_in', 'room_id=$room.id')">
+$room.code $room.name
+</a>
+</td>
+</tr>
+
+#end
+</table>
+</td></tr></table>

@@ -1,0 +1,50 @@
+<script>
+$('newActivity').style.display="none";
+</script>
+<table>
+<tr>
+<td colspan="8" style="font-weight:bold;font-size:12pt">
+$club.name
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="Add" onclick="doDivAjaxCall3$formname('newActivity','newActivity','clubId=$club.id')">
+</td>
+</tr>
+<tr style="background:#D0D6DB;height:30px">
+<td style="width:30px;font-weight:bold"></td>
+<td style="width:200px;font-weight:bold">Name</td>
+<td style="width:100px;font-weight:bold">Date Begin</td>
+<td style="width:100px;font-weight:bold">Date End</td>
+<td style="width:200px;font-weight:bold">Location</td>
+<td style="width:300px;font-weight:bold">Description</td>
+<td style="width:20px;font-weight:bold">Proposal</td>
+<td style="width:100px;font-weight:bold" align="center">Status</td>
+<td style="width:30px;font-weight:bold"></td>
+</tr>
+$dateFormat.applyPattern("MMM dd, yyyy")
+#set ( $cnt = 0 )
+#foreach( $a in $activities )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#EFEDED" ) #else #set ( $bgcolor = "#FFFFFF" ) #end
+<tr style="background:$bgcolor">
+<td>$cnt.</td>
+<td>
+<div id="editActivity_$a.id" class="shadow" style="display:none;position:absolute;background:#fff;left:5%;border:1px solid #D0D6DB"></div>
+$!a.name
+</td>
+<td>$dateFormat.format($a.startDate)</td>
+<td>$dateFormat.format($a.endDate)</td>
+<td>$!a.locationRemark</td>
+<td>$!a.description</td>
+<td align="center">
+#if ( $a.proposalDocumentName != "" )
+<a href="../download?file=$a.proposalDocumentName" style=""><img src="../img/att.png"></a>
+#end
+</td>
+<td align="center">$a.proposalStatus</td>
+<td>
+<input class="linkbutton" type="button" value="..." onclick="doDivAjaxCall3$formname('editActivity_$a.id','editActivity','activityId=$a.id')">
+</td>
+</tr>
+#end
+</table>

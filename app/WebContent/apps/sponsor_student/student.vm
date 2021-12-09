@@ -1,0 +1,6 @@
+<table width="100%">
+<tr><td align="center">
+<input name="student_name" style="height:30px;width:300px">
+<input class="gradient" style="height:30px;font-weight:bold" type="button" value="Find.." 
+onclick="doDivAjaxCall$formname('div_find_student2','select_students','')">
+</td></tr></table>

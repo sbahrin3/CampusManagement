@@ -1,0 +1,32 @@
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Back" onclick="doDivAjaxCall3$formname('div_main','listGroups','')">
+</td></tr></table>
+
+
+<table>
+<tr>
+<td>SelectQuestion</td>
+<td>
+<select class="text" style="width:100px" name="refNo">
+#foreach ( $refNo in $refNos )
+<option value="$refNo">$refNo</option>
+#end
+</select>
+<input class="linkbutton" type="button" value="Go" onclick="doDivAjaxCall3$formname('divViewStatistic','viewStatistic','setId=$!set.id&dateStart=$dateFormat.format($startDate)')">
+</td>
+
+<td>
+
+Show statistics by:
+<a href="javascript:void(0)" onclick="doDivAjaxCall3$formname('divViewStatistic','viewStatistic','setId=$!set.id&dateStart=$dateFormat.format($startDate)')">
+Lecturers 
+</a>
+|
+<a href="javascript:void(0)" onclick="doDivAjaxCall3$formname('divViewStatistic','viewStatisticByFaculty','setId=$!set.id&dateStart=$dateFormat.format($startDate)')">
+Faculties
+</a>
+</td>
+</tr>
+</table>
+<br/><br/>
+<div id="divViewStatistic"></div>

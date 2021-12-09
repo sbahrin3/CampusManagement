@@ -1,0 +1,37 @@
+
+<div style="padding:10px">
+
+<div class="well well-sm" style="font-weight:bold">INSTITUTION</div>
+<table class="table" align="">
+
+	<tr>
+		<td style="width:100px;font-weight:bold">Code</td>
+		<td style="width:500px;font-weight:bold">Name</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td style="width:100px;"><input class="form-control" id="abbrev" name="abbrev" style="width:100%;font-weight:bold" value="$!institution.abbrev" onkeypress="$('div_button').style.visibility='visible'"></td>
+		<td style="width:400px;"><input class="form-control" id="name" name="name" style="width:100%;font-weight:bold" value="$!institution.name"  onKeyPress="$('div_button').style.visibility='visible'"></td>
+		<td>
+		<div id="div_button" style="visibility:hidden">
+		<button class="btn btn-primary"  type="button" onclick="doDivAjaxCall$formname('div_empty','save_changes','id=$!institution.id'); $('div_button').style.visibility='hidden';">Save</button>
+		</div>
+		</td>
+		<td></td>
+	</tr>
+</table>
+
+<br/><br/><br/>
+
+<div class="well well-sm" style="font-weight:bold">LEARNING CENTRES</div>
+<div id="div_centres">
+#parse("apps/util/institution/centres.vm")
+</div>
+
+
+<div id="div_empty"></div>
+
+
+</div>
+
+

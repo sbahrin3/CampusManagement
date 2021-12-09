@@ -1,0 +1,147 @@
+<table width="700" align="center">
+<tr><td align="right" style="font-weight:bold">
+[$href.command("get_structure_by_centre").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%" align="center">
+<tr><td style="height:30px;font-weight:bold;background-color:lightgrey">$program.code $program.name</td></tr>
+<tr><td>
+</table>
+
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td align="right">
+<select name="selected_period_id" style="font-weight:bold;width:300px" onchange="doAjaxCall${_formName}('select_period','')">
+#foreach ( $p in $periods )
+<option value="$p.id" #if ( $p.id == $period.id ) selected #end>&nbsp;&nbsp;&nbsp;$p.name #if ( $p.parent ) ($p.parent.name) #end</option>
+#end
+</select>
+</td></tr>
+</table>
+
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+<tr bgcolor="lightgrey">
+<td colspan="3" style="font-weight:bold;height:40px;">
+$href.command("add_subject").param("period_id=$period.id").text("$period.name #if ( $period.parent ) ($period.parent.name )#end")
+&nbsp;&nbsp;
+
+#if ( $position != "first" ) 
+$button.command("prev_period").param("curr_period_id=$period.id").text("&lt;")
+#end
+&nbsp;
+#if ( $position != "last" ) 
+$button.command("next_period").param("curr_period_id=$period.id").text("&gt;")
+#end
+</td>
+<td colspan="4" align="right">
+<select name="allow_recurring" onchange="doAjaxCall${_formName}('allow_recurring','')">
+<option value="no" #if ( $allow_recurring == "no" ) selected #end>Disable recurring subjects</option>
+<option value="yes" #if ( $allow_recurring == "yes" ) selected #end>Allow recurring subjects</option>
+</select>
+
+</td>
+</tr>
+#if ( $programUtil.getSubjectRegs($programStructure, $period.id) )
+#foreach ( $reg in $programUtil.getSubjectRegsOrderedByCode($programStructure, $period.id))
+<tr>
+<td>&nbsp;&nbsp;</td>
+<td>$reg.subject.code</td>
+<td>$reg.subject.name</td>
+<td align="center">
+
+<select name="$reg.id" style="width:100px">
+#set ( $is_specialisation = "no" )
+#foreach ( $cat in $categories )
+
+#if ( $cat.id == "specialisation" )
+#set ( $is_specialisation = "yes" )
+<option value="$cat.id">---- SELECT SPECIALISATION ----</option>
+#else
+
+#if ( $is_specialisation == "no" )
+<option value="$cat.id" #if ( $reg.category.id == $cat.id ) selected #end>$cat.name</option>
+#else
+<option value="specialisation_$cat.id" #if ( $reg.specialisation.id == $cat.id ) selected #end>&nbsp;&nbsp;&nbsp;&nbsp;$cat.name</option>
+#end
+
+#end
+
+#end
+</select>
+</td>
+<td align="right">
+<input type="checkbox" id="remove_ids" name="remove_ids" value="$reg.subject.id">
+</td>
+</tr>
+#end
+<tr>
+<td colspan="5" align="right">
+$button.command("save_subjects").text("SAVE")
+$button.command("remove_subjects").text("REMOVE")
+</td>
+</tr>
+#end
+</table>
+
+#if ( $subjects )
+<table width="100%" cellspacing="0" cellpadding="0">
+##select schools
+<tr bgcolor="lightgrey">
+<td style="font-weight:bold;height:40px;">
+$button.command("add_subjects").text("ADD SUBJECT(S)")
+</td>
+<td style="font-weight:bold;height:40px;" align="right">
+<select name="faculty_id" onchange="doAjaxCall${_formName}('filter_by_faculty','')">
+<option value="">(ALL SCHOOLS)</option>
+#foreach( $f in $faculties )
+<option value="$f.id" #if ( $f.id == $faculty_id ) selected #end>&nbsp;&nbsp;&nbsp;&nbsp;$f.name</option>
+#end
+</select>
+</td>
+</tr>
+</table>
+
+<table width="100%">
+
+<tr>
+<td></td>
+<td style="font-weight:bold">
+$href.command("order_by").param("order_by=code").text("Code")
+</td>
+<td style="font-weight:bold">
+$href.command("order_by").param("order_by=name").text("Name")
+</td>
+<td style="font-weight:bold">
+School
+</td>
+</tr>
+
+<tr><td colspan="4"><hr/></td></tr>
+
+#foreach ( $s in $subjects )
+<tr>
+<td>
+<input type="checkbox" id="subject_ids" name="subject_ids" value="$!s.id">
+</td>
+<td>$!s.code</td>
+<td>$!s.name</td>
+<td>$!s.faculty.name</td>
+<td></td>
+</tr>
+#end
+</table>
+#end
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="centre_id" value="$!centre.id">
+<input type="hidden" name="period_id" value="$!period.id">
+<input type="hidden" name="structure_id" value="$!programStructure.id">
+<input type="hidden" name="ordered_by" value="$!order_by">

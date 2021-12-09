@@ -1,0 +1,42 @@
+<table width="700" align="center">
+<tr><td>
+
+<table width="100%">
+<tr>
+<td>Programmd:</td>
+<td>
+<select name="program_id" style="width:300px" onchange="doAjaxCall${_formName}('list_intakes','')">
+<option value="">- Select Program -</option>
+#foreach ( $p in $programs )
+<option value="$p.id" #if ( $p.id == $program_id ) selected #end>&nbsp;&nbsp;&nbsp;$p.code $p.name</option>
+#end
+</select>
+</td>
+</tr>
+<tr>
+<td>Intakes:</td>
+<td>
+<select name="intake_id" style="width:300px" onchange="doDivAjaxCall$formName('students', 'list_students', '')">
+<option value="">- Select Intake -</option>
+#foreach( $in in $intakes )
+<option value="$in.id" #if ( $in.id == $intake_id ) selected #end>&nbsp;&nbsp;&nbsp;$in.code $in.name</option>
+#end
+</select>
+<input type="button" value="List Students" onclick="doDivAjaxCall$formName('students', 'list_students', '')">
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="right">
+<br>
+</td></tr>
+</table>
+
+</td></tr>
+<tr><td>
+<div id="students" name="students">
+</div>
+
+</td></tr>
+
+</table>

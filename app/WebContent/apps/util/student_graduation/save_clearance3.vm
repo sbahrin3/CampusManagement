@@ -1,0 +1,7 @@
+<script>
+#if ($graduate.clearanceFinance) $('clearance_finance_${graduate.id}').innerHTML = 'YES'; #else $('clearance_finance_${graduate.id}').innerHTML = '<font color="red">NO</font>'; #end
+#if ($graduate.clearanceLibrary) $('clearance_library_${graduate.id}').innerHTML = 'YES'; #else $('clearance_library_${graduate.id}').innerHTML = '<font color="red">NO</font>'; #end
+#if ($graduate.clearanceStudentAffair) $('clearance_student_affair_${graduate.id}').innerHTML = 'YES'; #else $('clearance_student_affair_${graduate.id}').innerHTML = '<font color="red">NO</font>'; #end
+#if ($graduate.clearanceFaculty) $('clearance_faculty_${graduate.id}').innerHTML = 'YES'; #else $('clearance_faculty_${graduate.id}').innerHTML = '<font color="red">NO</font>'; #end
+$('clearance_${graduate.id}').style.display='none';
+</script>

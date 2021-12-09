@@ -1,0 +1,22 @@
+
+<div style="font-family:Verdana, sans-serif;margin-bottom:5px">
+<table>
+<tr><td style="font-size:11pt;font-weight:bold;">SUBJECT RESULT ANALYSIS REPORT</td></tr>
+<tr><td style="font-size:11pt;font-weight:bold;">$program.code - $program.name</td></tr>
+<tr><td style="font-size:11pt;font-weight:bold;">$!session.code - $!session.name</td></tr>
+</table>
+</div>
+
+
+<table width="100%"><tr>
+<td>
+	<button type="button" class="btn btn-success btn-sm" onclick="$('divSelectParam').style.display='block';">&lt;&lt</button>
+	<button type="class=" class="btn btn-success btn-sm" onclick="$('resultReport1').style.display='none';$('resultReport2').style.display='block';">Summary &gt;</button>
+	<button type="button" class="btn btn-success btn-sm"  onclick="document.location='../servlet/educate.sis.module.SubjectResultAnalysisListXLModule'">XLS</button>
+</td>
+<td style="width:20px"></td>
+
+<td align="right">
+
+</td>
+</tr></table>

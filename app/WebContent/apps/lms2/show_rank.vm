@@ -1,0 +1,9 @@
+												
+<img #if ( $reply.rank > 0 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0">
+<img #if ( $reply.rank > 1 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0">
+<img #if ( $reply.rank > 2 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0">
+<img #if ( $reply.rank > 3 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0">
+<img #if ( $reply.rank > 4 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0">
+																																																																		
+																																																																		
+																																																																		

@@ -1,0 +1,29 @@
+
+
+
+<table>
+<tr style="height:30px;background:#C1BFBF">
+<td style="width:40px;font-weight:bold">&nbsp;</td>
+<td style="width:500px;font-weight:bold">Offence</td>
+<td style="width:150px;font-weight:bold">Date</td>
+<td style="width:250px;font-weight:bold">Action</td>
+<td style="width:50px;font-weight:bold">
+<input class="linkbutton" type="button" value="Add" onclick="doDivAjaxCall3$formname('getOffence','getOffence','carStickerId=$carStickerId')">
+</td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach( $o in $offences )
+#set ( $cnt = $cnt + 1 )
+<tr style="background:#F7F7F7">
+<td style="border-bottom:1px solid #ccc;border-right:1px solid #ccc">$cnt.</td>
+<td style="border-bottom:1px solid #ccc;border-right:1px solid #ccc">$o.description</td>
+<td style="border-bottom:1px solid #ccc;border-right:1px solid #ccc">#if ( $o.date ) $dateFormat.format($o.date) #end</td>
+<td style="border-bottom:1px solid #ccc;border-right:1px solid #ccc">$o.action</td>
+<td style="border-bottom:1px solid #ccc;border-right:1px solid #ccc">
+<input type="button" class="linkbutton" style="padding:1px" value="..." onclick="doDivAjaxCall3$formname('getOffence','getOffence','offenceId=$o.id&carStickerId=$carStickerId')">
+<input type="button" class="linkbutton" style="padding:1px" value="X" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall3$formname('offenceHistory','deleteOffence','offenceId=$o.id&carStickerId=$carStickerId')">
+</td>
+</tr>
+#end
+</table>

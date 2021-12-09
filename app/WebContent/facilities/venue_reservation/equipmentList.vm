@@ -1,0 +1,40 @@
+<script>
+$('divItems').style.display="block";
+</script>
+
+<table width="100%" style="background:#D3D3D3">
+<tr><td style="font-weight:bold;">Equipment List</td>
+<td align="right"><input class="linkbutton" type="button" value="x" onclick="$('divItems').style.display='none';"></td></tr></table>
+
+<table>
+<tr style="height:30px;background:#EDEDED">
+<td style="width:360px;font-weight:bold">Equipment</td>
+<td style="width:100px;font-weight:bold">Serial No</td>
+<td style="width:50px"></td>
+</tr>
+</table>
+<div style="overflow:auto;height:250px">
+<table>
+<tr style="height:0px">
+<td style="width:360px"></td>
+<td style="width:100px"></td>
+<td style="width:50px"></td>
+</tr>
+#foreach( $item in $items )
+<tr style="height:30px">
+<td style="border-bottom:1px solid #C4C4C4">$item.description, $item.brandName, $item.modelName</td>
+<td style="border-bottom:1px solid #C4C4C4">$item.serialNo</td>
+<td style="border-bottom:1px solid #C4C4C4" align="center">
+
+<input type="checkbox" name="itemIds" value="$item.id">
+
+</td>
+</tr>
+#end
+</table>
+</div>
+<div style="padding:2px">
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Select Equipment(s)" onclick="doDivAjaxCall3$formname('itemList','chooseEquipments','');$('divItems').style.display='none';">
+</td></tr></table>
+</div>

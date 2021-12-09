@@ -1,0 +1,24 @@
+<br>
+<table width="100%">
+<tr><td style="width:150px">PLACE :</td><td style="font-weight:bold">
+$accomodation.name
+</td></tr>
+<tr><td>GENDER :</td><td style="font-weight:bold">
+GENDER: #if ( $gender_id == "L" ) MALE #else FEMALE #end
+</td></tr>
+<tr><td>QUOTA :</td><td style="font-weight:bold">
+<span id="div_quota">
+#if ( $gender_id == "L" ) $accomodation.quotaMale #else $accomodation.quotaFemale #end
+</span>
+</td></tr>
+</table>
+<br>
+<table width="100%">
+<tr>
+<td>
+Matric No :
+<input id="find" name="find" style="width:150px">
+<input type="button" value="Get Student" onclick="doDivAjaxCall$formname('div_find_students','find_students','')">
+</td>
+</tr>
+</table>

@@ -1,0 +1,35 @@
+
+#if ( $student.barredExamTranscript )
+	
+	<div style="border:2px solid #ccc;padding:5px;font-family:arial, helvetica,sans-serif;font-size:12pt;font-weight:bold;margin-top:10px;margin-bottom:10px;background:#F4F2F2">
+		<p>You are not allowed to view your Examination Docket due to</p>
+		<p>
+			<ol style="list-style-type: lower-roman;">
+				<li>outstanding tuition fees <em>OR</em></li>
+				<li>poor class attendance, below 80%</li>
+			</ol>
+		</p>
+		<p>Please check with Bursary Department of Programme Coordinator with regards to the above issues.</p>
+		<p>Thank you.</p>
+	</div>
+	
+#else
+	
+	<div style="border:2px solid #ccc;padding:5px;font-family:arial, helvetica,sans-serif;font-size:12pt;font-weight:bold;margin-top:10px;margin-bottom:10px;background:#F4F2F2">
+    EXAMINATION DOCKET
+    </div>
+    <br/>
+
+    #parse("apps/examinationDocket/examinationDocketItems.vm")
+    
+    <table style="width:100%">
+		<tr><td style="font-weight:bold">
+			You are required to download and bring this docket on the examination day.
+			<br/>
+			Replacement or non-possession of docket on the day of exam will incur a fee of RM10.00.
+		</td></tr>
+		<tr><td>
+				<input class="linkbutton" type="button" value="Download PDF" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.timetabling.module.ExaminationDocketPDFModule?matricNo=$student.matricNo&pdfName=examinationDocket';">
+    	</td></tr>
+	</table>
+#end

@@ -1,0 +1,6 @@
+<select class="form-control" name="marking_$s.id" onchange="doDivAjaxCall$formName('marking_$s.id', 'select_grades', 'subject_id=$s.id')">
+<option value="">-select-</option>
+#foreach( $m in $markings )
+<option value="$m.id" #if ( $s.markingGrade.id == $m.id ) selected #end>$m.name</option>
+#end
+</select>

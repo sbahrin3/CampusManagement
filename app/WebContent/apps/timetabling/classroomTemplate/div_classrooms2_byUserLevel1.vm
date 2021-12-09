@@ -1,0 +1,253 @@
+<script>
+$('selectSubjects').style.display='none';
+</script>
+
+
+#**
+<div id="subjectsHistory" style="text-align:right">
+	#parse("apps/timetabling/classroomTemplate/subjectsHistory.vm")
+</div>
+**#
+
+
+<div class="panel panel-default" style="background:#ebebeb">
+	<div class="panel-body" >
+		
+		<table style="width:100%">
+			<tr>
+				<td style="font-weight:bold;font-size:12pt">
+					$subject.department.name<br/>
+					$subject.code - $subject.name
+					#if ( $subject.version != "" ) (Version $subject.version) #end
+					<input type="hidden" name="selectedSubjectId" value="$subject.id">
+				</td>
+				<td align="right">
+					##<button type="button" class="btn btn-default"  onclick="doDivAjaxCall$formname('divClassrooms','createPredefinedClassrooms','subjectId=$subject.id')">Create Initial Activities</button>
+					<button type="button" class="btn btn-dafault btn-confirmation" data-toggle="modal" data-target="#confirmation" data-param="subjectId=$subject.id" data-div="divClassrooms" data-action="createPredefinedClassrooms" data-header='Confirmation' data-message="Create Initial Activities?" value="Delete">Create Initial Activities</button>
+					<button type="button" class="btn btn-default"  onclick="doDivAjaxCall$formname('addEquivalentSubjects','listFaculties','')">Define Equivalent Courses</button>
+					##<button type="button" class="btn btn-default"  onclick="doDivAjaxCall$formname('createStudentSubjectGroup','createStudentSubjectGroup','subjectId=$subject.id');">Groups</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+<table class="table ">
+<tr class="tableTitle" height="30px" style="background:#ebebeb">
+
+<td style="width:50px;font-weight:bold">Class</td>
+
+<td style="width:40px;font-weight:bold" align="center">Total<br/>Students</td>
+
+<td style="width:200px;font-weight:bold">Activity<br/>& Occcurence</td>
+<td style="width:70px;font-weight:bold">&nbsp;</td>
+
+<td style="width:200px;font-weight:bold">Groups</td>
+
+##<td style="width:200px;font-weight:bold">Programs</td>
+##<td style="width:50px;font-weight:bold" align="center">Slot</td>
+
+
+<td style="width:300px;font-weight:bold">Lecturers<br/>Rooms</td>
+<td style="width:200px;font-weight:bold">Slot-Time Preferences</td>
+<td style="width:400px;font-weight:bold">Slot-Day Preferences</td>
+<td style="width:50px;font-weight:bold" align="center"></td>
+<td></td>
+</tr>
+
+
+<tr>
+	<td colspan="10" align="right">
+		##<button type="button" class="btn btn-info" onclick="doDivAjaxCall$formname('changeTagNumber','changeTagNumber','subjectId=$subject.id');">Assign Tag Number</button>
+	</td>
+	
+</tr>
+
+#set ( $name = "" )
+#set ( $name2 = "" )
+#set ( $cnt = 0 )
+#set ( $fcnt = 0 ) 
+#set ( $rowcnt = 0 )
+#set ( $groupcnt = 0 )
+#foreach( $c in $classrooms )
+	#set ( $rowcnt = $rowcnt + 1 )
+	
+	#if ( $c.sectionName != $name )
+		#set ( $start = "yes" )
+		#set ( $name = $c.sectionName )
+	#end
+	
+	
+	#if ( $name2 != $c.sectionName )
+		#set ( $cnt = 0 )
+	#end
+	#set ( $name2 = $c.sectionName )
+	
+	
+	##CLASS
+	
+
+	#if ( $start == "yes" )
+		#set ( $fcnt = 0 )
+		#set ( $cnt = $cnt + 1 )
+		
+		#if ( $cnt == 1 )
+			<tr>
+				<td colspan="9">
+					&nbsp;
+				</td>
+			</tr>
+		#end
+		
+		<tr>
+		<td  rowspan="$c.frequency" valign="top"  class="line" style="padding-top:10px;cursor:pointer;background:$c.bgcolor;" >
+		  	#set ( $groupcnt = $groupcnt + 1 )
+		  <ul class="list-action">
+              <li class="dropdown">
+                 <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:#fff;text-shadow:#000 1px 1px 1px">
+                 	$groupcnt
+                 	<span class="caret"></span>
+                 </a>
+                     <ul class="dropdown-menu">
+                         ##<li><a href="javascript:void(0)" onclick="$('add_class_$c.id').style.display='block';">Add Activity</a></li>
+                         <li><a href="javascript:void(0)" onclick="doDivAjaxCall3$formname('divClassrooms','addClassActivity','classroomTemplateId=$c.id');">Duplicate this activity</a></li>
+                         
+                         <li><a href="javascript:void(0)" onclick="doDivAjaxCall$formname('classroomProperties','classroomProperties','classroomTemplateId=$!c.id')">Edit properties</a></li>
+                         <li><a href="javascript:void(0)"  onclick="doDivAjaxCall$formname('selectColors','selectColors','classroomTemplateId=$c.id')">Change color</a></li>
+                     	 <li><a href="javascript:void(0)" class="btn-confirmation" data-toggle="modal" data-target="#confirmation" data-param="classroomTemplateId=$c.id" data-div="divClassrooms" data-action="deleteClassroom" data-header='Confirmation' data-message="Remove this activity" value="Delete">Remove this activity</a></li>
+                     </ul>
+              </li>
+           </ul>
+		<br/>
+		##($c.groupNumber)
+		</td>
+	#else
+		<tr>
+	#end
+
+	
+	
+	
+	#if ( $start == "yes" )
+		#set ( $totalSlot = $c.frequency * $c.section.classroomType.slotCount )
+		<td align="center" rowspan="$c.frequency" valign="top"  class="line" style="padding-top:8px;">
+			#set ( $size = $c.size )
+			<a style="text-decoration:none" href="javascript:void(0)" onclick="doDivAjaxCall$formname('classroomProperties','classroomProperties','classroomTemplateId=$!c.id')">
+			$c.size
+			</a>
+			
+			##<br/><br/><button type="button" class="btn btn-default" style="padding:2px;width:25px" onclick="doDivAjaxCall$formname('classroomProperties','classroomProperties','classroomTemplateId=$!c.id')">..</button><br/>
+		</td>
+	#end
+	
+	#set ( $fcnt = $fcnt + 1 )
+	<td class="line">
+		$fcnt)
+		##<a style="text-decoration:none" href="javascript:void(0)" onclick="doDivAjaxCall$formname('classroomProperties','classroomProperties','classroomTemplateId=$!c.id')">
+		$c.section.name
+		##</a>
+		
+	</td>
+
+	#if ( $start == "yes" )
+	
+		<td rowspan="$c.frequency" valign="top"  class="line" style="padding-top:8px" >
+			$c.studyMode.code<br/>
+			#if ( $c.scheduleType == 0 ) W #elseif ( $c.scheduleType == 1 ) M #end
+		</td>
+	#end
+
+	#if ( $start == "yes" )
+	
+		<td rowspan="$c.frequency" valign="top"  class="line" style="padding-top:8px" >
+			#foreach( $g in $c.group.studentSubjectGroups )
+				$g.code<br/>
+			#end
+		</td>
+		
+	#end
+
+	#if ( $start == "yes" )
+	
+		<td rowspan="$c.frequency" valign="top"  class="line" style="padding-top:8px" >
+			<table style="width:100%">
+			#foreach( $t in $c.group.classTeachers )
+				<tr>
+					<td style="border-bottom:1px dotted #000">
+						$t.teacher.name
+					</td>
+					<td style="width:40px;border-bottom:1px dotted #000" valign="top" align="right">
+						$t.weightage
+					</td>
+				</tr>
+			#end
+			</table>
+			
+			<br/>
+			
+			<table style="width:100%">
+			#foreach( $r in $c.group.rooms )
+				<tr><td style="border-bottom:1px dotted #000">
+					$r.code<br/>
+					$r.name, $r.floor.name, $r.floor.block.name, $r.floor.block.building.name
+				</td></tr>
+			#end
+			</table>
+		</td>
+	#end
+	
+	<td  class="line">
+		<table cellpadding="0" cellspacing="0"><tr><td>
+			<select class="texts" style="width:100px" name="firstSlot_$c.id" onchange="doDivAjaxCall3$formname('divEmpty','setFirstSlot','classroomTemplateId=$c.id')">
+			<option value="0"></option>
+			#foreach($slot in $slots)
+			<option value="$slot.posX" #if ( $c.firstPosX == $slot.posX ) selected #end>$timeFormat.format($slot.startTime)</option>
+			#end
+			</select>
+		</td><td>-</td><td>
+			<select class="texts" style="width:100px" name="lastSlot_$c.id" onchange="doDivAjaxCall3$formname('divEmpty','setLastSlot','classroomTemplateId=$c.id')">
+			<option value="0"></option>
+			#foreach($slot in $slots)
+			<option value="$slot.posX" #if ( $c.lastPosX == $slot.posX ) selected #end>$timeFormat.format($slot.startTime)</option>
+			#end
+			</select>
+		</td></tr></table>
+	
+	</td>
+	
+	<td  class="line">
+		#parse("apps/timetabling/classroomTemplate/daysConstraint.vm")
+	</td>
+	
+	
+	<td align="center"  class="line">
+		##$!c.tagNumber
+	</td>
+	
+	
+	#if ( $start == "yes" )
+		
+		##<td align="center" rowspan="$c.frequency" valign="top"  class="line" style="padding-top:8px" >
+		
+		##<button type="button" class="btn btn-info" style="padding:2px;width:25px" onclick="doDivAjaxCall$formname('classroomProperties','classroomProperties','classroomTemplateId=$!c.id')">..</button><br/>
+		
+		##<button type="button" class="btn btn-default" style="padding:2px;width:25px;margin-top:5px"   onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('divClassrooms','deleteClassroom','classroomTemplateId=$c.id')">x</button>
+		
+		##<button type="button" class="btn btn-default" style="padding:2px;width:25px;margin-top:5px"   onclick="if ( !confirm('Add a class for this activity?') ) return; doDivAjaxCall3$formname('divClassrooms','addClassActivity','classroomTemplateId=$c.id')">+</button>
+
+		##</td>
+	#end
+	
+	
+	#if ( $start == "yes" )
+		#set ( $start = "" )
+	#end
+
+	</tr>
+#end
+</table>
+
+
+#parse("common/confirmation.vm")
+

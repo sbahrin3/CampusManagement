@@ -1,0 +1,54 @@
+<table>
+<tr>
+<td style="width:100px;height:40px">Program: </td>
+<td style="width:600px;height:40px">
+<select class="input-text" id="programId" name="programId" onchange="doDivAjaxChainCall$formname('listSubjects','listSubjects','','listIntakes','listIntakes','')">
+<option value="">(ALL)</option>
+#foreach ( $p in $programs )
+<option value="$p.id">$p.code - $p.name</option>
+#end
+</select>
+</td>
+</tr>
+
+
+<tr>
+<td style="height:40px">Intake: </td>
+<td>
+<div id="listIntakes">
+	#parse("admission/subject_registration_list/listIntakes.vm")
+</div>
+</td>
+</tr>
+
+<tr>
+<td style="height:40px">Status: </td>
+<td>
+<div id="listStatuses">
+	#parse("admission/subject_registration_list/listStatuses.vm")
+</div>
+</td>
+</tr>
+
+<tr style="display:none">
+<td style="height:40px">Subject: </td>
+<td>
+<div id="listSubjects">
+	#parse("admission/subject_registration_list/listSubjects.vm")
+</div>
+</td>
+</tr>
+
+
+<tr>
+<td style="height:40px"></td>
+<td align="right" >
+Report Date:
+<input class="input-text" style="width:200px" id="reportDate" name="reportDate" value="$dateFormat.format($date)">
+<script> new JsDatePick({ useMode:2, target:"reportDate", dateFormat:"%d-%m-%Y" }); </script>
+
+<button type="button" class="btn btn-primary" onclick="$('listStudents').innerHTML='Please Wait...';doDivAjaxCall$formname('listStudents','listStudents','')">List Students..</button>
+</td>
+</tr>
+
+</table>

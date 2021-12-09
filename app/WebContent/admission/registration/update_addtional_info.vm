@@ -1,0 +1,83 @@
+<script>
+$('updateRegistration').style.display="block";
+</script>
+<table width="100%" style="background:#0C16D3">
+<tr><td style="color:#fff;font-weight:bold">UPDATE ADDITIONAL INFORMATION</td>
+<td align="right"><input class="linkbutton" style="padding:2px" type="button" value="x" onclick="$('updateRegistration').style.display='none';"></td></tr></table>
+<div style="padding:5px">
+
+<table border="0">
+<tr><td style="width:150px"></td><td style="width:10px"></td><td style="width:500px"></td><td style="width:10px"></td></tr>
+
+
+
+##ERICAN COLLEGE ADDITIONAL DATA ON STUDENT 		
+<tr height="30px">
+	<td>Applicant Status</td>
+	<td>:</td>
+	<td colspan="2">
+		<select class="texts" name="statusTag" id="statusTag">
+			<option value=""></option>
+			<option value="QUALIFIED" #if ( $student.statusTag == "QUALIFIED" ) selected #end>QUALIFIED</option>
+			<option value="LOCO" #if ( $student.statusTag == "LOCO" ) selected #end>LOCO</option>
+		</select>
+	</td>
+</tr>
+
+<tr><td style="height:30px">School (SPM)</td><td>:</td><td>
+
+
+<select class="text" style="width:100px" id="institutionTypeSPM" name="institutionTypeSPM">
+<option value="SMS" #if ( $student.institutionTypeSPM == "SMS" ) selected #end>SMS</option>
+<option value="SBPI" #if ( $student.institutionTypeSPM == "SBPI" ) selected #end>SBPI</option>
+<option value="MRSM" #if ( $student.institutionTypeSPM == "MRSM" ) selected #end>MRSM</option>
+<option value="SMK" #if ( $student.institutionTypeSPM == "SMK" ) selected #end>SMK</option>
+<option value="SMJK" #if ( $student.institutionTypeSPM == "SMJK" ) selected #end>SMJK</option>
+<option value="SAMT" #if ( $student.institutionTypeSPM == "SAMT" ) selected #end>SAMT</option>
+<option value="SMAP" #if ( $student.institutionTypeSPM == "SMAP" ) selected #end>SMAP</option>
+<option value="SMA" #if ( $student.institutionTypeSPM == "SMA" ) selected #end>SMA</option>
+<option value="SMKA" #if ( $student.institutionTypeSPM == "SMKA" ) selected #end>SMKA</option>
+<option value="SMV" #if ( $student.institutionTypeSPM == "SMV" ) selected #end>SMV</option>
+<option value="SMT" #if ( $student.institutionTypeSPM == "SMT" ) selected #end>SMT</option>
+<option value="SEKOLAH" #if ( $student.institutionTypeSPM == "SEKOLAH" ) selected #end>Sekolah</option>
+<option value="KOLEJ" #if ( $student.institutionTypeSPM == "KOLEJ" ) selected #end>Kolej</option>
+<option value="MAKTAB" #if ( $student.institutionTypeSPM == "MAKTAB" ) selected #end>Maktab</option>
+<option value="MA'HAD" #if ( $student.institutionTypeSPM == "MA'HAD" ) selected #end>Ma'had</option>
+</select>
+
+<input class="texts" style="width:300px" name="institutionSPM" value="$!student.institutionSPM">
+
+
+</td><td></td></tr>
+<tr><td style="height:30px">School (STPM)</td><td>:</td><td>
+
+<select class="text" style="width:100px" id="institutionTypeSTPM" name="institutionTypeSTPM">
+<option value="SMS" #if ( $student.institutionTypeSTPM == "SMS" ) selected #end>SMS</option>
+<option value="SBPI" #if ( $student.institutionTypeSTPM == "SBPI" ) selected #end>SBPI</option>
+<option value="MRSM" #if ( $student.institutionTypeSTPM == "MRSM" ) selected #end>MRSM</option>
+<option value="SMK" #if ( $student.institutionTypeSTPM == "SMK" ) selected #end>SMK</option>
+<option value="SMJK" #if ( $student.institutionTypeSTPM == "SMJK" ) selected #end>SMJK</option>
+<option value="SAMT" #if ( $student.institutionTypeSTPM == "SAMT" ) selected #end>SAMT</option>
+<option value="SMAP" #if ( $student.institutionTypeSTPM == "SMAP" ) selected #end>SMAP</option>
+<option value="SMA" #if ( $student.institutionTypeSTPM == "SMA" ) selected #end>SMA</option>
+<option value="SMKA" #if ( $student.institutionTypeSTPM == "SMKA" ) selected #end>SMKA</option>
+<option value="SMV" #if ( $student.institutionTypeSTPM == "SMV" ) selected #end>SMV</option>
+<option value="SMT" #if ( $student.institutionTypeSTPM == "SMT" ) selected #end>SMT</option>
+<option value="SEKOLAH" #if ( $student.institutionTypeSTPM == "SEKOLAH" ) selected #end>Sekolah</option>
+<option value="KOLEJ" #if ( $student.institutionTypeSTPM == "KOLEJ" ) selected #end>Kolej</option>
+<option value="MAKTAB" #if ( $student.institutionTypeSTPM == "MAKTAB" ) selected #end>Maktab</option>
+<option value="MA'HAD" #if ( $student.institutionTypeSTPM == "MA'HAD" ) selected #end>Ma'had</option>
+</select>
+
+<input class="texts" style="width:300px" name="institutionSTPM" value="$!student.institutionSTPM">
+
+</td><td style="font-weight:bold;color:#F46558"></td></tr>
+
+<tr><td colspan="4" align="right">
+
+
+<input class="linkbutton" type="button" style="font-weight:bold" value="Update Addtional Info"  onclick="doDivAjaxCall3$formname('saveAddtionalInfo','saveAdditionalInfo','studentId=$student.id');$('updateRegistration').style.display='none';">
+<input class="linkbutton" type="button" style="font-weight:bold" value="Cancel" onclick="$('updateRegistration').style.display='none';">
+
+</td></tr>
+</table>

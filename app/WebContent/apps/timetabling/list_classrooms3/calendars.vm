@@ -1,0 +1,78 @@
+
+
+
+#set ( $dayNames = ["","S","M","T","W","T","F","S"] )
+
+#set ( $nextYear = $displayYear + 1 )
+#set ( $prevYear = $displayYear - 1 )
+
+<table>
+<tr><td align="center">
+	<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('calendars','getCalendars','displayYear=$prevYear')">&lt;</a>
+	&nbsp;&nbsp;
+	&nbsp;&nbsp;
+	<a href="javascript:void(0)" onclick="doDivAjaxCall$formname('calendars','getCalendars','displayYear=$nextYear')">&gt;</a>
+</td></tr>
+<tr><td>
+
+#foreach( $cv in $calendars )
+
+	<table>
+		<tr>
+			<td colspan="7" style="background:#ccc;font-weight:bold;border:1px dotted #000;padding:5px">
+				$cv.monthName $cv.year
+			</td>
+		</tr>
+		<tr>
+		#foreach ( $d in [1..7] )
+			<td style="width:50px;text-align:center;border:1px dotted #000;padding:5px;background:#ccc">
+				##$dayNames[$d]
+				#if ( $d == 1 ) S
+				#elseif ( $d == 2 ) M
+				#elseif ( $d == 3 ) T
+				#elseif ( $d == 4 ) W
+				#elseif ( $d == 5 ) T
+				#elseif ( $d == 6 ) F
+				#elseif ( $d == 7 ) S
+				#end
+			</td>
+		#end
+		</tr>
+		#set ( $cnt = 0 )
+		#set ( $startCnt = "" )
+		
+		#foreach( $w in [1..6] )
+			#if ( $cnt < $cv.numberOfDays )
+			<tr>
+			#foreach( $d in [1..7] )
+				#if ( $d == $cv.startDay )
+					#set ( $startCnt = "yes" )
+				#end
+				#if ( $startCnt == "yes" )
+					#set ( $cnt = $cnt + 1 )
+				#end
+				#if ( $cnt > 0 && $cnt <= $cv.numberOfDays )
+					#set ( $iday = $cnt )
+					#if ( $cnt < 10 )
+						#set ( $iday = "0${iday}" )
+					#end
+					#set ( $imonth = $cv.month + 1)
+					#if ( $cv.month < 9 )
+						#set ( $imonth = "0${imonth}" )
+					#end
+					<td style="width:50px;text-align:center;border:1px dotted #000;padding:5px;cursor:pointer" onclick="doDivAjaxCall$formname('getWeekNumber','getWeekNumber','date=${iday}-${imonth}-${cv.year}')">
+						$cnt
+					</td>
+				#else
+					<td>
+					</td>
+				#end
+			#end
+			</tr>
+			#end
+		#end
+		
+	</table>
+#end
+
+</td></tr></table>

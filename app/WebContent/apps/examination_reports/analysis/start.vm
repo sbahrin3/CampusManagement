@@ -1,0 +1,55 @@
+<table width="800px">
+<tr><td>
+
+<table width="100%">
+
+<tr>
+<td>Select Scheme:</td>
+<td>
+<select name="period_scheme_id" style="width:300px" onchange="doDivAjaxCall$formname('select_periods','select_periods','')">
+<option value=""> - </option>
+#foreach( $p in $period_schemes )
+<option value="$p.id">$p.code</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Select Intake:</td>
+<td>
+<select name="intake_id" style="width:300px">
+#foreach ( $intake in $intakes )
+<option value="$intake.id">$intake.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Select Period:</td>
+<td>
+<div id="select_periods" name="select_periods">#parse("apps/examination_reports/analysis/select_periods.vm")</div>
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td>
+
+<input type="button" value="View Report" onclick="doDivAjaxCall$formname('view_report','view_report','')">
+
+</td>
+</tr>
+
+</table>
+
+<br><br>
+
+<div id="view_report" name="view_report">
+</div>
+
+
+
+</td></tr>
+</table>

@@ -1,0 +1,29 @@
+#if ( $subject_list )
+<table width="100%">
+<tr>
+<td style="font-weight:bold">
+#if ( $list_type == "credit_earned" ) Credit Unit EARNED under category $category.name
+#elseif  ( $list_type == "credit_balance" ) Credit Unit NOT TAKEN under category $category.name
+#elseif  ( $list_type == "credit_total_earned" ) Credit Unit EARNED
+#elseif  ( $list_type == "credit_total_balance" ) Credit Unit NOT TAKEN
+#end
+</td></tr></table>
+<hr/>
+<table width="100%">
+<tr>
+<td align="right" style="font-weight:bold"></td>
+<td style="font-weight:bold">Code</td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">Credit Unit</td>
+</tr>
+<tr><td colspan="4"><hr/></td></tr>
+#foreach( $s in $subject_list )
+<tr>
+<td align="right">$velocityCount)</td>
+<td>$s.subject.code</td>
+<td>$s.subject.name</td>
+<td align="center">$s.subject.credithrs</td>
+</tr>
+#end
+</table>
+#end

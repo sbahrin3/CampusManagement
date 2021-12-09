@@ -1,0 +1,22 @@
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { color:#000; background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.gradient_select { color:#fff; background: -moz-linear-gradient(top, #AAD4FF 0%, #55AAFF 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+</style>
+
+<table width="800">
+<tr><td>
+#parse("apps/util/application_subject/types.vm")
+</td></tr>
+<tr><td>
+<div id="div_subjects">
+<fieldset style="background-color:#FFF;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+Please Select
+</fieldset>
+</div>
+</td></tr>
+<tr><td>
+<div id="div_empty"></div>
+</td></tr>
+</table>

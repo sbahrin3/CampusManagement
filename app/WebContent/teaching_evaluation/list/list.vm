@@ -1,0 +1,87 @@
+<table style="background:#6B6767;" cellspacing="1" cellpadding="4"">
+
+<tr class="header">
+<td style="width:20px"></td>
+##<td style="width:40px"></td>
+<td style="width:150px">Faculty</td>
+<td style="width:150px">Course</td>
+<td style="width:100px">Code</td>
+<td style="width:100px">Semester</td>
+<td style="width:40px" align="center">1</td>
+<td style="width:40px" align="center">2</td>
+<td style="width:40px" align="center">3</td>
+<td style="width:40px" align="center">4</td>
+<td style="width:40px" align="center">5</td>
+<td style="width:40px" align="center">6</td>
+<td style="width:40px" align="center">7</td>
+<td style="width:40px" align="center">8</td>
+<td style="width:40px" align="center">9</td>
+<td style="width:40px" align="center">10</td>
+<td style="width:40px" align="center">11</td>
+<td style="width:40px" align="center">12</td>
+<td style="width:40px" align="center">13</td>
+<td style="width:40px" align="center">14</td>
+<td style="width:40px" align="center">15</td>
+
+##<td style="width:150px" align="center">Comment 1</td>
+##<td style="width:150px" align="center">Comment 2</td>
+<td style="width:40px" align="center">OA</td>
+
+<td style="width:40px" align="center">16</td>
+<td style="width:40px" align="center">17</td>
+<td style="width:40px" align="center">18</td>
+<td style="width:40px" align="center">19</td>
+<td style="width:40px" align="center">20</td>
+<td style="width:40px" align="center">21</td>
+<td style="width:40px" align="center">22</td>
+<td style="width:40px" align="center">23</td>
+<td style="width:40px" align="center">24</td>
+
+##<td style="width:150px" align="center">Comment C</td>
+
+</tr>
+#set ( $cnt = 0 )
+#foreach( $e in $list )
+#set ( $cnt = $cnt + 1 )
+<tr class="tr1">
+<td>$cnt.</td>
+##<td></td>
+<td>$e.facultyName</td>
+<td>$e.courseName</td>
+<td>$e.codeName</td>
+<td>$e.semesterYear</td>
+<td align="center">$e.q1</td>
+<td align="center">$e.q2</td>
+<td align="center">$e.q3</td>
+<td align="center">$e.q4</td>
+<td align="center">$e.q5</td>
+<td align="center">$e.q6</td>
+<td align="center">$e.q7</td>
+<td align="center">$e.q8</td>
+<td align="center">$e.q9</td>
+<td align="center">$e.q10</td>
+<td align="center">$e.q11</td>
+<td align="center">$e.q12</td>
+<td align="center">$e.q13</td>
+<td align="center">$e.q14</td>
+<td align="center">$e.q15</td>
+
+##<td>$e.comment1</td>
+##<td>$e.comment2</td>
+<td align="center">$e.overallRating</td>
+
+<td align="center">$e.q16</td>
+<td align="center">$e.q17</td>
+<td align="center">$e.q18</td>
+<td align="center">$e.q19</td>
+<td align="center">$e.q20</td>
+<td align="center">$e.q21</td>
+<td align="center">$e.q22</td>
+<td align="center">$e.q23</td>
+<td align="center">$e.q24</td>
+
+##<td>$e.comment3</td>
+
+</tr>
+#end
+</table>

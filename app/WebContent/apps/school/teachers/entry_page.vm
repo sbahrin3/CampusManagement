@@ -1,0 +1,124 @@
+
+#macro ( title $title )
+<tr><td colspan="3"></td></tr>
+<tr><td class="section_title" colspan="3">$title</td></tr>
+<tr><td colspan="3"></td></tr>
+#end
+
+#macro ( input $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value" onkeyup="at(this, event)">
+</td></tr>
+#end
+
+#macro ( textarea $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<textarea class="text_area" id="$input_id" name="$input_id">$value</textarea>
+</td></tr>
+#end
+
+#macro ( select $input_id $input_title $list $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<select class="texts" id="$input_id" name="$input_id" value="$value">
+<option value=""></option>
+#foreach( $i in $list )
+<option #if ( $i.id == $value ) selected #end value="$i.id">$i.name</option>
+#end
+</select>
+</td></tr>
+#end
+
+#macro ( date_input $input_id $input_title $value )
+<tr><td >$input_title</td><td>:</td><td>
+$html.dateField.name("$input_id").value("$value").style("width:100px").cssClass("texts")
+</td></tr>
+#end
+
+#macro ( date_from_to $input_id_1 $input_id_2 $input_title $value_1 $value_2 )
+<tr><td >$input_title</td><td>:</td><td>
+Mulai
+$html.dateField.name("$input_id_1").value("$!dateValue_1").style("width:100px").cssClass("texts")
+Hingga
+$html.dateField.name("$input_id_2").value("$!dateValue_2").style("width:100px").cssClass("texts")
+</td></tr>
+#end
+
+
+<div id="teacher_tab1">
+<fieldset>
+<legend >Basic Information</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+#input("name" "Name" "$!r.biodata.name")
+#input("icno" "ICNo" "$!r.biodata.icno")
+#if ( $r.biodata.dob ) #set( $value = $dateFormat.format($r.biodata.dob) ) #else #set($value = "") #end
+#date_input("dob" "Date Of Birth" "$value")
+#select("gender_id" "Gender" $genders "$!r.biodata.gender.id")
+#select("nationality_id" "Nationality" $nationalities "$!r.biodata.nationality.id")
+#input("address1" "Address" "$!r.address.address1")
+#input("address2" "" "$!r.address.address2")
+#input("address3" "" "$!r.address.address3")
+#input("postcode" "Postcode" "$!r.address.postcode")
+#input("City" "" "$!r.address.city")
+#select("state_id" "State" $states "$!r.address.state.id")
+</table>
+</fieldset>
+</div>
+<div id="teacher_tab2">
+<fieldset>
+<legend >Job Information</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+#input("jobtype_id" "Job Type" "Permanent/Temporary/Visitor")
+#input("appointment_id" "Appointment" "Teacher")
+#input("service_id" "Service Status" "FULL TIME/PART TIME")
+#input("qualification_id" "Academic Qualification" "")
+#input("appointment_id" "Appointment" "")
+#input("specialization_id" "Specialization" "")
+#date_input("date_contract_start" "Date Contract Start" "")
+#date_input("date_contract_end" "Date Contract End" "")
+#date_input("date_start_work" "Date Of Start Work" "")
+</table>
+</fieldset>
+</div>
+<div id="teacher_tab3">
+<fieldset>
+<legend >Training Information</legend>
+<table width="100%">
+<tr>
+<td  style="width:120px">Date</td>
+<td  style="width:250px">Title</td>
+<td  style="width:100px">Duration</td>
+<td >Remark</td>
+</tr>
+
+<tr>
+<td>$html.dateField.name("date_1").value("").style("width:100px").cssClass("texts")</td>
+<td><input class="texts"></td>
+<td><input class="texts"></td>
+<td><input class="texts"></td>
+</tr>
+
+</table>
+</fieldset>
+</div>
+
+<div id="teacher_tab4">
+<fieldset>
+<legend >Discplinary Activities</legend>
+<table width="100%">
+<tr>
+<td  style="width:120px">Date</td>
+<td  style="width:250px">Title</td>
+<td >Remark/Description</td>
+</tr>
+
+<tr>
+<td>$html.dateField.name("date_discipline_1").value("").style("width:100px").cssClass("texts")</td>
+<td><input class="texts"></td>
+<td><input class="texts"></td>
+</tr>
+
+</table>
+</fieldset>
+</div>

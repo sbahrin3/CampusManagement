@@ -1,0 +1,250 @@
+<table width="700" align="center">
+<tr><td>
+
+</td></tr>
+
+<tr><td>
+
+<table width="100%"><tr><td align="right">
+#if ( $_institutionType == "school" )
+<input type="button" style="height:30px;font-weight:bold" value="BACK .." onclick="doDivAjaxCall$formname('div_main','biodata','')">
+#else
+<input type="button" style="height:30px;font-weight:bold" value="BACK .." onclick="doDivAjaxCall$formname('div_main','education_background','')">
+#end
+
+</td></tr>
+</table>
+
+<BR>
+
+#if ( $programs.size() == 1 )
+
+#else
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend>PROGRAM CHOICES</legend>
+<table width="100%">
+<tr><td align="right" style="width:150px">Program Of Study :</td><td>
+#if ( !$applicant.choice1 )
+<a style="color:red" href="javascript:void" onclick="doDivAjaxCall$formname('div_main','biodata','')">REQUIRED</a>
+#else
+$!applicant.choice1.code $!applicant.choice1.name
+#end
+</td>
+</tr>
+#**
+<tr><td align="right">Second Choice :</td><td>$!applicant.choice2.code $!applicant.choice2.name</td></tr>
+<tr><td align="right">Third Choice :</td><td>$!applicant.choice3.code $!applicant.choice3.name</td></tr>
+**#
+</table>
+</fieldset>
+#end
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold;">PERSONAL PARTICULARS</legend>
+<table width="100%">
+
+<tr><td style="width:150px" align="right"></td><td></td></tr>
+<tr><td align="right">Name :</td><td>
+#if ( $applicant.biodata.name == "" )
+<a style="color:red" href="javascript:void" onclick="doDivAjaxCall$formname('div_main','biodata','')">REQUIRED</a>
+#else
+$!applicant.biodata.name
+#end
+</td>
+</tr>
+
+<tr><td align="right">Gender :</td><td>
+#if ( !$applicant.biodata.gender )
+<a style="color:red" href="javascript:void" onclick="doDivAjaxCall$formname('div_main','biodata','')">REQUIRED</a>
+#else
+$!applicant.biodata.gender.name
+#end
+</td></tr>
+
+<tr><td align="right">Icno :</td><td>
+#if ( $applicant.nationalityType == "1" && $applicant.biodata.icno == "" )
+<a style="color:red" href="javascript:void" onclick="doDivAjaxCall$formname('div_main','biodata','')">REQUIRED</a>
+#else
+$!applicant.biodata.icno
+#end
+</td>
+</tr>
+<tr><td align="right">Passport :</td><td>
+#if ( $applicant.nationalityType == "2" && $applicant.biodata.passport == "" )
+<a style="color:red" href="javascript:void" onclick="doDivAjaxCall$formname('div_main','biodata','')">REQUIRED</a>
+#else
+$!applicant.biodata.passport
+#end
+</td>
+
+</tr>
+<tr><td align="right">Race :</td><td>$!applicant.biodata.race.name</td></tr>
+
+<tr><td align="right">Date of Birth :</td>
+<td>
+#if ( $applicant.biodata.dob )
+$dateFormat.format($applicant.biodata.dob)
+#end
+</td>
+</tr>
+<tr><td align="right">State Born :</td><td>$!applicant.biodata.stateBorn</td></tr>
+
+##MAILING ADDRESS
+<tr><td align="right">Mailing Address :</td><td>$!applicant.address.address1</td></tr>
+<tr><td align="right"></td><td>$!applicant.address.address2</td></tr>
+<tr><td align="right"></td><td>$!applicant.address.address3</td></tr>
+<tr><td align="right"></td><td>$!applicant.address.address4</td></tr>
+<tr><td align="right">Poscode :</td><td>$!applicant.address.postcode</td></tr>
+#if ( $applicant.nationalityType == "1" )
+<tr><td align="right">State :</td><td>$!applicant.address.state.name</td></tr>
+#else
+<tr><td align="right">Country :</td><td>$!applicant.address.country.name</td></tr>
+#end
+
+##PERMANENT ADDRESS
+<tr><td align="right">Permanent Address :</td><td>$!applicant.permanentAddress.address1</td></tr>
+<tr><td align="right"></td><td>$!applicant.permanentAddress.address2</td></tr>
+<tr><td align="right"></td><td>$!applicant.permanentAddress.address3</td></tr>
+<tr><td align="right"></td><td>$!applicant.permanentAddress.address4</td></tr>
+<tr><td align="right">Poscode :</td><td>$!applicant.permanentAddress.postcode</td></tr>
+#if ( $applicant.nationalityType == "1" )
+<tr><td align="right">State :</td><td>$!applicant.permanentAddress.state.name</td></tr>
+#else
+<tr><td align="right">Country :</td><td>$!applicant.permanentAddress.country.name</td></tr>
+#end
+<tr><td align="right">Telephone No :</td><td>$!applicant.biodata.telephoneNo</td></tr>
+<tr><td align="right">Mobile No :</td><td>$!applicant.biodata.mobileNo</td></tr>
+<tr><td align="right">Email :</td><td>$!applicant.biodata.email</td></tr>
+
+<tr><td align="right" valign="top">My Photo :</td><td>
+#if($applicant.photoFileName != "")
+							<img src="../download?file=$!applicant.photoFileName">
+						#else
+<img src="../img/nophoto.gif" border="0">
+#end
+</td></tr>
+</table>
+</fieldset>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">GUARDIAN INFORMATION</legend>
+<table width="100%">
+
+<tr><td style="width:150px" align="right"></td><td></td></tr>
+<tr><td align="right">Name :</td><td>$!applicant.guardianName</td>
+<tr><td align="right">ICNo :</td><td>$!applicant.guardianICNo</td>
+<tr><td align="right">Telephone No :</td><td>$!applicant.guardianTelephoneNo</td>
+<tr><td align="right">Occupation :</td><td>$!applicant.guardianOccupation</td>
+<tr><td align="right">Relationship :</td><td>$!applicant.guardianRelationship</td>
+
+</tr>
+</table>
+</fieldset>
+
+
+#if ( $_institutionType != "school" )
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend>EDUCATION BACKGROUND</legend>
+
+<table width="100%">
+<tr><td align="center">
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend>SPM RESULT</legend>
+<table>
+#if ( $applicant.spmResults )
+<tr bgcolor="lightgrey"><td style="width:350px;height:20px">Subject</td><td style="width:50px" valign="top" align="center">Grade</td></tr>
+#foreach ( $r in $applicant.spmResults )
+<tr><td style="width:200px;height:20px">#if ( $r.subject )$r.subject.name #else $!r.otherName #end</td><td style="width:50px" valign="top" align="center">$!r.generalExamGrade.name</td></tr>
+#end
+#end
+</table>
+</fieldset>
+
+</td></tr>
+<tr><td align="center">
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend>STPM RESULT</legend>
+<table>
+#if ( $applicant.stpmResults )
+<tr bgcolor="lightgrey"><td style="width:350px;height:20px">Subject</td><td style="width:50px" valign="top" align="center">Grade</td></tr>
+
+#foreach ( $r in $applicant.stpmResults )
+<tr><td style="width:200px;height:20px">#if ( $r.subject )$r.subject.name #else $!r.otherName #end</td><td valign="top" align="center">$!r.generalExamGrade.name</td></tr>
+#end
+#end
+</table>
+</fieldset>
+
+</td></tr>
+<tr><td align="center">
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend>MUET RESULT</legend>
+<table>
+<tr><td>MUET Year:</td><td>$!applicant.muetYear</td></tr>
+<tr><td>MUET Band:</td><td>$!applicant.muetBand</td></tr>
+</table>
+</fieldset>
+</td></tr>
+<tr><td align="center">
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend>TERTIARY EDUCATION</legend>
+#if ( $applicant.tertiaries.size() > 0 )
+<table align="center">
+<tr bgcolor="lightgrey" height="30px">
+<td align="center" style="font-weight:bold;width:100px">Institution</td>
+<td align="center" style="font-weight:bold;width:200px">Specialisation</td>
+<td align="center" style="font-weight:bold;width:100px">Study Level</td>
+<td align="center" style="font-weight:bold;width:100px">Year of<br>Completion</td>
+<td align="center" style="font-weight:bold;width:100px">CGPA</td>
+<td align="center" style="font-weight:bold;width:100px">Class Degree</td>
+</tr>
+#foreach( $t in $applicant.tertiaries )
+<tr>
+<td align="center">$t.instituition</td>
+<td align="center">$t.specialisation</td>
+<td align="center">$t.level.name</td>
+<td align="center">$t.year</td>
+<td align="center">$t.cgpa</td>
+<td align="center">$t.degreeClass.name</td>
+</tr>
+#end
+</table>
+#end
+</fieldset>
+
+</td></tr></table>
+
+</fieldset>
+
+<br><br>
+
+#end 
+##IF INSTUTION TYPE
+</td></tr>
+
+<tr><td>
+
+
+
+<table width="100%"><tr><td align="right">
+#if ( $_institutionType == "school" )
+<input type="button" style="height:30px;font-weight:bold" value="BACK .." onclick="doDivAjaxCall$formname('div_main','biodata','')">
+#else
+<input type="button" style="height:30px;font-weight:bold" value="BACK .." onclick="doDivAjaxCall$formname('div_main','education_background','')">
+#end
+
+#if ( $can_submit )
+<input type="button" style="height:30px;font-weight:bold" value="SUBMIT THIS APPLICATION" onclick="doAjaxCall$formname('submit_application','')">
+#else
+<input disabled type="button" style="height:30px;font-weight:bold" value="SUBMIT THIS APPLICATION">
+#end
+</td></tr>
+</table>
+
+
+</td></tr></table>

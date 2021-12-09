@@ -1,0 +1,23 @@
+<script>
+$('div_input').style.display = "block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+Add Part
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('div_input').style.display='none';">
+</td></tr>
+</table>
+<br/>
+<table style="width:100%">
+<tr><td style="width:150px">Part Name</td><td style="width:10px">:</td><td><input class="text" name="title" value="$!part.title"></td></tr>
+<tr><td style="width:150px">Part Instruction</td><td style="width:10px">:</td><td><textarea class="text" name="instructionText" style="height:100px">$!part.instructionText</textarea></td></tr>
+<tr><td colspan="3" align="right">
+<input class="linkbutton" type="button" value="Save" onclick="$('div_input').style.display = 'none';doDivAjaxCall3$formname('div_main','savePart','partId=$!part.id&setId=$!set.id')">
+</td></tr>
+</table>
+
+<script>new Draggable('div_input', {handle: 'dragHandle'});</script>

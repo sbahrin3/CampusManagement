@@ -1,0 +1,105 @@
+#parse("apps/hostel_room_schedule/date.vm")
+
+<div name="div_room_info" id="div_room_info"
+style="visibility:hidden;position:absolute;left:400px;width:300px;height:180px;border-style: solid;border-color:#B4B4B4;background-color:#FFFFAA">
+
+<table width="100%">
+<tr><td>
+<div name="div_room_info2" id="div_room_info2" style="overflow:auto;height:150px;width:100%"></div>
+</td></tr>
+
+<tr><td align="center" style="font-weight:bold">
+<input type="button" value="Close" onclick="$('div_room_info').style.visibility='hidden';$('div_room_info2').style.visibility='hidden'">
+</td></tr>
+
+
+</table>
+
+</div>
+
+
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%">
+<tr height="50px"><td align="center" style="font-family:arial;font-size:10pt;font-weight:bold">
+Rooms allocations for $month_name - $year
+</td></tr>
+<tr><td>
+<table cellpadding="0" cellspacing="1" bgcolor="#A5A5A5">
+
+<tr height="30px">
+<td bgcolor="#FFFFFF"></td>
+#foreach( $i in [1..$days])
+<td style="width:30px;background-color:#D2D2D2;font-family:arial;font-size:10pt" align="center">$i</td>
+#end
+</tr>
+
+#foreach ( $slot in $slots )
+
+<tr height="30px">
+<td align="center" width="80px" bgcolor="#D2D2D2" style="font-family:arial;font-size;10pt">$slot.room.unit.code - $slot.room.code</td>
+#foreach( $i in [1..$days])
+
+
+#if ( $slot.getOccupants($i).size() > 0 )
+#set ( $occupants = $slot.getOccupants($i) )
+
+
+#set ( $txt = "Room:<b>${slot.room.code}</b>; Date:<b>${i}-${month}-${year}</b><ul>" )
+#foreach ( $occupant in $occupants )
+#set ( $date_in = "" )
+#set ( $date_out = "" )
+#if ( $occupant.checkInDate ) #set ( $date_in = $dateFormat.format($occupant.checkInDate) ) #end
+#if ( $occupant.checkOutDate ) #set ( $date_out = $dateFormat.format($occupant.checkOutDate) ) #end
+
+
+#set ( $txt = $txt + "<li>$!occupant.student.biodata.name ($!occupant.student.matricNo)")
+#set ( $txt = $txt + "<br>$date_in - $date_out")
+#end
+#if ( $occupants.size() > 1 )
+#set ( $txt = $txt + "</ul>" + $occupants.size() + " occupants" )
+#else
+#set ( $txt = $txt + "</ul>" + $occupants.size() + " occupant" )
+#end
+#if ( $occupants.size() == $slot.room.capacity )
+#set ( $bcolor = "#FF0000" )
+#elseif ( $occupants.size() == 1 )
+#set ( $bcolor = "#FFFF2A" )
+#elseif ( $occupants.size() == 2 )
+#set ( $bcolor = "#FF7FFF" )
+#elseif ( $occupants.size() == 3 )
+#set ( $bcolor = "#FFAA55" )
+#elseif ( $occupants.size() > 3 )
+#set ( $bcolor = "#FF5500" )
+#end
+
+#if ( $i < 10 ) #set ( $day = "0" + $i ) #else #set ( $day = "" + $i ) #end
+
+<td align="center" style="font-family:arial;font-size:10pt;background-color:$bcolor;cursor:hand; cursor:pointer;" 
+onclick="$('div_room_info').style.left=cursorX;$('div_room_info').style.top=cursorY;$('div_room_info').style.visibility='visible';$('div_room_info2').style.visibility='visible';$('div_room_info2').innerHTML='$txt'">
+$occupants.size()
+</td>
+
+#else
+
+
+<td style="width:28px;background-color:#D4FFD4;cursor:hand; cursor:pointer;" align="center"></td>
+
+#end
+#end
+</tr>
+
+#end
+
+</table>
+
+
+</td></tr></table>
+
+</fieldset>
+
+
+
+
+

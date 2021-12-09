@@ -1,0 +1,91 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("list_students").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%" align="center">
+<tr><td>Student Id:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>Programme:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+
+</table>
+
+<br><br>
+
+<table width="80%">
+<tr><td colspan="3" style="font-weight:bold;height:30px">Clearance Check:</td></tr>
+
+<tr bgcolor="lightgrey"><td></td><td></td><td align="center" style="font-weight:bold">Remark</td></tr>
+
+<tr bgcolor="lightgrey">
+<td align="right" style="font-weight:bold;height:30px">Student Affairs Clearance:</td>
+<td>
+<select name="clearance_student_affair" style="font-weight:bold;text-align:center;width:100px;height:20px">
+<option value="N" #if ( !$graduate.clearanceStudentAffair ) selected #end>NO</option>
+<option value="Y" #if ( $graduate.clearanceStudentAffair ) selected #end>YES</option>
+</select>
+</td>
+
+<td>
+<textarea name="student_affair_remark" style="width:100%;height:60px">$!graduate.studentAffairRemark</textarea>
+</td>
+
+</tr>
+
+<tr bgcolor="lightgrey">
+<td align="right" style="font-weight:bold;height:30px">Library Clearance:</td>
+<td>
+<select name="clearance_library" style="font-weight:bold;text-align:center;width:100px;height:20px">
+<option value="N" #if ( !$graduate.clearanceLibrary ) selected #end>NO</option>
+<option value="Y" #if ( $graduate.clearanceLibrary ) selected #end>YES</option>
+</select>
+</td>
+
+<td>
+<textarea name="library_remark" style="width:100%;height:60px">$!graduate.libraryRemark</textarea>
+</td>
+
+</tr>
+
+<tr bgcolor="lightgrey">
+<td align="right" style="font-weight:bold;width:250px;height:30px">Finance Clearance:</td>
+<td>
+<select name="clearance_finance" style="font-weight:bold;text-align:center;width:100px;height:20px">
+<option value="N" #if ( !$graduate.clearanceFinance ) selected #end>NO</option>
+<option value="Y" #if ( $graduate.clearanceFinance ) selected #end>YES</option>
+</select>
+</td>
+
+<td>
+<textarea name="finance_remark" style="width:100%;height:60px">$!graduate.financeRemark</textarea>
+</td>
+
+</tr>
+
+<tr><td></td>
+<td colspan="2" align="right">
+$button.command("save_clearance").confirm("Update Clearance?").style("font-weight:bold;height:40px").text("UPDATE")
+$button.command("list_students").style("font-weight:bold;height:40px").text("CANCEL")
+</td>
+</tr>
+
+
+</table>
+
+
+
+</td></tr></table>
+$list_type
+<input type="hidden" name="student_id" value="$!student.id">
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="centre_id" value="$!centre.id">
+<input type="hidden" name="credit_hours" value="$!credit_hours">
+<input type="hidden" name="cgpa" value="$!cgpa">
+<input type="hidden" name="final_session_id" value="$final_session.id">
+<input type="hidden" name="graduate_id" value="$!graduate.id">
+<input type="hidden" name="type" value="graduates">
+<input type="hidden" name="list_type" value="$!list_type">
+<input type="hidden" name="study_type" value="$!study_type">

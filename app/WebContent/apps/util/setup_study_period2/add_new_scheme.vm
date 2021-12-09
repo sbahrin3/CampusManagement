@@ -1,0 +1,14 @@
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:10pt;font-weight:bold">Add New</legend>
+
+<table width="100%">
+<tr>
+<td align="center">
+<input style="width:400px" name="period_scheme_name">
+<input type="button" value="ADD" onclick="doDivAjaxCall$formname('div_select_schemes','add_period_scheme','')">
+</td>
+</tr>
+</table>
+
+</fieldset>

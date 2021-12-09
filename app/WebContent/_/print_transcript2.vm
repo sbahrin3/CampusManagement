@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css" media="print">
+
+@page {  	size: 21cm 29.7cm;
+			margin: 1.5cm; margin-top:3.8cm; 
+			
+ @top-center {
+content: element(current);
+}
+@bottom-right {
+content: element(footer);
+}
+
+}
+
+
+
+#page-header {
+display: inline;
+}
+#page-footer{
+text-align: right;
+}
+
+.page-start { -fs-page-sequence: start; page-break-before: always;}
+table {-fs-table-paginate: paginate;page-break-inside: avoid;}
+/* forces a page break */
+.break {page-break-after:always}
+ 
+span.page:before { content: counter(page); }
+span.pagecount:before { content: counter(pages); }
+
+
+td {
+  	font-family: verdana, sans-serif;   
+  	font-style: normal;
+	font-size:8pt
+} 
+
+h1{
+	font-size:6pt;
+	page-break-before: always;
+}
+
+</style>
+
+</head>
+<body style="margin:0px;padding:0px">
+	
+	
+	
+	<div style="-fs-page-sequence: start; page-break-before: always">
+		<div style="position: running(current);">
+			<div id="page-header" class="small">
+				
+				
+				#if ( $appUrl )
+                	<div style="margin-top:1cm;padding:10px">
+                	<table width="100%">
+                		<tr>
+                			<td>
+                				<img style="" src="$appUrl/header/logo.png">
+                			</td>
+                		</tr>
+                	</table>
+                	</div>
+                #end
+				
+				
+				##<div class="line">&#160;</div>
+			</div>
+		</div>
+		
+		#**
+		<div style="position: running(footer);">
+			<div id="page-footer" class="small">
+				<div class="line">&#160;</div>
+				Page <span class="page" /> of <span class="pagecount" />
+			</div>
+		</div>
+		**#
+	
+	
+	
+	<div style="margin-top:1.3cm">
+	#parse("apps/util/student_exam_transcript/transcript.vm")
+	</div>
+
+	</div>
+
+</body>
+</html>

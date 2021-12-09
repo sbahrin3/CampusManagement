@@ -1,0 +1,41 @@
+
+#if ( $student )
+
+<br/>
+<div class="well">
+	<table width="100%">
+	<tr><td style="width:150px">Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+	<tr><td>Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+	<tr><td>Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+	<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+	</table>
+</div>
+
+<br/>
+
+<table width="100%">
+#if ( $student_status )
+	<tr><td>Current Session:</td><td style="font-weight:bold">$student_status.session.name</td></tr>
+	<tr><td>Current Period:</td><td style="font-weight:bold">$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end</td></tr>
+#end
+</table>
+
+<br/>
+
+
+<div id="student_status">
+#parse("apps/util/student_statuses/student_status.vm")
+</div>
+
+<br/>
+<table width="100%"><tr><td align="center">
+<button type="button" class="btn btn-danger" onclick="if ( !confirm('Remove all statuses?') ) return;doDivAjaxCall$formname('divData', 'delete_all','')">REMOVE ALL STUDENT'S STATUS</button>
+</td></tr></table>
+
+#end
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="student_id" value="$!student.id">

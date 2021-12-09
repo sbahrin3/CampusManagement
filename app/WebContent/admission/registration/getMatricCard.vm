@@ -1,0 +1,90 @@
+<script>
+$('getMatricCard').style.display="block";
+
+$('divUploadPhoto').style.display='block';$('divMatricCardImage').style.display='none';
+</script>
+
+<table width="100%" height="40px" cellpadding="0" cellspacing="0" style="background:#286090"><tr><td style="font-weight:bold;color:#fff">
+&nbsp;STUDENT'S MATRIC CARD
+</td>
+<td align="right">
+	<button class="btn btn-default" type="button" onclick="$('getMatricCard').style.display='none';">X</button>
+</td>
+</tr></table>
+
+<table width="100%" border="0">
+<tr><td align="center" style="font-weight:bold">
+$!student.biodata.name<br/>
+$!student.matricNo
+</td></tr>
+</table>
+<div id="divUploadPhoto" #if ( $student.matricPdfName ) style="display:none" #else style="display:block" #end >
+<table width="100%" border="0">
+<tr><td align="center">
+<div >
+	
+	
+	
+<img id="imgPhoto" style="height:200px" src="../download?file=$!student.photoFileName">
+
+</div>
+<br/>
+
+
+	<input type="file" id="photo" name="photo" style="width:200px">&nbsp;
+	<button class="btn btn-default" type="button" onclick="uploadFile('$!student.id','photo', 'divUploadFile')">Upload Image</button>
+	<input type="hidden" id="photoFileName" name="photoFileName" value="$!student.photoFileName">
+	<input type="hidden" id="avatarName" name="avatarName" value="$!student.avatarFileName">
+<div id="divUploadFile"></div>
+
+</td>
+</tr>
+</table>
+
+<table style="width:100%"><tr><td align="right" style="padding:10px">
+
+
+<button class="btn btn-success" type="button" value="Create Matric Card"
+onclick="popupMatricCard('../servlet/educate.sis.servlets.CreateMatricCardServlet?pathUrl=v/educate.admission.module.StudentMatricCardPrint?studentId=$student.id&rnd=&studentId=$student.id')">
+Create Matric Card
+</button>
+
+<button class="btn btn-link" type="button" value="Close" onclick="$('getMatricCard').style.display='none';">Close</button>
+
+
+</td></tr></table>
+</div>
+
+
+<div id="divMatricCardImage" #if ( $student.matricPdfName ) style="display:block" #else  style="display:none" #end>
+<table width="100%" border="0">
+<tr><td align="center">
+
+<table><tr><td>
+<img src="../download?file=$!student.matricImageFrontName" style="width:4cm">
+
+#* 
+</td><td>
+<img src="../download?file=$!student.matricImageBackName" style="width:4cm">
+</td></tr>
+*#
+</table>
+
+</td></tr>
+</table>
+<table style="width:100%"><tr><td align="right">
+
+
+
+<input class="linkbutton" style="height:40px;font-weight:bold" type="button" value="Re-Create.." onclick="$('divUploadPhoto').style.display='block';$('divMatricCardImage').style.display='none';">
+<input class="linkbutton" style="height:40px;font-weight:bold" type="button" value="Download.."
+onclick="popupMatricCard('../servlet/educate.sis.servlets.GetMatricCardServlet?studentId=$student.id&rnd=$!randomNo');">
+
+<input class="linkbutton" style="height:40px;font-weight:bold;padding:2px" type="button" value="Close" onclick="$('getMatricCard').style.display='none';">
+
+</td></tr></table>
+</div>
+
+<script>
+
+</script>

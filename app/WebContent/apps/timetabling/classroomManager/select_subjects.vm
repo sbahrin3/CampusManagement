@@ -1,0 +1,14 @@
+##<select name="subjectId" style="width:400px" onchange="$('listStudents').innerHTML = '';$('listStudentsInClassrooms').innerHTML='';doDivAjaxChainCall$formname('selectSections','listSections','','selectClassrooms','listClassrooms','')">
+<select name="subjectId" style="width:400px" 
+onchange="$('listStudentsInClassrooms').innerHTML='';doDivAjaxCall$formname('selectClassrooms','listClassrooms','')">
+<option value=""></option>
+#foreach( $s in $subjectList )
+#if ( $s.code != "" )
+##if ( $s.subjectGroup )
+<option value="$s.id">$s.code $s.name</option>
+##end
+#end
+#end
+</select>
+##<input type="button" value="Get" onclick="$('listStudents').innerHTML = '';$('listStudentsInClassrooms').innerHTML='';doDivAjaxChainCall$formname('selectSections','listSections','','selectClassrooms','listClassrooms','')">
+<input type="button" value="Get" onclick="$('listStudentsInClassrooms').innerHTML='';doDivAjaxCall$formname('selectClassrooms','listClassrooms','')">

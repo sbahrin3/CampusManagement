@@ -1,0 +1,4 @@
+<script>
+parent.doDivAjaxCall3$formname('divPhoto','reloadProfilePhoto','profilePhotoNameReload=$!profilePhotoName&avatarPhotoNameReload=$!avatarPhotoName');
+</script>
+$!profilePhotoName

@@ -1,0 +1,10 @@
+<div style="padding:10px">
+
+	<div id="find_student">
+		#parse("apps/util/finance/payment_list/get_student.vm")
+	</div>
+	
+	<div id="payment_list"></div>
+
+
+</div>

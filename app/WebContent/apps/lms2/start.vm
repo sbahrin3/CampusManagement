@@ -1,0 +1,126 @@
+<style>
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+#div_container {
+   height:100%;
+   min-height:100%;
+   position:relative;
+}
+#div_header {
+   position:fixed;
+   top:0;
+   width:100%;
+   height:40px; /* Height of the header */
+   z-index:99;
+}
+#div_body {
+   padding-top:42px; /* Height of the header */
+   padding-bottom:60px;   /* Height of the footer */
+}
+
+#div_menu {
+   padding-top:42px;
+   padding-bottom:60px;   /* Height of the footer */
+}
+#div_footer {
+   position:fixed;
+   bottom:0;
+   width:100%;
+   height:25px;
+   z-index:99;
+}
+
+.header_color { background: -moz-linear-gradient(top, #009999  0%, #336666 100%);}
+
+.posting { font-family:arial; font-size:10pt }
+.posting_user_name { font-family:arial; font-size:8pt;font-weight:bold;color:#0000FF}
+.posting_date { font-family:arial; font-size:8pt;color:#6666CC}
+.classroom_title { font-family:helvetica;font-size:14pt;font-weight:bold;color:#FFFFFF }
+.noborder { border-top:none; border-bottom:none; border-left:none;border-right:none; }
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+
+.text_input {font-weight:bold; color:#0000FF; border-bottom:1px solid #C3C3C3; border-top:1px solid #C3C3C3; border-left:1px solid #C3C3C3; border-right:1px solid #C3C3C3; height:30px; width:100%}
+
+.post_button { background: -moz-linear-gradient(top, #6666FF 0%, #0000FF 100%); font-family:helvetica;font-size:10pt;font-weight:bold;color:#FFFFFF;height:30px }
+
+div.menu1 { position: absolute; visibility: hidden;z-index:1000;border-top:1px solid #C3C3C3;border-bottom:1px solid #C3C3C3; border-left:1px solid #C3C3C3;border-right:1px solid #C3C3C3;
+-moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888;}
+div.menu2, a.menu2 { padding: 5px 5px; }
+a.menu2 { display: block; font-size:8pt; font-weight:bold; text-decoration:none; background: #FFFFFF; color: #660000; }
+a:hover.menu2 { display: block; font-size:8pt; font-weight:bold text-decoration:none; color: #ffffff; background: #660000; }
+
+.post_status { background: -moz-linear-gradient(top, #FFFFCC 0%, #FFFF99 100%); border-top:none; border-bottom:none; border-left:none;border-right:none;}
+.post_discussion { background: -moz-linear-gradient(top, #E2FEE2 0%, #99FF99 100%); border-top:none; border-bottom:none; border-left:none;border-right:none;}
+.post_assignment { background: -moz-linear-gradient(top, #FFCCFF 0%, #FF99FF 100%); border-top:none; border-bottom:none; border-left:none;border-right:none;}
+.post_question { background: -moz-linear-gradient(top, #E2E2FE 0%, #9999CC 100%); border-top:none; border-bottom:none; border-left:none;border-right:none;}
+
+.module_title { font-family:arial;font-size:12pt;font-weight:bold;border-bottom:2px solid #C3C3C3}
+</style>
+
+<div id="div_container" name="div_container">
+
+<div class="header_color" id="div_header" name="div_header">#parse ( "apps/lms2/classroom_title.vm" )</div>
+
+<div id="div_body" name="div_body">
+
+<div id="div_main" name="div_main">#parse( "apps/lms2/main.vm" )</div>
+
+</div>
+
+<div id="div_footer" name="div_footer">#parse( "apps/lms2/footer.vm" )</div>
+
+</div>
+
+<input type="hidden" name="subject_id" value="$!subject_id">
+<input type="hidden" name="subject_title" value="$!subject_title">
+<input type="hidden" name="role" value="$!user_role">
+<input type="hidden" id="postings_size" name="postings_size" value="10">
+<input type="hidden" id="postings_page" name="postings_page" value="1">
+
+<script>
+
+var TextAreaResize = Class.create();  
+   
+TextAreaResize.prototype = {  
+
+initialize: function(element, options) {  
+this.element = $(element);          
+this.options = Object.extend({maxRows: 50}, options || {} );  
+
+Event.observe(this.element, 'keyup', this.onKeyUp.bindAsEventListener(this));  
+this.onKeyUp();  
+},  
+  
+onKeyUp: function() {          
+while (this.element.scrollHeight > this.element.offsetHeight && this.element.rows < this.options.maxRows) {  
+if (this.element.rows < this.options.maxRows) {  
+this.element.rows = this.element.rows + 1;  
+}  
+}  
+}  
+};  
+
+																window.onload = function() {
+doDivAjaxCall$formname('div_postings','list_postings','');
+}
+
+function wait_indicator(e) {
+e.style.visibility = 'visible';
+e.innerHTML = '<img src="../img/indicator.gif">';
+}
+
+function download(filename) {
+location.href="../download?file=" + escape(filename);
+}
+
+
+var img1 = new Image();
+var img2 = new Image();
+img1.src = '../img/star1.gif';
+img2.src = '../img/star2.gif';
+</script>

@@ -1,0 +1,15 @@
+
+
+<table width="100%">
+
+<tr>
+<td style="width:50px"></td>
+<td style="width:100px">Matric No</td>
+<td style="width:300px">Name</td>
+<td style="width:100px"></td>
+</tr>
+</table>
+
+<div id="divStudents" style="height:400px;overflow-x:hidden;">
+#parse("$path/divStudents.vm")
+</div>

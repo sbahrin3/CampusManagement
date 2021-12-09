@@ -1,0 +1,19 @@
+
+<table>
+
+#foreach( $scheme in $schemes)
+<tr>
+<td><input style="width:100%" id="name_$scheme.id" name="name_$scheme.id" value="$scheme.name" onchange="doDivAjaxCall$formname('div_empty','update_name','scheme_id=$scheme.id')"></td>
+<td><input type="button" value="Items.." onclick="doDivAjaxCall$formname('div_items','get_items','scheme_id=$scheme.id')"></td>
+<td><input type="button" value="Delete" onclick="if ( !confirm('Are you sure?') ) return;doDivAjaxCall3$formname('div_schemes','delete_scheme','scheme_id=$scheme.id')"></td>
+</tr>
+#end
+<tr>
+<td><input style="width:100%" id="name" name="name"></td>
+<td colspan="2"><input type="button" value="Add Scheme" onclick="doDivAjaxCall3$formname('div_schemes','add_scheme','')"></td>
+</tr>
+</table>
+
+#if ( $errorMessage )
+$errorMessage
+#end

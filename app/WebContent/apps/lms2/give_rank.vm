@@ -1,0 +1,9 @@
+												
+												<a href="javascript:void()" onclick="doDivAjaxCall3$formname('div_rank_$reply.id','give_rank','rank=1&reply_id=$reply.id')"><img #if ( $reply.rank > 0 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0"></a>
+																														<a href="javascript:void()" onclick="doDivAjaxCall3$formname('div_rank_$reply.id','give_rank','rank=2&reply_id=$reply.id')"><img #if ( $reply.rank > 1 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0"></a>
+																																										<a href="javascript:void()" onclick="doDivAjaxCall3$formname('div_rank_$reply.id','give_rank','rank=3&reply_id=$reply.id')"><img #if ( $reply.rank > 2 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0"></a>
+																																																						<a href="javascript:void()" onclick="doDivAjaxCall3$formname('div_rank_$reply.id','give_rank','rank=4&reply_id=$reply.id')"><img #if ( $reply.rank > 3 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0"></a>
+																																																																		<a href="javascript:void()" onclick="doDivAjaxCall3$formname('div_rank_$reply.id','give_rank','rank=5&reply_id=$reply.id')"><img #if ( $reply.rank > 4 ) src="../img/star1.gif" #else src="../img/star2.gif" #end border="0"></a>
+																																																																		
+																																																																		
+																																																																		

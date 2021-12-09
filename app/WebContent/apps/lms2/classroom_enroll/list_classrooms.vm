@@ -1,0 +1,34 @@
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">List of Available Classrooms</legend>
+
+
+<table width="100%" cellspacing="0">
+<tr height="0px">
+<td style="width:20px"></td>
+<td style="width:100px"></td>
+<td style=""></td>
+<td style="width:100px"></td>
+</tr>
+#foreach( $c in $classrooms )
+<tr>
+<td><input type="checkbox" value="$c.id" name="classroom_ids"></td>
+<td>$c.subjectId</td>
+<td>$util.capitalized($c.subjectTitle)</td>
+<td>
+<select name="role_$c.id">
+<option value="student">Student</option>
+<option value="teacher">Teacher</option>
+</select>
+</td>
+</tr>
+#end
+</table>
+<table width="100%" cellspacing="0">
+<tr><td align="right">
+
+<input type="button" value="Enroll Classroom(s)" onclick="doDivAjaxCall$formname('div_enrolled','enroll','')">
+
+</td></tr>
+</table>
+
+</fieldset>

@@ -1,0 +1,14 @@
+
+$otherTeachers.size()
+
+<div>
+<ul style="list-style: none;">
+#foreach( $t in $otherTeachers)
+		<li>
+		<input type="checkbox" name="addTeacherIds" value="$t.id">
+		$t.name
+		</li>
+#end
+</ul>
+<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('classroomOptions','addTeachers','classroomTemplateId=$!classroomTemplate.id')">Add Teachers</button>
+</div>

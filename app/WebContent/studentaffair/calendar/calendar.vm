@@ -1,0 +1,68 @@
+
+<table>
+<tr>
+<td colspan="7">
+
+<table width="100%" style="background:#EFEFEF"><tr>
+<td style="width:40px"><input class="linkbutton" type="button" value="&lt;" onclick="doDivAjaxCall3$formname('divCalendar','getCalendar','direction=previous&month=$calendar.month&year=$calendar.year')"></td>
+<td align="center" style="font-family:Verdana;font-size:12pt;font-weight:bold">$calendar.monthName, $calendar.year</td>
+<td style="width:40px" align="right"><input class="linkbutton" type="button" value="&gt;" onclick="doDivAjaxCall3$formname('divCalendar','getCalendar','direction=next&month=$calendar.month&year=$calendar.year')"></td>
+</tr></table>
+
+</td>
+</tr>
+<tr style="height:30px;background:#3532E5">
+<td style="width:180px;color:#fff" align="center">SUNDAY</td>
+<td style="width:180px;color:#fff" align="center">MONDAY</td>
+<td style="width:180px;color:#fff" align="center">TUESDAY</td>
+<td style="width:180px;color:#fff" align="center">WEDNESDAY</td>
+<td style="width:180px;color:#fff" align="center">THURSDAY</td>
+<td style="width:180px;color:#fff" align="center">FRIDAY</td>
+<td style="width:180px;color:#fff" align="center">SATURDAY</td>
+</tr>
+
+#set ( $cnt = 0 )
+
+#foreach( $r in [1..6])
+<tr style="height:80px;">
+#foreach( $d in [1..7])
+#if ( $r == 1 && $d >= $calendar.weekday )
+	#set ( $cnt = $cnt + 1 )
+#elseif ( $r > 1 )
+	#set ( $cnt = $cnt + 1 )
+#end
+#if ( $cnt > 0 ) #set ( $dayDisplay = $cnt ) #else #set ( $dayDisplay = "" ) #end
+
+#if ( $cnt < $calendar.totalDays + 1 )
+<td valign="top" #if ( $dayDisplay == "" ) style="background:#fff" #else 
+	#if ( $events.get($cnt).size() > 0 )
+	style="background:#F9FCA6"
+	#else
+	style="background:#E8E8EA" 
+	#end
+#end>
+
+<table #if ( $dayDisplay == "" ) style="width:100%;height:25px;background:#fff" #else style="width:100%;height:25px;background:#BABABA"  #end cellpadding="0" cellspacing="0">
+<tr><td align="center"><span style="font-family:Verdana;font-weight:bold;color:#000">$dayDisplay</span></td></tr>
+</table>
+<table>
+#if ( $events.get($cnt) )
+	#foreach( $e in $events.get($cnt))
+	<tr>
+	<td style="width:2px"><img src="../img/bluediam.gif" border="0"></td>
+	<td style="width:100%;border:none;cursor:pointer">$e.name</td>
+	</tr>
+	#end
+#end
+</table>
+
+</td>
+#else
+<td align="right" valign="top">&nbsp;</td>
+#end
+
+
+#end
+</tr>
+#end
+</table>

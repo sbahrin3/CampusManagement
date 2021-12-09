@@ -1,0 +1,12 @@
+<script>
+	function uploadFile(assetId, documentId, e) {
+		document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+		document.${formName}.enctype='multipart/form-data';
+		document.${formName}.encoding ='multipart/form-data';
+		document.${formName}.target='upload_document';
+		document.${formName}.action='?command=uploadFile&assetId=' + assetId + '&documentId=' + documentId + '&divUploadStatusName=' + e;
+		document.${formName}.submit();
+	
+	}
+</script>
+<iframe id="upload_document" name="upload_document" width="0px" height="0px" style="visibility:hidden"></iframe>

@@ -1,0 +1,106 @@
+<table cellpadding="2" cellspacing="0">
+	<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+	<tr><td style="font-weight:bold">Matric No<td><td>:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+	<tr><td style="font-weight:bold">Name<td><td>:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+	<tr><td style="font-weight:bold">IC/Passport<td><td>:</td><td style="font-weight:bold">#if ( $student.biodata.icno ) $student.biodata.icno #else $student.biodata.passport #end</td></tr>
+	<tr><td style="font-weight:bold">Semester<td><td>:</td><td style="font-weight:bold">#if ( $currentStatus.period.parent ) $!currentStatus.period.name ($currentStatus.period.parent.name) #else $!currentStatus.period.name #end</td></tr>
+	<tr><td style="font-weight:bold">Status<td><td>:</td><td style="font-weight:bold">$!currentStatus.type.name</td></tr>
+</table>
+	
+</table>
+<br/>
+<table class="table table-striped">
+	<tr style="height:35px">
+		<td class="h" style="width:30px">&nbsp;</td>
+		#if ( !$student.program.isNoneSessionType )
+			<td class="h" style="">Session Name</td>
+			<td class="h" style="">Session Date</td>
+		#end
+		<td class="h" style="">Semester</td>
+		<td class="h" style="width:100px;">Status</td>
+		#if ( $student.program.isNoneSessionType )
+			<td class="h" style="width:100px;" align="center">Current</td>
+		#end
+		#if ( $isQuit )
+    		<td class="h" style="width:120px;"></td>
+    		<td class="h" style=""></td>
+    		<td class="h" style=""></td>
+		#end
+		<td class="h" style="width:100px"></td>
+	</tr>
+
+
+#set ( $show = "yes" )
+#set ( $editButton = "yes" )
+
+#foreach( $session in $sessions )
+	
+	#if ( $status_map.get("$session.id") )
+		#set ( $status = $status_map.get("$session.id")  )
+	#else
+		#set ( $status = "" )
+	#end
+	#set ( $style = "color:#000" )
+    #if ( $status.type.defer )
+		#set ( $style = "color:#F91909" ) 
+	#end
+	
+	#if ( $show == "yes" )
+		#set ( $bgcolor = "#fff" )
+		#if ( $currentStatus.id == $status.id )
+			#set ( $bgcolor = "#E3ECF2" )
+		#end
+    	<tr style="height:35px;background:$bgcolor">
+		<td style="$style;width:30px;border-bottom:1px solid #ccc">$velocityCount.</td>
+		#if ( !$student.program.isNoneSessionType )
+			<td nowrap style="$style;border-bottom:1px solid #ccc">$session.name &nbsp;&nbsp;</td>
+			<td nowrap style="$style;border-bottom:1px solid #ccc">$dateFormat.format($session.startDate) - $dateFormat.format($session.endDate) &nbsp;&nbsp;</td>
+		#end
+		<td nowrap style="$style;border-bottom:1px solid #ccc">$!status.period.name #if ( $status.period.parent ) ($status.period.parent.name) #end &nbsp;&nbsp;</td>
+		<td nowrap style="$style;border-bottom:1px solid #ccc">#if ( $status.type ) $status.type.name #end &nbsp;&nbsp;</td>
+			
+		#if ( $student.program.isNoneSessionType )
+			<td nowrap style="$style;border-bottom:1px solid #ccc" align="center">
+				#if ( $status.isCurrent )
+					YES
+				#end
+			</td>
+		#end
+		
+		#if ( $isQuit )
+			#if ( $status.type.quit )
+				#set ( $show = "no" )
+    			#if ( $status.statusDate ) #set ($date = $dateFormat.format($status.statusDate) ) #else #set( $date = "" ) #end
+        		<td style="$style;border-bottom:1px solid #ccc">$date</td>
+        		<td style="$style;border-bottom:1px solid #ccc" colspan="2">
+					$!status.withdrawType.name<br/>
+					$!status.remark
+				</td>
+        		
+        	#else
+    			<td style="$style;border-bottom:1px solid #ccc">&nbsp;</td>
+    			<td style="$style;border-bottom:1px solid #ccc">&nbsp;</td>
+    			<td style="$style;border-bottom:1px solid #ccc">&nbsp;</td>
+			#end
+		#end
+
+		<td style="$style;border-bottom:1px solid #ccc" align="center">
+			#if ( $status.changeable )
+				<button class="btn btn-warning btn-sm" type="button" onclick="doDivAjaxCall$formname('divEditStatus','editStatus','studentStatusId=$status.id')">Edit...</button>
+			#else
+				&nbsp;
+			#end
+		</td>	
+		
+		</tr>
+
+	
+	#end
+#end
+
+</table>
+	
+
+<script>
+$('div_ontop').style.display="none";
+</script>

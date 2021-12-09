@@ -1,0 +1,6 @@
+<select id="clusterId" name="clusterId" style="width:200px">
+<option value="addNew">(Add to New Cluster)</option>
+#foreach( $c in $clusters )
+<option value="$c.id">$c.name</option>
+#end
+</select>

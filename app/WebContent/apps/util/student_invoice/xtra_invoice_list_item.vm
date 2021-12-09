@@ -1,0 +1,50 @@
+$dateFormat.applyPattern("d MMM, yyyy")
+
+<table width="100%">
+
+<tr height="30px">
+<td class="gradient" style="width:20px" align="center">&nbsp;</td>
+<td style="width:200px;border-bottom:1px solid #BCBCBC" valign="top" >
+Other Invoices<br>
+(Out of range invoices)</td>
+<td align="right" valign="top" style="border-bottom:1px solid #BCBCBC">
+#set ( $got_primary = "no" )
+
+
+
+#foreach ( $invoice in $extra_invoices )
+
+#if ( $invoice.invoiceType == 1 ) 
+#set ( $got_primary = "yes" )
+#set ( $bgcolor = "#FFCCCC") 
+#else 
+#set ( $bgcolor = "#FFFFFF") 
+#end
+
+
+<table border="0" cellspacing="0" cellpadding="1">
+
+<tr bgcolor="$bgcolor">
+<td style="width:200px">
+$invoice.invoiceNo
+</td>
+<td style="width:100px" align="right">$dateFormat.format($invoice.createDate)</td>
+<td style="width:100px" align="right">RM $numFormat.format($invoice.amount)&nbsp;&nbsp;</td>
+
+<td>
+
+<input class="gradient" type="button" style="width:20px" value="..." onclick="$('div_invoice_detail').style.visibility='visible';doDivAjaxCall$formname('div_invoice_detail', 'invoice_detail', 'invoice_id=$invoice.id&student_status_id=$i.studentStatus.id')">
+
+</td>
+</tr>
+#end
+</table>
+
+</td>
+<td style="width:20px;border-bottom:1px solid #BCBCBC" align="center" valign="top">
+
+</td>
+</tr>
+
+</table>
+

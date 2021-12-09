@@ -1,0 +1,6 @@
+<table width="100%">
+<tr><td align="center" style="font-weight:bold">
+$!message
+<input type="button" value="Test" onclick="alert('ok')">
+</td></tr>
+</table>

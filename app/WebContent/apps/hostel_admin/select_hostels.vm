@@ -1,0 +1,9 @@
+<select name="select_hostel_id" id="select_hostel_id" style="width:300px;font-family:arial;font-size:8pt" 
+onchange="if ( $('select_hostel_id').value != '' ) { doDivAjaxChainCall$formname('div_hostel','select_hostel','','div_building','list_buildings',''); $('div_block').innerHTML = ''; $('div_floor').innerHTML = ''; $('div_room').innerHTML = ''; $('select_hostel_id').value=''}">
+<option value="">&nbsp;&nbsp;&nbsp;-- Select Hostel --</option>
+#foreach( $h in $hostels )
+<option value="$h.id">&nbsp;&nbsp;&nbsp;$h.name</option>
+#end
+</select>
+<input type="button" value="New" onclick="doDivAjaxCall$formname('select_hostels','new_hostel','')">
+

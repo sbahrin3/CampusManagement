@@ -1,0 +1,10 @@
+<table width="100%">
+<tr><td align="center" style="font-weight:bold">
+<a href="javascript:void()" onclick="doDivAjaxCall$formName('apply_graduation', 'apply_graduation', 'student_id=$student.id&graduate_id=$student_graduate.id')">
+Your biodata has been updated. Thank You.
+</a>
+</td></tr>
+<tr><td>
+
+</td></tr>
+</table>

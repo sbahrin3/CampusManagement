@@ -1,0 +1,44 @@
+#macro(create_chart $chart $type $caption $height)
+$chart.setFusionChartPath("/fusionchart")
+<table width="400"><tr><td>
+#if ( $type == "bar" )
+$chart.setFusionChartName("Bar2D.swf")
+#elseif ( $type == "pie" )
+$chart.setFusionChartName("Pie3D.swf")
+#end
+$chart.setCaption("$caption")
+$chart.setHeight($height)
+$chart.setWidth(400)
+<div align="center">
+$chart.fusionChartObject
+</div>
+</td></tr></table>
+#end
+
+#parse("apps/util/student_stat/menu.vm")
+
+##overflow-x:hidden;
+<div id="div_chart_data" name="div_chart_data" style="visibility:hidden;overflow:auto;position:absolute;left:300px;top:200px;width:700px;height:600px;background-color:#ffffff;border-style:solid;border-color:#D2D2D2"></div>
+<table align="center" cellpadding="0" cellspacing="0">
+<tr><td>
+
+</td></tr>
+<tr><td valign="top">
+
+#create_chart($program_chart "bar" "PROGRAM OF STUDY" 0)
+#create_chart($race_chart "bar" "RACE" 0)
+#create_chart($dis_chart "bar" "DISABILITY" 0)
+#create_chart($age_chart "bar" "AGE GROUPS" 0)
+
+</td><td valign="top">
+
+#create_chart($intake_chart "bar" "INTAKE" 0)
+#create_chart($sex_chart "bar" "GENDER" 0)
+#create_chart($centre_chart "bar" "CENTRE" 0)
+#create_chart($partner_chart "bar" "PARTNER" 0)
+#create_chart($edu_chart "bar" "HIGHEST QUALIFICATION" 0)
+#create_chart($sponsor_chart "bar" "SPONSOR" 0)
+
+</td></tr>
+</table>
+

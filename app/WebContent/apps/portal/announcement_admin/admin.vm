@@ -1,0 +1,14 @@
+<table width="700px">
+<tr>
+<td style="width:200px">Select Announcement:</td>
+<td>
+<select name="announcement_module_id" style="width:100%" onchange="doDivAjaxCall$formname('div_ann_access','select_announcement','')">
+<option value="">- Select Announcement -</option>
+#foreach( $r in $ann_modules )
+<option value="$r.moduleId">$r.moduleId - $r.moduleName</option>
+#end
+</select>
+</td>
+</tr>
+</table>
+<div id="div_ann_access"></div>

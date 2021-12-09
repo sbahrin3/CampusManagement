@@ -1,0 +1,5 @@
+File Name:<input style="width:300px" name="filename" value="C:/MySQL5/bin/cm_studylevel.sql">
+<input type="button" value="Run SQL" onclick="doDivAjaxCall$formname('runSQL','runSQL','')">
+
+<BR><BR>
+<div id="runSQL"></div>

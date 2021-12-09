@@ -1,0 +1,25 @@
+<div name="div_chat_main" id="div_chat_main" style="width:300px;height:360px;background-color:#ffffff">
+<table width="100%" bgcolor="#ffffff" style="border-top:1px solid;border-bottom:1px solid;border-left:1px solid;border-right:1px solid;">
+<tr id="chat_handle" name="chat_handle" bgcolor="#557FFF">
+<td style="font-family:arial;font-size:10pt;font-weight:bold;height:25px">
+&nbsp;Chat Box
+</td></tr>
+<tr><td>
+<table width="100%">
+<tr><td>
+<div name="div_chat" id="div_chat" style="overflow:auto;height:320px;width:100%"></div>
+</td></tr>
+</table>
+</td></tr>
+<tr><td>
+<input type="text" id="chat_message" name="chat_message" style="width:100%;  font-family:arial; font-size:10pt" onkeypress="return checkKey(event)"/>
+</td></tr>
+<tr><td align="right">
+			<input type="button" class="button1" name="btn_send_chat" id="btn_send_chat" style="width:50px" value="Send" onClick="javascript:sendChatText();" />
+			</td></tr>
+</table>
+</div>
+
+<script>
+new Draggable('div_chat_main', {handle:'chat_handle'});
+</script>

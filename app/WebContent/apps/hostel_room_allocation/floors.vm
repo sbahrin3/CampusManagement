@@ -1,0 +1,18 @@
+<table width="100%" bgcolor="lightgrey"><tr><td>FLOORS</td><td align="right"><a href="javascript:void()" onclick="doDivAjaxCall$formname('block_$block.id', 'close', '')">close</a></td></tr></table>
+<table width="100%">
+#foreach ( $floor in $block.floors )
+<tr>
+<td>
+$floor.code
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('floor_$floor.id','hostel_info','type=room&floor_id=$floor.id')">
+$floor.name
+</a>
+</td>
+</tr>
+
+<tr><td colspan="2">
+<div id="floor_$floor.id" name="floor_$floor.id"></div>
+</td></tr>
+#end
+</table>
+</td></tr></table>

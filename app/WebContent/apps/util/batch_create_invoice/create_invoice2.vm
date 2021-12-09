@@ -1,0 +1,11 @@
+#set ( $counter = $count + 1 )
+#if ( $invoice )
+$invoice.invoiceNo,  RM $numFormat.format($invoice.amount)
+#else
+$!error
+#end
+
+<script>
+doDivAjaxCall$formname('div_$next_id','create_invoice','student_status_id=$next_id&count=$count');
+$('div_progress').innerHTML = "Processing: <b>${counter} of $students.size()";
+</script>

@@ -1,0 +1,38 @@
+$dateFormat.applyPattern("d MMM, yyyy")
+<div style="padding:1em">
+##<table cellpadding="2" cellspacing="0">
+#foreach( $e in $events )
+	<div style="padding:5px;margin-bottom:5px;border-radius:10px;border:1px solid #B8C9DB;background:#fff">
+	<table cellpadding="2" cellspacing="0">
+	<tr style="height:30px">
+	<td style="width:100px;font-weight:bold;border-bottom:1px #B8C9DB">#if ( $e.startDate ) $dateFormat.format($e.startDate) #end</td>
+	<td style="font-weight:bold">$e.name</td>
+	</tr>
+	<tr><td colspan="2">$e.description</td></tr>
+	<tr><td colspan="2">#if ( $e.remark != "" ) $util.putLineBreak($e.remark) #end</td></tr>
+	<tr><td colspan="2" style="height:30px">&nbsp;</td></tr>
+	
+	<tr><td colspan="2" style="padding-left:4em">
+	<a href="javascript:void(0)" onclick="if ( $('divPhotos_$e.id').style.display=='none' ) { _jq('#divPhotos_$e.id').slideDown('slow');  } else { _jq('#divPhotos_$e.id').slideUp('slow'); }">$e.photos.size() photos:</a>
+	</td></tr>
+	<tr><td colspan="2" style="padding-left:4em">
+	<div id="divPhotos_$e.id" style="background:#EDEFF4;padding-left:4em;padding:1em;display:none">
+	#parse("alumni/event_list/listPhotos.vm")
+	</div>
+	
+	</td></tr>
+	
+	
+	<tr><td colspan="2" style="padding-left:4em">
+	<a href="javascript:void(0)" onclick="if ( $('divFeedback_$e.id').style.display=='none' ) { _jq('#divFeedback_$e.id').slideDown('slow');  } else { _jq('#divFeedback_$e.id').slideUp('slow'); }">$e.feedbacks.size() feedbacks:</a>
+	</td></tr>
+	<tr><td colspan="2" style="padding-left:4em">
+	<div id="divFeedback_$e.id" style="padding-left:4em;padding:1em;display:none">
+	#parse("alumni/event_list/feedbackList.vm")
+	</div>
+	</td></tr>
+	</table>
+	</div>
+#end
+##</table>
+</div>

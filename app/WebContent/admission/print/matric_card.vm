@@ -1,0 +1,31 @@
+<table cellpadding="0" cellspacing="0">
+
+<tr><td colspan="3"><img src="${applicationURL}/matric_card_image/top.png" style="width:${width}cm;"></td></tr>
+
+<tr><td colspan="3" style="background:$!matricCardColor;height:${bandheight}cm;" valign="middle" align="center">
+<div class="displayName">
+#if ( $student.biodata.displayName ) 
+	$student.biodata.displayName
+#else
+	$student.biodata.name
+#end
+</div>
+<div class="info">
+$student.matricNo
+</div>
+<div class="info">
+$student.program.displayName
+</div>
+
+</td></tr>
+
+<tr><td colspan="3"><img src="${applicationURL}/matric_card_image/bottom.png" style="width:${width}cm;"></td></tr>
+
+</table>
+
+<div id="divStudentPhoto">
+	
+	##<img id="imgPhoto" src="${applicationURL}/servlet/educate.admission.module.PhotoImgSrc?studentId=$student.id" style="height:${photoheight}cm">
+	<img src="${applicationURL}/download?file=$!student.photoFileName">
+
+</div>

@@ -1,0 +1,42 @@
+<fieldset><legend class="legend">Edit SubjectGroup</legend>
+
+<table width="100%">
+<tr style="height:0px"><td style="width:100px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr style="height:30px"><td>Code</td><td>:</td><td><input class="texts" name="subjectGroupCode_$subjectGroup.id" value="$subjectGroup.code"></td></tr>
+<tr style="height:30px"><td>Name</td><td>:</td><td><input class="texts" name="subjectGroupName_$subjectGroup.id" value="$subjectGroup.name"></td></tr>
+
+<tr style="height:30px"><td>Grade Scheme</td><td>:</td><td>
+<select class="texts" name="markingGrade_$subjectGroup.id">
+<option value=""></option>
+#foreach( $m in $markingGrades )
+<option value="$m.id" #if ( $m.id == $subjectGroup.markingGrade.id ) selected #end>$m.name</option>
+#end
+</select>
+</td></tr>
+
+<tr style="display:none"><td>Create Avg. Grade?</td><td>:</td><td>
+<select class="texts" name="createAverage_$subjectGroup.id">
+<option value="0" #if ( !$subjectGroup.createAverage == 0 ) selected #end>No</option>
+<option value="1" #if ( $subjectGroup.createAverage == 1 ) selected #end>Yes</option>
+</select>
+</td></tr>
+
+ 
+<tr style="display:none"><td>Sequence</td><td>:</td><td>
+<select class="texts" name="sequence_$subjectGroup.id">
+<option value="100"></option>
+#foreach( $i in [1..100] )
+<option value="$i" #if ( $i == $subjectGroup.sequence ) selected #end>$i</option>
+#end
+</select>
+</td></tr>
+
+
+</table>
+<br/>
+<table width="100%"><tr><td align="right">
+<button class="btn btn-primary" type="button" value="Save" onclick="doDivAjaxCall3$formname('divListSubjectGroups','saveSubjectGroup','subjectGroupId=$subjectGroup.id');$('editSubjectGroup_$subjectGroupId').style.visibility='hidden';">Save</button>
+<button class="btn btn-success" type="button" value="Cancel" onclick="$('editSubjectGroup_$subjectGroupId').style.visibility='hidden';">Cancel</button>
+</td></tr></table>
+
+</fieldset>

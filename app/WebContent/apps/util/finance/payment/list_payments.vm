@@ -1,0 +1,49 @@
+
+<div>
+#if ( $program )
+$program.code $program.name
+#end
+</div>
+
+<div style="padding:10px;font-weight:bold">
+$dateFormat.applyPattern("d MMM, yyyy")
+$dateFormat.format($date1) - $dateFormat.format($date2)
+, Total Amount Paid: RM $numFormat.format($total_amount)
+<a href="../servlet/educate.sis.servlets.PaymentReportXLServlet2"><img src="../img/xls.gif" border="0"></a>
+
+</div>
+
+<br/>
+<table class="table table-striped" cellpadding="0" cellspacing="1">
+<tr height="30px" bgcolor="lightgrey">
+<td style="width:30px"></td>
+<td style="font-weight:bold">Matric</td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">Receipt No</td>
+<td style="font-weight:bold">Date</td>
+<td style="font-weight:bold">Payment Type</td>
+<td style="font-weight:bold" align="right">Amount&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+
+#foreach( $i in $payments )
+<tr height="30px">
+<td class="line">${velocityCount}.</td>
+<td class="line">
+$i.student.matricNo
+</td>
+<td class="line">$i.student.biodata.name</td>
+<td class="line">$i.paymentNo</td>
+<td class="line">$dateFormat.format($i.createDate)</td>
+<td class="line">
+	#if ( $i.paymentMode == "Check" )
+		Cheque
+	#else
+		$!i.paymentMode
+	#end
+</td>
+<td class="line" align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;</td>
+
+</tr>
+#end
+</table>

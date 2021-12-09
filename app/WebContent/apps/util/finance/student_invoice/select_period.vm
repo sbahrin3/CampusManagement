@@ -1,0 +1,69 @@
+<table width="700" align="center">
+<tr><td align="right">
+
+[$href.command("").text("Back")]
+
+</tr></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td>Matric No:</td><td>
+$href.command("select_period").param("student_no=$student.matricNo").text("$student.matricNo")
+
+</td></tr>
+<tr><td>Name:</td><td>$student.biodata.name</td></tr>
+<tr><td>Program:</td><td>$student.program.code $student.program.name</td></tr>
+<tr><td>Intake:</td><td>$student.intake.name</td></tr>
+
+<tr><td colspan="2">&nbsp;</td></tr>
+
+
+<tr><td>Session:</td>
+<td>
+$current_session.name
+$button.command("next_session").param("").text("Next")
+</td></tr>
+<tr><td>Period:</td><td>$current_period.name #if ( $current_period.parent ) ($current_period.parent.name) #end</td></tr>
+</td></tr>
+</table>
+
+<br><br>
+
+<table width="100%">
+<tr><td align="right">
+
+$button.command("create_invoice").style("height:30px").param("period_id=$!current_period.id").text("Create Invoice")
+
+</td></tr>
+</table>
+
+<br><br>
+
+<table width="100%">
+#foreach ( $invoice in $invoices )
+<tr>
+<td>$invoice.invoiceNo</td>
+<td>$dateFormat.format($invoice.createDate) ($timeFormat.format($invoice.createTime))</td>
+<td align="right">$numFormat.format($invoice.amount)</td>
+<td>[$href.command("delete_invoice").param("invoice_id=$invoice.id").confirm("Delete this Invoice?").text("Delete")]</td>
+</tr>
+
+<tr><td colspan="4"><br></td></tr>
+
+#foreach( $i in $invoice.orderedInvoiceItems)
+<tr>
+<td></td>
+<td>$i.description</td>
+<td align="right">$numFormat.format($i.amount)</td>
+<td></td>
+</tr>
+#end
+
+<tr><td colspan="4"><br></td></tr>
+
+#end
+</table>
+
+
+<input type="hidden" name="student_id" value="$!student.id">
+

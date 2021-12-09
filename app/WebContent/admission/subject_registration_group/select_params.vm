@@ -1,0 +1,30 @@
+<table>
+<tr>
+<td style="width:150px">Program: </td>
+<td style="width:400px">
+<select class="textr" id="programId" name="programId" onchange="if ( this.value == '' ) return; doDivAjaxCall3$formname('listSessions','listSessions','')">
+<option value="">- Select All Programs -</option>
+#foreach ( $p in $programs )
+<option value="$p.id">$p.code - $p.name</option>
+#end
+</select>
+</td>
+</tr>
+
+
+<tr>
+<td>Subject: </td>
+<td>
+<div id="listSubjects">#parse("admission/subject_registration_group/listSubjects.vm")</div>
+</td>
+</tr>
+
+
+<tr>
+<td></td>
+<td>
+<input class="linkbutton" type="button" value="List Students..." onclick="doDivAjaxCall3$formname('listStudents','listStudents','')">
+</td>
+</tr>
+
+</table>

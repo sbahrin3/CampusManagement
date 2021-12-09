@@ -1,0 +1,17 @@
+
+##parse ( "vtl/main/visitor_choose.vm" )
+
+#if ( $showLogin )
+
+<div style="border:1px solid #000;font-weight:bold;float:right;background-color:#000;color:#fff;">
+
+	<a style="cursor:hand; cursor:pointer;color:#fff;font-family:Verdana;font-size:10pt;"
+	onclick="_jq('#tab_login').slideDown('slow');">Log-In</a>
+
+</div>
+
+
+
+#end
+ 
+##$('tab_login').style.visibility='visible';

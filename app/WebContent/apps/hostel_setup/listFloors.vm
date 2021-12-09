@@ -1,0 +1,54 @@
+<ul id="floorList" style="list-style-type:none; padding: 0px;">
+	
+	#set ( $cnt = 0 )
+	#foreach( $h in $floors )
+	#set ( $cnt = $cnt + 1 )
+	<li id="floorList_$cnt" style="padding:0px">
+		<input type="hidden" name="floorIds" value="$h.id">
+		<table cellpadding="1" cellspacing="0">
+		<tr>
+		<td style="width:20px;cursor:pointer" valign="top">$cnt.</td>
+		<td style="width:100px" valign="top"><input class="text" name="floorCode_$h.id" value="$h.code" onchange="doDivAjaxCall3$formname('empty','changeFloorCode','floorId=$h.id')"></td>
+		<td style="width:200px" valign="top"><input class="text" name="floorName_$h.id" value="$h.name" onchange="doDivAjaxCall3$formname('empty','changeFloorName','floorId=$h.id')"></td>
+		<td style="width:50px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listFloors','deleteFloor','floorId=$h.id')"></td>
+		<td style="width:80px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="Units" onclick="doDivAjaxCall3$formname('divHostel','listUnits','floorId=$h.id')"></td>
+        <td>
+			<input class="linkbutton" type="button" value="Floor Plan Image" onclick="if ( $('divFloorPlanImage_${h.id}').style.display=='none' ) { $('divFloorPlanImage_${h.id}').style.display='block'; } else { $('divFloorPlanImage_${h.id}').style.display='none'; }">
+		</td>
+		<td>
+			<div id="divFloorPlanImage_${h.id}" class="shadow" style="display:none;border:1px solid #000">
+        		<table><tr>
+        		<td>
+                	<input type="file" id="uploadImage_${h.id}" name="uploadImage_${h.id}" style="width:200px">&nbsp;
+                	<input class="linkbutton" type="button" value="Upload" onclick="uploadFloorPlanImage('$!h.id','uploadImage_${h.id}', 'divUploadFloorPlanImage_${h.id}')">
+					<input class="linkbutton" type="button" value="Close" onclick="$('divFloorPlanImage_${h.id}').style.display='none';">
+				</td>
+                <td>
+                	<div id="divUploadFloorPlanImage_${h.id}">
+						#parse("apps/hostel_setup/viewFloorPlanItem.vm")
+					</div>
+                </td>
+        		</tr></table>
+        		
+			</div>
+		
+		</tr>
+		</table>
+	</li>
+	#end
+</ul>
+<table cellpadding="1" cellspacing="0">
+<tr>
+<td style="width:20px"></td>
+<td style="width:100px"><input class="text" name="floorCode" value=""></td>
+<td style="width:350px"><input class="text" name="floorName" value=""></td>
+<td style="width:100px"><input class="linkbutton" type="button" style="width:100%" value="Add" onclick="doDivAjaxCall3$formname('listFloors','addFloor','blockId=$!block.id')"></td>
+</tr>
+</table>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('floorList', { onUpdate:updateFloorSequence });
+function updateFloorSequence() {
+	doDivAjaxCall3$formname('listFloors','updateFloorSequence','blockId=$!block.id')
+}
+</script>

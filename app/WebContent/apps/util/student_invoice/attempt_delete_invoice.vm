@@ -1,0 +1,57 @@
+
+
+$dateFormat.applyPattern("d MMM, yyyy")
+#if ( $invoice.invoiceType == 1 ) #set ( $bgcolor = "#FFCCCC") #else #set ( $bgcolor = "#FFFFFF") #end
+<fieldset style="background-color:$bgcolor;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">Invoice Detail</legend>
+<table width="100%">
+<tr><td style="width:150px"></td><td>#if ( $invoice.refund ) <b>Please note, this is a Refund</b> #end</td></tr>
+#if ( $invoice.sponsorInvoice )
+<tr><td>Invoiced to Sponsor:</td><td  style="font-weight:bold">$invoice.sponsorInvoice.sponsor.name</td></tr>
+#end
+<tr><td>Invoice No:</td><td  style="font-weight:bold">
+$invoice.invoiceNo
+</td></tr>
+<tr><td>Date:</td><td  style="font-weight:bold">$dateFormat.format($invoice.createDate)</td></tr>
+</table>
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:20px"></td>
+<td style="font-weight:bold">Item</td>
+<td style="font-weight:bold" align="right">Amount (RM)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#foreach ( $i in $invoice.invoiceItems )
+<tr height="30px">
+<td class="gradient" align="center">${velocityCount}.</td>
+<td style="border-bottom:1px solid #BCBCBC">$i.description</td>
+<td style="border-bottom:1px solid #BCBCBC" align="right">$numFormat.format($i.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+<tr height="30px">
+<td colspan="2" style="font-weight:bold"></td>
+<td align="right" style="font-weight:bold">$numFormat.format($invoice.amount)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</table>
+
+<table width="100%">
+<tr>
+<td valign="top">
+#if ( !$invoice.refund )
+<b>Why do you want to DELETE this INVOICE?:
+#else
+<b>Why do you want to CANCEL this REFUND?:
+#end
+</b>
+<textarea id="delete_reason" name="delete_reason" style="width:100%;height:50px"></textarea>
+
+</td>
+<td style="width:200px" align="right">
+<input class="gradient" type="button" style="height:30px;font-weight:bold" 
+#if ( !$invoice.refund ) value="CONFIRM DELETE THIS INVOICE" #else value="CONFIRM CANCEL THIS REFUND" #end
+onclick="doDivAjaxChainCall$formname('div_invoice_detail','delete_invoice','invoice_id=$invoice.id&student_status_id=$student_status_id', 'div_invoice_$student_status_id','list_invoices','student_status_id=$student_status_id')">
+</td></tr></table>
+
+</fieldset>
+
+<script>
+$('delete_reason').focus();
+</script>

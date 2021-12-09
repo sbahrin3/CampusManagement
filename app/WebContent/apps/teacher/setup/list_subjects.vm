@@ -1,0 +1,36 @@
+
+<table>
+
+<tr>
+<td style="width:100px;font-weight:bold">Subject Code</td>
+<td style="width:500px;font-weight:bold">Subject Name</td>
+<td style="width:200px;font-weight:bold">Section</td>
+<td style="width:50px"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $subjects)
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#DCDCDC" ) #else #set ( $bgcolor = "#fff" ) #end
+
+<tr bgcolor="$bgcolor">
+<td>$s.subject.code</td>
+<td>$s.subject.name</td>
+<td>$s.section.name</td>
+<td><input type="button" value="x" onclick="doDivAjaxCall3$formname('teacher_classroom','deleteClassroom','teacherSubjectId=$s.id')"></td>
+</tr>
+#end
+
+
+<tr>
+<td colspan="2">
+#parse("$path/select_subjects.vm")
+</td>
+<td>
+#parse("$path/select_sections.vm")
+</td>
+<td>
+<input type="button" value="Add" onclick="doDivAjaxCall3$formname('teacher_classroom','addClassroom','teacherId=$!teacher.id')">
+</td>
+</tr>
+
+</table>

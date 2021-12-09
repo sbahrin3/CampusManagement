@@ -1,0 +1,43 @@
+#**
+<div style="font-weight:bold">
+
+$!subject.code $!subject.name<br/>
+$!activityName
+
+</div>
+**# 
+
+<table class="table">
+	<thead>
+	<tr>
+		<th></th>
+		<th>
+			CONFLICT MESSAGE
+		</th>
+		<th>COURSE</th>
+		<th>TYPE</th>
+		<th>LOG TIME</th>
+	</tr>
+	</thead>
+	<tbody>
+	$df.applyPattern("dd-MM-yyyy")
+	#set ( $cnt = 0 )
+	#foreach( $f in $failedTemplateLogs )
+		##if ( $f.conflictCode != "102" )
+			#set ( $cnt = $cnt + 1 )
+			<tr>
+				<td style="width:10px">$cnt)</td>
+				<td>
+					#parse("apps/timetabling/display_conflict_message.vm")
+				</td>
+				<td style="width:100px">$f.subjectCode</td>
+				<td style="width:100px">$f.activityName</td>
+				<td style="width:100px" align="center">
+					$df.format($f.logDate)<br/>
+					$tf.format($f.logDate)
+				</td>
+			</tr>
+		##end
+	#end
+	</tbody>
+</table>

@@ -1,0 +1,13 @@
+<table width="800" align="center"><tr><td align="right">
+
+Matric No:<input name="student_no" id="student_no">
+<input type="button" value="Get Student" onclick="doDivAjaxCall$formname('div_profile','get_student','')">
+
+</td></tr>
+<tr><td>
+<div name="div_profile" id="div_profile"></div>
+<tr><td>
+
+
+
+</td></tr></table>

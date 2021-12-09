@@ -1,0 +1,15 @@
+<div style="padding:15px;">
+<table>
+	<tr><td style="width:400px">
+		<input class="form-control" name="findName" id="findName" placeholder="Find by code or name..." onkeypress="if ( event.keyCode == 13 ) { if ( $('findName').value != '' ) { doDivAjaxCall$formname('subjectList','findSubjects',''); } }">
+	</td>
+	<td>
+	&nbsp;
+	<button type="button" class="btn btn-success btn-sm" onclick="if ( $('findName').value != '' ) { doDivAjaxCall$formname('subjectList','findSubjects',''); }">Search</button>
+	##<button type="button" class="btn btn-info btn-sm" onclick="$('mainDisplay').style.display='block';$('find_subject').style.display='none';">Cancel</button>
+	</td></tr>
+</table>
+
+<div id="subjectList" style="margin-top:20px"></div>
+
+</div>

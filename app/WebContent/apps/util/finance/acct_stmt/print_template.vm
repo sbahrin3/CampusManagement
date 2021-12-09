@@ -1,0 +1,47 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css" media="print">
+
+@page {  	size: 21cm 29.7cm;
+			margin: 1.5cm; }
+
+td {
+  	font-family: verdana, sans-serif;   
+  	font-style: normal;
+	font-size:8pt
+} 
+
+h1{
+	font-size:6pt;
+	page-break-before: always;
+}
+
+</style>
+
+</head>
+<body>
+
+<br/>
+<br/>
+
+<table width="100%">
+<tr><td align="center" style="font-weight:bold;font-family:Verdana, sans-serif; font-size:12pt">
+STATEMENT OF ACCOUNT
+</td></tr>
+<tr><td>
+
+#parse("apps/util/finance/acct_stmt/print_student_info.vm")
+<br/>
+#parse("apps/util/finance/acct_stmt/print_statement.vm")
+<br/><br/>
+#parse("apps/acct_statement_content/letter_content/content.html")
+
+</td></tr></table>
+
+
+</body>
+</html>

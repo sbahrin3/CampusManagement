@@ -1,0 +1,68 @@
+#if ( $errorKP )
+
+<table width="500px" align="center"><tr><td style="font-weight:bold" align="center" bgcolor="#FFCCCC">
+<br>
+No Kad Pengenalan telah ada.  Sila periksa No KP anda.
+<br><br>
+</td></tr></table>
+
+#end
+
+<fieldset>
+<legend class="legend">Pendaftaran Pengguna</legend>
+
+
+<table width="700px">
+<tr><td width="500px" valign="top">
+
+
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+
+#input ( "nama" "Nama" "$!pelanggan.nama" )
+##input ( "noKPdaftar" "No KP" "$!pelanggan.noKPdaftar" )
+
+<tr><td  valign="top">No KP</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="noKPdaftar" name="noKPdaftar" value="$!pelanggan.noKPdaftar" onchange="doDivAjaxCall3$formname('divKP','hantarNoKP','')">
+<div id="divKP"></div>
+</td></tr>
+
+#input ( "alamat1" "Alamat" "$!pelanggan.alamat1" )
+#input ( "alamat2" "" "$!pelanggan.alamat2" )
+#input ( "poskod" "Poskod" "$!pelanggan.poskod" )
+#input ( "bandar" "Bandar" "$!pelanggan.bandar" )
+#input ( "negeri" "Negeri" "$!pelanggan.negeri" )
+
+</table>
+
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+
+#input ( "emel" "Emel" "$!pelanggan.emel" )
+#input ( "noTel" "Tel" "$!pelanggan.noTel" )
+#input ( "noTelBimbit" "Tel Bimbit" "$!pelanggan.noTelBimbit" )
+
+</table>
+
+
+
+</td><td valign="top" align="center">
+
+
+<div id="divPhoto">#parse ("$path/divPhoto.vm") </div>
+<input type="button" value="Upload" onclick="uploadPhoto('')">
+
+
+</td></tr>
+
+<tr><td align="right">
+
+<input type="button" value="Daftar Pengguna" style="font-weight:bold;height:25px" onclick="doDivAjaxCall3$formname('divSignUp','register','')">
+
+</td></tr>
+
+</table>
+
+
+</fieldset>
+

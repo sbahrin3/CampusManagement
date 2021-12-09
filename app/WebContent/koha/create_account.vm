@@ -1,0 +1,14 @@
+account created...
+<br>
+<a href="http://opac/cgi-bin/koha/opac-user.pl?userid=$!koha_user.id&password=$!koha_user.password" target="_new">Test Login</a>
+
+#**
+<iframe>
+<form action="http://intranet/cgi-bin/koha/mainpage.pl" method="post">
+<input name="userid" value="$!koha_user.id">
+<input type="password" name="password" value="$!koha_user.password">
+<input type="submit" value="login">
+</form>
+
+</iframe>
+**#

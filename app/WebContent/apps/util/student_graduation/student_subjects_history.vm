@@ -1,0 +1,46 @@
+<table width="100%">
+<tr><td bgcolor="lightgrey" colspan="5" style="height:30px;font-weight:bold">
+Student's Subjects History
+</td></tr>
+<tr>
+<td></td>
+<td></td>
+<td align="center" style="font-weight:bold">Type</td>
+<td align="center" style="font-weight:bold">Completed?</td>
+</tr>
+#foreach ( $session in $sessions )
+<tr><td colspan="4" style="font-weight:bold">$session.name</td></tr>
+#if ( $session_subjects.get("$session.id") )
+
+#foreach ( $result in $session_subjects.get("$session.id") )
+<tr>
+<td>&nbsp;&nbsp;</td>
+<td>$result.subject.code $result.subject.name</td>
+
+<td align="center">#if ( $result.subject.category ) $result.subject.category.name #else <font color="red">UNDEFINED</font> #end</td>
+
+#if ( $result.gradePoint )
+
+
+<td align="center">${result.grade} </td>
+<td align="center">${result.gradePoint} </td>
+
+#if ( $result.gradePoint > 0 )
+<td align="center" style="font-weight:bold">YES</td>
+#else
+<td align="center">NO</td>
+#end
+
+#end
+
+
+</tr>
+#end
+</td></tr>
+#end
+<br/>
+#end
+</table>
+<br/><br/>
+
+

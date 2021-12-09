@@ -1,0 +1,45 @@
+
+<table cellspacing="0" cellpadding="0">
+#foreach( $p in $periods)
+
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/join.gif)"></td>
+<td>$p.name</td>
+</tr>
+
+#if ( $p.hasChild() )
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/line.gif)"></td>
+<td>
+
+<table cellspacing="0" cellpadding="0">
+#set ( $cnt = 0 )
+#foreach( $child in $p.getChildList())
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td style="width:10px"></td>
+<td style="width:18px;height:16px;background:url(../images/menu/win/join.gif)"></td>
+<td style="width:200px">$child.name</td>
+
+</tr>
+#end
+</table>
+
+</td>
+</tr>
+#end
+#end
+
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/line.gif)"></td>
+<td></td>
+</tr>
+
+
+
+<tr>
+<td style="width:18px;height:16px;background:url(../images/menu/win/blank.gif)"></td>
+<td></td>
+</tr>
+
+</table>

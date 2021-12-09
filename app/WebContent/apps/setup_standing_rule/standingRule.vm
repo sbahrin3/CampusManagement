@@ -1,0 +1,37 @@
+<table>
+<tr style="height:40px;border-bottom:1px solid #ebebeb">
+<td style="width:40px">$row)</td>
+<td style="width:200px" align="center">
+#if ( $standingRule.comparator == "eqgt" ) Equal/Greater Than
+#elseif ( $standingRule.comparator == "lt" ) Less Than #end
+$!standingRule.cgpaValue
+</td>
+<td style="width:200px" align="center">
+#if ( $standingRule.comparator2 == "eqgt" ) Equal/Greater Than $!standingRule.gpaValue
+#elseif ( $standingRule.comparator2 == "lt" ) Less Than $!standingRule.gpaValue
+#else
+&nbsp;
+#end
+
+</td>
+
+
+
+
+<td style="width:200px" align="center">$!standingRule.previousStanding.name</td>
+<td style="width:250px;" align="center">$!standingRule.currentStanding.name</td>
+
+<td style="width:200px">
+<button class="btn btn-warning btn-sm" type="button" onclick="doDivAjaxCall$formname('edit_standingRule_$row','editStandingRule','row=$row&standingRuleId=$standingRule.id')">Edit</button>
+&nbsp;
+<button class="btn btn-danger btn-sm" type="button" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall$formname('main_standingRule','deleteStandingRule','standingRuleId=$standingRule.id')">X</button>
+</td>
+
+</tr>
+</table>
+
+<script>
+#if ( $saved )
+$('edit_standingRule_$row').innerHTML = "";
+#end
+</script>

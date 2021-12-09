@@ -1,0 +1,33 @@
+<fieldset><legend class="legend">Classrooms: $subject.name</legend>
+
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Update" onclick="doDivAjaxCall3$formname('editSubject_$subjectId','updateAssignClassrooms2','subjectId=$subjectId')">
+<input class="linkbutton" type="button" value="Close" onclick="$('editSubject_$subjectId').style.visibility='hidden';">
+</td></tr></table>
+
+
+<table cellspacing="0">
+<tr class="tableTitle" style="height:30px">
+<td style="width:10px"></td>
+<td style="width:300px;">Type</td>
+<td style="width:50px;">Freq/Week</td>
+</tr>
+#foreach( $c in $classrooms)
+<tr>
+<td>
+<input type="checkbox" name="classroomIds_$subjectId" id="check_${subjectId}_${c.section.id}" value="$c.section.id" #if ( $c.frequency > 0 ) checked #end>
+</td>
+<td>$c.section.name</td>
+<td>
+<select class="texts" id="freq_${subjectId}_${c.section.id}" name="freq_${subjectId}_${c.section.id}" onchange="if ( $('freq_${subjectId}_${c.section.id}').value > 0 ) { $('check_${subjectId}_${c.section.id}').checked = true; } else { $('check_${subjectId}_${c.section.id}').checked = false; }">
+#foreach ( $i in [0..5] )
+<option value="$i" #if ( $c.frequency == $i ) selected #end>$i</option>
+#end
+</select>
+</td>
+</tr>
+#end
+</table>
+
+
+</fieldset>

@@ -1,0 +1,17 @@
+<table>
+
+<tr><td>Program:</td><td>
+<div id="selectProgram">#parse("$path/selectProgram.vm")</div>
+</td></tr>
+
+<tr><td>Period:</td><td>
+<div id="selectPeriod">#parse("$path/selectPeriod.vm")</div>
+</td></tr>
+
+<tr><td>Section:</td><td>
+<div id="selectSection">#parse("$path/selectSection.vm")</div>
+</td>
+
+<tr><td></td><td>
+##<input type="button" value="List Students" onclick="doDivAjaxCall$formname('listStudents','listStudents','')">
+</td></tr></table>

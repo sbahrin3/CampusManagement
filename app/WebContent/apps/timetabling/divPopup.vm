@@ -1,0 +1,19 @@
+<table width="400px" align="center"><tr><td>
+
+<div name="divPopup" id="divPopup" class="shadow"
+style="visibility:hidden;position:absolute;width:400px;border-style:solid;border-color:#B4B4B4;background-color:#FFFFAA">
+<table width="100%">
+<tr><td align="right">
+<a href="javascript:void(0)" onclick="$('divPopup').style.visibility='hidden';$('divPopupInner').style.visibility='hidden';">Close</a>
+</td></tr>
+<tr><td>
+<span id="divPopupInner" style="font-weight:bold"></span>
+</td></tr>
+<tr height="20px"><td>
+
+</td></tr>
+</table>
+</div>
+
+
+</td></tr></table>

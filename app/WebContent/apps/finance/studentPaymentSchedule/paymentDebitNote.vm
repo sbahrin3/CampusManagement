@@ -1,0 +1,61 @@
+<div style="padding:10px;font-weight:bold;border:1px solid #000">
+	Credit Note
+</div>
+
+<div id="listDebitNotes">
+	#parse("apps/finance/studentPaymentSchedule/listDebitNoteItems.vm")
+</div>
+
+<div>
+	
+	<table style="width:100%"><tr><td align="right">
+	
+    <table>
+    	<tr style="height:30px;background:#AEB1B2">
+    		<td style="width:20px"></td>
+    		<td style="width:100px">Date Due</td>
+    		<td style="width:100px" align="center">Amount Due</td>
+    		<td style="width:50px"></td>
+    	</tr>
+    	
+    	<tr style="height:30px">
+    		<td></td>
+    		<td>
+    			<input class="texts" name="debitNoteDate" id="debitNoteDate">
+    			<script> new JsDatePick({ useMode:2, target:"debitNoteDate", dateFormat:"%d-%m-%Y" }); </script>
+    		</td>
+    		
+    		<td><input class="texts" name="debitNoteAmount"></td>
+    			
+    		<td align="center">
+				##<input class="linkbutton" type="button" value="+" onclick="doDivAjaxChainCall$formname('paymentDebitNote','addPaymentDebitNote','', 'getPaymentSchedule','listPaymentSchedules','studentId=$ptptnPaymentSchedule.student.id')">
+				<input class="linkbutton" type="button" value="+" onclick="doDivAjaxChainCall$formname('paymentDebitNote','addPaymentDebitNote','', 'getPaymentSchedule','getPaymentSchedule','studentId=$ptptnPaymentSchedule.student.id')">
+			</td>
+    	
+    	</tr>
+    	
+    	<tr style="height:30px">
+    		<td colspan="4">
+    		</td>
+    	</tr>
+    	
+    	#set ( $cnt = 0 )
+    	#foreach ( $i in $debitNoteScheduleItems )
+    		#set ( $cnt = $cnt + 1 )
+    		<tr style="height:30px">
+    			<td>$cnt)</td>
+    			<td>$dateFormat.format($i.dateDue)</td>
+    			<td align="center">$numFormat.format($i.amountDue)</td>
+    			<td align="center">
+					<input class="linkbutton" type="button" value="x" onclick="doDivAjaxChainCall$formname('paymentDebitNote','deletePaymentDebitNote','itemId=$i.id', 'getPaymentSchedule','getPaymentSchedule','studentId=$ptptnPaymentSchedule.student.id')">
+				</td>
+    		</tr>
+    	#end
+    	
+
+    </table>
+	
+	</td></tr>
+	</table>
+		
+</div>

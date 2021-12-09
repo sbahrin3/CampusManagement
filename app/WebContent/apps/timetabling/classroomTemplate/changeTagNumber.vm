@@ -1,0 +1,18 @@
+<div style="background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff"><label>Tag Number</label></td>
+			<td align="right">
+				<button type="button" class="btn btn-primary" onclick="$('changeTagNumber').style.display='none';">x</button>
+			</td>
+		</tr>
+	</table>
+  	
+</div>
+
+<div id="divTagNumber" style="height:250px;overflow:auto;overflow-x:hidden;padding:10px">
+
+	#parse("apps/timetabling/classroomTemplate/changeTagNumber2.vm")
+	
+</div>

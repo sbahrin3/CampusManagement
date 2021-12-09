@@ -1,0 +1,47 @@
+<table width="100%">
+
+<tr><td>
+<fieldset style="background-color:lightgrey; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table width="100%" cellspacing="0">
+<tr><td style="width:200px;font-family:verdana;font-size:10pt;">Application Status:</td><td style="font-family:verdana;font-size:10pt;font-weight:bold"> $applicant.status</td></tr>
+#if ( $applicant.status == "OFFERED" || $applicant.status == "OFFERED_CONDITIONALLY" )
+<tr><td style="font-family:verdana;font-size:10pt;">Offered Program:</td><td style="font-family:verdana;font-size:10pt;font-weight:bold"> $!applicant.programOffered.name</td></tr>
+<tr><td style="font-family:verdana;font-size:10pt;">Intake Session:</td><td style="font-family:verdana;font-size:10pt;font-weight:bold"> $!applicant.intake.name</td></tr>
+#end
+
+<tr><td style="font-family:verdana;font-size:10pt;">Application Date / Time:</td><td style="font-family:verdana;font-size:10pt;font-weight:bold"> $dateFormat.format($applicant.applyDate)  $timeFormat.format($applicant.applyTime)</td></tr>
+
+<tr><td style="font-family:verdana;font-size:10pt;">Ref. No:</td><td style="font-family:verdana;font-size:10pt;font-weight:bold"> $applicant.referenceNo</td></tr>
+<tr><td style="font-family:verdana;font-size:10pt;">Name:</td><td style="font-family:verdana;font-size:10pt;font-weight:bold"> $applicant.biodata.name</td></tr>
+<tr><td style="font-family:verdana;font-size:10pt;">ICNo:</td><td style="font-family:verdana;font-size:10pt;font-weight:bold"> $applicant.biodata.icno</td></tr>
+<tr><td style="font-family:verdana;font-size:10pt;">Passport:</td><td style="font-family:verdana;font-size:10pt;font-weight:bold"> $applicant.biodata.passport</td></tr>
+
+
+
+</table>
+</fieldset>
+</td></tr>
+<tr><td>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+#if ( $applicant.status == "OFFERED" || $applicant.status == "OFFERED_CONDITIONALLY" )
+<table width="100%">
+<tr><td style="font-family:courier;font-size:12pt">
+$util.putLineBreak($offer_letter)
+</td></tr>
+</table>
+#else
+<table width="100%">
+<tr><td align="center" style="font-family:verdana;font-size:10pt">
+#if ( $applicant.status == "NEW" )
+You can edit or modify you application form.
+To do this, click on the Application Form menu above.
+#end
+</td></tr>
+</table>
+#end
+</fieldset>
+</td></tr>
+
+</table>

@@ -1,0 +1,9 @@
+Group:<br/>
+<select class="text" name="subjectGroup_id"  style="width:400px"
+onchange="$('wait_subjects_list').innerHTML='<img src=../img/upload_wait.gif>';doDivAjaxCall3$formname('div_subjects_list','filter_by_faculty','')">
+<option value="">-ALL-</option>
+<option value="_NA_">-Undefined Group</option>
+#foreach( $g in $subjectGroups )
+<option value="$g.id" #if ( $g.id == $subjectGroup_id ) selected #end>$g.name</option>
+#end
+</select>

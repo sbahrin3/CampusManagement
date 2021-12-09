@@ -1,0 +1,51 @@
+<ul id="unitList" style="list-style-type:none; padding: 0px;">
+	
+	#set ( $cnt = 0 )
+	#foreach( $h in $units )
+	#set ( $cnt = $cnt + 1 )
+	<li id="unitList_$cnt" style="padding:0px">
+		<input type="hidden" name="unitIds" value="$h.id">
+		<table cellpadding="1" cellspacing="0">
+		<tr>
+		<td style="width:20px;cursor:pointer" valign="top">$cnt.</td>
+		<td style="width:100px" valign="top"><input class="text" name="unitCode_$h.id" value="$h.code" onchange="doDivAjaxCall3$formname('empty','changeUnitCode','unitId=$h.id')"></td>
+		<td style="width:350px" valign="top"><input class="text" name="unitName_$h.id" value="$h.name" onchange="doDivAjaxCall3$formname('empty','changeUnitName','unitId=$h.id')"></td>
+		
+		<td style="width:100px" valign="top">
+		<select class="text" name="unitGender_$h.id" onchange="doDivAjaxCall3$formname('empty','changeUnitGender','unitId=$h.id')">
+		<option value="0"></option>
+		<option value="1" #if ( $h.gender == 1 ) selected #end>Male</option>
+		<option value="2" #if ( $h.gender == 2 ) selected #end>Female</option>
+		</select>
+		</td>
+		
+		<td style="width:50px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listUnits','deleteUnit','unitId=$h.id')"></td>
+		<td style="width:80px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="Rooms" onclick="doDivAjaxCall3$formname('divHostel','listRooms','unitId=$h.id')"></td>
+		<td>
+		</tr>
+		</table>
+	</li>
+	#end
+</ul>
+<table cellpadding="1" cellspacing="0">
+<tr>
+<td style="width:20px"></td>
+<td style="width:100px"><input class="text" name="unitCode" value=""></td>
+<td style="width:350px"><input class="text" name="unitName" value=""></td>
+<td style="width:100px">
+<select class="text" name="unitGender">
+<option value="0"></option>
+<option value="1">Male</option>
+<option value="2">Female</option>
+</select>
+</td>
+<td style="width:100px"><input class="linkbutton" type="button" style="width:100%" value="Add" onclick="doDivAjaxCall3$formname('listUnits','addUnit','floorId=$!floor.id')"></td>
+</tr>
+</table>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('unitList', { onUpdate:updateUnitSequence });
+function updateUnitSequence() {
+	doDivAjaxCall3$formname('listUnits','updateUnitSequence','floorId=$!floor.id')
+}
+</script>

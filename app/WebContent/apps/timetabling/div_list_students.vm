@@ -1,0 +1,68 @@
+<table width="100%">
+<tr height="30px"><td colspan="5" style="font-weight:bold" align="center">
+$classroom.subject.code $classroom.subject.name ($classroom.classroomSection.name)
+</td></tr>
+
+#**
+<tr height="30px"><td colspan="5" align="center" style="font-weight:bold;background-color:#E3E3E3">
+Teacher:
+</td></tr>
+<tr height="30px"><td colspan="5" align="center" style="font-weight:bold;">
+$!classroom.teacher.name
+</td></tr>
+**#
+
+#if ( $classroom.coTeachers.size() > 0 )
+	<tr height="30px"><td colspan="5" align="center" style="font-weight:bold;background-color:#E3E3E3">
+	Teacher(s):
+	</td></tr>
+	
+	#foreach ( $t in $classroom.coTeachers )
+	<tr><td colspan="5" style="">
+		$t.name.toUpperCase() ($t.code)
+	</td></tr>
+	#end
+
+#end
+#if ( $classroom.grouped )
+		<tr height="30px"><td colspan="5" align="center" style="font-weight:bold;background-color:#E3E3E3">
+		Students By Groups:
+		</td></tr>
+		<tr height="30px"><td colspan="5" align="center" style="font-weight:bold;background-color:#E3E3E3">
+		Rooms: 
+		#foreach( $r in $classroom.room.combinedRooms )
+			$r.code&nbsp;|
+		#end
+		</td></tr>		
+		
+		#set ( $groupNo = 0 )
+		#foreach( $st in $students )
+		#if ( $groupNo != $st.groupNumber )
+			#set ( $groupNo = $st.groupNumber )
+		<tr>
+		<td colspan="4" style="font-weight:bold;border-bottom:1px solid #9E9E9E"><br/> GROUP $groupNo</td>
+		</tr>	
+		#end
+		<tr>
+		<td>$velocityCount)</td>
+		<td>$st.student.matricNo</td>
+		<td>$st.student.biodata.name</td>
+		</tr>
+		#end		
+	
+
+#else
+	#if ( $students.size() > 0 )
+		<tr height="30px"><td colspan="5" align="center" style="font-weight:bold;background-color:#E3E3E3">
+		Students:
+		</td></tr>
+		#foreach( $st in $students )
+		<tr>
+		<td>$velocityCount)</td>
+		<td>$st.student.matricNo</td>
+		<td>$st.student.biodata.name</td>
+		</tr>
+		#end
+	#end
+#end
+</table>

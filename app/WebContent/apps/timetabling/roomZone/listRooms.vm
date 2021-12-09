@@ -1,0 +1,34 @@
+#set ( $roomCount = 0 )
+<table>
+	<tr style="height:25px;background:#E0DAD9">
+		<td style="width:150px;border-bottom:1px dotted #ccc;font-weight:bold">Code</td>
+		<td style="width:300px;border-bottom:1px dotted #ccc;font-weight:bold">Name</td>
+		<td style="border-bottom:1px dotted #ccc;font-weight:bold"></td>
+	</tr>
+	#foreach( $r in $rooms )
+		#if ( $r.zoneNumber == $zone )
+			#set ( $roomCount = $roomCount + 1 )
+    		<tr>
+    			<td style="border-bottom:1px dotted #ccc">$r.code</td>
+    			<td style="border-bottom:1px dotted #ccc">$r.name</td>
+    			<td style="border-bottom:1px dotted #ccc">
+    				<input type="checkbox" name="roomIds" value="$r.id">
+    			</td>
+    		</tr>
+		#end
+	#end
+
+</table>
+	
+#if ( $roomCount == 0 )
+	
+	- Empty -
+	
+	<script>
+		$('roomCount_$zone').innerHTML = "Empty";
+	</script>
+#else
+	<script>
+		$('roomCount_$zone').innerHTML = "$roomCount rooms";
+	</script>
+#end

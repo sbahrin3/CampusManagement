@@ -1,0 +1,11 @@
+<h1>My Contacts</h1>
+
+<div id="div_input_data" name="div_input_data">
+#parse( "tutorial/div_input_data.vm" )
+</div>
+
+<hr/>
+
+<div id="div_contact_list" name="div_contact_list">
+#parse( "tutorial/div_contact_list.vm" )
+</div>

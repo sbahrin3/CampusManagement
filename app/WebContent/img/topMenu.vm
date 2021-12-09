@@ -1,0 +1,303 @@
+	#set( $_subjectid = $session.getAttribute("_subjectId") )
+	<table class="table_row" align="center" width="98%" cellpadding="0" cellspacing="0">
+		<tr>
+			<td class="table_row" align="left">
+				<table cellpadding="2" cellspacing="0">
+					<tr>
+
+					#if ($moduleTitle == "Lessons")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end
+							#if ( $session.getAttribute("_collab_role") == "tutor" )	
+<a href="?module=Lesson&subjectId=$!_subjectid">
+#else
+<a href="?module=Lesson&subjectId=$!_subjectid">
+							##<a href="?module=Lesson_Content&subjectId=$!subjectId" target="_new">
+							#end
+							<img src="../img/dvd.gif" border="0">
+							</a>
+						</td>							
+						<td>
+						</td>
+						
+																		#if ( !$isProject )
+					#if ($moduleTitle == "Coursework")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end	
+							<a href="?module=Coursework&subjectId=$!_subjectid">
+							<img src="../img/documents.gif" border="0">
+							</a>
+						</td>	
+						#end					
+
+						#**
+					#if ($moduleTitle == "CoursePortfolio")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end	
+							<a href="?module=CoursePortfolio&subjectId=$!subjectId">
+							<img src="../img/camera.gif" border="0">
+							</a>
+						</td>							
+						<td>
+						</td>
+						**#
+						
+					#if ($moduleTitle == "Scheduler")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end	
+							<a href="?module=Scheduler&subjectId=$!_subjectid">
+							<img src="../img/calendar.gif" border="0">
+							</a>
+						</td>						
+						<td>
+						</td>
+						
+						#**
+						#if ( !$isProject )
+					#if ($moduleTitle == "Assessment")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end	
+							<a href="?module=Assessment&subjectId=$!subjectId">
+							<img src="../img/macbook.gif" border="0">
+							</a>
+						</td>	
+						#end
+						**#
+
+						
+						
+					#if ( $isProject )
+					#if ($moduleTitle == "Time Line")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end	
+							<a href="?module=ProjectTimeLine&subjectId=$!_subjectid">
+							<img src="../img/gantt.jpg" border="0">
+							</a>
+						</td>	
+					#end
+					
+					#**
+											#if ( !$isProject )
+					#if ($moduleTitle == "Student List")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end	
+							<a href="?module=StudentList&subjectId=$!subjectId">
+							<img src="../img/finder.gif" border="0">
+							</a>
+						</td>	
+						#end
+						**#
+						
+
+
+																		#if ( !$isProject )
+					#if ($moduleTitle == "Assignments")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end	
+							<a href="?module=Assignment2&subjectId=$!_subjectid">
+							<img src="../img/edittext.gif" border="0">
+							</a>
+						</td>	
+						#end
+						
+						#if ( !$isProject )
+					#if ($moduleTitle == "Discussions")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end	
+							<a href="?module=Forum2&subjectId=$!_subjectid">
+							<img src="../img/edittext.gif" border="0">
+							</a>
+						</td>	
+						#end
+						
+						##if ( $isProject )
+					#if ($moduleTitle == "Chat")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px">
+					#end	
+							##<a href="?module=Chat&subjectId=$!subjectId">
+<a href="javascript:chatwindow('$!_subjectid')							">
+							<img src="../img/chatbubble.gif" border="0">
+							</a>
+						</td>	
+##end
+						
+						
+						
+						
+						<td align="center" style="width:100px">
+							<a href="?module=ExitCollab">
+							<img src="../img/home.gif" border="0">
+							</a>
+						</td>													
+										
+					</tr>
+					<tr>
+
+					#if ($moduleTitle == "Lessons")
+						<td class="table_header" align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#else
+						<td align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#end	
+
+eCONTENT
+
+						</td>						
+						<td>
+						</td>
+
+#**
+					#if ($moduleTitle == "CoursePortfolio")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px; font-family:arial; font-size:8pt">
+					#end	
+
+							#if ( !$isProject ) 							Course Portfolio #else Background #end
+	
+						</td>						
+						<td>
+						</td>
+												**#
+												
+																							#if ( !$isProject )
+					#if ($moduleTitle == "Coursework")
+						<td class="table_header" align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#else
+						<td align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#end	
+
+SUPPORT<BR>MATERIALS
+
+						</td>
+						#end
+												
+					#if ($moduleTitle == "Scheduler")
+						<td class="table_header" align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#else
+						<td align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#end	
+
+TUTORIAL<BR>
+TIMETABLE
+
+						</td>
+						<td>
+						</td>
+						
+						#**
+						#if ( !$isProject )
+					#if ($moduleTitle == "Assessment")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px; font-family:arial; font-size:8pt">
+					#end	
+
+							Self Assessment
+
+						</td>
+						#end
+						
+**#
+						
+						
+											#if ( $isProject )
+					#if ($moduleTitle == "Project Time Line")
+						<td class="table_header" align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#else
+						<td align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#end	
+
+						Time Line
+
+						</td>
+						#end
+						
+						#**
+						
+											#if ( !$isProject )
+					#if ($moduleTitle == "Student List")
+						<td class="table_header" align="center" style="width:100px">
+					#else
+						<td align="center" style="width:100px; font-family:arial; font-size:8pt">
+					#end	
+
+			Members
+
+						</td>
+						#end
+						
+						**#
+
+
+
+	
+
+						
+											#if ($moduleTitle == "Chat")
+						<td class="table_header" align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#else
+						<td align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#end	
+
+ASSIGNMENT
+
+						</td>
+						
+																	#if ($moduleTitle == "Discussions")
+						<td class="table_header" align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#else
+						<td align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#end	
+
+DISCUSSION FORUM
+
+						</td>
+						
+											#if ($moduleTitle == "Chat")
+						<td class="table_header" align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#else
+						<td align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+					#end	
+
+CHAT ROOM
+
+						</td>
+						
+						
+						<td align="center"  style="width:100px; font-weight:bold; font-family:arial; font-size:8pt">
+
+BACK
+	
+						</td>						
+											
+					</tr>					
+				</table>
+			</td>		
+		</tr>
+	</table>
+	
+	<script>
+function chatwindow(subjectId) {
+window.open('../x/${securityToken}/educate.chat.ChatModule?subjectId=' + subjectId,'chat_123','width=550,height=400,toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=no,copyhistory=yes,resizable=no');
+}
+</script>

@@ -1,0 +1,34 @@
+
+<script>
+#if ( $final_result.totalMark )
+	#if ( $roundType == 0 )
+		$('total_mark_$student_id').innerHTML = '$numFormat.format($final_result.totalMark)';
+	#else
+		$('total_mark_$student_id').innerHTML = '$resultFormat.format($final_result.totalMark)';
+	#end
+#else
+	$('total_mark_$student_id').innerHTML = '';
+#end
+
+$('grade_$student_id').innerHTML = '$!final_result.grade';
+
+$('marked_results').value = '$!marked_results';
+$('div_marked_results').innerHTML = '$!marked_results';
+$('div_percent_progress').innerHTML = '$!percent_progress';
+
+#foreach ( $id in $mark_ids )
+	#if ( $id )
+		$('$id').value = '$!marks.get("$id")';
+	#end
+#end
+</script>
+
+##IF RESULT STATUS CHANGED
+<script>
+#if ( $result_status )
+	$('result_status_$student_id').innerHTML = "$!result_status";
+#else
+	$('result_status_$student_id').innerHTML = "...";
+#end
+
+</script>

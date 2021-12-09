@@ -1,0 +1,42 @@
+<script>
+$('addClub').style.display='block';
+</script>
+
+<table>
+<tr><td style="width:200px">Club:</td><td style="width:400px">
+<select class="texts" name="clubId">
+<option value=""></option>
+#foreach( $c in $clubs )
+<option value="$c.id" #if ( $studentClub.club.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td></tr>
+<tr><td>Position in club:</td>
+<td>
+<select class="texts" name="positionId">
+<option value=""></option>
+#foreach( $p in $positions )
+<option value="$p.id" #if ( $studentClub.position.id == $p.id ) selected #end>$p.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Date Joined:</td><td>
+#if ( $studentClub )
+	$dateFormat.applyPattern("dd-MM-yyyy")
+	#set ( $dateValue = $dateFormat.format($studentClub.dateJoined) )
+#else
+	#set ( $dateValue = "" )
+#end
+$html.dateField.name("dateJoined").value("$!dateValue").style("width:120px").cssClass("texts")
+</td></tr>
+
+<tr><td></td><td>
+#if ( $studentClub )
+<input class="linkbutton" type="button" value="Save" onclick="doDivAjaxCall3$formname('studentClub','saveStudentClub','studentClubId=$studentClub.id')">
+#else
+<input class="linkbutton" type="button" value="Add" onclick="doDivAjaxCall3$formname('studentClub','studentClub','studentId=$student.id')">
+#end
+<input class="linkbutton" type="button" value="Cancel" onclick="$('addClub').style.display='none';">
+</td></tr>
+</table>

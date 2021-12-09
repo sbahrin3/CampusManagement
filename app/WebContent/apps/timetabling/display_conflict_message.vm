@@ -1,0 +1,54 @@
+#if ( $f.conflictCode == "001" )
+	## SAME CLASS IN A DAY
+ 	A class already avaliable on the day.
+
+#elseif ( $f.conflictCode == "002" )
+ 	## STUDENTS' GROUP CONFLICTS
+ 	Students' Group already exists in the slot.
+
+#elseif ( $f.conflictCode == "003" )
+	## ACTIVITY TYPES PRIORITY CONSTRAINT
+	A priority type constraint occured.
+
+#elseif ( $f.conflictCode == "004" )
+	## CLASS CONFLICTS IN A SLOT
+ 	A class already available in the slot.
+
+#elseif ( $f.conflictCode == "005" )
+	## ROOM NOT AVAILABLE
+	Can't find a suitable room or rooms has been occupied.
+	
+#elseif ( $f.conflictCode == "006" )
+	## ROOM IS TAKEN
+ 	Can't find a suitable room or rooms has been occupied.
+
+#elseif ( $f.conflictCode == "007" )
+	## TEACHER CONFLICTS
+	A lecturer conflicts has occured.
+#elseif ( $f.conflictCode == "008" )
+	##adjacentRoomsTeacherConflict
+	Next or previous room not in a walking distance.
+	
+#elseif ( $f.conflictCode == "102" )
+	## SLOT IS BLOCKED
+	Trying to put the class into a blocked slot.
+#elseif ( $f.conflictCode == "301" )
+	Trying to put the class into a blocked slot, whereas the class has a defined time range.
+#elseif ( $f.conflictCode == "302" )
+	Trying to put the class into a blocked slot, whereas the class has a defined time range.
+#elseif ( $f.conflictCode == "201" )
+	Can't find available Lecturer.
+#elseif ( $f.conflictCode == "SYS_ERROR" )
+	Internal System Error has occured.
+	$!f.conflictMessage
+#elseif ( $f.conflictCode == "L001" )
+	Total Teaching Time excceed lecturer's Teaching Hours.
+#elseif ( $f.conflictCode == "L002" )
+	Total Teaching Time excceed lecturer's Teaching Hours.
+#elseif ( $f.conflictCode == "L003" )
+	Lecturer's Preferences Constraint.		
+#else
+	($f.conflictCode)
+	Can't find available slot.
+#end
+

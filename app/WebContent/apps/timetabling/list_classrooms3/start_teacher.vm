@@ -1,0 +1,5 @@
+<link rel="stylesheet" href="../apps/style.css" type="text/css" media="screen" />
+
+
+<div id="classroomList">#parse("apps/timetabling/list_classrooms3/classroomList.vm")</div>
+<div id="divEmpty"></div>

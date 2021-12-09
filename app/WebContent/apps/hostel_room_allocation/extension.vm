@@ -1,0 +1,23 @@
+<table width="100%">
+<tr style="background:#D3D3D3;height:30px"><td align="center"  style="font-weight:bold">
+Unit: $alloc.room.unit.code - Room: $alloc.room.code
+</td></tr></table>
+<table width="100%">
+<tr><td style="width:120px;font-weight:bold">Curr. Date Out:</td><td>#if ( $alloc.expectedDateOut ) $du.toString($alloc.expectedDateOut, "dd-MMM-yyyy") #end</td></tr>
+<tr><td style="font-weight:bold">New Date Out:</td>
+<td>
+$html.dateField.name("ext_date_$alloc.id").value("").style("width:100px;")
+</td>
+</tr>
+<tr><td valign="top" style="font-weight:bold">Remark</td>
+<td>
+
+<textarea class="text" name="extensionRemark_$alloc.id" style="width:100%;height:100px"></textarea>
+
+</td></tr>
+</table>
+<table width="100%">
+<tr><td align="right">
+<input type="button" value="Make Extension" onclick="doDivAjaxCall3$formname('div_rooms','make_extension','roomAllocationId=$!alloc.id')">
+<input type="button" value="Cancel" onclick="$('ext_$alloc.id').style.display='none';">
+</td></tr></table>

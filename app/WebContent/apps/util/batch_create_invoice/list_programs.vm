@@ -1,0 +1,7 @@
+
+<select style="width:400px" id="program_id" name="program_id" onchange="if ( $('program_id').value == '' ) return; doDivAjaxChainCall$formname('div_intakes','list_intakes','', 'div_sessions','list_all_sessions','')">
+<option value=""> - </option>
+#foreach( $p in $programs )
+<option value="$p.id">$p.code $p.name</option>
+#end
+</select>

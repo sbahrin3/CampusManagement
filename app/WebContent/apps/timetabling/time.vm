@@ -1,0 +1,2 @@
+#set( $times = ["", "7.30a-8.30a","8.30a-9.30a","9.30a-10.30a","11.00a-12.00p","12.00p-1.00p","2.00p-3.00p","3.00p-4.00p","4.00p-5.00p", "5.00p-6.00p","6.00p-7.00p","x","x","x","x"] )
+#set ( $days = ["", "MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"])

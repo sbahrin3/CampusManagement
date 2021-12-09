@@ -1,0 +1,22 @@
+<table width="100%" style="font-family:arial;font-size:10pt">
+#foreach ( $topic in $topics )
+<tr><td style="height:50px" valign="top"
+onmouseover="style.backgroundColor='#EBEBEB';$('div_$topic.id').style.visibility='visible';"
+onmouseout="style.backgroundColor='#ffffff';$('div_$topic.id').style.visibility='hidden';"
+>
+
+<table width="100%" style="font-family:arial;font-size:10pt">
+
+<tr><td align="right">
+<div id="div_$topic.id" name="div_$topic.id" style="visibility:hidden">
+
+</div>
+</td></tr>
+
+<tr><td>$topic.title</td></tr>
+
+</table>
+
+</td></tr>
+#end
+</table>

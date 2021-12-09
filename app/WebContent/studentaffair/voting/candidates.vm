@@ -1,0 +1,38 @@
+<script>
+$('studentInfo').style.display='none';
+</script>
+<table>
+<tr>
+<td colspan="3">
+<div id="voting_session">
+#parse("studentaffair/voting/voting_session.vm")
+</div>
+</td>
+<td colspan="3" align="right">
+
+<input class="linkbutton" type="button" value="Set Voting Dates" onclick="doDivAjaxCall3$formname('votingDate','getVotingDate','')">
+<input class="linkbutton" type="button" value="Add Candidate" onclick="doDivAjaxCall3$formname('studentInfo','findStudent','')">
+
+</td>
+</tr>
+<tr style="background:#B0B4B7;height:30px">
+<td style="width:40px;font-weight:bold"></td>
+<td style="width:350px;font-weight:bold">Name</td>
+<td style="width:150px;font-weight:bold">Matric No</td>
+<td style="width:300px;font-weight:bold">Program</td>
+<td style="width:100px;font-weight:bold"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $c in $candidates )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E8E8E8" ) #else #set ( $bgcolor = "#FFFFFF" ) #end
+<tr style="background:$bgcolor">
+<td style="">$cnt.</td>
+<td style="">$c.student.biodata.name</td>
+<td style="">$c.student.matricNo</td>
+<td style="">$c.student.program.name</td>
+<td style="" align="center">
+<input class="linkbutton" type="button" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('candidates','deleteCandidate','candidateId=$!c.id')"></td>
+</tr>
+#end
+</table>

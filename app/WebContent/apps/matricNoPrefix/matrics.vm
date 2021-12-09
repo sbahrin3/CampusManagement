@@ -1,0 +1,41 @@
+<table align="center">
+	<tr style="height:30px">
+		<td style="width:30px;font-weight:bold;border-bottom:2px solid #ccc">&nbsp;</td>
+		<td style="width:200px;font-weight:bold;border-bottom:2px solid #ccc">Prefix</td>
+		<td style="width:80px;font-weight:bold;border-bottom:2px solid #ccc" align="center">*Counter</td>
+		<td style="width:80px;font-weight:bold;border-bottom:2px solid #ccc" align="center">&nbsp;</td>
+		<td style="width:80px;font-weight:bold;border-bottom:2px solid #ccc" align="center">&nbsp;</td>
+	</tr>
+    #foreach( $m in $matrics )
+    	<tr style="height:25px">
+			<td style="border-bottom:1px solid #ccc">$velocityCount.</td>
+			<td style="border-bottom:1px solid #ccc;font-family:courier;font-size:12pt">$m.prefix</td>
+			<td style="border-bottom:1px solid #ccc" align="center">
+				<input class="texts" style="text-align:center;width:80px" name="counter_$m.refId" value="$m.counter" onchange="doDivAjaxCall$formname('updateCounter_$m.refId','updateCounter','refId=$m.refId')">
+			</td>
+			<td style="border-bottom:1px solid #ccc" align="center">
+				<input type="checkbox" value="$m.refId" name="refIds">
+			</td>
+			<td>
+				<div id="updateCounter_$m.refId"></div>
+			</td>
+		</tr>
+	#end
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td colspan="2"><input type="button" class="linkbutton" value="Delete" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall$formname('matrics','deletePrefixes','')"></td>
+	</tr>
+	<tr style="height:40px">
+		<td colspan="5">
+			&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5">
+			*This is current counter.  Next student registration shall increment this counter by 1.
+		</td>
+</table>
+	
+

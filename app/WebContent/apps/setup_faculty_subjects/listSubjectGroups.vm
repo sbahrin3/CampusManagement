@@ -1,0 +1,32 @@
+<div id="listOfGroups">
+<fieldset>
+<legend class="legend">List of Subject Groups</legend>
+
+##HIDDEN FIELDS
+<input type="hidden" name="facultyId" value="$!faculty.id">
+
+
+<table cellspacing="0" cellpadding="2" style="width:100%">
+<tr style="height:30px; background-color:#f4f4f3;">
+<td>
+<table>
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td>Faculty</td><td>:</td><td style="font-weight:bold">$faculty.name</td></tr>
+</table>
+</td>
+<td align="right" valign="top">
+#if ( !$classroomMode )
+	<button class="btn btn-warning" type="button" onclick="$('entrySubjectGroup').style.visibility='visible';doDivAjaxCall$formname('entrySubjectGroup','entrySubjectGroup','')">Add New Subject Group</button>
+#end
+<button class="btn btn-success" type="button" onclick="backToFacultyList()">Back</button>
+</td>
+</tr>
+<tr><td>
+<div class="shadow" id="entrySubjectGroup" style="visibility:hidden;background-color:#fff;position:absolute;border:1px"></div>
+</td></tr>
+</table>
+<br/>
+<div id="divListSubjectGroups">#parse("apps/setup_faculty_subjects/divListSubjectGroups.vm")</div>
+</fieldset>
+</div>
+<div id="listSubjectGroupItems"></div>

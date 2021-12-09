@@ -1,0 +1,85 @@
+$dateFormat.applyPattern("dd MMM, yyyy")
+
+#if ( $announcements.size() == 0 )
+	
+	<div class="well">There are currently no new announcements.</div>
+
+		
+#else
+
+
+	
+#foreach( $a in $announcements )
+	
+	<div id="view_${a.id}" class="shadow" style="display:none;position:absolute;background:#FFFFFF;width:100%;border:1px solid #000"></div>
+	
+	<div>
+    <table width="100%" cellpadding="0" cellspacing="2">
+        <tr>
+        
+        #if ( $is_announcement_admin )
+            <td style="width:10px;" valign="top">
+            <input type="checkbox" name="announcement_ids" value="$a.id">
+            #if ( $a.dateExpired )
+    			#if ( $_util.dateBefore($a.dateExpired, $_today) )
+    				<br/><img src="../img/_wrong.png" border="0">
+    			#end
+            #end
+            </td>
+        
+        #end
+        
+        <td>
+        
+            <table width="100%" cellspacing="0">
+            		<tr>
+            			<td>
+            			<div class="panel panel-default">
+					  <div class="panel-heading">
+					  	<h4>$!a.title</h4>
+					  	$dateFormat.format($a.datePosted) ##, $timeFormat.format($a.datePosted)
+	                    #if ( $a.dateExpired )
+	                    -
+	                    $dateFormat.format($a.dateExpired) ##, $timeFormat.format($a.dateExpired)
+	                    #end
+					  </div>
+					  
+					  <div class="panel-body">
+					  	$_util.putLineBreak($_util.displayText($a.text, 300)) ...
+					  	<br/>
+						  	<div style="text-align:right">
+						  	#if ( $a.fileName )
+	                            <div style="margin-top:10px;margin-bottom:20px">
+	                            Document: <a href="../download?file=$!a.serverFileName"><u>$!a.fileName</u></a>
+	                            </div>
+	                        #end
+	                        
+	                        <input type="button" class="rounded" value="Read More" onclick="openView('$a.id');doDivAjaxCall$formname('view_${a.id}','view_announcement','announcement_id=$a.id')"> 
+	                        #if ( $is_announcement_admin)
+	                			<input type="button" class="rounded" value="Edit" onclick="doDivAjaxCall$formname('div_${_moduleId}','edit_announcement','announcement_id=$a.id')">
+	                    		#end
+	                    		</div>
+					  </div>
+					  
+					</div>
+            			</td>
+            		</tr>
+            		
+               
+        
+            </table>
+        
+        </td>	
+		</tr>
+    </table>
+	</div>
+	
+	
+	
+#end
+
+
+
+	
+	
+#end

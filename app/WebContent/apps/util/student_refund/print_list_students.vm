@@ -1,0 +1,41 @@
+
+
+<table width="100%"><tr><td style="font-weight:bold">
+List of Students with Refund Amount
+</td></tr></table>
+<br/>
+<table width="100%">
+#if ( $program ) <tr><td style="width:150px;font-weight:bold">Program</td><td style="width:10px">:</td><td>$!program.displayName</td></tr> #end
+#if ( $intake ) <tr><td style="width:150px;font-weight:bold">Intake</td><td style="width:10px">:</td><td>$!intake.name</td></tr> #end
+#if ( $session ) <tr><td style="width:150px;font-weight:bold">Session</td><td style="width:10px">:</td><td>$!session.name</td></tr> #end
+
+</table>
+<br/>
+<table width="100%" cellspacing="0" style="border-top:1px solid; border-bottom:1px solid">
+<tr>
+<td style="height:30px;width:30px;border-bottom:1px solid">&nbsp;</td>
+<td style="width:150px;font-weight:bold;border-bottom:1px solid">Matric No.</td>
+<td style="width:150px;font-weight:bold;border-bottom:1px solid">ICNo</td>
+<td style="width:450px;font-weight:bold;border-bottom:1px solid">Name</td>
+##<td style="width:100px;font-weight:bold;border-bottom:1px solid">Period</td>
+##<td style="width:100px;font-weight:bold;border-bottom:1px solid">Status</td>
+<td style="width:100px;font-weight:bold;border-bottom:1px solid">Amount</td>
+</tr>
+
+#set ( $cnt = 0 )
+#foreach( $s in $students )
+#set ( $cnt = $cnt + 1 )
+<tr style="height:30px">
+<td class="gradient">$velocityCount)</td>
+<td>$s.student.matricNo</td>
+<td>$s.student.biodata.icno</td>
+<td>$s.student.biodata.name</td>
+##<td>$s.period.name #if ( $s.period.parent ) ($s.period.parent.name) #end</td>
+##<td>$s.status.name</td>
+<td align="right">$numFormat.format($s.amount)</td>
+
+</tr>
+
+#end
+
+</table>

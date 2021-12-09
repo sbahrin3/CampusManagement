@@ -1,0 +1,377 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="../jquery/jquery-ui.css">
+<script src="../jquery/jquery-1.11.2.min.js"></script>
+<script src="../jquery/jquery-ui.js"></script>
+
+<script>
+
+var $j = jQuery.noConflict();
+var _jq = jQuery.noConflict();
+
+
+
+var getProcessInterval;
+var _div_blocker;
+
+function startGetProcessInterval() {
+
+    document.getElementById('page_blocker').style.display='block';
+   
+	getProcessInterval = setInterval(function(){ 
+		doDivAjaxSilentCall$formname('getProcessStatus','getProcessStatus',''); 
+	}, 3000);
+}
+
+function stopGetProcessInterval() {
+	document.getElementById('page_blocker').style.display='none';
+	clearInterval(getProcessInterval);
+}
+
+
+
+</script>
+
+  
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.icon_shadow { cursor:pointer; font-size:12pt;color:#fff; text-shadow:#000 1px 1px 1px; }
+##.icon_shadow { width:50px; padding:2px; background:#fff; -moz-box-shadow: 2px 2px 2px #000; -webkit-box-shadow: 2px 2px 2px #000; box-shadow: 1px 1px 1px #000; }
+.slot {   }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.hoverActive {border:2px dotted #DBAEA4}
+
+
+#tt_conflictMessage { 
+	background:#fff;
+	width:700px; 
+	height:400px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 50%; 
+	left: 50%; 
+	margin-top: -200px; 
+	margin-left: -350px; 
+	border:1px dotted #ccc;
+	z-Index: 9999;
+}
+
+#divMessage {
+    position:fixed;
+    top: 50%;
+    left: 30%;
+    width:500px;
+    height:300px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+	overflow:auto;
+}
+#div_students {
+    position:fixed;
+    top: 50%;
+    left: 20%;
+    width:800px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+
+#div_progressWindow {
+	z-index:9999;
+    position:fixed;
+    top: 50%;
+    left: 20%;
+    width:800px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+#page_blocker {
+
+	z-index:9998;
+	width:100%;
+	height:900px;
+	top:5%;
+	position:fixed;
+	background-color:#ebebeb;
+	padding-top:40px;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+	display:none;
+
+}
+
+#div_ttb_params {
+    position:fixed;
+    top: 50%;
+    left: 30%;
+    width:500px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#divEditClassroom {
+    position:fixed;
+    top: 50%;
+    left: 30%;
+    width:500px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#div_move {
+    position:fixed;
+    top: 50%;
+    left: 30%;
+    width:500px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#divPopup {
+    position:fixed;
+    top: 50%;
+    left: 30%;
+	display:none;
+	margin-top: -100px;
+	width:400px;border-style:solid;border-color:#B4B4B4;background-color:#FFFFAA;
+}
+
+
+</style>
+
+
+
+<script>
+function editSlot(slotId, slotName, subjectId, sectionId, teacherId, roomId) {
+	$('_slot_id').value=slotId;
+	$('slot_name').innerHTML=slotName;
+	$('subjectId').value = subjectId;
+	$('sectionId').value = sectionId;
+	$('roomId').value = roomId;
+	$('div_ttb_params').style.top=cursorY;
+	$('div_ttb_params').style.visibility='visible';
+	$('div_teachers').style.visibility='visible';
+	
+	doDivAjaxCall$formname('div_teachers','get_teachers','teacherId=' + teacherId);
+}
+
+</script>
+
+##DISPLAY STATE AND CAMPUS
+<div class="well" style="padding:5px;font-weight:bold">
+
+	$campus.state.name / $campus.name
+	
+</div>
+
+<div id="page_blocker"></div>
+<div id="timetable_container" style="">
+
+##... WIDTH OF THE WHOLE VIEW
+<table style="width:1800px">
+<tr><td>
+
+#if ( $view_current )
+
+<input type="hidden" name="session_id" id="sessionId" value="$current_session.id">
+
+#else
+	<div id="selectTimetableSession" style="margin:2px">
+	
+	
+	#if ( $sessions.size() == 1 )
+	
+		<input type="hidden" name="session_id" id="sessionId" value="$sessions.get(0).id">
+		Please Wait...
+		
+	#else
+	
+		<label>Scheduling Session:</label>
+		<select class="texts" name="session_id" id="sessionId" style="width:300px;height:30px" onchange="$('selectTimetableSession').style.display='none';doDivAjaxCall$formname('div_timetable','show_timetable','');">
+			<option value="">- Select Session -</option>
+			#foreach( $session in $sessions )
+				<option value="$session.id" #if ( $session.id == $current_session.id ) selected #end>
+				#if ( $session.id == $current_session.id ) &gt; #end
+				$session.code - $session.name
+				</option>
+			#end
+		</select>
+			
+		<button type="button" class="btn btn-primary" onclick="$('selectTimetableSession').style.display='none';doDivAjaxCall$formname('div_timetable','show_timetable','')">Show Timetable</button>
+		
+	#end
+	
+	</div>
+#end
+
+</td></tr>
+
+<tr><td>
+
+
+
+
+</td></tr>
+
+<tr><td style="background:#fff">
+##START OF TIMETABLE
+
+<div id="div_timetable" name="div_timetable">
+
+</div>
+
+##END OF TIMETABLE
+<tr><td>
+
+
+<div name="div_ttb_params" id="div_ttb_params" class="shadow">
+#parse("apps/timetabling/div_ttb_params.vm")
+</div>
+
+<div name="div_move" id="div_move" class="shadow">
+
+</div>
+
+</td></tr>
+
+<tr><td>
+
+##-- DRAGGABLE DIV
+	
+<div name="div_students" id="div_students" class="shadow">
+	<table width="100%" id="handleStudents">
+	<tr height="40px" bgcolor="#6051D6">
+		<td style="font-weight:bold;cursor:pointer;color:#fff" id="div_students_title">
+		</td>
+		<td align="right" style="font-weight:bold;cursor:pointer">
+			<button type="button" class="btn btn-sm btn-default" onclick="$('div_students').style.display='none';">X</button>
+		</td>
+	</tr>
+	</table>
+	<div name="div_students2" id="div_students2" style="overflow:auto;height:260px;width:100%"></div>
+</div>
+<script>new Draggable('div_students', {handle: 'handleStudents'});</script>
+
+ 
+<div name="div_progressWindow" id="div_progressWindow" class="shadow">
+	<table width="100%" id="handleProgressWindow">
+	<tr height="30px" bgcolor="#6051D6"><td align="right" style="font-weight:bold;cursor:pointer">
+	
+		##<input type="button" class="linkbutton" padding="2px" value="x" onclick="$('div_progressWindow').style.display='none';">
+	
+	</td></tr>
+	</table>
+	<div name="div_progressWindowContent" id="div_progressWindowContent" style="overflow:auto;height:260px;width:100%"></div>
+</div>
+<script>new Draggable('div_progressWindow', {handle: 'handleProgressWindow'});</script>
+
+	
+<div name="divMessage" id="divMessage" class="shadow">
+	<table  id="handleDivMessage" width="100%" cellpadding="0" cellspacing="0">
+		<tr height="40px" style="background:#287192">
+		<td style="color:#fff;font-weight:bold">
+		Classroom Conflict
+		</td>
+		<td align="right">
+			
+			<button type="button" class="btn btn-default btn-sm" onclick="$('divMessage').style.display='none';">x</button>
+		
+		</td></tr>
+		<tr><td style="height:150px" valign="middle" align="center">
+		<span id="divMessageInner" style="font-weight:bold;"></span>
+		</td></tr>
+	</table>
+</div>
+<script>new Draggable('divMessage', {handle: 'handleDivMessage'});</script>
+
+##-- END DRAGGABLE DIVS
+
+
+<div name="divPopup" id="divPopup" class="shadow">
+	<table width="100%">
+		<tr><td>
+		<span id="divPopupInner" style="font-weight:bold"></span>
+		</td></tr>
+		<tr height="20px"><td>
+		</td></tr>
+	</table>
+</div>
+
+
+
+<div id="divEditClassroom" class="shadow"></div>
+
+</td></tr>
+
+
+</td></tr></table>
+
+</div>
+
+<div id="divItemMoving"></div>
+	
+
+<script>
+function doSelectTeacher() {
+	document.getElementById("teacherSelected").value = "";
+	var cboxes = document.getElementsByName("teacherIds");
+    var len = cboxes.length;
+    for (var i=0; i<len; i++) {
+        if ( cboxes[i].checked ) {
+			document.getElementById("teacherSelected").value = "yes";
+		}
+    }
+}
+
+function checkClassroomInput() {
+	var cnt = 0;
+	if ( document.getElementById("teacherSelected").value == "" ) {
+		alert("Please select teacher(s).");
+		cnt++;
+		return false;
+	}
+	if ( document.getElementById("classroomSectionId").value == "" ) {
+		alert("Please select classroom type.");
+		cnt++;
+		return false;
+	}
+	
+	return cnt == 0;
+}
+
+function selectAgain() {
+	$('div_coteachers').innerHTML='Click ... to list teachers';
+	$('div_rooms').innerHTML='<select class="text" name="room_id" id="roomId" style style="width:100%"><option value=""></option></select>';
+}
+
+#if ( $sessions.size() == 1 )
+
+Event.observe(window, "load", onload, false);
+function onload(){
+	$('selectTimetableSession').style.display='none';
+	doDivAjaxCall$formname('div_timetable','show_timetable','show_timetable=no');
+}
+
+
+#end
+
+
+</script>

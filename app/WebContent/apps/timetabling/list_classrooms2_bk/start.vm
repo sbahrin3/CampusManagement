@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="../apps/style.css" type="text/css" media="screen" />
+
+<style>
+#divAttendance {
+    position:fixed;
+    top: 50%;
+    left: 10%;
+    width:1000px;
+    margin-top: -200px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#fff;
+    display:none;
+}
+</style>
+<table style="width:100%">
+	<tr><td>
+			<div id="selectSession">#parse("apps/timetabling/list_classrooms2/selectSession.vm")</div>
+	</td></tr>
+	<tr><td align="center">
+	<a href="javascript:void(0)" onclick="if ( $('selectSession').style.display=='none' ) { $('selectSession').style.display='block'; } else { $('selectSession').style.display='none'; }"><img src="../img/arrow_up.png" border="0"></a>
+	</td></tr>
+	<tr><td>
+			<div id="classroomList"></div>
+	</td></tr>
+</table>
+
+<div id="divAttendance" class="shadow"></div>
+<div id="divEmpty"></div>
+	
+<script>
+function showHideRemark(id) {
+	if ( $('att_remark_' + id).style.display == "none" ) $('att_remark_' + id).style.display = "block";
+	else $('att_remark_' + id).style.display = "none";
+}
+</script>

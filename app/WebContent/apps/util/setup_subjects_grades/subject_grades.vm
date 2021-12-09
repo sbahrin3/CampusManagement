@@ -1,0 +1,38 @@
+
+<table class="table table-striped">
+<tr height="40px">
+<td style="font-weight:bold;">Code</td>
+<td style="font-weight:bold;">Title</td>
+<td style="font-weight:bold;" align="center">Cr.</td>
+<td  style="font-weight:bold;" align="center">Scheme</td>
+</tr>
+#set ( $cnt = 0 )
+
+#foreach( $s in $subjects )
+
+#if ( $s.code != "" )
+	#set ( $cnt = $cnt + 1 )
+	#set ( $bgcolor = "#F2EDED" )
+	#if ( $cnt % 2 == 0 ) 
+	#set ( $bgcolor = "#F2EDED" )
+	#end
+	<tr height="30px" bgcolor="$bgcolor">
+	<td>$s.code</td>
+	<td>$s.name</td>
+	<td align="center">$s.credithrs</td>
+	<td align="center">
+	<div id="marking_$s.id" name="marking_$s.id">
+	#parse("apps/util/setup_subjects_grades/select_markings.vm")
+	</div>
+	</td>
+	</tr>
+#end
+
+#end
+
+<tr><td colspan="5" align="right">
+<hr/>
+<b>$cnt subjects</b>
+</td></tr>
+
+</table>

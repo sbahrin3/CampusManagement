@@ -1,0 +1,25 @@
+#if ( $student )
+
+<input type="hidden" name="student_id" value="$!student.id">
+<table width="100%" style="border-top: 2px solid #D2D2D2; border-bottom: 2px solid #D2D2D2; border-right: 2px solid #D2D2D2; border-left: 2px solid #D2D2D2;">
+<tr><td colspan="2" style="height:30px;background-color:lightgrey;font-weight:bold">Student</td></tr>
+<tr><td valign="top">
+
+<table width="100%">
+<tr><td>$student.biodata.name</td></tr>
+<tr><td>$student.program.name</td></tr>
+<tr><td>$student_status.period.name #if ( $student_status.period.parent )  ($student_status.period.parent.name) #end</td></tr>
+</table>
+
+</td><td valign="top" align="center">
+
+<img src="../img/nophoto.gif" border="0">
+
+</td></tr></table>
+
+
+<br>
+
+#else
+Not found!
+#end

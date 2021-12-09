@@ -1,0 +1,49 @@
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">Create Custom Invoice</legend>
+
+<table width="100%">
+<tr><td style="width:100px">Semester:</td><td style="font-weight:bold">
+$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end ($student_status.session.name)
+</td></tr>
+<tr><td>Invoice Date:</td><td>
+<input id="invoice_date" name="invoice_date" value="$dateFormat.format($today)" style="width:100px">
+<script> new JsDatePick({ useMode:2, target:"invoice_date", dateFormat:"%d-%m-%Y" }); </script>
+</td></tr>
+</table>
+<br>
+
+<table width="100%" align="center">
+<tr height="30px">
+<td style="font-weight:bold">Item Description</td>
+<td style="width:100px;font-weight:bold">Amount (RM)</td>
+</tr>
+</table>
+
+#set ( $items_cnt = 3 )
+<div id="div_items" name="div_items">
+#parse("apps/util/student_invoice/items_count.vm")
+</div>
+
+<table width="100%">
+
+<tr>
+<td>Change Number of Items:
+<select name="items_count" onchange="doDivAjaxCall$formname('div_items','items_count','')">
+#foreach ( $i in [1..10] )
+<option value="$i" #if ( $i == $items_cnt ) selected #end>&nbsp;$i&nbsp;</option>
+#end
+</select>
+</td></tr>
+<tr>
+<td align="right">
+
+<input class="gradient" style="font-weight:bold;height:30px" type="button" value="Save Invoice" 
+onclick="if ( !confirm('Save this invoice?') ) return;doDivAjaxChainCall$formname('div_invoice_detail', 'save_custom', 'student_status_id=$student_status.id', 'div_invoice_$student_status.id','get_invoices','student_status_id=$student_status.id')">
+
+<input class="gradient" style="font-weight:bold;height:30px" type="button" value="Save As Debit Note" 
+onclick="if ( !confirm('Save this invoice?') ) return;doDivAjaxChainCall$formname('div_invoice_detail', 'save_debit_note', 'student_status_id=$student_status.id', 'div_invoice_$student_status.id','get_invoices','student_status_id=$student_status.id')">
+
+</td>
+</tr>
+</table>
+</field>

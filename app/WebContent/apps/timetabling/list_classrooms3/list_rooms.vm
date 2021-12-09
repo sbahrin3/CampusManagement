@@ -1,0 +1,22 @@
+<table class="table table-hover">
+
+#foreach ( $r in $rooms )
+<tr>
+	<td>
+		$r.id
+	</td>
+	<td style="cursor:pointer" onclick="$('roomId').value='$r.id';$('roomName').value='$r.code';$('findRoom').style.display='none';">
+		$r.name
+	</td>
+	<td style="cursor:pointer" onclick="$('roomId').value='$r.id';$('roomName').value='$r.code';$('findRoom').style.display='none';">
+		$!r.description
+	</td>	
+	<td>
+		$!r.floor.name,
+		$!r.floor.block.name,
+		$!r.floor.block.building.name
+	</td>	
+</tr>
+#end
+
+</table>

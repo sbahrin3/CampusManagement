@@ -1,0 +1,71 @@
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+</style>
+
+<table width="700"><tr><td>
+
+
+<fieldset>
+<table width="width:100%">
+<tr>
+<td style="width:100px">Select Session:</td>
+<td>
+<select name="session_id" style="width:300px" onchange="doDivAjaxCall$formname('div_periods','list_periods','');$('div_subjects').innerHTML='';">
+<option value="">- Select -</option>
+#foreach( $s in $sessions )
+<option value="$s.id" #if ( $current_session.id == $s.id ) selected #end>$s.code $s.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Select Period:</td>
+<td>
+<div id="div_periods">#parse("apps/school/exam_result_entry/periods.vm")</div>
+</td>
+</tr>
+
+<tr>
+<td>Select Exam:</td>
+<td>
+<select name="exam_id" style="width:300px">
+<option value="">- Select Exam -</option>
+#foreach( $e in $exams )
+<option value="$e.id">$e.code $e.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Select Subject:</td>
+<td>
+<div id="div_subjects"></div>
+</td>
+</tr>
+
+<tr>
+<td></td>
+<td>
+<input type="button" value="Get Marks" onclick="doDivAjaxCall$formname('div_results','list_results','')">
+</td>
+</tr>
+</table>
+</fieldset>
+<br/>
+</td></tr><tr><td>
+
+<div name="div_transcript_main" id="div_transcript_main" class="shadow"
+style="visibility:hidden;position:absolute;left:500px;width:500px;border-style:solid;border-color:#B4B4B4;background-color:#FFF">
+#parse("apps/school/exam_result_entry/div_transcript.vm")
+</div>
+
+<div id="div_results"></div>
+
+</td></tr><tr><td>
+
+<div id="div_empty"></div>
+
+
+</td></tr></table>

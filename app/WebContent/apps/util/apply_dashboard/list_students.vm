@@ -1,0 +1,30 @@
+<table width="100%" align="center"><tr>
+<td align="center" style="font-family:arial; font-weight:bold; font-size:14pt">
+#if ( $apptype == "DS" ) DEFER STUDY REQUEST
+#elseif ( $apptype == "CT" ) CREDIT TRANSFER REQUEST
+#elseif ( $apptype == "ADD" ) ADD SUBJECT REQUEST
+#elseif ( $apptype == "DROP" ) DROP SUBJECT REQUEST
+#end
+</td></tr></table>
+
+<br/><br/>
+
+<table width="700" align="center">
+<tr>
+<td style="font-weight:bold"></td>
+<td style="font-weight:bold">Matric</td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">Program</td>
+<td style="font-weight:bold">Intake</td>
+</tr>
+<tr><td colspan="5"><hr/></td></tr>
+#foreach( $s in $students )
+<tr>
+<td valign="top" align="right">$velocityCount)</td>
+<td valign="top">$s.matricNo</td>
+<td valign="top">$s.biodata.name</td>
+<td valign="top">$s.program.name</td>
+<td valign="top">$s.intake.name</td>
+</tr>
+#end
+</table>

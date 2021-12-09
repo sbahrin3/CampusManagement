@@ -1,0 +1,5 @@
+
+<input type="button" style="height:30px;" value="PDF" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintRefundListModule?data=$!programId,$!intakeId,$!sessionId,$!listType';">
+
+<input type="button" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.sis.module.StudentRefundListExcelServlet?programId=$!programId&intakeId=$!intakeId'">
+

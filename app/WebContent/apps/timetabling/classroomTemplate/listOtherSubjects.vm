@@ -1,0 +1,15 @@
+
+
+<div>
+<ul style="list-style: none;">
+#foreach( $s in $otherSubjects)
+	#if ( $s.id != $subject.id )
+		<li>
+		<input type="checkbox" name="addSubjectIds" value="$s.id">
+		$s.code - $s.name (Version $s.version.name)
+		</li> 
+	#end
+#end
+</ul>
+<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('addEquivalentSubjects','addSubjects','')">Add Courses</button>
+</div>

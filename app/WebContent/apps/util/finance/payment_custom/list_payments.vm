@@ -1,0 +1,42 @@
+
+<div id="divReceipt"></div>
+
+<fieldset class="shadow" style="background-color:#FFFFCC;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">List Of Payments</legend>
+<table align="center" cellspacing="0">
+<tr bgcolor="#DCDCDC" height="30px">
+<td style="width:200px;font-weight:bold">No</td>
+<td style="width:100px;font-weight:bold">Date</td>
+<td style="width:200px;font-weight:bold" align="right">Amount</td>
+<td style="width:50px"></td>
+<td style="width:40px;"></td>
+<td style="width:40px;"></td>
+<td style="width:40px;"></td>
+<td style="width:20px;"></td>
+</tr>
+#foreach ( $p in $payments )
+<tr height="30px">
+<td style="border-bottom:1px solid #BCBCBC">$p.paymentNo</td>
+<td style="border-bottom:1px solid #BCBCBC">$dateFormat.format($p.createDate)</td>
+<td style="border-bottom:1px solid #BCBCBC"  align="right">$numFormat.format($p.amount)</td>
+<td style="border-bottom:1px solid #BCBCBC">&nbsp;</td>
+<td style="border-bottom:1px solid #BCBCBC">
+<input class="gradient"  style="height:30px;width:100%;" type="button"  value="..." onclick="doDivAjaxCall$formname('div_payment','view_payment','payment_id=$p.id')">
+</td>
+<td  style="border-bottom:1px solid #BCBCBC">
+<input type="button" class="gradient" style="height:30px;width:100%;" value="View"
+onclick="doDivAjaxCall3$formname('divView','viewReceipt','payment_id=$p.id')">
+</td>
+<td  style="border-bottom:1px solid #BCBCBC">
+<input type="button" class="gradient" style="height:30px;width:100%;" value="Print"
+onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintStudentReceiptModule?payment_id=$p.id';">
+</td>
+<td align="right"  style="border-bottom:1px solid #BCBCBC">
+#if ( $userId == "none" )
+	<a href="javascript:void(0)" onclick="if ( !confirm('Are you sure?') ) return; doAjaxCall$formname('delete_payment','payment_id=$p.id')">x</a>
+#end
+</td>
+</tr>
+#end
+</table>
+</fieldset>

@@ -1,0 +1,40 @@
+<script>
+$('listStudents').style.display="block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+$!program.code - $!program.name : $!	intake.code
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('listStudents').style.display='none';">
+</td></tr>
+</table>
+
+<div style="height:300px;overflow:auto">
+<table width="100%">
+<tr>
+<td style="width:30px"></td>
+<td style="font-weight:bold;width:150px">Matric</td>
+<td style="font-weight:bold;">Name</td>
+<td style="font-weight:bold;width:150px">IC No</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach ( $s in $students )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#DDDDDD" ) #else #set ( $bgcolor = "#F7F7F7" ) #end
+<tr style="background:$bgcolor;height:25px">
+<td>$cnt.</td>
+<td>$s.matricNo</td>
+<td>$s.biodata.name</td>
+<td>$s.biodata.icno</td>
+</tr>
+#end
+</table>
+</div>
+<table width="100%">
+<tr><td align="center" style="padding:5px">
+<input class="linkbutton" type="button" value="CLOSE" onclick="$('listStudents').style.display='none'">
+</td></tr></table>
+<script>new Draggable('listStudents', {handle: 'dragHandle'});</script>

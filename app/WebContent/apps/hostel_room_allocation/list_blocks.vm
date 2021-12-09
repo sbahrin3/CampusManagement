@@ -1,0 +1,30 @@
+<table><tr height="30px">
+<td>
+<a style="text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_info', 'list_buildings', 'hostel_id=$building.hostel.id')">$building.hostel.name</a>
+</td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info', 'list_buildings', 'hostel_id=$building.hostel.id')">
+<img src="../img/menu_left.gif">
+</td><td>
+$building.name
+</td>
+</tr></table>
+
+<table width="100%">
+
+<tr height="25px" bgcolor="lightgrey">
+<td style="width:100px; font-weight:bold">Block Id</td>
+<td style="font-weight:bold">Block Name</td>
+</tr>
+
+#foreach ( $block in $building.blocks )
+<tr height="25px">
+<td align="center">$block.code</td>
+<td>
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_info','list_floors','block_id=$block.id')">
+$block.name
+</a>
+</td>
+</tr>
+
+#end
+</table>

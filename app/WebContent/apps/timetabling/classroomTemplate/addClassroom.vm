@@ -1,0 +1,119 @@
+
+  <div style="background:#3071A9;padding:10px">
+
+		
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff"><label>Learning Activity</label></td>
+			<td align="right">
+				<button type="button" class="btn btn-primary" onclick="$('addClassroom').style.display='none';">x</button>
+			</td>
+		</tr>
+	</table>
+  	
+  </div>
+
+
+
+<div style="padding:10px">
+	
+<table style="width:100%">
+<tr style="height:30px">
+<td style="width:200px">Learning Activity</td><td style="width:10px">:</td>
+<td>
+<select class="texts" name="classroomSectionId" id="classroomSectionId">
+#foreach( $s in $classroomSections )
+<option value="$s.id">$s.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr style="height:30px">
+<td style="width:200px" valign="top">Create Class</td><td style="width:10px" valign="top">:</td>
+<td valign="top">
+
+	<table style="width:100%">
+		<tr>
+			#**
+			<td style="width:200px">
+				<input type="checkbox" id="cb1" name="createClassBy" value="manual" checked onchange="if ( this.checked ) { $('cb2').checked = false; $('cb3').checked = false; $('divSelectGroupCount').style.display = 'block'; } else { $('divSelectGroupCount').style.display = 'none'; }">&nbsp;Manually<br/>
+				<input type="checkbox" id="cb2" name="createClassBy" value="individualGroup" onchange="if ( this.checked ) { $('cb1').checked = false; $('cb3').checked = false; $('divSelectGroupCount').style.display = 'none';}">&nbsp;One class for each group<br/>
+				<input type="checkbox" id="cb3" name="createClassBy" value="allGroups" onchange="if ( this.checked ) { $('cb1').checked = false; $('cb2').checked = false; $('divSelectGroupCount').style.display = 'none';}">&nbsp;All groups in one class<br/>
+			</td>
+			**#
+			
+			<td valign="top">
+				<input type="hidden" name="createClassBy" value="manual">
+				<div id="divSelectGroupCount">
+				<select class="texts" style="width:50px" name="groupCount" id="groupCount">
+				#foreach( $n in [1..10] )
+				<option value="$n">$n</option>
+				#end
+				</select>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+</td>
+</tr>
+
+
+
+<tr style="height:30px">
+<td>Number of Occurence</td><td>:</td>
+<td>
+<select class="texts" style="width:50px" name="weekFrequency">
+#foreach ( $freq in [1..10] )
+<option value="$freq">$freq</option>
+#end
+</select>
+</td></tr>
+
+<tr style="height:30px">
+	<td>Study Mode</td><td>:</td>
+	<td>
+		<select class="texts" style="width:200px" name="studyModeId">
+			#foreach( $m in $studyModes )
+				<option value="$m.id">$m.name</option>
+			#end
+		</select>		
+	</td>
+</td>
+</tr>
+
+<tr style="height:30px">
+	<td>Schedule Type</td><td>:</td>
+	<td>
+		<select class="texts" style="width:200px" name="scheduleType">
+			<option value="0">Weekly</option>
+			<option value="1">Monthly</option>
+		</select>
+	</td>
+</td>
+</tr>
+
+<tr style="height:30px">
+	<td>Tag Number</td><td>:</td>
+	<td>
+		<select class="texts" style="width:50px" name="tagNumber">
+			#foreach( $t in [0..20])
+				<option value="$t">$t</option>
+			#end
+		</select>
+	</td>
+</td>
+</tr>
+
+
+<tr style="height:50px"><td></td><td></td>
+<td>
+	<button type="button" class="btn btn-primary" onclick="if ( $('classroomSectionId').value == '' ) { alert('Select Classroom.'); return; } else { doDivAjaxCall$formname('divClassrooms','addClassroom','subjectId=$subject.id'); $('addClassroom').style.display='none'; }">Create Activity</button>
+	
+</td>
+</tr>
+
+</table>
+	
+</div>

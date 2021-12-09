@@ -1,0 +1,19 @@
+<table width="1000px" align="center" cellspacing="0" cellpadding="0">
+<tr height="30px">
+
+#**
+<td style="width:250px" valign="bottom">
+
+<a style="color:#ffffff;font-family:helvetica;font-size:14pt;font-weight:bold;text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('div_main','show_main','')">
+eduCATE
+</a>
+
+</td></td>
+**#
+
+<td style="width:750px" valign="bottom">
+<span class="classroom_title">$subject_id&nbsp;$subject_title</span>
+</td>
+<td valign="top"></td>
+</tr>
+</table>

@@ -1,0 +1,5 @@
+
+<iframe frameborder="1" marginwidth="0" marginheight="0" noscroll scrolling="no" id="iframe_upload"
+name="iframe_upload" src="../y/lebah.upload.UploadModule?files=1&uploadDir=" style="width:100%;border:0px"
+onload="this.height=this.contentWindow.document.body.scrollHeight;"></iframe>
+

@@ -1,0 +1,9 @@
+<script>
+$('item_$roomItem.id').style.display='block';
+$('item_edit_$roomItem.id').style.display='none';
+$('rowType_$roomItem.id').innerHTML = "$!roomItem.item.type.name";
+$('rowDescription_$roomItem.id').innerHTML = "$!roomItem.item.description";
+$('rowTag_$roomItem.id').innerHTML = "$!roomItem.item.tag";
+$('rowValue_$roomItem.id').innerHTML = "$!roomItem.item.value";
+$('rowItemCondition_$roomItem.id').innerHTML = "$!roomItem.item.itemCondition.name";
+</script>

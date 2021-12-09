@@ -1,0 +1,195 @@
+<input type="hidden" name="applicant_id" id="applicant_id">
+<table width="100%">
+
+	<tr height="40px">
+		<td style="width:120px"><label>Student No</label></td>
+		<td>:</td>
+		<td>
+			<input class="input-text" name="matricNo2" id="matricNo2" value="" placeholder="Left this field empty to automatically generate..."
+			onblur=" if ($('matricNo2').value == '' ) { $('buttonRegister').disabled=false; $('div_matricNo').innerHTML = ''; return; } doDivAjaxCall$formname('div_matricNo','check_matricNo','')">
+		</td>
+		<td>
+			<div id="div_matricNo" name="div_matricNo"></div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td></td>
+		<td><div style="color:#e20d0d;padding:4px">* Left the Student No. field blank to let the system automatically generate.</div></td>
+	</tr>
+	
+	<tr height="40px">
+		<td><label>MyKad</label></td>
+		<td>:</td>
+		<td><input class="input-text" name="icno" id="icno" value="$!applicant.biodata.icno" onblur="if ($('icno').value == '' ) { $('div_mykad').innerHTML = ''; return; } doDivAjaxCall$formname('div_mykad','check_mykad','')"></td>
+		<td><div id="div_mykad" name="div_mykad"></div></td>
+	</tr>
+	
+	<tr height="40px">
+		<td><label>Passport</label></td>
+		<td>:</td>
+		<td><input class="input-text" name="passport" id="passport" value="$!applicant.biodata.passport" onblur="if ($('passport').value == '' ) { $('div_passport').innerHTML = ''; return; } doDivAjaxCall$formname('div_passport','check_passport','')"></td>
+		<td><div id="div_passport" name="div_passport"></div></td>
+	</tr>
+
+	<tr height="40px">
+		<td><label>Name</label></td>
+		<td>:</td>
+		<td><input class="input-text" name="name" id="name"  value="$!applicant.biodata.name" onblur="if ($('name').value == '' ) { $('div_name').innerHTML = ''; return; } if ( $('check_case').checked ) { $('name').value = $('name').value.toUpperCase(); }  doDivAjaxCall$formname('div_name','check_name','')"></td>
+		<td><input type="checkbox" id="check_case" onclick="if ( $('check_case').checked ) { $('name').value = $('name').value.toUpperCase(); }"><div id="div_name" name="div_name"></div></td>
+	</tr>
+
+
+	##MATRIC DISPLAY NAME
+	<tr height="40px">
+		<td><label>Name on Card</label></td>
+		<td>:</td>
+		<td><input class="input-text" name="displayName" id="displayName" value="" ></td>
+		<td><div id="div_displayName" name="div_displayName"></div></td>
+	</tr>
+
+
+	<tr height="40px">
+		<td><label>Programme</label></td>
+		<td>:</td>
+		<td>
+			<select class="input-text" id="program_id" name="program_id" onchange="doDivAjaxChainCall$formname('div_select_intakes','list_intakes','applicant_id=$applicant.id','div_select_batches','listEnrollmentIntakes','')">
+				<option value=""> - Select programme of study - </option>
+				#foreach ( $p in $programs )
+					<option value="$p.id">$p.code $p.name</option>
+				#end
+			</select>
+			##if ( $p.id == $program_id ) selected #end
+		</td>
+		<td><div id="div_program" name="div_program"></div></td>
+	</tr>
+
+
+
+	<tr height="40px">
+		<td><label>Intake</label></td>
+		<td>:</td>
+		<td>
+			<div id="div_select_intakes" name="div_select_intakes">
+			#if ( $intakes )
+				#parse("admission/registration/list_intakes.vm")
+			#else
+				<select class="input-text">
+				<option value="">Please select program first</option>
+				</select>
+			#end
+			</div>
+		</td>
+		<td><div id="div_intake" name="div_intake"></div></td>
+	</tr>
+
+	<tr height="40px">
+		<td><label>Batch</label></td>
+		<td>:</td>
+		<td>
+			<div id="div_select_batches" name="div_select_batches">
+			#if ( $enrollmentIntakes )
+				#parse("admission/registration/list_batches.vm")
+			#else
+				<select class="input-text">
+				<option value="">Please select intake session first</option>
+				</select>
+			#end
+			</div>
+		</td>
+		<td><div id="div_intake" name="div_intake"></div></td>
+	</tr>
+
+	<tr height="40px">
+		<td><label>Centre</label></td>
+		<td>:</td>
+		<td>
+			<select class="input-text" id="centre_id" name="centre_id">
+				#foreach ( $c in $centres )
+				<option value="$c.id">$c.code $c.name</option>
+				#end
+			</select>
+		</td>
+		<td><div id="div_centre" name="div_centre"></div></td>
+	</tr>
+
+
+	##STUDY MODE
+	<tr height="40px">
+		<td><label>Study Mode</label></td>
+		<td>:</td>
+		<td>
+			<select class="input-text" id="studyModeId" name="studyModeId">
+			#foreach ( $m in $studyModes )
+			<option value="$m.id">$m.code $m.name</option>
+			#end
+			</select>
+		</td>
+		<td><div id="div_study_mode_id" name="div_study_mode_id"></div></td>
+	</tr>
+	
+	
+	<tr height="100px">
+		<td></td>
+		<td></td>
+		<td>
+		
+			<button id="buttonRegister" class="btn btn-primary" style="height:50px;width:300px" type="button"
+			onclick="if ( !checkEntry() ) return; $('registerProgramId').value=$('program_id').value; doDivAjaxCall$formname('confirmBeforeRegister','confirmBeforeRegister','')">
+				<i class="fa fa-user-o" aria-hidden="true"></i>
+				Register New Student
+			</button>
+			
+		</td>
+		<td></td>
+	</tr>
+
+
+</table>
+
+
+
+##MATRIC NUMBER PREFIX, SET THIS PREFIX TO EMPTY STRING SO THAT MATRIC NUMBER SHALL BE GENERATED FROM TEMPLATE
+<input type="hidden" name="matric_prefix" value="">
+<input type="hidden" id="registerProgramId">
+
+
+<div id="confirmBeforeRegister" class="shadow"></div>
+
+<script>
+
+function checkEntry() {
+
+
+if ( $('icno').value == "" && $('passport').value == "" ) {
+alert("MyKad/Passport is required.");
+$('icno').focus();
+return false;
+}
+
+if ( $('name').value == "" ) {
+alert("Name field is required.");
+$('name').focus();
+return false;
+}
+
+if ( $('program_id').value == "" ) {
+alert("Please select Program.");
+return false;
+}
+
+if ( $('intake_id').value == "" ) {
+alert("Please select Intake Session.");
+return false;
+}
+
+if ( $('centre_id').value == "" ) {
+alert("Please select Learning Centre.");
+return false;
+}
+
+return true;
+}
+
+</script>

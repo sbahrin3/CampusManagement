@@ -1,0 +1,16 @@
+<table width="100%" border="0" align="center"><tr><td>
+
+<div class="shadow" name="div_invoice_entry" id="div_invoice_entry" style="width:800px;height:300px;position:absolute;visibility:hidden;border-style:solid;border-color:#D2D2D2;background-color:#ffffff;">
+##<div class="shadow" id="div_invoice_entry" style="position:absolute;visibility:hidden;">
+<table width="100%"><tr height="30px" bgcolor="lightgrey"><td align="right" style="font-weight:bold">
+
+[<a href="javascript:void()" onclick="$('div_invoice_entry').style.visibility='hidden';$('div_invoice_entry2').style.visibility='hidden'">Close</a>]
+
+</td></tr>
+<tr><td>
+<div id="div_invoice_entry2" name="div_invoice_entry2"></div>
+
+</td></tr></table>
+</div>
+
+</td></tr></table>

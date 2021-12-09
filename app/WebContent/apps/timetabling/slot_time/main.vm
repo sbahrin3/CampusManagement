@@ -1,0 +1,13 @@
+<div style="padding:10px;font-family:Verdana, sans-serif;font-size:14pt;font-weight:bold">
+
+Time Slots
+</div>
+<br/>
+
+
+
+<div id="listSlotTimes" style="width:800px">
+	#parse("$path/listSlotTimes.vm")
+</div>
+
+

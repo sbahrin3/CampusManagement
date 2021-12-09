@@ -1,0 +1,17 @@
+<table width="99%" align="center">
+<tr bgcolor="lightgrey"><td height="30px" style="font-weight:bold">
+Room 
+</td></tr>
+<tr><td>
+<table width="100%">
+#foreach( $a in $allocations )
+<tr>
+<td>$a.student.biodata.name</td>
+</tr>
+#end
+</table>
+
+
+</td></tr>
+</table>
+

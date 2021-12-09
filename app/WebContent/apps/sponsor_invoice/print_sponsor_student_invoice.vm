@@ -1,0 +1,76 @@
+<div style="height:100px">
+&nbsp;
+</div>
+<table>
+<tr>
+<td style="width:100px" valign="top">Kepada:</td>
+<td style="width:350px" valign="top">
+<b>$invoice.sponsor.name</b><br/>
+#if ( $invoice.sponsor.address != "" )
+$util.putLineBreak($invoice.sponsor.address)
+#end
+</td>
+<td valign="top">
+Ruj Tuan: $i.referenceNo<br/>
+No Inbois: <b>$i.invoiceNo</b><br/>
+Tarikh: $df.format($invoice.invoiceDate)<br/>
+Tempoh: 30 hari<br/>
+</td>
+</tr>
+</table>
+<br/>
+<table border="0" cellspacing="0" cellpadding="4" style="border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000; border-bottom:1px solid #000">
+<tr>
+<td style="width:50px;border-bottom:1px solid #000" align="center">No</td>
+<td style="border-bottom:1px solid #000" colspan="2" align="center">Keterangan</td>
+<td style="width:200px;border-bottom:1px solid #000" align="center">Jumlah (RM)</td>
+</tr>
+<tr><td>1</td><td style="width:120px">Nama:</td><td style="width:300px">$i.student.biodata.name</td><td></td></tr>
+<tr><td></td><td>No I/C:</td><td>$i.student.biodata.icno</td><td></td></tr>
+
+<tr><td style="height:10px" colspan="4"></td></tr>
+
+<tr><td></td><td>No Matrik:</td><td>$i.student.matricNo</td><td></td></tr>
+<tr><td></td><td>Kursus:</td><td>$i.student.program.displayName</td><td></td></tr>
+
+<tr><td style="height:10px" colspan="4"></td></tr>
+
+<tr><td></td><td>Pengambilan:</td><td>$i.student.intake.name</td><td></td></tr>
+
+#if ( $invoice.dateFrom )
+	<tr><td></td><td>Tempoh:</td><td>
+	#if ( $invoice.dateFrom )
+	$df.format($invoice.dateFrom).toUpperCase() - 
+	#end
+	#if ( $invoice.dateTo )
+	$df.format($invoice.dateTo).toUpperCase()
+	#end
+	</td><td></td></tr>
+#end
+<tr><td style="height:10px" colspan="4"></td></tr>
+
+<tr><td></td><td valign="top">Yuran:</td>
+<td>
+#foreach ( $item in $i.invoiceItems )
+$item.description<br/>
+#end
+</td>
+<td align="right">
+#foreach ( $item in $i.invoiceItems )
+$numFormat.format($item.amount)<br/>
+#end
+</td>
+</tr>
+
+<tr><td style="height:10px" colspan="4"></td></tr>
+
+<tr>
+<td style="border-top:1px solid #000">&nbsp;</td>
+<td style="border-top:1px solid #000">&nbsp;</td>
+<td style="border-top:1px solid #000"><b>JUMLAH</b></td>
+<td style="border-top:1px solid #000" align="right">$numFormat.format($i.amount)</td>
+</tr>
+</table>
+<br/>
+
+#parse("apps/sponsor_invoice_content/letter_content/content.html")

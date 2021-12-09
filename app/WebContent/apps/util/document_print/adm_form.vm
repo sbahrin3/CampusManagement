@@ -1,0 +1,275 @@
+<table width="100%" align="center" cellspacing="0">
+
+<tr><td height="100px">
+
+#parse("apps/util/document_print/header.vm")
+
+<br/><br/>
+</td></tr>
+</table>
+
+<table width="100%" align="center" cellspacing="0">
+<tr>
+  <td class="box" style="height:20px">
+    <span class="aform">
+    <b>MAKLUMAT PERIBADI</b><span style="font-weight:normal">(<i>PERSONAL INFORMATION</i>)</span>
+    </span>
+  </td>
+</tr>
+</table>
+
+<table width="100%" align="center" cellspacing="0">
+<tr><td class="box">
+<br/>
+<br/>
+<table cellpadding="4"><tr><td class="box" style="height:200px;width:150px">
+#if($applicant.photoFileName != "")
+<img src="${applicationURL}/download?file=$!applicant.photoFileName" border="0"/>
+#else
+<img src="${applicationURL}//img/nophoto.gif" border="0" />
+#end
+</td></tr>
+</table>
+<br/>
+<br/>
+</td></tr>
+
+<tr><td class="box">
+
+<table width="100%" cellspacing="0" cellpadding="2">
+<tr height="0px"><td style="width:160px"></td><td></td></tr>
+
+
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">NO KAD PENGENALAN<br/><i>IDENTITY CARD NUMBER</i></td>
+<td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.biodata.icno</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">NAMA PENUH<br/><i>FULL NAME</i></td>
+<td class="line"  style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.biodata.name</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">JANTINA<br/><i>GENDER</i></td>
+<td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.biodata.gender.name</td></tr>
+$dateFormat.applyPattern("dd MMM, yyyy")
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">TARIKH LAHIR<br/><i>DATE OF BIRTH</i></td>
+<td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $applicant.biodata.dob ) $dateFormat.format($applicant.biodata.dob) #end</td></tr>
+<tr><td valign="top" class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">ALAMAT TETAP<br/><i>PERMANENT ADDRESS</i></td>
+<td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">
+
+#if ( $applicant.address.address1 && $applicant.address.address1 != "" ) $applicant.address.address1<br/>#end
+#if ( $applicant.address.address2 && $applicant.address.address2 != "" ) $applicant.address.address2<br/>#end
+#if ( $applicant.address.address3 && $applicant.address.address3 != "" ) $applicant.address.address3<br/>#end
+#if ( $applicant.address.address4 && $applicant.address.address4 != "" ) $applicant.address.address4<br/>#end
+#if ( $applicant.address.postcode && $applicant.address.postcode != "" ) $applicant.address.postcode&nbsp;#end
+#if ( $applicant.address.city && $applicant.address.city != "" ) $applicant.address.city<br/>#end
+#if ( $applicant.address.state && $applicant.address.state.name != "" ) $applicant.address.state.name<br/>#end
+#if ( $applicant.nationalityType && $applicant.nationalityType == "1") MALAYSIA #end
+#if ( $applicant.address.country && $applicant.address.country.name != "" ) $applicant.address.country.name<br/>#end
+
+</td></tr>
+
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">NO TELEFON<br/><i>TELEPHONE</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><span style="font-weight:normal">TETAP:</span> $!applicant.biodata.telephoneNo&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:normal">BIMBIT:</span> $!applicant.biodata.mobileNo</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">NEGERI KELAHIRAN<br/><i>STATE BORN</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.biodata.stateBorn</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">AGAMA<br/><i>RELIGION</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.biodata.religion.name</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">BANGSA<br/><i>RACE</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.biodata.race.name</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">KEWARGANEGARAAN<br/><i>NATIONALITY</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $applicant.nationalityType == "1" ) WARGANEGARA MALAYSIA #else $!applicant.biodata.nationality.name #end</td></tr>
+</table>
+
+
+</td></tr>
+
+<tr><td height="20px"></td></tr>
+
+<tr><td class="box" style="20px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><b>MAKLUMAT PROGRAM</b> <span style="font-weight:normal">(<i>PROGRAMME INFORMATION</i>)</span></td></tr>
+
+<tr><td class="box">
+
+<table width="100%" cellspacing="0" cellpadding="2">
+<tr height="0px"><td style="width:160px"></td><td></td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">NOMBOR MATRIK<br/><i>MATRIC NUMBER</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!student.matricNo</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">PROGRAM<br/><i>PROGRAMME</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!student.program.name</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">TARIKH DAFTAR<br/><i>REGISTER DATE</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.registerDate ) $dateFormat.format($student.registerDate) #end</td></tr>
+</table>
+
+</td></tr>
+</table>
+
+
+
+<h1>&nbsp;</h1>
+<br/>
+
+<table width="100%" align="center" cellspacing="0">
+
+<tr><td height="20px"></td></tr>
+<tr><td class="box" style="height:20px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><b>KELULUSAN AKADEMIK</b> <span style="font-weight:normal">(<i>ACADEMIC QUALIFICATION</i>)</span></td></tr>
+
+<tr><td class="box">
+
+<table width="100%" cellspacing="0" cellpadding="2">
+<tr height="0px"><td style="width:160px"></td><td></td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">MAKLUMAT SPM<br/><i>SPM DETAILS</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><span>TAHUN AMBIL :</span>$!applicant.spmYear</td></tr>
+<tr><td valign="top" class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><br/>KEPUTUSAN SPM<br/><i>SPM RESULT</i></td><td class="line">
+
+<table>
+#if ( $applicant.spmResults )
+#set ( $cnt = 0 )
+<tr>
+#foreach ( $r in $applicant.spmResults )
+#set ( $cnt = $cnt + 1 )
+<td style="width:100px;height:20px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;" valign="top">#if ( $r.subject ) $r.subject.name #else $!r.otherName #end</td>
+<td style="width:50px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;" valign="top" align="center">$r.generalExamGrade.name</td>
+
+#if ( $cnt == 4 )
+#set ( $cnt = 0 )
+</tr><tr>
+#end
+
+#end
+</tr>
+#end
+</table>
+
+</td></tr>
+
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">MAKLUMAT STPM<br/><i>STPM DETAILS</i></td>
+<td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><span style="font-weight:normal">TAHUN AMBIL :</span>$applicant.stpmYear</td></tr>
+<tr><td valign="top" class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><br/>KEPUTUSAN STPM<br/><i>STPM RESULT</i></td><td class="line">
+
+<table>
+#if ( $applicant.stpmResults )
+#set ( $cnt = 0 )
+<tr>
+#foreach ( $r in $applicant.stpmResults )
+#set ( $cnt = $cnt + 1 )
+<td style="width:100px;height:20px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;" valign="top">#if ( $r.subject ) $r.subject.name #else $!r.otherName #end</td>
+<td style="width:50px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;" valign="top" align="center">$r.generalExamGrade.name</td>
+
+#if ( $cnt == 4 )
+#set ( $cnt = 0 )
+</tr><tr>
+#end
+
+#end
+</tr>
+#end
+</table>
+
+</td></tr>
+
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">MAKLUMAT MUET<br/><i>MUET DETAILS</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><span style="font-weight:normal">Year: </span>$!applicant.muetYear&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:normal">Band: </span>$!applicant.muetBand</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">KELULUSAN<br/>AKADEMIK LAIN<br/><i>OTHERS ACADEMIC QUALIFICATIONS</i></td><td class="line">
+
+#if ( $applicant.tertiaries.size() > 0 )
+<table align="center">
+<tr height="30px">
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">Institution</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">Specialisation</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">Study Level</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">Year of<br/>Completion</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">CGPA</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">Class Degree</td>
+</tr>
+#foreach( $t in $applicant.tertiaries )
+<tr>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$t.instituition</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$t.specialisation</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$t.level.name</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$t.year</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$t.cgpa</td>
+<td align="center" style="width:100px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$t.degreeClass.name</td>
+</tr>
+#end
+</table>
+#end
+
+
+</td></tr>
+
+</table>
+</td></tr>
+
+
+<tr><td height="20px"></td></tr>
+<tr><td class="box" style="height:20px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><b>MAKLUMAT TAMBAHAN</b> <span style="font-weight:normal">(<i>ADDITIONAL INFORMATION</i>)</span></td></tr>
+
+<tr><td class="box" >
+
+<table width="100%" cellspacing="0" cellpadding="2">
+<tr height="0px"><td style="width:160px"></td><td></td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">NAMA IBU/BAPA/PENJAGA<br/><i>NAME OF PARENT/GUARDIAN</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.guardianName</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">NO K/P IBU/BAPA/PENJAGA<br/><i>PARENT/GUARDIAN I.C. NUMBER</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.guardianICNo</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">NOMBOR TELEFON<br/><i>TELEPHONE NUMBER</i></td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.guardianTelephoneNo</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">PEKERJAAN<br/><i></i>OCCUPATION</td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.guardianOccupation</td></tr>
+<tr><td class="line_left" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">HUBUNGAN<br/><i></i>RELATIONSHIP</td><td class="line" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">$!applicant.guardianRelationship</td></tr>
+
+</table>
+</td></tr>
+
+<tr><td height="20px"></td></tr>
+<tr><td class="box" style="height:20px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><b>PERAKUAN</b></td></tr>
+<tr><td class="box">
+
+<table width="100%">
+<tr><td align="center">
+<span style="font-weight:bold;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">
+SAYA MENGAKU SEMUA BUTIR YANG DIBERIKAN DALAM PERMOHONAN INI ADALAH BETUL<br/> SEPANJANG PENGETAHUAN SAYA.
+SAYA AKUI PIHAK KOLEJ BERHAK MENOLAK KEMASUKAN INI PADA BILA-BILA MASA SEKIRANYA DIDAPATI MANA-MANA KETERANGAN
+DAN SALINAN SIJIL-SIJIL YANG SAYA<br/> KEMUKAKAN ADALAH TIDAK BENAR.<br/>
+</span>
+<span style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><i>
+I CERTIFY THAT THE INFORMATION GIVEN IN THIS APPLICATION IS CORRECT TO THE BEST OF MY<br/>
+KNOWLEDGE.  I ACKNOWLEDGE THAT THE COLLEGE RESERVES THE RIGHT TO REJECT MY ADMISSION AT
+ANY TIME SHOULD ANY INFORMATION AND COPIES OF CERTIFICATES PRESENTED ARE FRAUDULENT.</i>
+</span>
+</td></tr>
+<tr><td>
+<table align="center">
+<tr><td style="height:50px;width:200px; border-bottom:1px solid #000;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">&nbsp;</td>
+<td style="width:50px">&nbsp;</td><td style="width:200px; border-bottom:1px solid #000;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">&nbsp;</td></tr>
+<tr><td align="center" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">TANDA TANGAN PEMOHON</td>
+<td></td>
+<td align="center" style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">TARIKH</td></tr>
+</table>
+</td></tr>
+</table>
+</td></tr>
+</table>
+
+
+
+
+
+
+
+<table width="100%" align="center" cellspacing="0">
+
+<tr><td height="20px"></td></tr>
+<tr><td class="box" style="height:20px;font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;"><b>DOKUMEN</b> <span style="font-weight:normal"></span></td></tr>
+
+<tr><td>
+<table width="100%">
+<tr><td width="50%" valign="top">
+
+<table>
+<tr height="10px"><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.applicant.submitPhotos ) <img src="${applicationURL}/img/check-on.png" /> #else <img src="${applicationURL}/img/check-off.png" /> #end</td><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">2 KEPING GAMBAR</td></tr>
+<tr height="10px"><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.applicant.submitIC ) <img src="${applicationURL}/img/check-on.png" /> #else <img src="${applicationURL}/img/check-off.png" /> #end</td><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">SALINAN KAD PENGENALAN</td></tr>
+<tr height="10px"><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.applicant.submitBirthCert ) <img src="${applicationURL}/img/check-on.png" /> #else <img src="${applicationURL}/img/check-off.png" /> #end</td><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">SALINAN SIJIL KELAHIRAN</td></tr>
+<tr height="10px"><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.applicant.submitSPM ) <img src="${applicationURL}/img/check-on.png" /> #else <img src="${applicationURL}/img/check-off.png" /> #end</td><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">SALINAN SIJIL SPM</td></tr>
+<tr height="10px"><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.applicant.submitSTPM ) <img src="${applicationURL}/img/check-on.png" /> #else <img src="${applicationURL}/img/check-off.png" /> #end</td><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">SALINAN SIJIL STPM</td></tr>
+
+</table>
+
+</td><td valign="top">
+
+<table>
+<tr height="10px"><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.applicant.submitMUET ) <img src="${applicationURL}/img/check-on.png" /> #else <img src="${applicationURL}/img/check-off.png" /> #end</td><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">SALINAN SIJIL MUET</td></tr>
+<tr height="10px"><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.applicant.submitDiploma ) <img src="${applicationURL}/img/check-on.png" /> #else <img src="${applicationURL}/img/check-off.png" /> #end</td><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">SALINAN SIJIL DIPLOMA</td></tr>
+<tr height="10px"><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.applicant.submitSijilBerhenti ) <img src="${applicationURL}/img/check-on.png" /> #else <img src="${applicationURL}/img/check-off.png" /> #end</td><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">SALINAN SIJIL BERHENTI</td></tr>
+<tr height="10px"><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">#if ( $student.applicant.submitMoney ) <img src="${applicationURL}/img/check-on.png" /> #else <img src="${applicationURL}/img/check-off.png" /> #end</td><td style="font-family: Helvetica, sans-serif; font-style: normal; font-size:7pt;">RM 10</td></tr>
+</table>
+
+
+</td></tr>
+</table>
+</td></tr>
+
+
+
+</table>

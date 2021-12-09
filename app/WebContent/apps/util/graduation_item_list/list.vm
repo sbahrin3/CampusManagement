@@ -1,0 +1,35 @@
+<table>
+<tr><td colspan="11" align="right">
+<input type="button" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.sis.module.GraduationItemCheckListXLModule'">
+</td></tr>
+<tr style="height:30px;background:#DBD9D9">
+<td style="width:30px;font-weight:bold" align="center">&nbsp;</td>
+<td style="width:150px;font-weight:bold">Matric No</td>
+<td style="width:350px;font-weight:bold">Name</td>
+<td style="width:100px;font-weight:bold" align="center">Robe</td>
+<td style="width:100px;font-weight:bold" align="center">Scroll</td>
+<td style="width:100px;font-weight:bold" align="center">Transcript</td>
+<td style="width:100px;font-weight:bold" align="center">Photos</td>
+<td style="width:100px;font-weight:bold" align="center">Alumni Card</td>
+<td style="width:100px;font-weight:bold" align="center">Tracer Study</td>
+<td style="width:30px;font-weight:bold" align="center">&nbsp;</td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $g in $graduans )
+#set ( $cnt = $cnt + 1 )
+<tr style="background:#F4F2F2">
+<td>$cnt.</td>
+<td>$g.student.matricNo</td>
+<td>$g.student.biodata.name</td>
+<td align="center">#if ( $g.robeStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.scrollStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.transcriptStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.photoStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.alumniCardStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center">#if ( $g.tracerStudyStatus == 1 ) <img src="../img/check_present.png"> #else <img src="../img/check_absent.png"> #end</td>
+<td align="center" style="cursor:pointer" onclick="doDivAjaxCall3$formname('detail','getDetail','graduanId=$g.id')">
+<img src="../img/max.png">
+</td>
+</tr>
+#end
+</table>

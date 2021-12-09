@@ -1,0 +1,6 @@
+<select class="texts" name="find_intakeId">
+	<option value=""></option>
+	#foreach ( $i in $intakes )
+		<option value="$i.id">$i.name</option>
+	#end
+</select>

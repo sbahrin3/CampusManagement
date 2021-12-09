@@ -1,0 +1,7 @@
+#set ( $bgcolor = "#FFFF55" )
+#parse("apps/util/applicant/frm_tertiary_education.vm")
+<br><br>
+<table width="100%"><tr><td align="right">
+<input type="button" style="font-weight:bold;height:30px"  value="BACK" onclick="doDivAjaxCall${formName}('tertiary','get_tertiary','')">
+##<input type="button" style="font-weight:bold;height:30px"  value="UPDATE" onclick="doDivAjaxCall${formName}('tertiary','save_tertiary','')">
+</td></tr></table>

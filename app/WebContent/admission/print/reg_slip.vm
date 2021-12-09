@@ -1,0 +1,70 @@
+
+
+
+<table width="100%" align="center">
+
+<tr><td align="right">
+
+</td></tr>
+
+<tr><td>
+
+#parse("admission/print/header.vm")
+
+</td></tr>
+
+<tr height="40px"><td><br/><br/></td></tr>
+
+<tr><td>
+
+<table width="99%" align="center"><tr>
+<td align="center" style="height:40px;font-size:12pt;font-weight:bold;border-bottom:1px solid;border-top:1px solid;border-left:1px solid;border-right:1px solid">
+REGISTRATION SLIP
+</td>
+</tr></table>
+<br/><br/>
+
+Below are brief description of your registration:
+
+</td></tr>
+
+<tr><td height="20px">
+
+</td></tr>
+
+<tr><td>
+<table width="100%">
+<tr><td style="width:150px">Matric No</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>NRIC:</td><td style="font-weight:bold">#if ( $student.biodata.icno != "" ) $student.biodata.icno #else $student.biodata.passport #end</td></tr>
+<tr><td>Programme:</td><td style="font-weight:bold">$student.program.name</td></tr>
+
+<tr><td valign="top">Documents:</td>
+<td>
+
+#parse("admission/print/documents_verification.vm")
+
+</td></tr>
+</table>
+</td></tr>
+
+<tr><td height="10px">
+
+</td></tr>
+
+<tr><td>
+<br/><br/>
+<p>
+Thank You.
+<br/><br/>
+<br/><br/>
+<b>Registrar</b>
+</p>
+
+</td></tr>
+
+<tr><td height="20px">
+
+</td></tr>
+
+</table>

@@ -1,0 +1,57 @@
+
+<input type="hidden" name="weekNumber" value="$week_number">
+<input type="hidden" name="weekNumberStart" value="$weekNumberStart">
+<input type="hidden" name="weekNumberEnd" value="$weekNumberEnd">
+<input type="hidden" name="activitySessionId" value="$!activitySession.id">
+
+<table>
+	<tr style="height:30px">
+		<td style="width:5px"></td>
+		<td style="width:100px">
+			Weeks:
+		</td>
+		<td style="width:10px"></td>
+		<td>
+
+
+			<div class="btn-group">
+			
+				#set ( $cnt = 0 )
+				#foreach( $w in [1..$weeks] )
+				
+					#set ( $bgcolor = "btn-default" )
+					#if ( $week_number == $w )
+						#set ( $bgcolor = "btn-info" )
+					#end
+				
+					#if ( $w >= $weekNumberStart && $w <= $weekNumberEnd )
+						#set ( $cnt = $cnt + 1 )
+			  			<button type="button" class="btn btn-sm $bgcolor" onclick="doDivAjaxChainCall$formname('div_timetable_main','get_timetable','week_number=$w','div_timetable_weeks','show_weeks','week_number=$w')">$cnt</button>
+			  		#end
+				#end
+				
+			</div>
+			
+		</td>
+	</tr>
+</table>
+
+
+<div style="margin-top:3px">
+	<table style="width:100%">
+		<tr>
+			<td style="width:5px"></td>
+			<td style="width:105px">Date of Week:</td>
+			<td style="width:5px"></td>
+			<td style="font-weight:bold;font-size:10pt;"> 
+			#if ( $start_date )
+				$dateFormat2.format($start_date)
+				&#8212;
+				$dateFormat2.format($end_date)
+			#else
+			<span style="font-weight:bold;font-size:10pt;color:#FF0000">Date Start not defined!</span>
+			#end
+			</td>
+		</tr>
+	</table>
+</div>

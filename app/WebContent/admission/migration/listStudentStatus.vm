@@ -1,0 +1,54 @@
+<table>
+<tr><td style="width:200px">Matric No:</td><td>$student.matricNo</td></tr>
+<tr><td>Name:</td><td>$student.biodata.name</td></tr>
+<tr><td>Program:</td><td>$!student.program.code - $!student.program.name</td></tr>
+<tr><td>Program Session Path:</td><td>$!student.program.level.name
+</td></tr>
+
+#if ( !$student.program.periodScheme )
+	<tr><td>Select Period Scheme:</td><td>
+	<select class="textr" style="width:200px" name="periodSchemeId">
+	<option value=""></option>
+	#foreach( $p in $periodSchemes )
+	<option value="$p.id">$p.code</option>
+	#end
+	</select><input class="linkbutton" type="button" value="Set" onclick="doDivAjaxCall3$formname('listStudentStatus','setPeriodScheme','studentId=$student.id')">
+	</td></tr>
+#else
+	<tr><td>Period Scheme:</td><td>$!student.program.periodScheme.code</td></tr>
+#end
+
+</table>
+<br/>
+<table>
+
+#foreach ( $s in $statuses )
+<tr>
+<td style="width:200px"></td>
+<td style="width:200px"></td>
+</tr>
+
+#set ( $sessionPathNo = $s.session.pathNo )
+<tr>
+<td>$s.session.name</td>
+<td>#if ( $s.period ) $s.period.name #else ? #end</td>
+</tr>
+#end
+</table>
+<br/>
+<table>
+#if ( !$student.program.level )
+<tr><td>
+Set Session Path No:</td><td>$sessionPathNo
+<input class="linkbutton" type="button" value="Set Program Session Path" onclick="doDivAjaxCall3$formname('listStudentStatus','setProgramPath','sessionPathNo=$sessionPathNo&studentId=$student.id')">
+</td></tr>
+#end
+
+#if ( $student.program.level && $student.program.periodScheme )
+<tr><td>
+Student Status:</td><td>
+<input class="linkbutton" type="button" value="Fix Student's Status" onclick="doDivAjaxCall3$formname('listStudentStatus','fixStudentStatus','studentId=$student.id')">
+</td></tr>
+#end
+
+</table>

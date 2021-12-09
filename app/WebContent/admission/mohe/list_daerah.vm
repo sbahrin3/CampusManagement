@@ -1,0 +1,6 @@
+<select class="texts" name="daerah_tetap">
+<option value=""></option>
+#foreach( $k in $kodDaerahList )
+<option value="$k.code" #if ( $mohe.daerah_tetap == $k.code ) selected #end>$k.name</option>
+#end
+</select>

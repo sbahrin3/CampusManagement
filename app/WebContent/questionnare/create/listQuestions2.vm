@@ -1,0 +1,57 @@
+<div style="border-bottom:1px solid #000;">
+
+<table>
+<tr style="height:40px">
+#set ( $cnt = 0 )
+#set ( $totalTab = $set.parts.size() )
+
+
+#foreach ( $part in $set.parts )
+#set ( $cnt = $cnt + 1 )
+	<td id="topTab$cnt" style="padding:5px;padding-left:10px;padding-right:10px;cursor:pointer" onclick="displayPartTab($cnt, $totalTab)"#if ( $part.id == $currentPart.id ) class="tabOn" #else class="tabOff" #end>$cnt</td>
+#end
+<td style="padding:1px;cursor:pointer;padding-left:10px">
+	<button type="button" class="btn btn-default" onclick="doDivAjaxCall3$formname('div_input','addPart','setId=$!set.id')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+</td>
+</tr>
+</table>
+
+</div>
+
+<table class="table" cellpadding="2" cellspacing="0"><tr><td>
+#set ( $cnt = 0 )
+#foreach ( $part in $set.parts )
+	#set ( $cnt = $cnt + 1 )
+	<div id="partTab$cnt" #if ( $part.id == $currentPart.id ) style="display:block" #else style="display:none" #end>
+	
+	<table style="width:100%" cellpadding="2" cellspacing="0">
+	<thead>
+	<tr style="height:30px;">
+		<th  style="width:50px" align="center">$cnt.</th>
+		<th  style="width:800px">
+			$!part.title
+		</th>
+		<th  style="width:150px">&nbsp;</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr style="background:#FFF">
+	<td></td><td style="background:#FFF">$!part.instructionText</td>
+	<td align="right">
+		<button type="button" class="btn btn-primary btn-sm" onclick="doDivAjaxCall3$formname('div_input','editPart','partId=$!part.id&setId=$!part.set.id')">Edit</button>
+		<button type="button" class="btn btn-danger btn-sm" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('div_main','deletePart','partId=$!part.id')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+		
+	</td></tr>
+	
+	<tr style=""><td colspan="4">
+	<div id="part_$part.id">
+		#parse("questionnare/create/listPartQuestions.vm")
+	</div>
+	</td></tr>
+	</tbody>
+	</table>
+	</div>
+#end
+
+

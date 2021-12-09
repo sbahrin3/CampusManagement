@@ -1,0 +1,56 @@
+		<script>
+
+				function ajaxLogin(qs)
+	{
+	    var result;
+	    var url = '${serverUrl}/servlet/educate.ajax.Login';
+	    //var url2 = '../servlet/educate.ajax.Login';
+    new Ajax.Request(
+        			url, 
+        {
+            method: 'post', 
+            parameters: qs, 
+            asynchronous: false,
+            onComplete: function(t) {
+               result = t.responseText;
+            				},
+            on404: function(t) {
+
+            },
+            onFailure: function(t) {
+
+            }            				
+        }
+	    );
+	    return result;
+	}
+function blindDown(elementId) {
+		  if ( document.all ) element = document.all[elementId];
+	  else element = document.getElementById(elementId);
+  new Effect.BlindDown(element,{duration:0.5}); 
+		  new Effect.Highlight(element,{duration:1.5})
+	  	return false;
+}
+<script>
+<table width="400" align="center">
+<tr><td>Login:</td><td><input name="login"></td></tr>
+<tr><td>Password:</td><td><input type="password" name="password"></td></tr>
+<tr><td></td>
+<td>
+<input type="button" value="Login" onclick="doDivAjaxCall$formName('login_result','login','')">
+</td>
+</tr>
+<tr><td colspan="2">
+
+<div id="login_result" name="login_result">
+</div>
+
+</td></tr>
+</table>
+<script>
+function goPortal() {
+  alert('ok');
+}
+</script>
+
+

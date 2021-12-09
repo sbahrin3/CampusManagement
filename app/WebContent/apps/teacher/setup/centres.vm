@@ -1,0 +1,7 @@
+<table style="width:100%">
+#set ( $i = 0 )
+#foreach( $c in $teacher.centres )
+#set ( $i = $i + 1 )
+<tr><td style="width:30px">$i.</td><td>$c.name</td><td style="width:40px"><input type="button" value="X" onclick="doDivAjaxCall3$formname('divCentres','removeLearningCentre','teacherId=$teacher.id&removeCentreId=$c.id')"></td></tr>
+#end
+</table>

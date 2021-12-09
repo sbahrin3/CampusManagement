@@ -1,0 +1,39 @@
+<div style="background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff">Select Teachers</td>
+			<td align="right">
+				<button type="button" class="btn btn-info btn-sm" onclick="doDivAjaxCall$formname('listTeachers','saveTeachers','classroomTemplateId=$!classroomTemplate.id');$('classroomOptions').style.display='none';">OK</button>
+				<button type="button" class="btn btn-info btn-sm" onclick="$('classroomOptions').style.display='none';">X</button>
+			</td>
+			</tr>
+		</table>
+</div>
+
+<div id="divClassroomGroups" style="height:400px;overflow:auto;overflow-x:hidden;">
+
+
+	<table class="table table-striped table-hover">
+	
+	<tbody>
+		#foreach( $t in $teachers )
+			<tr>
+				<td>$t.name</td>
+				<td>
+					<input class="texts" style="width:50px" name="weightage_$t.id" value="1">
+				</td>
+				<td>
+					<input type="checkbox" name="teacherIds" value="$t.id" #if ( $selectedTeachers.contains($t) ) checked #end>
+				</td>
+			</tr>
+		#end
+		<tr>
+			<td colspan="4" align="right">
+				<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('listTeachers','saveTeachers','classroomTemplateId=$!classroomTemplate.id');$('classroomOptions').style.display='none';">OK</button>
+			</td>
+		</tr>
+	</tbody>
+	</table>
+	
+</div>

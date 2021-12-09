@@ -1,0 +1,81 @@
+<table width="100%"><tr><td style="padding:2px;background:#6868D6;height:30px;font-weight:bold;color:#fff">MARKINGS DISTRIBUTION</td></tr></table>
+<table cellpadding="1" cellspacing="1">
+<tr>
+<td style="width:20px"></td>
+<td style="width:50px">Code</td><td></td>
+<td style="width:250px">Description</td><td></td>
+<td style="width:50px" align="center">%</td><td></td>
+</tr>
+
+
+#if ( $cwItems.size() > 0 )
+	#set ( $cwCnt = 0 )
+	#foreach( $cwk in $cwItems )
+		#set ( $cwCnt = $cwCnt + 1 )
+		<tr>
+		<td>$cwCnt.<input type="hidden" name="cw_id_$cwCnt" value="$cwk.id"></td>
+		<td><input class="textr" name="cw_code_$cwCnt" value="$cwk.code"></td><td></td>
+		<td><input class="textr" name="cw_name_$cwCnt" value="$cwk.name"></td><td></td>
+		<td><input class="textr" id="cw_percentage_$cwCnt" name="cw_percentage_$cwCnt" value="$cwk.percentage"></td><td></td>
+		</tr>
+	#end
+#else
+	#set ( $cwCnt = 1 )
+		<tr>
+		<td>1.<input type="hidden" name="cw_id_1"></td>
+		<td><input class="textr" name="cw_code_1"></td><td></td>
+		<td><input class="textr" name="cw_name_1"></td><td></td>
+		<td><input class="textr" id="cw_percentage_1" name="cw_percentage_1"></td><td></td>
+		</tr>
+#end
+<tr><td colspan="6"></td></tr>
+</table>
+#set ( $cwCnt = $cwCnt + 1 )
+<input type="hidden" id="markingCount" name="markingCount" value="$cwCnt">
+
+#foreach ( $h in [$cwCnt..10])
+<div id="markingField_$h" style="display:none">
+<table cellpadding="1" cellspacing="1">
+<tr>
+<td style="width:20px">$h.
+<input type="hidden" name="cw_id_$h" value=""></td>
+<td><input class="textr" style="width:50px" name="cw_code_$h" value=""></td><td></td>
+<td><input class="textr" style="width:250px" name="cw_name_$h" value=""></td><td></td>
+<td><input class="textr" style="width:50px" id="cw_percentage_$h" name="cw_percentage_$h" value=""></td>
+<td></td>
+</tr>
+</table>
+</div>
+#end
+<table width="100%" cellpadding="1" cellspacing="1">
+	
+<tr style="height:40px">
+	<td colspan="2" align="center">
+		Total Round Type: 
+		<input type="checkbox" name="roundType" value="1" #if ( $coursework.roundType == 1 ) checked #end id="roundUp" onclick="if ( this.checked ) { $('roundDown').checked = false; } else {  }"> Round Up
+		&nbsp;
+		<input type="checkbox" name="roundType" value="2" #if ( $coursework.roundType == 2 ) checked #end id="roundDown" onclick="if ( this.checked ) { $('roundUp').checked = false; } else {  }"> Round Down
+
+	</td>
+	
+</tr>
+<tr>
+<td>
+<input type="button" style="height:30px" value="Add" onclick="addMarkingField()">
+</td>
+<td align="right">
+
+<input type="button" style="height:30px" value="Save" onclick="if ( checkMarkingField() ) { doDivAjaxCall3$formname('results','save_coursework',''); } else { $('checkMarkingError').style.display='block'; }">
+<input type="button" style="height:30px" value="Cancel" onclick="$('divMarkings').style.display='none';">
+<input type="button" style="height:30px" value="Help" onclick="doDivAjaxCall3$formname('helpPopup','helpMarkingDistribution','')">
+</td></tr>
+</table>
+
+<table style="width:100%"><tr><td align="center">
+			<div id="checkMarkingError" style="text-align:center;font-weight:bold;color:#EA0707;display:none;">
+				Total mark distribution must be 100%.<br/>
+				<a style="color:#EA0707" href="javascript:void(0)" onclick="doDivAjaxCall3$formname('results','save_coursework','')">Ignore this warning? (Yes)</a>
+			</div>
+</td></tr></table>
+
+<br/>

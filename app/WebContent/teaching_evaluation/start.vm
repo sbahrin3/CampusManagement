@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<style>
+.box { background:#fff; }
+.comment { font-family:Verdana;font-size:10pt }
+.counting { border: none; width:25px; text-align:right; }
+.tr1 { background:#FFF}
+.tr2 { background:#F4FFA5}
+</style>
+
+<div id="questionnare" style="padding:10px">
+#parse("teaching_evaluation/questionare.vm")
+</div>
+
+<div id="saveQuestionnare"></div>
+
+<script>
+
+function limitText(limitField, limitCount, limitNum) {
+	if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+}
+
+function validateRadio(radios) {
+    for (i = 0; i < radios.length; ++ i) {
+        if (radios [i].checked) return true;
+    }
+    return false;
+}
+function validateForm() {
+
+	if ( document.forms["$formname"]["facultyName"].value == "" ) { alert('Faculty is empty!'); return false; }
+	if ( document.forms["$formname"]["courseName"].value == "" ) { alert('Course is empty!'); return false; }
+	if ( document.forms["$formname"]["codeName"].value == "" ) { alert('Code is empty!'); return false; }
+	if ( document.forms["$formname"]["semesterYear"].value == "" ) { alert('Semester and Year is empty!'); return false; }
+
+    if( !validateRadio(document.forms["$formname"]["q1"])) { alert('Question 1 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q2"])) { alert('Question 2 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q3"])) { alert('Question 3 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q4"])) { alert('Question 4 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q5"])) { alert('Question 5 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q6"])) { alert('Question 6 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q7"])) { alert('Question 7 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q8"])) { alert('Question 8 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q9"])) { alert('Question 9 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q10"])) { alert('Question 10 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q11"])) { alert('Question 11 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q12"])) { alert('Question 12 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q13"])) { alert('Question 13 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q14"])) { alert('Question 14 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q15"])) { alert('Question 15 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q16"])) { alert('Question 16 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q17"])) { alert('Question 17 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q18"])) { alert('Question 18 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q19"])) { alert('Question 19 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q20"])) { alert('Question 20 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q21"])) { alert('Question 21 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q22"])) { alert('Question 22 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q23"])) { alert('Question 23 not answered!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["q24"])) { alert('Question 24 not answered!'); return false; }
+    
+    if ( document.forms["$formname"]["comment1"].value.trim() == "" ) { alert('Comment A is empty!'); return false; }
+    if( !validateRadio(document.forms["$formname"]["overallRating"])) { alert('Overall Rating not answered!'); return false; }
+    
+    if ( document.forms["$formname"]["comment2"].value.trim() == "" ) { alert('Comment B is empty!'); return false; }
+    if ( document.forms["$formname"]["comment3"].value.trim() == "" ) { alert('Comment C is empty!'); return false; }
+    
+    return true;
+}
+function validateAll() {
+	if ( !validateForm() ) {
+		return false;
+	}
+	return true;
+}
+</script>

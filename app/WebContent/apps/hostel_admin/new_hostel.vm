@@ -1,0 +1,10 @@
+<table>
+<tr>
+<td>
+Code:<input style="width:50px" name="new_hostel_code">Name:<input style="width:300px" name="new_hostel_name">
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('select_hostels','add_hostel','')">
+<input type="button" value="Cancel" onclick="doDivAjaxCall$formname('select_hostels','list_hostels','')">
+</td>
+</tr>
+</table>
+<br>

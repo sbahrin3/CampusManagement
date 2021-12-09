@@ -1,0 +1,4 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+<div id="divMain">#parse("apps/setup_course_group.vm")</div>
+<div id="divEmpty"></div>

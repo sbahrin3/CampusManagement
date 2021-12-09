@@ -1,0 +1,34 @@
+<ul id="categoryList" style="list-style-type:none; padding: 0px;">
+	
+	#set ( $cnt = 0 )
+	#foreach( $c in $categories )
+	#set ( $cnt = $cnt + 1 )
+	<li id="categoryList_$cnt" style="padding:0px">
+		<input type="hidden" name="categoryIds" value="$c.id">
+		<table cellpadding="1" cellspacing="0">
+		<tr>
+		<td style="width:20px;cursor:pointer" valign="top">$cnt.</td>
+		<td style="width:100px" valign="top"><input class="textr" name="categoryCode_$c.id" value="$c.code" onchange="doDivAjaxCall3$formname('empty','changeCode','categoryId=$c.id')"></td>
+		<td style="width:350px" valign="top"><input class="textr" name="categoryName_$c.id" value="$c.name" onchange="doDivAjaxCall3$formname('empty','changeName','categoryId=$c.id')"></td>
+		<td style="width:50px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listCategories','deleteCategory','categoryId=$c.id')"></td>
+		<td>
+		</tr>
+		</table>
+	</li>
+	#end
+</ul>
+<table cellpadding="1" cellspacing="0">
+<tr>
+<td style="width:20px"></td>
+<td style="width:100px"><input class="textr" name="categoryCode" value=""></td>
+<td style="width:350px"><input class="textr" name="categoryName" value=""></td>
+<td style="width:100px"><input class="linkbutton" type="button" style="width:100%" value="Add" onclick="doDivAjaxCall3$formname('listCategories','addCategory','')"></td>
+</tr>
+</table>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('categoryList', { onUpdate:updateSequence});
+function updateSequence() {
+	doDivAjaxCall3$formname('listCategories','updateSequence','')	
+}
+</script>

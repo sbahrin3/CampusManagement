@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+
+<script>
+	function uploadFloorPlanImage(floorId, documentId, e) {
+		document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+		document.${formName}.enctype='multipart/form-data';
+		document.${formName}.encoding ='multipart/form-data';
+		document.${formName}.target='upload_document';
+		document.${formName}.action='?command=saveFloorImage&floorId=' + floorId + '&documentId=' + documentId + '&divUploadStatusName=' + e;
+		document.${formName}.submit();
+	}
+</script>
+<iframe id="upload_document" name="upload_document" width="0px" height="0px" style="visibility:hidden"></iframe>
+
+
+<style>
+#movedItems {
+    position:fixed;
+    top: 50%;
+    left: 100px;
+    width:60em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    /* margin-left: -25em; */
+    border: 1px solid #ccc;
+}
+
+#divViewFloorPlan {
+    position:fixed;
+    top: 30%;
+    left: 30%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:1px;
+    background:#E8ECEF;
+    display:none;
+}
+</style>
+<div id="divHostel">#parse("apps/hostel_setup/divHostel.vm")</div>
+<div id="divBuilding"></div>
+<div id="empty"></div>
+<div id="divViewFloorPlan" class="shadow">#parse("apps/hostel_setup/viewFloorPlan.vm")</div>
+
+<div id="movedItems" class="shadow" style="display:none;background:#EEEEEE;"></div>
+
+
+<script>new Draggable('divViewFloorPlan', {handle: 'handleViewFloorPlan'});</script>

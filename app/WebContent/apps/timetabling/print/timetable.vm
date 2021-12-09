@@ -1,0 +1,123 @@
+#set( $times = ["", "7.30a-8.30a","8.30a-9.30a","9.30a-10.30a","11.00a-12.00p","12.00p-1.00p","2.00p-3.00p","3.00p-4.00p","4.00p-5.00p", "5.00p-6.00p","6.00p-7.00p","x","x","x","x"] )
+#set ( $days = ["", "MO","TU","WE","TH","FR","SA","SU"])
+
+
+#set ( $num_of_time_slots = 10 )
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css" media="print">
+
+@page { 
+	size: 11.69in 8.27in ;
+	margin: 0.25in; 
+	-fs-flow-top: "header";
+	-fs-flow-bottom: "footer";
+	padding: 1em;
+}
+
+td {
+  	font-family: Helvetica, sans-serif;   
+  	font-style: normal;
+	font-size:8pt
+}
+
+.slot {
+  	font-family: Helvetica, sans-serif;   
+  	font-style: normal;
+	font-size:8pt
+}
+
+.box {
+	border-top:.5px solid #B4B4B4;
+	border-bottom:.5px solid #B4B4B4;
+	border-right:.5px solid #B4B4B4;
+	border-left:.5px solid #B4B4B4;
+}
+
+
+
+</style>
+
+</head>
+<body>
+
+<table width="100%">
+<tr><td style="font-weight:bold;font-size:14pt">
+Timetable
+</td></tr>
+<tr><td>
+
+<table>
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+#if ( $teacher ) <tr><td>Teacher</td><td>:</td><td>$teacher.name</td></tr> #end
+#if ( $subject ) <tr><td>Subject</td><td>:</td><td>$subject.code $subject.name</td></tr> #end
+#if ( $section ) <tr><td>Section</td><td>:</td><td>$section.name</td></tr> #end
+#if ( $room ) <tr><td>Room</td><td>:</td><td>$room.name</td></tr> #end
+</table>
+
+#if ( $student )
+<table>
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td>Matric No</td><td>:</td><td>$student.matricNo</td></tr>
+<tr><td>Name</td><td>:</td><td>$student.biodata.name</td></tr>
+<tr><td>Program</td><td>:</td><td>$student.program.name</td></tr>
+</table>
+#end
+
+<table>
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td>Session</td><td>:</td><td>$selected_session.name</td></tr>
+<tr><td>Date</td><td>:</td><td>$dateFormat.format($start_date) - $dateFormat.format($end_date)</td></tr>
+</table>
+
+</td></tr></table>
+
+<table width="100%" cellpadding="0" cellspacing="1" border="0">
+
+<tr style="height:25px">
+<td></td>
+#foreach( $i in [1..$num_of_time_slots])
+<td align="center" class="box" style="background-color:#DCDCDC;">$times.get($i)</td>
+#end
+</tr>
+#set ( $cnt = 0 )
+#foreach( $slots in $slot_list )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td class="box" style="font-weight:bold" align="center" valign="top">
+##<img src="../img/days/${cnt}.gif">
+$days.get($cnt)
+</td>
+
+#set ( $x = 0 )
+
+#foreach( $slot in $slots )
+#set ( $x = $x + 1 )
+
+#if ( $x <= $num_of_time_slots )
+<td class="box" align="center" valign="top">
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr height="120px"><td valign="top" class="slot">
+#parse("$path/slot.vm")
+</td></tr>
+</table>
+
+</td>
+#end
+
+#end
+
+</tr>
+#end
+
+</table>
+
+
+
+</body>
+</html>

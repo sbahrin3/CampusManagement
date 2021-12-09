@@ -1,0 +1,9 @@
+<div style="padding-top:5px">
+#if ( $status == "complete" )
+Completed
+#elseif ( $status == "take" )
+Started
+#else
+Not Taken
+#end
+</div>

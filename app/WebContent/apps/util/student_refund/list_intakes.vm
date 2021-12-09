@@ -1,0 +1,7 @@
+
+<select style="width:400px" id="intake_id"  name="intake_id" onchange="if ( $('intake_id').value == '' ) { doDivAjaxCall$formname('div_sessions','list_all_sessions',''); return; } else { doDivAjaxCall$formname('div_sessions','list_sessions','')}">
+<option value=""> (All Intakes) </option>
+#foreach( $i in $intakes )
+<option value="$i.id">$i.code $i.name</option>
+#end
+</select>

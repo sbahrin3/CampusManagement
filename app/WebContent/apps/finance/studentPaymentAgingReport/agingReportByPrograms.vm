@@ -1,0 +1,53 @@
+
+
+<div style="padding:10px;font-weight:bold">
+	A. Payment Balance Aging: By Programs
+	<br/>Balance as at date: $dateFormat.format($reportDate)
+</div>
+<br/>
+<table class="table table-striped">
+
+<thead>
+<tr style="height:30px;background:#F4F4F4">
+	<th style="width:40px"></th>
+	<th style="width:100px">Program</th>
+	<th style="width:100px;text-align:right">30 days</th>
+	<th style="width:100px;text-align:right">60 days</th>
+	<th style="width:100px;text-align:right">90 days</th>
+	<th style="width:100px;text-align:right">120 days</th>
+</tr>
+</thead>
+<tbody>
+#set ( $cnt = 0 )
+#foreach( $data in $programList )
+	
+		#set ( $cnt = $cnt + 1 )
+    	
+    	<tr class="line" style="height:30px">
+			<td>$cnt.</td>
+    		<td>
+			#if ( $data.get("program") )
+				$data.get("program").code -
+				$data.get("program").name
+			#end
+			
+			</td>
+			
+    		<td align="right">#if ( $data.get("30") ) $numFormat.format($data.get("30")) #end</td>
+    		<td align="right">#if ( $data.get("60") ) $numFormat.format($data.get("60")) #end</td>
+    		<td align="right">#if ( $data.get("90") ) $numFormat.format($data.get("90")) #end</td>
+    		<td align="right">#if ( $data.get("120") ) $numFormat.format($data.get("120")) #end</td>
+    	</tr>
+	
+#end
+
+<tr style="height:30px;"> 
+	<td style="width:40px"></td>
+	<td style="width:200px" align=""></td>
+	<td style="width:100px;font-weight:bold" align="right">$numFormat.format($!total_30)</td>
+	<td style="width:100px;font-weight:bold" align="right">$numFormat.format($!total_60)</td>
+	<td style="width:100px;font-weight:bold" align="right">$numFormat.format($!total_90)</td>
+	<td style="width:100px;font-weight:bold" align="right">$numFormat.format($!total_120)</td>
+</tr>
+</tbody>
+</table>

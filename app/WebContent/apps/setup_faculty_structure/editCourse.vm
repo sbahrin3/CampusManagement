@@ -1,0 +1,19 @@
+<fieldset><legend class="legend">Edit Course</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr><td>Code</td><td>:</td><td><input class="texts" name="courseCode_$course.id" value="$course.code"></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" name="courseName_$course.id" value="$course.name"></td></tr>
+	
+<tr><td>Matric Card Template (PNG)</td><td>:</td><td><input class="texts" name="matricTemplateName_$course.id" value="$!course.matricTemplateName"></td></tr>
+<tr><td></td><td></td>
+	<td>
+		<img src="$appUrl/matric_card_image/${course.matricTemplateName}.png" style="width:200px;border:1px solid #000">
+	</td>
+</tr>
+</table>
+<br/>
+<table width="100%"><tr><td align="right">
+<button class="btn btn-primary" type="button" onclick="doDivAjaxCall3$formname('divListCourses','saveCourse','courseId=$course.id&facultyId=$faculty.id');$('editCourse_$courseId').style.visibility='hidden';">Save</button>
+<button class="btn btn-primary" type="button" onclick="$('editCourse_$courseId').style.visibility='hidden';">Cancel</button>
+</td></tr></table>
+</fieldset>

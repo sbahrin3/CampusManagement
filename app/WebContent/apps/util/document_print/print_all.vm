@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css" media="print">
+
+@Page{
+	margin-bottom: 0.5cm; 
+	margin-left: 2.5cm; 
+	margin-right: 2.5cm; 
+	margin-top: 0.5cm; 
+	size: a4 portrait; 
+}
+td {
+  	font-family: Helvetica, sans-serif;   
+  	font-style: normal;
+	font-size:9pt
+	} 
+	
+h1{
+  	font-family: Helvetica, sans-serif;   
+  	font-style: normal;
+	font-size:6pt;
+	color: #fff;
+	page-break-before: always;
+}
+
+.title {
+  	font-family: Helvetica, sans-serif;   
+  	font-style: normal;
+	font-size:12pt	
+	}
+
+.box {
+	border-bottom:1px solid #000; border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000;
+}
+
+</style>
+</head>
+<body>
+
+
+#parse("apps/util/document_print/reg_slip.vm")
+
+
+<h1>&nbsp;</h1>
+
+#set ( $salinan = "Salinan Pelajar" )
+#parse("apps/util/document_print/aggreement_content.vm")
+
+<h1>&nbsp;</h1>
+
+#set ( $salinan = "Salinan Penjamin" )
+#parse("apps/util/document_print/aggreement_content.vm")
+
+<h1>&nbsp;</h1>
+
+#set ( $salinan = "Salinan Pejabat" )
+#parse("apps/util/document_print/aggreement_content.vm")
+
+<h1>&nbsp;</h1>
+
+#parse("apps/util/document_print/accommodation_confirm.vm")
+
+<h1>&nbsp;</h1>
+
+#parse("apps/util/document_print/adm_form.vm")
+</body>
+</html>

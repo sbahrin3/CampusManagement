@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+<table>
+<tr>
+<td>Counter:</td><td><input class="texts" name="counter" value="$!counter.counter"></td>
+<td><input type="button" class="linkbutton" value="UPDATE" onclick="doDivAjaxCall3$formname('empty','updateCounter','')"></td>
+</tr>
+</table>
+
+<div id="empty"></div>

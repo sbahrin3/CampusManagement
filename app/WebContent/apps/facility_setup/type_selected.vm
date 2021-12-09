@@ -1,0 +1,13 @@
+<table width="100%">
+<tr>
+<td style="width:100px">Code: </td><td><input name="facility_code" style="width:300px"></td>
+</tr>
+<tr>
+<td style="width:100px">Name: </td><td><input name="facility_name" style="width:300px"></td>
+</tr>
+<tr>
+<td colspan="2" align="center">
+<input type="button" value="Add New" onclick="doDivAjaxCall$formname('facility_data', 'add_facility', '')">
+</td>
+</tr>
+</table>

@@ -1,0 +1,9 @@
+
+
+<td>$!r.type.name</td>
+<td>$!r.registrationNo</td>
+<td>$!r.brandName</td>
+<td>$!r.modelName</td>
+
+
+

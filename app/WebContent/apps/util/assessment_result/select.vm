@@ -1,0 +1,312 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<style>
+
+.line {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:none;}
+.box {border-bottom:1px solid #C3C3C3; border-top:1px solid #C3C3C3; border-left:1px solid #C3C3C3; border-right:1px solid #C3C3C3;}
+
+.tabs1 {
+	background: #F2F0EE;
+	height:30px;
+	cursor: pointer;
+	font-weight:bold;
+}
+
+.tabs0 {
+	background: #F2F0EE;
+	height:30px;
+	cursor: pointer;
+	font-weight:bold;
+}
+.student_info {
+	-moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888;
+	position:absolute;
+	background-color:#fff;
+	left:20%;
+	width:800px;
+	height:600px;
+	padding-top:1px;
+	padding-left:1px;
+	padding-right:1px;
+	border:1px solid;
+}
+
+.mark_entry_period {
+	-moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888;
+	position:absolute;
+	background-color:#E3E3E3;
+	width:400px;
+	height:200px;
+	left:50%;
+	margin-left:-200px;
+	vertical-align:middle;
+	padding-top:1px;
+	padding-left:1px;
+	padding-right:1px;
+}	
+
+#helpPopup {
+    position:fixed;
+    top: 30%;
+    left: 15%;
+    width:800px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#FFF;
+    display:none;
+}
+</style>
+
+<script>
+
+
+var isNN = (navigator.appName.indexOf("Netscape")!=-1);
+function at(input, e) {
+  var keyCode = (isNN) ? e.which : e.keyCode; 
+  if ( keyCode == 13 ) {
+    input.form[(getIndex(input)+1) % input.form.length].focus();
+  }
+}
+
+function getIndex(input) {
+    var index = -1, i = 0, found = false;
+    while (i < input.form.length && index == -1) {
+    	if (input.form[i] == input)index = i;
+    	else i++;
+    }
+    return index;
+}
+
+function log(msg) {
+   setTimeout(function() {
+       throw new Error(msg);
+    }, 0);
+}
+
+function markKeyIn(input, e, resultId, percentage, errorId) {
+	var d = parseFloat($(resultId).value); 
+	if ( d > percentage ) { 
+		$(resultId).style.backgroundColor='#F9410B'; 
+		$(errorId).value = 'err'; 
+	} else { 
+		$(resultId).style.backgroundColor='#ffffff'; 
+		$(errorId).value = '';
+		var keyCode = (isNN) ? e.which : e.keyCode; 
+  		if ( keyCode == 13 ) {
+    		input.form[(getIndex(input)+1) % input.form.length].focus();
+  		} 
+	}
+}
+
+function markKeyIn2(input, e, resultId, percentage, errorId, count) {
+	var d = parseFloat($(resultId).value); 
+	if ( d > percentage ) { 
+		$(resultId).style.backgroundColor='#F9410B'; 
+		$(errorId).value = 'err'; 
+	} else { 
+		$(resultId).style.backgroundColor='#ffffff'; 
+		$(errorId).value = '';
+		var keyCode = (isNN) ? e.which : e.keyCode; 
+  		if ( keyCode == 13 ) {
+			$('buttonSave_' + count).click();
+  		} 
+	}
+}
+
+function simulateTab(input) {
+	var e = input.form[(getIndex(input)+1) % input.form.length];
+	e.focus();
+}
+
+function putFocus(n) {
+	var n = n + 1;
+	var id = $('mark_id_' + n).value;
+	if ( id != "" ) {
+		$(id).focus();
+		//var e = $(id).form[(getIndex($(id))-2) % $(id).form.length];
+		//e.focus();
+	}
+}
+
+## <INPUT id="txtChar" onkeypress="return isNumber(event)" type="text" name="txtChar">
+## number only
+function isNumber(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+function isDecimal(evt) {
+	var charCode = (evt.which) ? evt.which : event.keyCode
+	if ( charCode == 46 ) return true;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    return true;
+}
+
+
+
+function addMarkingField() {
+	var h = document.getElementById('markingCount').value;
+	var n =  parseInt(h) + 1;
+	if ( n < 12 ) {	
+		document.getElementById('markingField_' + h).style.display = 'block';
+		document.getElementById('markingCount').value = n;
+	}
+	else {
+		alert('done!');
+	}
+}
+
+function checkMarkingField() {
+	var h = document.getElementById('markingCount').value;
+	var n =  parseInt(h);
+	var t = 0;
+	for ( i = 1; i < n; i++ ) {
+		t = t + parseInt(document.getElementById('cw_percentage_' + i).value);
+	}
+	return t == 100;
+}
+
+</script>
+
+#set ( $_showIntake = "yes" )
+
+
+<div id="mark_entry_period" class="mark_entry_period" style="visibility:hidden;"></div>
+
+<table width="100%">
+	<tr>
+	<td style="font-weight:bold;font-size:12pt;cursor:pointer" onclick="$('results').innerHTML='';$('examEntryParams').style.display='block';">
+	Result Entry
+	</td>
+	<td align="right" style="font-weight:bold;">
+
+	Lecturer's Mark Entry Allowed:
+
+	<span id="allow_yes_no">
+	#if ( $allowMarkEntry )
+		YES
+	#else
+		NO
+	#end
+	</span>
+
+	#if ( !$teacher_mode )
+		<button type="button" class="btn btn-info btn-sm" 
+		onclick="$('mark_entry_period').style.visibility='visible';doDivAjaxCall$formname('mark_entry_period','mark_entry_period','');">
+		<i class="fa fa-pencil" aria-hidden="true"></i>
+		</button>
+	#end
+
+	</td></tr>
+</table>
+
+<div id="examEntryParams">
+
+
+	<table width="100%">
+	<tr><td>
+
+		<table>
+
+			<tr>
+			<td style="font-weight:bold;height:40px">Learning Centre:</td>
+			<td>
+			<div id="listCentres">
+				#parse("apps/util/assessment_result/divCentres.vm")
+			</div>
+			</td>
+			</tr>
+
+	    	<tr>
+	    	<td style="font-weight:bold;height:40px">Program:</td>
+	    	<td>
+    
+			<select class="input-text" name="program_id" style="width:400px" onchange="doDivAjaxChainCall3$formname('divSessions','getSessions','','divIntakes','getIntakes','')">
+	    	<option value=""></option>
+	    	#foreach( $p in $programs )
+	    		<option value="$p.id">$p.code - $p.name</option>
+	    	#end
+	    	</select>
+	    	</td></tr>
+    
+   
+    
+			#if ( $_showIntake == "yes" )
+		    <tr>
+		       <td style="font-weight:bold;height:40px">Intake:</td>
+		       <td>
+				<div id="divIntakes">
+		   			<select class="input-text" style="width:400px"></select>
+				</div>
+				
+		       </td>
+		       </tr>
+			#else
+		       <tr><td></td><td><input type="hidden" name="intake_id" value=""></td></tr>
+			#end
+
+
+			 <tr>
+		   		<td style="font-weight:bold;height:40px">Session:</td>
+		   		<td>
+		   
+		   		<div id="divSessions">
+		   			<select class="input-text" style="width:400px"></select>
+		   		</div>
+		   
+		   
+		   		</td>
+		   	</tr>
+
+
+
+			<tr>
+				<td style="font-weight:bold;height:40px">Subject:</td>
+				<td>
+				<div id="listSubjects">
+					#if ( $teacher_mode )
+						##parse("apps/util/assessment_result/divListSubjects.vm")
+					#else
+						<select class="input-text" style="width:400px"></select>
+					#end
+				</div>
+				</td>
+			</tr>
+
+
+
+			<tr>
+				<td style="font-weight:bold;height:40px">Records per Page:</td>
+				<td>
+				<select class="input-text" name="page_size" style="width:80px">
+				
+				<option value="20" selected>20</option>
+				<option value="50" >50</option>
+				<option value="100">100</option>
+				<option value="200">200</option>
+				<option value="300">300</option>
+				<option value="400">400</option>
+				<option value="500">500</option>
+				<option value="600">600</option>
+				
+				</select>
+				<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('results', 'list_students', '')">Get...</button>
+				</td>
+			</tr>
+
+
+		</table>
+
+
+</td></tr>
+</table>
+
+</div>
+
+<div id="results" name="results" style="width:100%;"></div>
+
+
+
+<div id="helpPopup" class="shadow"></div>

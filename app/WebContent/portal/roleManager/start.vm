@@ -1,0 +1,13 @@
+<div style="padding:10px">
+<h3>Roles Manager</h3>
+<br/>
+<div id="editRole">
+</div>
+<div id="listRoles">
+	#parse("portal/roleManager/listRoles.vm")
+</div>
+
+
+
+
+</div>

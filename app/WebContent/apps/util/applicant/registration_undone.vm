@@ -1,0 +1,2 @@
+<h3>Student Registration has been undone!</h3>
+<a href="javascript:void()" onclick="doAjaxCall$formname('','')">Back</a> |

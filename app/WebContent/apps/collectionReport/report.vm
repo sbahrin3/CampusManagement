@@ -1,0 +1,180 @@
+
+
+#if ( !$print )
+<div style="padding:10px">
+<a href="javascript:void(0)" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.finance.module.CollectionReportPDFModule?date=$dateFormat.format($date)&amp;pdfName=collection_report&amp;portal_username=$!portal_username';">PDF</a>
+</div>
+<br/>
+#end
+<div>
+#if ( $print ) 
+	#set ( $hcolor = "#fff" )
+#else
+	#set ( $hcolor = "#C1C1C1" )
+#end
+<table>
+	<tr>
+		<td style="font-weight:bold;font-size:12pt">DAILY COLLECTION REPORT</td>
+	</tr>
+	<tr>
+		<td style="font-weight:bold;font-size:12pt">
+			Date : $dateFormat.format($date)
+		</td>
+	</tr>
+</table>
+<br/><br/>
+
+#set ( $total_cash = 0.0 )
+#set ( $total_creditCard = 0.0 )
+#set ( $total_bankTransfer = 0.0 )
+#set ( $total_cheque = 0.0 )
+
+$numFormat.applyPattern("0.00")
+
+#foreach( $f in $faculties )
+
+	
+	#set ( $programs = $programList.get("$f.id") )
+	#if ( $programs.size() > 0 ) 
+
+		<table border="0">
+			<tr style="height:30px">
+				<td colspan="5" style="font-weight:bold">$f.name.toUpperCase()</td>
+				<td colspan="5" style="font-weight:bold" align="right">
+					##$dateFormat.format($date)
+				</td>
+			</tr>
+				
+			<tr style="height:30px;background:$hcolor">
+				<td style="width:250px;border-right:1px solid #000;border-bottom:1px solid #000;"></td>
+				#foreach ( $m in $paymentModes )
+					#if ( $m != "Direct Debit" && $m != "Telegraph Transfer" && $m != "Bank Draft" && $m != "Online" )
+					<td style="width:80px;border-right:1px solid #000;border-bottom:1px solid #000;border-top:1px solid #000;" align="center">
+						#if ( $m == "Check" )
+							Cheque
+						#else
+							$m
+						#end
+					</td>
+					#end
+				#end
+				<td style="width:80px;border-right:1px solid #000;border-bottom:1px solid #000;border-top:1px solid #000;" align="center">Total</td>
+			</tr>
+			#foreach ( $p in $programs )
+				<tr style="height:30px">
+					<td style="width:300px;border-right:1px solid #000;border-bottom:1px solid #000;border-left:1px solid #000;">$p.code - $p.name.toUpperCase()</td>
+            		#set ( $subtotal = 0.0 )
+					#foreach ( $m in $paymentModes )
+						#if ( $m != "Direct Debit" && $m != "Telegraph Transfer" && $m != "Bank Draft" && $m != "Online"  )
+        					#if ( $paymentCollection.get("${p.id}_${m}") )
+        						#set ( $amount = $paymentCollection.get("${p.id}_${m}") )
+								#set ( $subtotal = $subtotal + $amount )
+        					#else
+        						#set ( $amount = 0 )
+        					#end
+                			<td style="border-right:1px solid #000;border-bottom:1px solid #000;" align="center">#if ( $amount && $amount != 0) $numFormat.format($amount) #end</td>
+    					#end
+					#end
+					
+					<td style="border-right:1px solid #000;border-bottom:1px solid #000;" align="center">$numFormat.format($subtotal)</td>
+				</tr>
+			#end
+			
+			
+			<tr style="height:30px">
+				<td style="border-right:1px solid #000;border-bottom:1px solid #000;border-left:1px solid #000;">&nbsp;</td>
+        		#set ( $subtotal = 0.0 )
+				#foreach ( $m in $paymentModes )
+					#if ( $m != "Direct Debit" && $m != "Telegraph Transfer" && $m != "Bank Draft" && $m != "Online"  )
+					#if ( $schoolPaymentCollection.get("${f.id}_${m}") )
+						#set ( $amount = $schoolPaymentCollection.get("${f.id}_${m}") )
+						
+						#if ( $m == "Cash" ) 
+							#set ( $total_cash = $total_cash + $amount )
+						#elseif ( $m == "Check" )
+							#set ( $total_cheque = $total_cheque + $amount )
+						#elseif ( $m == "Credit Card" )
+							#set ( $total_creditCard = $total_creditCard + $amount )
+						#elseif ( $m == "Bank-In" )
+							#set ( $$total_bankTransfer = $total_bankTransfer + $amount )
+						#end
+						
+						#set ( $subtotal = $subtotal + $amount )
+						
+					#else
+						#set ( $amount = 0 )
+					#end
+        			<td style="border-right:1px solid #000;border-bottom:1px solid #000;" align="center">#if ( $amount && $amount != 0) $numFormat.format($amount) #end</td>
+					#end
+				#end
+				
+				
+				#** 
+				#if ( $totalSchoolPaymentCollection.get("${f.id}") )
+					#set ( $amount = $totalSchoolPaymentCollection.get("${f.id}") )
+				#else
+					#set ( $amount = 0 )
+				#end
+				**#
+
+				<td style="border-right:1px solid #000;border-bottom:1px solid #000;" align="center">$numFormat.format($subtotal)</td>
+			</tr>
+	
+		</table>
+		<br/><br/>
+	#end
+	
+	
+#end
+
+#set ( $total = $total_cash + $total_cheque + $total_creditCard + $total_bankTransfer )
+
+<table style="border:1px solid #000">
+		<tr style="height:30px">
+			<td style="width:300px;border-right:1px solid #000;border-bottom:1px solid #000;" align="center">
+				GRAND TOTAL
+			</td>
+			<td style="width:80px;border-right:1px solid #000;border-bottom:1px solid #000;" align="center">
+				$numFormat.format($total_cash)
+			</td>
+			<td style="width:80px;border-right:1px solid #000;border-bottom:1px solid #000;" align="center">
+				$numFormat.format($total_cheque)
+			</td>
+			<td style="width:80px;border-right:1px solid #000;border-bottom:1px solid #000;" align="center">
+				$numFormat.format($total_creditCard)
+			</td>
+			<td style="width:80px;border-right:1px solid #000;border-bottom:1px solid #000;" align="center">
+				$numFormat.format($total_bankTransfer)
+			</td>
+			<td style="width:80px;border-right:1px solid #000;border-bottom:1px solid #000;" align="center">
+				$numFormat.format($total)
+			</td>
+		</tr>
+		</tr>
+		
+	</table>
+	<br/><br/>
+	<div style="padding-left:100px;">
+		
+		<table style="">
+			<tr style="height:50px;">
+				<td colspan="2" style="font-weight:bold;border-bottom:1px solid #000">Bursary Department</td>
+			</tr>
+			
+			<tr style="height:50px;">
+				<td style="width:200px;border-right:1px solid #000;border-left:1px solid #000;border-bottom:1px solid #000">&nbsp;Cashier</td>
+				<td style="width:200px;border-right:1px solid #000;border-bottom:1px solid #000" align="center">$!portal_username</td>
+			</tr>
+			<tr style="height:50px;">
+				<td style="border-right:1px solid #000;border-left:1px solid #000;border-bottom:1px solid #000">&nbsp;Checked by</td>
+				<td style="border-right:1px solid #000;;border-bottom:1px solid #000" align="center"></td>
+			</tr>
+			<tr style="height:50px;">
+				<td style="border-right:1px solid #000;border-left:1px solid #000;border-bottom:1px solid #000">&nbsp;Bank in by</td>
+				<td style="border-right:1px solid #000;border-bottom:1px solid #000" align="center"></td>
+			</tr>
+		</table>
+		
+	</div>
+	
+</div>

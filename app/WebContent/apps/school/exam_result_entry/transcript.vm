@@ -1,0 +1,39 @@
+<table width="100%">
+<tr><td>$transcript.studentStatus.student.biodata.name</td></tr>
+<tr><td>$transcript.studentStatus.student.matricNo</td></tr>
+<tr><td>$transcript.exam.name</td></tr>
+<tr><td>$transcript.studentStatus.period.name</td></tr>
+</table>
+<br/>
+<table width="100%">
+<tr>
+<td style="width:250px;font-weight:bold;">Subject</td>
+<td style="width:50px;font-weight:bold;" align="center">Mark</td>
+<td style="width:50px;font-weight:bold;" align="center">Grade</td>
+</tr>
+#foreach( $r in $transcript.subjectResults )
+<tr>
+<td>$r.subject.code $r.subject.name</td>
+<td align="center">$!r.mark</td>
+<td align="center">$!r.grade.letter</td>
+</tr>
+#end
+<tr>
+<td colspan="3"><hr/></td>
+</tr>
+<tr>
+<td></td>
+<td align="center">$transcript.totalMark</td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td align="center">$transcript.totalPercentage</td>
+<td></td>
+</tr>
+
+</table>
+<br/>
+
+<br/><br/><br/><br/>

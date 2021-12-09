@@ -1,0 +1,3 @@
+<script>
+$('section_name').value = "$!section.name";
+</script>

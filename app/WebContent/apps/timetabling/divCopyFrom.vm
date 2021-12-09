@@ -1,0 +1,19 @@
+<script>
+$('divCopyFrom').style.display="block";
+</script>
+
+	<table style="width:100%">
+		<tr style="height:40px">
+			<td style="font-size:10pt;font-weight:bold">Select Activity Calendar</td>
+			<td align="right">
+				<button type="button" class="btn btn-default btn-sm" onclick="$('divCopyFrom').style.display='none';">X</button>
+			</td>
+		</tr>
+	</table>
+	
+	
+	<div id="divCopyFrom_list">
+		#parse("apps/timetabling/divCopyFrom_list.vm")
+	</div>
+	
+	

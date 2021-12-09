@@ -1,0 +1,13 @@
+<table align="center"><tr><td>
+<select name="programCode" style="width:300px">
+<option value=""></option>
+#foreach( $code in $programCodes )
+<option value="$code">$code</option>
+#end
+</select>
+
+<input type="button" value="RUN" onclick="doDivAjaxCall3$formname('migrate','migrate','')">
+</td></tr></table>
+<br/>
+
+<div id="migrate"></div>

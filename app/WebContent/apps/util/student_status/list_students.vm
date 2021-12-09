@@ -1,0 +1,29 @@
+<table width="100%"><tr><td align="right" style="font-weight:bold">$records.size()</td></tr>
+<table width="100%">
+<tr>
+<td style="font-weight:bold;font-family:arial;font-size:10pt">Program:</td>
+<td style="font-weight:bold;font-family:arial;font-size:10pt">$program.name ($program.code)</td></tr>
+<tr>
+<td style="font-weight:bold;font-family:arial;font-size:10pt">Intake:</td>
+<td style="font-weight:bold;font-family:arial;font-size:10pt">$intake.name ($intake.code)</td></tr>
+<tr>
+<td style="font-weight:bold;font-family:arial;font-size:10pt">Status:</td>
+<td style="font-weight:bold;font-family:arial;font-size:10pt">$statusName</td></tr>
+</table>
+<br/>
+<table width="100%">
+<tr height="40px">
+<td bgcolor="lightgrey" align="right" style="width:20px"></td>
+<td bgcolor="lightgrey" style="font-weight:bold">Matric No</td>
+<td bgcolor="lightgrey" style="font-weight:bold">Name</td>
+<td bgcolor="lightgrey" style="font-weight:bold">Study Period</td>
+</tr>
+#foreach( $st in $records )
+<tr>
+<td align="right" style="width:20px">$velocityCount)</td>
+<td>$st.student.matricNo</td>
+<td>$st.student.biodata.name</td>
+<td>$st.period.name #if ( $st.period.parent ) ($st.period.parent.name) #end</td>
+</tr>
+#end
+</table>

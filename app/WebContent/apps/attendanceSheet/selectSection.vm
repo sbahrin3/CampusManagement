@@ -1,0 +1,12 @@
+<select name="sectionId" style="width:100%" onchange="doDivAjaxCall$formname('listStudents','listStudents','')">
+<option value=""></option>
+#foreach( $s in $sections )
+<option value="$s.id">$s.name</option>
+#end
+</select>
+
+<script>
+$('programName').innerHTML = "$program.code $program.name";
+$('periodName').innerHTML = "$period.name";
+</script>
+

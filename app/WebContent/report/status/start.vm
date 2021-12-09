@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<table>
+<tr><td>Select Year:</td>
+<td>
+<select name="year" class="texts">
+#foreach( $y in [2005..2020] )
+<option value="$y">$y</option>
+#end
+</select>
+</td>
+<td>
+Status:
+</td>
+<td>
+<select name="status" class="texts">
+#foreach( $s in $statusTypes )
+<option value="$s.id">$s.name</option>
+#end
+</select>
+</td>
+<td>
+<input class="linkbutton" type="button" value="Get List" onclick="doDivAjaxCall3$formname('div_main','listStudents','')">
+</td>
+</tr></table>
+<br/><br/>
+<div id="div_main"></div>

@@ -1,0 +1,40 @@
+<style>
+
+.compose { font-family:verdana;font-size:12pt;}
+
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+</style>
+
+<script>
+var TextAreaResize = Class.create();  
+   
+TextAreaResize.prototype = {  
+
+initialize: function(element, options) {  
+this.element = $(element);          
+this.options = Object.extend({maxRows: 50}, options || {} );  
+
+Event.observe(this.element, 'keyup', this.onKeyUp.bindAsEventListener(this));  
+this.onKeyUp();  
+},  
+  
+onKeyUp: function() {          
+while (this.element.scrollHeight > this.element.offsetHeight && this.element.rows < this.options.maxRows) {  
+if (this.element.rows < this.options.maxRows) {  
+this.element.rows = this.element.rows + 1;  
+}  
+}  
+}  
+};  
+</script>
+
+<table width="800">
+<tr><td>
+<div id="div_letter">
+#parse("apps/util/compose_letter/compose.vm")
+</div>
+
+
+</td></tr></table>

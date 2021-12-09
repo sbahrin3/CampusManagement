@@ -1,0 +1,4 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+
+<div id="listClubs">#parse("studentaffair/club/listClubs.vm")</div>

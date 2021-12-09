@@ -1,0 +1,6 @@
+<script>
+$('weekName').value='$weekName';
+$('week').value = '$weekNumber';
+$('deliveryPeriodId').value= '$!deliveryPeriod.id';
+$('calendars').style.display='none';
+</script>

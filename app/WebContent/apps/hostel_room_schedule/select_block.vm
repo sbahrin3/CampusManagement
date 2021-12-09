@@ -1,0 +1,11 @@
+<table>
+<tr>
+<td width="100px">Block:</td>
+<td width="500px">
+<select style="width:350px" name="select_block" id="select_block" onchange="$('div_floor').innerHTML='';$('div_room_history').innerHTML='';if ( $('select_block').value == '') return;doDivAjaxCall2$formname('div_floor','list_floors','')">
+<option value=""></option>
+#foreach( $h in $building.blocks)
+<option value="$h.id">&nbsp;$h.name</option>
+#end
+</select>
+</td></tr></table>

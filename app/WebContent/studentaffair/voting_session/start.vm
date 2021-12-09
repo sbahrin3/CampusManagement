@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+
+$dateFormat.applyPattern("dd MMMM, yyyy hh:mm a")
+<div style="padding:10px;font-family:Verdana, sans-serif;font-size:11pt;font-weight:bold">
+#if ( $votingSession )
+Vote Duration: $dateFormat.format($votingSession.startDate) - $dateFormat.format($votingSession.endDate)
+#end
+</div>
+
+<table>
+<tr><td>Please Choose Position:</td>
+<td>
+<select class="texts" name="positionId" style="width:400px" onchange="doDivAjaxCall3$formname('candidates','listCandidates','')">
+<option value=""></option>
+#foreach( $p in $positions )
+<option value="$p.id">$p.name</option>
+#end
+</select>
+<input class="linkbutton" type="button" value="Choose.." onclick="doDivAjaxCall3$formname('candidates','listCandidates','')">
+</td>
+</tr></table>
+<br/><br/>
+
+#if ( !$canVote )
+<div style="padding:10px;font-family:Verdana, sans-serif;font-size:11pt;font-weight:bold">
+Voting Session has been CLOSED.
+</div>
+#end
+
+<div id="candidates"></div>

@@ -1,0 +1,9 @@
+#if ( $post.type == "assignment" )
+
+#parse("apps/lms2/div_replies_assignment.vm")
+
+#else
+
+#parse("apps/lms2/div_replies_posting.vm")
+
+#end

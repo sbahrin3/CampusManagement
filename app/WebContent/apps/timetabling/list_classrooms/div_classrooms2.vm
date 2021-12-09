@@ -1,0 +1,83 @@
+
+<table width="100%">
+#set ( $cnt = 1 )
+#set ( $days = -1 )
+#foreach( $c in $classrooms )
+
+
+
+
+
+
+#if ( $c.classroom.combined && $c.classroom.combineSlotNo > 1 )
+	#**
+	<td style="width:80px" valign="middle" align="center">$timeFormat.format($slotTime.startTime)</td>
+	<td style="width:80px" valign="middle" align="center">$timeFormat.format($slotTime.endTime)</td>
+	
+	<td style="width:300px" valign="middle"></td>
+	<td style="width:150px" valign="middle"></td>
+	<td style="width:150px" valign="middle"></td>
+	<td style="width:200px" valign="middle"></td>
+	<td></td>
+	**#
+#else
+
+	#set ( $slotTime = $slotTimes.get($c.classroom.slot.posX) )
+
+	#set ( $cnt = $cnt + 1 )
+	#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#C8E3F7" ) #else #set ( $bgcolor="#ffffff" ) #end
+	
+	#if ( $days != $c.days )
+	
+		#if ( $days != -1 )<tr><td colspan="7"><hr/></td></tr> #end
+		
+		<tr bgcolor="$bgcolor" height="30px" style="border-top:1px solid">
+		<td style="width:100px" valign="middle" bgcolor="lightgrey">
+		$dateFormat3.format($c.date)
+		</td>
+		#set ( $days = $c.days )
+	#else
+		<tr bgcolor="$bgcolor" height="30px">
+		<td style="width:100px"></td>
+	#end
+
+
+	#if ( $c.classroom.combined && $c.classroom.combineSlotNo == 1 )
+		#set ( $slotLastPos = $c.classroom.slot.posX + $c.classroom.classroomSection.classroomType.slotCount - 1)
+		#set ( $slotTime2 = $slotTimes.get($slotLastPos) )
+		<td style="width:80px" valign="middle" align="center">$timeFormat.format($slotTime.startTime)</td>
+		<td style="width:80px" valign="middle" align="center">$timeFormat.format($slotTime2.endTime)</td>
+	#else
+		<td style="width:80px" valign="middle" align="center">$timeFormat.format($slotTime.startTime)</td>
+		<td style="width:80px" valign="middle" align="center">$timeFormat.format($slotTime.endTime)</td>
+	#end
+	
+	<td style="width:300px" valign="middle">$!c.classroom.subject.code &nbsp; $!c.classroom.subject.name</td>
+	<td style="width:150px" valign="middle">$!c.classroom.classroomSection.name</td>
+	<td style="width:150px" valign="middle">$!c.classroom.room.name</td>
+	<td style="width:200px" valign="middle">
+	<table width="100%">
+	#if ( $c.classroom.coTeachers.size() == 0 )
+		<tr><td>$!c.classroom.teacher.name</td><td align="right"></td></tr>
+	#else
+		<tr><td>$!c.classroom.teacher.name</td><td align="right"></td></tr>
+		#foreach( $t in $c.classroom.coTeachers )
+		<tr><td>$t.name</td><td align="right"></td></tr>
+		#end
+	#end
+	</table>
+	</td>
+	<td>
+	<input class="linkbutton" type="button" value="Attendance" onclick="doDivAjaxCall3$formname('divAttendance','listStudents','classroomId=$c.classroom.id&sessionId=$!session.id')">
+	</td>
+
+
+#end
+
+</tr>
+
+#end
+
+
+
+</table>

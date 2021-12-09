@@ -1,0 +1,5 @@
+<select class="texts" name="subbidang_pengajian">
+#foreach( $k in $kodSubbidangList )
+<option value="$k.code" #if ( $mohe.subbidang_pengajian == $k.code ) selected #end>$k.name</option>
+#end
+</select>

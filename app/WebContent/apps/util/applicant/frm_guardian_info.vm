@@ -1,0 +1,9 @@
+<table width="100%">
+<tr><td style="width:150px" align="right"></td><td></td></tr>
+
+<tr><td align="right">Name :</td><td><input class="texts" onkeyup="at(this, event)" name="guardian_name" value="$!applicant.guardianName"></td></tr>
+<tr><td align="right">ICNo :</td><td><input class="texts" onkeyup="at(this, event)" name="guardian_icno" value="$!applicant.guardianICNo"></td></tr>
+<tr><td align="right">Telephone No :</td><td><input class="texts" onkeyup="at(this, event)" name="guardian_telephone_no" value="$!applicant.guardianTelephoneNo"></td></tr>
+<tr><td align="right">Occupation :</td><td><input class="texts" onkeyup="at(this, event)" name="guardian_occupation" value="$!applicant.guardianOccupation"></td></tr>
+<tr><td align="right">Relationship :</td><td><input class="texts" onkeyup="at(this, event)" name="guardian_relationship" value="$!applicant.guardianRelationship"></td></tr>
+</table>

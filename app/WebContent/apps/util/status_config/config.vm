@@ -1,0 +1,103 @@
+<ul id="tablist" style="list-style-type:none; padding: 0px;">
+#set ( $c = 0 )
+#foreach( $type in $types)
+#set ( $c = $c + 1 )
+#if ( $c % 2 == 0 ) #set ( $bgcolor="#FCFCFC" ) #else #set ( $bgcolor="#E9F3FE" ) #end
+<li id="tablist_$c">
+<table width="100%" cellspacing="0">
+<tr bgcolor="$bgcolor" style="height:35px">
+<td style="width:30px">&nbsp;<input type="hidden" name="type_ids" value="$type.id"></td>
+<td style="width:100px">$type.code</td>
+<td style="width:200px">
+#if ( $type.canDelete )
+	<input class="texts" name="name_$type.id" type="text" value="$!type.name" onchange="doDivAjaxCall3$formname('div_status_type','update_name','type_id=$type.id')">
+#else
+	$!type.name
+#end
+</td>
+<td style="width:100px">&nbsp;#if ( $type.inActive ) None Active #else Active #end</td>
+<td style="width:100px">
+#if ( $type.default ) Default#end
+#if ( $type.defer ) Defer#end
+</td>
+
+<td style="width:80px" align="center">
+#if ( $type.canDelete )
+    #if ( $type.inActive )
+    <input type="checkbox" onclick="div_block(); doDivAjaxCall3$formname('div_status_type','set_inactive','type_id=$type.id');">
+    #else
+    <input type="checkbox" checked onclick="div_block(); doDivAjaxCall3$formname('div_status_type','set_inactive','type_id=$type.id');">
+	#end
+#else
+	#if ( $type.inActive )
+		
+	#else
+		Yes
+	#end
+#end
+</td>
+
+<td style="width:80px" align="center">
+#if ( $type.canDelete )
+    #if ( $type.defer )
+    <input type="checkbox" checked  onclick="div_block(); doDivAjaxCall3$formname('div_status_type','set_defer','type_id=$type.id');">
+    #else
+    <input type="checkbox" onclick="div_block(); doDivAjaxCall3$formname('div_status_type','set_defer','type_id=$type.id');">
+	#end
+#else
+	#if ( $type.defer )
+		Yes
+	#else
+		
+	#end
+#end
+</td>
+
+
+<td style="width:80px" align="center">
+#if ( $type.canDelete )
+    #if ( $type.quit )
+    <input type="checkbox" checked  onclick="div_block(); doDivAjaxCall3$formname('div_status_type','set_quit','type_id=$type.id');">
+    #else
+    <input type="checkbox" onclick="div_block(); doDivAjaxCall3$formname('div_status_type','set_quit','type_id=$type.id');">
+	#end
+#else
+	#if ( $type.quit )
+		Yes
+	#else
+		
+	#end
+#end
+</td>
+
+<td style="width:80px" align="center">
+#if ( $type.default )
+<input type="checkbox" checked onclick="div_block(); doDivAjaxCall3$formname('div_status_type','set_default','type_id=$type.id');">
+#else
+<input type="checkbox" onclick="div_block(); doDivAjaxCall3$formname('div_status_type','set_default','type_id=$type.id');">
+#end
+</td>
+
+<td style="width:30px" align="center">
+#if ( $type.canDelete )
+	<a href="javascript:void(0)" onclick="if ( !confirm('Delete?') ) return; div_block(); doDivAjaxCall3$formname('div_status_type','delete_status','type_id=$type.id');"><img src="../img/trash.gif"></a>
+#end
+</td>
+
+</tr>
+</table>
+</li>
+#end
+</ul>
+
+<div id="div_waiting" name="div_waiting"></div>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+
+Sortable.create('tablist');
+
+div_unblock();
+
+
+
+</script>

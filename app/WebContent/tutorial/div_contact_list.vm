@@ -1,0 +1,21 @@
+
+
+<table width="600" align="center">
+<tr bgcolor="lightgrey">
+<td style="width:50px"></td>
+<td style="width:200px">Name</td>
+<td style="width:200px">Address</td>
+
+<td>
+</td>
+</tr>
+</table>
+
+#foreach( $contact in $contacts )
+
+<div id="div_contact_$contact.id" name="div_contact_$contact.id">
+#parse("tutorial/div_contact.vm")
+</div>
+
+#end
+

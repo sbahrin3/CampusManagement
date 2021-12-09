@@ -1,0 +1,17 @@
+<table width="100%">
+<tr>
+<td width="100px">ID:</td>
+<td><input name="room_code" width="100%"></td>
+</tr>
+<tr>
+<td>Room Name:</td>
+<td><input name="room_name" width="100%"></td>
+</tr>
+<tr>
+<td colspan="2">
+<input type="button" value="Save" onclick="doDivAjaxCall$formname('div_room','add_room','floor_id=$floor.id')">
+<input type="button" value="Cancel" onclick="doDivAjaxCall$formname('div_room','list_rooms','floor_id=$floor.id')">
+</td>
+</tr>
+
+</table>

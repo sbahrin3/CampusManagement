@@ -1,0 +1,16 @@
+
+<script>
+#if ( $result_status == "" )
+	$('result_status_$student_id').innerHTML = "$!result_status";
+#else
+	$('result_status_$student_id').innerHTML = "...";
+#end
+
+#if ( $roundType == 0 )
+	$('total_mark_$student_id').innerHTML = '$numFormat.format($!final_result.totalMark)';
+#else
+	$('total_mark_$student_id').innerHTML = '$resultFormat.format($!final_result.totalMark)';
+#end
+$('grade_$student_id').innerHTML = '$!final_result.grade';
+
+</script>

@@ -1,0 +1,15 @@
+function validate() {
+	var err_count = 0;
+	return err_count == 0;
+}
+
+
+	function uploadFile(id, documentId, e) {
+		document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+		document.${formName}.enctype='multipart/form-data';
+		document.${formName}.encoding ='multipart/form-data';
+		document.${formName}.target='upload_document';
+		document.${formName}.action='?command=uploadFile&eventId=' + id + '&documentId=' + documentId + '&divUploadStatusName=' + e;
+		document.${formName}.submit();
+	
+	}

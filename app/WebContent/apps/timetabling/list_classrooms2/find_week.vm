@@ -1,0 +1,10 @@
+<table><tr><td style="width:300px">
+	<input class="form-control" name="weekName" name="weekName" placeholder="Click 'Find...' button">
+	<input type="hidden" name="week" id="week">
+</td><td>
+	&nbsp;
+	<button type="button" class="btn btn-primary btn-sm" onclick="if ( $('week').value != '' )  { doDivAjaxCall$formname('classroomList','getClassroomList',''); }">Get Report</button>
+	##<button type="button" class="btn btn-success btn-sm" onclick="$('calendars').style.display='block';$('classroomList').style.display='none';$('findTeacher').style.display='none';$('findGroup').style.display='none';$('findProgram').style.display='none';$('findRoom').style.display='none';doDivAjaxCall$formname('calendars','getCalendars','')">Find...</button>
+	<button type="button" class="btn btn-success btn-sm" onclick="$('calendars').style.display='block';$('classroomList').style.display='none';$('findTeacher').style.display='none';$('findGroup').style.display='none';$('findProgram').style.display='none';$('findRoom').style.display='none';doDivAjaxCall$formname('calendars','getActivitySessions','')">Find...</button>
+
+</td></tr></table>

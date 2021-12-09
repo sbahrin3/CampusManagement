@@ -1,0 +1,11 @@
+<table width="100%">
+#foreach( $c in $codes )
+<tr>
+<td style="width:150px;border-bottom:1px solid #000">$c.code</td>
+<td style="width:350px;border-bottom:1px solid #000">$c.name</td>
+<td style="width:100px;border-bottom:1px solid #000">
+<input class="texts" id="code_$c.id" name="code_$c.id" value="$c.matricCode" onchange="doDivAjaxCall$formname('div_empty','save_code','code_id=$c.id&type=$type')">
+</td>
+</tr>
+#end
+</table>

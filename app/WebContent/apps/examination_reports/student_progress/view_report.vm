@@ -1,0 +1,74 @@
+<style>
+td { color: #000000; font: normal 11px arial; }
+</style>
+#if ( !$print_mode )
+<table width="100%"><tr><td align="right">
+<input type="button" value="Print" 
+onclick="window.open('../y/educate.sis.exam.module.StudentExaminationProgressModule?command=print_report&program_id=$program_id&intake_id=$intake_id','mywin','left=20,top=20,width=500,height=500,toolbar=0,resizable=0');">
+</td></tr></table>
+#end
+
+<table><tr>
+<td style="font-weight:bold;width:50px">$program.code</td>
+<td style="font-weight:bold">$program.name</td>
+</tr></table>
+
+<table cellpadding="2">
+<tr height="30px" bgcolor="lightgrey">
+<td style="width:40px;font-weight:bold"></td>
+<td style="width:150px;font-weight:bold">Matric No</td>
+<td style="width:250px;font-weight:bold">Name</td>
+<td style="width:250px;font-weight:bold">
+<table>
+<tr>
+<td style="width:80px;font-weight:bold">Subject</td>
+<td style="width:50px;font-weight:bold" align="center">Grade</td>
+</tr>
+</table>
+
+</td>
+<td style="width:100px;font-weight:bold" align="center">Last CGPA</td>
+<td style="width:100px;font-weight:bold" align="center">Current GPA</td>
+<td style="width:100px;font-weight:bold" align="center">Current CGPA</td>
+<td style="width:200px;font-weight:bold" align="center">Standing</td>
+</tr>
+#foreach( $r in $results )
+<tr>
+<td valign="top">$velocityCount)</td>
+<td valign="top">$r.student.matricNo</td>
+<td valign="top">$r.student.biodata.name</td>
+<td valign="top">
+#set ( $subjects = $r.currentResult.subjects )
+<table cellpadding="2" cellspacing="0">
+#foreach( $s in $subjects )
+<tr>
+<td style="width:80px">$s.subject.code</td>
+<td style="width:50px" align="center">$!s.grade</td>
+</tr>
+#end
+</table>
+</td>
+<td  valign="top" align="center">#if ( $r.lastResult ) $nf.format($r.lastResult.cgpa) #end</td>
+<td valign="top" align="center">#if ( $r.currentResult ) $nf.format($r.currentResult.gpa) #end</td>
+<td valign="top" align="center">#if ( $r.currentResult ) $nf.format($r.currentResult.cgpa) #end</td>
+#set ( $standing = "" )
+#if ( $r.currentResult.standing == "PASS" ) #set ( $standing = "LULUS" )
+#elseif ( $r.currentResult.standing == "CONDITIONAL_PASS" ) #set ( $standing = "LULUS BERSYARAT" )
+#elseif ( $r.currentResult.standing == "FAIL" ) #set ( $standing = "GAGAL" )
+#end
+<td valign="top" align="center">$standing</td>
+</tr>
+
+<tr><td colspan="9"></td></tr>
+#end
+</table>
+#if ( !$print_mode )
+<table width="100%"><tr><td align="right">
+<input type="button" value="Print" 
+onclick="window.open('../y/educate.sis.exam.module.StudentExaminationProgressModule?command=print_report&program_id=$program_id&intake_id=$intake_id','mywin','left=20,top=20,width=500,height=500,toolbar=0,resizable=0');">
+</td></tr></table>
+#else
+<script>
+window.print();
+</script>
+#end

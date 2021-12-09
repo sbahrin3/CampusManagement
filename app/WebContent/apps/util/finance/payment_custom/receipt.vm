@@ -1,0 +1,58 @@
+<style>
+td { color: #000000; font-size: 8pt; font-family: verdana; font-weight: normal; }
+</style>
+
+<table width="700" align="center"><tr><td>
+
+
+<table width="100%">
+<tr><td align="right" style="font-family:arial;font-size:14pt;font-weight:bold">
+$payment.paymentNo
+</td></tr></table>
+<br>
+
+#parse("apps/util/student_info/student_info.vm")
+
+<br>
+<br>
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+
+
+<br><br>
+
+<table width="100%"><tr><td align="right">
+<table width="200px">
+##<tr><td style="width:100px">Receipt No:</td><td style="font-weight:bold">$payment.paymentNo</td></tr>
+<tr><td style="width:100px">Date:</td><td style="font-weight:bold">$!dateFormat.format($payment.createDate)</td></tr>
+<tr><td style="width:100px">Total:</td><td style="font-weight:bold">RM $numFormat.format($payment.amount)</td></tr>
+</table>
+</td></tr></table>
+
+
+<br><br>
+
+
+<table align="center" cellspacing="0">
+<tr height="30px">
+<td style="width:20px;border-bottom:1px solid #BCBCBC">&nbsp;</td>
+<td style="width:500px;border-bottom:1px solid #BCBCBC;font-weight:bold">Description</td>
+<td style="width:100px;border-bottom:1px solid #BCBCBC;font-weight:bold" align="right">Amount Paid</td>
+<td style="width:20px;border-bottom:1px solid #BCBCBC">&nbsp;</td>
+</tr>
+
+#foreach ( $i in $payment_items )
+<tr height="30px">
+<td style="width:20px;border-bottom:1px solid #BCBCBC">$velocityCount)</td>
+<td style="width:500px;border-bottom:1px solid #BCBCBC">#if ( $i.description == "" ) PAYMENT #else $!i.description #end</td>
+<td style="width:100px;border-bottom:1px solid #BCBCBC" align="right">$numFormat.format($i.amount)</td>
+<td style="width:20px;border-bottom:1px solid #BCBCBC">&nbsp;</td>
+</tr>
+#end
+</table>
+
+<br><br>
+
+</fieldset>
+
+</td></tr></table>

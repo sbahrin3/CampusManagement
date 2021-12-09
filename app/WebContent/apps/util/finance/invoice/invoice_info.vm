@@ -1,0 +1,51 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("list_invoices").text("Back")]
+</td></tr>
+<tr><td>
+<br/><br/>
+<table width="100%"><tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">STUDENT ENROLLMENT INFO</td>
+</tr></table>
+#set ( $student = $invoice.student )
+<table width="100%">
+<tr><td style="width:100px">Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td style="width:100px">Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td style="width:100px">ICNO:</td><td style="font-weight:bold">$student.biodata.icno</td></tr>
+<tr><td style="width:100px">Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td style="width:100px">Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+<tr><td style="width:100px">Learning Centre:</td><td style="font-weight:bold">$student.learningCenter.name</td></tr>
+</table>
+<br/><br/>
+<table width="100%"><tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">STUDENT INVOICE INFO</td>
+</tr></table>
+<table width="100%">
+<tr><td style="width:100px">Date/Time:</td><td style="font-weight:bold">
+$dateFormat.format($invoice.createDate) ($timeFormat.format($invoice.createTime))
+</td></tr>
+<tr><td style="width:100px">Invoice No:</td><td style="font-weight:bold">$invoice.invoiceNo</td></tr>
+<tr><td style="width:100px">Amount:</td><td style="font-weight:bold">$invoice.amount</td></tr>
+</table>
+<table width="100%">
+<tr height="30px" bgcolor="lightgrey">
+<td style="font-weight:bold">Fee</td>
+<td align="right" style="font-weight:bold">Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</td>
+</tr>
+#foreach ( $i in $invoice.invoiceItems )
+<tr>
+<td>$i.description</td>
+<td align="right">$i.amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+#end
+</table>
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="student_id" value="$!student.id">
+<input type="hidden" name="date_from" value="$!date_from">
+<input type="hidden" name="date_to" value="$!date_to">
+<input type="hidden" name="program_id" value="$!program.id">

@@ -1,0 +1,26 @@
+<table width="80%" cellpadding="1" cellspacing="2">
+<tr><td  style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" type="text" name="find_name"></td></tr>
+<tr>
+	<td>Program</td><td>:</td>
+	<td>
+		<select class="texts" name="find_programId" onchange="doDivAjaxCall$formname('listIntakes','listIntakes','')">
+		<option value=""></option>
+		#foreach ( $p in $programs )
+			<option value="$p.id">$p.code $p.name</option>
+		#end
+        </select>
+	</td>
+</tr>
+
+<tr>
+	<td>Intake</td><td>:</td>
+	<td>	
+		<div id="listIntakes">
+			<input class="texts" value="Please select Program to get list of intakes.">
+			<input type="hidden" name="find_intakeId" readonly value="">
+		</div>
+	</td>
+</tr>
+		
+</table>

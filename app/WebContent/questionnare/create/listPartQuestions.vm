@@ -1,0 +1,36 @@
+<table class="table">
+	<thead>
+	<tr  style="height:0px">
+	<th  style="width:50px">#</th>
+	<th  style="">Question</th>
+	<th  style="width:100px">Type</th>
+	<th  style="width:100px" align="center">Required?</th>
+	<th  style="width:200px">&nbsp;</th>
+	</tr>
+	</thead>
+	<tbody>
+	#set ( $qcount = 0 )
+	#foreach( $q in $part.questions )
+		#set ( $qcount = $qcount + 1 )
+		<tr>
+		<td >$!q.refNo</td>
+		<td >$!q.question.questionText</td>
+		<td >$!q.question.type</td>
+		<td  align="center">#if ($q.required ) Yes #else &nbsp; #end</td>
+		<td  align="right">
+		
+		<button type="button" class="btn btn-warning btn-sm" onclick="doDivAjaxCall3$formname('div_input','moveQuestion','partQuestionId=$!q.id')">Move</button>
+		<button type="button" class="btn btn-primary btn-sm" onclick="doDivAjaxCall3$formname('div_input','editQuestion','partQuestionId=$!q.id')">Edit</button>
+		<button type="button" class="btn btn-danger btn-sm" onclick="if (!confirm('Are you sure?') ) return; doDivAjaxCall3$formname('part_$part.id','deleteQuestion','partQuestionId=$!q.id')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+		
+		</td>
+		</tr>
+	#end
+	</tbody>
+</table>
+<br/>
+<table width="100%"><tr><td align="right">
+
+<button type="button" class="btn btn-primary" onclick="doDivAjaxCall3$formname('div_input','addQuestion','partId=$!part.id')">Add New Question</button>
+
+</td></tr></table>

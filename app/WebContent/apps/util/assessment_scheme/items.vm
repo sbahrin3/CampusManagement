@@ -1,0 +1,30 @@
+
+<fieldset>
+<legend style="font-weight:bold">Making Items: $scheme.name </legend>
+
+<table>
+<tr>
+<td style="width:50px">Code</td>
+<td style="width:200px">Name</td>
+<td style="width:50px">%</td>
+<td  style="width:50px"></td>
+</tr>
+#foreach( $item in $items)
+<tr>
+<td><input style="width:100%" id="item_code_$item.id" name="item_code_$item.id" value="$!item.code" onchange="doDivAjaxCall$formname('div_empty','update_item_code','item_id=$item.id')"></td>
+<td><input style="width:100%" id="item_name_$item.id" name="item_name_$item.id" value="$!item.name" onchange="doDivAjaxCall$formname('div_empty','update_item_name','item_id=$item.id')"></td>
+<td><input style="width:100%" id="item_percentage_$item.id" name="item_percentage_$item.id" value="$item.percentage" onchange="doDivAjaxCall$formname('div_empty','update_item_percentage','item_id=$item.id')"></td>
+
+<td><input type="button" value="X" onclick="doDivAjaxCall3$formname('div_items','delete_item','item_id=$item.id')"></td>
+
+</tr>
+#end
+<tr>
+<td><input style="width:100%" id="item_code" name="item_code"></td>
+<td><input style="width:100%" id="item_name" name="item_name"></td>
+<td><input style="width:100%" id="item_percentage" name="item_percentage"></td>
+<td><input type="button" value="Add Mark Item" onclick="doDivAjaxCall3$formname('div_items','add_item','scheme_id=$scheme.id')"></td>
+</tr>
+</table>
+
+</fieldset>

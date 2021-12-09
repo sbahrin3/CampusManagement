@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<div style="padding:10px;font-weight:bold;font-family:Helvetica, arial;font-size:10pt">
+	PROGRAM PATH MIGRATION UTILITY
+</div>
+<div style="padding:10px">
+	<table style="width:500px"><tr><td style="font-style:italic">
+		WARNING: This module should be run only by Administrator.<br/>
+		This important requirement should be noted: The target path must have the same
+		sessions sequence and same session codes with the original path.  This can be obtained
+		by using the Copy Path function in the Academic Sessions Parameter Setup.  <b>If this requirement
+		was not met, data will become corrupted. Therefore, you should do data backup before running this utility.</b>
+	</td></tr></table>
+</div>
+<br/><br/>
+<table>
+	<tr>
+		<td style="width:100px">
+			Program:
+		</td>
+		<td style="width:400px">
+			<select class="text" name="programId">
+			#foreach ( $p in $programs )
+				<option value="$p.id">$p.code $p.name ($p.level.name)</option>
+			#end
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td style="width:100px">
+			Migrate to:
+		</td>
+		<td style="width:400px">
+			<select class="text" name="pathNo">
+			#foreach ( $l in $levels )
+				<option value="$l.pathNo">$l.name</option>
+			#end
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">
+		
+			<input class="linkbutton" type="button" value="Migrate Now.." onclick="if ( !confirm( 'Pls. confirm the Program and Path No.') ) return; doDivAjaxCall$formname('migrateProgramPath','migrateProgramPath','')">
+			
+		</td>
+	</tr>
+</table>
+	
+<br/><br/>
+	
+<div id="migrateProgramPath"></div>

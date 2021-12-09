@@ -1,0 +1,50 @@
+
+<input class="linkbutton" type="button" value="Back" onclick="doDivAjaxCall3$formname('div_main','listGroups','')">
+
+<table>
+<tr height="30px">
+<td style="width:200px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr height="30px"><td>Subject</td><td>:</td><td style="font-family:Verdana;font-size:11pt">$!questionnare.subject.code - $!questionnare.subject.name</td></tr>
+<tr height="30px"><td>Questionnare Set</td><td>:</td><td style="font-family:Verdana;font-size:11pt">$!questionnare.set.name</td></tr>
+<tr height="30px"><td>Date Open - Date Close</td><td>:</td><td style="font-family:Verdana;font-size:11pt">
+#if ( $questionnare.startDate ) $dateFormat.format($questionnare.startDate) #end&nbsp;
+-
+#if ( $questionnare.endDate ) $dateFormat.format($questionnare.endDate) #end
+</td></tr>
+<tr height="10px"><td></td><td></td><td></td>
+<tr><td valign="top">Instruction</td><td valign="top">:</td><td style="font-family:Verdana;font-size:11pt">#if ( $instruction != "" ) $util.putLineBreak($instruction) #end</td></tr>
+<tr height="10px"><td></td><td></td><td></td>
+</table>
+
+<table>
+<tr style="height:30px">
+<td class="colTitle" style="width:40px">&nbsp;</td>
+<td class="colTitle" style="width:350px">Lecturer's Name</td>
+<td class="colTitle" style="width:250px" align="center">Your Status</td>
+<td class="colTitle" style="width:50px" align="right">&nbsp;</td>
+</tr>
+
+#foreach ( $q in $questionnares )
+<tr style="height:25px">
+<td class="row">$velocityCount.</td>
+<td class="row">#if ( $q.teacher ) $q.teacher.name #else - Click the Tick button - #end &nbsp;</td>
+<td class="row" align="center">
+<div id="divStatus$q.id">
+#if ( $takeStatus.get("$q.id") )
+	#set ( $status = $takeStatus.get("$q.id") )
+#else
+	#set ( $status = "Not Taken" )
+#end
+#parse("questionnare/list/status.vm")
+</div>
+&nbsp;
+</td>
+
+<td class="row" align="right">
+<input class="linkbutton" type="button" value="Take" onclick="doDivAjaxCall3$formname('divTestRun','testRun','userId=demo&questionnareId=$q.id&setId=$q.set.id')">
+</td>
+
+</tr>
+#end
+
+</table>

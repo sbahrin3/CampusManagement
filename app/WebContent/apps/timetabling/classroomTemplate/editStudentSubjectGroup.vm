@@ -1,0 +1,12 @@
+<div style="padding:5px">
+
+<label for="name">Group Name:</label><input class="form-control" name="groupName" value="$studentSubjectGroup.name">
+
+
+
+</div>
+<div style="padding:5px">
+
+	<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('createStudentSubjectGroup','saveStudentSubjectGroup','groupId=$studentSubjectGroup.id&subjectId=$subject.id')">Ok</button>
+
+</div>

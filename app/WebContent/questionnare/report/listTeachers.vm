@@ -1,0 +1,17 @@
+
+<table style="width:100%">
+	<tr>
+		<td valign="top" style="width:200px">
+            <table>
+            	#foreach ( $teacher in $teachers )
+            	<tr>
+            		<td style="cursor:pointer" onclick="doDivAjaxCall$formname('div_stat_report','statisticByTeacher','teacherId=$teacher.id&setId=$!set.id&dateStart=$dateFormat.format($startDate)')">$teacher.name</td>
+            	</tr>
+            	#end
+            </table>
+		</td>
+		<td valign="top">
+			<div id="div_stat_report"></div>
+		</td>
+	</tr>
+</table>

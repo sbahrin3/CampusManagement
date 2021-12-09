@@ -1,0 +1,57 @@
+<div id="div_classmates" style="display:none;padding:0px">
+
+<table cellspacing="0" cellpadding="0" border="0">
+<tr>
+#set ( $counter = 0 )
+#set ( $ucounter = 0 )
+#foreach( $u in $classmates )
+##if ( $u.id != $userprofile.id )
+
+
+
+#set ( $counter = $counter + 1 )
+#set ( $ucounter = $ucounter + 1 )
+
+<td valign="top">
+<table cellspacing="0" cellpadding="0"><tr><td>
+<div style="position:relative">
+
+<div id="div_u_$ucounter" style="position:absolute;top:-40px;left:2px;width:200px;visibility:hidden;">
+
+<table cellspacing="0" cellpadding="2">
+<tr class="shadow" height="30px"><td style="width:5px" bgcolor="#66FF66">&nbsp;</td><td colspan="2" bgcolor="#66FF66" style="">$u.userName</td><td style="width:5px" bgcolor="#66FF66">&nbsp;</td></tr>
+<tr><td></td><td bgcolor="#66FF66" style="width:13px;height:9px;background:url(../img/tip_down.gif)"></td><td></td><td></td></tr>
+</table>
+
+</div>
+
+</td></tr><tr><td>
+						<div id="div_classmate_$u.id">
+						#if($u.userAvatarName != "")
+							<img src="../download?file=$!u.userAvatarName" border="0" width="40px" onmouseover="$('div_u_$ucounter').style.visibility='visible';"  onmouseout="$('div_u_$ucounter').style.visibility='hidden';">
+						#else
+<img src="../img/nophoto.gif" border="0" width="40px" onmouseover="$('div_u_$ucounter').style.visibility='visible';" onmouseout="$('div_u_$ucounter').style.visibility='hidden';">
+#end
+</div>
+
+</div>
+</td></tr></table>
+
+
+</td>
+
+#if ( $counter == 6 )
+#set ( $counter = 0 )
+</tr><tr>
+#end
+
+#end
+
+##end ##if ( $u.id != $userprofile.id )
+
+#if ( $counter < 6 )
+</tr>
+#end
+</table>
+
+</div>

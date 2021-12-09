@@ -1,0 +1,90 @@
+<script>
+$('div_input').style.display = "block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+Question $!partQuestion.refNo
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('div_input').style.display='none';">
+</td></tr>
+</table>
+<br/>
+<table>
+
+<table style="width:100%">
+
+<tr><td style="width:150px">Question Text:</td><td style="width:5px">:</td>
+<td><textarea class="text" name="questionText" style="height:100px"
+onKeyDown="limitText(event, this.form.questionText,this.form.charsCount,255);" 
+onKeyUp="limitText(event, this.form.questionText,this.form.charsCount,255);">$!partQuestion.question.questionText</textarea>
+<br/>
+<input style="border: none; width:25px; text-align:right;" name="charsCount" value="255" readonly> characters left.
+</td></tr>
+
+<tr><td style="width:150px">Long Text:</td><td style="width:5px">:</td>
+<td><textarea class="text" name="questionText2" style="height:100px">$!partQuestion.question.questionText2</textarea>
+
+</td></tr>
+
+<tr><td>Question Type:</td><td>:</td>
+<td>
+<select class="text" name="type" onchange="displayType(this.value)">
+<option value="likert" #if ( $partQuestion.question.type == "likert" ) selected #end>Likert Table</option>
+<option value="single" #if ( $partQuestion.question.type == "single" ) selected #end>Single Answer</option>
+<option value="multiple" #if ( $partQuestion.question.type == "multiple" ) selected #end>Multiple Answers</option>
+<option value="text" #if ( $partQuestion.question.type == "text" ) selected #end>Text</option>
+<option value="essay" #if ( $partQuestion.question.type == "essay" ) selected #end>Essay</option>
+<option value="date" #if ( $partQuestion.question.type == "date" ) selected #end>Date</option>
+<option value="upload" #if ( $partQuestion.question.type == "upload" ) selected #end>File Upload</option>
+
+##<option value="rank" #if ( $partQuestion.question.type == "rank" ) selected #end>Ranking</option>
+##<option value="grid" #if ( $partQuestion.question.type == "grid" ) selected #end>Grid</option>
+
+<option value="none" #if ( $partQuestion.question.type == "none" ) selected #end>None</option>
+<option value="stop" #if ( $partQuestion.question.type == "stop" ) selected #end>Stop</option>
+</select>
+</td></tr>
+
+<tr id="row_likert"><td>Likert Type</td><td>:</td><td>
+<select class="text" name="likertId">
+#foreach( $likert in $likerts )
+<option value="$likert.id" #if ( $partQuestion.question.likert.id == $likert.id ) selected #end>$likert.label1 | $likert.label2 | $likert.label3 | $likert.label4 | $likert.label5</option>
+#end
+</select>
+</td></tr>
+
+<tr id="row_choices">
+<td valign="top">Choices</td><td valign="top">:</td>
+<td>
+<table style="width:100%">
+<tr>
+<td style="width:5px"></td>
+<td>Possible Choices</td>
+</tr>
+#foreach ( $i in [1..5] )
+<tr><td>$i)</td>
+<td>
+#if ( $i == 1 ) #set ( $value = $partQuestion.question.choice1 ) #end
+#if ( $i == 2 ) #set ( $value = $partQuestion.question.choice2 ) #end
+#if ( $i == 3 ) #set ( $value = $partQuestion.question.choice3 ) #end
+#if ( $i == 4 ) #set ( $value = $partQuestion.question.choice4 ) #end
+#if ( $i == 5 ) #set ( $value = $partQuestion.question.choice5 ) #end
+<input class="text" name="choice$i" value="$!value">
+</td>
+
+</tr>
+#end
+</table>
+</td></tr>
+<tr><td colspan="3" align="right">
+<input type="button" class="linkbutton" value="Save" onclick="$('div_input').style.display='none'; doDivAjaxCall3$formname('part_$part.id','saveQuestion','partQuestionId=$!partQuestion.id&partId=$!part.id')">
+</td></tr>
+</table>
+
+
+<script>displayType('$!partQuestion.question.type');</script>
+
+<script>new Draggable('div_input', {handle: 'dragHandle'});</script>

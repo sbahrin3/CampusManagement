@@ -1,0 +1,100 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td style="width:100px">Program:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Session:</td><td style="font-weight:bold">$session.code $session.name</td></tr>
+<tr><td>Semester:</td><td style="font-weight:bold">$period.name #if ( $period.parent ) ($period.parent.name) #end</td></tr>
+</table>
+<br><br>
+
+<table width="100%">
+<tr><td valign="top" width="50%">
+
+
+
+#if ( $classrooms )
+
+
+
+
+#parse("apps/util/classroom/list_classrooms.vm")
+
+
+
+
+#else
+
+<table width="100%"><tr><td>
+Create Classroom with
+
+<select name="classroom_size">
+#foreach( $i in [5..100])
+<option value="$i" #if ( $classroom_size == $i ) selected #end>&nbsp;&nbsp;&nbsp;$i</option>
+#end
+</select>
+students capacity.
+<br><br>
+
+$button.command("create_classrooms").style("height:30px").text("Create Classrooms")
+
+#if ( $num_of_classroom > 0 )
+$button.command("save_classrooms").style("height:30px").text("Save Classrooms")
+#end
+</td></tr></table>
+
+#if ( $num_of_classroom > 0 )
+
+<br><br>
+Number of classroom: $num_of_classroom 
+<br><br>
+
+#foreach( $n in [1..$num_of_classroom] )
+<table width="100%">
+<tr>
+<td align="right">$velocityCount)</td>
+<td>
+<input name="classrooms" value="Classroom$n" style="width:80%">
+</td></tr>
+</table>
+#end
+<br><br>
+$button.command("save_classrooms").style("height:30px").text("Save Classrooms")
+#end
+
+
+
+
+
+
+
+#end ##if there classroom?
+</td><td valign="top">
+
+<table width="100%">
+<tr bgcolor="lightgrey" style="height:30px">
+<td colspan="3" style="font-weight:bold">
+Total of $all_students.size() students
+</td></tr>
+#foreach( $s in $students )
+<tr>
+<td><input type="checkbox" name="selected_students" value="$s.id"></td>
+<td>$s.matricNo</td>
+<td>$s.biodata.name</td>
+</tr>
+#end
+</table>
+
+</td></tr></table>
+
+
+
+</td></tr></table>
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="session_id" value="$!session.id">
+<input type="hidden" name="period_id" value="$!period.id">
+<input type="hidden" name="total_students" value="$students.size()">

@@ -1,0 +1,13 @@
+	<label>Tag:</label>
+	<select class="form-control" style="width:100px" name="tagNumber" onchange="doDivAjaxCall$formname('divTagNumber','getTagDescription','subjectId=$subject.id')">
+		<option value=""></option>
+		#foreach( $no in [0..100] )
+			<option value="$no" #if ( $tagNumber == $no ) selected #end>$no</option>
+		#end
+	</select>
+	<label>Description:</label>
+	<textarea class="form-control" style="height:100px" name="tagDescription">$!tagDescription</textarea>
+	<div style="text-align:right;padding:10px">
+		<button type="button" class="btn btn-info" onclick="doDivAjaxCall$formname('divClassrooms','saveTagNumber','subjectId=$subject.id');$('changeTagNumber').style.display='none';">OK</button>
+		<button type="button" class="btn btn-info" onclick="$('changeTagNumber').style.display='none';">x</button>
+	</div>

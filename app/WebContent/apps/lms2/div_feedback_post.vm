@@ -1,0 +1,23 @@
+<div id="div_feedback_$reply.id" name="div_feedback_$post.id" style="display:none">
+##<fieldset style="background-color:#D4FFD4; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table width="100%" cellspacing="0" cellpadding="0"><tr><td>
+
+<textarea rows="1"  id="post_feedback_$reply.id" name="post_feedback_$reply.id" style="width:100%;" onkeyup="resizeTextArea(this)"></textarea>
+#set ( $uploader_id="feedback_$reply.id" )
+#parse("apps/lms2/upload/uploader.vm")
+</td>
+<td style="width:30px" valign="top">
+<input class="gradient" style="width:100%;font-weight:bold" type="button" value="ok" 
+onclick="doDivAjaxCall3$formname('div_feedbacks_$reply.id','give_feedback','reply_id=$reply.id&uploader_id=$!uploader_id');$('div_feedback_$reply.id').style.display='none';$('post_feedback_$reply.id').value='';wait_indicator('div_feedback_wait_indicator_$reply.id');">
+<input class="gradient" style="width:100%;font-weight:bold" type="button" value="x" 
+onclick="$('div_feedback_$reply.id').style.display='none';$('file_uploaded_$uploader_id').innerHTML='';$('post_feedback_$reply.id').value='';">
+</td>
+</tr></table>
+##</fieldset>
+<script>
+new TextAreaResize('post_feedback_$reply.id');
+</script>
+</div>
+
+

@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<style>
+#div_input {
+    position:fixed;
+    top: 5%;
+    left: 15%;
+    width:800px;
+    margin-top: 0px;
+    border: 1px solid #ccc;
+    padding:3px;
+    padding:5px;
+    background:#fff;
+    display:none;
+}
+
+#divTestRun {
+    position:fixed;
+    top: 5%;
+    left: 10%;
+    width:1000px;
+    margin-top: 0px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#fff;
+    display:none;
+}
+</style>
+
+
+<div id="div_main" style="padding:10px;">
+	#parse("questionnare/create/sets.vm")
+</div>
+
+<div id="div_input" class="shadow"></div>
+
+<div id="divTestRun" class="shadow"></div>
+<div id="empty"></div>
+
+<script>
+function displayType(type) {
+	if ( type == "" ) type = "likert";
+	if ( type == "likert" ) {
+		$('row_likert').style.display = "";
+		$('row_choices').style.display = "none";
+	} else if ( type == "single" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "";
+		$('nq0').style.visibility = "visible";
+		$('nq1').style.visibility = "visible";
+		$('nq2').style.visibility = "visible";
+		$('nq3').style.visibility = "visible";
+		$('nq4').style.visibility = "visible";
+		$('nq5').style.visibility = "visible";
+	} else if ( type == "multiple" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "";
+		$('nq0').style.visibility = "hidden";
+		$('nq1').style.visibility = "hidden";
+		$('nq2').style.visibility = "hidden";
+		$('nq3').style.visibility = "hidden";
+		$('nq4').style.visibility = "hidden";
+		$('nq5').style.visibility = "hidden";
+	} else if ( type == "text" || type == "essay" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "none";
+	} else if ( type == "upload" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "none";
+	} else if ( type == "date" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "none";	
+	} else if ( type == "none" || type == "stop" ) {
+		$('row_likert').style.display = "none";
+		$('row_choices').style.display = "none";	
+	}
+}
+
+
+function limitText(evt, limitField, limitCount, limitNum) {
+    evt = (evt) ? evt : event;
+    var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode : 
+        ((evt.which) ? evt.which : 0));
+    
+    if (charCode == 13) return false;
+    
+    if (limitField.value.length > limitNum) {
+		limitField.value = limitField.value.substring(0, limitNum);
+	} else {
+		limitCount.value = limitNum - limitField.value.length;
+	}
+	
+}
+
+function displayPartTab(tabNo, tabCount) {
+	for ( var i = 1; i < tabCount + 1; i++ ) {
+		if ( i == tabNo ) {
+			document.getElementById('partTab' + i ).style.display = "block";
+			document.getElementById('topTab' + i ).className = "tabOn";
+		} else {
+			document.getElementById('partTab' + i ).style.display = "none";
+			document.getElementById('topTab' + i ).className = "tabOff";
+		}
+	}
+}
+</script>

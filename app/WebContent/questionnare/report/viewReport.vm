@@ -1,0 +1,56 @@
+<script>
+$('div_report').style.display="block";
+</script>
+
+<table id="reportHandle" width="100%" style="background:#F9B94A">
+<tr><td style="font-weight:bold;color:#000;font-size:10pt">Questionnare Result Report</td>
+<td align="right"><input class="linkbutton" type="button" value="x" 
+onclick="$('div_report').style.display='none';"
+>
+</td>
+</tr></table>
+
+<table width="100%"><tr>
+<td align="right">
+<input type="button" style="height:30px;" value="XL" onclick="document.location='../servlet/educate.questionnare.QuestionnareResultXLServlet'">
+</td></tr>
+</table>
+
+<table><tr>
+<td class="colTitle" style="width:150px">
+</td>
+
+#foreach ( $q in $questionList )
+<td class="colTitle" align="center" 
+#if ( $q.question.type == "essay" )
+	style="width:150px"
+#else
+	style="width:40px"	
+#end  
+>
+$q.refNo
+</td>
+#end
+</tr>
+
+#foreach( $result in $resultList )
+
+<tr>
+#set ( $counter = 0 )
+#foreach( $txt in $result )
+<td  class="row" style="height:25px"
+#if ( $questionTypes.get($counter) == "text" || $questionTypes.get($counter) == "essay" ) 
+	align="left"
+	>(text)</td>
+#else
+	align="center"
+	>$txt</td>
+#end
+
+#set ( $counter = $counter + 1 )
+#end
+</tr>
+#end
+</table>
+
+<script>new Draggable('div_report', {handle: 'reportHandle'});</script>

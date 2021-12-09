@@ -1,0 +1,9 @@
+
+<td class="linkbutton" style="width:200px;font-weight:bold" onclick="sort('matricNo')">Matric No</td>
+<td class="linkbutton" style="width:300px;font-weight:bold" onclick="sort('biodata.name')">Name</td>
+<td class="linkbutton" style="width:200px;font-weight:bold" onclick="sort('biodata.icno')">IC/Passport</td>
+<td class="linkbutton" style="width:300px;font-weight:bold" onclick="sort('program.code')">Program</td>
+
+
+
+

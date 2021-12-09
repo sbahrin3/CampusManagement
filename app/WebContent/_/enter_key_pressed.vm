@@ -1,0 +1,8 @@
+<script>
+function enterkey(e) {
+	var keynum;
+	if(window.event) keynum = e.keyCode;
+	else if(e.which) keynum = e.which;
+	return keynum == 13;
+}
+</script>

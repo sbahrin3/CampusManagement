@@ -1,0 +1,139 @@
+<table width="700" align="center">
+<tr><td align="right" style="font-weight:bold">
+[$href.command("get_structure_by_centre").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="100%" align="center">
+<tr><td>Program:</td><td style="font-weight:bold">$program.code $program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$intake.code $intake.name</td></tr>
+<tr><td>Learning Centre:</td><td style="font-weight:bold">$centre.code $centre.name</td></tr>
+<tr><td>
+</table>
+
+</td></tr>
+<tr><td>
+
+<table width="100%">
+<tr><td align="right">
+<select name="selected_period_id" style="font-weight:bold;width:300px" onchange="doAjaxCall${_formName}('select_period','')">
+#foreach ( $p in $periods )
+<option value="$p.id" #if ( $p.id == $period.id ) selected #end>&nbsp;&nbsp;&nbsp;$p.name #if ( $p.parent ) ($p.parent.name) #end</option>
+#end
+</select>
+</td></tr>
+</table>
+
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+<tr bgcolor="lightgrey">
+<td colspan="3" style="font-weight:bold;height:40px;">
+$href.command("add_subject").param("period_id=$period.id").text("$period.name #if ( $period.parent ) ($period.parent.name )#end")
+&nbsp;&nbsp;
+
+#if ( $position != "first" ) 
+$button.command("prev_period").param("curr_period_id=$period.id").text("&lt;")
+#end
+&nbsp;
+#if ( $position != "last" ) 
+$button.command("next_period").param("curr_period_id=$period.id").text("&gt;")
+#end
+</td>
+
+</tr>
+</table>
+
+
+
+
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+#if ( $programUtil.getSubjectRegs($programStructure, $period.id) )
+<tr bgcolor="lightgrey" height="30px">
+<td></td>
+<td>Code</td>
+<td>Name</td>
+#foreach( $f in $fees)
+<td align="center" style="font-weight:bold;">$f.code</td>
+#end
+<td align="center" style="font-weight:bold;"></td>
+</tr>
+#foreach ( $reg in $programUtil.getSubjectRegsOrderedByCode($programStructure, $period.id))
+<tr>
+<td>&nbsp;&nbsp;</td>
+<td>$reg.subject.code</td>
+<td>$reg.subject.name</td>
+
+
+#foreach( $f in $fees)
+<td align="right" style="font-weight:bold;">
+#set ( $value = "0" )
+#if ( $reg.getFeeItem("$f.id") )
+#set ( $fee = $reg.getFeeItem("$f.id") )
+#end
+
+<input name="${reg.id}_${f.id}" value="$!fee.amount" style="width:50px;text-align:center">
+
+</td>
+#end
+<td align="right" style="font-weight:bold">
+#if ( $reg.feeTotal != 0 )
+$numFormat.format($reg.feeTotal)
+#else
+-
+#end
+
+</td>
+</tr>
+#end
+
+<tr>
+#set ( $span = 4 + $fees.size() )
+<td colspan="$span">
+<hr/>
+</td>
+</tr>
+
+#set ( $subject_period = $programUtil.getSubjectPeriod($programStructure, $period.id ) )
+
+<tr>
+<td></td>
+<td></td>
+<td></td>
+#foreach( $f in $fees)
+<td align="right" style="font-weight:bold">
+#if ( $subject_period.getFeeTotal($f.id) != 0 )
+$numFormat.format($subject_period.getFeeTotal($f.id))
+#else
+-
+#end
+</td>
+#end
+<td align="right" style="font-weight:bold">
+#if ( $subject_period.getFeeTotal() != 0 )
+$numFormat.format($subject_period.getFeeTotal())
+#else
+-
+#end
+</td>
+</tr>
+
+
+</table>
+<br><br>
+<table width="100%" cellpadding="2" cellspacing="0" border="0">
+<tr>
+<td colspan="5" align="right">
+$button.command("save_fees").style("font-weight:bold;height:30px").text("UPDATE FEES AMOUNT")
+</td>
+</tr>
+#end
+</table>
+
+
+</td></tr></table>
+
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="centre_id" value="$!centre.id">
+<input type="hidden" name="period_id" value="$!period.id">
+<input type="hidden" name="structure_id" value="$!programStructure.id">
+<input type="hidden" name="ordered_by" value="$!order_by">

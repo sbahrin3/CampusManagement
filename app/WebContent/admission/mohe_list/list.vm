@@ -1,0 +1,152 @@
+<div style="font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold">
+MAKLUMAT ASAS GRADUAN
+</div>
+<table style="background:#EAF4F7" cellspacing="1">
+
+<tr style="background:#D5DEE8">
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center" colspan="3">tarikh_lahir</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center" colspan="2">kemasukan</td>
+<td class="r" align="center" colspan="2">tamat</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center" colspan="2">kelayakan<br/>bahasa</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center" colspan="2">francais</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+<td class="r" align="center">&nbsp;</td>
+</tr>
+
+<tr style="background:#D5DEE8">
+<td class="r" align="center">nokp/passport</td>
+<td class="r" align="center">matrix</td>
+<td class="r" align="center">hari</td>
+<td class="r" align="center">bulan</td>
+<td class="r" align="center">tahun</td>
+<td class="r" align="center">nama_penuh</td>
+<td class="r" align="center">jantina</td>
+<td class="r" align="center">warganegara</td>
+<td class="r" align="center">negara</td>
+<td class="r" align="center">alamat_tetap1</td>
+<td class="r" align="center">negeri_tetap</td>
+<td class="r" align="center">daerah_tetap</td>
+<td class="r" align="center">poskod_tetap</td>
+<td class="r" align="center">keturunan</td>
+<td class="r" align="center">peringkat</td>
+<td class="r" align="center">bidang</td>
+<td class="r" align="center">subbidang</td>
+<td class="r" align="center">nec</td>
+<td class="r" align="center">fakulti</td>
+<td class="r" align="center">ijazah</td>
+<td class="r" align="center">ijazah_singkatan</td>
+<td class="r" align="center">kod_kursus</td>
+<td class="r" align="center">program</td>
+<td class="r" align="center">pengkhususan</td>
+<td class="r" align="center">cgpa</td>
+<td class="r" align="center">gred</td>
+<td class="r" align="center">lokasi</td>
+<td class="r" align="center">mod</td>
+<td class="r" align="center">kaedah</td>
+<td class="r" align="center">bulan</td>
+<td class="r" align="center">tahun</td>
+<td class="r" align="center">bulan</td>
+<td class="r" align="center">tahun</td>
+<td class="r" align="center">penaja</td>
+<td class="r" align="center">bm</td>
+<td class="r" align="center">bi</td>
+<td class="r" align="center">muet</td>
+<td class="r" align="center">cawangan</td>
+<td class="r" align="center">status</td>
+<td class="r" align="center">nama</td>
+<td class="r" align="center">kelayakan_masuk</td>
+<td class="r" align="center">kelayakan_lain</td>
+<td class="r" align="center">latihan_industri</td>
+<td class="r" align="center">OKU</td>
+<td class="r" align="center">jenis</td>
+</tr>
+
+#foreach( $s in $students )
+<tr>
+<td class="r">$s.nokp&nbsp;</td>
+<td class="r">$s.matric&nbsp;</td>
+<td class="r" align="center">$!s.tarikh_lahir.substring(0,2)&nbsp;</td>
+<td class="r" align="center">$!s.tarikh_lahir.substring(3,5)&nbsp;</td>
+<td class="r" align="center">$!s.tarikh_lahir.substring(6)&nbsp;</td>
+<td class="r">$!s.nama_penuh&nbsp;</td>
+<td class="r" align="center">$!s.jantina&nbsp;</td>
+<td class="r" align="center">$!s.warganegara&nbsp;</td>
+<td class="r" align="center">$!s.negara&nbsp;</td>
+#if ( $s.alamat_tetap3 || $s.alamat_tetap3 != "" )
+	#set ( $alamat_tetap = $s.alamat_tetap1 + ", " + $s.alamat_tetap2 + ", " + $s.alamat_tetap3 )
+#elseif ( $s.alamat_tetap2 || $s.alamat_tetap2 != "" )
+	#set ( $alamat_tetap = $s.alamat_tetap1 + ", " + $s.alamat_tetap2 )
+#else
+	#set ( $alamat_tetap = $s.alamat_tetap1 )
+#end
+<td class="r">$!s.alamat_tetap1&nbsp;</td>
+<td class="r" align="center">$!s.negeri_tetap&nbsp;</td>
+<td class="r" align="center">$!s.daerah_tetap&nbsp;</td>
+<td class="r" align="center">$!s.poskod_tetap&nbsp;</td>
+<td class="r" align="center">$!s.keturunan&nbsp;</td>
+<td class="r" align="center">$!s.peringkat_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.bidang_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.subbidang_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.national_education_code&nbsp;</td>
+<td class="r">$!s.fakulti&nbsp;</td>
+<td class="r">$!s.ijazah&nbsp;</td>
+<td class="r">$!s.ijazah_singkatan&nbsp;</td>
+<td class="r">$!s.kod_kursus&nbsp;</td>
+<td class="r">$!s.program&nbsp;</td>
+<td class="r">$!s.pengkhususan&nbsp;</td>
+<td class="r" align="center">$!s.cgpa&nbsp;</td>
+<td class="r" align="center">$!s.gred&nbsp;</td>
+<td class="r" align="center">$!s.lokasi_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.mod_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.kaedah_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.bulan_mula_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.tahun_mula_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.bulan_tamat_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.tahun_tamat_pengajian&nbsp;</td>
+<td class="r" align="center">$!s.penaja&nbsp;</td>
+<td class="r" align="center">$!s.spm_bm&nbsp;</td>
+<td class="r" align="center">$!s.spm_bi&nbsp;</td>
+<td class="r" align="center">$!s.muet&nbsp;</td>
+<td class="r" align="center">$!s.cawangan&nbsp;</td>
+<td class="r" align="center">$!s.francais&nbsp;</td>
+<td class="r">$!s.nama_institusi_francais&nbsp;</td>
+<td class="r" align="center">$!s.kelayakan_masuk&nbsp;</td>
+<td class="r">$!s.kelayakan_lain&nbsp;</td>
+<td class="r" align="center">$!s.status_latihan_industri&nbsp;</td>
+<td class="r" align="center">$!s.status_oku&nbsp;</td>
+<td class="r" align="center">$!s.jenis_oku&nbsp;</td>
+</tr>
+#end
+</table>

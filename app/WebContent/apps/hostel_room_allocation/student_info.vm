@@ -1,0 +1,56 @@
+#if ( $student )
+
+<input type="hidden" name="student_id" value="$student.id">
+
+	
+	<script>
+	$('student_flag').value = "$!student.biodata.name";
+	</script>
+	
+<table width="100%" style="border-top: 2px solid #D2D2D2; border-bottom: 2px solid #D2D2D2; border-right: 2px solid #D2D2D2; border-left: 2px solid #D2D2D2;">
+<tr><td colspan="2" style="height:30px;background-color:lightgrey;font-weight:bold">Student Information</td></tr>
+<tr>
+
+<td valign="top" style="width:200px">
+
+#if($student.photoFileName != "")
+<img src="../download?file=$!student.photoFileName">
+#else
+<img src="../img/nophoto.gif" border="0">
+#end
+
+</td>
+<td>
+<table width="100%">
+<tr><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td style="font-weight:bold">#if ( $student.biodata.gender ) $student.biodata.gender.name #else Gender Not Defined. #end</td></tr>
+##<tr><td style="font-weight:bold">$student.program.name</td></tr>
+##<tr><td style="font-weight:bold">$student_status.period.name #if ( $student_status.period.parent )  ($student_status.period.parent.name) #end</td></tr>
+</table>
+</td>
+
+</tr></table>
+
+<br>
+
+<div id="student_rooms" name="student_rooms">
+#parse("apps/hostel_room_allocation/student_rooms.vm")
+</div>
+
+
+
+<table width="100%"><tr><td align="right">
+<div id="div_checkout_date" name="div_checkout_date" style="visibility:hidden;position:relative;left:0px;top:-50px;height:0px">
+#parse( "apps/hostel_room_allocation/check_out_date.vm" )
+</div>
+</td></tr></table>
+
+
+#else
+Not found!
+<script>
+$('student_flag').value = "";
+</script>
+
+#end

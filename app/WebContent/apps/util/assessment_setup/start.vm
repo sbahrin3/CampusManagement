@@ -1,0 +1,25 @@
+<table width="800">
+<tr><td>
+<fieldset style="width:100%; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+Select Subject:
+<select name="subject_id" onchange="doDivAjaxCall$formname('div_coursework','get_coursework','')">
+<option value=""> - </option>
+#foreach( $s in $subjects )
+<option value="$s.id">$s.code $s.name</option>
+#end
+</select>
+<input type="button" value="Get Coursework" onclick="doDivAjaxCall$formname('div_coursework','get_coursework','')">
+</fieldset>
+</td></tr>
+
+<tr><td>
+
+<div id="div_coursework"></div>
+
+</td></tr>
+
+<tr><td>
+<div id="div_empty"></div>
+</td></tr>
+
+</table>

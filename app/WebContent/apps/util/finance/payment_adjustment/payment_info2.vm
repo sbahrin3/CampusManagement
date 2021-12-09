@@ -1,0 +1,47 @@
+
+
+<fieldset >
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">Make Payment Adjustment</legend>
+
+<br>
+
+<table width="800">
+<tr><td>
+
+#set ( $student = $payment.student )
+$dateFormat.applyPattern("d MMM, yyyy")
+<table width="100%">
+<tr><td class="f" style="width:150px">Payment No:</td><td class="f"">$payment.paymentNo</td></tr>
+<tr><td class="f" style="width:150px">Date/Time:</td><td class="f">$dateFormat.format($payment.createDate) $timeFormat.format($payment.createTime)</td></tr>
+
+<tr><td class="f" style="width:150px">Amount:</td><td class="f"">$payment.amount</td></tr>
+</table>
+
+<br>
+
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="30px" bgcolor="lightgrey">
+<td style="width:20px"></td>
+<td style="font-weight:bold">Item Description</td>
+<td align="right" style="font-weight:bold;width:150px">Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</td>
+<td align="right" style="font-weight:bold;width:150px">Change Amount</td>
+</tr>
+#foreach ( $i in $payment.paymentItems )
+<tr height="30px">
+<td class="gradient">$velocityCount.</td>
+<td class="f"  style="border-bottom:1px solid #C3C3C3;background-color:#E1E1E1">$!i.description</td>
+<td class="f"  style="border-bottom:1px solid #C3C3C3;background-color:#E1E1E1" align="right">$i.amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td  style="border-bottom:1px solid #C3C3C3;background-color:#E1E1E1">
+<input class="text" style="width:100%;font-family:arial;font-size:12pt;font-weight:bold;text-align:right" name="item_${i.id}" value="$i.amount" style="width:50px;text-align;right">
+</td>
+</tr>
+#end
+</table>
+<hr/>
+
+
+</td></tr></table>
+
+</fieldset>
+

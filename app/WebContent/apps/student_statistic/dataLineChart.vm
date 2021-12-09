@@ -1,0 +1,70 @@
+
+
+<div style="padding:20px">
+<div id="chartContainer" style="height: 400px; width: 100%; border:1px dotted #000"></div>
+</div>
+
+
+<script>
+window.onload = function () {
+	
+	var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Number of Active Students"
+	},
+	axisX:{
+		valueFormatString: "DD MMM YY",
+		crosshair: {
+			enabled: true,
+			snapToDataPoint: true
+		}
+	},
+	axisY: {
+		title: "Number of Students",
+		crosshair: {
+			enabled: true
+		}
+	},
+	toolTip:{
+		shared:true
+	},  
+	legend:{
+		cursor:"pointer",
+		verticalAlign: "bottom",
+		horizontalAlign: "left",
+		dockInsidePlotArea: true,
+		itemclick: toogleDataSeries
+	},
+	data: [{
+		type: "line",
+		showInLegend: false,
+		name: "Total Students",
+		markerType: "square",
+		xValueFormatString: "DD MMM, YYYY",
+		color: "#F08080",
+		dataPoints: [
+			
+			#foreach ( $d in $dataList )
+				{ x: new Date($d.year, $d.month, $d.day), y: $d.value },
+			#end
+			
+		]
+	}]
+	});
+	
+	chart.render();
+	
+	function toogleDataSeries(e){
+		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+			e.dataSeries.visible = false;
+		} else{
+			e.dataSeries.visible = true;
+		}
+		chart.render();
+	}
+
+}
+
+</script>

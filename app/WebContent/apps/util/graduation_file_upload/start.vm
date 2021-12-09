@@ -1,0 +1,26 @@
+
+<script>
+function uploadDocument(documentId, e) {
+	document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+	document.${formName}.enctype='multipart/form-data';
+	document.${formName}.encoding ='multipart/form-data';
+	document.${formName}.target='upload_document';
+	document.${formName}.action='?command=uploadDocument&documentId=' + documentId + '&divUploadStatusName=' + e;
+	document.${formName}.submit();
+
+}
+
+function deleteDocument(documentId, e) {
+	document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+	document.${formName}.enctype='';
+	document.${formName}.encoding ='';
+	document.${formName}.target='delete_document';
+	document.${formName}.action='?command=deleteDocument&documentId=' + documentId + '&divUploadStatusName=' + e;
+	document.${formName}.submit();
+
+}
+</script>	
+
+<div id="documents">#parse("apps/util/graduation_file_upload/document.vm")</div>
+<div id="empty"></div>
+<iframe id="upload_document" name="upload_document" width="0px" height="0px" style="visibility:hidden"></iframe>

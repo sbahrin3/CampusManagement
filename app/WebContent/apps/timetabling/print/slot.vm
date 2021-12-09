@@ -1,0 +1,48 @@
+<table style="width:100%" cellpadding="0" cellspacing="0" border="0">
+#foreach ( $classroomSlot in $slot.slotClassrooms )
+#set ( $cr = $classroomSlot.classroom )
+<tr><td align="center" valign="top">
+
+#if ( $cr.subject )
+#set ( $bgcolor = $slotColor.colorMap.get("${cr.subject.id}-${cr.classroomSection.id}") )
+#else
+#set ( $bgcolor = "#fff" )
+#end
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:$bgcolor;">
+
+#if ( $cr.subject )
+<tr><td align="center">$!cr.subject.code</td></tr>
+<tr><td align="center">$!cr.classroomSection.name</td></tr>
+<tr><td align="center">$!cr.room.code</td></tr>
+<tr><td align="center">
+
+#if ( $cr.teacher )
+	$cr.teacher.code
+#end
+#if ( $cr.coTeachers.size() > 0 )
+	#foreach ( $t in $cr.coTeachers )
+		$t.code
+	#end
+#end
+
+</td></tr>
+#else
+<tr><td align="center">&nbsp;</td></tr>
+<tr><td align="center">&nbsp;</td></tr>
+<tr><td align="center">&nbsp;</td></tr>
+<tr><td align="center">&nbsp;</td></tr>
+
+#end
+
+
+
+</table>
+
+</td></tr>
+
+<tr height="2px"><td>
+</td></tr>
+
+#end
+
+</table>

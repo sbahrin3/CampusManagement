@@ -1,0 +1,30 @@
+<table class="table table-striped">
+	<thead>
+	<tr>
+		<th></th>
+		<th>Session</th>
+		<th>Start Date</th>
+		<th>End Date</th>
+		<th>Enrollment Intakes</th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+	#foreach( $s in $sessions )
+		<tr style="height:50px;border-bottom:1px dotted #000" id="sessionRow_${s.id}">
+			<td style="width:40px">$velocityCount)</td>
+			<td style="width:100px">$s.name</td>
+			<td style="width:100px">$dateFormat.format($s.startDate)</td>
+			<td style="width:100px">$dateFormat.format($s.endDate)</td>
+			<td style="width:500px">
+				<div id="enrollmentIntakes_${s.id}">
+					#parse("apps/setupStudentEnrollmentIntake/enrollmentIntakes.vm")
+				</div>
+			</td>
+			<td>
+				##<input class="linkbutton" type="button" value="+" onclick="doDivAjaxCall$formname('addEnrollmentIntake','addEnrollmentIntake','sessionId=$s.id')">
+			</td>
+		</tr>
+	#end
+	</tbody>
+</table>

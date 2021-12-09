@@ -1,0 +1,55 @@
+<table >
+#if ( !$teacherView )
+	<tr style="height:40px">
+		<td style="width:150px">Lecturer:</td>
+		<td>
+		#parse("apps/timetabling/teacher_attendance/find_teacher.vm")
+		</td>
+	</tr>
+	
+#else
+	<tr>
+	<td colspan="3" style="font-weight:bold">
+	Please enter the start date and end date to get your attendance sheet.
+	</td>
+	</tr>
+#end
+
+<tr style="height:40px"><td style="width:150px">Select Period:</td>
+<td>
+	<select class="form-control" name="deliveryPeriodId" onchange="if ( this.value != '' ) { doDivAjaxCall$formname('getDeliveryPeriod','getDeliveryPeriod',''); }">
+		<option value=""></option>
+		#foreach ( $d in $deliveryPeriods )
+			<option value="$d.id">$d.DELIVERYPERIODDESCLONG</option>
+		#end
+	</select>
+</td>
+</tr>
+
+
+<tr style="height:40px"><td style="width:150px">Select Date:</td>
+<td>
+	<table><tr><td>From:</td><td>
+	
+	<input class="form-control" style="width:100px" id="date1" name="date1" value="">
+	<script> new JsDatePick({ useMode:2, target:"date1", cellColorScheme:"deepblue", dateFormat:"%d-%m-%Y" }); </script>
+	
+	</td><td> &nbsp;&nbsp; </td><td>To:</td><td>
+	
+	<input class="form-control" style="width:100px" id="date2" name="date2" value="">
+	<script> new JsDatePick({ useMode:2, target:"date2", cellColorScheme:"deepblue", dateFormat:"%d-%m-%Y" }); </script>
+	
+	</td><td>
+	&nbsp;&nbsp;
+	#if ( !$teacherView )
+		<button type="button" class="btn btn-info btn-sm" onclick="$('listAttendance').innerHTML='Please Wait...';$('divMain').style.display='block';$('findTeacher').style.display='none';doDivAjaxCall$formname('listAttendance','listAttendance2','')">Get Workload</button>
+	#else
+		<button type="button" class="btn btn-info btn-sm" onclick="$('listAttendance').innerHTML='Please Wait...';$('divMain').style.display='block';$('findTeacher').style.display='none';doDivAjaxCall$formname('listAttendance','listAttendance3','')">Get Workload</button>
+	#end
+	
+	</td></tr></table>
+</td></tr></table>
+
+<div id="getDeliveryPeriod"></div>
+
+

@@ -1,0 +1,161 @@
+	
+	<table width="90%" align="center">
+		<tr>
+			<td align="left">
+				<img src="../img/logo_aeu.jpg" border="0" width="150px" height="80px">
+			</td>
+		</tr>
+		<tr>
+			<td>
+	
+				<table width="100%">
+					<tr>
+						<td>
+							Matric:&nbsp <b>$!student.matricNo</b>
+						</td>
+					</tr>
+	
+	
+					<tr>
+						<td>
+							Name:&nbsp <b>$!student.biodata.name</b>
+						</td>
+					</tr>
+	
+					<br><br>
+	
+					<table width="100%" align="center">
+						<tr>
+							<td width="50pt">Code </td>
+							<td width="200pt">Name</td>
+							<td width="50pt">Credit Hour</td>
+							<td width="50pt">Grade</td>
+							<td width="50pt">Point</td>
+							<td width="50pt">Grade<br>Point<br>Value</td>
+							<td>
+							
+							</td>
+						</tr>
+	
+						#foreach( $section in $results )
+							<tr>
+								<td colspan="7" style="font-weight:bold">
+									$section.period.name ($section.period.parent.name - $section.period.name)
+								</td>
+							</tr>
+		
+							<tr>
+								<td colspan="7"><hr/></td>
+							</tr>
+							
+									#foreach( $subject in $section.subjects)
+										<tr>
+											<td width="50pt">$!subject.subject.code</td>
+											<td width="200pt">$!subject.subject.name</td>
+											#if($subject.status=="DEFERED")
+												<td colspan=4 align=center>$subject.typeStatus</td>
+												##<td>$subject.typeStatus</td>
+												##<td>$subject.typeStatus</td>
+												##<td>$subject.typeStatus</td>
+											#else
+												<td width="50pt">$!subject.creditHour</td>
+												<td width="50pt">$!subject.grade</td>
+												<td width="50pt">$FORMATTER.formatResult($!subject.gradePoint)</td>
+												<td width="50pt">$FORMATTER.formatResult($!subject.point)</td>
+												<td width="50pt">##$!subject.status</td>
+											#end
+										</tr>
+									#end
+									<tr>
+										<td colspan="7"><hr/></td>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">Credit Unit: $section.currentHours</td>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">Cum Credit Unit: $section.totalHours</td>
+									</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">GPA: $FORMATTER.formatResult($section.gpa)</td>
+										</tr>
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">CGPA: $FORMATTER.formatResult($section.cgpa)										
+										</td>
+									</tr>
+									
+									#**
+									<tr>
+										<td colspan="3"></td>
+										<td colspan="6">Academic Status:
+											#if($section.standing=="GOOD STANDING") 
+												<dd><b>$!section.standing &nbsp (GS)</b></dd>
+											#else
+												<dd><b><font color="red">$!section.standing &nbsp (PS)</font></b></dd>
+											#end
+										</td>
+									</tr>
+							**#
+			
+							<tr>
+								<td>
+									##<input type="button" onclick="document.location='../servlet/ExamResultPrinting?matricNo=$!{student.matricNo}&session_id=$!{section.session.id}'" value="DOWNLOAD RESULT">
+								</td>
+							
+							</tr>		
+							<tr>
+								<td colspan="6"><br/></td>
+							</tr>
+							<tr>
+								<td colspan="6"><br/></td>
+							</tr>
+						#end
+					</table>
+		
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">
+				
+			</td>
+		</tr>
+	</table>
+	#if($section =="")
+	<table align=center>
+		<tr>
+			<td align="left">
+				<img src="../img/logo_aeu.jpg" border="0" width="150px" height="80px">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table width="100%">
+					<tr>
+						<td>Matric:&nbsp <b>$!student.matricNo</b></td>
+					</tr>
+					<tr>
+						<td>Name:&nbsp <b>$!student.biodata.name</b></td>
+					</tr>
+				</table>
+				<table width="100%">
+					<tr>
+						<td width=95%><hr/></td>
+					</tr>
+					
+					<tr>
+						<td align=center>TRANSCRIPT IS NOT AVAILABLE</td>
+					</tr>
+					<tr>
+						<td width=95%><hr/></td>
+					</tr>
+				</table
+			</td>
+		</tr>
+	</table>
+	#end

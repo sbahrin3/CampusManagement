@@ -1,0 +1,10 @@
+#set ( $bgcolor = "#FFFF55" )
+#parse("apps/util/applicant/frm_applicant_stpm_result.vm")
+<br><br>
+
+<table width="100%"><tr><td align="right">
+<input type="button" style="font-weight:bold;height:30px"  value="BACK" onclick="doDivAjaxCall${formName}('stpm','get_stpm','')">
+<input type="button" style="font-weight:bold;height:30px"  value="SAVE STPM" onclick="doDivAjaxCall${formName}('stpm','save_stpm','')">
+</td></tr></table>
+
+

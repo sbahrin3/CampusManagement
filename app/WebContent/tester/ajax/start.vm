@@ -1,0 +1,7 @@
+<input name="ajaxTest" value="ajaxTest">
+<input type="button" value="Button" onclick="doAjaxCall$formname('test','');">
+<input type="submit" value="Form Post">
+<br>
+<h2>Hello $!test</h2>
+
+$moduleId

@@ -1,0 +1,47 @@
+<script>
+$('editActivity_${activity.id}').style.display="block";
+</script>
+
+<div style="background:#A5A8AA;color:#fff;font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold;padding:4px">
+EDIT ACTIVITY
+</div>
+
+<table><tr><td style="padding:5px">
+<table>
+<tr><td style="width:200px"></td><td style="width:600px"></td></tr>
+<tr><td>Activity Name:</td><td><input class="texts" name="activityName_$activity.id" value="$!activity.name"></td></tr>
+<tr><td>Date Begin:</td><td>
+#set ( $dateValue = $dateFormat.format($activity.startDate) )
+$html.dateField.name("startDate_$activity.id").value("$!dateValue").style("width:120px").cssClass("texts")
+</td></tr>
+<tr><td>Date Begin:</td><td>
+#set ( $dateValue = $dateFormat.format($activity.endDate) )
+$html.dateField.name("endDate_$activity.id").value("$!dateValue").style("width:120px").cssClass("texts")
+</td></tr>
+<tr><td>Location:</td><td><input class="texts" name="locationRemark_$activity.id" value="$!activity.locationRemark"></td></tr>
+<tr><td valign="top">Activity Description:</td><td><textarea class="texts" style="height:100px" name="description_$activity.id">$!activity.description</textarea></td></tr>
+
+
+<tr><td>Status:</td><td>
+
+<select class="texts" name="proposalStatus_$activity.id" #if ( $studentMode ) disabled #end>
+<option value="in-process" #if ( $activity.proposalStatus == "in-process" ) selected #end>In-Process</option>
+<option value="approve" #if ( $activity.proposalStatus == "approve" ) selected #end>Approve</option>
+<option value="reject" #if ( $activity.proposalStatus == "reject" ) selected #end>Reject</option>
+</select>
+
+</td></tr>
+
+<tr><td valign="top">Remark:</td><td><textarea class="texts" style="height:100px" name="adminRemark_$activity.id" #if ( $studentMode ) disabled #end>$!activity.description</textarea></td></tr>
+
+
+<tr><td></td><td align="right">
+
+<input class="linkbutton" type="button" value="Delete Activity" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall$formname('activities','deleteActivity','activityId=$activity.id')">
+<input class="linkbutton" type="button" value="Update Activity" onclick="doDivAjaxCall$formname('activities','saveActivity','activityId=$activity.id')">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('editActivity_$activity.id').style.display='none';">
+
+</td></tr>
+
+</table>
+</td></tr></table>

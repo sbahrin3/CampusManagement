@@ -1,0 +1,3 @@
+<div id="listClassrooms2">
+	#parse("apps/timetabling/student_classroom/listClassrooms2.vm")
+</div>

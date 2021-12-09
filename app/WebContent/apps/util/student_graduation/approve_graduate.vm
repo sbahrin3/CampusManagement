@@ -1,0 +1,53 @@
+<table width="700" align="center">
+<tr><td align="right">
+[$href.command("list_students").text("Back")]
+</td></tr>
+<tr><td>
+
+<table width="80%" align="center">
+<tr><td>Student Id:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>Programme:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+
+</table>
+
+<br/><br/>
+<table width="80%" align="center">
+<tr><td align="right" style="width:100px">Session:</td><td style="font-weight:bold">$final_session.name</td></tr>
+<tr><td valign="top" align="right">Remark:</td>
+<td>
+<textarea name="remark" style="width:100%;height:50px"></textarea>
+</td>
+<tr><td></td>
+<td>
+$button.command("do_approve_graduate").confirm("Confirm Qualify for Graduation?").style("font-weight:bold;height:40px").text("QUALIFY FOR GRADUATION")
+$button.command("list_students").style("font-weight:bold;height:40px").text("CANCEL")
+</td>
+</tr>
+
+</table>
+
+</td></tr>
+
+<br><br><br>
+<tr><td align="center">
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend><b>Examination Transcript<b></legend>
+<table width="100%"><tr><td>
+#parse("apps/util/student_graduation/exam_transcript.vm")
+</td></tr></table>
+</fieldset>
+
+</td></tr>
+</table>
+
+<input type="hidden" name="student_id" value="$!student.id">
+<input type="hidden" name="program_id" value="$!program.id">
+<input type="hidden" name="intake_id" value="$!intake.id">
+<input type="hidden" name="centre_id" value="$!centre.id">
+<input type="hidden" name="credit_hours" value="$!credit_hours">
+<input type="hidden" name="cgpa" value="$!cgpa">
+<input type="hidden" name="final_session_id" value="$final_session.id">
+<input type="hidden" name="type" value="$!type">
+<input type="hidden" name="study_type" value="$!study_type">

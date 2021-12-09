@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+
+
+<table class="table table-striped">
+<tr><td>
+
+
+
+
+</td></tr>
+<tr><td>
+
+#if ( $faculty )
+<div id="divSubjectMarking">
+#parse("apps/util/setup_subjects_grades/subject_grades.vm")
+</div>
+
+
+<tr><td>
+
+<table>
+	<tr>
+		<td>Assign this grade to all: </td>
+		<td>
+			<select class="form-control" style="width:400px" id="marking_all" name="marking_all">
+			<option value="">-select-</option>
+			#foreach( $m in $markings )
+			<option value="$m.id">$m.name</option>
+			#end
+			</select>
+		</td>
+		<td>
+			<button type="button" class="btn btn-warning" onclick="if ( $('marking_all').value == '' ) return; doDivAjaxCall$formname('divSubjectMarking', 'assign_all', '')">Assign to all subject</button>
+		</td>
+	</tr>
+</table>
+
+</td></tr>
+
+#else
+<br/><br/><br/>
+<table width="100%"><tr><td align="center" style="font-weight:bold">
+PLEASE SELECT A SCHOOL
+</td></tr></table>
+#end
+</td></tr>
+</table>
+
+<input type="hidden" name="faculty_id" value="$!faculty.id">

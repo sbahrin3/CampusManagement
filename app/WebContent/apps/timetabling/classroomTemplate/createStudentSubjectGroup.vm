@@ -1,0 +1,40 @@
+
+<div style="background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff"><label>Groups for $subject.name</label></td>
+			<td align="right">
+				<button type="button" class="btn btn-primary" onclick="$('createStudentSubjectGroup').style.display='none';">x</button>
+			</td>
+		</tr>
+	</table>
+  	
+</div>
+
+
+<div id="listStudentSubjectGroup" style="height:450px;overflow:auto;overflow-x:hidden;">
+
+	<table class="table" style="width:100%">
+		<tbody>
+		#foreach ( $g in $studentSubjectGroups )
+			<tr>
+				<td>$g.name</td>
+				<td align="right">
+					#if ( !$g.facultyGroup )
+						<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('listStudentSubjectGroup','editStudentSubjectGroup','subjectId=$subject.id&groupId=$g.id')">..</button>
+						<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('createStudentSubjectGroup','deleteStudentSubjectGroup','subjectId=$subject.id&groupId=$g.id')">x</button>
+					#end
+				</td>
+			</tr>
+		#end
+		<tr>
+			<td colspan="2" align="right">
+				<button type="button" class="btn btn-info" onclick="doDivAjaxCall$formname('createStudentSubjectGroup','addNewStudentSubjectGroup','subjectId=$subject.id')">+</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+
+</div>

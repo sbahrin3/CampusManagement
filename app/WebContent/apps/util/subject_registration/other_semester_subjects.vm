@@ -1,0 +1,48 @@
+<table width="100%">
+<tr><td style="height:40px;font-weight:bold" bgcolor="#ebebeb">
+List of subjects from other Semesters:
+</td></tr></table>
+<table width="100%">
+#foreach ( $period in $periods )
+#if ( $student_status.period.id != $period.id )
+
+<tr><td style="height:30px;font-weight:bold" colspan="4" bgcolor=""></td></tr>
+<tr><td style="height:30px;font-weight:bold" colspan="4">
+	 <div class="well">
+		$period.name #if ( $period.parent ) ($period.parent.name) #end
+	 </div>
+</td></tr>
+
+
+#if ( $programUtil.getSubjectRegs($programStructure, $period.id ) )
+    
+    #foreach( $s in $programUtil.getSubjectRegsOrderByCode($programStructure, $period.id ) )
+        <tr style="background:#fff;height:25px;">
+        <td style="width:50px;border-bottom:1px dotted #ccc" align="center"><input type="checkbox" name="selected_subjects" value="$s.id"></td>
+        <td style="width:100px;border-bottom:1px dotted #ccc">$s.subject.code</td>
+        <td style="border-bottom:1px dotted #ccc">$s.subject.name</td>
+        <td style="width:40px;border-bottom:1px dotted #ccc" align="center">$s.subject.credithrs</td>
+        </tr>
+    #end
+
+	<tr style="height:40px"><td colspan="4">
+		<button type="button" class="btn btn-success" onclick="doDivAjaxCall$formname('div_list_subjects','add_subjects','')">Add</button>
+	</td></tr>
+    
+	
+#else
+
+    <tr style="background:#E8DEE0">
+    <td colspan="3">
+    Subjects Not Available.
+    </td>
+    </tr>
+
+
+#end
+
+
+#end
+#end
+</table>
+

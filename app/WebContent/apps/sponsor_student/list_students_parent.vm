@@ -1,0 +1,44 @@
+<br><br>
+<fieldset>
+<legend style="background-color:#E1E1E1;font-weight:bold">List of Students</legend>
+
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr height="30px">
+<td class="gradient" style="width:10px">&nbsp;</td>
+<td class="gradient" style="font-family:arial;font-weight:bold;font-size:12pt">
+
+$sponsor.code - $sponsor.name
+
+<input type="hidden" name="current_sponsor_id" value="$sponsor.id">
+
+</td>
+<td class="gradient" style="width:100px">
+<input class="gradient" type="button" style="width:100%;height:30px;font-weight:bold" value="Add Student" 
+onclick="$('div_find_student').style.visibility='visible';$('div_find_student2').style.visibility='visible';doDivAjaxCall$formname('div_find_student2','find_student','sponsor_id=$sponsor.id')">
+</td>
+</tr>
+</table>
+
+#parse("apps/sponsor_student/student_parent.vm")
+
+##edit student sponsor data
+<div id="div_edit_student" style="display:none;background:#EDE8E8;"></div>
+
+<table cellpadding="0" cellspacing="0">
+
+<tr height="30px">
+<td  class="gradient" style="width:20px;">&nbsp;</td>
+<td  class="gradient" style="width:100px;font-weight:bold">Matric No</td>
+<td  class="gradient" style="width:100px;font-weight:bold">ICNo</td>
+<td  class="gradient" style="width:200px;font-weight:bold">Name</td>
+<td  class="gradient" style="width:300px;font-weight:bold" align="center">Program</td>
+<td  class="gradient" style="width:24px"></td>
+</tr>
+</table>
+
+<div id="div_list_students" name="div_list_students" style="overflow:auto;height:300px;width:100%">
+#parse("apps/sponsor_student/list_students.vm")
+</div>
+
+</fieldset>
+

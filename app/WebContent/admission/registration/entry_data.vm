@@ -1,0 +1,42 @@
+#if ( $error )
+<script>
+	$('div_mykad').innerHTML = "<span style='padding:5px;font-weight:bold;color:#F9410B'>This MyKad number already exists in database.</span>";
+</script>
+#else
+<script>
+	$('div_mykad').innerHTML = "";
+</script>	
+#end
+
+
+<script>
+
+$('listApplicants').style.display='none';
+$('divRegister').style.display='block';
+
+$('applicant_id').value = "$!applicant.id";
+$('icno').value = "$!icno";
+$('passport').value = "$!passport";
+$('name').value = "$!name";
+$('program_id').value = "$!program.id";
+$('intake_id').value = "$!intake.id";
+$('centre_id').value = "$!centre.id";
+
+if ($('icno').value == '' ) { 
+	$('div_mykad').innerHTML = ''; 
+} else { 
+	doDivAjaxCall$formname('div_mykad','check_mykad','');
+}
+if ($('passport').value == '' ) { 
+	$('div_passport').innerHTML = '';
+} else {
+	doDivAjaxCall$formname('div_passport','check_passport','');
+}
+
+if ( $('program_id').value != '' ) {
+	doDivAjaxCall$formname('div_select_intakes','list_intakes','applicant_id=$applicant.id');
+}
+
+</script>
+
+

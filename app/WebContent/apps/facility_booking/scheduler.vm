@@ -1,0 +1,104 @@
+
+<table cellpadding="0" cellspacing="0" bgcolor="silver">
+<tr>
+<td>
+
+<table width="40px" cellpadding="0" cellspacing="1">
+<tr><td height="20px" ></td></tr>
+<tr><td height="20px" ></td></tr>
+
+</td>
+</table>
+
+</td>
+
+
+#foreach( $slot in $day_slots )
+#if ( $slot.dayNumber == 1 ) #set ( $fcolor = "red" ) #else #set ( $fcolor = "#000000" ) #end
+<td>
+
+<table width="25px" cellpadding="0" cellspacing="1">
+<tr><td height="20px" bgcolor="#AAD4FF" style="font-family:arial;color:$fcolor" align="center"
+onclick="document.getElementById('date_in').value='#if ( $slot.dayDate < 10 )0${slot.dayDate}#else${slot.dayDate}#end-${month}-${year}'"
+>$slot.dayDate</td></tr>
+<tr><td height="20px" bgcolor="#AAD4FF" style="font-family:arial;color:$fcolor" align="center">$slot.dayName</td></tr>
+
+</table>
+</td>
+#end
+
+</tr>
+</table>
+
+
+
+
+##**
+
+<div style="overflow:auto;top:0;height:300px; width:835px; background-color:lightgrey">
+
+<table cellpadding="0" cellspacing="0" bgcolor="silver">
+<tr>
+<td>
+<table width="40px" cellpadding="0" cellspacing="1">
+##<tr><td height="20px" ></td></tr>
+##<tr><td height="20px" ></td></tr>
+#foreach ( $t in $time_displays )
+<tr><td style="height:25px;font-size:8pg;font-family:arial" bgcolor="#AAD4FF" align="center" valign="top">
+${t.time12}
+</td></tr>
+#end
+</table>
+</td>
+#foreach( $slot in $day_slots )
+
+#if ( $slot.dayNumber == 1 ) #set ( $fcolor = "red" ) #else #set ( $fcolor = "#000000" ) #end
+<td>
+
+<table width="25px" cellpadding="0" cellspacing="1">
+##<tr><td height="20px" bgcolor="#ffffff" style="font-size:8pg;font-family:arial;color:$fcolor" align="center">$slot.dayDate</td></tr>
+##<tr><td height="20px" bgcolor="#ffffff" style="font-size:8pg;font-family:arial;color:$fcolor" align="center">$slot.dayName</td></tr>
+
+#foreach ( $time_slot in $slot.timeSlots )
+<tr>
+#if ( $time_slot.occupied )
+
+#set( $txt = "<table bgcolor=#FFFF55 width=300 height=50px><tr><td align=\'center\'>" )
+#set( $txt = $txt + "$time_slot.reservation.user.userName" )
+#if ( $time_slot.reservation.isStudent ) #set( $txt = $txt + " ($time_slot.reservation.student.matricNo) " ) #end
+#set( $txt = $txt + "<br>" )
+#if ( $time_slot.reservation.checkInDate ) #set ( $txt = $txt + " " + $du.toString($time_slot.reservation.checkInDate, "dd-MMM-yyyy") ) #end
+#if ( $time_slot.reservation.checkInTime ) #set ( $txt = $txt + " (" + $du.toString($time_slot.reservation.checkInTime, "h:mm a") )  #end
+#if ( $time_slot.reservation.checkOutTime ) #set ( $txt = $txt + " - " + $du.toString($time_slot.reservation.checkOutTime, "h:mm a") + ")" ) #end
+#set( $txt = $txt + "</td></tr>" )
+#set( $txt = $txt + "<tr><td></td></tr></table>" )
+
+<td style="width:20px;height:25px;cursor:pointer;cursor:hand" bgcolor="#7FAAFF"
+onMouseover="document.getElementById('show_tip').innerHTML='$txt'" onMouseOut="document.getElementById('show_tip').innerHTML=''" 
+##onclick="doDivAjaxCall$formname('student_info', 'student_info', 'matric_no2=$time_slot.reservation.student.matricNo')"
+></td>
+#else
+
+#if ( $slot.dayDate < 10 ) 
+#set ( $date_select = "0" + "${slot.dayDate}-${_month}-${year}" )
+#else
+#set ( $date_select = "${slot.dayDate}-${_month}-${year}" )
+#end
+
+<td style="width:20px;height:25px;cursor:pointer;cursor:hand" bgcolor="#FFFFAA"
+onclick="document.getElementById('date_in').value='$date_select';document.getElementById('time_in').value='$time_slot.selectTime';document.getElementById('time_out').value='$time_slot.selectTime'"
+>
+</td>
+#end
+</tr>
+#end
+</table>
+
+</td>
+#end
+</tr>
+
+</table>
+
+
+</div>

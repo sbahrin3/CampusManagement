@@ -1,0 +1,61 @@
+<table align="center" style="height:30px;background-color:$bgcolor" cellspacing="0">
+
+<tr bgcolor="lightgrey"><td style="width:350px;height:30px;font-weight:bold">Subject</td><td style="width:50px;font-weight:bold" align="center">Grade</td><td></td></tr>
+
+#foreach ( $r in $applicant.stpmResults )
+<tr>
+<td style="width:200px;height:30px">
+#if ( $r.subject )
+$r.subject.name
+#else
+<input class="texts" style="width:100%" name="other_name_$r.id" value="$!r.otherName" onchange="doDivAjaxCall$formname('div_empty','save_stpm_other','result_id=$r.id')">
+#end
+</td>
+<td style="width:50px" align="center">
+<select id="stpm_grade_${r.id}" name="stpm_grade_${r.id}" class="texts" onkeyup="at(this, event)" style="text-align:center;width:50px" onchange="doDivAjaxCall$formname('div_empty','update_stpm_result','result_id=$r.id')">
+#foreach( $g in $grades )
+<option value="$g.id" #if ( $g.id == $r.generalExamGrade.id ) selected #end>$g.name</option>
+#end
+</select>
+</td>
+<td>
+<input type="button" value="x" style="height:26px" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall${formName}('stpm','delete_subject_stpm','stpm_id=$r.id')">
+</td>
+</tr>
+#end
+
+
+<tr>
+<td>
+
+<select name="stpm_subject_id" class="texts" class="texts" onkeyup="at(this, event)" onkeyup="at(this, event)">
+<option value="">Select Subject</option>
+#foreach( $s in $stpm_subjects )
+#set ( $got = "no" )
+#foreach ( $r in $applicant.stpmResults2 )
+#if ( $r.subject.id == $s.id )
+#set ( $got = "yes" )
+#end
+#end
+#if ( $got == "no" ) <option value="$s.id">$s.name</option> #end
+#end
+<option value="other">-- Other Subject ---</option>
+</select>
+
+</td><td>
+<select name="stpm_grade" class="texts" onkeyup="at(this, event)" style="text-align:center;width:50px">
+<option value="">-</option>
+#foreach( $g in $grades )
+<option value="$g.id">$g.name</option>
+#end
+</select>
+
+</td><td>
+<input type="button" style="height:26px;font-weight:bold"  value="+" onclick="doDivAjaxCall${formName}('stpm','add_stpm','')">
+</fieldset>
+
+</td>
+</tr>
+
+
+</table>

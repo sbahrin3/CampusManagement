@@ -1,0 +1,45 @@
+
+	
+<div  class="well well-lg" style="font-weight:bold">
+$!program.name
+<br/>$!intake.name
+<br/>$!session.name
+</div>
+
+
+
+##<div id="div_flow" name="div_flow" style="overflow:auto;overflow-x:hidden;height:400px">
+
+<table class="table table-striped">
+<tr style="height:40px">
+	<td colspan="10" align="right">
+		<a href="../servlet/educate.sis.module.StudentListXLModule"><img src="../img/xls.gif" border="0"></a>
+	</td>
+</tr>
+<tr>
+<th style="width:30px"></th>
+<th style="width:80px;border-bottom:1px solid #000">Student Id</th>
+<th style="width:100px;border-bottom:1px solid #000">IC No</th>
+<th style="border-bottom:1px solid #000">Name</th>
+<th style="width:150px;border-bottom:1px solid #000">Session</th>
+<th style="width:100px;border-bottom:1px solid #000">Semester</th>
+<th style="width:100px;border-bottom:1px solid #000">Status</th>
+<th style="width:100px;border-bottom:1px solid #000">Total Payment</th>
+</tr>
+
+#foreach( $s in $studentData )
+
+<tr>
+<td class="gradient">$velocityCount.</td>
+<td>$s.matricno</td>
+<td nowrap>$s.icno</td>
+<td>$s.name</td>
+<td>$s.session</td>
+<td nowrap>$s.semester</td>
+<td>$s.status</td>
+<td>$s.amountPaid</td>
+</tr>
+
+#end
+
+</table>

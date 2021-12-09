@@ -1,0 +1,25 @@
+<style>
+td { font-family:verdana; font-size:10pt }
+.textr {color:#000;background-color:#fff;font-weight:normal;font-family:verdana;font-size:10pt; border-bottom:1px solid #66CCCC; border-top: 1px solid #66CCCC; border-left: 1px solid #66CCCC; border-right:1px solid #66CCCC; height:25px; width:100%;padding-left:5px; padding-top:2px; padding-bottom: 2px;}
+.textr:focus {color:#000;background-color:#D4D4FF;font-family:verdana;font-size:10pt; border-bottom:1px solid #0808B2; border-top: 1px solid #66CCCC; border-left: 1px solid #66CCCC; border-right:1px solid #0808B2; height:25px; width:100%;padding-left:5px; padding-top:2px; padding-bottom: 2px;}
+
+</style>
+
+<script>
+	function uploadDocument(programId, documentId, e) {
+		document.getElementById(e).innerHTML = '<img src="../img/indicator.gif"> Uploading.. please wait... ';
+		document.${formName}.enctype='multipart/form-data';
+		document.${formName}.encoding ='multipart/form-data';
+		document.${formName}.target='upload_document';
+		document.${formName}.action='?command=uploadDocument&program_id=' + programId + '&documentId=' + documentId + '&divUploadStatusName=' + e;
+		document.${formName}.submit();
+	
+	}
+</script>	
+<table><tr><td>
+<div id="main_program">
+#parse("$path/programs.vm")
+</div>
+</td></tr></table>
+<div id="empty"></div>
+<iframe id="upload_document" name="upload_document" width="0px" height="0px" style="visibility:hidden"></iframe>

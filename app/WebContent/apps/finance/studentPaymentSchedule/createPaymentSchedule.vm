@@ -1,0 +1,110 @@
+
+	
+
+<div id="divPaymentSchedule">
+	
+    
+	#parse("apps/finance/studentPaymentSchedule/studentInfo2.vm")
+	
+    <div id="inputPaymentSchedule" style="padding:10px">
+    	<table cellpadding="1" cellspacing="1">
+			
+			
+			
+    		<tr style="height:35px"><td style="width:200px">Total Tuition Fees</td><td style="width:20px">:</td>
+				<td style="width:200px"><input class="texts" id="tuitionFees" name="tuitionFees"></td>
+			</tr>
+			
+			<tr style="height:35px"><td>Rebate Fees</td><td>:</td>
+				<td><input class="texts" id="rebateFees" name="rebateFees"></td>
+			</tr>
+			
+			<tr style="height:35px"><td>PTPTN</td><td>:</td>
+				<td><input class="texts" id="ptptnAmount" name="ptptnAmount"></td>
+			</tr>
+			
+			
+    		
+			<tr style="height:35px"><td>Payment Begin Date</td><td>:</td><td>
+    				<input class="texts" id="startPaymentDate" name="startPaymentDate">
+    				<script> new JsDatePick({ useMode:2, target:"startPaymentDate", dateFormat:"%d-%m-%Y" }); </script>
+    		</td></tr>
+			
+			
+			
+			<tr style="height:35px">
+				<td colspan="2" style="font-weight:bold">
+					<input type="checkbox" id="payMonth" name="payMonth" value="1" checked onclick="this.checked = true; $('paySemester').checked = false">
+					Monthly-based payment:
+					
+				</td>
+			</tr>
+			
+			
+  			<tr style="height:120px"><td valign="top" style="padding-top:10px">Calculate<br/>(Choose only one)</td><td valign="top" style="padding-top:50px">OR</td>
+				<td>
+					Monthly Payment:<br/>
+					<input id="monthlyAmount" name="monthlyAmount" class="texts" style="width:100px" onkeypress="$('numberOfMonths').value=''"><br/><br/>
+					Number of Months:<br/>
+					<input id="numberOfMonths" name="numberOfMonths" class="texts" style="width:100px" onkeypress="$('monthlyAmount').value=''">
+				</td>
+			</tr> 
+
+			
+			<tr style="height:35px">
+				<td colspan="2" style="font-weight:bold">
+					<input type="checkbox" id="paySemester" name="paySemester" value="1" onclick="this.checked = true; $('payMonth').checked = false">
+					Semester-based payment:
+					
+				</td>
+			</tr>
+			
+			
+			<tr style="height:35px">
+				<td></td><td></td>
+					<td>
+						
+					<table style="width:100%">
+					<tr>
+					<td style="width:50%">
+						
+					Total Semesters<br/>
+					<select id="numberOfSemesters" name="numberOfSemesters" class="texts" style="width:80px" onchange="$('semesterAmount').value=''">
+						#foreach ($i in [3..12] )
+							<option value="$i" #if ( $i == 6 ) selected #end>$i</option>
+						#end
+					</select>
+
+					</td>
+					<td>
+					Monthly Span
+					<select id="monthlySpan" name="monthlySpan" class="texts" style="width:80px" onchange="$('semesterAmount').value=''">
+						#foreach ($i in [3..7] )
+							<option value="$i">$i</option>
+						#end
+					</select>	
+					</td></tr></table>
+					</td>
+			</tr>
+					
+				
+
+			
+    		<tr style="height:120px">
+				<td></td><td></td>
+    			<td>
+					<div id="createPaymentButton">
+    				<button class="btn btn-success" type="button" value="Create Payment Schedule" onclick="if ( paymentInput() ) { $('createPayment_Wait').style.display='block';$('createPaymentButton').style.display='none';doDivAjaxCall$formname('createPaymentSchedule','createPaymentSchedule','studentId=$student.id'); }">Create Payment Schedule</button>
+					</div>
+					<div id="createPayment_Wait" style="display:none;font-weight:bold">
+						Please Wait .... Calculating Payment Schedule...
+					</div>
+					</td>
+    		</tr>
+    	</table>
+    	
+    </div>
+    	
+    <div id="createPaymentSchedule"></div>
+	
+</div>

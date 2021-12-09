@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<style>
+#resultStat {
+    position:fixed;
+	top: 0%;
+    left: 10%;
+    width:400px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+#gradeFreq {
+    position:fixed;
+	top:0%;
+    left: 40%;
+    width:500px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+
+table.examResults {
+  table-layout: fixed; 
+  *margin-left: -100px;/*ie7*/
+}
+
+.td {
+  vertical-align: top;
+}
+
+.th {
+  position:absolute;
+  *position: relative; /*ie7*/
+  left:0; 
+}
+.outer {position:relative}
+.inner {
+  overflow-x:scroll;
+  overflow-y:visible;
+  margin-left:300px;
+}
+
+</style>
+
+<div id="divSelectParam" style="display:block">#parse("apps/exam_subject_analysis2/select_params.vm")</div>
+<br/>
+
+
+
+<div id="resultReport1" style="padding:5px">
+<div id="listStudents"></div>
+
+<div id="resultStat" class="shadow"></div>
+<div id="gradeFreq" class="shadow"></div>
+
+<script>new Draggable('resultStat');</script>
+<script>new Draggable('gradeFreq');</script>
+</div>
+<div id="resultReport2" style="display:none;padding:5px">
+<div id="listStudents2"></div>
+</div>

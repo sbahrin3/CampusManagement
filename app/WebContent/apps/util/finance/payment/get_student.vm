@@ -1,0 +1,12 @@
+<table width="700" align="center">
+<tr><td>
+
+<table width="100%">
+<tr><td align="right">
+<input name="matric_no" style="width:200px" value="$!matric_no">
+$button.command("get_student").text("GET STUDENT")
+</td></tr></table>
+
+
+</td></tr>
+</table>

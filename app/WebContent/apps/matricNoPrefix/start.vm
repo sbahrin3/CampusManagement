@@ -1,0 +1,5 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<div id="matrics">
+	#parse("apps/matricNoPrefix/matrics.vm");
+</div>

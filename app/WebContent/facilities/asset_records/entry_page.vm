@@ -1,0 +1,143 @@
+
+#macro ( title $title )
+<tr><td colspan="3"></td></tr>
+<tr><td class="section_title" colspan="3">$title</td></tr>
+<tr><td colspan="3"></td></tr>
+#end
+
+#macro ( input $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value" onkeyup="at(this, event)">
+</td></tr>
+#end
+
+#macro ( input_required $input_id $input_title $value)
+<tr><td  valign="top"><span style="color:#FF2A00">*</span>&nbsp;$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value" onkeyup=" $('err_$input_id').innerHTML=''; at(this, event);">
+<div id="err_$input_id" style="color:#CC0000;font-weight:bold;border:2px #000"></div>
+</td></tr>
+#end
+
+#macro ( textarea $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<textarea class="textarea" id="$input_id" name="$input_id">$value</textarea>
+</td></tr>
+#end
+
+#macro ( textarea_required $input_id $input_title $value)
+<tr><td  valign="top"><span style="color:#FF2A00">*</span>&nbsp;$input_title</td><td valign="top">:</td><td>
+<textarea class="textarea" id="$input_id" name="$input_id" onkeyup=" $('err_$input_id').innerHTML=''; at(this, event);">$value</textarea>
+<div id="err_$input_id" style="color:#CC0000;font-weight:bold;border:2px #000"></div>
+</td></tr>
+#end
+
+#macro ( select $input_id $input_title $list $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<select class="texts" id="$input_id" name="$input_id" value="$value">
+<option value=""></option>
+#foreach( $i in $list )
+<option #if ( $i.id == $value ) selected #end value="$i.id">$i.name</option>
+#end
+</select>
+</td></tr>
+#end
+
+#macro ( date_input $input_id $input_title $value )
+<tr><td >$input_title</td><td>:</td><td>
+$html.dateField.name("$input_id").value("$value").style("width:100px").cssClass("texts")
+</td></tr>
+#end
+
+
+<fieldset>
+<legend class="legend">$label_entry</legend>
+<div style="height:450px;overflow:auto">
+
+<table width="100%">
+
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td>Category</td><td>:</td>
+<td>
+<select class="texts" name="categoryId">
+<option value=""></option>
+#foreach( $c in $categories )
+<option value="$c.id" #if ( $r.category.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td>Campus</td><td>:</td>
+<td>
+<select class="texts" name="campusId">
+<option value=""></option>
+#foreach( $c in $campuses )
+<option value="$c.id" #if ( $r.campus.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td>
+</tr>
+
+#input("description" "Description" "$!r.description")
+#input("tagNo" "Tag No" "$!r.tagNo")
+#input("serialNo" "Serial No" "$!r.serialNo")
+#input("brandName" "Brand" "$!r.brandName")
+#input("modelName" "Model" "$!r.modelName")
+##input("purchaseYear" "Year Purchase" "$!r.purchaseYear")
+
+<tr><td>Date Purchased</td><td>:</td>
+<td>
+#set ( $value = "" )
+#if ( $r.purchaseDate ) #set ( $value = $dateFormat.format($r.purchaseDate) ) #end
+$html.dateField.name("purchaseDate").value("$value").style("width:100px").cssClass("texts")
+</td></tr>
+
+#input("purchaseValue" "Value Purchase" "$!r.purchaseValue")
+
+<tr><td>Location Description</td><td>:</td><td><textarea name="locationDescription" class="texts" style="height:80px">$!r.locationDescription</textarea></td></tr>
+
+<tr><td>Asset Status</td><td>:</td><td>
+<select class="texts" name="assetStatus">
+<option value=""></option>
+<option value="good" #if ( $r.status == "good" ) selected #end>Good</option>
+<option value="faulty" #if ( $r.status == "faulty" ) selected #end>Faulty</option>
+<option value="lost" #if ( $r.status == "lost" ) selected #end>Lost</option>
+<option value="repair" #if ( $r.status == "repair" ) selected #end>Under Repair</option>
+<option value="dispose" #if ( $r.status == "dispose" ) selected #end>Dispose</option>
+</select>
+</td></tr>
+
+<tr><td>Loanable?</td><td>:</td><td>
+<select class="texts" name="loanable">
+<option value=""></option>
+<option value="0" #if ( $r.loanable ) selected #end>No</option>
+<option value="1" #if ( $r.loanable ) selected #end>Yes</option>
+</select>
+</td></tr>
+
+<tr><td valign="top">Photo</td><td valign="top">:</td>
+<td>
+<div>
+#if ( $r.photoFileName )
+	<img id="imgAsset" src="../download?file=$!r.photoFileName">
+#else
+	<img id="imgAsset" src="">
+#end
+</div>
+<br/>
+<input class="texts" type="file" id="assetPhoto" name="assetPhoto" style="width:200px">&nbsp;
+<input class="button" type="button" value="Upload" onclick="uploadFile('$!r.id','assetPhoto', 'divUploadFile')">
+<input type="hidden" id="photoFileName" name="photoFileName" value="$!r.photoFileName">
+<div id="divUploadFile"></div>
+</td>
+</tr>
+
+<tr><td>User Id</td><td>:</td><td>$!r.modifyUserId</td></tr>
+<tr><td>Date</td><td>:</td><td>#if ( $r.modifyDate ) $dateFormat.format($!r.modifyDate) #end</td></tr>
+<tr><td>IP</td><td>:</td><td>$!r.modifyRemoteAddress</td></tr>
+
+</table>
+
+</div>
+</fieldset>

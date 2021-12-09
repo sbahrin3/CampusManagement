@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" media="all" href="../js/jsDatePick_ltr.min.css" />
+<script type="text/javascript" src="../js/jsDatePick.min.1.3.js"></script>
+#** 
+<input class="texts" style="width:100px" id="departDateTime" name="departDateTime" value="">
+<script> new JsDatePick({ useMode:2, target:"departDateTime", dateFormat:"%d-%m-%Y" }); </script>
+**#
+
+
+<style>
+#addEnrollmentIntake { 
+	width:400px; 
+	height:200px; 
+	position: fixed; 
+	background-color: #FFF; 
+	top: 40%; 
+	left: 50%; 
+	margin-top: -100px; 
+	margin-left: -200px; 
+	display:none;
+} 
+</style>
+
+<div style="padding:10px;font-family:helvetica;font-size:14pt;font-weight:bold">
+	Setup Student Enrollment Intakes
+</div>
+
+<div style="padding:10px;font-size:11pt;">
+	Path: 
+	<select class="text" style="width:100px;font-size:11pt;" name="pathNo" onchange="doDivAjaxCall$formname('list','listSessions','')">
+		
+		#foreach ( $pathNo in [0..100] )
+			<option value="$pathNo">$pathNo</option>
+		#end
+		
+	</select>
+</div>
+<div id="list" style="padding:10px;">
+	#parse("apps/setupStudentEnrollmentIntake/list.vm")
+</div>
+	
+<div id="addEnrollmentIntake" class="shadow" style="border:1px dotted #000;border-radius:10px">
+	
+</div>

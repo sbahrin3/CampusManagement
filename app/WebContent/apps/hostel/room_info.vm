@@ -1,0 +1,4 @@
+Code: <input name="code_${room.id}" style="width:100px" value="$!room.code">
+Name: <input name="name_${room.id}" style="width:100px" value="$!room.name">
+Capacity: <input name="capacity_${room.id}" style="width:50px" value="$!room.capacity">
+<input type="button" value="Save" onclick="doDivAjaxCall$formname('room_info_${room.id}', 'save_room', 'room_id=$room.id')">

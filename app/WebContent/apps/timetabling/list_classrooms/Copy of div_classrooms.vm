@@ -1,0 +1,76 @@
+
+<table width="100%">
+#set ( $cnt = 1 )
+#set ( $days = -1 )
+#foreach( $c in $classrooms )
+
+#if ( $slotTimeLabels.get($c.classroom.slot.posX) )
+
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#FFFFAA" ) #else #set ( $bgcolor="#ffffff" ) #end
+#if ( $days != $c.days )
+
+#if ( $days != -1 )<tr><td colspan="6"><hr/></td></tr> #end
+<tr bgcolor="$bgcolor" height="30px" style="border-top:1px solid">
+<td style="width:100px" valign="middle" bgcolor="lightgrey">
+$dateFormat3.format($c.date)
+</td>
+#set ( $days = $c.days )
+#else
+
+<tr bgcolor="$bgcolor" height="30px">
+<td style="width:100px"></td>
+
+#end
+
+<td style="width:90px" valign="middle" align="center">
+##$times.get($c.classroom.slot.posX)
+$slotTimeLabels.get($c.classroom.slot.posX)
+</td>
+<td style="width:350px" valign="middle">$!c.classroom.subject.code &nbsp; $!c.classroom.subject.name</td>
+<td style="width:80px" valign="middle">$!c.classroom.classroomSection.name</td>
+<td style="width:80px" valign="middle">$!c.classroom.room.name</td>
+<td style="" valign="middle">
+<table width="100%">
+#if ( $c.classroom.coTeachers.size() == 0 )
+<tr><td>$!c.classroom.teacher.name</td>
+<td align="right">
+
+#set ( $checked = "" )
+#if ( $attendanceData.getAttendance("$c.classroom.id","$c.classroom.teacher.id") ) 
+	#set ( $checked = "checked" )
+#end
+
+<input $checked type="checkbox"  name="check_${c.classroom.id}_${c.classroom.teacher.id}" value="1"  onclick="doDivAjaxCall3$formname('divEmpty','teacherAttendance','classroomId=$c.classroom.id&teacherId=$c.classroom.teacher.id')"></td></tr>
+#else
+<tr><td>$!c.classroom.teacher.name</td>
+<td align="right">
+
+#set ( $checked = "" )
+#if ( $attendanceData.getAttendance("$c.classroom.id","$c.classroom.teacher.id") ) 
+	#set ( $checked = "checked" )
+#end
+
+<input $checked type="checkbox"  name="check_${c.classroom.id}_${c.classroom.teacher.id}" value="1" onclick="doDivAjaxCall3$formname('divEmpty','teacherAttendance','classroomId=$c.classroom.id&teacherId=$c.classroom.teacher.id')"></td></tr>
+#foreach( $t in $c.classroom.coTeachers )
+<tr><td>$t.name</td>
+<td align="right">
+
+#set ( $checked = "" )
+#if ( $attendanceData.getAttendance("$c.classroom.id","$t.id") ) 
+	#set ( $checked = "checked" )
+#end
+
+<input $checked type="checkbox" name="check_${c.classroom.id}_${t.id}" value="1" onclick="doDivAjaxCall3$formname('divEmpty','teacherAttendance','classroomId=$c.classroom.id&teacherId=$t.id')"></td></tr>
+#end
+
+#end
+</table>
+</td>
+</tr>
+
+#end
+
+#end
+
+</table>

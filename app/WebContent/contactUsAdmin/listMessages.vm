@@ -1,0 +1,21 @@
+$dateFormat.applyPattern("dd-MM-yyyy hh:MM a")
+<table>
+<tr style="height:30px;background:#D6D1D1">
+<td class="messageLabel" style="width:30px">&nbsp;</td>
+<td class="messageLabel" style="width:300px">Name</td>
+<td class="messageLabel" style="width:150px">Date</td>
+<td class="messageLabel" style="width:100px">IP Addr.</td>
+<td class="messageLabel" style="width:400px">Message</td>
+<td class="messageLabel" style="width:30px">&nbsp;</td>
+</tr>
+#foreach( $c in $contacts )
+<tr style="height:30px;background:#F2F2F2">
+<td class="messageLabel" valign="top">$velocityCount</td>
+<td class="messageLabel" valign="top">$!c.name<br/>$!c.email<br/>$!c.phone<br/>$!c.organization</td>
+<td class="messageLabel" valign="top">$dateFormat.format($c.createDate)</td>
+<td class="messageLabel" valign="top">$!c.remoteAddr</td>
+<td class="messageLabel" valign="top">$!c.message</td>
+<td class="messageLabel" align="center"><a href="javascript:void(0)" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listMessages','deleteMessage','messageId=$c.id')">x</a></td>
+</tr>
+#end
+</table>

@@ -1,0 +1,90 @@
+<table width="700px" align="center">
+<tr><td>
+
+#parse("header/header.vm")
+
+</td></tr>
+</table>
+
+<div style="padding:10px;font-weight:bold;">
+
+	<table cellpadding="1" cellspacing="1" style="width:100%">
+		<tr style="height:50px">
+			<td style="font-weight:bold;font-size:14pt" colspan="3">PAYMENT SCHEDULE STATEMENT</td>
+		</tr>
+		<tr>
+			<td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+		</tr>
+		<tr style="height:30px"><td style="font-weight:bold">Name</td><td style="font-weight:bold">:</td><td style="font-weight:bold">$paymentSchedule.student.biodata.name</td></tr>
+		<tr style="height:30px"><td style="font-weight:bold">Student ID</td><td style="font-weight:bold">:</td><td style="font-weight:bold">$paymentSchedule.student.matricNo</td></tr>
+		<tr style="height:30px"><td style="font-weight:bold">Program</td><td style="font-weight:bold">:</td><td style="font-weight:bold">$paymentSchedule.student.program.name</td></tr>
+		</tr>			
+	</table>
+</div>
+
+
+
+<table style="width:100%">
+	<tr style="height:40px;background:#AEB1B2">
+		<td style="width:20px"></td>
+		<td style="width:80px" align="center">Type</td>
+		<td style="width:100px" align="center">Due Date</td>
+		<td style="width:80px" align="right">Amt. Due</td>
+		<td style="width:100px" align="right">Pmt. Date</td>
+		<td style="width:80px" align="right">Paid</td>
+		<td style="width:80px" align="right">Balance</td>
+		<td style="width:80px" align="right">Outstanding</td>
+		
+	</tr>
+	#set ( $cnt = 0 )
+	#foreach ( $i in $scheduleItems )
+		
+		
+		#set ( $cnt = $cnt + 1 )
+		#if ( $cnt % 2 == 0 )
+			#set ( $bgcolor = "#fff")
+		#else
+			#set ( $bgcolor = "#D6E2EE" )
+		#end
+		<tr style="height:30px;background:$bgcolor">
+			<td>$cnt)</td>
+			
+			<td align="center">
+				#if ( $i.type == 0 )
+					MONTHLY/FLEXI
+				#elseif ( $i.type == 1 )
+					PTPTN
+				#elseif ( $i.type == 2 )
+					RSRC FEE
+				#elseif ( $i.type == 3 )
+					SEMESTER
+				#elseif ( $i.type == 4 )
+					MISC.
+				#elseif ( $i.type == 6 )
+					CREDIT NOTE
+				#end
+	        </td>
+			
+			
+			<td align="center">
+				#if ( $i.paymentDate )
+					$dateFormat.format($i.paymentDate)
+				#end
+			</td>
+			<td align="right">$numFormat.format($i.amountDue)</td>
+							
+			<td align="right">
+			#if ( $i.paidDate )
+				$dateFormat.format($i.paidDate)
+			#end
+			</td>
+			<td align="right">$numFormat.format($i.amountPaid)</td>
+			<td align="right">$numFormat.format($i.currentBalance)</td>
+			<td align="right">$numFormat.format($i.outstandingBalance)</td>
+			
+		</tr>
+	
+	#end
+	
+</table>
+

@@ -1,0 +1,43 @@
+
+#macro ( input $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value" onkeyup="at(this, event)">
+</td></tr>
+#end
+
+<div style="height:400px;overflow:auto">
+<fieldset>
+<legend class="legend">$label_entry</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+#input("name" "Name" "$!r.name")
+#input("telephoneNo" "Telephone" "$!r.telephoneNo")
+#input("email" "Email" "$!r.email")
+<tr>
+	<td>State</td><td>:</td>
+	<td>
+		#parse("agent/agentRecordModule/listStates.vm")
+	</td>
+</tr>
+<tr>
+	<td>City</td><td>:</td>
+	<td>
+		<div id="listCities">
+		#parse("agent/agentRecordModule/listCities.vm")
+		</div>
+	</td>
+</tr>
+</table>
+</fieldset>
+#if ( $r )
+    <fieldset>
+    <legend class="legend">Contact Details</legend>
+    <div id="contactDetails">
+    	#parse("agent/agentRecordModule/contactDetails.vm")
+    </div>
+    </fieldset>
+#end
+
+<input type="hidden" name="countryId" value="MAS">
+</div>
+

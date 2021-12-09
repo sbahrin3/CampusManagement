@@ -1,0 +1,24 @@
+<table width="1000px" align="center" cellspacing="0" cellpadding="0" style="border-right:1px solid #C3C3C3;">
+<tr style=" border-bottom:1px solid #C3C3C3">
+<td valign="top" style="width:250px">
+##<div style="position:fixed" width="250px">
+<div style="position:relative" width="250px">
+<table width="250px" cellpadding="0" cellspacing="0"><tr><td>
+#parse( "apps/lms2/my_profile.vm" )
+#parse( "apps/lms2/left_menu.vm" )
+</td></tr></table>
+</div>
+</td>
+<td valign="top" style="width:750px; border-left:1px solid #C3C3C3;border-bottom:1px solid #C3C3C3">#parse( "apps/lms2/workspace.vm")</td>
+</tr></table>
+
+<table width="1000px" align="center" cellspacing="0" cellpadding="0">
+<tr>
+<td></td>
+<td align="right" style="font-family:verdana;font-size:10pt;color:#6666FF">&copy; Powered by LeBAH Framework, 2011.</td></tr>
+</table>
+
+
+<script>
+doDivAjaxCall$formname('div_postings','list_postings','');
+</script>

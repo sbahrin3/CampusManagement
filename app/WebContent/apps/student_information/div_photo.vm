@@ -1,0 +1,10 @@
+
+#if($student.photoFileName != "")
+	<img src="../download?file=$!student.photoFileName">
+#else
+<img src="../img/nophoto.gif" border="0">
+#end
+<br/><br/>
+#if ( !$student_mode )
+	<button type="button" class="btn btn-success" onclick="$('div_upload_photo').style.left=cursorX-650;$('div_upload_photo').style.visibility='visible';doDivAjaxCall$formname('div_upload_photo','upload_photo','')">Upload Photo..</button>
+#end

@@ -1,0 +1,158 @@
+
+
+<table width="700" align="center">
+<tr><td>
+
+<table width="100%"><tr><td align="right">
+<input name="student_no" value="$!student_no" style="width:150px">
+$button.command("get_student_by_matric").text("Get Student")
+</td></tr></table>
+
+
+#if ( $student )
+
+<table width="100%">
+<tr><td style="width:150px">Matric No:</td><td style="font-weight:bold">$student.matricNo</td></tr>
+<tr><td>Name:</td><td style="font-weight:bold">$student.biodata.name</td></tr>
+<tr><td>Program:</td><td style="font-weight:bold">$student.program.code $student.program.name</td></tr>
+<tr><td>Intake:</td><td style="font-weight:bold">$student.intake.name</td></tr>
+<tr><td>Centre:</td><td style="font-weight:bold">$student.learningCenter.name</td></tr>
+#if ( $student_status )
+<tr><td>Current Session:</td><td style="font-weight:bold">$student_status.session.name</td></tr>
+<tr><td>Current Period:</td><td style="font-weight:bold">$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end</td></tr>
+#end
+</table>
+
+#if ( $student_status )
+
+<br/>
+<table width="100%">
+<tr><td style="height:30px;font-weight:bold" colspan="4" bgcolor="lightgrey">
+
+Registered Subjects in
+$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end
+: Current Semester
+</td></tr>
+#if ( $student_status.studentSubjects )
+
+#foreach ( $s in $student_status.studentSubjects )
+<tr>
+<td style="width:10px"><input type="checkbox" name="delete_subjects" value="$s.id"></td>
+<td style="width:50px">$s.subject.code</td>
+<td>$s.subject.name</td>
+<td align="right">
+<select name="section_ids">
+<option value="">-Select Section</option>
+#foreach( $section in $sections )
+
+#set ( $selected = "" )
+#if ( $s.section.id )
+#if ( $s.section.id == $section.id ) #set ( $selected = "selected" ) #end
+#else
+#if ( $student.learningCenter )
+#if ( $student.learningCenter.id == $section.learningCentre.id ) #set ( $selected = "selected" ) #end
+#end
+#end
+
+
+<option value="$!{s.id}_$!{section.id}" $selected >$section.name - $section.learningCentre.name</option>
+#end
+</select>
+
+</td>
+</tr>
+#end
+
+<tr>
+
+<td colspan="2">
+$button.command("remove_subjects").text("REMOVE")
+</td>
+
+<td colspan="2" align="right">
+$button.command("save_sections").text("SAVE SECTIONS")
+</td>
+
+</tr>
+
+#end
+</table>
+
+<table width="100%">
+<tr><td style="height:40px;font-weight:bold" bgcolor="lightgrey">
+List of subjects under Programme enrolled by this student:
+</td></tr></table>
+
+
+<table width="100%">
+<tr>
+<td style="height:30px;font-weight:bold" colspan="4" bgcolor="lightgrey">
+$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end
+
+- Current Student's Semester
+
+</td>
+</tr>
+
+<tr><td colspan="4" align="right">
+$button.command("add_subjects").text("ADD")
+</td></tr>
+
+#foreach($s in $subjects)
+<tr>
+<td style="width:10px"><input type="checkbox" name="selected_subjects" value="$s.id"></td>
+<td style="width:50px">$s.subject.code</td>
+<td>$s.subject.name</td>
+</tr>
+#end
+
+</table>
+
+#end
+<br/>
+
+<table width="100%">
+<tr><td style="height:40px;font-weight:bold" bgcolor="lightgrey">
+List of subjects from other Semesters:
+</td></tr></table>
+<table width="100%">
+#foreach ( $period in $periods )
+
+#if ( $student_status.period.id != $period.id )
+<tr><td style="height:30px;font-weight:bold" colspan="4" bgcolor="lightgrey">$period.name #if ( $period.parent ) ($period.parent.name) #end</td></tr>
+#if ( $programUtil.getSubjectRegs($programStructure, $period.id ) )
+
+<tr><td colspan="4" align="right">
+$button.command("add_subjects").text("ADD")
+</td></tr>
+
+#foreach( $s in $programUtil.getSubjectRegs($programStructure, $period.id ))
+<tr>
+<td style="width:10px"><input type="checkbox" name="selected_subjects" value="$s.id"></td>
+<td style="width:50px">$s.subject.code</td>
+<td>$s.subject.name</td>
+</tr>
+#end
+
+#end
+
+#end
+
+#end
+</table>
+
+#else
+
+
+<table width="100%">
+<tr><td align="center" style="font-weight:bold">
+
+Data Not Found for $!student_no
+
+</td></tr></table>
+
+#end
+
+</td></tr></table>
+
+<input type="hidden" name="student_status_id" value="$!student_status.id">

@@ -1,0 +1,17 @@
+<script>
+$('divInvoiceEntry').style.display="block";
+</script>
+
+<table width="100%" cellspacing="0" cellpadding="0" style="background:#8E8E8E">
+<tr><td style="font-weight:bold;color:#fff">$invoice.sponsor.name</td><td align="right" style="width:80px"><input class="linkbutton" type="button" value="x" onclick="$('divInvoiceEntry').style.display='none';"></td></tr></table>
+
+<div style="padding:2px;overflow:auto;height:420px">
+
+#parse("apps/sponsor_invoice/print_sponsor_list_invoice.vm")
+<br/>
+#foreach( $i in $invoice.invoices )
+	#parse("apps/sponsor_invoice/print_sponsor_student_invoice.vm")
+	<br/>
+#end
+
+</div>

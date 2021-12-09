@@ -1,0 +1,80 @@
+#if ( $programs.size() == 1 )
+
+#set( $choice = $programs.get(0) )
+<tr>
+<td></td>
+<td>
+
+<input type="hidden" name="choice1" value="$choice.id">
+
+</td>
+</tr>
+
+#else
+
+<fieldset>
+<legend style="font-weight:bold">PROGRAM CHOICES</legend>
+
+<table width="100%" style="background-color:$bgcolor">
+
+<tr><td align="right" style="width:150px">Program of Study :</td>
+<td>
+
+#set ( $level = "" )
+<select name="choice1"  class="texts" onkeyup="at(this, event)">
+<option value="">- Select Program -</option>
+#foreach ( $p in $programs )
+#if ( $p.level.name != $level )
+#set ( $level = $p.level.name )
+<option value=""></option>
+<option value="">---- $level -------------------------</option>
+#end
+
+<option value="$p.id" #if ( $applicant.choice1.id == $p.id ) selected #end>$p.code - $p.name</option>
+#end
+</select>
+
+
+</td>
+</tr>
+
+#**
+<tr><td align="right" style="width:150px">Second Choice :</td>
+<td>
+#set ( $level = "" )
+<select name="choice2"  class="texts" onkeyup="at(this, event)">
+<option value="">- Select Program -</option>
+#foreach ( $p in $programs )
+#if ( $p.level.name != $level )
+#set ( $level = $p.level.name )
+<option value=""></option>
+<option value="">---- $level -------------------------</option>
+#end
+<option value="$p.id" #if ( $applicant.choice2.id == $p.id ) selected #end>$p.code - $p.name</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr><td align="right" style="width:150px">Third Choice :</td>
+<td>
+#set ( $level = "" )
+<select name="choice3" class="texts" onkeyup="at(this, event)">
+<option value="">- Select Program -</option>
+#foreach ( $p in $programs )
+#if ( $p.level.name != $level )
+#set ( $level = $p.level.name )
+<option value=""></option>
+<option value="">---- $level -------------------------</option>
+#end
+<option value="$p.id" #if ( $applicant.choice3.id == $p.id ) selected #end>$p.code - $p.name</option>
+#end
+</select>
+</td>
+</tr>
+**#
+</table>
+
+</fieldset>
+
+#end

@@ -1,0 +1,201 @@
+<div style="font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold;margin-bottom:2px;text-align:center">
+ERICAN COLLEGE
+</div>
+<div style="font-family:Verdana, sans-serif;font-size:10pt;font-weight:bold;margin-bottom:20px;text-align:center">
+MAKLUMAT ASAS GRADUAN
+</div>
+
+<table>
+<tr>
+<td style="width:250px"></td><td style="width:10px"></td><td style="width:600px"></td></tr>
+
+<tr><td>No. KP</td><td>:</td><td class="box">$!mohe.nokp</td></tr>
+<tr><td>No. Matriks</td><td>:</td><td class="box">$!mohe.matric</td></tr>
+<tr><td>Nama</td><td>:</td><td class="box">$!mohe.nama_penuh</td></tr>
+
+<tr><td>Emel</td><td>:</td><td class="box">$!mohe.email</td></tr>
+
+<tr><td>Jantina</td><td>:</td><td class="box">
+#if ( $!mohe.jantina == "1" ) LELAKI #elseif ( $!mohe.jantina == "2"  ) PEREMPUAN #end
+</select>
+
+</td></tr>
+
+
+<tr><td>Date</td><td>:</td><td class="box">$!mohe.tarikh_lahir</td></tr>
+
+<tr><td>Warganegara</td><td>:</td><td class="box">
+#if ( $mohe.warganegara == "1" ) 1 - Warganegara #end
+#if ( $mohe.warganegara == "2" ) 2 - Bukan Warganegara #end
+#if ( $mohe.warganegara == "3" ) 3 - Penduduk Tetap #end
+
+</td></tr>
+
+##JIKA BUKAN WARGANEGARA
+<tr><td>Negara asal</td><td>:</td><td class="box">$!mohe.negara_asal</td></tr>
+
+
+<tr><td>Alamat Tetap</td><td>:</td><td class="box">$!mohe.alamat_tetap1</td></tr>
+<tr><td></td><td></td><td class="box">$!mohe.alamat_tetap2</td></tr>
+<tr><td></td><td></td><td class="box">$!mohe.alamat_tetap3</td></tr>
+<tr><td>Negeri</td><td>:</td><td class="box">
+#foreach( $k in $kodNegeriList )
+#if ( $mohe.negeri_tetap == $k.code ) $k.code - $k.name #end
+#end
+</td></tr>
+
+<tr><td>Daerah</td><td>:</td><td class="box">
+#foreach( $k in $kodDaerahList )
+#if ( $mohe.daerah_tetap == $k.code ) $k.code - $k.name #end
+#end
+</td></tr>
+
+<tr><td>Poskod</td><td>:</td><td class="box">$!mohe.poskod_tetap</td></tr>
+
+<tr><td>Keturunan</td><td>:</td><td class="box">
+#foreach( $k in $kodKeturunanList )
+#if ( $mohe.keturunan == $k.code ) $k.code - $k.name #end
+#end
+</td></tr>
+
+<tr><td>Peringkat Pengajian</td><td>:</td><td class="box">
+
+#foreach( $k in $kodPeringkatPengajianList )
+#if ( $mohe.peringkat_pengajian == $k.code ) $k.code - $k.name #end
+#end
+</td></tr>
+
+<tr><td>Bidang Pengajian</td><td>:</td><td class="box">
+#foreach( $k in $kodBidangList )
+#if ( $mohe.bidang_pengajian == $k.code ) $k.code - $k.name #end
+#end
+</td></tr>
+
+<tr><td>Subbidang Pengajian</td><td>:</td><td class="box">
+#foreach( $k in $kodSubbidangList )
+#if ( $mohe.subbidang_pengajian == $k.code ) $k.code - $k.name #end
+#end
+</td></tr>
+
+<tr><td>National Education Code</td><td>:</td><td class="box">
+#foreach( $k in $kodNecList )
+#if ( $mohe.national_education_code == $k.code ) $k.code - $k.name #end
+#end
+</td></tr>
+
+<tr><td>Fakulti</td><td>:</td><td class="box">$!mohe.fakulti</td></tr>
+<tr><td>Ijazah</td><td>:</td><td class="box">$!mohe.ijazah</td></tr>
+<tr><td>Singkatan Ijazah</td><td>:</td><td class="box">$!mohe.ijazah_singkatan</td></tr>
+
+<tr><td>Kod Kursus</td><td>:</td><td class="box">$!mohe.kod_kursus</td></tr>
+<tr><td>Program Pengajian</td><td>:</td><td class="box">$!mohe.program</td></tr>
+<tr><td>Pengkhususan</td><td>:</td><td class="box">$!mohe.pengkhususan</td></tr>
+
+##<tr><td>CGPA</td><td>:</td><td class="box">$!mohe.cgpa</td></tr>
+##<tr><td>Gred</td><td>:</td><td class="box">$!mohe.gred</td></tr>
+
+<tr><td></td><td></td>
+<td>
+<table><tr>
+<td>CGPA:</td><td class="box" style="width:50px" align="center">$!mohe.cgpa</td>
+<td>Gred:</td><td class="box" style="width:50px" align="center">$!mohe.gred</td>
+</td></tr></table>
+</td>
+</tr>
+
+<tr><td>Lokasi Pengajian</td><td>:</td><td class="box">
+#if ( $mohe.lokasi_pengajian == "1" ) 1 - Pengajian Dalam Kampus #end
+#if ( $mohe.lokasi_pengajian == "2" ) 2 - Pengajian Luar Kampus #end
+</td></tr>
+
+<tr><td>Mod Pengajian</td><td>:</td><td class="box">
+#if ( $mohe.mod_pengajian == "1" ) 1 - Sepenuh Masa #end
+#if ( $mohe.mod_pengajian == "2" ) 2 - Separuh Masa #end
+</td></tr>
+
+<tr><td>Kaedah Pengajian</td><td>:</td><td class="box">
+#if ( $mohe.kaedah_pengajian == "3" ) 3 - Pengajian Jarak Jauh #end
+#if ( $mohe.kaedah_pengajian == "4" ) 4 - Pembelajaran Maya/Online #end
+#if ( $mohe.kaedah_pengajian == "5" ) 5 - Program Pembelajaran Fleksibel #end
+#if ( $mohe.kaedah_pengajian == "8" ) 8 - Eksekutif #end
+#if ( $mohe.kaedah_pengajian == "9" ) 9 - Kerja Kursus (konvensional) #end
+#if ( $mohe.kaedah_pengajian == "10" ) 10 - Penyelidikan #end
+#if ( $mohe.kaedah_pengajian == "11" ) 11 - Francais #end
+#if ( $mohe.kaedah_pengajian == "21" ) 21 - Penyelidikan &amp; Kerja Kursus #end
+</td></tr>
+
+<tr><td>Bulan/Tahun Mula Pengajian</td><td>:</td><td class="box">
+$!mohe.bulan_mula_pengajian / $!mohe.tahun_mula_pengajian</td></tr>
+##<tr><td>Tahun Mula Pengajian</td><td>:</td><td class="box">$!mohe.tahun_mula_pengajian</td></tr>
+
+<tr><td>Bulan/Tahun Tamat Pengajian</td><td>:</td><td class="box">$!mohe.bulan_tamat_pengajian / $!mohe.tahun_tamat_pengajian</td></tr>
+##<tr><td>Tahun Tamat Pengajian</td><td>:</td><td class="box">$!mohe.tahun_tamat_pengajian</td></tr>
+
+<tr><td>Penaja Pengajian</td><td>:</td><td class="box">
+#foreach( $k in $kodPenajaList )
+#if ( $mohe.penaja == $k.code ) $k.code - $k.name #end
+#end
+</td></tr>
+
+<tr><td></td><td></td><td>
+<table>
+<tr><td>Bahasa Melayu (SPM)</td><td>:</td><td class="box" style="width:100px">
+#foreach( $k in $kodKelayakanBahasaList )
+#if ( $mohe.spm_bm == $k.code ) $k.code - $k.name #end
+#end
+</td>
+<td>Bahasa Inggeris (SPM)</td><td>:</td><td class="box" style="width:100px">
+#foreach( $k in $kodKelayakanBahasaList )
+#if ( $mohe.spm_bi == $k.code ) $k.code - $k.name #end
+#end
+</td></tr>
+</table>
+</td></tr>
+
+
+<tr><td>Keputusan MUET</td><td>:</td><td class="box">
+#if ( $mohe.muet == "1" ) Band 1 #end
+#if ( $mohe.muet == "2" ) Band 2 #end
+#if ( $mohe.muet == "3" ) Band 3 #end
+#if ( $mohe.muet == "4" ) Band 4 #end
+#if ( $mohe.muet == "5" ) Band 5 #end
+#if ( $mohe.muet == "6" ) Band 6 #end
+#if ( $mohe.muet == "7" ) Tidak Berkaitan #end
+</select>
+</td></tr>
+
+<tr><td>Cawangan</td><td>:</td><td class="box">$!mohe.cawangan</td></tr>
+<tr><td>Kampus Francais</td><td>:</td><td class="box">$!mohe.francais</td></tr>
+<tr><td>Nama Kampus Francais</td><td>:</td><td class="box">$!mohe.nama_institusi_francais</td></tr>
+
+<tr><td>Kelayakan Masuk</td><td>:</td><td class="box">
+#foreach( $k in $kodKelayakanMasukList )
+#if ( $mohe.kelayakan_masuk == $k.code ) $k.code - $k.name #end
+#end
+</select>
+</td></tr>
+
+<tr><td>Kelayakan Lain</td><td>:</td><td class="box">$!mohe.kelayakan_lain</td></tr>
+
+
+<tr><td>Status Latihan Industri</td><td>:</td><td class="box">
+#if ( $mohe.status_latihan_industri == "1" ) 1 - Ya, wajib #end
+#if ( $mohe.status_latihan_industri == "2" ) 2 - Tidak wajib #end
+#if ( $mohe.status_latihan_industri == "3" ) 3 - Dipilih oleh pelajar #end
+#if ( $mohe.status_latihan_industri == "4" ) 4 - Tidak Berkenaan #end
+</td></tr>
+
+<tr><td>Status / Jenis OKU</td><td>:</td><td>
+<table>
+<tr><td class="box" style="width:100px">
+#if ( $mohe.status_oku == "1" ) 1 - Ya #end
+#if ( $mohe.status_oku == "2" ) 2 - Tidak #end
+</td><td class="box" style="width:300px">
+#if ( $mohe.jenis_oku == "1" ) 1 - Penglihatan #end
+#if ( $mohe.jenis_oku == "2" ) 2 - Pendengaran #end
+#if ( $mohe.jenis_oku == "3" ) 3 - Anggota fizikal #end
+#if ( $mohe.jenis_oku == "5" ) 5 - Pertuturan #end
+#if ( $mohe.jenis_oku == "6" ) 6 - Pelbagai #end
+</td></tr></table>
+</td></tr>
+</table>

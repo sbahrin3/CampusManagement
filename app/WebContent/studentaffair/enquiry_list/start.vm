@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+#studentInfo {
+    position:fixed;
+    background: #fff;
+    top: 50%;
+    left: 100px;
+    width:50em;
+    height:15em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    border: 1px solid #ccc;
+}
+#enquiryInfo {
+    position:fixed;
+    background: #fff;
+    top: 30%;
+    left: 100px;
+    width:50em;
+    height:30em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    border: 1px solid #ccc;
+}
+</style>
+<div id="studentInfo" class="shadow" style="display:none;"></div>
+<div id="enquiryInfo" class="shadow" style="display:none;"></div>
+<div id="enquiries">#parse("studentaffair/enquiry_list/enquiries.vm")</div>

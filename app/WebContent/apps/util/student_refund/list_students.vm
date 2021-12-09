@@ -1,0 +1,123 @@
+
+<fieldset style="background-color:#fff; border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-family:arial;font-size:12pt;font-weight:bold">List of Students with Refund Amount</legend>
+
+<table width="100%">
+<tr>
+<td align="right">
+
+##<input type="button" class="gradient" style="height:30px;" value="PDF" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.PrintRefundListModule?data=$!programId,$!intakeId,$!sessionId,$!listType';">
+
+#if ( $programId == "null" ) #set ( $programId = "" ) #end
+#if ( $intakeId == "null" ) #set ( $intakeId = "" ) #end
+<input type="button" class="gradient" style="height:30px;" value="XLS" onclick="document.location='../servlet/educate.sis.module.StudentRefundListExcelServlet?programId=$!programId&intakeId=$!intakeId'">
+
+
+</td>
+<td align="right" style="width:100px">
+<div id="div_progress" name="div_progress">
+<b>$students.size() Students</b>
+</div>
+</td></tr>
+</table>
+
+<br>
+
+<table width="100%" cellspacing="0">
+<tr class="gradient" height="30px">
+<td style="width:30px">&nbsp;</td>
+<td style="width:150px;font-weight:bold">Matric No.</td>
+<td style="width:150px;font-weight:bold">ICNo</td>
+<td style="width:450px;font-weight:bold">Name</td>
+##<td style="width:100px;font-weight:bold">Period</td>
+##<td style="width:100px;font-weight:bold">Status</td>
+<td style="width:100px;font-weight:bold">Amount</td>
+<td style=""></td>
+<td style="width:100px;font-weight:bold" align="center">Refund Amount</td>
+<td style="width:20px;font-weight:bold">*</td>
+</tr>
+</table>
+
+<div id="div_flow" name="div_flow" style="overflow:auto;overflow-x:hidden;height:250px;background-color:#E1E1E1">
+
+<table width="100%" cellspacing="0" style="background-color:#fff">
+<tr class="gradient" height="0px">
+<td style="width:30px"></td>
+<td style="width:150px;"></td>
+<td style="width:150px;"></td>
+<td style="width:450px;"></td>
+##<td style="width:100px;"></td>
+##<td style="width:100px;"></td>
+<td style="width:100px;"></td>
+<td style=""></td>
+<td style="width:100px;"></td>
+<td style="width:20px;"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $s in $students )
+#set ( $cnt = $cnt + 1 )
+<tr height="30px">
+<td>$velocityCount.</td>
+<td>$s.student.matricNo</td>
+<td>$s.student.biodata.icno</td>
+<td>$s.student.biodata.name</td>
+##<td><input class="text" readonly value="$s.period.name #if ( $s.period.parent ) ($s.period.parent.name) #end"></td>
+##<td><input class="text" readonly value="$s.status.name"></td>
+<td>
+<div id="div_amount_$s.student.id" name="div_amount_$s.student.id">
+<input id="balance_amount_$s.student.id" name="balance_amount_$s.student.id" class="text" style="text-align:right" readonly value="$numFormat.format($s.amount)">
+<div>
+</td>
+<td style="border-bottom:1px solid #C3C3C3;" align="center">
+
+<div id="div_confirm_$s.student.id" name="div_confirm_$s.student.id" style="visibility:hidden;position:absolute">
+#parse( "apps/util/student_refund/confirm_refund.vm" )
+</div>
+
+<div id="div_$s.student.id" name="div_$s.student.id">
+
+<input id="button_refund_$s.student.id" name="button_refund_$s.student.id" class="gradient" type="button" value="Refund" 
+onclick="$('div_confirm_$s.student.id').style.visibility='visible'; $('refund_amount_$s.student.id').value = $('amount_$s.student.id').value;">
+</div>
+
+
+</td>
+
+<td style="border-bottom:1px solid #C3C3C3;background-color:#E1E1E1">
+<input id="amount_$s.student.id" name="amount_$s.student.id" class="text" style="text-align:right" 
+value="$numFormat.format($s.amount)">
+</td>
+
+<td style="border-bottom:1px solid #C3C3C3;background-color:#E1E1E1">
+
+<input type="checkbox" name="student_ids" id="cb_$cnt" value="$s.student.id">
+</td>
+</tr>
+
+#end
+
+</table>
+
+</div>
+
+<table width="400px" align="right">
+
+<tr><td>
+#set ( $cnts = $cnt + 1 )
+Select All: <input id="cb" type="checkbox" 
+onclick="if ( $('cb').checked == true ) { for ( i=1; i < $cnts; i++ ) { $('cb_' + i).checked=true; } } else { for ( i=1; i < $cnts; i++ ) { $('cb_' + i).checked=false; } }"
+
+</td><tr>
+
+<tr><td><b>*Bulk Refund Remarks:</b><br>
+<textarea id="bulk_remark" name="bulk_remark" style="width:400px;height:50px">REFUND</textarea>
+</td></tr>
+
+<tr><td align="right">
+<input class="gradient" style="height:30px;font-weight:bold" type="button" value="Make Bulk Refunds"
+onclick="if ( !confirm('Make bulk refunds?') ) return; doDivAjaxCall$formname('div_empty','bulk_refunds','cnts=$cnts')">
+##onclick="if ( $('cb').checked == true ) { doDivAjaxCall$formname('div_empty','bulk_refunds','cnts=$cnts'); } else { alert('None selected!') }">
+</td></tr>
+</table>
+
+</fieldset>

@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="../admission/test/style.css" type="text/css" media="screen" />
+
+<table>
+#foreach( $applicant in $applicants )
+<tr>
+<td>$applicant.name</td>
+<td>$applicant.offeredProgram.name</td>
+</tr>
+#end
+</table>
+
+<input type="button" value="Test" onclick="doDivAjaxCall3$formname('test','testCommand','')">
+<div id="test"></div>

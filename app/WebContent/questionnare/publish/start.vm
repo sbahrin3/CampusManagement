@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" media="all" href="../js/jsDatePick_ltr.min.css" />
+<script type="text/javascript" src="../js/jsDatePick.min.1.3.js"></script>
+
+<style>
+#div_input {
+    position:fixed;
+    top: 30%;
+    left: 15%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#E8ECEF;
+    display:none;
+}
+#divTestRun {
+    position:fixed;
+    top: 20%;
+    left: 10%;
+    width:1000px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#F9B94A;
+    display:none;
+}
+#div_report {
+/*
+    position:fixed;
+    top: 30%;
+    left: 10%;
+    width:1000px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#FFF;
+    display:none;
+*/
+}
+
+#div_transcript {
+    position:fixed;
+    top: 30%;
+    left: 20%;
+    width:800px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#FFF;
+    display:none;
+}
+.row_highlighted {
+	background:#FCFC9C;
+}
+.row_normal {
+	background:#FFF;
+}
+
+</style>
+
+<div style="padding:10px;border:1px dotted #ccc">
+
+
+<div id="divFilterParams" style="padding:10px;border:1px dotted #AAA9A9;display:none;">
+	<table align="center">
+	<tr>
+		<td colspan="2" style="font-family:Helvetica, arial;font-weight:bold;font-size:10pt">
+			Questionnare Filter Parameters:
+		</td>
+	</tr>
+	<tr>
+	<td style="width:150px">Select Program:</td>
+	<td style="width:400px">
+	<select name="filterProgram" class="text" onchange="doDivAjaxChainCall$formname('divFilterIntake','listFilterIntakes','','divFilterSubject','listFilterSubjects','')">
+	<option value=""></option>
+	#foreach( $p in $programs )
+	<option value="$p.id">$p.code $p.name</option>
+	#end
+	</select>
+	</td></tr>
+	
+	<tr><td>Select Intake:</td>
+	<td>
+	<div id="divFilterIntake">
+	#parse("questionnare/publish/divFilterIntake.vm")
+	</div>
+	</td></tr>
+	
+	<tr><td>Select Subject:</td>
+	<td>
+	<div id="divFilterSubject">
+	#parse("questionnare/publish/divFilterSubject.vm")
+	</div>
+	</td></tr>
+	
+	<tr><td>Select Questionnare:</td>
+	<td>
+	<div id="divFilterQuestionnare">
+	#parse("questionnare/publish/divFilterQuestionnare.vm")
+	</div>
+	</td></tr>
+	
+	<tr><td></td>
+	<td align="right">
+	<input class="linkbutton" type="button" value="Filter.." onclick="doDivAjaxCall3$formname('div_main','listQuestionnares','')">
+	</td></tr>
+	
+	
+	</table>
+</div>
+
+
+<div id="div_main" style="padding:10px;">
+	#parse("questionnare/publish/questionnares.vm")
+</div>
+
+<div id="div_input" class="shadow"></div>
+
+<div id="divTestRun" class="shadow"></div>
+<br/><br/>
+<div id="div_report"></div>
+<div id="div_transcript" class="shadow"></div>
+
+<div id="empty"></div>
+
+</div>

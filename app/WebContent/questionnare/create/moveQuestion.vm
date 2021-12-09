@@ -1,0 +1,43 @@
+<script>
+$('div_input').style.display = "block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#2B0BBC;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+Question $!partQuestion.refNo
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('div_input').style.display='none';">
+</td></tr>
+</table>
+<br/>
+<table>
+<br/><br/>
+<table align="center">
+<tr><td style="width:150px">Move this question</td><td style="width:10px">:</td>
+<td style="width:100px">
+<select class="text" name="position">
+<option value="after">After</option>
+<option value="before">Before</option>
+</td>
+<td style="width:100px">
+<select class="text" name="moveId">
+#foreach( $q in $partQuestions )
+	#if ( $partQuestion.id != $q.id )
+	<option value="$q.id">$q.refNo</option>
+	#end
+#end
+</select>
+</td>
+<td>
+<input class="linkbutton" type="button" value="Move Question" 
+ onclick="$('div_input').style.display='none'; doDivAjaxCall3$formname('div_main','saveMoveQuestion','partQuestionId=$!partQuestion.id')">
+</td>
+</tr>
+</table>
+<br/>
+<br/>
+<br/>
+
+<script>new Draggable('div_input', {handle: 'dragHandle'});</script>

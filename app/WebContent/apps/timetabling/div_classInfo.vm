@@ -1,0 +1,73 @@
+
+<div style="padding:10px">
+	
+	<table class="table">
+	<tr>
+		<td style="width:150px">
+			Course:
+		</td>
+		<td>
+			$classroom.subject.code $classroom.subject.name
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Activity:
+		</td>
+		<td>
+			$classroom.classroomSection.classroomType.LearningActivityType.name
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			Semester:
+		</td>
+		<td>
+			$!semesterName
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			Group:
+		</td>
+		<td>
+			$!groupName
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			Room:
+		</td>
+		<td>
+			$!classroom.room.code - $!classroom.room.name, $!classroom.room.floor.name,
+			$!classroom.room.floor.block.name, $!classroom.room.floor.block.building.name
+		</td>
+	</tr>
+	
+	
+		<tr height="30px"><td>
+		Lecturer(s):
+		</td></tr>
+		
+		#if ( $classroom && $classroom.classTeachers )
+			#if ( $classroom.classTeachers.size() > 0 )
+			
+				#set ( $i = 0 )
+				#foreach ( $t in $classroom.classTeachers )
+					<tr><td colspan="2">
+    				$t.teacher.name
+    				#if ( $i < $classroom.classTeachers.size() ) </br> #end
+    				</td></tr>
+    			#end
+				
+			#end
+		#end
+	
+	
+	
+	</table>
+
+</div>

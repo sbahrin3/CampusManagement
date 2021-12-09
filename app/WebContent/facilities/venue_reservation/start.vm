@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" media="all" href="../js/jsDatePick_ltr.min.css" />
+<script type="text/javascript" src="../js/jsDatePick.min.1.3.js"></script>
+<style>
+#divRooms {
+    position:fixed;
+    top: 35%;
+    left: 30%;
+    width:550px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#FCF9F9;
+    display:none;
+}
+#divItems {
+    position:fixed;
+    top: 35%;
+    left: 30%;
+    width:600px;
+    margin-top: -100px;
+    border: 1px solid #ccc;
+    padding:3px;
+    background:#FCF9F9;
+    display:none;
+}
+</style>
+<div id="reservation">
+#parse("facilities/venue_reservation/borrower.vm")
+</div>
+<div id="divRooms" class="shadow"></div>
+<div id="divItems" class="shadow"></div>
+
+<div style="height:200px"></div>
+<script>
+
+function checkFormField() {
+	var k = 0;
+	if ( $('borrowerEmail').value == '' ) {
+		k++;
+		$('borrowerEmail').style.backgroundColor = '#F9D3C5';
+	}
+	if ( $('borrowerContactNo').value == '' ) {
+		k++;
+		$('borrowerContactNo').style.backgroundColor = '#F9D3C5';
+	}
+	if ( $('programmeName').value == '' ) {
+		k++;
+		$('programmeName').style.backgroundColor = '#F9D3C5';
+	}	
+	if ( $('roomId').value == '' ) {
+		k++;
+		$('roomName').style.backgroundColor = '#F9D3C5';
+	}
+	if ( $('dateFrom').value == '' ) {
+		k++;
+		$('dateFrom').style.backgroundColor = '#F9D3C5';
+	}
+	if ( $('dateTo').value == '' ) {
+		k++;
+		$('dateTo').style.backgroundColor = '#F9D3C5';
+	}
+
+	return k == 0;
+	
+}
+
+</script>

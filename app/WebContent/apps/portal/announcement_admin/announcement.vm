@@ -1,0 +1,40 @@
+<fieldset>
+<legend style="font-weight:bold">$announcement_admin.id </legend>
+<table width="100%">
+#**
+
+<tr>
+<td style="width:200px">Announcement Id:</td>
+<td>$announcement_admin.id</td>
+</tr>
+**#
+<tr>
+<td valign="top">Admin Roles:</td>
+<td>
+<table>
+#foreach( $r in $announcement_admin.adminRoles )
+<tr><td style="width:300px">$r.userRole</td>
+<td><a href="javascript:void()" onclick="doDivAjaxCall$formname('div_ann_access','remove_role','remove_role_name=$r.userRole')">x</a></td>
+#end
+</table>
+</td>
+</tr>
+<tr>
+<td>Select Role:</td>
+<td>
+<select name="role_name" style="width:300px">
+<option value="">- Select Role -</option>
+
+#foreach ( $r in $roles )
+#set ( $found = "no" )
+#foreach( $a in $announcement_admin.adminRoles )
+#if ( $a.userRole == $r ) #set ( $found = "yes" ) #end
+#end
+#if ( $found == "no" ) <option value="$r">$r</option> #end
+#end
+</select>
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('div_ann_access','add_role','')">
+</td>
+</tr>
+</table>
+</fieldset>

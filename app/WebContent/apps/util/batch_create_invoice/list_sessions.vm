@@ -1,0 +1,5 @@
+<select style="width:400px"  name="session_id">
+#foreach( $i in $sessions )
+<option value="$i.id" #if ( $i.id == $current_session.id ) selected #end>$i.code $i.name</option>
+#end
+</select>

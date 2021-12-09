@@ -1,0 +1,14 @@
+<div style="height:200px;overflow:auto">
+<table width="100%">
+#foreach ( $s in $students )
+<tr>
+<td>
+<a href="javascript:void()" onclick="document.getElementById('matric_no').value='$s.matricNo'">
+$s.matricNo
+
+</td>
+<td>$s.biodata.name</td>
+</tr>
+#end
+</table>
+</div>

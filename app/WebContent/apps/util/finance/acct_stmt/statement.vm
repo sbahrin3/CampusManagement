@@ -1,0 +1,9 @@
+
+<div style="padding:10px">
+#parse("apps/util/student_info/student_info.vm")
+</div>
+<div style="padding:10px">
+#parse("apps/util/student_info/account_statement.vm")
+</div>
+
+<input type="hidden" name="student_id" value="$!student.id">

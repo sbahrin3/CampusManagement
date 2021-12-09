@@ -1,0 +1,6 @@
+
+#if ( $userLevel == 2 )
+	#parse("apps/timetabling/classroomTemplate/div_classrooms2_byUserLevel2.vm")
+#else
+	#parse("apps/timetabling/classroomTemplate/div_classrooms2_byUserLevel.vm")
+#end

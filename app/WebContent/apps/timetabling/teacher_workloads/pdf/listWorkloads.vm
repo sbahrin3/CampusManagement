@@ -1,0 +1,44 @@
+#parse("apps/timetabling/header.vm")
+
+$dateFormat.applyPattern("dd MMM yyyy")
+<table><tr>
+<td style="font-weight:bold;font-size:12pt">
+	##$department.id - $department.name
+
+
+</td>
+</tr></table>
+<table><tr>
+<td style="font-weight:bold;font-size:10pt">$dateFormat.format($date1) - $dateFormat.format($date2)</td>
+</tr></table>
+<br/>
+<table style="width:100%">
+
+
+	<thead>
+		<tr style="height:40px">
+			<th style="font-weight:bold;border-bottom:2px solid #000">Name</th>
+			<th style="text-align:center;font-weight:bold;border-bottom:2px solid #000">Limit Teaching Hours/Day</th>
+			<th style="text-align:center;font-weight:bold;border-bottom:2px solid #000">Limit Teaching Hours/Week</th>
+			<th style="text-align:center;font-weight:bold;border-bottom:2px solid #000">Total Teaching Hours</th>
+			
+			
+			
+		</tr>
+	</thead>
+	
+	<tbody>
+	
+	#foreach ( $tws in $teacherWorkloadSummaryList )
+		<tr style="height:30px">
+			<td style="border-bottom:1px solid #000" onclick="$('getWorkloadDetail').innerHTML='Please Wait...';doDivAjaxCall$formname('getWorkloadDetail','getWorkloadDetail','teacherId=$tws.teacher.id')">$tws.teacher.name</td>
+			<td style="text-align:center;border-bottom:1px solid #000">#if ( $tws.teacher.limitTeachingHours > 0 ) $tws.teacher.limitTeachingHours hrs/day #end</td>
+			<td style="text-align:center;border-bottom:1px solid #000">#if ( $tws.teacher.limitTeachingHoursWeek > 0 )$tws.teacher.limitTeachingHoursWeek hrs/week #end</td>
+			<td style="text-align:center;border-bottom:1px solid #000">$tws.duration</td>
+			
+		</tr>
+	#end
+	
+	</tbody>
+
+</table>

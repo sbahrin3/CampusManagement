@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<style>
+td {
+	font-family:Verdana, sans-serif;
+	font-size:10pt;
+}
+</style>
+<script>calndr.showNavigationDropdowns();</script>
+
+<div style="margin:0.2cm;padding:0.5cm;background:#EDEAEA;font-family:Verdana, sans-serif;font-size:12pt;font-weight:bold;">Tracer Study Form</div>
+
+<div id="studentData" style="margin:0.2cm;padding:0.5cm;background:#FCF9F9;">
+#if ( $student )
+	#parse("admission/mohe/student.vm")
+#else
+	#parse("admission/mohe/getStudent.vm")	
+#end
+</div>

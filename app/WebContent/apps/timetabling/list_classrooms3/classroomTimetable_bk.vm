@@ -1,0 +1,133 @@
+<script>
+new Draggable('timetable',  { constraint: 'horizontal' });
+</script>
+
+#set ( $totalSlots = $slotTimeList.size() )
+$dateFormat.applyPattern("dd, MMM yyyy")
+<div style="padding:2px;font-family:Verdana, sans-serif;font-size:12pt;font-weight:bold;">
+Timetable Date: 
+#if ( $start_date ) $dateFormat.format($start_date) #end
+#if ( $end_date ) - $dateFormat.format($end_date) #end
+</div>
+<br/>
+
+
+
+<div class="shadow" style="width:1200px;overflow:auto;background:#F9F8CC">
+<table id="timetable" style="background:#6D6D6D;width:2000px;cursor:pointer" border="0" cellpadding="1" cellspacing="1">
+<tr><td style="width:50px" bgcolor="#fff">&nbsp;</td>
+#foreach( $slotTime in $slotTimeList )
+<td style="background:#FCF8BA;font-family:helvetica;font-size:9pt;height:30px;width:200px" align="center" >
+$slotTime.label
+</td>
+#end
+</tr>
+
+<tr style="height:1px">
+<td></td><td colspan="$totalSlots"></td>
+</tr>
+	
+#foreach( $dayNum in [1..7])	
+	#set ( $rowOfClassrooms = $timetable.get($dayNum) )
+	
+	#if ( $rowOfClassrooms.size() > 0 )
+	
+		#set ( $rowCnt = 0 )
+		#foreach ( $classrooms in $rowOfClassrooms )
+			#set ( $rowCnt = $rowCnt + 1 )
+			<tr>
+			#if ( $rowCnt == 1 )
+				<td bgcolor="#FCF8BA" rowspan="$rowOfClassrooms.size()">
+				#if ( $dayNum == 1 ) Mon
+				#elseif ( $dayNum == 2 ) Tue
+				#elseif ( $dayNum == 3 ) Wed
+				#elseif ( $dayNum == 4 ) Thu
+				#elseif ( $dayNum == 5 ) Fri
+				#elseif ( $dayNum == 6 ) Sat
+				#elseif ( $dayNum == 7 ) Sun
+				#end
+				</td>
+			#end
+			#set ( $lastSlot = 0 )
+			#foreach ( $d in $classrooms )
+				#set ( $space = $d.beginSlot - $lastSlot - 1 )
+				#if ( $space > 0 )
+					#foreach ( $i in [1..$space] )
+					<td style="background:#fff">&nbsp;</td>
+					#end
+				#end
+				
+				#if ( $d.classroom.subject )
+					#set ( $bgcolor = $slotColor.colorMap.get("${d.classroom.subject.id}-${d.classroom.classroomSection.id}") )
+				#else
+					#set ( $bgcolor = "#fff" )
+				#end
+				
+				<td colspan="$d.totalSlot" align="center" style="background:$bgcolor;font-face:helvetica;font-size:9pt;color:#FFFFFF;text-shadow:#000 1px 1px 1px;">
+				
+				#** 
+				#if ( $d.classroom.subject.shortName )
+					$!d.classroom.subject.shortName
+				#else
+					$!d.classroom.subject.code<br/>$!d.classroom.subject.shortName
+				#end
+				*#
+				$!d.classroom.subject.code<br/>$!d.classroom.subject.shortName
+				
+				
+				#if ( $d.classroom.subjectTopic )
+					$!d.classroom.subjectTopic<br/>
+				#end
+				$!d.classroom.classroomSection.name<br/>
+				
+				#if ( $d.classroom.grouped )
+					#foreach( $room in $d.classroom.room.combinedRooms )
+					$room.code&nbsp;
+					#end
+				#else
+					$!d.classroom.room.code
+				#end
+				
+				#if ( $d.classroom.coTeachers.size() > 0 )
+					<br/>
+					#foreach ( $t in $d.classroom.coTeachers )
+						##$t.code 
+						$t.name
+					#end
+				#end		
+				</td>
+				#set ( $lastSlot = $d.endSlot )
+			#end
+			#if ( $lastSlot < $totalSlots )
+			#set ( $n = $totalSlots - 1 )
+			#foreach( $i in [$lastSlot..$n])
+				<td style="background:#fff">&nbsp;</td>
+			#end
+			#end
+			</tr>
+		#end
+		
+	#else
+	
+	<tr style="height:50px">
+	<td bgcolor="#FCF8BA">
+	#if ( $dayNum == 1 ) Mon
+	#elseif ( $dayNum == 2 ) Tue
+	#elseif ( $dayNum == 3 ) Wed
+	#elseif ( $dayNum == 4 ) Thu
+	#elseif ( $dayNum == 5 ) Fri
+	#elseif ( $dayNum == 6 ) Sat
+	#elseif ( $dayNum == 7 ) Sun
+	#end
+	</td>
+	<td colspan="$totalSlots" style="background:#fff;font-face:helvetica;font-size:9pt" align="center">&nbsp;</td>
+	</tr>
+	
+	#end
+	<tr style="height:1px">
+	<td></td><td colspan="$totalSlots"></td>
+	</tr>
+#end	
+</table>
+</div>
+

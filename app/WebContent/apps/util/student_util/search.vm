@@ -1,0 +1,27 @@
+<table width="500" align="center">
+<tr>
+<td>
+Search Name: <input name="search_name" value="$!search">
+$button.command("search_student").param("search=1").text("Find...")
+$button.command("reload_db").param("search=1").text("Reload")
+</td>
+</tr>
+<tr>
+<td>
+Nationality:
+$button.command("malaysian").text("Malaysian")
+$button.command("non_malaysian").text("International")
+$button.command("undefined_nationality").text("Not Defined")
+</td>
+</tr>
+
+#**
+<tr>
+<td align="right">
+$button.command("statistic").text("Statistic")
+$button.command("statistic_malaysian").text("Statistic Malaysian")
+$button.command("statistic_international").text("Statistic International")
+</td>
+</tr>
+**#
+</table>

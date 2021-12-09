@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" media="all" href="../js/jsDatePick_ltr.min.css" />
+<script type="text/javascript" src="../js/jsDatePick.min.1.3.js"></script>
+
+
+#if ( $errorMessage )
+<script>
+$('divErrorMessage').style.display = "block";
+$('errorMessage').innerHTML = "$errorMessage";
+</script>
+#end
+
+<div id="divErrorMessage" style="display:none;background:#F7C8C3;">
+<table cellpadding="0" cellspacing="0">
+<tr>
+<td id="errorMessage"></td>
+<td align="right" style="width:20px">
+	<input class="linkbutton" type="button" style="padding:2px" value="x" onclick="$('divErrorMessage').style.display='none';">
+</td>
+</tr>
+</table>
+
+</div>
+
+<table>
+<tr><td align="right">
+##[$href.command("").text("Select Other Program")]
+</td></tr>
+
+<tr><td>
+
+##<fieldset>
+
+<table style="width:100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+    	<td style="width:200px">Program:</td>
+    	<td style="font-weight:bold;font-size:12pt;" >
+    		$program.code $program.name
+    	</td>
+    	<td style="width:20px">
+    		##C<input class="linkbutton" type="button" value="..." onclick="doAjaxCall$formname('fee_structure','program_id=$program.id');">
+    		<input class="linkbutton" type="button" value="..." onclick="doDivAjaxCall$formname('fee_structure','fee_structure','program_id=$program.id');">
+    	</td>
+    </tr>
+    <tr>
+    <td>Beginning from date: </td>
+    <td colspan="2" style="font-weight:bold;font-size:12pt">
+    #if ( $fee_structure.sessionDate )
+    	#set ( $session_date = $dateFormat.format($fee_structure.sessionDate) )
+    #end
+    $!session_date
+    </td>
+    </tr>
+    <tr style="height:40px"><td colspan="3">&nbsp;</td></tr>
+    <tr>
+    <td colspan="3">
+    
+    &nbsp;&nbsp;
+    #if ( $fee_structures.size() > 0 )
+    Select Other Date:
+    <select class="texts" style="width:150px" name="fee_structure_list" onchange="doDivAjaxCall$formname('div_fee_items','select_other','')">
+    <option value=""> -  </option>
+    #foreach ( $f in $fee_structures )
+    <option value="$f.id">$dateFormat.format($f.sessionDate)</option>
+    #end
+    </select>
+    <input class="linkbutton" type="button" value="Select" onclick="doDivAjaxCall$formname('div_fee_items','select_other','')">
+    
+	#end
+	&nbsp;&nbsp;
+	New Date: 
+    <input class="texts" style="width:100px" id="session_date" name="session_date" value="">
+    <script> new JsDatePick({ useMode:2, target:"session_date", dateFormat:"%d-%m-%Y" }); </script>
+    <input class="linkbutton" type="button" value="Create" onclick="doDivAjaxCall$formname('div_fee_items','create_session','program_id=$program.id')">
+    </td>
+    </tr>
+</table>
+
+##</fieldset>
+
+
+##ADD NEW FEE ITEM BUTTON
+##<br>
+##<div style="">
+##	<input class="linkbutton" type="button" value="Add New Fee Item..." onclick="$('feeEntry').style.display='block';">
+##</div>
+
+<div id="feeEntry" style="display:none;width:600px;position:fixed;top:30%;left:10%;">
+#parse("apps/util/finance/fee_structure2/fee_entry.vm")
+</div>
+
+<br>
+
+<fieldset style="border:none">
+<legend style="padding:5px;background-color:#E1E1E1;font-weight:bold;font-size:12pt">$program.code $program.name</legend>
+<div id="div_fee_items" name="div_fee_items">
+#parse( "apps/util/finance/fee_structure2/div_fee_items.vm" )
+</div>
+</fieldset>
+
+</td></tr></table>
+
+<input type="hidden" name="program_id" value="$program.id">
+<input type="hidden" name="fee_structure_id" value="$fee_structure_id">
+	

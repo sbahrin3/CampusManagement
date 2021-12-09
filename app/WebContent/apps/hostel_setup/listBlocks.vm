@@ -1,0 +1,35 @@
+<ul id="blockList" style="list-style-type:none; padding: 0px;">
+	
+	#set ( $cnt = 0 )
+	#foreach( $h in $blocks )
+	#set ( $cnt = $cnt + 1 )
+	<li id="blockList_$cnt" style="padding:0px">
+		<input type="hidden" name="blockIds" value="$h.id">
+		<table cellpadding="1" cellspacing="0">
+		<tr>
+		<td style="width:20px;cursor:pointer" valign="top">$cnt.</td>
+		<td style="width:100px" valign="top"><input class="text" name="blockCode_$h.id" value="$h.code" onchange="doDivAjaxCall3$formname('empty','changeBlockCode','blockId=$h.id')"></td>
+		<td style="width:350px" valign="top"><input class="text" name="blockName_$h.id" value="$h.name" onchange="doDivAjaxCall3$formname('empty','changeBlockName','blockId=$h.id')"></td>
+		<td style="width:50px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listBlocks','deleteBlock','blockId=$h.id')"></td>
+		<td style="width:80px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="Floors" onclick="doDivAjaxCall3$formname('divHostel','listFloors','blockId=$h.id')"></td>
+		<td>
+		</tr>
+		</table>
+	</li>
+	#end
+</ul>
+<table cellpadding="1" cellspacing="0">
+<tr>
+<td style="width:20px"></td>
+<td style="width:100px"><input class="text" name="blockCode" value=""></td>
+<td style="width:350px"><input class="text" name="blockName" value=""></td>
+<td style="width:100px"><input class="linkbutton" type="button" style="width:100%" value="Add" onclick="doDivAjaxCall3$formname('listBlocks','addBlock','buildingId=$!building.id')"></td>
+</tr>
+</table>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('blockList', { onUpdate:updateBlockSequence });
+function updateBlockSequence() {
+	doDivAjaxCall3$formname('listBlocks','updateBlockSequence','buildingId=$!building.id')
+}
+</script>

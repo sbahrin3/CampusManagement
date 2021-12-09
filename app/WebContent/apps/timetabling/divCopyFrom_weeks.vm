@@ -1,0 +1,11 @@
+$activitySessionDate.activitySession.name<br/>
+$df.format($activitySessionDate.startDate) - $df.format($activitySessionDate.endDate)<br/>
+$week1 - $week2
+
+#set ( $cnt = 0 )
+#foreach ( $w in [$week1..$week2] )
+
+	#set ( $cnt = $cnt + 1 )
+	<button type="button" class="btn btn-sm $bgcolor" onclick="doDivAjaxCall$formname('div_timetable_main','copyFromSelectedWeek','week_number=$weekCopyTo&week_number_copy=$w&activitySessionDateCopyId=$activitySessionDate.id')">$cnt</button>
+			  		
+#end

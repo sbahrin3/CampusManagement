@@ -1,0 +1,70 @@
+<script>
+$('divInput').style.display = "block";
+</script>
+
+<table id="dragHandle" width="100%" style="height:30px;background:#4285F4;cursor:pointer">
+<tr>
+<td style="font-weight:bold;color:#fff">
+#if ( $fee )
+	EDIT FEE ITEM
+#else
+	ADD NEW FEE ITEM
+#end
+</td>
+<td align="right">
+<input class="linkbutton" type="button" value="x" onclick="$('divInput').style.display='none';">
+</td></tr>
+</table>
+<br/>
+<table style="width:100%">
+	<tr><td style="width:100px" align="right">Code</td><td style="width:10px">:</td><td style=""><input class="texts" id="code" name="code" value="$!fee.code"></td></tr>
+	<tr><td align="right">Description</td><td>:</td><td><input class="texts" id="description" name="description" value="$!fee.description"></td></tr>
+	<tr>
+		<td align="right">Fee Type</td><td>:</td>
+		<td>
+			<select class="texts" id="subjectType" name="subjectType">
+				<option value="0" #if ( $fee.subjectType == 0 ) selected #end>Default Type Fee</option>
+				<option value="1" #if ( $fee.subjectType == 1 ) selected #end>Multiply By Credit Hours</option>
+				<option value="2" #if ( $fee.subjectType == 2 ) selected #end>Multiply By Subjects Count</option>
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td align="right">Paying Mode</td><td>:</td>
+		<td>
+			<select class="texts" id="payingMode" name="payingMode">
+				<option value="0" #if ( $fee.payingMode == 0 ) selected #end>Not Defined</option>
+				<option value="1" #if ( $fee.payingMode == 1 ) selected #end>One Time Payment</option>
+				<option value="2" #if ( $fee.payingMode == 2 ) selected #end>Flexi Payment</option>
+				<option value="3" #if ( $fee.payingMode == 3 ) selected #end>Monthly Payment</option>
+			</select>
+		</td>
+	</tr>
+	
+	#** 
+	<tr>
+		<td align="right">Partner Share?</td><td>:</td>
+		<td>
+			<select class="texts" id="partnerType" name="partnerType">
+				<option value="0" #if ( $fee.partnerType == 0 ) selected #end>No</option>
+				<option value="1" #if ( $fee.partnerType == 1 ) selected #end>Yes</option>
+			</select>
+		</td>
+	</tr>
+	**#
+	<tr>
+		<td colspan="3" style="height:30px">
+			&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" align="right">
+			<input class="linkbutton" type="button" value="Save" onclick="saveFee('$!fee.id')">
+			<input class="linkbutton" type="button" value="Cancel" onclick="$('divInput').style.display='none';">
+		</td>
+	</tr>
+</table>
+	
+<br/>
+<br/>

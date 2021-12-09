@@ -1,0 +1,37 @@
+<script>
+$('edit_$club.id').style.display='block';
+</script>
+
+<table width="100%">
+
+<tr><td style="height:30px;background:#A7ADB2" align="right">
+<input class="linkbutton" type="button" style="height:25px;padding:1px" value="X" onclick="$('edit_$club.id').style.display='none';">
+</td></tr>
+
+<tr><td style="padding:5px">
+
+<table>
+<tr><td style="width:150px"></td><td style="width:20px"></td><td  style="width:500px"></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" name="clubName_$club.id" value="$club.name"></td></tr>
+<tr><td>Category</td><td>:</td><td>
+<select class="texts" name="categoryId_$club.id">
+#foreach ( $c in $categories )
+<option value="$c.id" #if ( $club.category.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td valign="top">Description</td><td valign="top">:</td><td>
+<textarea class="texts" name="clubDescription_$club.id" style="height:300px">$!club.description</textarea>
+</td></tr>
+
+
+<tr><td></td><td></td><td style="padding-top:10px">
+
+<input class="linkbutton" type="button" value="Save" onclick="doDivAjaxCall3$formname('listClubs','saveClub','clubId=$club.id')">
+<input class="linkbutton" type="button" value="Cancel" onclick="$('edit_$club.id').style.display='none';">
+
+</td></tr>
+</table>
+
+</td></tr></table>

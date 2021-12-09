@@ -1,0 +1,38 @@
+<input type="hidden" name="alloc_id" id="alloc_id">
+<input type="hidden" name="alloc_room_id" id="alloc_room_id">
+
+<table width="250px" bgcolor="#FFD47F" style="border-top: 2px solid #3C3C3C; border-bottom: 2px solid #3C3C3C; border-right: 2px solid #3C3C3C; border-left: 2px solid #3C3C3C;">
+<tr height="20px"><td colspan="2" align="right">
+
+</td></tr>
+<tr><td>Date:</td><td>$html.dateField.name("date_out").value("$!date_out").style("width:100px;text-align:center")</td>
+</tr>
+<tr>
+<td>Time:</td><td>
+hour:<select name="hour_out">
+#foreach ( $h in [1..12] )
+<option value="$h">$h</option>
+#end
+</select>
+min:<select name="min_out">
+#foreach ( $m in [0..60] )
+<option value="$m">$m</option>
+#end
+</select>
+<select name="ampm_out">
+<option value="AM">AM</option>
+<option value="PM">PM</option>
+</select>
+</td>
+</tr>
+
+<tr height="20px"><td colspan="2" align="right">
+
+
+<input type="button" value="Check-Out" onclick="if ( !confirm('Check-Out?') ) return; doDivAjaxChainCall$formname('div_rooms', 'room_out', 'alloc_id=' + $('alloc_id'), 'div_vacancy_' + $('alloc_room_id').value, 'check_vacancy', 'room_id=' + $('alloc_room_id').value);$('div_checkout_date').style.visibility='hidden'">
+
+<input type="button" value="Cancel" onclick="$('div_checkout_date').style.visibility='hidden'">
+
+</td></tr>
+
+</table>

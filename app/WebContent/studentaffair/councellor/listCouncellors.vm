@@ -1,0 +1,33 @@
+<table>
+<tr style="height:30px;background:#A5A8AA">
+<td style="width:20px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold">ID No</td>
+<td style="width:300px;font-weight:bold">Name</td>
+<td style="width:200px;font-weight:bold">Contact No</td>
+<td style="width:300px;font-weight:bold">Email</td>
+<td style="width:30px;font-weight:bold"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $c in $councellors )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td valign="top">$cnt.</td>
+<td valign="top"><input class="textr" name="idNo_$c.id" value="$!c.IdNo" onchange="doDivAjaxCall3$formname('empty','updateIdNo','councellorId=$c.id')"></td>
+<td valign="top"><input class="textr" name="name_$c.id" value="$!c.name" onchange="doDivAjaxCall3$formname('empty','updateName','councellorId=$c.id')"></td>
+<td valign="top"><input class="textr" name="contactNo_$c.id" value = "$!c.contactNo" onchange="doDivAjaxCall3$formname('empty','updateContactNo','councellorId=$c.id')"></td>
+<td valign="top"><input class="textr" name="email_$c.id" value = "$!c.email" onchange="doDivAjaxCall3$formname('empty','updateEmail','councellorId=$c.id')"></td>
+<td valign="top"><input class="linkbutton" type="button" style="width:100%" value="x" onclick="doDivAjaxCall3$formname('listCouncellors','deleteCouncellor','councellorId=$c.id')"></td>
+</tr>
+#end
+
+<tr>
+<td></td>
+<td valign="top"><input class="texts" name="idNo" value=""></td>
+<td valign="top"><input class="texts" name="name" value=""></td>
+<td valign="top"><input class="texts" name="contactNo" value=""></td>
+<td valign="top"><input class="texts" name="email" value=""></td>
+<td valign="top"><input class="linkbutton" type="button" value="Add" onclick="doDivAjaxCall3$formname('listCouncellors','addCouncellor','')"></td>
+</tr>
+
+
+</table>

@@ -1,0 +1,17 @@
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+</style>
+<table width="800px" align="center"><tr><td>
+
+#parse("apps/lms2/create_groups/students2.vm")
+
+
+
+
+
+
+
+
+</td></tr></table>

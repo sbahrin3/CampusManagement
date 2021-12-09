@@ -1,0 +1,19 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+##td { font-size: 10pt; font-family: verdana; }
+td {font-family:arial;font-size:10pt;}
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {height:25px;font-size: 8pt; font-family: verdana;font-weight:bold;border-bottom:1px solid #000; border-top:none; border-left:none; border-right:none;}
+.fset { background-color:#E2FEE2}
+.title { height:30px; font-size: 12pt; font-family: arial; font-weight:bold;}
+.box {border-bottom:1px solid #000; border-top:1px solid #000; border-left:1px solid #000; border-right:1px solid #000;}
+</style>
+#set ( $salinan = "Salinan Pejabat" )
+#parse("apps/util/aggreement_form/content.vm")
+
+#set ( $salinan = "Salinan Pelajar" )
+#parse("apps/util/aggreement_form/content.vm")
+
+#set ( $salinan = "Salinan Penjamin" )
+#parse("apps/util/aggreement_form/content.vm")

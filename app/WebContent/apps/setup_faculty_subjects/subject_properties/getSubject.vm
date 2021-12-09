@@ -1,0 +1,17 @@
+<table>
+	<tr style="height:30px;background:#D3D1D1">
+		<td style="font-weight:bold;width:100px">Code</td>
+		<td style="font-weight:bold;width:250px">Name</td>
+		<td style="font-weight:bold;width:250px">Faculty</td>
+		<td style="font-weight:bold;width:200px">Group</td>
+		<td style="font-weight:bold;width:200px">Grade Scheme</td>
+		<td style="font-weight:bold;width:20px">&nbsp;</td>
+	</tr>
+	
+	#foreach ( $s in $subjects )
+		<tr>
+			<td>$!s.code</td><td>$!s.name</td><td>$!s.faculty.name</td><td>$!s.subjectGroup.name</td><td>$!s.markingGrade.name</td>
+			<td><input class="linkbutton" type="button" value="Edit" onclick="doDivAjaxCall3$formname('getSubject','getSubjectProperties','subjectId=$s.id')"></td>
+		</tr>
+	#end
+</table>

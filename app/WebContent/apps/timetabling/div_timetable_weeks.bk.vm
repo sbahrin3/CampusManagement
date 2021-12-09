@@ -1,0 +1,146 @@
+
+
+<input type="hidden" name="weekNumber" value="$week_number">
+<input type="hidden" name="weekNumberStart" value="$weekNumberStart">
+<input type="hidden" name="weekNumberEnd" value="$weekNumberEnd">
+<input type="hidden" name="activitySessionId" value="$!activitySession.id">
+
+
+
+
+##$activitySession.dateList[0]
+
+<div id="div_weeks" style="width:100%;overflow:auto;">
+
+<div id="weeks_activity">
+<table>
+<tr height="30px">
+<td style="width:5px"></td>
+<td style="width:105px">WEEK SEGMENT</td>
+#set ( $cnt = 0 )
+#foreach( $w in [1..$weeks] )
+	
+	#set ( $bgcolor = "#ebebeb" )
+	#if ( $week_number == $w )
+		#set ( $bgcolor = "#fff" )
+	#end
+	
+	#if ( $w >= $weekNumberStart && $w <= $weekNumberEnd )
+		#set ( $cnt = $cnt + 1 )
+		<td style="cursor:hand;cursor:pointer;width:30px;border:1px dotted #000" 
+		align="center" bgcolor="$bgcolor"
+		#if ( !$view_mode )
+			onclick="doDivAjaxChainCall$formname('div_timetable_main','get_timetable','week_number=$w','div_timetable_weeks','show_weeks','week_number=$w')"
+		#else
+			onclick="doDivAjaxChainCall$formname('div_timetable_main','filter_timetable','week_number=$w','div_timetable_weeks','show_weeks','week_number=$w')"
+		#end
+		>
+		
+		$cnt
+		##<br/>$w
+		
+		</td>
+	#else
+		#** 
+		<td style="width:20px;border:1px dotted #000" 
+		align="center" bgcolor="#ebebeb">
+		$w
+		</td>
+		**#
+	#end
+
+#end
+</tr>
+</table>
+</div>
+
+<div id="weeks_relative" style="display:none">
+<table>
+<tr height="30px">
+<td style="width:5px"></td>
+<td style="width:105px"></td>
+#foreach( $w in [1..$weeks] )
+	#set ( $bgcolor = "#fff" )
+	#if ( $week_number == $w )
+		#set ( $bgcolor = "#00CCCC" )
+	#end
+	
+	#if ( $w >= $weekNumberStart && $w <= $weekNumberEnd )
+	
+		<td style="cursor:hand;cursor:pointer;width:50px;border:1px dotted #000" 
+		align="center" bgcolor="$bgcolor"
+		#if ( !$view_mode )
+			onclick="doDivAjaxChainCall$formname('div_timetable_main','get_timetable','week_number=$w','div_timetable_weeks','show_weeks','week_number=$w')"
+		#else
+			onclick="doDivAjaxChainCall$formname('div_timetable_main','filter_timetable','week_number=$w','div_timetable_weeks','show_weeks','week_number=$w')"
+		#end
+		>
+		$w
+		</td>
+	
+	#end
+
+#end
+</tr>
+</table>
+</div>
+
+
+
+</div>
+
+
+<div id="copyFromWeek" style="padding:5px;display:none">
+#if ( !$view_mode )
+	<table>
+		<tr>
+			<td>Copy from:</td>
+			<td>
+            	<select name="timetableSessionId" style="width:100px" onchange="doDivAjaxCall$formname('listWeeksToCopy','listWeeksToCopy','')">
+            		#foreach ( $s in $timetableSessions )
+            			<option value="$s.id" #if ( $current_session.id == $s.id ) selected #end>$s.name</option>
+            		#end
+            	</select>
+			</td>
+			<td>
+            	<div id="listWeeksToCopy">
+					#parse("apps/timetabling/listWeeksToCopy.vm")
+            	</div>
+			</td>
+			<td>
+                <input type="button" value="Copy" onclick="if ( !confirm('Copy classrooms from the selected week?') ) return; doDivAjaxCall$formname('div_timetable_main','copy_timetable','week_number=$week_number')">
+            </td>
+	</tr>
+</table>
+
+#else
+
+    #if ( !$student_mode )
+        <span id="filterIndicator"></span>
+        
+        <div name="div_filter_params" id="div_filter_params">
+    		#parse("apps/timetabling/div_filter_params.vm")
+        </div>
+
+    #end
+
+#end
+</div>
+
+<div style="margin-top:3px">
+	<table style="width:100%">
+		<tr>
+			<td style="width:5px"></td>
+			<td style="width:105px">DATE OF WEEK</td>
+			<td style="font-weight:bold;font-size:14pt;font-family:arial"> 
+			#if ( $start_date )
+				$dateFormat2.format($start_date)
+				&#8212;
+				$dateFormat2.format($end_date)
+			#else
+			<span style="font-weight:bold;font-size:12pt;font-family:arial;color:#FF0000">Date Start not defined!</span>
+			#end
+			</td>
+		</tr>
+	</table>
+</div>

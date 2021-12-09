@@ -1,0 +1,35 @@
+
+<div style="text-align:right;padding:10px">
+<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('dataInput','addNewEmployee','');$('dataInput').style.display='block';">Add New</button>
+</div>
+
+<table class="table table-striped">
+<thead>
+	<tr>
+		<th style="width:10px">No.</th>
+		<th>IC No</th>
+		<th>Name</th>
+		<th>Basic Salary</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
+#foreach ( $e in $employees )
+	<tr>
+		<td>$velocityCount.</td>
+		<td>$!e.icNo</td>
+		<td>$!e.name</td>
+		<td>$!e.basicSalary</td>
+		<td style="text-align:right">
+			<button type="button" class="btn btn-sm btn-success" onclick="doDivAjaxCall$formname('dataInput','editEmployee','employeeId=$e.id');$('dataInput').style.display='block';">Edit</button>
+			<button type="button" class="btn btn-sm btn-danger" onclick="doDivAjaxCall$formname('listEmployees','deleteEmployee','employeeId=$e.id')">X</button>
+		</td>
+	</tr>
+#end
+</tbody>
+</table>
+<script>
+_jq( document ).ready(function() {
+     $('dataInput').style.display="none";
+});
+</script>

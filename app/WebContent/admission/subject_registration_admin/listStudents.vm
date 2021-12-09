@@ -1,0 +1,10 @@
+<table>
+
+#foreach( $subject in $subjects )
+<tr>
+<td style="height:25px;width:300px">$subject.name</td>
+<td>$subjectMap.get("$subject.id")</td>
+</tr>
+#end
+
+</table>

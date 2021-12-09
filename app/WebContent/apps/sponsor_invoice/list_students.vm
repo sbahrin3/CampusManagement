@@ -1,0 +1,26 @@
+
+<table width="100%" cellpadding="0" cellspacing="0">
+
+<tr height="1px">
+<td  class="gradient" style="width:20px;"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:100px;font-weight:bold"></td>
+<td  class="gradient" style="width:24px"></td>
+</tr>
+
+#foreach( $s in $sponsor_students )
+
+<tr height="30px">
+<td class="gradient">${velocityCount}.</td>
+<td><input class="text" value="$s.student.matricNo" readonly></td>
+<td><input class="text" value="$s.student.biodata.icno" readonly></td>
+<td><input class="text" value="$s.student.biodata.name" readonly></td>
+<td><input class="text" style="text-align:right" value="$s.student.program.name" readonly></td>
+<td>
+</td>
+</tr>
+
+#end
+

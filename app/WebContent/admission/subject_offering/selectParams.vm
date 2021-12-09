@@ -1,0 +1,42 @@
+<table>
+	<tr>
+		<td style="width:150px">Program :</td>
+		<td style="width:400px">
+			<select class="text" name="programId" onchange="doDivAjaxCall3$formname('divIntakes','getIntakes','');$('listSubjects').innerHTML='';">
+				<option value=""></option>
+				#foreach ( $p in $programs )
+					<option value="$p.id">$p.code $p.name</option>
+				#end
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="width:100px">Intake :</td>
+		<td style="width:400px">
+			<div id="divIntakes">
+			
+			</div>
+		</td>
+	</tr>
+	
+	<tr>
+		<td style="width:100px">Learning Centre :</td>
+		<td style="width:400px">
+			<select class="text" name="centreId" onchange="$('listSubjects').innerHTML='';">
+				#foreach ( $c in $centres )
+					<option value="$c.id">$c.name</option>
+				#end
+			</select>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+		</td>
+		<td>
+			<input class="linkbutton" type="button" value="List Subjects" onclick="doDivAjaxCall3$formname('listSubjects','listSubjects','')">
+		</td>
+	</tr>
+	
+</table>

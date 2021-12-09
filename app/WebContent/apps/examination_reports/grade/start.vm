@@ -1,0 +1,73 @@
+<table width="800px" align="center">
+<tr><td>
+
+<fieldset style="border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<table align="center">
+
+<tr>
+<td>Select Scheme:</td>
+<td>
+<select name="period_scheme_id" style="width:300px" onchange="doDivAjaxCall$formname('select_periods','select_periods','')">
+<option value=""> - </option>
+#foreach( $p in $period_schemes )
+<option value="$p.id">$p.code</option>
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td>Select Period:</td>
+<td>
+<div id="select_periods" name="select_periods">#parse("apps/examination_reports/grade/select_periods.vm")</div>
+</td>
+</tr>
+
+<tr>
+<td>Select Intake:</td>
+<td>
+<select name="intake_id" style="width:300px">
+<option value=""> - </option>
+#foreach ( $intake in $intakes )
+<option value="$intake.id">$intake.name</option>
+#end
+</select>
+</td>
+</tr>
+
+
+
+<tr>
+<td>Select Subject:</td>
+<td>
+<select name="subject_id" style="width:300px">
+<option value=""> - </option>
+#foreach ( $subject in $subjects )
+<option value="$subject.id">$subject.code $subject.name</option>
+#end
+</select>
+
+
+<input type="button" value="SUBMIT" onclick="doDivAjaxCall$formname('view_report','view_report','')">
+
+</td>
+</tr>
+
+</table>
+</fieldset>
+
+</td></tr>
+<tr><td style="font-weight:bold" align="center">
+<fieldset style="background-color:#FFFF66;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+GRADE ANALISYS REPORT
+</fieldset>
+</td></tr>
+<tr><td>
+
+<div id="view_report" name="view_report">
+</div>
+
+
+
+</td></tr>
+</table>

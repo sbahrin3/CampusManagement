@@ -1,0 +1,78 @@
+<table width="100%" align="center">
+<tr>
+<td></td>
+<td colspan="3" align="center"><i>*Click on the credit hours number to list subjects</i></td>
+</tr>
+<tr>
+<td></td>
+<td bgcolor="lightgrey" colspan="3" align="center" style="height:40px;font-weight:bold">Credit Unit</td>
+</tr>
+<tr>
+<td bgcolor="lightgrey" style="height:50px;font-weight:bold">Subject <br>Category</td>
+<td bgcolor="lightgrey" align="center" style="font-weight:bold">Credit Unit<br>Required</td>
+<td bgcolor="lightgrey" align="center" style="font-weight:bold">Credit Unit<br>Earned</td>
+<td bgcolor="lightgrey" align="center" style="font-weight:bold">Credit Unit<br>Not Taken</td>
+</tr>
+
+#foreach ( $cat in $categories )
+#set ( $i =  $cats.get("$cat.id") - $category_count.get("$cat.id"))
+
+#set ( $num_credit = $cats.get("$cat.id") )
+
+#if ( $num_credit > 0 )
+
+<tr>
+<td>$cat.name</td>
+<td style="width:80px;font-weight:bold" align="center">
+#if ( $cats.get("$cat.id") > 0 ) 
+$cats.get("$cat.id")
+#end</td>
+<td style="width:80px;font-weight:bold" align="center">
+#if ( $category_count.get("$cat.id") > 0 ) 
+#set ( $num = $category_count.get("$cat.id") )
+     <a href="javascript:doDivAjaxCall2$formName('subject_list', 'get_credit_earned', 'category_id=$cat.id')">$num</a>
+#end 
+</td>
+<td style="width:80px;font-weight:bold" align="center">
+#set ( $bal = $balance.get("$cat.id") )
+#if ( $bal > 0 ) 
+    <a href="javascript:doDivAjaxCall2$formName('subject_list', 'get_credit_balance', 'category_id=$cat.id')">$bal</a>
+#end</td>
+</tr>
+
+#end
+
+#end
+
+#set ( $num = $category_count.get("null") )
+#if ( $num > 0 )
+<tr>
+<td>UNDEFINED</td>
+<td></td>
+<td style="width:80px;font-weight:bold" align="center">
+
+#if ( $category_count.get("null") > 0 ) 
+$num
+#end</td>
+<td></td>
+</tr>
+
+#end
+
+<tr height="40px" bgcolor="lightgrey">
+
+<td></td>
+<td style="width:80px;font-weight:bold" align="center">$totalCreditRequired</td>
+<td style="width:80px;font-weight:bold" align="center">
+##<a href="javascript:doDivAjaxCall2$formName('subject_list', 'get_credit_total_earned', 'category_id=$cat.id')">
+$totalCreditEarned
+##</a>
+</td>
+<td style="width:80px;font-weight:bold" align="center">
+##<a href="javascript:doDivAjaxCall2$formName('subject_list', 'get_credit_total_balane', 'category_id=$cat.id')">
+$totalCreditBalance
+##</a>
+</td>
+</tr>
+
+</table>

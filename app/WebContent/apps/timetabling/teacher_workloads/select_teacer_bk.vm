@@ -1,0 +1,72 @@
+<table >
+
+
+<tr style="height:40px"><td style="width:150px">Select Faculty:</td>
+<td>
+	<select class="form-control" name="departmentId">
+		<option value=""></option>
+		#foreach ( $d in $userDepartments )
+			<option value="$d.id">$d.id - $d.name</option>
+		#end
+	</select>
+</td>
+</tr>
+
+#** 
+<tr style="height:40px"><td style="width:150px">Select Period:</td>
+<td>
+	<select class="form-control" name="deliveryPeriodId" onchange="if ( this.value != '' ) { doDivAjaxCall$formname('getDeliveryPeriod','getDeliveryPeriod',''); }">
+		<option value=""></option>
+		#foreach ( $d in $deliveryPeriods )
+			<option value="$d.id">$d.DELIVERYPERIODDESCLONG</option>
+		#end
+	</select>
+	
+	
+</td>
+</tr>
+**#
+
+<tr style="height:40px"><td style="width:150px">Select Period:</td>
+<td>
+	<span id="weekName" style="width:400px"></span>
+	<span>
+	<input type="hidden" name="week" id="week">
+	<input type="hidden" name="deliveryPeriodId" id="deliveryPeriodId">
+	
+	<button type="button" class="btn btn-default btn-sm" onclick="$('getReport').style.display='none';doDivAjaxCall$formname('getDeliveryPeriod','getActivitySessions','')">Select Week</button>
+	</span>
+</td>
+</tr>
+
+#** 
+<tr style="height:40px"><td style="width:150px">Select Date:</td>
+<td>
+	<table><tr><td>From:</td><td>
+	
+	<input class="form-control" style="width:100px" id="date1" name="date1" value="">
+	<script> new JsDatePick({ useMode:2, target:"date1", cellColorScheme:"deepblue", dateFormat:"%d-%m-%Y" }); </script>
+	
+	</td><td> &nbsp;&nbsp; </td><td>To:</td><td>
+	
+	<input class="form-control" style="width:100px" id="date2" name="date2" value="">
+	<script> new JsDatePick({ useMode:2, target:"date2", cellColorScheme:"deepblue", dateFormat:"%d-%m-%Y" }); </script>
+	
+	</td><td>
+	&nbsp;&nbsp;
+	<button type="button" class="btn btn-info btn-sm" onclick="$('getReport').innerHTML='Please Wait...';doDivAjaxCall$formname('getReport','getReport','')">Get Workload Report</button>
+	
+	
+	</td></tr></table>
+</td></tr>
+**#
+
+
+</table>
+
+
+<button type="button" class="btn btn-info btn-sm" onclick="$('getReport').innerHTML='Please Wait...';doDivAjaxCall$formname('getReport','getReport','')">Get Workload Report</button>
+	
+<div id="getDeliveryPeriod"></div>
+
+

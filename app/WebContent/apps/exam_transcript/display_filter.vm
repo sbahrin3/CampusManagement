@@ -1,0 +1,22 @@
+<table>
+	<tr bgcolor=silver>
+		<td align=center style="font-weight:bold">No</td>
+		<td align=center width=200 style="font-weight:bold">Intake</td>
+		<td align=center width=400 style="font-weight:bold">Name</td>
+		<td align=center width=80 style="font-weight:bold">Programme</td>
+	
+	</tr>
+#set( $i = 0 )
+	#foreach( $student in $students )
+		#set( $i = $i + 1 )		<tr>
+			<td align=center> $i </td>
+			<td align=center> $!student.intake.code </td>
+			<td align=left>$href.command("get_student").param("matric_no=$student.matricNo").text("$student.matricNo - $student.biodata.name")
+ </td>
+				
+			<td align=center> $!student.program.abbrev </td>
+			
+		</tr>
+	#end
+		<tr bgcolor="silver"><td colspan=6> </td></tr>
+</table>

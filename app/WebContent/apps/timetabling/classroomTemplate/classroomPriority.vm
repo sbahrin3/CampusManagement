@@ -1,0 +1,18 @@
+<script>
+$('classroomPriority').style.display="block";
+</script>
+<table width="100%" cellpadding="0" cellspacing="0"><tr style="height:30px;background:#9B9FA0;color:#fff"><td style="font-weight:bold;color:#fff">
+Classrooms Priority
+</td>
+<td align="right">
+<input class="linkbutton" style="padding:2px" type="button" value="X" onclick="$('classroomPriority').style.display='none';">
+</td></tr></table>
+<div>
+<table>
+#foreach ( $c in $classrooms )
+<tr>
+<td>$c.section.name</td>
+</tr>
+#end
+</table>
+</div>

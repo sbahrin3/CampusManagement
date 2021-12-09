@@ -1,0 +1,131 @@
+
+#macro ( input $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value" onkeyup="at(this, event)">
+</td></tr>
+#end
+
+
+<fieldset>
+<legend class="legend">$label_entry</legend>
+
+
+<table style="width:100%">
+	<tr style="height:40px">
+		<td colspan="3">
+		<label>User</label>
+		</td>
+	</tr>
+	<tr>
+		<td style="width:120px"></td>
+		<td style="width:8px"></td>
+		<td></td>
+	</tr>
+	<tr style="height:40px">
+		<td>User Id</td><td>:</td>
+		<td><input class="form-control" name="userId" value="$!r.userId"></td>
+	</tr>
+	<tr style="height:40px">
+		<td>Name</td><td>:</td>
+		<td><input class="form-control" name="name" value="$!r.name"></td>
+	</tr>
+	<tr style="height:40px">
+		<td>Email</td><td>:</td>
+		<td><input class="form-control" name="email" value="$!r.email"></td>
+	</tr>	
+	
+	<tr style="height:40px">
+		<td>Portal Role</td><td>:</td>
+		<td>
+			<select class="form-control" name="role">
+				<option value=""></option>
+				#foreach( $role in $roles )
+				<option value="$role.name" #if ( $portalUser.role.name == $role.name ) selected #end>$role.description</option>
+				#end
+			</select>
+		</td>
+	</tr>	
+		
+	<tr style="height:40px">
+		<td valign="top">Secondary Roles</td><td valign="top">:</td>
+		<td>
+			#foreach( $role in $roles )
+				<input type="checkbox" name="secondaryRoles" value="$role.name" #if ( $portalUser.role.name != $role.name && $portalUser.isRole("$role.name") ) checked #end>$role.description<br/>
+			#end
+		</td>
+	</tr>			
+		
+	<tr style="height:20px">
+		<td colspan="2"></td>
+	</tr>	
+	
+
+	
+	<tr>
+		<td valign="top"><br/>Campuses</td><td valign="top"><br/>:</td>
+		<td valign="top">
+			
+			<div style="height:300px;overflow:auto;border:1px dotted #000;padding:5px">
+			
+			#foreach( $campus in $campuses )
+				<input type="checkbox" name="campusIds" value="$campus.id" #if ( $r.aimCampuses.contains($campus) ) checked #end>$campus.name<br/>
+			#end
+		
+			</div>
+		</td>
+	</tr>
+
+	
+	<tr>
+		<td valign="top"><br/>Departments</td><td valign="top"><br/>:</td>
+		<td valign="top">
+			
+			<div style="height:300px;overflow:auto;border:1px dotted #000;padding:5px">
+			
+			#foreach( $dept in $departments )
+				<input type="checkbox" name="departmentIds" value="$dept.id" #if ( $r.aimDepartments.contains($dept) ) checked #end>$dept.name<br/>
+			#end
+		
+			</div>
+		</td>
+	</tr>
+		
+	
+	#** 
+	
+		<tr>
+		<td valign="top"><br/>Campuses</td><td valign="top"><br/>:</td>
+		<td valign="top">
+			
+			<div style="height:300px;overflow:auto;border:1px dotted #000;padding:5px">
+			#foreach ( $state in $states )
+			<br/><b>$state.name</b><br/>
+			#foreach( $campus in $state.campuses )
+				<input type="checkbox" name="campusIds" value="$campus.id" #if ( $r.campuses.contains($campus) ) checked #end>$campus.name<br/>
+			#end
+			#end
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top"></td><td valign="top"><br/></td>
+		<td valign="top">
+			
+			<button type="button" class="btn btn-default btn-info btn-sm" onclick="doDivAjaxCall$formname('listDepartments','listDepartments','ttUserId=$r.id')">List Departments...</button>
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td valign="top"></td><td valign="top"><br/></td>
+		<td valign="top">
+			<div id="listDepartments" style="display:none">
+			</div>
+		</td>
+	</tr>
+	**#
+
+</table>
+
+</fieldset>
+

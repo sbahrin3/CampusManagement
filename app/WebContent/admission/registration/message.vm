@@ -1,0 +1,40 @@
+#if ( $error ) #set ( $clr = "#F9410B" ) #else #set ( $clr = "#0000FF" ) #end
+<table width="100%" cellspacing="0" cellpadding="0"><tr><td style="color:$clr;font-weight:bold">
+#if ( $message == "mykad_ok" )
+MyKad OK<br>($mykad.stateName, #if ($mykad.gender == "M" ) MALE #else FEMALE #end)
+<input type="hidden" name="mykad_gender" value="$!mykad.gender">
+#elseif ( $message == "mykad_empty" )
+Field is empty.
+#elseif ( $message == "mykad_contains_non_numbers" )
+Number contains on numbers.
+#elseif ( $message == "mykad_date_not_valid" )
+Date part is not valid.
+#elseif ( $message == "mykad_number_of_characters_not_valid" )
+MyKad must contains 12 chars
+#elseif ( $message == "mykad_birth_place_not_valid" )
+Birth Place not valid
+#elseif ( $message == "mykad_already_exists" )
+This MyKad number already exists in database.
+#elseif ( $message == "passport_already_exists" )
+This Passport number already exists in database.
+#elseif ( $message == "passport_ok" )
+OK
+#elseif ( $message == "name_gender_not_match" )
+The name does not match with gender stated in MyKad
+#elseif ( $message == "name_ok" )
+OK
+#elseif ( $message == "matric_no_already_exists" )
+Matric No already exist.
+<script>
+$('buttonRegister').disabled = true;
+</script>
+#elseif ( $message == "matric_no_ok" )
+OK
+<script>
+$('buttonRegister').disabled = false;
+</script>
+
+#else
+$message
+#end
+</td></tr></table>

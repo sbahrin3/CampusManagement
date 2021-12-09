@@ -1,0 +1,142 @@
+
+
+
+#if ( $classrooms.size() > 0 )
+    
+    <table class="shadow">
+    
+    <tr>
+    <td colspan="6">
+    
+    <table style="width:100%">
+    <tr>
+    	<td style="font-size:11pt;font-weight:bold">CLASSROOM ATTENDANCE</td>
+    </tr>
+    <tr>
+    	<td style="font-size:11pt;font-weight:bold">$student.matricNo $student.biodata.name<td>
+    </tr>
+    </table>
+    
+    </td>
+    $dateFormat.applyPattern("dd.MMM.yyyy")
+    <td align="right" style="font-weight:bold;font-size:11pt" colspan="3">
+    	##<input class="linkbutton" type="button" style="height:30px;" value="Print (PDF)" onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.timetabling.module.StudentClassroomListPDFModule?studentId=$!student.id&amp;date1=$!date1&amp;date2=$!date2&amp;subjectId=$!subjectId';">
+    	<br/><br/>
+    $dateFormat.format($dateFrom) - $dateFormat.format($dateTo)
+    </td>
+    </tr>
+        	
+        <tr style="height:30px;background:#ADA8A8">
+        <td style="font-weight:bold" align="center">Date</td>
+        <td style="font-weight:bold" align="center">Start Time</td>
+        <td style="font-weight:bold" align="center">End Time</td>
+        <td style="font-weight:bold" align="center">Course</td>
+        <td style="font-weight:bold" align="center">Class Type</td>
+        <td style="font-weight:bold" align="center">Room</td>
+        <td style="font-weight:bold" align="center">Lecturer</td>
+        <td style="font-weight:bold" align="center">Attendance</td>
+        </tr>
+        
+        #set ( $present = 0 )
+        #set ( $absent = 0 )
+        #set ( $totalclassroom = 0 )
+        
+        #set ( $cnt = 1 )
+        #set ( $days = -1 )
+        
+        
+        
+        #foreach( $c in $classrooms )
+        
+        
+        
+        	#if ( $c.classroom.combined && $c.classroom.combineSlotNo > 1 )
+        
+        	#else
+        	
+        		#set ( $slotTime = $slotTimes.get($c.classroom.slot.posX) )
+        	
+        		#set ( $cnt = $cnt + 1 )
+        		#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#EFEAEA" ) #else #set ( $bgcolor="#EFEAEA" ) #end
+        		
+        		#if ( $days != $c.days )
+        		
+        			##if ( $days != -1 )<tr><td colspan="8"><hr/></td></tr> #end
+        			
+        			<tr height="30px" style="border-top:1px solid">
+        			<td style="width:130px;font-weight:bold" valign="middle">
+        			$dateFormat3.format($c.date)
+        			</td>
+        			#set ( $days = $c.days )
+        		#else
+        			<tr height="30px">
+        			<td style="width:100px"></td>
+        		#end
+        	
+        	
+        		#if ( $c.classroom.combined && $c.classroom.combineSlotNo == 1 )
+        			#set ( $slotLastPos = $c.classroom.slot.posX + $c.classroom.classroomSection.classroomType.slotCount - 1)
+        			#set ( $slotTime2 = $slotTimes.get($slotLastPos) )
+        			<td style="background:$bgcolor;width:80px" valign="middle" align="center">$timeFormat.format($slotTime.startTime)</td>
+        			<td style="background:$bgcolor;width:80px" valign="middle" align="center">$timeFormat.format($slotTime2.endTime)</td>
+        		#else
+        			<td style="background:$bgcolor;width:80px" valign="middle" align="center">$timeFormat.format($slotTime.startTime)</td>
+        			<td style="background:$bgcolor;width:80px" valign="middle" align="center">$timeFormat.format($slotTime.endTime)</td>
+        		#end
+        		
+        		<td style="background:$bgcolor;width:250px" valign="middle">$!c.classroom.subject.code &nbsp; $!c.classroom.subject.name</td>
+        		<td style="background:$bgcolor;width:120px" valign="middle">$!c.classroom.classroomSection.name</td>
+        		<td style="background:$bgcolor;width:150px" valign="middle">$!c.classroom.room.name</td>
+        		
+        		<td style="background:$bgcolor;width:200px" valign="middle">
+        		
+        		<table width="100%" cellpadding="0" cellspacing="0">
+        		#if ( $c.classroom.coTeachers.size() == 0 )
+        			<tr><td></td></tr>
+        		#else
+        			#foreach( $t in $c.classroom.coTeachers )
+        				<tr><td style="width:200px">$t.name</td>
+        				</tr>
+        			#end
+        		#end
+        		</table>
+        		</td>
+        		
+        		<td style="width:100px;background:$bgcolor;" align="center">
+        			#set ( $attendanceValue = $attendanceData.getAttendance($c.classroom.id, $student.id))
+        			#set ( $totalclassroom = $totalclassroom + 1 )
+        			#if ( $attendanceValue == 0 )
+        				<img src="../img/check_present.png" border="0">
+        				#set ( $present = $present + 1 )
+        			#else
+        				<img src="../img/check_absent.png" border="0">
+        				#set ( $absent = $absent + 1 )
+        			#end
+        		</td>
+        		
+        	#end
+        	
+        	</tr>
+        
+        #end
+        
+        <tr style="height:25px"><td colspan="6"></td><td style="font-weight:bold;background:$bgcolor" align="right">Total:</td><td style="font-weight:bold;background:$bgcolor" align="center">$!total</td></tr>
+        <tr style="height:25px"><td colspan="6"></td><td style="font-weight:bold;background:$bgcolor" align="right">Present:</td><td style="font-weight:bold;background:$bgcolor" align="center">$!numPresent</td></tr>
+        <tr style="height:25px"><td colspan="6"></td><td style="font-weight:bold;background:$bgcolor" align="right">Absent:</td><td style="font-weight:bold;background:$bgcolor" align="center">$!numAbsent</td></tr>
+        #if ( $percentPresent )
+        <tr style="height:25px"><td colspan="6"></td><td style="font-weight:bold;background:$bgcolor" align="right">%:</td><td style="font-weight:bold;background:$bgcolor" align="center">$pctFormat.format($percentPresent) %</td></tr>
+    	#end
+    
+    </table>
+
+#else
+	
+	<table>
+		<tr>
+			<td>
+				Data Not Available!
+			</td>
+		</tr>
+	</table>
+	
+#end

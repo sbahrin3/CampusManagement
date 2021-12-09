@@ -1,0 +1,16 @@
+<table>
+
+	<tr><td style="width:400px">
+		
+		<input class="form-control" name="teacherName" placeholder="Click button Find... (Optional)" readonly>
+		
+		<input type="hidden" name="teacherId" id="teacherId">
+	</td><td>
+		&nbsp;
+		<button type="button" class="btn btn-success btn-sm" onclick="$('divMain').style.display='none';$('findTeacher').style.display='block';">Find ...</button>
+		<button type="button" class="btn btn-default btn-sm" onclick="$('teacherId').value='';$('teacherName').value='';">Clear</button>
+	
+	</td></tr>
+
+</table>
+

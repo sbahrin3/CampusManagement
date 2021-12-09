@@ -1,0 +1,56 @@
+
+#macro ( title $title )
+<tr><td colspan="3"></td></tr>
+<tr><td class="section_title" colspan="3">$title</td></tr>
+<tr><td colspan="3"></td></tr>
+#end
+
+#macro ( input $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<input class="texts" type="text" id="$input_id" name="$input_id" value="$value" onkeyup="at(this, event)">
+</td></tr>
+#end
+
+#macro ( textarea $input_id $input_title $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<textarea class="textarea" id="$input_id" name="$input_id">$value</textarea>
+</td></tr>
+#end
+
+#macro ( select $input_id $input_title $list $value)
+<tr><td  valign="top">$input_title</td><td valign="top">:</td><td>
+<select class="texts" id="$input_id" name="$input_id" value="$value">
+<option value=""></option>
+#foreach( $i in $list )
+<option #if ( $i.id == $value ) selected #end value="$i.id">$i.name</option>
+#end
+</select>
+</td></tr>
+#end
+
+#macro ( date_input $input_id $input_title $value )
+<tr><td >$input_title</td><td>:</td><td>
+$html.dateField.name("$input_id").value("$value").style("width:100px").cssClass("texts")
+</td></tr>
+#end
+
+#macro ( date_from_to $input_id_1 $input_id_2 $input_title $value_1 $value_2 )
+<tr><td >$input_title</td><td>:</td><td>
+Mulai
+$html.dateField.name("$input_id_1").value("$!dateValue_1").style("width:100px").cssClass("texts")
+Hingga
+$html.dateField.name("$input_id_2").value("$!dateValue_2").style("width:100px").cssClass("texts")
+</td></tr>
+#end
+
+
+
+<fieldset>
+<legend >Basic Information</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+#input("title" "Title" "$!r.title")
+#textarea("description" "Description" "$!r.description")
+#select("type" "Type" $types "$!r.type")
+</table>
+</fieldset>

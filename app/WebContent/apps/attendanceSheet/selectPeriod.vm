@@ -1,0 +1,10 @@
+<select name="periodId" style="width:100%" onchange="changePeriod();doDivAjaxCall$formname('selectSection','selectSection','')">
+<option value=""></option>
+#foreach( $p in $periods )
+<option value="$p.id">$p.name</option>
+#end
+</select>
+
+<script>
+$('programName').innerHTML = "$program.code $program.name";
+</script>

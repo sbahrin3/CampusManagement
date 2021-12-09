@@ -1,0 +1,35 @@
+<div style="background:#3071A9;padding:10px">
+
+	<table style="width:100%">
+		<tr>
+			<td style="color:#fff">Select Programs</td>
+			<td align="right">
+			<a href="javascript:void(0)" onclick="$('classroomOptions').style.display='none';">x</a>
+			</td>
+			</tr>
+		</table>
+  	
+</div>
+
+	<div id="divClassroomGroups" style="height:350px;overflow:auto;overflow-x:hidden;">
+		<table class="table table-striped table-hover">
+		
+		<tbody>
+			#foreach( $p in $programs )
+				<tr>
+					<td>$p.code</td>
+					<td>$p.name</td>
+					<td>
+						<input type="checkbox" name="programIds" value="$p.id" #if ($classroomTemplate.group.programs.contains($p)) checked #end>
+					</td>
+				</tr>
+			#end
+			<tr>
+				<td colspan="4" align="right">
+					<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('listPrograms','savePrograms','classroomTemplateId=$!classroomTemplate.id');$('classroomOptions').style.display='none';">OK</button>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		
+	</div>

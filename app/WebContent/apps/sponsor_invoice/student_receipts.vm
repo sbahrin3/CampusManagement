@@ -1,0 +1,35 @@
+
+<fieldset class="shadow" style="background-color:#FFFFCC;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+<legend style="font-weight:bold">RECEIPTS</legend>
+<table width="100%">
+<tr><td align="right">
+<input class="gradient" style="height:25px" type="button" value="Close" onclick="$('div_$cnt').style.display='none'">
+</td></tr>
+</table>
+<br>
+<table align="center" cellspacing="0">
+<tr bgcolor="#DCDCDC" height="30px">
+<td style="width:100px;font-weight:bold">No</td>
+<td style="width:100px;font-weight:bold">Date</td>
+<td style="width:300px;font-weight:bold">Remark</td>
+<td style="width:200px;font-weight:bold" align="right">Amount</td>
+<td style="width:50px"></td>
+<td style="width:60px;"></td>
+</tr>
+#foreach ( $p in $payments )
+<tr height="30px">
+<td style="border-bottom:1px solid #BCBCBC">$p.paymentNo</td>
+<td style="border-bottom:1px solid #BCBCBC">$dateFormat.format($p.createDate)</td>
+<td style="border-bottom:1px solid #BCBCBC">$!p.sponsorPayment.paymentRemark</td>
+<td style="border-bottom:1px solid #BCBCBC"  align="right">$numFormat.format($p.amount)</td>
+<td style="border-bottom:1px solid #BCBCBC">&nbsp;</td>
+<td style="border-bottom:1px solid #BCBCBC">
+
+<a href="javascript:void()" onclick="window.open('../y/educate.sis.finance.module.StudentCustomPaymentModule?command=view_payment&payment_id=$p.id','win_$p.id','left=20,top=20,width=800,height=300,toolbar=0,resizable=0, scrollbars=yes');">Print</a>
+
+
+</td>
+</tr>
+#end
+</table>
+</fieldset>

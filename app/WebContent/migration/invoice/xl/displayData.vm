@@ -1,0 +1,43 @@
+<input type="hidden" id="totalCnt" value="$totalCnt">
+
+<table style="background:#BFBFBF">
+<tr>
+<td colspan="9" align="right">
+<input type="checkbox" name="clearData" value="yes" checked>Clear Data&nbsp;&nbsp;
+#if ( $totalCnt > 0 )
+<input class="linkbutton" type="button" value="RUN IMPORT INVOICE..." onclick="doDivAjaxCall$formname('result_1','saveItem','cnt=1&totalCnt=$totalCnt')">
+#else
+<input class="linkbutton" type="button" value="RUN IMPORT INVOICE..." onclick="doDivAjaxCall$formname('result_1','saveItem','cnt=1&totalCnt=0')">
+#end
+
+</td>
+</tr>
+<tr style="height:30px;background:#DBDBDB">
+<td style="width:50px" align="center">&nbsp;</td>
+<td style="width:150px" align="center">Matric No</td>
+<td style="width:150px" align="center">Session Code</td>
+<td style="width:150px" align="center">Invoice No</td>
+<td style="width:150px" align="center">Invoice Date</td>
+<td style="width:150px" align="center">Fee Code</td>
+<td style="width:150px" align="center">Item Description</td>
+<td style="width:150px" align="center">Amount</td>
+<td style="width:150px" align="center"></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach( $i in $items )
+#set ( $cnt = $cnt + 1 )
+<tr style="height:25px;background:#fff">
+<td align="center">$cnt.</td>
+<td align="center">$i.matricNo</td>
+<td align="center">$i.sessionCode</td>
+<td align="center">$i.itemNo</td>
+<td align="center">$i.itemDate</td>
+<td align="center">$i.itemCode</td>
+<td align="center">$i.itemDescription</td>
+<td align="center">$i.amount</td>
+<td align="center"><div id="result_$cnt"></div></td>
+</tr>
+#end
+</table>
+#set ( $cnt = $cnt + 1 )
+<div id="result_$cnt"></div>

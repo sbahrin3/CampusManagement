@@ -1,0 +1,22 @@
+
+<table>
+	<tr>
+		<td>Filter By Subject:</td>
+		<td style="width:400px">
+			<select class="texts" id="subjectId" name="subjectId" onchange="getAttendance()">
+				<option value="">-Select Subject-</option>
+				#foreach ( $s in $subjects )
+					<option value="$s.id">$s.code $s.name</option>
+				#end
+			</select>
+			
+		</td>
+	</tr>
+</table>
+
+
+<div id="listClassrooms2">
+	#parse("apps/timetabling/student_classroom/listClassrooms2.vm")
+</div>
+
+

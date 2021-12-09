@@ -1,0 +1,48 @@
+<span id="messageFaculty"></span>
+<table class="table table-striped">
+<tr style="">
+<td style="width:100px;font-weight:bold">Code</td>
+<td style="font-weight:bold">Name</td>
+##<td style="width:40px;font-weight:bold">Color</td>
+<td style=""></td>
+<td style="width:10px"></td>
+<td style="width:10px"></td>
+</tr>
+#foreach( $faculty in $faculties )
+
+<tr style="">
+<td>
+
+$faculty.code
+
+<span id="messageFaculty_$faculty.id"></span>
+<div class="shadow" id="editFaculty_$faculty.id" style="display:none;background:#fff;position:absolute;border:1px dotted #000;padding:5px"></div>
+
+
+</td>
+
+<td style="cursor:pointer"  onclick="$('listFaculties').style.display='none';doDivAjaxCall$formname('listFacultyItems','getCourses','getFacultyId=$faculty.id')">$faculty.name</td>
+#**
+#if ( $faculty.matricCardColor )
+	#set ( $color = $faculty.matricCardColor )
+	#if ( $color == "" ) #set ( $color = "#FFF" ) #end
+#else
+	#set ( $color = "" )
+#end
+<td style="background:$!color">$!color
+</td>
+**#
+<td style="" align="">
+
+<button type="button" class="btn btn-warning btn-sm" onclick="$('editFaculty_$faculty.id').style.visibility='visible';doDivAjaxCall$formname('editFaculty_$faculty.id','editFaculty','facultyId=$faculty.id')">Edit</button>
+<button type="button" class="btn btn-danger btn-sm" onclick="$('messageFaculty_$faculty.id').innerHTML='<b>Deleting Faculty... Please Wait..</b>';doDivAjaxCall3$formname('divListFaculties','deleteFaculty','facultyId=$faculty.id&institutionId=$institutionId')">X</button>
+<button type="button" class="btn btn-primary btn-sm" onclick="$('listFaculties').style.display='none';doDivAjaxCall$formname('listFacultyItems','getCourses','getFacultyId=$faculty.id')">Program Groups &gt;</button>
+
+</td>
+<td style="width:50px" align="center"></td>
+<td style="width:50px" align="center">
+</td>
+</tr>
+
+#end
+</table>

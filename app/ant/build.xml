@@ -1,0 +1,229 @@
+<project name="IQWANCMS" basedir="../">
+
+	<property name="deploy.dir" value="/usr/local/resin-4.0.40/webapps"/>
+	
+
+	<property name="project.distname" value="campus"/>
+	<property name="project.distname.shrink" value="ed-01-02-013.jar"/>
+	<property name="project.warname" value="campus"/>
+	<property name="demo.folder" value="/Users/Admin/Documents/__tomcat_apps/_apache-tomcat-8989/webapps/educate4" />
+	
+	
+	
+
+    <!-- Local system paths -->
+    <property file="${basedir}/ant/build.properties"/>
+    <property name="webroot.dir" value="${basedir}/WebContent"/>
+	<property name="webinf.dir" value="${webroot.dir}/WEB-INF"/>
+    <property name="build.dir" value="build"/>	 
+	
+	<property name="git.dir" value="/Users/Admin/GitHub/iqwan/iqwan_cms"/>
+    <target name="copy_git"> 
+        <copy  verbose="true" todir="${git.dir}" includeEmptyDirs="no">
+            <fileset dir="${basedir}">
+            	<exclude name="**/*.war"/>
+            	<exclude name="**/velocity.log"/>
+            	<exclude name="**/velocity.log.1"/>
+            </fileset>
+        </copy>     
+   </target>
+    
+	
+	<path id="compile.classpath">
+		<pathelement location="${webinf.dir}/lib"/>
+    	<fileset dir="${webinf.dir}/lib">
+    	    <include name="**/*.jar"/>
+        </fileset>		
+	</path>	
+
+    <!-- Check timestamp on files -->
+    <target name="prepare">
+        <tstamp/>
+    </target>
+
+    <!-- Copy any resource or configuration files -->
+    <target name="resources">
+        <copy todir="${webinf.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="JavaSource">
+            <patternset>
+                <include name="**/*.conf"/>
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+            </patternset>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- Normal build of application -->
+    <target name="compile" depends="prepare,resources">
+        <javac srcdir="JavaSource" destdir="${webinf.dir}/classes">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+	
+    <!-- Remove classes directory for clean build -->
+    <target name="clean"
+      description="Prepare for clean build">
+      <!--
+      <delete dir="${webinf.dir}/classes"/>
+      <mkdir  dir="${webinf.dir}/classes"/>
+      -->
+    </target>
+
+    <!-- Build entire project -->
+    <target name="build" depends="prepare,compile"/>
+    <target name="rebuild" depends="clean,prepare,compile"/>
+
+    <!-- Create binary distribution -->
+    <target name="war">
+      <mkdir dir="${build.dir}"/>
+      <war
+        basedir="${webroot.dir}"
+        warfile="${build.dir}/${project.warname}.war"
+        webxml="${webinf.dir}/web.xml">
+       </war>
+
+    </target>
+	
+	
+	<!-- DEPLOY APP WAR TO RESIN WEBAPPS -->
+	<!--
+	 sudo chmod 777 /usr/local/resin-4.0.40/webapps
+	-->
+
+    <target name="deploy" depends="war">
+       <delete file="${deploy.dir}/${project.warname}.war"/>
+       <delete dir="${deploy.dir}/${project.distname}"/>
+       <copy file="${build.dir}/${project.warname}.war" todir="${deploy.dir}"/>
+    </target>
+
+	<!-- proguard setting-->
+	<target name="jar-obfuscate" depends="jar-create">
+	  <taskdef resource="proguard/ant/task.properties"
+	           classpath="/Users/Admin/Documents/proguard4.10/lib/proguard.jar" />
+
+	  <proguard printseeds="on">
+
+	    <!-- Specify the input jars, output jars, and library jars. -->
+
+	  	<!--
+	    <injar  file="${build.dir}/${project.distname}.jar" />
+	    <outjar file="${build.dir}/${project.distname.shrink}.jar" />
+		-->
+	  	
+	    <injar  file="${build.dir}/educate-2.jar" />
+	    <outjar file="${build.dir}/educate-3.jar" />
+
+	    <libraryjar file="${java.home}/lib/rt.jar" />
+
+	  	<libraryjar file="${webinf.dir}/lib/jspsmart.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/jasperreports-1.0.1.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/velocity-1.5.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/servlet.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/portlet.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/jfreechart-1.0.14.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/jcommon-1.0.17.jar" />
+	  	<!-- <libraryjar file="${webinf.dir}/lib/nanoxml-lite-2.2.2.jar" /> -->	 
+	  	<libraryjar file="${webinf.dir}/lib/lebah4.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/iText-2.0.8.jar" />	
+	  	<libraryjar file="${webinf.dir}/lib/itextpdf-5.1.2.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/geronimo-jpa_3.0_spec-1.0.jar" />
+  		<libraryjar file="${webinf.dir}/lib/geronimo-jms_1.1_spec-1.0.1.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/openjpa-1.2.1.jar" />
+	  	<!-- <libraryjar file="${webinf.dir}/lib/onapp.jar" /> -->
+	  	<libraryjar file="${webinf.dir}/lib/commons-fileupload-1.2.jar" />
+	  	<libraryjar file="${webinf.dir}/lib/lebah-template.jar" /> 
+	  	
+	  	
+	  	
+
+	    <keep access="public">
+	      <field  access="public protected" />
+	      <method access="public protected" />
+	    </keep>	  	
+
+	    <!-- Preserve all annotations. -->
+
+	    <keepattribute name="*Annotation*" />
+	    
+	    <!-- Preserve the methods that are required in all enumeration classes. -->
+	    
+	    <keepclassmembers extends="java.lang.Enum">
+	      <method access="public static"
+	              type="**[]"
+	              name="values"
+	              parameters="" />
+	      <method access="public static"
+	              type="**"
+	              name="valueOf"
+	              parameters="java.lang.String" />
+	    </keepclassmembers>
+	   </proguard>
+	</target>
+	
+
+	
+	
+    <!-- Copy properties -->
+    <target name="properties">
+        <copy todir="${webinf.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="WebContent/WEB-INF/properties">
+            <patternset>
+	            <include name="**/*.properties"/>
+            </patternset>
+            </fileset>
+        </copy>
+    </target>
+	
+	
+    <!-- Copy Included Classes -->
+    <target name="classes">
+        <copy todir="${webinf.dir}/classes" includeEmptyDirs="no">
+            <fileset dir="include_class">
+            <patternset>
+	            <include name="**/*.class"/>
+            </patternset>
+            </fileset>
+        </copy>
+    </target>	
+	
+	<!-- Create JAR -->
+	<target name="jar-create">
+  		<jar destfile="${build.dir}/${project.distname}.jar">
+            <fileset dir="${webinf.dir}/classes">
+            	<exclude name="educate/misc/**"/>
+            	<exclude name="iqwan/web/**"/>
+            	<exclude name="**/*.svn"/>
+            	<exclude name="**/*.properties"/>
+            	<exclude name="**/*.xml"/>
+            </fileset>		
+  		</jar>
+	</target>
+	
+	<!-- Create JAR -->
+	<target name="jar-create-misc">
+  		  <jar destfile="${build.dir}/educate-misc.jar"
+  		       basedir="${webinf.dir}/classes"
+  		       includes="educate/misc/**"
+  		  />  			
+	</target>
+	
+	
+		
+	
+
+	 <target name="copy_demo_folder">
+	        <copy  verbose="true" todir="${demo.folder}" includeEmptyDirs="no">
+	            <fileset dir="WebContent">
+					<exclude name="**/*.svn"/>
+	            	<exclude name="**/*.properties"/>
+	            	<exclude name="**/*.xml"/>
+	            	<exclude name="**/velocity.log.1"/>
+	            </fileset>
+	        </copy>   
+	   </target>
+	
+   
+	
+
+</project>

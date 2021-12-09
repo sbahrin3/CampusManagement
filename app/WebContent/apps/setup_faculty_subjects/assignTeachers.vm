@@ -1,0 +1,70 @@
+
+<table style="width:900px"><tr><td>
+
+
+
+<fieldset><legend class="legend">Assign Lecturers: $subject.name</legend>
+
+
+<table width="100%"><tr><td align="right">
+<input class="linkbutton" type="button" value="Add/Remove" onclick="doDivAjaxCall3$formname('editSubject_$subjectId','updateAssignTeachers','subjectId=$subjectId')">
+<input class="linkbutton" type="button" value="Close" onclick="$('editSubject_$subjectId').style.visibility='hidden';">
+</td></tr></table>
+
+<table style="width:100%">
+	<tr>
+		<td style="width:50%">
+			
+    		<fieldset>
+            <legend class="legend">Assigned Lecturers</legend>
+            <div id="assignedTeacherList">
+            <div style="height:150px;overflow-y:scroll">
+                <table cellpadding="2" cellspacing="0">
+                #set ( $c = 0 )
+                #foreach( $t in $assignedTeachers )
+                    #set ( $c = $c + 1 )
+                    #set ( $bgcolor = "#F2F2F2" )
+                    #if ( $c % 2 == 0 ) #set ( $bgcolor = "#D3D3D3" ) #end
+                    <tr style="background:$bgcolor">
+                    <td style="width:20px"><input type="checkbox" name="removeTeacherIds" value="$t.teacher.id"></td>
+                    <td style="">$t.teacher.name</td>
+                    <td style="width:50px" align="center">
+                    ##<input type="checkbox" #if ( $t.mainCampus ) checked #end onclick="if ( this.checked) { doDivAjaxCall3$formname('empty','setMainCampus','teacherSubjectId=$t.id&status=yes'); } else { doDivAjaxCall3$formname('empty','setMainCampus','teacherSubjectId=$t.id&status=no'); }">
+                    </td>
+                    <td style="width:50px" align="center">
+                    ##<input type="checkbox"  #if ( $t.otherCampus ) checked #end onclick="if ( this.checked) { doDivAjaxCall3$formname('empty','setOtherCampus','teacherSubjectId=$t.id&status=yes'); } else { doDivAjaxCall3$formname('empty','setOtherCampus','teacherSubjectId=$t.id&status=no'); }">
+                    </td>
+                    </tr>
+                #end
+                </table>
+            </div>
+            </div>
+            </fieldset>
+			
+		</td>
+		<td style="width:50%">
+			
+        			
+        			
+            <fieldset>
+            <legend class="legend">Lecturers</legend>
+            <div id="teacherList" style="height:150px;overflow-y:scroll">
+                <table>
+                #foreach( $teacher in $teachers )
+                <tr>
+                <td style="width:20px"><input type="checkbox" name="teacherIds" value="$teacher.id"></td>
+                <td style="">$teacher.name</td>
+                </tr>
+                #end
+                </table>
+            </div>
+            </fieldset>
+			
+		</td>
+	</tr>
+</table>
+
+</fieldset>
+	
+
+</td></tr></table>

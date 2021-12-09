@@ -1,0 +1,25 @@
+<table width="100%" cellspacing="0" cellpadding="1">
+<tr><td>
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr height="25px" bgcolor="lightgrey">
+<td width="25px"></td>
+<td style="width:50px; font-weight:bold">Id</td>
+<td style="width:280px; font-weight:bold">Name</td>
+<td align="right">
+<a href="javascript:void()" onclick="doDivAjaxCall$formname('div_building','new_building','hostel_id=$hostel.id')"><img src="../img/item/add.gif" border="0"></a>
+</td>
+</tr>
+</table>
+</td></tr>
+
+#set ( $cnt = 0 )
+#foreach ( $building in $hostel.buildings )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "lightgrey" ) #else #set ( $bgcolor = "#ffffff" ) #end
+<tr bgcolor="$bgcolor"><td>
+<div name="div_building_$building.id" id="div_building_$building.id">
+#parse("apps/hostel_admin/list_buildings_item.vm")
+</div>
+</td></tr>
+#end
+</table>

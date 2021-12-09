@@ -1,0 +1,285 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" media="all" href="../js/jsDatePick_ltr.min.css" />
+<script type="text/javascript" src="../js/jsDatePick.min.1.3.js"></script>
+
+
+
+
+#macro( select_field $id $name )
+<table cellpadding=0 celspacing=0><tr><td><table class="box" cellpadding=0 cellspacing=0 align="center" width="200px"><tr><td>$name</td><td width="10px" style="cursor:pointer" onclick="appendField('$id', '$name')"><img src="../img/add.gif"></td></tr></table></td></tr></table>
+#end
+
+
+
+<style>
+.onOver { background-color:#9999CC; color:#ffffff; font-weight:bold; cursor:pointer }
+.onOut { background-color:#ffffff; color:#000000 }
+.hoverActive { background-color:#C4D5F8 }
+.box { 
+	border-top:1px solid #000;border-bottom:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;
+	padding-top:5px;padding-bottom:5px;padding-left:5px;padding-right:5px; 
+}
+	
+.record { 
+	border-bottom:1px solid #CCC9C9;border-right:1px solid #CCC9C9;
+	padding-top:5px;padding-bottom:5px;padding-left:5px;padding-right:5px; 
+}
+		
+.field { 
+	width:200px;
+	cursor:pointer;
+	border-top:1px solid #000;border-bottom:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;
+	padding-top:5px;padding-bottom:5px;padding-left:5px;padding-right:5px; 
+	}	
+	
+.report_legend {
+	background:#ccc;
+	font-weight:bold;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:5px;
+	padding-right:5px;
+
+}
+	
+</style>
+
+<table style="width:100%"><tr><td>
+<div id="div_report" style="padding:10px"></div>
+</td></tr>
+<tr><td>
+
+<div id="div_params">
+
+<div class="well well-sm" style="font-size:12pt;font-weight:bold">Report Parameters</div>
+
+<table width="100%" align="center">
+<tr><td valign="top">
+
+<table width="100%">
+
+
+
+<tr><td style="width:150px">Program:</td>
+<td>
+<select name="program_id" class="texts" style="width:250px;" onchange="doDivAjaxCall$formname('listSessions','listSessions','')">
+<option value="">(ALL PROGRAMS)</option>
+#foreach($p in $programs)
+<option value="$p.id">$p.name - $p.code</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Intake:</td>
+<td>
+	
+<div id="listSessions">
+<input readonly name="intake_id" class="texts" style="width:250px;">
+</div>
+
+</td></tr>
+
+<tr><td>Learning Centre:</td>
+<td>
+<select name="centre_id" class="texts" style="width:250px;">
+<option value="">(ALL CENTRES)</option>
+#foreach( $centre in $centres )
+<option value="$centre.id">&nbsp;&nbsp;&nbsp;&nbsp;$centre.name</option>
+#end
+</select>
+</td></tr>
+
+
+<tr><td>Race:</td>
+<td>
+<select name="race_id" class="texts" style="width:250px;">
+<option value="">(ALL RACES)</option>
+#foreach( $race in $races )
+<option value="$race.id" >&nbsp;&nbsp;&nbsp;&nbsp;$race.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Gender:</td>
+<td>
+<select name="gender_id" class="texts" style="width:250px;">
+<option value="">(BOTH GENDER)</option>
+#foreach( $gender in $genders )
+<option value="$gender.id">&nbsp;&nbsp;&nbsp;&nbsp;$gender.name</option>
+#end
+</select>
+</td></tr>
+
+
+</table>
+
+
+</td><td valign="top">
+
+
+<table width="100%">
+
+<tr><td style="width:150px">Local/International:</td>
+<td>
+<select name="nationality_id" class="texts" style="width:250px;">
+<option value="">(BOTH LOCAL & INTERNATIONAL)</option>
+<option value="1">&nbsp;&nbsp;&nbsp;&nbsp;LOCAL</option>
+<option value="2">&nbsp;&nbsp;&nbsp;&nbsp;INTERNATIONAL</option>
+</select>
+</td></tr>
+
+
+<tr><td>Residential State:</td>
+<td>
+<select name="state_id" class="texts" style="width:250px;">
+<option value="">(ALL STATES)</option>
+#foreach( $state in $states )
+<option value="$state.id">&nbsp;&nbsp;&nbsp;&nbsp;$state.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>*Student Status:</td>
+<td>
+<select name="status_id" class="texts" style="width:250px;">
+##<option value="">(ALL STATUS)</option>
+#foreach( $status in $statuses )
+<option value="$status.id">&nbsp;&nbsp;&nbsp;&nbsp;$status.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td>Applicant Status:</td>
+<td>
+<select name="status_tag" class="texts" style="width:250px;">
+<option value="">(ALL)</option>
+<option value="QUALIFIED" >&nbsp;&nbsp;&nbsp;&nbsp;QUALIFIED</option>
+<option value="LOCO" >&nbsp;&nbsp;&nbsp;&nbsp;LOCO</option>
+</select>
+</td></tr>
+
+<tr style="display:none"><td>Sponsor Report:</td>
+<td>
+<input type="checkbox" id="sponsorCheckYes" name="sponsorCheck" value="YES" onclick="$('sponsorCheckNo').checked=false">YES
+<input type="checkbox" id="sponsorCheckNo" name="sponsorCheck" value="NO" checked onclick="$('sponsorCheckYes').checked=false">NO
+</td></tr>
+
+</table>
+
+</td></tr>
+</table>
+
+
+<table>
+	<tr>
+		<td style="width:150px">
+			Date of Report:
+		</td>
+		<td style="width:150px">
+			#set ( $dateValue = $dateFormat.format($reportDate))
+			<input class="texts" style="width:150px" id="reportDate" name="reportDate" value="$!dateValue">
+			<script> new JsDatePick({ useMode:2, target:"reportDate", dateFormat:"%d-%m-%Y" }); </script>
+			
+		</td>
+		<td style="width:500px" valign="top">
+			<div style="padding:5px">
+			*Report Date determine the date of what the <b>Student's Status</b> is based on.
+			</div>
+		</td>
+	</tr>
+	<tr style="height:50px">
+		<td></td>
+		<td>
+		
+			<button class="btn btn-primary" type="button" onclick="$('pleaseWait').style.display='block';doDivAjaxCall$formname('div_report','list_filtered_students','');">Create Report</button>
+		
+		</td>
+	</tr>
+</table>
+
+
+<table width="100%" align="center">
+<tr><td align="">
+</td></tr>
+</table>
+<div id="pleaseWait" style="display:none;font-weight:bold;text-align:center">Please Wait...<img src="../img/indicator.gif"></div>
+
+<div class="well well-sm" style="font-size:12pt;font-weight:bold">Report Fields</div>
+
+<table width="100%" align="center">
+<tr><td valign="top" align="center">
+<table><tr><td style="font-weight:bold">Available Fields</td></tr></table>
+<br/>
+<div style="overflow:auto;height:250px">
+#select_field ( "matricNo" "Student ID")
+#select_field ( "name" "Name")
+#select_field("icno", "ICNo")
+
+#select_field("gender", "Gender")
+#select_field("telephoneNo", "Telephone No")
+#select_field("mobileNo", "Mobile No")
+#select_field("email", "Email")
+#select_field("race", "Race")
+#select_field("religion", "Religion")
+#select_field("nationality", "Nationality")
+
+#select_field("statusTag", "Applicant Status")
+
+
+#select_field("program", "Program")
+#select_field("intake", "Intake")
+#select_field("centre", "Learning Centre")
+#select_field("period", "Semester")
+#select_field("address", "Address")
+
+#select_field("institutionSPM", "School (SPM)")
+#select_field("institutionSTPM", "School (STPM)")
+
+#select_field("status", "Status")
+#select_field("sponsor", "Sponsor")
+</div>
+
+</td><td valign="top" align="center">
+<table><tr><td style="font-weight:bold">Selected Fields</td></tr></table>
+
+<div style="overflow:auto;height:250px">
+<ul id="fieldlist" style="list-style-type:none;padding:1px;"></ul>
+</div>
+<script>
+Sortable.create('fieldlist');
+var counts = 0;
+function appendField(id, name) {
+	counts++;
+	var fields = document.getElementById("fieldlist");
+	var li = document.createElement("li");
+	li.id = counts;
+	li.innerHTML = '<table cellpadding=0 celspacing=0><tr><td><table class="field" cellpadding=0 cellspacing=0><tr><td><input type="hidden" name="field_names" value="' + id + '">' + name + '</td><td width="10px"><a href="javascript:void(0)" onclick="removeField(&quot;' + counts + '&quot;)"><img src="../img/delete.gif"></a></td></tr></table></td></tr></table>';
+	fields.appendChild(li);
+	Sortable.create('fieldlist');
+}
+function removeField(id) {
+	counts--;
+	var fields = document.getElementById("fieldlist");
+	var li = document.getElementById(id);
+	fields.removeChild(li);
+	Sortable.create('fieldlist');
+}
+
+appendField("matricNo", "Student ID");
+appendField("name", "Name");
+appendField("program", "Program");
+appendField("period", "Semester");
+
+</script>
+</td></tr>
+</table>
+
+
+
+
+</div>
+<tr><td>
+
+</td></tr></table>
+
+

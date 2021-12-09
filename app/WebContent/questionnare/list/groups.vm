@@ -1,0 +1,30 @@
+<table class="table" style="background:#fff">
+<thead>
+<tr style="height:30px">
+<th  style="width:40px">&nbsp;</th>
+<th  style="width:100px" align="center">Open Date</th>
+<th  style="width:100px" align="center">Close Date</th>
+<th  style="" align="center">Questions Set</th>
+##<th  style="width:200px" align="center">Subject</th>
+<th  style="width:50px" align="right">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+#foreach ( $q in $questionnares )
+<tr style="height:25px">
+<td >$velocityCount.</td>
+<td >#if ( $q.startDate ) $dateFormat.format($q.startDate) #end&nbsp;</td>
+<td >#if ( $q.endDate ) $dateFormat.format($q.endDate) #end&nbsp;</td>
+<td >$q.set.name&nbsp;</td>
+##<td  align="center">$!q.subject.name ($!q.subject.code)</td>
+
+
+<td  align="right">
+
+<button type="button" class="btn btn-primary btn-sm" onclick="doDivAjaxCall$formname('div_main','listQuestionnares','setId=$!q.set.id&subjectId=$!q.subject.id&dateStart=$dateFormat.format($q.startDate)')">Take</button>
+</td>
+
+</tr>
+#end
+</tbody>
+</table>

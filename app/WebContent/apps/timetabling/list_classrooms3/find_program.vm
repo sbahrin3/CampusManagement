@@ -1,0 +1,9 @@
+<table><tr><td style="width:300px">
+	<input class="form-control" name="programName" name="programName" placeholder="Click 'Find...' button" readonly>
+	<input type="hidden" name="programId" id="programId">
+</td><td>
+	&nbsp;
+	<button type="button" class="btn btn-primary btn-sm" onclick="if ( $('sessionId').value == '' || $('week').value == '' ) { alert('Please select week');return; } else { doDivAjaxCall$formname('classroomList','filterByProgram',''); }">Get Report</button>
+	<button type="button" class="btn btn-success btn-sm" onclick="$('calendars').style.display='none';$('classroomList').style.display='none';$('findTeacher').style.display='none';$('findGroup').style.display='none';$('findProgram').style.display='block';$('findRoom').style.display='none';">Find...</button>
+
+</td></tr></table>

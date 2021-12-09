@@ -1,0 +1,4 @@
+<script>
+parent.document.getElementById('${divUploadStatusName}').innerHTML = "";
+parent.document.getElementById('imgAnnouncement').src="../servlet/educate.sis.module.FloorPlanImgServlet?id=$!floor.id&imageId=$!floor.floorPlanImageId";
+</script>

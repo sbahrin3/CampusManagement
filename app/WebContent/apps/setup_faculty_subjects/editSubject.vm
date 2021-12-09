@@ -1,0 +1,57 @@
+<fieldset><legend class="legend">Edit Subject</legend>
+<table width="100%">
+<tr><td style="width:100px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+<tr><td>Code</td><td>:</td><td><input class="texts" name="subjectCode_$subject.id" value="$!subject.code"></td></tr>
+<tr><td>Name</td><td>:</td><td><input class="texts" name="subjectName_$subject.id" value="$!subject.name"></td></tr>
+<tr><td>Short Name</td><td>:</td><td><input class="texts" name="shortName_$subject.id" value="$!subject.shortName"></td></tr>
+	
+<tr><td>Alt. Name</td><td>:</td><td><input class="texts" name="subjectAltName_$subject.id" value="$!subject.altName"></td></tr>
+<tr><td>Credit Unit</td><td>:</td><td>
+<select class="texts" name="subjectCreditHours_$subject.id">
+#foreach( $i in [0..20] )
+<option value="$i" #if ( $subject.credithrs == $i ) selected #end>$i</option>
+#end
+</select>
+</td></tr>
+
+
+<tr><td>Subject Group</td><td>:</td><td>
+<select class="texts" name="subjectGroup_$subject.id">
+<option value=""></option>
+#foreach( $subjectGroup in $subjectGroups )
+	#if ( $subjectGroup.faculty.id == $facultyId )
+		<option value="$subjectGroup.id" #if ( $subject.subjectGroup.id == $subjectGroup.id ) selected #end>$subjectGroup.name</option>
+	#else
+		<option value="$subjectGroup.id" #if ( $subject.subjectGroup.id == $subjectGroup.id ) selected #end>$subjectGroup.name ( $subjectGroup.faculty.name)</option>
+	#end
+#end
+</select>
+</td></tr>
+
+<tr><td>Calculate in GPA?</td><td>:</td><td>
+<select class="texts" name="subjectExcludeGpa_$subject.id">
+<option value="0" #if ( $subject.excludeGpa == 0 ) selected #end>CALCULATE</option>
+<option value="1" #if ( $subject.excludeGpa == 1 ) selected #end>NOT CALCULATE</option>
+</select>
+</td></tr>
+
+<tr><td>Grade Scheme</td><td>:</td><td>
+<select class="texts" name="markingGrade_$subject.id">
+<option value=""></option>
+#foreach( $m in $markingGrades )
+<option value="$m.id" #if ( $m.id == $subject.markingGrade.id ) selected #end>$m.name</option>
+#end
+</select>
+</td></tr>
+
+
+<tr style="display:none"><td>Quota</td><td>:</td><td><input class="texts" name="quota_$subject.id" value="$!subject.quota"></td></tr>
+
+</table>
+<br/>
+<table width="100%"><tr><td align="right">
+<button class="btn btn-primary" type="button"  onclick="$('messageSubject_$subject.id').innerHTML='<b>Saving Subject... Please Wait..</b>';doDivAjaxCall3$formname('divListSubjects','saveSubject','subjectId=$subject.id&subjectGroupId=$!subjectGroup.id&facultyId=$!subject.faculty.id');$('editSubject_$subjectId').style.visibility='hidden';">Save</button>
+<button class="btn btn-success" type="button"  onclick="$('editSubject_$subjectId').style.visibility='hidden';">Cancel</button>
+</td></tr></table>
+
+</fieldset>

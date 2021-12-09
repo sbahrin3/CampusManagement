@@ -1,0 +1,141 @@
+<div style="padding:10px;font-family:Verdana;font-weight:bold;font-size:12pt">
+SUBJECT'S RESULT ANALYSIS
+</div>
+<table>
+<tr>
+<td style="width:120px;font-weight:bold;font-size:10pt">Session</td><td>:</td><td style="font-weight:bold;font-size:10pt">$session.name</td></tr>
+<td style="font-weight:bold;font-size:10pt">Subject</td><td>:</td><td style="font-weight:bold;font-size:10pt">$subject.code $subject.name</td></tr>
+</table>
+#if ( !$print_mode )
+<table width="100%"><tr><td>
+[<a href="javascript:void(0)" 
+onclick="document.location='../servlet/educate.util.CreatePDFServlet?pathUrl=v/educate.sis.module.SubjectResultAnalysisPrintModule?subject_id=$subject.id&amp;session_id=$session.id&amp;program_id=$!program.id&pdfName=SubjectResultAnalysis_$subject.code';">
+<b>Download as PDF</b>
+</a>]
+</td></tr></table>
+#end
+<br/>
+
+<table><tr><td valign="top">
+
+<div id="listStudentResult">
+#parse("$path/listStudentResult.vm")
+</div>
+
+</td>
+<td style="width:20px"></td>
+<td valign="top">
+
+$numFormat.applyPattern("#.00")
+
+
+<table cellpadding="2" cellspacing="0">
+
+<tr style="height:35px">
+<td style="width:50px;font-weight:bold;border-top:1px solid;border-bottom:1px solid;border-right:1px solid;">&nbsp;</td>
+<td style="width:100px;font-weight:bold;border-top:1px solid;border-bottom:1px solid" align="center">Total Mark</td>
+<td style="width:100px;font-weight:bold;border-top:1px solid;border-bottom:1px solid" align="center">Point</td>
+</tr>
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">High</td>
+<td style="" align="right">$numFormat.format($highMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($highPoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">Low</td>
+<td style="" align="right">$numFormat.format($lowMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($lowPoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+$numFormat.applyPattern("#.00")
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">Average</td>
+<td style="" align="right">$numFormat.format($averageMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($averagePoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">Median</td>
+<td style="" align="right">$numFormat.format($medMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($medPoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+
+<tr style="height:25px">
+<td style="font-weight:bold;border-right:1px solid;">SD</td>
+<td style="" align="right">$numFormat.format($sdMark)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td style="" align="right">$numFormat.format($sdPoint)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<br/><br/>
+
+##$gradeFreqs
+
+<table cellpadding="2" cellspacing="0">
+#set ( $totalnum = 0 )
+<tr style="height:25px">
+<td style="width:5px;font-weight:bold;border-bottom:1px solid;">&nbsp;</td>
+<td style="width:50px;font-weight:bold;border-right:1px solid;border-bottom:1px solid;">Grade</td>
+<td style="width:50px;font-weight:bold;border-bottom:1px solid;" align="center">Freq.</td>
+<td style="width:50px;font-weight:bold;border-bottom:1px solid;" align="center">%</td>
+<td></td>
+</tr>
+
+$numFormat.applyPattern("#.00")
+#foreach ( $g in $grades )
+<tr style="height:25px">
+<td style="font-weight:bold;">&nbsp;</td>
+<td style="font-weight:bold;border-right:1px solid;">&nbsp;&nbsp;$g.letter</td>
+
+
+<td style="" align="center">
+#if ( $gradeFreqs.get("$g.letter") )
+	$gradeFreqs.get("$g.letter")
+#end
+</td>
+
+<td align="center">
+#if ( $gradePct.get("$g.letter") )
+	$numFormat.format($gradePct.get("$g.letter"))%
+#end
+</td>
+<td>
+#if ( $gradeFreqs.get("$g.letter") )
+	#set ( $num = $gradePct.get("$g.letter") )
+	#if ( $num > 0 )
+		#set ( $i = $num * 4 )
+	#else
+		#set ( $i = 0 )
+	#end
+#else
+	#set ( $i = 0 )
+#end
+#set ( $width = $i )
+<table cellspacing="0" cellpadding="0"><tr><td>
+<div style="height:25px;width:${width}px;background:#FE6869;color:#FE6869">.</div></td><td style="color:#FE6869">
+#if ( $i > 0 )
+&nbsp;<b>$g.letter</b>
+#end
+</tr></tr></table>
+</td>
+</tr>
+#end
+
+
+##NORMAL DISTRIBUTION CHART
+
+<tr><td colspan="6">
+<img src="../servlet/educate.chart.NormalDistChart?mean=$averageMark&sd=$sdMark&low=0&high=100">
+</td></tr>
+</table>
+
+</td></tr>
+
+<tr><td>
+
+
+
+</td></tr></table>

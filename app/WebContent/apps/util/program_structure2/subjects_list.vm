@@ -1,0 +1,17 @@
+
+<span id="wait_subjects_list"></span>
+
+<table width="100%">
+#foreach ( $s in $subjects )
+<tr>
+<td style="width:20px;border-bottom:1px solid #C3C3C3">
+<input type="checkbox" id="subject_ids" name="subject_ids" value="$!s.id">
+</td>
+<td class="row" style="width:80px;">$!s.code</td>
+<td class="row" style="">$!s.name</td>
+<td class="row" style="width:50px;" align="center">$!s.credithrs</td>
+<td class="row" style="width:300px;">$!s.faculty.name</td>
+<td></td>
+</tr>
+#end
+</table>

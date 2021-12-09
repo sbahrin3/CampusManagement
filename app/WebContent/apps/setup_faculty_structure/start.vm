@@ -1,0 +1,5 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<div style="padding:10px">
+	#parse("apps/setup_faculty_structure/listFaculties.vm")
+</div>

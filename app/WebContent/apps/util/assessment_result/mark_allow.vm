@@ -1,0 +1,7 @@
+<script>
+#if ( $allowMarkEntry )
+$('allow_yes_no').innerHTML = "YES";
+#else
+$('allow_yes_no').innerHTML = "NO";
+#end
+</script>

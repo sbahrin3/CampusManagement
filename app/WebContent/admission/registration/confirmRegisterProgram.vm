@@ -1,0 +1,22 @@
+<script>
+$('confirmBeforeRegister').style.display="block";
+</script>
+
+<table width="100%" style="background:#517ADB">
+<tr style="height:30px"><td style="font-weight:bold;color:#fff">CONFIRM REGISTERATION INTO PROGRAM</td>
+<td align="right">
+<input type="button" class="linkbutton" value="X" onclick="$('confirmBeforeRegister').style.display='none';">
+</td></tr>
+</table>
+
+<br/><br/>
+<table width="100%">
+<tr><td style="width:10px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td></td><td></td><td style="font-weight:bold;font-size:11pt">$registerProgram.code<br/><br/>$registerProgram.name</td></tr>
+<tr><td></td><td></td><td align="right">
+<br/><br/><br/>
+<input type="button" class="linkbutton" style="font-weight:bold;height:40px" value="CONFIRM REGISTRATION" onclick="doDivAjaxCall$formname('divStudentRegistration','register_new_student','')">
+<input type="button" class="linkbutton" style="font-weight:bold;height:40px" value="Cancel" onclick="$('confirmBeforeRegister').style.display='none';">
+
+</td></tr>
+</table>

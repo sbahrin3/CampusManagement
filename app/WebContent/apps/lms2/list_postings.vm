@@ -1,0 +1,15 @@
+
+#parse( "apps/lms2/list_postings_div.vm" )
+
+
+#foreach( $i in [1..50])
+<div id="div_postings_$i" name="div_postings_$i"></div>
+#end
+
+
+<input type="hidden" id="postings_type" name="postings_type" value="$!postings_type">
+
+<script>
+$('div_more_postings').style.visibility='visible';
+$('div_no_more_postings').style.visibility='hidden';
+</script>

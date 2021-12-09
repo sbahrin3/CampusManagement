@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+<table>
+
+<tr><td>Learning Centre:</td><td>
+<select class="text" style="width:300px" name="centreId">
+<option value=""></option>
+#foreach ( $c in $centres )
+<option value="$c.id">$c.code $c.name</option>
+#end
+</select>
+</td></tr>
+
+<tr><td style="width:150px">Program:</td><td style="width:400px">
+<select class="text" style="width:300px" name="programId" onchange="doDivAjaxCall3$formname('listIntakes','listIntakes','')">
+<option value=""></option>
+#foreach( $p in $programs )
+<option value="$p.id">$p.code $p.name</option>
+#end
+</select>
+<input type="button" class="linkbutton" value="..." onclick="doDivAjaxCall3$formname('listIntakes','listIntakes','')">
+</td></tr>
+<tr><td>Intake:</td><td>
+<div id="listIntakes"></div>
+</td></tr>
+
+<tr><td></td><td><input class="linkbutton" type="button" value="Get Report" onclick="doDivAjaxCall3$formname('listGraduates','listGraduates','')"></td></tr>
+
+</table>
+
+<br/><br/>
+<div id="listGraduates"></div>

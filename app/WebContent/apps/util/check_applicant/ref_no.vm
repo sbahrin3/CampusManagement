@@ -1,0 +1,43 @@
+
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+</style>
+<table width="800" align="center"  style="background-color:#fff">
+#if ( $admin_mode )
+<tr><td>
+
+<fieldset style="background-color:#D4E0FA;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table align="center">
+<tr><td style="font-family:verdana;font-size:10pt;font-weight:bold">
+Ref. No/ICNo/Passport: <input id="ref_no" name="ref_no" style="width:150px;height:30px;font-family:verdana;font-size:10pt;font-weight:bold">
+<input type="button" value="Check Status" onclick="doAjaxCall$formname('check_status','')">
+
+</td></tr>
+</table>
+
+</fieldset>
+
+</td></tr>
+#else
+<tr><td>
+
+<fieldset style="background-color:#D4E0FA;border-radius: 3px; -moz-border-radius-bottomleft:7px; -moz-border-radius-bottomright:7px; -moz-border-radius-topleft:5px; -moz-border-radius-topright:7px;">
+
+<table align="center">
+<tr><td style="font-family:verdana;font-size:10pt;font-weight:bold">
+Ref No: <input id="ref_no" name="ref_no" style="width:150px;height:30px;font-family:verdana;font-size:10pt;font-weight:bold">
+ICNo/Passport: <input id="identity_no" name="identity_no" style="width:150px;height:30px;font-family:verdana;font-size:10pt;font-weight:bold">
+<input class="gradient" style="height:30px;font-weight:bold" type="button" value="Check Status" onclick="doAjaxCall$formname('check_status','')">
+
+</td></tr>
+</table>
+
+</fieldset>
+
+</td></tr>
+
+#end
+</table>

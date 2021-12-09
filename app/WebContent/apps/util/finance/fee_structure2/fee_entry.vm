@@ -1,0 +1,104 @@
+<div style="float:right">
+	<a href="javascript:void(0)" onclick="$('feeEntry').style.display='none';"><img src="../img/close_button.png" border="0"></a>
+</div>
+
+<br/>
+
+<fieldset style="background:#fff">
+
+<table width="100%">
+	<tr>
+		<td style="height:30px;background:#91DBF2;font-weight:bold;font-size:11pt">
+			NEW FEE ITEM
+		</td>
+	</tr>
+</table>
+
+
+
+<table width="100%">
+<tr>
+<td style="width:150px">Select Period:</td>
+<td colspan="2"><select class="texts" id="period_id"  name="period_id">
+<option value="">-Select Period-</option>
+#foreach( $p in $periods )
+#if ( $p.parent )
+<option value="$p.id">&nbsp;&nbsp;&nbsp;&nbsp;$p.parent.name, $p.name</option>
+#else
+<option value="$p.id">&nbsp;$p.name</option>
+#end
+#end
+</select>
+</td>
+</tr>
+
+<tr>
+<td valign="top">Select Fee Item:</td>
+<td colspan="2">
+<select class="texts" id="fee_id"  name="fee_id">
+<option value="">-Select Fee Item-</option>
+#foreach( $f in $fees )
+<option value="$f.id">&nbsp;$f.code $f.description 
+	#if ( $f.payingMode != 0 )
+		#if ( $f.payingMode == 1 ) (One Time)
+		#elseif ( $f.payingMode == 2 ) (Flexi)
+		#elseif ( $f.payingMode == 3 ) (Monthly)
+		#end
+	#end
+</option>
+#end
+</select>
+
+</td></tr>
+
+<tr>
+	<td colspan="3" style="height:30px">&nbsp;</td>
+</tr>
+
+<tr>
+	<td>
+	</td>
+	<td colspan="2" style="font-weight:bold">Fee Amount</td>
+</tr>
+
+<tr>
+	<td>
+	</td>
+	<td style="width:150px">Local</td>
+	<td>International</td>
+</tr>
+
+<tr>
+<td>Full Time</td>
+<td>RM
+<input class="texts" id="amount" name="amount" style="width:100px;text-align:right">
+</td>
+<td>USD
+<input class="texts" id="amountInt" name="amountInt" style="width:100px;text-align:right">
+</td>
+</tr>
+
+<tr>
+<td>Part Time:</td>
+<td>RM
+<input class="texts" id="amount2" name="amount2" style="width:100px;text-align:right">
+</td>
+<td>USD
+<input class="texts" id="amountInt" name="amountInt2" style="width:100px;text-align:right">
+</td>
+</tr>
+
+
+<tr><td colspan="3">
+	&nbsp;
+</td></tr>
+
+
+<tr><td colspan="3" align="right">
+<input class="linkbutton" type="button" value="SAVE FEE" onclick="if ( $('period_id').value.trim() == '' || $('fee_id').value.trim() == '' ) return;doDivAjaxCall$formname('div_fee_items','add_fee','');$('feeEntry').style.display='none';">
+<input class="linkbutton" type="button" value="CANCEL"  onclick="$('feeEntry').style.display='none';"">
+</td></tr>
+
+</table>
+
+</fieldset>

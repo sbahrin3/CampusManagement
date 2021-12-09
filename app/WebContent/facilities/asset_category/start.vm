@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="../facilities/style.css" type="text/css" media="screen" />
+<script>calndr.showNavigationDropdowns();</script>
+
+<div>
+#parse("facilities/asset_category/divCategory.vm")
+</div>
+<div id="empty"></div>

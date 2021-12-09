@@ -1,0 +1,81 @@
+<table width="900">
+
+##<tr><td align="right">
+##[$href.command("").text("Back")]
+##</td></tr>
+
+<tr><td>
+<br/>
+
+<table width="100%">
+
+<tr>
+<td style="width:80px">Date:</td><td style="font-weight:bold">$date_from - $date_to</td></tr>
+
+#if ( $program )
+<tr>
+<td>Program:</td>
+<td style="font-weight:bold">$program.code $program.name</td>
+</tr>
+#end
+</table>
+
+<table width="100%" cellpadding="1" cellspacing="0">
+<tr height="40px" bgcolor="lightgrey">
+<td></td>
+<td style="font-weight:bold">Date Time</td>
+<td style="font-weight:bold">User Id</td>
+<td style="font-weight:bold">Matric No</td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">Receipt No</td>
+<td style="font-weight:bold" align="center">Adjustment<br>amount</td>
+<td style="font-weight:bold" align="center">Sub total</td>
+</tr>
+#set ( $no = "" )
+#foreach( $a in $adjustments )
+<tr height="25px">
+
+<td align="right" bgcolor="lightgrey">${velocityCount}.&nbsp;</td>
+<td>$dateFormat.format($a.date) $timeFormat.format($a.time)</td>
+<td>$a.userId</td>
+#if ( $a.refNo != $no )
+#set ( $no = $a.refNo )
+<td>$a.student.matricNo</td>
+<td>$a.student.biodata.name</td>
+#else
+<td></td>
+<td></td>
+#end
+
+<td>$a.refNo</td>
+<td align="right">$numFormat.format($a.amountDiff)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td  style="font-weight:bold; border-left: solid 1px #000" align="right">
+#if ( $a.subtotal != 0 )
+$numFormat.format($a.subtotal)&nbsp;&nbsp;&nbsp;&nbsp;
+#else
+&nbsp;
+#end
+</td>
+</tr>
+
+#if ( $a.subtotal != 0 )
+<tr height="1px"><td bgcolor="lightgrey"></td><td colspan="7" style="border-bottom: solid 1px #000">&nbsp;</td></tr>
+#end
+
+#end
+##<tr><td></td><td colspan="7"><hr/></td></tr>
+
+<tr>
+<td colspan="7"></td>
+<td style="font-weight:bold; border-left: solid 1px #000" align="right">$numFormat.format($total_adjustment)&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+
+
+</td></tr></table>
+
+
+<input type="hidden" name="date_from" value="$!date_from">
+<input type="hidden" name="date_to" value="$!date_to">
+<input type="hidden" name="program_id" value="$!program.id">

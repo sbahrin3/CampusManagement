@@ -1,0 +1,26 @@
+<head>
+<title>index</title>
+<script type='text/javascript' src='../dwr/engine.js'></script>
+<script type='text/javascript' src='../dwr/interface/DemoVoter.js'></script>
+<script type='text/javascript' src='../dwr/util.js'></script>
+
+<script language="javascript">
+   function onloadmethod() {
+      dwr.engine.setActiveReverseAjax(true);
+      DemoVoter.callReverseAjax();
+   }
+</script>
+</head>
+<body onload="onloadmethod()">
+<span id="div1"></span>
+
+<input readonly id="playerId"><input type="button" value="Vote" onclick="votePlayer()">
+</body>
+<script>
+function votePlayer() {
+	var p = document.getElementById('playerId').value;
+	DemoVoter.callVote(p);
+}
+
+</script>
+</html>

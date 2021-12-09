@@ -1,0 +1,86 @@
+<table>
+<tr>
+<td style="width:20px"></td>
+<td style="font-weight:bold;">
+From Date: $html.dateField.name("date_from").value("$!_dateFrom").style("width:100px")
+To Date: $html.dateField.name("date_to").value("$!_dateTo").style("width:100px")
+<input type="button" value="List" onclick="doDivAjaxCall$formname('div_main','list_applicants','')">
+</td>
+</tr>
+</table>
+<br>
+
+<table>
+<tr height="25px">
+<td style="width:20px"></td>
+<td style="width:120px;font-weight:bold">IC No</td>
+<td style="width:250px;font-weight:bold">Name</td>
+#if ( $_institutionType != "school" )
+<td style="width:300px;font-weight:bold">Program</td>
+#end
+<td style="width:150px;font-weight:bold">Date Time</td>
+<td style="width:100px;font-weight:bold">Status</td>
+<td></td>
+</tr>
+
+<tr><td></td><td colspan="6"><hr/><b>New Applicants</b><br></td></tr>
+
+#if ( $applicants.size() == 0 )
+<tr><td></td><td colspan="6">- Empty -<br></td></tr>
+#end
+
+#foreach( $a in $applicants )
+<tr height="25px">
+<td>$velocityCount.</td>
+<td>$a.biodata.icno</td>
+<td>$a.biodata.name</td>
+#if ( $_institutionType != "school" )
+<td>$a.choice1.name</td>
+#end
+<td>$dateFormat.format($a.applyDate)&nbsp;$timeFormat.format($a.applyTime)</td>
+<td>$a.status</td>
+<td>
+<input type="button" value="Register" onclick="doAjaxCall$formname('edit_applicant2','applicant_id=$a.id')">
+</td>
+</tr>
+#end
+
+<tr><td></td><td colspan="6"><hr/><b>Registered Applicants</b><br></td></tr>
+
+#if ( $registereds.size() == 0 )
+<tr><td></td><td colspan="6">- Empty -<br></td></tr>
+#end
+
+#foreach( $a in $registereds )
+<tr height="25px">
+<td>$velocityCount.</td>
+<td>$a.biodata.icno</td>
+<td>$a.biodata.name</td>
+#if ( $_institutionType != "school" )
+<td>$a.program.name</td>
+#end
+<td>$dateFormat.format($a.applicant.applyDate)&nbsp;$timeFormat.format($a.applicant.applyTime)</td>
+<td>$a.applicant.status</td>
+<td>
+<input type="button" value="Open" onclick="doAjaxCall$formname('get_registration','student_id=$a.id')">
+
+</td>
+</tr>
+#end
+
+</table>
+
+
+
+<script>
+function copy_address() {
+$('paddress1').value = $('address1').value;
+$('paddress2').value = $('address2').value;
+$('paddress3').value = $('address3').value;
+$('paddress4').value = $('address4').value;
+$('pposcode').value = $('poscode').value;
+$('pcity').value = $('city').value;
+$('pstate_id').value = $('state_id').value;
+$('pcountry_id').value = $('country_id').value;
+}
+</script>

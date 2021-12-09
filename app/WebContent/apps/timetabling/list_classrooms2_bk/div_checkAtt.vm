@@ -1,0 +1,10 @@
+<a href="javascript:void(0)"  onclick="$('checkAtt_$student.id').style.display='none';$('att_$student.id').style.display='block';">
+#if ( $attendanceValue == 0 )
+<img src="../img/check_present.png" border="0">
+#else
+<img src="../img/check_absent.png" border="0">
+#end
+</a>
+
+
+

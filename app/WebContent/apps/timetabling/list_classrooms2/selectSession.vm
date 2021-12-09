@@ -1,0 +1,199 @@
+<script>
+function tt_tab_select(tabId) {
+	for ( i = 1; i < 7; i++ ) {
+		$('tt_' + i).className = "";
+		if ( i > 1 ) {
+			$('findBy_' + i).style.display="none";
+		}
+	}
+	$('tt_' + tabId).className = "active";
+	$('findBy_' + tabId).style.display="block";
+	
+	if ( tabId > 1 ) {
+		$('buttonOverallSchedule').style.display='none';
+		$('selectDepartment').style.display='none';
+	} else {
+		$('buttonOverallSchedule').style.display='block';
+		$('selectDepartment').style.display='block';
+	}
+	
+}
+
+</script>
+
+<ul class="nav nav-tabs">
+  <li id="tt_1" class="active"><a href="javascript:void(0)" onclick="tt_tab_select(1)">Overall Schedule</a></li>
+  <li id="tt_2"><a href="javascript:void(0)" onclick="tt_tab_select(2)">Search by Lecturer</a></li>
+  <li id="tt_3"><a href="javascript:void(0)" onclick="tt_tab_select(3)">Search by Group</a></li>
+  <li id="tt_4"><a href="javascript:void(0)" onclick="tt_tab_select(4)">Search by Program</a></li>
+  <li id="tt_5"><a href="javascript:void(0)" onclick="tt_tab_select(5)">Search by Room</a></li>
+  <li id="tt_6"><a href="javascript:void(0)" onclick="tt_tab_select(6)">Search by Course</a></li>
+</ul>
+
+<input type="hidden" name="sessionId" value="$session.id">
+<div id="findBy_1" style="margin:10px">
+	<table>
+	<tr>
+		<td style="width:150px">Select Week:</td>
+		<td style="width:300px">
+			
+			<input class="form-control" id="weekName" name="weekName" placeholder="Click 'Find...' button" readonly>
+			<input type="hidden" name="week" id="week">
+			<input type="hidden" name="deliveryPeriodId" id="deliveryPeriodId">
+
+		</td>
+		
+		<td>
+			&nbsp;
+			<button type="button" class="btn btn-success btn-sm" onclick="$('calendars').style.display='block';$('classroomList').style.display='none';$('findTeacher').style.display='none';$('findGroup').style.display='none';$('findProgram').style.display='none';$('findRoom').style.display='none';doDivAjaxCall$formname('calendars','getActivitySessions','')">Find...</button>
+			
+		</td>
+		
+	</tr>
+	
+	#** 
+	<tr>
+		<td></td>
+		<td colspan="2">
+			<div id="buttonOverallSchedule" style="margin-top:20px">
+				<button type="button" class="btn btn-primary btn-sm" onclick="if ( $('week').value != '' )  { doDivAjaxCall$formname('classroomList','getClassroomList',''); }">Get Report</button>
+			</div>
+		</td>
+	</tr>
+	**#
+	</table>
+</div>
+
+<div id="selectDepartment"  style="margin:10px">
+<table>
+	<tr>
+		<td style="width:150px">Select Faculty:</td>
+		<td style="width:300px">
+			<select class="form-control" name="departmentId">
+				<option value=""></option>
+				#foreach( $d in $userDepartments )
+					<option value="$d.id">$d.id - $d.name</option>
+				#end
+			</select>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td colspan="2">
+			<div id="buttonOverallSchedule" style="margin-top:20px">
+				<button type="button" class="btn btn-primary btn-sm" onclick="if ( $('week').value != '' )  { doDivAjaxCall$formname('classroomList','getClassroomList',''); }">Get Report</button>
+			</div>
+		</td>
+	</tr>	
+</table>
+</div>
+
+<div id="findBy_2" style="margin:10px;display:none">
+	<table>
+	<tr>
+		<td style="width:150px">Search by Lecturer:</td>
+		<td style="width:300px">
+			<input class="form-control" name="teacherName" name="teacherName" placeholder="Click 'Find...' button" readonly>
+			<input type="hidden" name="teacherId" id="teacherId">
+		</td>
+		<td>
+			&nbsp;
+			<button type="button" class="btn btn-success btn-sm" onclick="$('calendars').style.display='none';$('classroomList').style.display='none';$('findTeacher').style.display='block';$('findGroup').style.display='none';$('findProgram').style.display='none';$('findRoom').style.display='none';">Find...</button>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td colspan="2">
+			<div style="margin-top:20px">
+				<button type="button" class="btn btn-primary btn-sm" onclick="if ( $('sessionId').value == '' || $('week').value == '' ) { alert('Please select week');return; } else { doDivAjaxCall$formname('classroomList','filterByTeacher',''); }">Get Report</button>
+			</div>
+		</td>
+	</tr>
+	</table>
+</div>
+
+<div id="findBy_3" style="margin:10px;display:none">
+	
+	#parse("apps/timetabling/list_classrooms3/findByGroups.vm")
+	
+</div>
+
+<div id="findBy_4" style="margin:10px;display:none">
+
+	
+	<table>
+	<tr>
+		<td style="width:150px">Search by Program:</td>
+		<td style="width:300px">
+			<input class="form-control" name="programName" name="programName" placeholder="Click 'Find...' button" readonly>
+			<input type="hidden" name="programId" id="programId">
+		</td>
+		<td>
+			&nbsp;
+	<button type="button" class="btn btn-success btn-sm" onclick="$('calendars').style.display='none';$('classroomList').style.display='none';$('findTeacher').style.display='none';$('findGroup').style.display='none';$('findProgram').style.display='block';$('findRoom').style.display='none';">Find...</button>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td colspan="2">
+			<div style="margin-top:20px">
+			<button type="button" class="btn btn-primary btn-sm" onclick="if ( $('sessionId').value == '' || $('week').value == '' ) { alert('Please select week');return; } else { doDivAjaxCall$formname('classroomList','filterByProgram',''); }">Get Report</button>
+			</div>
+		</td>
+	</tr>
+	</table>
+	
+</div>
+<div id="findBy_5" style="margin:10px;display:none">
+	
+	<table>
+	<tr>
+		<td style="width:150px">Search by Room:</td>
+		<td style="width:300px">
+			<input class="form-control" name="roomName" name="roomName" placeholder="Click 'Find...' button" readonly>
+			<input type="hidden" name="roomId" id="roomId">
+		</td>
+		<td>
+			&nbsp;
+			<button type="button" class="btn btn-success btn-sm" onclick="$('calendars').style.display='none';$('classroomList').style.display='none';$('findTeacher').style.display='none';$('findGroup').style.display='none';$('findProgram').style.display='none';$('findRoom').style.display='block';">Find...</button>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td colspan="2">
+			<div style="margin-top:20px">
+			<button type="button" class="btn btn-primary btn-sm" onclick="if ( $('sessionId').value == '' || $('week').value == '' ) { alert('Please select week');return; } else { doDivAjaxCall$formname('classroomList','filterByRoom',''); }">Get Report</button>
+			</div>
+		</td>
+	</tr>
+	</table>
+	
+	
+</div>
+<div id="findBy_6" style="margin:10px;display:none">
+
+	
+	<table>
+	<tr>
+		<td style="width:150px">Search by Course:</td>
+		<td style="width:300px">
+			<input class="form-control" name="subjectName" name="subjectName" placeholder="Click 'Find...' button" readonly>
+			<input type="hidden" name="subjectId" id="subjectId">
+		</td>
+		<td>
+			&nbsp;
+			<button type="button" class="btn btn-success btn-sm" onclick="$('calendars').style.display='none';$('classroomList').style.display='none';$('findTeacher').style.display='none';$('findGroup').style.display='none';$('findProgram').style.display='none';$('findRoom').style.display='none';$('findSubject').style.display='block';">Find...</button>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td colspan="2">
+			<div style="margin-top:20px">
+	<button type="button" class="btn btn-primary btn-sm" onclick="if ( $('sessionId').value == '' || $('week').value == '' ) { alert('Please select week');return; } else { doDivAjaxCall$formname('classroomList','filterBySubject',''); }">Get Report</button>
+			</div>
+		</td>
+	</tr>
+	</table>
+	
+</div>

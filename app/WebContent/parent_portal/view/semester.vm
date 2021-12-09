@@ -1,0 +1,116 @@
+	#set ( $status = $statusMap.get("$r.session.id") )
+	
+    #if ( $twocolumns ) #set ( $w = "300px" ) #else #set ( $w = "500px" ) #end
+	#if ( $status.type.defer )
+
+		<table width="100%">
+		<tr>
+		<td style="padding-top:10px;padding-bottom:10px;font-weight:bold;border-top:1px solid;border-bottom:1px solid;border-left:1px solid;border-right:1px solid;">
+		($r.session.name $r.period.name #if ( $r.period.parent ) ($r.period.parent.name) #end - DEFER)
+		</td>
+		</tr>
+		</table>
+
+	#else
+	
+		<table width="100%">
+		<tr><td>
+
+			<table>
+			<tr>
+			<td style="font-weight:bold">
+			$r.session.name $r.period.name #if ( $r.period.parent ) ($r.period.parent.name) #end
+			#if ( $endorsedDateMap.get("$r.session.id") )
+			 - $dateFormat.format($endorsedDateMap.get("$r.session.id").endorsedDate)
+			#end
+			</td>
+			</tr>
+			</table>
+
+	
+		</td></tr>
+		<tr><td>
+
+			<fieldset style="border:1px solid;padding:4px">
+			<table cellspacing="0" cellpadding="1">
+			<tr height="30px">
+			<td style="width:100px;font-weight:bold">Code</td>
+			<td style="width:$w;font-weight:bold">Name</td>
+			<td style="width:50px;font-weight:bold" align="center">Credit</td>
+			<td style="width:50px;font-weight:bold" align="center">Grade</td>
+			<td style="width:50px;font-weight:bold" align="right">Point&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			</tr>
+			</table>
+			</fieldset>
+		
+		</td></tr>
+		<tr><td>
+	
+			<table cellspacing="0" cellpadding="1" border="0">
+			<tr height="0px">
+			<td style="width:100px"></td>
+			<td style="width:$w"></td>
+			<td style="width:50px"></td>
+			<td style="width:50px"></td>
+			<td style="width:50px"></td>
+			</tr>
+			#foreach ( $s in $r.subjects )
+				<tr>
+				<td>$s.subject.code</td>
+				<td>$s.subject.name</td>
+				<td align="center">$s.creditHour</td>
+				#if ( $s.resultStatus )
+					<td colspan="2">$s.resultStatus.name</td>
+				#else
+					<td align="center">$!s.grade</td>
+					<td align="right">
+					#if ( $s.excludeGPA == 0 && $s.subject.excludeGpa == 0 )
+						$numFormat.format($s.point)&nbsp;&nbsp;&nbsp;&nbsp;
+					#end
+				</td>
+		
+				#end
+				</tr>
+			#end
+		</table>
+		
+	</td></tr>
+	<tr><td valign="top" align="right">
+
+	<div style="display:none">
+
+		<table align="right"><tr><td valign="top">
+
+		<table cellspacing="2" cellpadding="1" border="0">
+		<tr><td style="width:200px;font-weight:bold" align="right">Credit Unit Taken</td><td style="width:5px">:</td><td style="width:30px;font-weight:bold"> $r.takenHours</td></tr>
+		<tr><td style="font-weight:bold" align="right">Calculated Credit Unit</td><td>:</td><td style="font-weight:bold"> $r.currentHours</td></tr>
+		<tr><td style="font-weight:bold" align="right">Cumulative Calculated Credit Unit</td><td>:</td><td style="font-weight:bold"> $r.totalHours</td></tr>
+		</table>
+		
+		</td><td valign="top">
+		
+		<table cellspacing="2" cellpadding="1" border="0">
+		<tr><td style="width:200px;font-weight:bold" align="right">Total Grade Point</td><td style="width:5px">:</td><td style="font-weight:bold"> $numFormat.format($r.currentPoints)</td></tr>
+		<tr><td style="font-weight:bold" align="right">Cumulative Grade Point</td><td>:</td><td style="font-weight:bold"> $numFormat.format($r.cumulativePoints)</td></tr>
+		<tr><td style="font-weight:bold" align="right">GPA</td><td>:</td><td style="font-weight:bold"> $numFormat.format($r.gpa)</td></tr>
+		<tr><td style="font-weight:bold" align="right">CGPA</td><td>:</td><td style="font-weight:bold"> $numFormat.format($r.cgpa)</td></tr>
+		</table>
+		
+		</td></tr>
+		<tr><td colspan="2" align="right">
+		
+		<table align="right">
+		<tr><td style="font-weight:bold">Academic Status</td><td style="width:5px">:</td><td style="font-weight:bold"> $!r.resultStanding.name ($!r.resultStanding.code)</td></tr>
+		#if ( $r.achievementLevel )
+		<tr><td style="font-weight:bold">Achievement Level</td><td style="width:5px">:</td><td style="font-weight:bold"> $!r.achievementLevel.name ($!r.achievementLevel.code)</td></tr>
+		#end
+		</table>
+		
+		</td></tr></table>
+	
+	</div>
+	
+	</td></tr></table>
+	#end
+
+	

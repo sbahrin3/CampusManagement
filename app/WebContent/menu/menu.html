@@ -1,0 +1,45 @@
+<script type="text/javascript" src="dropdown.js">
+</script>
+
+<style type="text/css">
+
+div.sample_attach, a.sample_attach
+{
+  width: 100px;
+  border: 1px solid black;
+  background: #FFFFEE;
+  padding: 0px 5px;
+  font-weight: 900;
+  color: #008000;
+}
+
+a.sample_attach
+{
+  display: block;
+  border-bottom: none;
+  text-decoration: none;
+}
+
+</style>
+
+<span id="menu_parent">Main Menu</span>
+<span id="menu_parent2">Contact</span>
+
+<div id="menu_child" style="position: absolute; visibility: hidden;">
+<a class="sample_attach" href="#">Item 1</a>
+<a class="sample_attach" href="#">Item 2</a>
+<a class="sample_attach" style="border-bottom: 1px solid black;" href="#">Item 3</a>
+</div>
+
+<div id="menu_child2" style="position: absolute; visibility: hidden;">
+<a class="sample_attach" href="#">Item A</a>
+<a class="sample_attach" href="#">Item B</a>
+<a class="sample_attach" style="border-bottom: 1px solid black;" href="#">Item C</a>
+</div>
+
+
+
+<script type="text/javascript">
+at_attach("menu_parent", "menu_child", "hover", "y", "pointer");
+at_attach("menu_parent2", "menu_child2", "hover", "y", "pointer");
+</script>

@@ -1,0 +1,15 @@
+<form name="f" method="post">
+
+<input name="tester" value="Test">
+<input type="button" value="OK" onclick="doSubmit()">
+<input type="submit" value="Form Post">
+<div id="div_tester"></div>
+<input type="hidden" name="command">
+</form>
+
+<script>
+function doSubmit() {
+	document.f.command="tester";
+	document.f.submit();
+}
+</script> 

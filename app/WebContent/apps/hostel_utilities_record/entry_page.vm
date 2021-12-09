@@ -1,0 +1,18 @@
+<fieldset>
+<legend class="legend">$label_entry</legend>
+<table width="100%">
+
+<tr><td style="width:100px"></td><td style="width:10px"></td><td></td></tr>
+<tr><td>Category</td><td>:</td>
+<td>
+<select class="texts" name="categoryId">
+<option value=""></option>
+#foreach( $h in $categories )
+<option value="$c.id" #if ( $r.category.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td>
+</tr>
+
+</table>
+</fieldset>

@@ -1,0 +1,64 @@
+<table width="100%">
+<tr><td style="width:150px" align="right"></td><td></td></tr>
+##<tr><td style="width:150px" align="right">Status :</td><td><input readonly style="width:100%" name="status" value="$!applicant.status"></td></tr>
+#if ( $applicant.applyDate )
+<tr><td align="right">Apply Date :</td><td><input readonly style="width:100%" name="apply_date" value="$dateFormat.format($applicant.applyDate)"></td></tr>
+<tr><td align="right">Apply Time :</td><td><input readonly style="width:100%" name="apply_time" value="$timeFormat.format($applicant.applyTime)"></td></tr>
+#elseif ( $applicant.registerDate )
+<tr><td align="right">Apply Date :</td><td><input readonly style="width:100%" name="apply_time" value="$dateFormat.format($applicant.registerDate)"></td></tr>
+#end
+
+
+<tr><td align="right">Ref No :</td><td><input readonly style="width:100%" name="ref_no" value="$!applicant.referenceNo"></td></tr>
+<tr><td align="right">Name :</td><td><input readonly style="width:100%" name="name" value="$!applicant.biodata.name"></td></tr>
+<tr><td align="right">Gender :</td><td><input readonly style="width:100%" name="name" value="$!applicant.biodata.gender.name"></td></tr>
+<tr><td align="right">Icno :</td><td><input readonly style="width:100%" name="name" value="$!applicant.biodata.icno"></td></tr>
+<tr><td align="right">Passport :</td><td><input readonly style="width:100%" name="name" value="$!applicant.biodata.passport"></td></tr>
+#if ( $applicant.nationalityType == "2" )
+<tr><td align="right">Nationality :</td><td><input readonly style="width:100%" name="name" value="$!applicant.biodata.nationality.name"></td></tr>
+#end
+<tr><td align="right">Race :</td><td><input readonly style="width:100%" name="name" value="$!applicant.biodata.race.name"></td></tr>
+
+<tr><td align="right">Date of Birth :</td>
+<td>
+#if ( $applicant.biodata.dob )
+<input readonly style="width:100%" name="dob" value="$dateFormat.format($applicant.biodata.dob)">
+#else
+<input readonly style="width:100%" name="dob" value="">
+#end
+</td>
+</tr>
+
+<tr><td align="right">Address :</td><td><input readonly style="width:100%" name="address1" value="$!applicant.address.address1"></td></tr>
+<tr><td align="right"></td><td><input readonly style="width:100%" name="address2" value="$!applicant.address.address2"></td></tr>
+<tr><td align="right"></td><td><input readonly style="width:100%" name="address3" value="$!applicant.address.address3"></td></tr>
+<tr><td align="right"></td><td><input readonly style="width:100%" name="address4" value="$!applicant.address.address4"></td></tr>
+<tr><td align="right">Poscode :</td><td><input readonly style="width:100%" name="poscode" value="$!applicant.address.postcode"></td></tr>
+#if ( $applicant.nationalityType == "1" )
+<tr><td align="right">State :</td><td><input readonly style="width:100%" name="state" value="$!applicant.address.state.name"></td></tr>
+#else
+<tr><td align="right">Country :</td><td><input readonly style="width:100%" name="country" value="$!applicant.address.country.name"></td></tr>
+#end
+
+<tr><td align="right">Permanent Address :</td><td><input readonly style="width:100%" name="p_address1" value="$!applicant.permanentAddress.address1"></td></tr>
+<tr><td align="right"></td><td><input readonly style="width:100%" name="p_address2" value="$!applicant.permanentAddress.address2"></td></tr>
+<tr><td align="right"></td><td><input readonly style="width:100%" name="p_address3" value="$!applicant.permanentAddress.address3"></td></tr>
+<tr><td align="right"></td><td><input readonly style="width:100%" name="p_address4" value="$!applicant.permanentAddress.address4"></td></tr>
+<tr><td align="right">Poscode :</td><td><input readonly style="width:100%" name="p_poscode" value="$!applicant.permanentAddress.postcode"></td></tr>
+#if ( $applicant.nationalityType == "1" )
+<tr><td align="right">State :</td><td><input readonly style="width:100%" name="p_state" value="$!applicant.permanentAddress.state.name"></td></tr>
+#else
+<tr><td align="right">Country :</td><td><input readonly style="width:100%" name="p_country" value="$!applicant.permanentAddress.country.name"></td></tr>
+#end
+<tr><td align="right">Telephone No :</td><td><input readonly style="width:100%" name="name" value="$!applicant.biodata.telephoneNo"></td></tr>
+<tr><td align="right">Mobile No :</td><td><input readonly style="width:100%" name="name" value="$!applicant.biodata.mobileNo"></td></tr>
+<tr><td align="right">Email :</td><td><input readonly style="width:100%" name="name" value="$!applicant.biodata.email"></td></tr>
+
+
+
+</table>
+
+<table width="100%">
+<tr><td align="right">
+<input type="button" style="height:30px;font-weight:bold" value="EDIT ..." onclick="doDivAjaxCall${formName}('app_info','edit_info','')">
+</td></tr></table>

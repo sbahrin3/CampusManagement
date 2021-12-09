@@ -1,0 +1,3 @@
+<script>
+parent.updatePhoto("$!teacher.photoFileName");
+</script>

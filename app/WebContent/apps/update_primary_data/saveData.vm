@@ -1,0 +1,27 @@
+<table>
+	
+	<tr>
+		<td colspan="3" style="font-family:Verdana, Helvetica, sans-serif;font-size:10pt;font-weight:bold">
+			<br/>Updated:
+		</td>
+	</tr>
+	<tr><td style="width:150px">Matric No</td><td style="width:20px">:</td><td style="width:300px">$!student.matricNo</td></tr>	
+	<tr><td>Name</td><td>:</td><td>$!student.biodata.name</td></tr>
+	<tr><td>IC No</td><td>:</td><td>$!student.biodata.icno</td></tr>
+	<tr><td>Passport No</td><td>:</td><td>$!student.biodata.passport</td></tr>
+	
+	<tr>
+		<td colspan="3" style="font-family:Verdana, Helvetica, sans-serif;font-size:10pt;font-weight:bold">
+			<br/>Before Changes:
+		</td>
+	</tr>
+	
+	<tr><td>Name</td><td>:</td><td>$!log.oldName</td></tr>
+	<tr><td>IC No</td><td>:</td><td>$!log.oldICNo</td></tr>
+	<tr><td>Passport No</td><td>:</td><td>$!log.oldPassport</td></tr>	
+	<tr>
+		<td colspan="3" align="right">
+			##<input type="button" class="linkbutton" value="Undo Changes" onclick="doDivAjaxCall3$formname('getStudent','undoChange','studentId=$student.id&logId=log.id')">
+		</td>
+	</tr>
+</table>

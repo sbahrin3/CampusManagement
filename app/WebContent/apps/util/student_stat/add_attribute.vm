@@ -1,0 +1,9 @@
+<table><tr><td>
+#foreach( $attr in $attributes )
+<span id="${attr}_x" class="box" style="cursor:pointer">$attr</span>
+<script>
+new Draggable('${attr}_x', { revert: true, zindex: 1000 });
+</script>
+#end
+</td></tr>
+</table>

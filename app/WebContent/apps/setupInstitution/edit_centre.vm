@@ -1,0 +1,54 @@
+
+<div class="row" style="margin-bottom:10px">
+	<div class="col-sm-4">
+		<label for="centre_code">Centre Code:</label>
+	    <input type="text" class="form-control" name="centre_code" value="$!centre.code">
+	</div>
+	<div class="col-sm-8">
+		<label for="centre_name">Centre Name:</label>
+	    <input type="text" class="form-control" name="centre_name" value="$!centre.name">
+	</div>
+</div>
+<div class="row" style="margin-bottom:10px">
+	<div class="col-sm-3">
+		<label>Address1:</label>
+	    <input type="text" class="form-control" name="centre_address1" value="$!centre.address1">
+	</div>
+	<div class="col-sm-3">
+		<label>Address2:</label>
+	    <input type="text" class="form-control" name="centre_address2" value="$!centre.address2">
+	</div>
+	<div class="col-sm-3">
+		<label>Address3:</label>
+	    <input type="text" class="form-control" name="centre_address3" value="$!centre.address3">
+	</div>	
+	<div class="col-sm-3">
+		<label>Address3:</label>
+	    <input type="text" class="form-control" name="centre_address4" value="$!centre.address4">
+	</div>		
+</div>
+<div class="row" style="margin-bottom:10px">
+	<div class="col-sm-3">
+		<label>Telephone:</label>
+	    <input type="text" class="form-control" name="centre_telephone" value="$!centre.telephone">
+	</div>
+	<div class="col-sm-3">
+		<label>Fax:</label>
+	    <input type="text" class="form-control" name="centre_fax" value="$!centre.fax">
+	</div>
+	<div class="col-sm-3">
+		<label>Website:</label>
+	    <input type="text" class="form-control" name="centre_website" value="$!centre.website">
+	</div>	
+	
+</div>
+<br/>
+<div class="row">
+	<div class="col-sm-12">
+	<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('institution','save_centre','centre_id=$!centre.id')">Save Centre</button>
+	<button type="button" class="btn btn-default" onclick="doDivAjaxCall$formname('institution','reload','')">Cancel</button>
+	#if ( $centre.id && !$centre.mainCampus )
+		<button type="button" class="btn btn-danger" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall$formname('institution','delete_centre','centre_id=$!centre.id')">Delete</button>		
+	#end
+	</div>
+</div>

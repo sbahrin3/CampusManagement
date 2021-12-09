@@ -1,0 +1,3 @@
+502=Pendidikan Sains
+503=Pendidikan Matematik
+504=Pendidikan Sastera & Sains Sosial

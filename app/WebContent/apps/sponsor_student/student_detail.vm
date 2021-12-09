@@ -1,0 +1,54 @@
+
+
+<table width="100%">
+<tr><td valign="top">
+<table width="100%">
+<tr><td>Matric No:</td><td>$student.matricNo</td></tr>
+<tr><td>ICNo:</td><td>$student.biodata.icno</td></tr>
+<tr><td>Name:</td><td>$student.biodata.name</td></tr>
+<tr><td>Program:</td><td>$student.program.name</td></tr>
+#if ( $status_error )
+<tr><td></td><td>$status_error</td></tr>
+#else
+<tr><td>Intake:</td><td>$student.intake.name</td></tr>
+<tr><td>Semester:</td><td>$student_status.period.name #if ( $student_status.period.parent ) ($student_status.period.parent.name) #end</td></tr>
+#end
+<tr><td>Sponsor Ref. No:</td><td><input class="textr" name="sponsorRefNo" value="$!sponsorStudent.sponsorRefNo"></td></tr>
+
+#if ( $sponsorStudent.sponsorDateStart ) 
+	#set ( $dateValue = $dateFormat.format($sponsorStudent.sponsorDateStart)) 
+#else 
+	#set ( $dateValue = "") 
+#end
+<tr><td>Date Start:</td><td>$html.dateField.name("sponsorDateStart").value("$!dateValue").style("width:150px").cssClass("textr")</td></tr>
+
+
+#if ( $sponsorStudent.sponsorDateEnd ) 
+	#set ( $dateValue = $dateFormat.format($sponsorStudent.sponsorDateEnd)) 
+#else 
+	#set ( $dateValue = "") 
+#end
+<tr><td>Date End:</td><td>$html.dateField.name("sponsorDateEnd").value("$!dateValue").style("width:150px").cssClass("textr")</td></tr>
+
+
+<tr><td>Sponsor Amount:</td><td><input class="textr" name="sponsorAmount" value="$!sponsorStudent.sponsorAmount"></td></tr>
+<tr><td></td><td align="center">
+
+<input class="gradient" type="button" style="width:100px;height:40px;font-weight:bold" value="OK"
+onclick="$('div_find_student').style.visibility='hidden';$('div_find_student2').style.visibility='hidden';doDivAjaxCall$formname('div_list_students','add_student','student_id=$student.id&sponsor_id=$sponsor_id')">
+<input class="gradient" type="button" style="width:100px;height:40px;font-weight:bold" value="Cancel"
+onclick="$('div_find_student').style.visibility='hidden';$('div_find_student2').style.visibility='hidden'">
+
+</td></tr>
+
+</table>
+
+</td><td valign="top" style="width:100px">
+
+						#if($student.photoFileName != "")
+							<img src="../download?file=$!student.photoFileName">
+						#else
+<img src="../img/nophoto.gif" border="0">
+#end
+
+</td></tr></table>

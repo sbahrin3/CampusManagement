@@ -1,0 +1,39 @@
+<table width="100%">
+<tr><td style="width:100px"></td><td></td></tr>
+<tr><td>Date:</td><td>
+$html.dateField.name("invoice_date").value("").style("width:40%;height:30px")
+</td></tr>
+<tr><td>Session:</td><td>
+<select name="invoice_session" id="invoice_session" style="width:40%;height:30px">
+<option value=""></option>
+#foreach ( $session in $sessions )
+<option value="$session.id" #if ( $session.id == $current_session.id ) selected #end>
+#if ( $session.id == $current_session.id ) &gt; #end
+$session.name
+#if ( $session.id == $current_session.id ) &lt; #end
+</option>
+#end
+</select>
+</td></tr>
+</table>
+
+<br/>
+<table><tr><td style="font-weight:bold;">List Of Students</td></tr></table>
+<br/>
+<table>
+#set ( $cnt = 0 )
+#foreach( $s in $sponsor_students )
+#set ( $cnt = $cnt + 1 )
+<tr>
+<td style="width:20px">$cnt.</td>
+<td style="width:20px"><input type="checkbox" name="checkStudentIds" value="$s.student.id"></td>
+<td style="width:200px">$s.student.biodata.name</td>
+</tr>
+#end
+</table>
+
+
+<table width="100%"><tr><td align="right">
+<input type="button" class="gradient" style="height:40px;font-weight:bold" value="Create Invoice" 
+onclick="doDivAjaxCall$formname('div_invoices','save_invoice','sponsor_id=$sponsor.id')">
+</td></tr></table>

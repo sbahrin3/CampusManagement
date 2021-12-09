@@ -1,0 +1,9 @@
+#if ( $attendance.status == 0 )
+	&nbsp;
+#elseif ( $attendance.status == 1 )
+	<img src="../img/check_present.png">
+#elseif ( $attendance.status == 2 )
+	<img src="../img/check_absent.png">
+#else
+&nbsp;
+#end

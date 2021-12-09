@@ -1,0 +1,34 @@
+<table width="700" align="center"><tr><td align="right">
+Search Name: <input name="name_pattern" style="width:200px" value="$!name_pattern">
+$button.command("list_teachers").text("LIST TEACHERS")
+</td></tr></table>
+
+<br/>
+
+<table width="500" align="center" cellpadding="2" cellspacing="2">
+<tr><td style="font-weight:bold">
+Search result for &quot;$!name_pattern&quot;
+</td></tr>
+</table>
+
+<table align="center"><tr><td>
+
+<table cellpadding="2" cellspacing="2">
+<tr>
+<td width="20px" align="right"></td>
+<td width="200px" >Username</td>
+<td width="150px" >Code</td>
+<td width="300px" >Name</td>
+<td width="200px">&nbsp;</td>
+</tr>
+</table>
+#set ( $cnt = 0 )
+#foreach( $t in $teachers )
+#set ( $cnt = $cnt + 1 )
+<div id="div_teacher_$cnt" name="div_teacher_$cnt">
+#parse("apps/util/teacher_util/div_teacher_list.vm")
+</div>
+#end
+
+
+</td></tr></table>

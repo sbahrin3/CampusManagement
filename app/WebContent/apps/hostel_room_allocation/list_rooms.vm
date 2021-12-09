@@ -1,0 +1,112 @@
+#set ( $allowCheckIn = "yes" )
+#if ( $isCheckedIn )
+	#set ( $allowCheckIn = "no" )
+#end
+<table width="100%"><tr><td>
+
+<table>
+<tr><td>#parse( "apps/hostel_room_allocation/check_in_date.vm" )</td>
+
+<td>
+
+
+$dateFormat.applyPattern("dd-MMM-yyyy")
+<span style="background:#565555;color:#fff;font-weight:bold;font-size:14pt;padding:2px">$dateFormat.format($check_in_date)</span>
+
+</td>
+
+<td>
+	<a href="javascript:void()" onclick="doDivAjaxCall3$formname('hostel_info','list_rooms','unit_id=$unit.id')"><img src="../img/icon-reload.gif" border="0"></a>
+</td>
+
+</tr></table>
+
+<div name="div_room_info" id="div_room_info" class="shadow"
+style="visibility:hidden;position:absolute;width:300px;height:180px;border-style: solid;border-color:#B4B4B4;background-color:#FFFFAA">
+
+<table width="100%">
+<tr><td>
+<div name="div_room_info2" id="div_room_info2" style="overflow:auto;height:150px;width:100%"></div>
+</td></tr>
+
+<tr><td align="center" style="font-weight:bold">
+<input type="button" value="Close" onclick="$('div_room_info').style.visibility='hidden';$('div_room_info2').style.visibility='hidden'">
+</td></tr>
+
+
+</table>
+
+</div>
+
+
+</td></tr></table>
+
+<table>
+<tr height="25px">
+<td><a href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_info', 'list_buildings', 'hostel_id=$unit.floor.block.building.hostel.id')">$unit.floor.block.building.hostel.name</a></td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info', 'list_buildings', 'hostel_id=$unit.floor.block.building.hostel.id')"><img src="../img/menu_left.gif"></td>
+<td><a style="text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_info','list_blocks','building_id=$unit.floor.block.building.id')">$unit.floor.block.building.name</a></td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info','list_blocks','building_id=$unit.floor.block.building.id')"><img src="../img/menu_left.gif"></td> 
+<td><a style="text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_info','list_floors','block_id=$unit.floor.block.id')">$unit.floor.block.name</a></td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info','list_floors','block_id=$unit.floor.block.id')"><img src="../img/menu_left.gif"></td>
+<td><a style="text-decoration:none" href="javascript:void()" onclick="doDivAjaxCall$formname('hostel_info','list_units','floor_id=$unit.floor.id')">$unit.floor.name</a></td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info','list_units','floor_id=$unit.floor.id')"><img src="../img/menu_left.gif"></td>
+<td>$unit.name</td>
+
+<td>
+	
+	<td>
+	#if ( $unit.floor.floorPlanImageId )
+	[<a href="javascript:void(0)" onclick="$('divViewFloorPlan').style.display='block';$('titleViewFloorPlan').innerHTML='$!unit.floor.name';document.getElementById('imgFloorPlan').src='../servlet/educate.sis.module.FloorPlanImgServlet?id=$!unit.floor.id&floorPlanImageId=$!unit.floor.floorPlanImageId';">View Floor Plan</a>]
+	#end
+</td>
+	
+</td>
+</tr>
+</table>
+
+<table cellspacing="1" bgcolor="silver">
+<tr height="25px" bgcolor="#E1E1E1">
+<td style="width:10px"></td>
+<td style="width:300px;font-weight:bold">Room</td>
+
+<td style="width:500px;font-weight:bold">Room Status</td>
+</tr>
+</table>
+
+<div style="overflow:auto;height:200px;width:837px">
+
+<table cellspacing="1" bgcolor="silver">
+<tr height="0px">
+<td style="width:10px"></td>
+<td style="width:300px;"></td>
+<td style="width:500px;"></td>
+</tr>
+#foreach ( $room in $rooms )
+<tr height="25px" bgcolor="#ffffff">
+<td></td>
+<td>
+$room.code $room.name #if ( $room.roomType ) ($room.roomType.name) #end
+</td>
+
+
+<td>
+
+<div id="div_vacancy_$room.id" name="div_vacancy_$room.id">
+#parse("apps/hostel_room_allocation/list_rooms_vacancy.vm")
+</div>
+
+</td>
+</tr>
+
+#end
+</table>
+
+</div>
+
+
+
+
+</td></tr></table>
+
+

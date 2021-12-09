@@ -1,0 +1,14 @@
+<table align="center" style="font-family:arial;font-size:8pt;">
+<tr>
+<td>Username:</td>
+<td><input name="username"  style="font-family:arial;font-size:8pt;"></td>
+</tr>
+<tr>
+<td>Password:</td>
+<td><input name="password"  style="font-family:arial;font-size:8pt;"></td>
+</tr>
+<tr>
+<td></td>
+<td align="right">$button.command("do_login").style("font-family:arial;font-size:8pt;").text("Login")</td>
+</tr>
+</table>

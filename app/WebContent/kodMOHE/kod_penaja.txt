@@ -1,0 +1,5 @@
+1210=Amanah Raya Berhad
+1209=Angkatan Koperasi Kebangsaan Malaysia Berhad (ANGKASA)
+42=Baitulmal
+16=Bank (Bank Rakyat, Maybank, CIMB dll)
+13=Bank Negara Malaysia

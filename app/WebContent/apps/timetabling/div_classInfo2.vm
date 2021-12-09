@@ -1,0 +1,183 @@
+<script>
+$('div_students_title').innerHTML = "Class Details";
+</script>
+
+
+
+<div style="padding:10px">
+	#if ( $allowEdit )
+	<div id="classInfoButtons">
+	<table align="right">
+		<tr>
+			<td style="background:#fff;height:30px">
+				
+				#set ( $delete_disabled = "" )
+				#if ( $hasStudents )
+					#set ( $delete_disabled = "disabled" )
+				#end
+				
+				<div class="btn-group">
+					#if ( !$classroom.published )
+					
+						<button type="button" class="btn btn-sm btn-default" onclick="doDivAjaxCall3$formname('div_move','move2','classroomId=$!classroom.id')">Move Class</button>
+						<button type="button" class="btn btn-sm btn-default" onclick="doDivAjaxCall3$formname('divEditClassroom','change_room2','classroomId=$!classroom.id')">Change Room</button>
+											
+						<button $delete_disabled type="button" class="btn btn-sm btn-default" onclick="$('classInfoButtons').style.display='none';$('confirmRemoveClassroom').style.display='block';">Delete Class</button>
+					
+					#end
+					
+					#if ( $classroom.published )
+						<button type="button" class="btn btn-sm btn-default" onclick="$('classInfoButtons').style.display='none';$('confirmPublishClassroom').style.display='block';">Cancel Published</button>
+					#else
+						<button type="button" class="btn btn-sm btn-default" onclick="$('classInfoButtons').style.display='none';$('confirmPublishClassroom').style.display='block';">Publish</button>
+					#end
+					
+				</div>
+				
+			</td>
+		</tr>
+	</table>
+	</div>
+	#end
+	
+	<div id="confirmRemoveClassroom" style="display:none;text-align:right">
+    	Remove this class?&nbsp;
+		<div class="btn-group">
+			#if ( $classroom.autoGenerate )
+			<button type="button" class="btn btn-sm btn-danger" onclick="$('div_students').style.display='none';doDivAjaxCall$formname('div_timetable_main','deleteGeneratedClassroom2','classroomId=$classroom.id')">Yes</button>
+			#else
+			<button type="button" class="btn btn-sm btn-danger" onclick="$('div_students').style.display='none';doDivAjaxCall$formname('div_timetable_main','deleteGeneratedClassroom2','classroomId=$classroom.id')">Yes</button>
+			#end
+			<button type="button" class="btn btn-sm btn-success" onclick="$('classInfoButtons').style.display='block';$('confirmRemoveClassroom').style.display='none';">No</button>
+		
+		</div>
+	</div>
+		
+	<div id="confirmPublishClassroom" style="display:none;text-align:right">
+    	
+		<div class="btn-group">
+			#if ( $classroom.published )
+			<button type="button" class="btn btn-sm btn-danger" onclick="$('div_students').style.display='none';doDivAjaxCall$formname('div_timetable_main','unpublishClassroom','classroomId=$classroom.id')">Yes</button>
+			#else
+			<button type="button" class="btn btn-sm btn-danger" onclick="$('div_students').style.display='none';doDivAjaxCall$formname('div_timetable_main','publishClassroom','classroomId=$classroom.id')">Yes</button>
+			#end
+			
+		
+		</div>
+
+    </div>
+
+
+	
+	<br/><br/>
+	
+	<table class="table">
+	<tbody>
+	<tr>
+		<td style="width:150px">
+			Course:
+		</td>
+		<td>
+			$classroom.subject.code $classroom.subject.name
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			Activity:
+		</td>
+		<td>
+			$classroom.classroomSection.classroomType.LearningActivityType.name
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td>
+			Group(s):
+		</td>
+		<td>
+		
+			#if ( $classroom.studentSubjectGroups.size() > 0 )
+			
+				#foreach ( $g in $classroom.studentSubjectGroups )
+					$g.code,
+				#end
+				
+				
+			#end
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			Semester:
+		</td>
+		<td>
+			$!semesterName, $!groupName
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			Room:
+		</td>
+		<td>
+			$!classroom.room.code - $!classroom.room.name, $!classroom.room.floor.name,
+			$!classroom.room.floor.block.name, $!classroom.room.floor.block.building.name
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			Lecturer(s):
+		</td>
+		<td>
+			
+		#if ( $classroom && $classroom.classTeachers )
+			#if ( $classroom.classTeachers.size() > 0 )
+			
+				#set ( $i = 0 )
+				#foreach ( $t in $classroom.classTeachers )
+    				$t.teacher.name
+    				#if ( $i < $classroom.classTeachers.size() ) </br> #end
+    			#end
+				
+			#end
+		#end
+			
+			
+		</td>
+	</tr>	
+	
+	##if ( $classroom.logger )
+		<tr>
+			<td>
+				Created By:
+			</td>
+			<td>
+			
+				##$classroom.logger.userId
+				$!classroom.createdBy
+			</td>
+		
+		</tr>
+		
+		<tr>
+			<td>
+				Date Created:
+			</td>
+			<td>
+				##$dateFormat.format($classroom.logger.startDate)
+				#if ( $classroom.dateCreated )
+					$dateFormat.format($classroom.dateCreated)
+				#end
+			</td>
+		
+		</tr>	
+	##end
+	
+	</tbody>
+	</table>
+
+</div>

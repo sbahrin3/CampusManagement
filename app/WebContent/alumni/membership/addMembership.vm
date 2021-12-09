@@ -1,0 +1,7 @@
+<div>
+Your Alumni Membership Application has been successfully submitted.  
+We shall process your application and shall notify you shortly.
+</div>
+<script>
+$('membershipForm').style.display='none';
+</script>

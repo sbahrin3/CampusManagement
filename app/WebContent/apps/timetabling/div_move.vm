@@ -1,0 +1,126 @@
+<script>
+$('div_move').style.display="block";
+</script>
+
+#parse("apps/timetabling/time.vm")
+
+<div id="handle_div_move" style="cursor:pointer;">
+	<table width="100%" cellpadding="0" cellspacing="0"><tr style="height:40px;background:#287192">
+	<td style="font-weight:bold;font-size:10pt;color:#fff">Move this class to another slot</td>
+	<td align="right">
+	</td></tr></table>
+</div>
+<br/>
+#set ( $bgcolor = $slotColor.colorMap.get("${classroom.subject.id}-${classroom.classroomSection.id}") )
+
+
+<table align="center">
+<tr style="height:30px">
+<td style="background:$classroom.bgcolor;color:#FFFFFF;text-shadow:#000 1px 1px 1px;">$days.get($classroom.slot.posY)</td>
+<td style="background:$classroom.bgcolor;color:#FFFFFF;text-shadow:#000 1px 1px 1px;">$slotTimeLabels.get($classroom.slot.posX)</td>
+</tr>
+</table>
+
+<br/>
+
+<table class="shadow" align="center" style="width:150px;height:100px;background:$classroom.bgcolor">
+<tr><td align="center" style="color:#FFFFFF;text-shadow:#000 1px 1px 1px;">
+
+
+$!classroom.subject.code<br/>
+$!classroom.classroomSection.classroomType.learningActivityType.name<br/>
+$!classroom.classroomSection.name<br/>
+$!classroom.room.code<br/>
+
+#if ( $classroom && $classroom.classTeachers )
+	#if ( $classroom.classTeachers.size() > 0 )
+	
+		#set ( $i = 0 )
+		#foreach ( $t in $classroom.classTeachers )
+			$util.subString($t.teacher.name, 8)
+			#if ( $i < $classroom.classTeachers.size() ) </br> #end
+		#end
+	
+		
+	#end
+#end
+
+#if ( $classroom.studentSubjectGroups.size() > 0 )
+	#if ( $classroom.studentSubjectGroups.size() == 1 )
+	
+		#foreach ( $g in $classroom.studentSubjectGroups )
+			$g.code
+		#end
+	
+	#else
+	
+		#set ( $i = 0 )
+		#foreach ( $g in $classroom.studentSubjectGroups )
+			#set ( $i = $i + 1 )
+			$g.code
+			#if ( $i < $classroom.studentSubjectGroups.size() )
+				<br/>
+			#end
+		#end
+	
+	#end
+
+#end
+
+</td></tr>
+</table>
+
+
+<br/><br/>
+<table align="center">
+<tr>
+<td style="width:100px" align="right">Move To:</td>
+<td>
+	#**
+	<select class="text" name="moveWeek">
+		<option value=""></option>
+		#foreach($w in [1..$total_weeks])
+			<option value="$w" #if ( $w == $current_week ) selected #end>Week $w</option>
+		#end
+	</select>
+	**#
+	<input type="hidden" name="moveWeek" value="$current_week">
+</td>
+<td>
+<select class="text" name="posY">
+#foreach( $d in [1..7])
+<option value="$d" #if ( $days.get($d) == $days.get($classroom.slot.posY) ) selected #end>$days.get($d)</option>
+#end
+</select>
+</td>
+<td>
+<select class="text" name="posX">
+#foreach( $t in $slotTimeList )
+<option value="$t.posX" #if ( $slotTimeLabels.get($classroom.slot.posX) == $t.label ) selected #end >$t.label</option>
+#end
+</select>
+</td>
+</tr>
+
+#** 
+<tr>
+	<td align="right">Mark as Replacement :</td>
+	<td colspan="3">
+		<input type="checkbox" name="flag_replacement" value="yes"> 
+	</td>
+</tr>
+**#
+
+</table>
+
+<br/>
+<table width="100%">
+<tr><td align="right">
+<input type="button" value="Move Classroom" onclick="$('div_move').style.display='none';doDivAjaxCall$formname('div_timetable_main','moveClassroom','classroomId=$classroom.id&&week_number=$!week_number&slot_id=${slot.id}&class_session_id=${classroom.id}&slotClassroomId=$!slotClassroomId');">
+<input type="button" value="Cancel" onclick="$('div_move').style.display='none';">
+</td></tr></table>
+
+
+<script>
+new Draggable('div_move', {handle: 'handle_div_move'});
+</script>

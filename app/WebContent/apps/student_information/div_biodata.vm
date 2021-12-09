@@ -1,0 +1,227 @@
+<table class="table table-hover">
+
+
+<tbody>
+<tr>
+<td  style="width:150px">Name:</td>
+<td  style="font-weight:bold;">$student.biodata.name</td>
+</tr>
+
+##if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td  style="">IC No:</td>
+<td  style="font-weight:bold">$student.biodata.icno</td>
+</tr>
+##else
+<tr>
+<td  style="">Passport No:</td>
+<td  style="font-weight:bold">$!student.biodata.passport</td>
+</tr>
+##end
+
+<tr>
+<td  style="">Date Of Birth:</td>
+<td  style="font-weight:bold">						
+#if ( $student.biodata.dob ) $dateFormat.format($student.biodata.dob ) #end
+</td>
+</tr>
+
+
+##if ( $student.applicant.nationalityType == "1" )
+#if ( $student.studentType == "1" )
+<tr>
+<td >Nationality:</td>
+<td  style="font-weight:bold">MALAYSIA</td>
+</tr>
+#else
+<tr>
+<td >Nationality:</td>
+<td  style="font-weight:bold">$!student.biodata.nationality.name</td>
+</tr>
+#end
+
+<tr>
+<td >Gender:</td>
+<td  style="font-weight:bold">$!student.biodata.gender.name</td>
+</tr>
+
+<tr>
+<td >Race:</td>
+<td  style="font-weight:bold">$!student.biodata.race.name</td>
+</tr>
+
+<tr>
+<td >Telephone:</td>
+<td  style="font-weight:bold">$!student.biodata.telephoneNo</td>
+</tr>
+
+<tr>
+<td >Mobile:</td>
+<td  style="font-weight:bold">$!student.biodata.mobileNo</td>
+</tr>
+
+<tr>
+<td >Email:</td>
+<td  style="font-weight:bold">#if ( $student.biodata.email ) ${student.biodata.email} #end</td>
+</tr>
+
+
+<tr>
+<td >Email 2:</td>
+<td  style="font-weight:bold">$!student.biodata.email2</td>
+</tr>
+
+#if ( !$student_mode )
+<tr>
+<td >Student Type:</td>
+<td  style="font-weight:bold">#if ( $student.studentType == "1" ) Local #else International #end</td>
+</tr>
+#end
+
+#if ( !$student_mode )
+    <tr>
+    <td >&nbsp;</td>
+    <td  align="right">
+    <button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('div_biodata','edit_biodata','')">Edit Biodata</button>
+    </td>
+    </tr>
+#end
+ 
+<tr>
+<td >&nbsp;</td>
+<td ></td>
+</tr>
+
+
+
+
+<tr>
+<td >Mailing Address:</td>
+<td  style="font-weight:bold">$!student.address.address1</td>
+</tr>
+
+<tr>
+<td >&nbsp;</td>
+<td  style="font-weight:bold">$!student.address.address2</td>
+</tr>
+
+#if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td >Postcode:</td>
+<td  style="font-weight:bold">$!student.address.postcode</td>
+</tr>
+
+<tr>
+<td >City:</td>
+<td  style="font-weight:bold">$!student.address.city</td>
+</tr>
+
+<tr>
+<td >State:</td>
+<td  style="font-weight:bold">$!student.address.state.name</td>
+</tr>
+#else
+
+<tr>
+<td >&nbsp;</td>
+<td  style="font-weight:bold">$!student.address.address3</td>
+</tr>
+
+<tr>
+<td >&nbsp;</td>
+<td  style="font-weight:bold">$!student.address.address4</td>
+</tr>
+
+<tr>
+<td >&nbsp;</td>
+<td  style="font-weight:bold">$!student.address.country.name</td>
+</tr>
+
+#end
+
+
+<tr>
+<td >&nbsp;</td>
+<td ></td>
+</tr>
+
+
+<tr>
+<td >Perm. Address:</td>
+<td  style="font-weight:bold">$!student.permanentAddress.address1</td>
+</tr>
+
+<tr>
+<td >&nbsp;</td>
+<td  style="font-weight:bold">$!student.permanentAddress.address2</td>
+</tr>
+
+#if ( $student.applicant.nationalityType == "1" )
+<tr>
+<td >Postcode:</td>
+<td  style="font-weight:bold">$!student.permanentAddress.postcode</td>
+</tr>
+
+<tr>
+<td >City:</td>
+<td  style="font-weight:bold">$!student.permanentAddress.city</td>
+</tr>
+
+<tr>
+<td >State:</td>
+<td  style="font-weight:bold">$!student.permanentAddress.state.name</td>
+</tr>
+#else
+
+<tr>
+<td >&nbsp;</td>
+<td  style="font-weight:bold">$!student.permanentAddress.address3</td>
+</tr>
+
+<tr>
+<td >&nbsp;</td>
+<td  style="font-weight:bold">$!student.permanentAddress.address4</td>
+</tr>
+
+<tr>
+<td >&nbsp;</td>
+<td  style="font-weight:bold">$!student.permanentAddress.country.name</td>
+</tr>
+
+#end
+
+
+
+#if ( !$student_mode )
+	
+<tr style="height:20px">
+<td ></td>
+<td  style="">
+
+</td>
+</tr>
+	
+<tr>
+<td ></td>
+<td  style="">
+	Hide this student?
+	#if ( $student.fakeStudent == "hide" )
+		Yes (This student shall NOT appear in all reports)
+	#else
+		No (This student shall appear in all reports)
+	#end
+</td>
+</tr>
+	
+	
+    <tr>
+    <td  >&nbsp;</td>
+    <td  align="right">
+    	<button type="button" class="btn btn-primary" onclick="doDivAjaxCall$formname('div_biodata','edit_biodata','')">Edit Biodata</button>
+    </td>
+    </tr>
+#end
+
+</tbody>
+
+</table>

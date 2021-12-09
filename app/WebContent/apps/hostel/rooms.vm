@@ -1,0 +1,24 @@
+<table width="100%" bgcolor="#D4FFAA"><tr><td>
+<table width="100%"><tr><td>ROOMS</td><td align="right"><a href="javascript:void()" onclick="doDivAjaxCall$formname('floor_$floor.id', 'close', '')">close</a></td></tr></table>
+<table width="100%">
+<tr>
+<td><input name="code_$floor.id" style="width:100%"</td>
+<td width="300px"><input name="name_$floor.id" style="width:100%"></td>
+<td>
+<input type="button" value="Add" onclick="doDivAjaxCall$formname('floor_$floor.id','add_room','floor_id=$floor.id')">
+</td>
+</tr>
+</table>
+
+<table width="100%">
+#foreach ( $room in $floor.rooms )
+<tr>
+<td>
+<div id="room_info_${room.id}" name="room_info_${room.id}">
+#parse ( "apps/hostel/room.vm" )
+</div>
+</td>
+</tr>
+#end
+</table>
+</td></tr></table>

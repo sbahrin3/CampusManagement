@@ -1,0 +1,92 @@
+<style type="text/css">
+table.report {
+font-family:arial;
+font-size:8pt;
+	border-width: 1px;
+	border-spacing: 1px;
+	border-style: inset;
+	border-color: gray;
+	border-collapse: separate;
+	background-color: #000000;
+}
+
+table.report th {
+font-family:arial;
+font-size:8pt;
+padding: 2px;
+	background-color: silver;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+table.report td {
+font-family:arial;
+font-size:8pt;
+padding: 2px;
+	background-color: white;
+	-moz-border-radius: 0px 0px 0px 0px;
+}
+</style>
+
+<table class="report">
+<tr>
+<th align="right" style="width:100px" bgcolor="silver"></th>
+<th align="center" style="width:200px">NAMA PELAJAR</th>
+<th align="center">NO. KAD PENGENALAN</th>
+<th align="center">NO. PASSPORT</th>
+<th align="center">TAHUN KELAHIRAN</th>
+<th align="center">POSKOD ALAMAT TETAP</th>
+<th align="center">JANTINA</th>
+<th align="center">AGAMA</th>
+<th align="center">KAUM</th>
+<th align="center">STATUS PERKAHWINAN</th>
+<th align="center">NEGERI BERMASTAUTIN</th>
+<th align="center">TARAF BUMIPUTRA</th>
+<th align="center">KEWARGA<br>NEGARAAN</th>
+<th align="center">TARAF KEWARGA<br>NEGARAAN</th>
+<th align="center">SEMESTER SEMASA PELAJAR</th>
+<th align="center">JUMLAH SEMESTER PELAJAR</th>
+<th align="center">KEMASUKAN (BULAN)</th>
+<th align="center">KEMASUKAN (TAHUN)</th>
+<th align="center">JANGKAAN TAMAT PENGAJIAN (BULAN)</th>
+<th align="center">JANGKAAN TAMAT PENGAJIAN (TAHUN)</th>
+<th align="center">KOD KURSUS</th>
+<th align="center">CGPA</th>
+<th align="center">KELAYAKAN KEMASUKAN PELAJAR</th>
+<th align="center">STATUS OKU</th>
+<th align="center">JENIS KECACATAN</th>
+<th align="center">SUMBER PEMBIAYAAN</th>
+<th align="center">STATUS PELAJAR</th>
+<th align="center">TARIKH PENDAFTARAN</th>
+</tr>
+#foreach( $r in $records)
+<td align="right">$velocityCount</td>
+<td>$!r.name</td>
+<td align="center">$!r.icno</td>
+<td align="center">$!r.passport</td>
+<td align="center">#if ( $r.birthYear > 0 ) $!r.birthYear #end</td>
+<td align="center">$!r.postcode</td>
+<td align="center">$!r.genderCode</td>
+<td align="center">$!r.religionCode</td> ##AGAMA -- NOT AVAILABLE
+<td align="center">$!r.raceCode</td> ##KAUM 
+<td align="center">$!r.marriageStatus</td> ##STATUS PERKAHWINAN -- NOT AVAILABLE
+<td align="center">$!r.stateCode</td> ## NEGERI BERMASTAUTIN
+<td align="center"></td> ##TARAF BUMIPUTRA
+<td align="center">#if ( $r.nationalityName == "" ) MALAYSIA #else $r.nationalityName #end</td> ##
+<td align="center">#if ( $r.nationalityName == "" ) 1 #else $r.nationalityStatus #end</td> ## TARAF KEWARGANEGARAAN
+<td align="center" nowrap="nowrap">$r.currentSemester</td> ## SEMESTER SEMASA PELAJAR
+<td align="center">$r.totalSemester</td> ## JUMLAH SEMESTER PELAJAR
+<td align="center">#if ( $r.intakeMonth < 10 ) 0$r.intakeMonth #else $r.intakeMonth #end</td> ## KEMASUKAN (BULAN)
+<td align="center">$r.intakeYear</td> ## KEMASUKAN (TAHUN)
+<td align="center">#if ( $r.expectedStudyEndMonth < 10 ) 0$!r.expectedStudyEndMonth #else $!r.expectedStudyEndMonth #end</td> ## JANGKAAN TAMAT PENGAJIAN (BULAN)
+<td align="center">$!r.expectedStudyEndYear</td> ## JANGKAAN TAMAT PENGAJIAN (TAHUN)
+<td align="center">$!r.codeCourse</td> ## KOD KURSUS
+<td align="center">#if ( $r.cgpa == '.00' ) &nbsp; #else $!r.cgpa #end</td> ## CGPA
+<td align="center">$!r.entryQualification</td> ## KELAYAKAN KEMASUKAN PELAJAR
+<td align="center">#if ( $r.disabilityStatus == "yes" ) YA #else TIDAK #end</td>
+<td align="center">$!r.disabilityType</td> ## JENIS KECACATAN
+<td align="center">$!r.sponsorType</td> ##
+<td align="center">$!r.statusStudent</td>
+<td align="center">$df.format($!r.dateRegister)</td> ##
+</tr>
+
+#end
+</table>

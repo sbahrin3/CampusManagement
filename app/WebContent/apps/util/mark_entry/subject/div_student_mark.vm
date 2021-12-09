@@ -1,0 +1,17 @@
+#if ( $subject_result.resultStatus )
+<span style="font-weight:bold;color:#CC0000">$subject_result.resultStatus.name</span>
+#else
+
+<input class="text" id="marks_$cnt" name="marks_$cnt" value="$mark" style="width:50px;text-align:center" onchange="doDivAjaxCall${formName}('student_$student_id', 'save_student_mark', 'student_id=$student_id&counter=$cnt&bgcolor=$!bgcolor')" onkeydown="var cnt = $cnt + 1; if ( event.keyCode == 13 ) { $('marks_' + cnt).focus(); $('marks_' + cnt).select(); }" onfocus="$('tr_$cnt').style.background='#CCCC99';" onblur="$('tr_$cnt').style.background='$bgcolor'">
+
+#if ( $subject_result.grade )
+<b>$subject_result.grade</b>
+#end
+
+#end
+
+#if ( $error ) 
+<span style="color:#FF0000;">
+$error
+</span>
+#end

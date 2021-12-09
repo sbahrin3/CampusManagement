@@ -1,0 +1,21 @@
+<table style="border-bottom:1px solid #ebebeb">
+<tr style="height:40px">
+<td style="width:20px" >$row)</td>
+<td style="width:150px" >$!standing.code</td>
+<td style="width:400px" >$!standing.name</td>
+
+
+<td style="">
+<button class="btn btn-warning btn-sm" type="button" onclick="doDivAjaxCall$formname('edit_standing_$row','editStanding','row=$row&standingId=$standing.id')">Edit</button>
+&nbsp;
+<button class="btn btn-danger btn-sm" type="button" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall$formname('main_standing','deleteStanding','standingId=$standing.id')">X</button>
+</td>
+
+</tr>
+</table>
+
+<script>
+#if ( $saved )
+$('edit_standing_$row').innerHTML = "";
+#end
+</script>

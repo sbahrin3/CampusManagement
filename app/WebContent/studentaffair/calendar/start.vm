@@ -1,0 +1,6 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+
+<div id="divCalendar">
+#parse("studentaffair/calendar/calendar.vm")
+</div>

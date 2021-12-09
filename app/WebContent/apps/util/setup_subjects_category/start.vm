@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="../style/style.css" type="text/css" media="screen" />
+
+
+
+<div style="padding:10px">
+
+<div id="div_categories" name="div_categories">
+#parse( "apps/util/setup_subjects_category/categories.vm" )
+</div>
+
+<div id="div_updating"></div>
+
+
+<br/><br/>
+
+<div class="well">
+<table class="table">
+<tr>
+<td style="width:150px"><input class="form-control" name="code_new" type="text" value=""></td>
+<td style="width:300px"><input class="form-control" name="name_new" type="text" value=""></td>
+<td align="center">
+
+</td>
+<td align="">
+<button class="btn btn-warning" type="button" onclick="doDivAjaxCall3$formname('div_categories','add_new','')">Add New Category</button>
+</td>
+</tr>
+</table>
+
+<br/><br/>
+*Subject's labeled as <em>Mandatory</em> shall be automatically added to student's registered subjects during enrollment process.
+</div>
+
+</div>
+

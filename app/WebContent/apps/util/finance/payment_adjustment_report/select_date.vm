@@ -1,0 +1,33 @@
+<script>calndr.showNavigationDropdowns();</script>
+
+<table width="900">
+<tr><td>
+
+<table width="100%">
+<tr>
+<td>Date:</td>
+<td>
+From:$html.dateField.name("date_from").value("$!date_from").style("width:100px")
+To: $html.dateField.name("date_to").value("$!date_to").style("width:100px")
+</td>
+</tr>
+
+<tr>
+<td>Select Program:</td>
+<td>
+<select name="program_id">
+<option value="">(ALL)</option>
+#foreach( $i in $programs )
+<option value="$i.id" #if ( $program_id == $i.id ) selected #end >$i.code $i.name</option>
+#end
+</select>
+<input type="button" value="ADJUSTMENTS REPORT" onclick="doDivAjaxCall$formname('div_report','get_report','')">
+</td>
+</tr>
+
+</table>
+
+<div id="div_report"></div>
+
+
+</td></tr></table>

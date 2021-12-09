@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="../admission/style.css" type="text/css" media="screen" />
+<style>
+td {
+	font-family:Verdana, sans-serif;
+	font-size:10pt;
+}
+.r {
+	border-bottom:1px solid #B7B2B2; border-right:1px solid #B7B2B2;
+	white-space:nowrap;
+}
+</style>
+<script>calndr.showNavigationDropdowns();</script>
+<script>
+function popitup(url) {
+	newwindow=window.open(url,'popitup','height=500,width=800,scrollbars=yes');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+</script>
+
+Clik here to open report:
+<u>
+<a href="javascript:void(0)" 
+onclick="return popitup('../x/educate.admission.module.StudentMoheDataReportModule?command=report')">Maklumat Asas Graduan</a>
+</u>

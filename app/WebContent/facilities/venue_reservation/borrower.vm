@@ -1,0 +1,104 @@
+<table>
+
+<tr height="40px"><td colspan="2" style="font-size:12pt;font-weight:bold">Reservation Form</td>
+
+<td align="right">
+<input class="linkbutton" style="font-weight:bold" type="button" value="Submit Reservation" onclick="if ( checkFormField() ) { doDivAjaxCall3$formname('reservation','reservation','');  }">
+</td></tr>
+
+
+<tr><td style="width:150px"></td><td style="width:5px"></td><td style="width:550px"></td></tr>
+
+
+<tr><td>Name</td><td>:</td><td><input class="text" name="borrowerName" #if ( $userName ) value="$userName.toUpperCase()" #end readonly></td></tr>
+<tr><td>Email</td><td>:</td><td><input class="text" id="borrowerEmail" name="borrowerEmail" onfocus="this.style.backgroundColor='#fff'"></td></tr>
+<tr><td>Contact No</td><td>:</td><td><input class="text" id="borrowerContactNo" name="borrowerContactNo" onfocus="this.style.backgroundColor='#fff'"></td></tr>
+
+<tr><td colspan="3" style="height:20px"></td></tr>
+<tr><td>Programme</td><td>:</td><td><input class="text" id="programmeName" name="programmeName" onfocus="this.style.backgroundColor='#fff'"></td></tr>
+
+<tr><td>Venue</td><td>:</td>
+<td>
+#**
+<select class="text" id="roomId" name="roomId" onfocus="this.style.backgroundColor='#fff'">
+<option value=""></option>
+#foreach( $r in $rooms )
+<option value="$r.id">$r.name</option>
+#end
+</select>
+**#
+<input class="text" id="roomName" name="roomName">
+<input type="hidden" id="roomId">
+</td></tr>
+<tr><td></td><td></td><td align="right">
+<input class="linkbutton" type="button" style="width:150px" value="Select Venue..." onclick="doDivAjaxCall3$formname('divRooms','getRoomList','')">
+</td></tr>
+
+<tr><td>Date/Time From:</td><td>:</td>
+<td>
+
+<input class="text" style="width:100px" id="dateFrom" name="dateFrom" onfocus="this.style.backgroundColor='#fff'">
+<script> new JsDatePick({ useMode:2, target:"dateFrom", dateFormat:"%d-%m-%Y" }); </script>
+<select class="text" style="width:50px" name="hourFrom">
+#foreach ( $i in [0..23] )
+<option value="$i">$i</option>
+#end
+</select>
+<select class="text" style="width:50px" name="minFrom">
+#foreach ( $i in [0..59] )
+<option value="$i">$i</option>
+#end
+</select>
+
+</td></tr>
+
+<tr><td>Date/Time To:</td><td>:</td>
+<td>
+
+
+<input class="text" style="width:100px" id="dateTo" name="dateTo" onfocus="this.style.backgroundColor='#fff'">
+<script> new JsDatePick({ useMode:2, target:"dateTo", dateFormat:"%d-%m-%Y" }); </script>
+<select class="text" style="width:50px" name="hourTo">
+#foreach ( $i in [0..23] )
+<option value="$i">$i</option>
+#end
+</select>
+<select class="text" style="width:50px" name="minTo">
+#foreach ( $i in [0..59] )
+<option value="$i">$i</option>
+#end
+</select>
+</td></tr>
+
+
+<tr><td rowspan="2" valign="top">Equipment</td><td rowspan="2" valign="top">:</td>
+<td>
+<div id="itemList">
+</div>
+</td></tr>
+
+
+<tr>
+##<td></td><td></td>
+<td align="right" style="height:35px;background:#EDEAEA">
+
+#**
+
+<select class="text" style="width:450px" id="itemId" name="itemId">
+<option value=""></option>
+#foreach( $i in $items )
+<option value="$i.id">$i.description (SN: $i.serialNo)</option>
+#end
+</select>
+<input class="linkbutton" type="button" style="padding:2px" value="Add" onclick="if ( $('itemId').value == '' ) return; doDivAjaxCall3$formname('itemList','addItem','')">
+
+**#
+
+<input class="linkbutton" type="button" style="width:150px" value="Choose Equipments..." onclick="doDivAjaxCall3$formname('divItems','getItemList','')">
+</td></tr>
+
+<tr height="40px"><td colspan="3" align="right"></td></tr>
+
+
+
+</table>

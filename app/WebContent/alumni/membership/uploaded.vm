@@ -1,0 +1,6 @@
+<script>
+parent.document.getElementById('${divUploadStatusName}').innerHTML = "";
+parent.document.getElementById('photoFileName').value = "$!serverFileName";
+parent.document.getElementById('avatarName').value = "$!avatarName";
+parent.document.getElementById("imgPhoto").src="../download?file=$!serverFileName";
+</script>

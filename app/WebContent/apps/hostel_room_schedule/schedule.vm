@@ -1,0 +1,103 @@
+<script>
+new Draggable('roomSlots',  { constraint: 'horizontal' });
+</script>
+
+#parse("apps/hostel_room_schedule/date.vm")
+
+##start
+<table class="shadow" cellpadding="0" cellspacing="0">
+<tr><td valign="top">
+<div style="width:120px">
+<table cellpadding="0" cellspacing="0">
+<tr>
+<td>
+#set ( $days = $days_1 )
+#set ( $slots = $slots_1 )
+#set ( $cnt = 1 )
+#parse("apps/hostel_room_schedule/schedule_rooms.vm")
+</td>
+</tr>
+</table>
+</div>
+</td><td valign="top">
+<div style="overflow:scroll;overflow-y:hidden;width:800px">
+<table id="roomSlots" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<div style="display:inline-block">
+#set ( $cnt = 1 )
+#set ( $month = $month_1 )
+#set ( $year = $year_1 )
+#set ( $days = $days_1 )
+#set ( $slots = $slots_1 )
+#parse("apps/hostel_room_schedule/schedule_slots.vm")
+</div>
+</td>
+
+<td>
+#set ( $month = $month_2 )
+#set ( $year = $year_2 )
+#set ( $days = $days_2 )
+#set ( $slots = $slots_2 )
+#set ( $cnt = 2 )
+#parse("apps/hostel_room_schedule/schedule_slots.vm")
+</td>
+
+<td>
+#set ( $month = $month_3 )
+#set ( $year = $year_3 )
+#set ( $days = $days_3 )
+#set ( $slots = $slots_3 )
+#set ( $cnt = 3 )
+#parse("apps/hostel_room_schedule/schedule_slots.vm")
+</td>
+
+<td>
+#set ( $month = $month_4 )
+#set ( $year = $year_4 )
+#set ( $days = $days_4 )
+#set ( $slots = $slots_4 )
+#set ( $cnt = 4 )
+#parse("apps/hostel_room_schedule/schedule_slots.vm")
+</td>
+
+<td>
+#set ( $month = $month_5 )
+#set ( $year = $year_5 )
+#set ( $days = $days_5 )
+#set ( $slots = $slots_5 )
+#set ( $cnt = 5 )
+#parse("apps/hostel_room_schedule/schedule_slots.vm")
+</td>
+
+<td>
+#set ( $month = $month_6 )
+#set ( $year = $year_6 )
+#set ( $days = $days_6 )
+#set ( $slots = $slots_6 )
+#set ( $cnt = 6 )
+#parse("apps/hostel_room_schedule/schedule_slots.vm")
+</td>
+
+</tr>
+</table>
+</div>
+</td></tr></table>
+##end
+
+
+
+
+<div name="div_room_info" id="div_room_info"
+style="visibility:hidden;position:absolute;left:400px;width:300px;height:150px;border-style: solid;border-color:#B4B4B4;background-color:#FFFFAA">
+<table width="100%">
+<tr><td>
+<div name="div_room_info2" id="div_room_info2" style="overflow:auto;height:120px;width:100%"></div>
+</td></tr>
+<tr><td align="center" style="font-weight:bold">
+<input type="button" value="Close" onclick="$('div_room_info').style.visibility='hidden';$('div_room_info2').style.visibility='hidden'">
+</td></tr>
+</table>
+</div>
+
+

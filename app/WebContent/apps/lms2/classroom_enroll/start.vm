@@ -1,0 +1,31 @@
+<script>calndr.showNavigationDropdowns();</script>
+<style>
+.shadow { -moz-box-shadow: 10px 10px 5px #888; -webkit-box-shadow: 10px 10px 5px #888; box-shadow: 10px 10px 5px #888; }
+.gradient { background: -moz-linear-gradient(top, #E1E1E1 0%, #B4B4B4 100%); }
+.text {border-bottom:1px solid #C3C3C3; border-top:none; border-left:none; border-right:1px solid #C3C3C3; height:30px; width:100%}
+.fset { background-color:#E2FEE2}
+</style>
+
+<table width="600px" align="center">
+<tr><td>
+
+<input name="find_name" style="width:200px">
+<input type="button" value="Find.." onclick="$('div_list_names').style.display='block';$('div_selected').style.display='none';$('div_enrolled').style.display='none';$('div_classrooms').style.display='none';doDivAjaxCall$formname('div_list_names','find_names','')">
+
+</td></tr>
+<tr><td>
+<div id="div_list_names" name="div_list_names" style="display:none;overflow:auto;overflow-x:hidden;height:200px;"></div>
+<div id="div_selected" name="div_selected" style="display:none"></div>
+<div id="div_enrolled" name="div_enrolled" style="display:none"></div>
+<div id="div_classrooms" name="div_classrooms" style="display:none"></div>
+</td></tr>
+
+
+
+
+
+
+
+<tr><td>
+
+</td></tr></table>

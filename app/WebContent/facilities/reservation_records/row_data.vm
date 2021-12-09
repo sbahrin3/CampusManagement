@@ -1,0 +1,11 @@
+$dateFormat.applyPattern("dd-MM-yyyy (hh:mm a)")
+
+<td>$!r.userId</td>
+<td>$!r.room.name</td>
+<td>$dateFormat.format($r.dateFrom)</td>
+<td>$dateFormat.format($r.dateTo)</td>
+<td>$!r.status</td>
+<td>$dateFormat.format($r.dateCreate)</td>
+
+
+

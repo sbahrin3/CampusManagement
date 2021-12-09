@@ -1,0 +1,22 @@
+<table class="table table-striped">
+<tr style="height:30px;">
+<td style="width:100px;font-weight:bold">Code</td>
+<td style="width:300px;font-weight:bold">Name</td>
+<td style="width:100px;font-weight:bold" align="center">Mandatory?</td>
+<td style="font-weight:bold"></td>
+<td></td>
+</tr>
+
+#foreach ( $c in $categories )
+<tr>
+<td><input class="form-control" name="code_$c.id" type="text" value="$c.code" onchange="doDivAjaxCall3$formname('div_updating','change_code','category_id=$c.id')"></td>
+<td><input class="form-control" name="name_$c.id" type="text" value="$c.name" onchange="doDivAjaxCall3$formname('div_updating','change_name','category_id=$c.id')"></td>
+<td align="center" style="font-weight:bold">#if ( $c.mandatory ) YES #end</td>
+<td align="">
+<button class="btn btn-warning btn-sm" type="button" onclick="doDivAjaxCall3$formname('div_categories','update_mandatory','category_id=$c.id')">Change Mandatory</button>
+<button class="btn btn-danger btn-sm" type="button" onclick="if ( !confirm('Delete?') ) return; doDivAjaxCall3$formname('div_categories','delete_category','category_id=$c.id')">x</button>
+</td>
+<td></td>
+</tr>
+#end
+</table>

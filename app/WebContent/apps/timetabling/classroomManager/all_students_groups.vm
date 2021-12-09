@@ -1,0 +1,26 @@
+#**
+<table cellpadding="1" cellspacing="0">
+<tr style="height:30px" bgcolor="#B4B4B4">
+<td style="width:50px;"></td>
+<td style="width:100px;font-weight:bold">Matric No</td>
+<td style="width:350px;font-weight:bold">Name</td>
+<td style="width:100px;font-weight:bold">&nbsp;</td>
+<td style="width:50px;"></td>
+</tr>
+</table>
+**#
+#foreach( $group in [1..20])
+<br/>
+<span style="font-weight:bold;">GROUP $group</span>
+#set ( $students = $studentClassroomGroup.get($group) )
+<div id="studentsGroup_$group">
+
+#parse("apps/timetabling/classroomManager/studentsInGroup.vm")
+</div>
+#end
+
+
+
+
+
+

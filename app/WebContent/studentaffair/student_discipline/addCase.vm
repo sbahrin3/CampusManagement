@@ -1,0 +1,75 @@
+<script>
+$('addCase').style.display='block';
+</script>
+
+
+<table width="100%" style="background:#A7ADB2;"><tr><td style="font-family:Verdana, sans-serif;font-weight:bold;color:#fff">
+DISCIPLINARY CASE
+</td><td style="width:20px;font-family:Verdana, sans-serif;color:#fff;cursor:pointer" align="right" onclick="$('addCase').style.display='none';">
+x
+</td></tr></table>
+
+<table>
+<tr><td style="width:200px">Case:</td><td style="width:500px">
+<select class="texts" name="caseId">
+<option value=""></option>
+#foreach( $c in $cases )
+<option value="$c.id" #if ( $studentCase.disciplinaryCase.id == $c.id ) selected #end>$c.name</option>
+#end
+</select>
+</td></tr>
+<tr><td>Reported Date:</td><td>
+#set ( $dateValue = "" )
+#if ( $studentCase )
+	$dateFormat.applyPattern("dd-MM-yyyy")
+	#if ( $studentCase.reportedDate ) #set ( $dateValue = $dateFormat.format($studentCase.reportedDate) ) #end
+#end
+$html.dateField.name("reportedDate").value("$!dateValue").style("width:120px").cssClass("texts")
+</td></tr>
+<tr><td>Hearing Date:</td><td>
+#set ( $dateValue = "" )
+#if ( $studentCase )
+	$dateFormat.applyPattern("dd-MM-yyyy")
+	#if ( $studentCase.hearingDate ) #set ( $dateValue = $dateFormat.format($studentCase.hearingDate) ) #end
+#end
+$html.dateField.name("hearingDate").value("$!dateValue").style("width:120px").cssClass("texts")
+</td></tr>
+
+<tr><td valign="top">Complainant Testimony:</td><td>
+<textarea class="textr" style="height:150px" name="complainantTestimony">$!studentCase.complainantTestimony</textarea>
+</td></tr>
+
+<tr><td valign="top">Student Testimony:</td><td>
+<textarea class="textr" style="height:150px" name="studentTestimony">$!studentCase.studentTestimony</textarea>
+</td></tr>
+
+<tr><td valign="top">Cross Examination Result:</td><td>
+<textarea class="textr" style="height:150px" name="crossExaminationResult">$!studentCase.crossExaminationResult</textarea>
+</td></tr>
+
+<tr><td>Case Closed?</td><td>
+<select class="textr" name="caseClosed">
+<option value="0" #if ( !$studentCase.caseClosed ) selected #end>No</option>
+<option value="1" #if ( $studentCase.caseClosed ) selected #end>Yes</option>
+</select>
+</td></tr>
+
+<tr><td>Penalty Imposed?</td><td>
+<select class="textr" name="penaltyImposed">
+<option value="0" #if ( !$studentCase.penaltyImposed ) selected #end>No</option>
+<option value="1" #if ( $studentCase.penaltyImposed ) selected #end>Yes</option>
+</select>
+</td></tr>
+
+<tr><td></td><td>
+#if ( $studentCase )
+<input class="linkbutton" type="button" value="Save" onclick="doDivAjaxCall3$formname('studentCase','saveStudentCase','studentCaseId=$studentCase.id')">
+<input class="linkbutton" type="button" value="Delete" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('studentCase','deleteCase','studentCaseId=$studentCase.id')">
+#else
+<input class="linkbutton" type="button" value="Add" onclick="doDivAjaxCall3$formname('studentCase','studentCase','studentId=$student.id')">
+#end
+
+<input class="linkbutton" type="button" value="Cancel" onclick="$('addCase').style.display='none';">
+</td></tr>
+</table>
+

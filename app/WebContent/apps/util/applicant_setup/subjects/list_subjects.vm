@@ -1,0 +1,20 @@
+<table width="100%">
+
+#foreach( $subject in $subjects )
+<tr>
+<td style="width:100px">$subject.code</td>
+<td>$subject.name</td>
+</tr>
+#end
+
+</table>
+
+<table width="100%">
+<tr><td style="width:100px"><input name="subject_code" style="width:100%"></td>
+<td><input name="subject_name" style="width:100%"></td></tr>
+<tr><td colspan="2" align="right">
+<input type="button" value="Add Subject" onclick="doDivAjaxCall$formname('div_list_subjects','add_subject','')">
+</td></tr>
+</table> 
+
+</table>

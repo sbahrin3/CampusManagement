@@ -1,0 +1,92 @@
+
+<table width="899px" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+
+<tr height="1px">
+<td style="width:30px"></td>
+<td style="width:200px;font-weight:bold"></td>
+<td style="width:80px;font-weight:bold"></td>
+<td style="width:80px;font-weight:bold"></td>
+<td style="width:20px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td style="width:100px;font-weight:bold"></td>
+<td></td>
+</tr>
+#set ( $cnt = 0 )
+#foreach ( $alloc in $allocs )
+#set ( $cnt = $cnt + 1 )
+#if ( $cnt % 2 == 0 ) #set ( $bgcolor = "#E1E1E1" ) #else #set ( $bgcolor = "#FFF" ) #end
+<tr height="35px" style="background:$bgcolor">
+<td>$cnt.</td>
+<td style="cursor:pointer" onclick="doDivAjaxCall3$formname('hostel_info','list_buildings','hostel_id=$!alloc.room.unit.floor.block.building.hostel.id')">
+$!alloc.room.unit.floor.block.building.hostel.name
+</td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info','list_units','floor_id=$!alloc.room.unit.floor.id')">
+$alloc.room.unit.code
+</td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info','list_rooms','unit_id=$!alloc.room.unit.id')">
+$alloc.room.code
+</td>
+<td style="cursor:pointer" onclick="doDivAjaxCall$formname('hostel_info','list_rooms','unit_id=$!alloc.room.unit.id')">
+<img src="../img/icon-reload.gif">
+</td>
+<td align="center">
+#if ( $alloc.checkInDate ) $du.toString($alloc.checkInDate, "dd-MMM-yyyy") #end
+</td>
+<td align="center">
+
+<div id="ext_$alloc.id" class="shadow" style="display:none;position:absolute;background:#F7F7F7;width:400px;">
+#parse("apps/hostel_room_allocation/extension.vm")
+</div>
+
+<div id="trans_$alloc.id" class="shadow" style="display:none;position:absolute;background:#F7F7F7;width:400px;">
+#parse("apps/hostel_room_allocation/transfer.vm")
+</div>
+
+#if ( $alloc.transferFrom )
+	##TRANSFER ROOM
+	<img src="../img/moved.png" border="0">
+#else
+	#if ( $alloc.expectedDateOut ) $du.toString($alloc.expectedDateOut, "dd-MMM-yyyy") #end
+#end
+</td>
+<td align="center">
+#if ( $alloc.checkOutDate && $alloc.checkedOut ) 
+	$du.toString($alloc.checkOutDate, "dd-MMM-yyyy") 
+#else
+	#if ( !$studentMode )
+	<input class="linkbutton" style="padding:2px" type="button" value="Check Out" onclick="$('div_checkout_date').style.visibility='visible';$('alloc_room_id').value='$alloc.room.id';$('alloc_id').value='$alloc.id'">
+	#end
+#end
+</td>
+<td align="center">
+#if ( $alloc.checkOutDate && $alloc.checkedOut ) 
+	#if (!$studentMode && !$alloc.transfer )
+	<input class="linkbutton" style="padding:2px" type="button" value="Cancel Check Out" onclick="if ( !confirm('Cancel Check-Out?') ) return; doDivAjaxCall$formname('div_rooms', 'delete_out', 'allocation_id=$alloc.id')">
+	#end
+#end
+#if ( $alloc.checkOutDate && $alloc.checkedOut )
+	#if ( !$alloc.transfer )
+		<input class="linkbutton" style="padding:2px"  type="button" value="Cancel" onclick="if ( !confirm('Are you sure?') ) return;doDivAjaxChainCall$formname('div_rooms', 'delete_room', 'allocation_id=$alloc.id', 'hostel_info','list_rooms','unit_id=$alloc.room.unit.id')">
+	#end 
+#else
+	#if ( !$studentMode )
+		<input class="linkbutton" style="padding:2px"  type="button" value="Extension" onclick="$('ext_$alloc.id').style.display='block';">
+		<input class="linkbutton" style="padding:2px"  type="button" value="Transfer" onclick="$('trans_$alloc.id').style.display='block';$('checkInMode').value='transfer_room';$('transferAllocId').value='$alloc.id';doDivAjaxCall$formname('hostel_info','list_rooms','unit_id=$!alloc.room.unit.id')">
+		<input class="linkbutton" style="padding:2px"  type="button" value="Cancel" onclick="if ( !confirm('Are you sure?') ) return;doDivAjaxChainCall$formname('div_rooms', 'delete_room', 'allocation_id=$alloc.id', 'hostel_info','list_rooms','unit_id=$alloc.room.unit.id')">
+	#else
+		#if ( $cnt == 1 )
+			##<input class="linkbutton" style="padding:2px"  type="button" value="Cancel" onclick="if ( !confirm('Are you sure?') ) return;doDivAjaxChainCall$formname('div_rooms', 'delete_room', 'allocation_id=$alloc.id', 'div_vacancy_$alloc.room.id', 'check_vacancy', 'room_id=$alloc.room.id')">
+				<input class="linkbutton" style="padding:2px"  type="button" value="Cancel" onclick="if ( !confirm('Are you sure?') ) return;doDivAjaxChainCall$formname('div_rooms', 'delete_room', 'allocation_id=$alloc.id', 'hostel_info','list_rooms','unit_id=$alloc.room.unit.id')">
+		#end
+	#end
+#end
+
+
+</td>
+</tr>
+
+#end
+</table>
+<input type="hidden" id="checkInMode" name="checkInMode" value="check_in">
+<input type="hidden" id="transferAllocId" name="transferAllocId" value="">

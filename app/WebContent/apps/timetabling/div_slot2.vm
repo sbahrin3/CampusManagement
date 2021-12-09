@@ -1,0 +1,51 @@
+
+
+<table style="width:100%" cellpadding="0" cellspacing="0" border="0" style="">
+#foreach ( $cr in $slot.classrooms )
+<tr><td align="center" valign="top">
+
+#set ( $bgcolor = $slotColor.colorMap.get("${cr.subject.id}-${cr.classroomSection.id}") )
+<table width="100%" cellpadding="0" cellspacing="0" style="background-color:$bgcolor">
+
+<tr><td align="center">$cr.subject.code</td></tr>
+##<tr><td align="center">($cr.section.code)</td></tr>
+<tr><td align="center">$!cr.classroomSection.name</td></tr>
+<tr><td align="center">$cr.room.code</td></tr>
+<tr><td align="center">#if ( $cr.teacher ) $cr.teacher.code #else - #end</td></tr>
+
+
+<tr height="30px"><td align="right" valign="middle">
+<a href="javascript:void()" onclick="$('div_students').style.top=cursorY;$('div_students').style.visibility='visible';doDivAjaxCall$formname('div_students2','list_students','slot_id=${slot.id}&class_session_id=${cr.id}')"><img src="../img/group.gif" border="0"></a>
+#if ( !$view_mode )
+<a href="javascript:void(0)" onclick="if ( !confirm('Delete?') ) return;doDivAjaxCall$formname('slot_$slot.id','delete_class_session','slot_id=${slot.id}&class_session_id=${cr.id}')"><img src="../img/trash.gif" border="0"></a>
+#end
+</td></tr>
+
+</table>
+</td></tr>
+
+<tr height="2px"><td>
+</td></tr>
+
+#end
+
+</table>
+
+<script>
+
+#if ( $message )
+
+$('divMessage').style.display='block';
+$('divMessageInner').innerHTML = '$message';
+
+#end
+
+
+#if ( $reloadSlots )
+#foreach ( $slot in $reloadSlots )
+
+doDivAjaxCall$formname('slot_$slot.id','reloadSlot','reloadSlotId=$slot.id');
+
+#end
+#end
+</script>

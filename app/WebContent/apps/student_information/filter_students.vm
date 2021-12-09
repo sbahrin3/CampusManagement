@@ -1,0 +1,8 @@
+<table width="100%">
+#foreach ( $s in $students )
+<tr>
+<td style="width:100px"><a href="javascript:void()" style="text-decoration:none" onclick="$('matric_no').value='$s.matricNo'">$s.matricNo</a></td>
+<td><a href="javascript:void()" style="text-decoration:none" onclick="alert($('matric_no'));$('matric_no').value='$s.matricNo'">$s.biodata.name</a></td>
+</tr>
+#end
+</table>

@@ -1,0 +1,31 @@
+<fieldset>
+
+<table width="100%">
+<tr>
+<td>
+
+<table>
+<tr height="25px">
+<td class="gradient" style="width:300px;font-weight:bold">Section</td>
+<td class="gradient" style="width:100px;font-weight:bold" align="center">No. Of Students</td>
+<td class="gradient"></td>
+</tr>
+#foreach ( $c in $classrooms )
+<tr>
+<td>$c.section.name</td>
+<td align="center">$c.currentSize</td>
+<td>
+<input class="gradient" type="button" value="Select.." onclick="doDivAjaxCall$formname('div_sections','select_classroom','student_id=$student.id&section_id=$c.section.id&student_status_id=$student_status.id');">
+</td>
+</tr>
+#end
+</table>
+
+</td></tr></table>
+</fieldset>
+
+<script>
+#if ( $reg_classroom )
+$('section_name').value = "$!section.name";
+#end
+</script>

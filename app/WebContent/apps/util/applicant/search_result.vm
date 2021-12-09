@@ -1,0 +1,49 @@
+#if ( $applicants )
+<br><br>
+<table style="background-color:#fff; " width="100%"><tr><td align="right" style="font-weight:bold">
+$applicants.size() hits
+</td></tr></table>
+<table width="100%">
+<tr height="30px" bgcolor="lightgrey">
+<td></td>
+<td style="font-weight:bold">Name</td>
+<td style="font-weight:bold">ICNO/Passport</td>
+<td style="font-weight:bold">Apply Date</td>
+<td style="font-weight:bold">Status</td>
+<td></td>
+</tr>
+#foreach ( $app in $applicants )
+<tr>
+<td align="right" style="width:20px">$velocityCount)</td>
+<td>$app.biodata.name</td>
+<td>
+#if ( $app.biodata.icno )
+$app.biodata.icno 
+#elseif ( $app.biodata.passport )
+$app.biodata.passport
+#end
+</td>
+<td>
+#if ( $app.applyDate ) 
+$dateFormat.format($app.applyDate)
+#if ( $app.applyTime ) $timeFormat.format($app.applyTime) #end
+#elseif ( $app.registerDate ) $dateFormat.format($app.registerDate)  #end
+</td>
+<td>
+$!app.status
+</td>
+<td>
+##$button.command("get_applicant").param("applicant_id=$app.id").text("VIEW ...")<br>
+<input type="button" value="Open.." onclick="$('div_applicant').style.visibility='visible';doPositionDivAjaxCall$formname('div_applicant','get_applicant','applicant_id=$app.id')">
+
+</td>
+</tr>
+#end
+</table>
+#else
+<br><br>
+<table width="100%"><tr><td style="font-weight:bold" align="center">
+You must specify a name or partial name to search..
+</td></tr></table>
+
+#end

@@ -1,0 +1,14 @@
+#set ( $g = $graduate )
+
+<p style="font-family:verdana, sans-serif;font-size:11pt">
+$g.student.biodata.name.toUpperCase()<br/>
+#if ( $g.student.address.address1 && $g.student.address.address1 != "" ) $!g.student.address.address1.toUpperCase()<br/> #end
+#if ( $g.student.address.address2 && $g.student.address.address2 != "" ) $!g.student.address.address2.toUpperCase()<br/> #end
+#if ( $g.student.address.address3 && $g.student.address.address3 != "" ) $!g.student.address.address3.toUpperCase()<br/> #end
+#if ( $g.student.address.address4 && $g.student.address.address4 != "" ) $!g.student.address.address4.toUpperCase()<br/> #end
+#if ( $g.student.address.postcode && $g.student.address.postcode != "") $!g.student.address.postcode #end
+#if ( $g.student.address.city ) $!g.student.address.city.toUpperCase()<br/> #end
+#if ( $g.student.address.state ) $!g.student.address.state.name.toUpperCase() #end
+</p>
+
+#parse("graduationLetter/invitation.html")

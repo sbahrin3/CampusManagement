@@ -1,0 +1,61 @@
+<style>
+.messageLabel {  font:14px "Trebuchet MS", Arial, Helvetica, sans-serif; }
+.messageText { width:100%; height:30px; font:14px "Trebuchet MS", Arial, Helvetica, sans-serif; background:#FFF;
+				border:1px solid #C9C9C9; }
+.messageButton { font:bold 14px "Trebuchet MS", Arial, Helvetica, sans-serif; text-shadow:#000 1px 1px 1px; 
+		background:#418A91; 
+		color: #fff; 
+		width: 100px;
+		margin-right: 5px; 
+		padding: 8px 8px; 
+		text-decoration: none;  
+		border-radius:20px;
+		-moz-box-shadow: 5px 5px 5px #888; 
+		-webkit-box-shadow: 5px 5px 5px #888; box-shadow: 5px 5px 5px #888;  
+}
+</style>
+
+<div id="contactMessage">
+<table>
+
+<tr><td style="width:120px"></td><td style="width:10px"></td><td style="width:500px"></td></tr>
+
+<tr><td class="messageLabel">Your Name<span style="color:#F40909">*</span></td><td>:</td><td><input class="messageText" id="contactName" name="contactName"></td></tr>
+<tr><td class="messageLabel">Your Email<span style="color:#F40909">*</span></td><td>:</td><td><input class="messageText" id="contactEmail" name="contactEmail"></td></tr>
+<tr><td class="messageLabel">Your Organization</td><td>:</td><td><input class="messageText" id="contactOrganization" name="contactOrganization"></td></tr>
+<tr><td class="messageLabel">Your Phone No</td><td>:</td><td><input class="messageText" id="contactPhoneNo" name="contactPhoneNo"></td></tr>
+<tr style="height:10px"><td></td><td></td><td></td></tr>
+<tr><td valign="top" class="messageLabel">Message<span style="color:#F40909">*</span></td><td valign="top">:</td><td><textarea class="messageText" style="height:200px" id="contactMessage" name="contactMessage"></textarea></td></tr>
+
+<tr>
+<td class="messageLabel" colspan="3" align="right">
+<div id="requiredFieldMessage" style="display:none;color:#E01616;font-weight:bold">You must key in the required fields.</div>
+</td>
+</tr>
+
+<tr>
+<td colspan="3" align="right">
+<input type="button" class="messageButton" value="Send" onclick="if ( checkContactUsFields() ) { doDivAjaxCall3$formname('contactMessage','contactMessage',''); }">
+</td></tr>
+</table>
+</div>
+
+<script>
+function checkContactUsFields() {
+	var i = 0;
+	if ( document.getElementById("contactName").value == "" ) {
+		i++;
+		document.getElementById("requiredFieldMessage").style.display="block";
+	}
+	if ( document.getElementById("contactEmail").value == "" ) {
+		i++;
+		document.getElementById("requiredFieldMessage").style.display="block";
+	}
+	if ( document.getElementById("contactMessage").value == "" ) {
+		i++;
+		document.getElementById("requiredFieldMessage").style.display="block";
+	}
+	
+	return i == 0;
+}
+</script>

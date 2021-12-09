@@ -1,0 +1,85 @@
+<ul id="roomList" style="list-style-type:none; padding: 0px;">
+	
+	#set ( $cnt = 0 )
+	#foreach( $h in $rooms )
+	#set ( $cnt = $cnt + 1 )
+	<li id="roomList_$cnt" style="padding:0px">
+		<input type="hidden" name="roomIds" value="$h.id">
+		<table cellpadding="1" cellspacing="0">
+		<tr>
+		<td style="width:20px;cursor:pointer" valign="top">
+		$cnt.
+		</td>
+		<td style="width:100px" valign="top"><input class="text" name="roomCode_$h.id" value="$h.code" onchange="doDivAjaxCall3$formname('empty','changeRoomCode','roomId=$h.id')"></td>
+		<td style="width:200px" valign="top"><input class="text" name="roomName_$h.id" value="$h.name" onchange="doDivAjaxCall3$formname('empty','changeRoomName','roomId=$h.id')"></td>
+		<td style="width:200px" valign="top">
+			<select class="text" name="roomType_$h.id" onchange="doDivAjaxCall3$formname('empty','changeRoomType','roomId=$h.id')">
+			<option value=""></option>
+			#foreach( $type in $roomTypes)
+			<option value="$type.id" #if ( $h.roomType.id == $type.id ) selected #end>$type.name</option>
+			#end
+			</select>
+		
+		</td>
+		<td style="width:100px" valign="top">
+			<select class="text" name="roomCapacity_$h.id" onchange="doDivAjaxCall3$formname('empty','changeRoomCapacity','roomId=$h.id')">
+			#foreach( $num in [0..20])
+			<option value="$num" #if ( $h.capacity == $num ) selected #end>$num</option>
+			#end
+			</select>
+		</td>
+		<td style="width:100px" valign="top"><input class="text" name="roomDeposit_$h.id" value="$!h.roomDeposit" onchange="doDivAjaxCall3$formname('empty','changeRoomDeposit','roomId=$h.id')"></td>
+		<td style="width:100px" valign="top"><input class="text" name="bedRate_$h.id" value="$!h.bedRate" onchange="doDivAjaxCall3$formname('empty','changeBedRate','roomId=$h.id')"></td>
+		<td style="width:20px" valign="top"><input class="linkbutton" type="button" style="width:100%" value="x" onclick="if ( !confirm('Are you sure?') ) return; doDivAjaxCall3$formname('listRooms','deleteRoom','roomId=$h.id')"></td>
+		<td style="width:100px" valign="top">
+		<input class="linkbutton" type="button" style="width:100%" value="Room's Items" onclick="doDivAjaxCall3$formname('listRoomItems_$h.id','listRoomItems','roomId=$h.id')">
+		</td>
+		</tr>
+		</table>
+		<div id="listRoomItems_$h.id" class="shadow" style="width:940px;background:#fff;border:1px solid #D6D4D4;display:none;padding:2px;margin-left:20px;margin-top:5px;margin-bottom:5px"></div>
+	</li>
+	#end
+</ul>
+<table cellpadding="1" cellspacing="0">
+<tr>
+<td ></td>
+<td style="font-weight:bold">Code</td>
+<td style="font-weight:bold">Room No</td>
+<td style="font-weight:bold">Room Type</td>
+<td style="font-weight:bold">Capacity</td>
+<td style="font-weight:bold">Deposit</td>
+<td style="font-weight:bold">Bed Rate</td>
+<td style="font-weight:bold"></td>
+</tr>
+<tr>
+<td style="width:20px"></td>
+<td style="width:100px"><input class="text" name="roomCode" value=""></td>
+<td style="width:200px"><input class="text" name="roomName" value=""></td>
+		<td style="width:200px" valign="top">
+			<select class="text" name="roomTypeId">
+			<option value=""></option>
+			#foreach( $type in $roomTypes)
+			<option value="$type.id" >$type.name</option>
+			#end
+			</select>
+		
+		</td>
+<td style="width:100px">
+<select class="text" name="roomCapacity">
+#foreach( $num in [1..20])
+<option value="$num">$num</option>
+#end
+</select>
+</td>
+<td style="width:100px"><input class="text" name="roomDeposit" value=""></td>
+<td style="width:100px"><input class="text" name="bedRate" value=""></td>
+<td style="width:100px"><input class="linkbutton" type="button" style="width:100%" value="Add" onclick="doDivAjaxCall3$formname('listRooms','addRoom','unitId=$!unit.id')"></td>
+</tr>
+</table>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+Sortable.create('roomList', { onUpdate:updateRoomSequence });
+function updateRoomSequence() {
+	doDivAjaxCall3$formname('listRooms','updateRoomSequence','unitId=$!unit.id')
+}
+</script>

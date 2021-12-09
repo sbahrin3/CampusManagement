@@ -1,0 +1,12 @@
+
+
+<select class="text" name="teacher_id" id="teacherId" style="width:100%;">
+<option value=""></option>
+#foreach( $t in $teachers_list )
+<option #if ( $t.id == $teacherSelectedId) selected #end value="$t.id">$t.name</option>
+#end
+</select>
+
+
+
+

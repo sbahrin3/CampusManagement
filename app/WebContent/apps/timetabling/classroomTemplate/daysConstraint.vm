@@ -1,0 +1,21 @@
+
+<table>
+<tr>
+<td style="width:5px"><input name="day1_$c.id" type="checkbox" value="yes" #if ( $c.monday ) checked #end onchange="if ( this.checked ) { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=1&constraintValue=yes&classroomTemplateId=$c.id'); } else { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=1&constraintValue=no&classroomTemplateId=$c.id'); }">
+</td><td>MO</td>
+<td style="width:5px"><input name="day1_$c.id" type="checkbox" value="yes" #if ( $c.tuesday ) checked #end onchange="if ( this.checked ) { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=2&constraintValue=yes&classroomTemplateId=$c.id'); } else { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=2&constraintValue=no&classroomTemplateId=$c.id'); }">
+</td><td>TU</td>
+<td style="width:5px"><input name="day1_$c.id" type="checkbox" value="yes" #if ( $c.wednesday ) checked #end onchange="if ( this.checked ) { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=3&constraintValue=yes&classroomTemplateId=$c.id'); } else { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=3&constraintValue=no&classroomTemplateId=$c.id'); }">
+</td><td>WE</td>
+
+</tr><tr>
+<td style="width:5px"><input name="day1_$c.id" type="checkbox" value="yes" #if ( $c.thursday ) checked #end onchange="if ( this.checked ) { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=4&constraintValue=yes&classroomTemplateId=$c.id'); } else { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=4&constraintValue=no&classroomTemplateId=$c.id'); }">
+</td><td>TH</td>
+<td style="width:5px"><input name="day1_$c.id" type="checkbox" value="yes" #if ( $c.friday ) checked #end onchange="if ( this.checked ) { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=5&constraintValue=yes&classroomTemplateId=$c.id'); } else { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=5&constraintValue=no&classroomTemplateId=$c.id'); }">
+</td><td>FR</td>
+<td style="width:5px"><input name="day1_$c.id" type="checkbox" value="yes" #if ( $c.saturday ) checked #end onchange="if ( this.checked ) { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=6&constraintValue=yes&classroomTemplateId=$c.id'); } else { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=6&constraintValue=no&classroomTemplateId=$c.id'); }">
+</td><td>SA</td>
+<td style="width:5px"><input name="day1_$c.id" type="checkbox" value="yes" #if ( $c.sunday ) checked #end onchange="if ( this.checked ) { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=7&constraintValue=yes&classroomTemplateId=$c.id'); } else { doDivAjaxCall$formname('divEmpty','setDayConstraint','day=7&constraintValue=no&classroomTemplateId=$c.id'); }">
+</td><td>SU</td>
+</tr>
+</table>
